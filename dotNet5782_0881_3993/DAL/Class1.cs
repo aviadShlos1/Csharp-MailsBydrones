@@ -1,7 +1,8 @@
 ﻿using System;
 
-namespace DAL
+namespace IDAL
 {
+
     public class Class1
     {
     }
