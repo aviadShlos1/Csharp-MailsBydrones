@@ -12,8 +12,8 @@ namespace IDAL
         public struct Parcel
         {
             int Id;
-            int senderId;
-            int targetId;
+            int SenderId;
+            int TargetId;
             WeightCategories Weight;
             Priorities Priority;
             DateTime Requested;
