@@ -6,11 +6,15 @@ namespace IDAL
     {
         public struct Customer
         {
-            int Id;
-            string Name;
-            string Phone;
-            double Longitude;
-            double Lattitude;
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Phone { get; set; }
+            public double Longitude { get; set; }
+            public double Lattitude { get; set; }
+            public override string ToString()
+            {
+                return $"Customer: Id:{Id}, Name:{Name}, Phone:{Phone}, Longitude:{Longitude}, Lattitude:{Lattitude}";
+            }
         }
     }
 }
