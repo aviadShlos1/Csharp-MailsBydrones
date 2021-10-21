@@ -20,5 +20,30 @@ namespace DalObject
             internal static int indexParcel = 0;
             public int RunId;
         }
-    }
+
+        public static Random r = new();
+        public static void Initialize()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                drones[i].Id = r.Next(100, 1000);   // 3 digits
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                stations[i].Id = r.Next(1000, 10000); // 4 digits 
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                customers[i].Id = r.Next(100000000, 1000000000); // 9 digits for valid id
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                parcels[i].Id = r.Next(1000, 10000); // 9 digits for valid id
+            }
+
+        }
+    };
 }
