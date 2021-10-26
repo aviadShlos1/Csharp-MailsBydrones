@@ -54,16 +54,25 @@ namespace DalObject
 
                 Customers[i] = new Customer()
                 {
-                    Id = r.Next(100, 1000),  // 3 digits
+                    Id = r.Next(100000000, 1000000000), 
                     Name = CustomerName[r.Next(CustomerName.Length)],
                     Phone = $"05{ r.Next(2, 9) }{ r.Next(1000000, 10000000) }",
-   
+                    Lattitude = r.NextDouble() * (33.4188709641265 - 29.49970431757609) + 29.49970431757609,
+                    Longitude = r.NextDouble() * (35.89927249423983 - 34.26371323423407) + 34.26371323423407,
                 };
             }
 
             for (int i = 0; i < 10; i++)
             {
-                Parcels[i].Id = r.Next(1000, 10000); // 9 digits for valid id
+                Parcels[i] = new Parcel()
+                {
+                    Id = Config.ParcelIndex++,
+                    SenderId = r.Next(100000000, 1000000000),
+                    TargetId = r.Next(100000000, 1000000000),
+                    Weight = RandomEnumValue<WeightCategories>(),
+                    Priority = RandomEnumValue<Priorities>(),
+                    Requested = RandomEnumValue<DateTime>(),
+                }
             }
 
         }
