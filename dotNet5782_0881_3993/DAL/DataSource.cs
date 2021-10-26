@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IDAL.DO
 
 namespace DalObject
 {
     struct DataSource
     {
-        internal static IDAL.DO.Drone[] drones = new IDAL.DO.Drone[10];
-        internal static IDAL.DO.Station[] stations = new IDAL.DO.Station[5];
-        internal static IDAL.DO.Customer[] customers = new IDAL.DO.Customer[100];
-        internal static IDAL.DO.Parcel[] parcels = new IDAL.DO.Parcel[1000];
+        internal static IDAL.DO.Drone[] Drones = new IDAL.DO.Drone[10];
+        internal static IDAL.DO.Station[] Stations = new IDAL.DO.Station[5];
+        internal static IDAL.DO.Customer[] Customers = new IDAL.DO.Customer[100];
+        internal static IDAL.DO.Parcel[] Parcels = new IDAL.DO.Parcel[1000];
         internal struct Config 
         {
             internal static int indexDrone = 0;
@@ -28,12 +29,11 @@ namespace DalObject
         {
             for (int i = 0; i < 5; i++)
             {
-                drones[i].Id = r.Next(100, 1000);   // 3 digits
-                drones[i] = new Drone()
+                Drones[i] = new Drone()
                 {
                     Id = r.Next(100, 1000),  // 3 digits
-                    Model = "mod" + i.ToString(),
-                    MaxWeight = RandomEnumValue<WeightCategories>(),
+                    Model = "model:" + i.ToString(),
+                    MaxWeight = <WeightCategories>(),
                     Status = RandomEnumValue<DroneStatusCategories>(),
                     Battery = r.NextDouble() * 100
                 };
@@ -42,18 +42,18 @@ namespace DalObject
 
             for (int i = 0; i < 2; i++)
             {
-                stations[i].Id = r.Next(1000, 10000); // 4 digits 
+                Stations[i].Id = r.Next(1000, 10000); // 4 digits 
             }
 
             for (int i = 0; i < 10; i++)
             {
-                customers[i].Id = r.Next(100000000, 1000000000); // 9 digits for valid id
-                customers[i].Phone = $"0{r.Next(50, 59)}{r.Next(1000000, 10000000)}";
+                Customers[i].Id = r.Next(100000000, 1000000000); // 9 digits for valid id
+                Customers[i].Phone = $"0{r.Next(50, 59)}{r.Next(1000000, 10000000)}";
             }
 
             for (int i = 0; i < 10; i++)
             {
-                parcels[i].Id = r.Next(1000, 10000); // 9 digits for valid id
+                Parcels[i].Id = r.Next(1000, 10000); // 9 digits for valid id
             }
 
         }
