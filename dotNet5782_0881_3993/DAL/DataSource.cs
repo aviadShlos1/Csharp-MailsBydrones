@@ -46,11 +46,19 @@ namespace DalObject
 
             Stations[0] = new Station() { Id = Config.StationIndex++, Name = "Haifa Drone Station", Lattitude = 32.794044, Longitude = 34.989571, ChargeSlots = 4 };
             Stations[1] = new Station() { Id = Config.StationIndex++, Name = "Tel Aviv Central Station", Lattitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 };
+           string[] CustomerName={ "Aviad","Avi","Evyatar","Dan","Gad","Gal","John","Mike","Eli","Michael" };
            
+
             for (int i = 0; i < 10; i++)
             {
-                Customers[i].Id = r.Next(100000000, 1000000000); // 9 digits for valid id
-                Customers[i].Phone = $"0{r.Next(50, 59)}{r.Next(1000000, 10000000)}";
+
+                Customers[i] = new Customer()
+                {
+                    Id = r.Next(100, 1000),  // 3 digits
+                    Name = CustomerName[r.Next(CustomerName.Length)],
+                    Phone = $"05{ r.Next(2, 9) }{ r.Next(1000000, 10000000) }",
+   
+                };
             }
 
             for (int i = 0; i < 10; i++)
