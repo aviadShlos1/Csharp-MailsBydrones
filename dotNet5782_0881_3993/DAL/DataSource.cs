@@ -15,10 +15,10 @@ namespace DalObject
         internal static IDAL.DO.Parcel[] Parcels = new IDAL.DO.Parcel[1000];
         internal struct Config 
         {
-            internal static int indexDrone = 0;
-            internal static int indexStation = 0;
-            internal static int indexCustomer = 0;
-            internal static int indexParcel = 0;
+            internal static int DroneIndex = 0;
+            internal static int StationIndex = 0;
+            internal static int CustomerIndex = 0;
+            internal static int ParcelIndex = 0;
             public int RunId;
         }
 
@@ -44,11 +44,9 @@ namespace DalObject
 
             }
 
-            for (int i = 0; i < 2; i++)
-            {
-                Stations[i].Id = r.Next(1000, 10000); // 4 digits 
-            }
-
+            Stations[0] = new Station() { Id = Config.StationIndex++, Name = "Haifa Drone Station", Lattitude = 32.794044, Longitude = 34.989571, ChargeSlots = 4 };
+            Stations[1] = new Station() { Id = Config.StationIndex++, Name = "Tel Aviv Central Station", Lattitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 };
+           
             for (int i = 0; i < 10; i++)
             {
                 Customers[i].Id = r.Next(100000000, 1000000000); // 9 digits for valid id
