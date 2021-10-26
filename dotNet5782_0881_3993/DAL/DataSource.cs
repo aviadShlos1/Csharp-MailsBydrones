@@ -22,11 +22,22 @@ namespace DalObject
         }
 
         public static Random r = new();
+
+        
         public static void Initialize()
         {
             for (int i = 0; i < 5; i++)
             {
                 drones[i].Id = r.Next(100, 1000);   // 3 digits
+                drones[i] = new Drone()
+                {
+                    Id = r.Next(100, 1000),  // 3 digits
+                    Model = "mod" + i.ToString(),
+                    MaxWeight = RandomEnumValue<WeightCategories>(),
+                    Status = RandomEnumValue<DroneStatusCategories>(),
+                    Battery = r.NextDouble() * 100
+                };
+
             }
 
             for (int i = 0; i < 2; i++)
@@ -37,6 +48,7 @@ namespace DalObject
             for (int i = 0; i < 10; i++)
             {
                 customers[i].Id = r.Next(100000000, 1000000000); // 9 digits for valid id
+                customers[i].Phone = $"0{r.Next(50, 59)}{r.Next(1000000, 10000000)}";
             }
 
             for (int i = 0; i < 10; i++)
