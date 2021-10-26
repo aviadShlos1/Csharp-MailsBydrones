@@ -33,7 +33,7 @@ namespace DalObject
                 {
                     Id = r.Next(100, 1000),  // 3 digits
                     Model = "model:" + i.ToString(),
-                    MaxWeight = <WeightCategories>(),
+                    MaxWeight = RandomEnumValue<WeightCategories>(),
                     Status = RandomEnumValue<DroneStatusCategories>(),
                     Battery = r.NextDouble() * 100
                 };
