@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO
+using IDAL.DO;
 
 namespace DalObject
 {
@@ -23,8 +23,12 @@ namespace DalObject
         }
 
         public static Random r = new();
+        public static T RandomEnumValue <T> ()
+        {
+            var v = Enum.GetValues(typeof(T));
+            return (T)v.GetValue(r.Next(v.Length));
+        }
 
-        
         public static void Initialize()
         {
             for (int i = 0; i < 5; i++)
@@ -33,8 +37,8 @@ namespace DalObject
                 {
                     Id = r.Next(100, 1000),  // 3 digits
                     Model = "model:" + i.ToString(),
-                    MaxWeight = RandomEnumValue<WeightCategories>(),
-                    Status = RandomEnumValue<DroneStatusCategories>(),
+                    MaxWeight = RandomEnumValue <WeightCategories>(),
+                    Status = RandomEnumValue <DroneStatuses>(),
                     Battery = r.NextDouble() * 100
                 };
 
