@@ -64,6 +64,7 @@ namespace DalObject
 
             for (int i = 0; i < 10; i++)
             {
+                TimeSpan time = new TimeSpan(0, r.Next(0, 24), r.Next(0, 60));
                 Parcels[i] = new Parcel()
                 {
                     Id = Config.ParcelIndex++,
@@ -71,8 +72,12 @@ namespace DalObject
                     TargetId = r.Next(100000000, 1000000000),
                     Weight = RandomEnumValue<WeightCategories>(),
                     Priority = RandomEnumValue<Priorities>(),
-                    Requested = RandomEnumValue<DateTime>(),
-                }
+                    Requested = DateTime.Now,
+                    Scheduled = DateTime.Now + time,
+                    PickedUp = DateTime.Now + time + time,
+                    Delievered = DateTime.Now + time + time + time,
+                    DroneId = r.Next(0, Config.DroneIndex - 1)
+                };
             }
 
         }
