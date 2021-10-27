@@ -9,10 +9,10 @@ namespace DalObject
 {
     struct DataSource
     {
-        internal static IDAL.DO.Drone[] Drones = new IDAL.DO.Drone[10];
-        internal static IDAL.DO.Station[] Stations = new IDAL.DO.Station[5];
-        internal static IDAL.DO.Customer[] Customers = new IDAL.DO.Customer[100];
-        internal static IDAL.DO.Parcel[] Parcels = new IDAL.DO.Parcel[1000];
+        internal static List<IDAL.DO.Drone> Drones = new List<IDAL.DO.Drone>(10) ;
+        internal static List<IDAL.DO.Station> Stations = new List<IDAL.DO.Station>(5);
+        internal static List<IDAL.DO.Customer> Customers = new List<IDAL.DO.Customer>(100);
+        internal static List<IDAL.DO.Parcel> Parcels = new List< IDAL.DO.Parcel>(1000);
         internal struct Config
         {
             internal static int DroneIndex = 0;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IDAL.DO;
 
-namespace DALObject
+namespace DalObject
 {
     class DalObject
     {
@@ -19,7 +19,7 @@ namespace DALObject
         }
         public void AddParcel(Parcel newParcel)
         {
-
+            
         }
         public void AddStation(Station newStation)
         {
