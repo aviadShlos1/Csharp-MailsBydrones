@@ -62,6 +62,7 @@ namespace DalObject
                     Lattitude = r.NextDouble() * (33.4188709641265 - 29.49970431757609) + 29.49970431757609,
                     Longitude = r.NextDouble() * (35.89927249423983 - 34.26371323423407) + 34.26371323423407,
                 };
+                Config.CustomerIndex++;
             }
 
 
@@ -85,5 +86,6 @@ namespace DalObject
             Config.RunId = Config.ParcelIndex;//Parcel RunId which is bigger than the Parcel amount
         }
     };
+     
 }
 
