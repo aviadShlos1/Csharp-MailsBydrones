@@ -92,8 +92,25 @@ namespace DalObject
 
         }
         #endregion Update methods
-        public void Display()
-        { }
+
+        #region Single display 
+        public Station StationDisplay(int stationId)
+        {
+           return DataSource.Stations.Find(i => i.Id == stationId);    
+        }
+        public Drone DroneDisplay(int droneId)
+        {
+            return DataSource.Drones.Find(i => i.Id == droneId);
+        }
+        public Customer CustomerDisplay(int customerId)
+        {
+            return DataSource.Customers.Find(i => i.Id == customerId);
+        }
+        public Parcel ParcelDisplay(int parcelId)
+        {
+            return DataSource.Parcels.Find(i => i.Id == parcelId);
+        }
+        #endregion Single display
         public void ListDisplay()
         { }
 
