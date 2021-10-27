@@ -7,9 +7,9 @@ using IDAL.DO;
 
 namespace DalObject
 {
-    class DalObject
+    public class DalObject
     {
-        DalObject() { DataSource.Initialize(); }
+        public DalObject() { DataSource.Initialize(); }
 
         #region Add methods
         public void AddStation(Station newStation)
@@ -74,20 +74,23 @@ namespace DalObject
             DataSource.DroneCharges[chargeIndex] = charge1;
         }
 
-        public void DroneRelease(int droneId,int stationId)
+        public void DroneRelease(int droneId)
         {
             int droneReleaseIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
             Drone drone2 = DataSource.Drones[droneReleaseIndex];
             drone2.Status = (DroneStatuses)0; //DroneStatuses: free,maintence,delievery
             DataSource.Drones[droneReleaseIndex] = drone2;
 
-            int stationIndex = DataSource.Stations.FindIndex(i => i.Id == stationId);
+            int chargeIndex = DataSource.DroneCharges.FindIndex(i => i.DroneId == droneId);
+            DroneCharge help = DataSource.DroneCharges[chargeIndex];
+            int baseStationId = help.StationId;
+
+            int stationIndex = DataSource.Stations.FindIndex(i => i.Id == baseStationId);
             Station station2 = DataSource.Stations[stationIndex];
             station2.ChargeSlots++;
             DataSource.Stations[stationIndex] = station2;
 
-            int chargeIndex = DataSource.DroneCharges.FindIndex(i => i.DroneId == droneId);
-            DataSource.DroneCharges.RemoveAt(chargeIndex);
+            DataSource.DroneCharges.RemoveAt(DataSource.DroneCharges.FindIndex(x => x.DroneId == droneId));
 
 
         }
