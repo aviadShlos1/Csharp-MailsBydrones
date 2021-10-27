@@ -11,7 +11,7 @@ namespace DalObject
     {
         public void AddDrone(Drone newDrone)
         {
-
+            DataSource.Drones.Add(newDrone);
         }
         public void AddCustomer(Customer newCustomer)
         {
