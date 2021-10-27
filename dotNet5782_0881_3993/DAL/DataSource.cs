@@ -85,7 +85,7 @@ namespace DalObject
                     Scheduled = DateTime.Now + time,
                     PickedUp = DateTime.Now + time + time,
                     Delievered = DateTime.Now + time + time + time,
-                    DroneId = 0,
+                    DroneToParcel_Id = 0,
                 });
                 Config.RunId++;
             }

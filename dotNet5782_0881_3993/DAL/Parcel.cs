@@ -20,11 +20,11 @@ namespace IDAL
             public DateTime Scheduled { get; set; } // relative to the drone 
             public DateTime PickedUp { get; set; } // picked up time from the deliver
             public DateTime Delievered { get; set; } // customer's arrival time
-            public int DroneId { get; set; }
+            public int DroneToParcel_Id { get; set; }
             public override string ToString()
             {
                 return $"Parcel: Id:{Id}, SenderId{SenderId}, TargetId{TargetId}, Weight{Weight}, Priority{Priority}, Requested{Requested}, " +
-                    $"DroneId{DroneId}, Scheduled{Scheduled}, PickedUp{PickedUp}, Delievered{Delievered}";
+                    $"DroneToParcel_Id{DroneToParcel_Id}, Scheduled{Scheduled}, PickedUp{PickedUp}, Delievered{Delievered}";
             }
         }
     }
