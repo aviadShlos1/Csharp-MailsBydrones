@@ -13,17 +13,16 @@ namespace DalObject
         
         #region The entities lists
         // pay attention - we chose to work with lists, so we don't need to initialize the sizes
-        internal static List<Drone> Drones = new List<Drone>() ;
-        internal static List<Station> Stations = new List<Station>();
-        internal static List<Customer> Customers = new List<Customer>();
-        internal static List<Parcel> Parcels = new List<Parcel>();
+        internal static List<Drone> Drones = new List<Drone>(10) ;
+        internal static List<Station> Stations = new List<Station>(5);
+        internal static List<Customer> Customers = new List<Customer>(100);
+        internal static List<Parcel> Parcels = new List<Parcel>(1000);
         internal static List<DroneCharge> DroneCharges = new List<DroneCharge>();
         #endregion The entities lists
-
+        /// <summary> Updating the package amount </summary>
         internal struct Config
         {
-            /// <summary> Updating the package amount </summary>
-            public static int RunId = 1000;
+            public static int RunId = 0;//This parameter will be updated both in Initialize and Add methods
         }
 
         private static int DroneId;
@@ -50,8 +49,10 @@ namespace DalObject
             }
             #endregion adding Drone details
 
+            #region adding Station details
             Stations[0] = new Station() { Id = 0 , Name = "Haifa Drone Station", Lattitude = 32.794044, Longitude = 34.989571, ChargeSlots = 4 };
             Stations[1] = new Station() { Id = 1, Name = "Tel Aviv Drone Station", Lattitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 };
+            #endregion adding Station details
 
             #region adding Customer details
             string[] CustomerName = { "Aviad", "Avi", "Evyatar", "Dan", "Gad", "Gal", "John", "Mike", "Eli", "Michael" };
@@ -69,16 +70,13 @@ namespace DalObject
             }
             #endregion adding Customer details
 
-
-
-
             #region adding Parcel details
             for (int i = 0; i < 10; i++)
             {
                 TimeSpan time = new TimeSpan(0, rand.Next(0, 60), rand.Next(0, 60));
                 Parcels.Add (new Parcel()
                 {
-                    Id = rand.Next(0, 100),
+                    Id = rand.Next(0, 1000),
                     SenderId = rand.Next(100000000, 1000000000),
                     TargetId = rand.Next(100000000, 1000000000),
                     Weight = RandomEnumValue<WeightCategories>(),
@@ -89,6 +87,7 @@ namespace DalObject
                     Delievered = DateTime.Now + time + time + time,
                     DroneId = 0,
                 });
+                Config.RunId++;
             }
             #endregion adding Parcel details
         }
