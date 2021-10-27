@@ -35,7 +35,7 @@ namespace DalObject
             {
                 Drones[i] = new Drone()
                 {
-                    Id = r.Next(100, 1000),  // 3 digits
+                    Id = Config.DroneIndex++, 
                     Model = "model:" + i.ToString(),
                     MaxWeight = RandomEnumValue <WeightCategories>(),
                     Status = RandomEnumValue <DroneStatuses>(),
@@ -45,7 +45,7 @@ namespace DalObject
             }
 
             Stations[0] = new Station() { Id = Config.StationIndex++, Name = "Haifa Drone Station", Lattitude = 32.794044, Longitude = 34.989571, ChargeSlots = 4 };
-            Stations[1] = new Station() { Id = Config.StationIndex++, Name = "Tel Aviv Central Station", Lattitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 };
+            Stations[1] = new Station() { Id = Config.StationIndex++, Name = "Tel Aviv Drone Station", Lattitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 };
            string[] CustomerName={ "Aviad","Avi","Evyatar","Dan","Gad","Gal","John","Mike","Eli","Michael" };
            
 
@@ -61,10 +61,11 @@ namespace DalObject
                     Longitude = r.NextDouble() * (35.89927249423983 - 34.26371323423407) + 34.26371323423407,
                 };
             }
+            
 
             for (int i = 0; i < 10; i++)
             {
-                TimeSpan time = new TimeSpan(0, r.Next(0, 24), r.Next(0, 60));
+                TimeSpan time = new TimeSpan(0, r.Next(0, 60), r.Next(0, 60));
                 Parcels[i] = new Parcel()
                 {
                     Id = Config.ParcelIndex++,
@@ -76,7 +77,7 @@ namespace DalObject
                     Scheduled = DateTime.Now + time,
                     PickedUp = DateTime.Now + time + time,
                     Delievered = DateTime.Now + time + time + time,
-                    DroneId = r.Next(0, Config.DroneIndex - 1)
+                    DroneId = r.Next(0, Config.DroneIndex-1)
                 };
             }
 
