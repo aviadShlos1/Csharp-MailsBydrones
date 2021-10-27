@@ -111,8 +111,33 @@ namespace DalObject
             return DataSource.Parcels.Find(i => i.Id == parcelId);
         }
         #endregion Single display
-        public void ListDisplay()
-        { }
 
+        #region ListDisplay
+        public List<Station> stationsList()
+        {
+            return DataSource.Stations.Take(DataSource.Stations.Count).ToList();
+        }
+        public List<Drone> dronesList()
+        {
+            return DataSource.Drones.Take(DataSource.Drones.Count).ToList();
+        }
+        public List<Customer> customersList()
+        {
+            return DataSource.Customers.Take(DataSource.Customers.Count).ToList();
+        }
+        public List<Parcel> parcelsList()
+        {
+            return DataSource.Parcels.Take(DataSource.Parcels.Count).ToList();
+        }
+
+        public List<Parcel> noAttributeParcelsList()
+        {
+            return DataSource.Parcels.TakeWhile(i => i.DroneToParcel_Id == 0).ToList();
+        }
+        public List<Station> freeChargeSlotsList()
+        {
+            return DataSource.Stations.TakeWhile(i => i.ChargeSlots != 0).ToList();
+        }
+        #endregion ListDisplay
     }
 }
