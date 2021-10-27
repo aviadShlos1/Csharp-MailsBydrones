@@ -12,6 +12,10 @@ namespace DalObject
         DalObject() { DataSource.Initialize(); }
 
         #region Add methods
+        public void AddStation(Station newStation)
+        {
+            DataSource.Stations.Add(newStation);
+        }
         public void AddDrone(Drone newDrone)
         {
             DataSource.Drones.Add(newDrone);
@@ -25,10 +29,6 @@ namespace DalObject
             DataSource.Parcels.Add(newParcel);
             newParcel.Id = DataSource.Config.RunId++;
             return newParcel.Id;
-        }
-        public void AddStation(Station newStation)
-        {
-            DataSource.Stations.Add(newStation);
         }
         #endregion Add methods
 
@@ -113,28 +113,28 @@ namespace DalObject
         #endregion Single display
 
         #region ListDisplay
-        public List<Station> stationsList()
+        public List<Station> StationsList()
         {
             return DataSource.Stations.Take(DataSource.Stations.Count).ToList();
         }
-        public List<Drone> dronesList()
+        public List<Drone> DronesList()
         {
             return DataSource.Drones.Take(DataSource.Drones.Count).ToList();
         }
-        public List<Customer> customersList()
+        public List<Customer> CustomersList()
         {
             return DataSource.Customers.Take(DataSource.Customers.Count).ToList();
         }
-        public List<Parcel> parcelsList()
+        public List<Parcel> ParcelsList()
         {
             return DataSource.Parcels.Take(DataSource.Parcels.Count).ToList();
         }
 
-        public List<Parcel> noAttributeParcelsList()
+        public List<Parcel> ParcelsWithoutDrone()
         {
             return DataSource.Parcels.TakeWhile(i => i.DroneToParcel_Id == 0).ToList();
         }
-        public List<Station> freeChargeSlotsList()
+        public List<Station> FreeChargeSlotsList()
         {
             return DataSource.Stations.TakeWhile(i => i.ChargeSlots != 0).ToList();
         }

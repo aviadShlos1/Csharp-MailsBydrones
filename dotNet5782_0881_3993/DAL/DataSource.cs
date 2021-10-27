@@ -50,7 +50,7 @@ namespace DalObject
             #endregion adding Drone details
 
             #region adding Station details
-            Stations[0] = new Station() { Id = 0 , Name = "Haifa Drone Station", Lattitude = 32.794044, Longitude = 34.989571, ChargeSlots = 4 };
+            Stations[0] = new Station() { Id = 0 , Name = "Ramat-Gan Drone Station", Lattitude = 32.07028, Longitude = 34.82472, ChargeSlots = 4 };
             Stations[1] = new Station() { Id = 1, Name = "Tel Aviv Drone Station", Lattitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 };
             #endregion adding Station details
 
