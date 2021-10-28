@@ -125,9 +125,9 @@ Please enter an ID number for the Customer(9 digits):");
                     newCustomerName = Console.ReadLine();
                     Console.WriteLine("Please enter the phone number of the customer:");
                     newPhoneNumber = Console.ReadLine();
-                    Console.WriteLine("Please enter the longitude of the station:");
+                    Console.WriteLine("Please enter the longitude of the customer city:");
                     while (!double.TryParse(Console.ReadLine(), out newCustomerLongitude)) ;
-                    Console.WriteLine("Please enter the lattitude of the station:");
+                    Console.WriteLine("Please enter the lattitude of the customer city:");
                     while (!double.TryParse(Console.ReadLine(), out newCustomerLattitude)) ;
                     Console.WriteLine();
 
@@ -136,18 +136,20 @@ Please enter an ID number for the Customer(9 digits):");
                         Id = newCustomerID,
                         Name = newCustomerName,
                         Phone = newPhoneNumber,
-                        Longitude = newCustomerLongitude,
-                        Lattitude = newCustomerLattitude
+                        CustomerLongitude = newCustomerLongitude,
+                        CustomerLattitude = newCustomerLattitude
                     };
                     dal.AddCustomer(newCustomer);
                     break;
 
                 case AddOptions.AddParcel:
-                    int newSenderId, newTargetId, newWeight, newPriorities;
+                    int newParcelId, newSenderId, newTargetId, newWeight, newPriorities;
 
                     Console.WriteLine(@"
 You selected to add a Parcel.
-Please enter the sender ID number(9 digits):");
+Please enter the Parcel ID (0-1000):");
+                    while (!int.TryParse(Console.ReadLine(), out newParcelId)) ;
+                    Console.WriteLine("Please enter the sender ID number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newSenderId)) ;
                     Console.WriteLine("Please enter the target ID number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newTargetId)) ;
@@ -159,13 +161,14 @@ Please enter the sender ID number(9 digits):");
 
                     Parcel newParcel = new Parcel
                     {
+                        Id = newParcelId,
                         SenderId = newSenderId,
                         TargetId = newTargetId,
                         Weight = (WeightCategories)newWeight,
                         Priority = (Priorities)newPriorities
                     };
 
-                    int counterParcelSerialNumber = dal.AddParcel(newParcel);
+                    int parcelCounter = dal.AddParcel(newParcel);
                     break;
 
                 default:
@@ -182,12 +185,11 @@ Please enter the sender ID number(9 digits):");
         static public void UpdateOptions(DalObject.DalObject dal)
         {
             Console.WriteLine(@"Update options:
- 1. Attributing a drone to a parcel
- 2. picking up the parcel by the drone
- 3. Deliever the package to the customer
- 4. Sending a drone for battery charging 
- 5. Release drone from charging at base station
-
+1. Attributing a drone to a parcel
+2. Picking up the parcel by the drone
+3. Deliever the package to the customer
+4. Sending a drone for battery charging 
+5. Release drone from charging at base station
 Your choice:");
             int.TryParse(Console.ReadLine(), out int choice);
 
@@ -227,7 +229,7 @@ Your choice:");
                         Console.WriteLine(FreeChargSlots[i].ToString());
                     }
                     int.TryParse(Console.ReadLine(), out StationId);
-                    dal.DroneToCharge(StationId, DroneId);
+                    dal.DroneToCharge(DroneId, StationId);
                     break;
 
                 case UpdatesOption.DroneRelease:
@@ -263,28 +265,28 @@ Your choice:");
             switch ((SingleDisplayOption)choice)
             {
                 case SingleDisplayOption.StationDisplay:
-                    Console.WriteLine("Add ID of the station:");
+                    Console.WriteLine("Add the requested station ID:");
                     int.TryParse(Console.ReadLine(), out idForViewObject);
 
                     Console.WriteLine(dal.StationDisplay(idForViewObject).ToString());
                     break;
 
                 case SingleDisplayOption.DroneDisplay:
-                    Console.WriteLine("Add ID of the requested drone:");
+                    Console.WriteLine("Add the requested drone ID:");
                     int.TryParse(Console.ReadLine(), out idForViewObject);
 
                     Console.WriteLine(dal.DroneDisplay(idForViewObject).ToString());
                     break;
 
                 case SingleDisplayOption.CustomerDisplay:
-                    Console.WriteLine("Add ID of the requested Customer:");
+                    Console.WriteLine("Add the requested customer IDr:");
                     int.TryParse(Console.ReadLine(), out idForViewObject);
 
                     Console.WriteLine(dal.CustomerDisplay(idForViewObject).ToString());
                     break;
 
                 case SingleDisplayOption.ParcelDisplay:
-                    Console.WriteLine("Add ID of the requested parcel:");
+                    Console.WriteLine("Add the requested parcel ID:");
                     int.TryParse(Console.ReadLine(), out idForViewObject);
 
                     Console.WriteLine(dal.ParcelDisplay(idForViewObject).ToString());
@@ -310,7 +312,6 @@ Your choice:");
 4. Parcels list 
 5. Parcels which haven't been assigned to a drone
 6. Available charging stations
-
 Your choice:");
             int.TryParse(Console.ReadLine(), out int choice);
 

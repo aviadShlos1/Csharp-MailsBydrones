@@ -15,14 +15,14 @@ namespace IDAL
             public int Id { get; set; }
             public string Name { get; set; }
             public string Phone { get; set; }
-            public double Longitude { get; set; }
-            public double Lattitude { get; set; }
+            public double CustomerLongitude { get; set; }
+            public double CustomerLattitude { get; set; }
             
             /// </summary> This method converts the values to string values
             /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
-                return $"Customer: Id:{Id}, Name:{Name}, Phone:{Phone}, Longitude:{Longitude}, Lattitude:{Lattitude}";
+                return $"Customer: Id:{Id}, Name:{Name}, Phone:{Phone}, CustomerLongitude:{CustomerLongitude}, CustomerLattitude:{CustomerLattitude}";
             }
         }
     }

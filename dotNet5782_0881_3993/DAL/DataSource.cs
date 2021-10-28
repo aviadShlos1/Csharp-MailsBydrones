@@ -62,7 +62,7 @@ namespace DalObject
             #endregion adding Drone details
 
             #region adding Station details
-            Stations.Add(new Station() { Id = 0 , Name = "Ramat-Gan Drone Station", Lattitude = 32.07028, Longitude = 34.82472, ChargeSlots = 4 });
+            Stations.Add(new Station() { Id = 0 , Name = "Herzliya Drone Station", Lattitude = 32.16472, Longitude = 34.84250, ChargeSlots = 4 });
             Stations.Add(new Station() { Id = 1, Name = "Tel Aviv Drone Station", Lattitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 });
             #endregion adding Station details
 
@@ -76,8 +76,8 @@ namespace DalObject
                     Id = rand.Next(100000000, 1000000000),
                     Name = CustomerName[rand.Next(CustomerName.Length)],
                     Phone = $"05{ rand.Next(2, 9) }{ rand.Next(1000000, 10000000) }",
-                    Lattitude = rand.NextDouble() * (33.4188709641265 - 29.49970431757609) + 29.49970431757609,
-                    Longitude = rand.NextDouble() * (35.89927249423983 - 34.26371323423407) + 34.26371323423407,
+                    CustomerLattitude = rand.NextDouble() * (33.4188709641265 - 29.49970431757609) + 29.49970431757609,
+                    CustomerLongitude = rand.NextDouble() * (35.89927249423983 - 34.26371323423407) + 34.26371323423407,
                 });
             }
             #endregion adding Customer details
