@@ -13,7 +13,7 @@ namespace IDAL
 {
     namespace DO
     {
-        /// <summary> This struct is intended for storing a Drone details
+        /// <summary> This struct is intended for storing the Drone details
         public struct Drone
         {
             public int Id { get; set; }
@@ -21,6 +21,9 @@ namespace IDAL
             public WeightCategories MaxWeight { get; set; }
             public DroneStatuses Status { get; set; }
             public double Battery { get; set; }
+
+            /// </summary> This method converts the values to string values
+            /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
                 return $"Drone: Id:{Id}, Model{Model}, MaxWeight{MaxWeight}, Status{Status}, Battery{Battery}";

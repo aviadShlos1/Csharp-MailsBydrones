@@ -14,6 +14,7 @@ namespace IDAL
 
     namespace DO
     {
+        /// <summary> This struct is intended for storing the Parcel details
         public struct Parcel
         {
             public int Id { get; set; }
@@ -26,6 +27,9 @@ namespace IDAL
             public DateTime PickedUp { get; set; } // picked up time from the deliver
             public DateTime Delievered { get; set; } // customer's arrival time
             public int DroneToParcel_Id { get; set; }
+
+            /// </summary> This method converts the values to string values
+            /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
                 return $"Parcel: Id:{Id}, SenderId{SenderId}, TargetId{TargetId}, Weight{Weight}, Priority{Priority}, Requested{Requested}, " +

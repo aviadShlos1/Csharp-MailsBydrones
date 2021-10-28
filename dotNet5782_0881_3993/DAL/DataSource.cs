@@ -16,15 +16,18 @@ namespace DalObject
     {
         /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();
-        
+
         #region The entities lists
-        // pay attention - we chose to work with lists, so we don't need to initialize the sizes
+        // Pay attention - we chose to work with lists, so we don't need to initialize the sizes
+
+        /// <This five rows below describe the initialize of the entities lists >
         internal static List<Drone> Drones = new List<Drone>(10) ;
         internal static List<Station> Stations = new List<Station>(5);
         internal static List<Customer> Customers = new List<Customer>(100);
         internal static List<Parcel> Parcels = new List<Parcel>(1000);
         internal static List<DroneCharge> DroneCharges = new List<DroneCharge>();
         #endregion The entities lists
+
         /// <summary> Updating the parcel amount </summary>
         internal struct Config
         {
