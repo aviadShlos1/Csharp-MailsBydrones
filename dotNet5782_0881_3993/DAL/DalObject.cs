@@ -17,6 +17,10 @@ namespace DalObject
         public DalObject() { DataSource.Initialize(); }
 
         #region Add methods
+        /// <summary>
+        /// Adding a new object for the all entities
+        /// </summary>
+        /// <param name="newStation"></param>
         public void AddStation(Station newStation)
         {
             DataSource.Stations.Add(newStation);
@@ -38,6 +42,11 @@ namespace DalObject
         #endregion Add methods
 
         #region Update methods
+        /// <summary>
+        /// Assining a drone to a parcel by the parcel and drone id 
+        /// </summary>
+        /// <param name="parcelId"></param>
+        /// <param name="droneId"></param>
         public void ConnectDroneToParcel(int parcelId, int droneId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
@@ -46,6 +55,10 @@ namespace DalObject
             parcel1.Scheduled = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel1;
         }
+        /// <summary>
+        /// Picking up a parcel by the assined drone before, with given the parcel id
+        /// </summary>
+        /// <param name="parcelId"></param>
         public void PickUpParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
@@ -53,6 +66,10 @@ namespace DalObject
             parcel2.PickedUp = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel2;
         }
+        /// <summary>
+        /// Delivering the parcel to the customer
+        /// </summary>
+        /// <param name="parcelId"></param>
         public void DelieverParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
@@ -60,6 +77,11 @@ namespace DalObject
             parcel3.Delievered = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel3;
         }
+        /// <summary>
+        /// Sending a drone to charge in the base station, with given the drone and station id
+        /// </summary>
+        /// <param name="droneId"></param>
+        /// <param name="stationId"></param>
         public void DroneToCharge(int droneId, int stationId)
         {
             int droneIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
@@ -69,16 +91,19 @@ namespace DalObject
 
             int stationIndex = DataSource.Stations.FindIndex(i => i.Id == stationId);
             Station station1 = DataSource.Stations[stationIndex];
-            station1.ChargeSlots--; // reducing the free chargeSlots
+            station1.ChargeSlots--; // Reducing the free chargeSlots
             DataSource.Stations[stationIndex] = station1;
 
-            DataSource.DroneCharges.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });
+            DataSource.DroneCharges.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
 
             int chargeIndex = DataSource.DroneCharges.FindIndex(i => i.DroneId==droneId);
             DroneCharge charge1 = DataSource.DroneCharges[chargeIndex];
             DataSource.DroneCharges[chargeIndex] = charge1;
         }
-
+        /// <summary>
+        /// Realesing a drone from the charge base station
+        /// </summary>
+        /// <param name="droneId"></param>
         public void DroneRelease(int droneId)
         {
             int droneReleaseIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
@@ -92,16 +117,21 @@ namespace DalObject
 
             int stationIndex = DataSource.Stations.FindIndex(i => i.Id == baseStationId);
             Station station2 = DataSource.Stations[stationIndex];
-            station2.ChargeSlots++;
+            station2.ChargeSlots++;//Increasing the number of the free charge slots
             DataSource.Stations[stationIndex] = station2;
 
-            DataSource.DroneCharges.RemoveAt(DataSource.DroneCharges.FindIndex(x => x.DroneId == droneId));
+            DataSource.DroneCharges.RemoveAt(DataSource.DroneCharges.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
 
 
         }
         #endregion Update methods
 
         #region Single display 
+        /// <summary>
+        /// Displaying the details for a single entity for the 4 methods below 
+        /// </summary>
+        /// <param name="stationId"></param>
+        /// <returns>The type of the entity</returns>
         public Station StationDisplay(int stationId)
         {
            return DataSource.Stations.Find(i => i.Id == stationId);    
@@ -121,6 +151,10 @@ namespace DalObject
         #endregion Single display
 
         #region ListDisplay
+        /// <summary>
+        /// Displaying the all list for all the entity that chosen
+        /// </summary>
+        /// <returns></returns>
         public List<Station> StationsList()
         {
             return DataSource.Stations.Take(DataSource.Stations.Count).ToList();
@@ -137,11 +171,18 @@ namespace DalObject
         {
             return DataSource.Parcels.Take(DataSource.Parcels.Count).ToList();
         }
-
+        /// <summary>
+        /// Displaying the parcel without assinged drone
+        /// </summary>
+        /// <returns>The list of the parcel</returns>
         public List<Parcel> ParcelsWithoutDrone()
         {
             return DataSource.Parcels.TakeWhile(i => i.DroneToParcel_Id == 0).ToList();
         }
+        /// <summary>
+        /// Displaying the list of station with a free charge slots 
+        /// </summary>
+        /// <returns>The list of station entity</returns>
         public List<Station> FreeChargeSlotsList()
         {
             return DataSource.Stations.TakeWhile(i => i.ChargeSlots != 0).ToList();
