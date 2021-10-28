@@ -21,7 +21,7 @@ namespace ConsoleUI
     /// <summary> enum for UpdatesOption</summary>
     enum UpdatesOption { ConnectDroneToParcel = 1, PickUpParcel, DelieverParcel, DroneToCharge, DroneRelease }
     /// <summary>enum for DisplaySingleOption </summary>
-    enum SingleDisplayOption { StationDisplay = 1, DroneDisplay, CustomerDisplay, ParcelDisplay }
+    enum SingleDisplayOptions { StationDisplay = 1, DroneDisplay, CustomerDisplay, ParcelDisplay }
     /// <summary>enum for DisplayListOption </summary>
     enum ListDisplayOption
     {
@@ -215,7 +215,6 @@ Your choice:");
                 case UpdatesOption.DelieverParcel:
                     Console.WriteLine("please enter a parcel ID:");
                     int.TryParse(Console.ReadLine(), out ParcelId);
-
                     dal.DelieverParcel(ParcelId);
                     break;
 
@@ -246,7 +245,7 @@ Your choice:");
 
         #region Display options
         /// <summary>
-        /// The function handles display options.
+        /// The function handles single display options.
         /// </summary>
         /// <param name="dal">DalObject object that is passed as a parameter to enable the functions in the DalObject class</param>
         static public void DisplaySingleOptions(DalObject.DalObject dal)
@@ -260,36 +259,32 @@ Your choice:");
 Your choice:");
             int.TryParse(Console.ReadLine(), out int choice);
 
-            int idForViewObject;
+            int displayObjectId;
 
-            switch ((SingleDisplayOption)choice)
+            switch ((SingleDisplayOptions)choice)
             {
-                case SingleDisplayOption.StationDisplay:
+                case SingleDisplayOptions.StationDisplay:
                     Console.WriteLine("Add the requested station ID:");
-                    int.TryParse(Console.ReadLine(), out idForViewObject);
-
-                    Console.WriteLine(dal.StationDisplay(idForViewObject).ToString());
+                    int.TryParse(Console.ReadLine(), out displayObjectId);
+                    Console.WriteLine(dal.StationDisplay(displayObjectId).ToString());
                     break;
 
-                case SingleDisplayOption.DroneDisplay:
+                case SingleDisplayOptions.DroneDisplay:
                     Console.WriteLine("Add the requested drone ID:");
-                    int.TryParse(Console.ReadLine(), out idForViewObject);
-
-                    Console.WriteLine(dal.DroneDisplay(idForViewObject).ToString());
+                    int.TryParse(Console.ReadLine(), out displayObjectId);
+                    Console.WriteLine(dal.DroneDisplay(displayObjectId).ToString());
                     break;
 
-                case SingleDisplayOption.CustomerDisplay:
+                case SingleDisplayOptions.CustomerDisplay:
                     Console.WriteLine("Add the requested customer IDr:");
-                    int.TryParse(Console.ReadLine(), out idForViewObject);
-
-                    Console.WriteLine(dal.CustomerDisplay(idForViewObject).ToString());
+                    int.TryParse(Console.ReadLine(), out displayObjectId);
+                    Console.WriteLine(dal.CustomerDisplay(displayObjectId).ToString());
                     break;
 
-                case SingleDisplayOption.ParcelDisplay:
+                case SingleDisplayOptions.ParcelDisplay:
                     Console.WriteLine("Add the requested parcel ID:");
-                    int.TryParse(Console.ReadLine(), out idForViewObject);
-
-                    Console.WriteLine(dal.ParcelDisplay(idForViewObject).ToString());
+                    int.TryParse(Console.ReadLine(), out displayObjectId);
+                    Console.WriteLine(dal.ParcelDisplay(displayObjectId).ToString());
                     break;
 
                 default:
@@ -426,5 +421,4 @@ Your choice:");
             } while (!(choice == 5));
         }
     }
-
 }
