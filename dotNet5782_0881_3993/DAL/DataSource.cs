@@ -14,6 +14,7 @@ namespace DalObject
 {
     struct DataSource
     {
+        /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();
         
         #region The entities lists
@@ -24,7 +25,7 @@ namespace DalObject
         internal static List<Parcel> Parcels = new List<Parcel>(1000);
         internal static List<DroneCharge> DroneCharges = new List<DroneCharge>();
         #endregion The entities lists
-        /// <summary> Updating the package amount </summary>
+        /// <summary> Updating the parcel amount </summary>
         internal struct Config
         {
             public static int RunId = 0;//This parameter will be updated both in Initialize and Add methods
@@ -32,12 +33,15 @@ namespace DalObject
 
         private static int DroneId;
 
+        /// ‹summary›This method allows us to rand objects from the enum class
+        /// ‹return› A random value that exist in the enum class.‹/returns›
         public static T RandomEnumValue<T>()
         {
             var v = Enum.GetValues(typeof(T));
             return (T)v.GetValue(rand.Next(v.Length));
         }
-
+     
+        /// ‹summary›This method initializes the entities details.
         public static void Initialize()
         {
             #region adding Drone details
@@ -78,7 +82,8 @@ namespace DalObject
             #region adding Parcel details
             for (int i = 0; i < 10; i++)
             {
-                TimeSpan time = new TimeSpan(0, rand.Next(0, 60), rand.Next(0, 60));
+                /// ‹summary›TimeSpan field which will be used to determine time
+                TimeSpan time = new TimeSpan(0, rand.Next(0, 60), rand.Next(0, 60)); 
                 Parcels.Add (new Parcel()
                 {
                     Id = rand.Next(0, 1000),
