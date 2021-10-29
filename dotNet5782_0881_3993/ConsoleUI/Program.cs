@@ -16,13 +16,17 @@ namespace ConsoleUI
     #region Enums
     /// <summary>
     enum Options { Add = 1, Update, SingleDisplay, ListDisplay, Distance, EXIT }
+  
     /// <summary> enum for AddOption</summary>
     enum AddOptions { AddStation = 1, AddDrone, AddCustomer, AddParcel }
+   
     /// <summary> enum for UpdatesOption</summary>
     enum UpdatesOption { ConnectDroneToParcel = 1, PickUpParcel, DelieverParcel, DroneToCharge, DroneRelease }
-    /// <summary>enum for DisplaySingleOption </summary>
+
+    /// <summary> enum for SingleOptionDisplay </summary>
     enum SingleDisplayOptions { StationDisplay = 1, DroneDisplay, CustomerDisplay, ParcelDisplay }
-    /// <summary>enum for DisplayListOption </summary>
+
+    /// <summary> enum for ListOptionDisplay </summary>
     enum ListDisplayOption
     {
         StationsList = 1, DronesList, CustomersList, ParcelsList, ParcelsWithoutDrone, FreeChargeSlotsList
@@ -38,8 +42,8 @@ namespace ConsoleUI
         /// <summary>
         /// The function handles various addition options.
         /// </summary>
-        /// <param name="dal">DalObject object that is passed as a parameter to enable the functions in the DalObject class</param>
-        static public void InsertOptions(DalObject.DalObject dal)
+        /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
+        static public void AddOptions(DalObject.DalObject dal)
         {
             Console.WriteLine(@"Add options:
 1. Station
@@ -52,11 +56,12 @@ Your choice:");
             
             switch ((AddOptions)choice)
             {
-                case AddOptions.AddStation:
+                    // Adding a new station
+                case ConsoleUI.AddOptions.AddStation:
                     int newStationID, newchargsSlots;
                     string newName;
                     double newLongitude, newLattitude;
-
+                    // User input for a new station
                     Console.WriteLine(@"
 You selected to add a station.
 Please enter an ID number for the station:(0-4)");
@@ -82,11 +87,12 @@ Please enter an ID number for the station:(0-4)");
                     dal.AddStation(newStation);
                     break;
 
-                case AddOptions.AddDrone:
+                    // Adding a new drone
+                case ConsoleUI.AddOptions.AddDrone:
                     int newDroneID, newMaxWeight, newStatus;
                     string newModel;
                     double newBatteryLevel;
-
+                    // User input for a new drone
                     Console.WriteLine(@"
 You selected to add a Drone.
 Please enter an ID number for the drone(4 digits):");
@@ -112,11 +118,12 @@ Please enter an ID number for the drone(4 digits):");
                     dal.AddDrone(newdrone);
                     break;
 
-                case AddOptions.AddCustomer:
+                    // Adding a new customer
+                case ConsoleUI.AddOptions.AddCustomer:
                     int newCustomerID;
                     string newCustomerName, newPhoneNumber;
                     double newCustomerLongitude, newCustomerLattitude;
-
+                    // User input for a new customer
                     Console.WriteLine(@"
 You selected to add a Customer.
 Please enter an ID number for the Customer(9 digits):");
@@ -142,9 +149,10 @@ Please enter an ID number for the Customer(9 digits):");
                     dal.AddCustomer(newCustomer);
                     break;
 
-                case AddOptions.AddParcel:
+                    // Adding a new parcel
+                case ConsoleUI.AddOptions.AddParcel:
                     int newParcelId, newSenderId, newTargetId, newWeight, newPriorities;
-
+                    // User input for a new parcel
                     Console.WriteLine(@"
 You selected to add a Parcel.
 Please enter the Parcel ID (0-1000):");
@@ -181,7 +189,7 @@ Please enter the Parcel ID (0-1000):");
         /// <summary>
         /// The function handles various update options.
         /// </summary>
-        /// <param name="dal">DalObject object that is passed as a parameter to enable the functions in the DalObject class</param>
+        /// <param name="dal"> DalObject object that enables access to the DalObject class functions </param>
         static public void UpdateOptions(DalObject.DalObject dal)
         {
             Console.WriteLine(@"Update options:
@@ -247,7 +255,7 @@ Your choice:");
         /// <summary>
         /// The function handles single display options.
         /// </summary>
-        /// <param name="dal">DalObject object that is passed as a parameter to enable the functions in the DalObject class</param>
+        /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
         static public void DisplaySingleOptions(DalObject.DalObject dal)
         {
             Console.WriteLine(@"Single display options:
@@ -263,24 +271,25 @@ Your choice:");
 
             switch ((SingleDisplayOptions)choice)
             {
+                // Single station display
                 case SingleDisplayOptions.StationDisplay:
                     Console.WriteLine("Add the requested station ID:");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
                     Console.WriteLine(dal.StationDisplay(displayObjectId).ToString());
                     break;
-
+                // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
                     Console.WriteLine("Add the requested drone ID:");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
                     Console.WriteLine(dal.DroneDisplay(displayObjectId).ToString());
                     break;
-
+                // Single customer display
                 case SingleDisplayOptions.CustomerDisplay:
                     Console.WriteLine("Add the requested customer IDr:");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
                     Console.WriteLine(dal.CustomerDisplay(displayObjectId).ToString());
                     break;
-
+                // Single parcel display
                 case SingleDisplayOptions.ParcelDisplay:
                     Console.WriteLine("Add the requested parcel ID:");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
@@ -295,9 +304,10 @@ Your choice:");
 
         #region List display options
         /// <summary>
-        /// The function handles list view options.
+        /// The function handles list display options.
         /// </summary>
-        /// <param name="dal">DalObject object that is passed as a parameter to enable the functions in the DalObject class</param>
+        /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
+
         static public void DisplayListOptions(DalObject.DalObject dal)
         {
             Console.WriteLine(@"List display options:
@@ -312,24 +322,25 @@ Your choice:");
 
             switch ((ListDisplayOption)choice)
             {
+                // Stations list display
                 case ListDisplayOption.StationsList:
                     List<Station> displayStationsList = dal.StationsList();
-
                     for (int i = 0; i < displayStationsList.Count; i++)
                     {
                         Console.WriteLine(displayStationsList[i].ToString());
                     }
                     break;
 
+                // Drones list display
                 case ListDisplayOption.DronesList:
                     List<Drone> displayDronesList = dal.DronesList();
-
                     for (int i = 0; i < displayDronesList.Count; i++)
                     {
                         Console.WriteLine(displayDronesList[i].ToString());
                     }
                     break;
 
+                // Customers list display
                 case ListDisplayOption.CustomersList:
                     List<Customer> displayCustomersList = dal.CustomersList();
 
@@ -339,6 +350,7 @@ Your choice:");
                     }
                     break;
 
+                // Parcels list display
                 case ListDisplayOption.ParcelsList:
                     List<Parcel> displayParcelsList = dal.ParcelsList();
 
@@ -348,6 +360,7 @@ Your choice:");
                     }
                     break;
 
+                // ParcelsWithoutDrone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
                     List<Parcel> displayParcelsWithoutDrone = dal.ParcelsWithoutDrone();
 
@@ -357,6 +370,7 @@ Your choice:");
                     }
                     break;
 
+                // FreeChargeSlots list display
                 case ListDisplayOption.FreeChargeSlotsList:
                     List<Station> displayStationsWithFreeChargeSlots = dal.FreeChargeSlotsList();
 
@@ -386,8 +400,8 @@ Your choice:");
  Console.WriteLine(@"Hello guest, the program offers you the following options (select number): 
 1. Adding 
 2. Updating
-3. Single displaying 
-4. List displaying 
+3. Single display 
+4. List display 
 5. Exit
 
 Your choice:");
@@ -397,7 +411,7 @@ Your choice:");
                 switch (options)
                 {
                     case Options.Add:
-                        InsertOptions(dalObject);
+                        AddOptions(dalObject);
                         break;
 
                     case Options.Update:
