@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using IDAL.DO;
+
 
 namespace ConsoleUI
 {
@@ -392,6 +392,11 @@ Your choice:");
         static void Main(string[] args)
         {
             DalObject.DalObject dalObject = new DalObject.DalObject();
+            IDAL.IDal idal;
+            idal = dalObject;
+           
+
+
 
             Options options;
             int choice = 0;

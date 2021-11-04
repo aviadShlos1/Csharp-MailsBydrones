@@ -8,7 +8,7 @@ using DalObject;
 
 namespace IDAL
 {
-    interface IDal
+    public interface IDal
     {
         //double[] EnergyConsumption()   
  
