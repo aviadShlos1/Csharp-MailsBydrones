@@ -18,7 +18,6 @@ namespace IDAL
         public enum DroneStatuses
         {Free,Maintence,Delivery}
 
-        public enum Prioritie
         public enum Priorities
         { Normal,Fast,Urgent }
 

@@ -84,11 +84,6 @@ namespace DalObject
         /// <param name="stationId"></param>
         public void DroneToCharge(int droneId, int stationId)
         {
-            int droneIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
-            Drone drone1 = DataSource.Drones[droneIndex];
-            drone1.Status = (DroneStatuses)1; //DroneStatuses: free,maintence,delievery
-            DataSource.Drones[droneIndex] = drone1;
-
             int stationIndex = DataSource.Stations.FindIndex(i => i.Id == stationId);
             Station station1 = DataSource.Stations[stationIndex];
             station1.ChargeSlots--; // Reducing the free chargeSlots
@@ -106,11 +101,6 @@ namespace DalObject
         /// <param name="droneId"></param>
         public void DroneRelease(int droneId)
         {
-            int droneReleaseIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
-            Drone drone2 = DataSource.Drones[droneReleaseIndex];
-            drone2.Status = (DroneStatuses)0; //DroneStatuses: free,maintence,delievery
-            DataSource.Drones[droneReleaseIndex] = drone2;
-
             int chargeIndex = DataSource.DroneCharges.FindIndex(i => i.DroneId == droneId);
             DroneCharge help = DataSource.DroneCharges[chargeIndex];
             int baseStationId = help.StationId;
@@ -155,27 +145,28 @@ namespace DalObject
         /// Displaying the all list for all the entity that chosen
         /// </summary>
         /// <returns></returns>
-        public List<Station> StationsList()
+        public IEnumerable<Station> StationsList()
         {
-            return DataSource.Stations.Take(DataSource.Stations.Count).ToList();
+            return DataSource.Stations;
+           //return DataSource.Stations.Take(DataSource.Stations.Count).ToList();
         }
-        public List<Drone> DronesList()
+        public IEnumerable<Drone> DronesList()
         {
-            return DataSource.Drones.Take(DataSource.Drones.Count).ToList();
+            return DataSource.Drones;
         }
-        public List<Customer> CustomersList()
+        public IEnumerable<Customer> CustomersList()
         {
-            return DataSource.Customers.Take(DataSource.Customers.Count).ToList();
+            return DataSource.Customers;
         }
-        public List<Parcel> ParcelsList()
+        public IEnumerable<Parcel> ParcelsList()
         {
-            return DataSource.Parcels.Take(DataSource.Parcels.Count).ToList();
+            return DataSource.Parcels;
         }
         /// <summary>
         /// Displaying the parcel without assinged drone
         /// </summary>
         /// <returns>The list of the parcel</returns>
-        public List<Parcel> ParcelsWithoutDrone()
+        public IEnumerable<Parcel> ParcelsWithoutDrone()
         {
             return DataSource.Parcels.TakeWhile(i => i.DroneToParcel_Id == 0).ToList();
         }
@@ -183,7 +174,7 @@ namespace DalObject
         /// Displaying the list of station with a free charge slots 
         /// </summary>
         /// <returns>The list of station entity</returns>
-        public List<Station> FreeChargeSlotsList()
+        public IEnumerable<Station> FreeChargeSlotsList()
         {
             return DataSource.Stations.TakeWhile(i => i.ChargeSlots != 0).ToList();
         }

@@ -112,8 +112,6 @@ Please enter an ID number for the drone(4 digits):");
                         Id = newDroneID,
                         Model = newModel,
                         MaxWeight = (WeightCategories)newMaxWeight,
-                        Battery = newBatteryLevel,
-                        Status = (DroneStatuses)newStatus
                     };
                     dal.AddDrone(newdrone);
                     break;
