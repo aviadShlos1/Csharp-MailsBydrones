@@ -89,9 +89,9 @@ Please enter an ID number for the station:(0-4)");
 
                     // Adding a new drone
                 case ConsoleUI.AddOptions.AddDrone:
-                    int newDroneID, newMaxWeight, newStatus;
+                    int newDroneID, newMaxWeight;
                     string newModel;
-                    double newBatteryLevel;
+                  
                     // User input for a new drone
                     Console.WriteLine(@"
 You selected to add a Drone.
@@ -101,10 +101,6 @@ Please enter an ID number for the drone(4 digits):");
                     newModel = Console.ReadLine();
                     Console.WriteLine("Please enter the weight category of the Drone: 0 for light, 1 for medium and 2 for heavy");
                     while (!int.TryParse(Console.ReadLine(), out newMaxWeight)) ;
-                    Console.WriteLine("Please enter the charge level of the battery:");
-                    while (!double.TryParse(Console.ReadLine(), out newBatteryLevel)) ;
-                    Console.WriteLine("Please enter the status of the Drone: 0 for free, 1 for maintenance and 2 for delievery");
-                    while (!int.TryParse(Console.ReadLine(), out newStatus)) ;
                     Console.WriteLine();
 
                     Drone newdrone = new Drone
@@ -327,61 +323,62 @@ Your choice:");
             {
                 // Stations list display
                 case ListDisplayOption.StationsList:
-                    List<Station> displayStationsList = dal.StationsList();
-                    for (int i = 0; i < displayStationsList.Count; i++)
+                    IEnumerable <Station> displayStationsList = dal.StationsList();
+                    foreach (var item in displayStationsList)
                     {
-                        Console.WriteLine(displayStationsList[i].ToString());
+                        Console.WriteLine(item);
                     }
                     break;
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    List<Drone> displayDronesList = dal.DronesList();
-                    for (int i = 0; i < displayDronesList.Count; i++)
+                    IEnumerable<Drone> displayDronesList = dal.DronesList();
+                    foreach (var item in displayDronesList)
                     {
-                        Console.WriteLine(displayDronesList[i].ToString());
+                        Console.WriteLine(item);
                     }
                     break;
-
+                   
                 // Customers list display
                 case ListDisplayOption.CustomersList:
-                    List<Customer> displayCustomersList = dal.CustomersList();
+                    IEnumerable<Customer> displayCustomersList = dal.CustomersList();
 
-                    for (int i = 0; i < displayCustomersList.Count; i++)
+                    foreach (var item in displayCustomersList)
                     {
-                        Console.WriteLine(displayCustomersList[i].ToString());
+                        Console.WriteLine(item);
                     }
                     break;
 
                 // Parcels list display
                 case ListDisplayOption.ParcelsList:
-                    List<Parcel> displayParcelsList = dal.ParcelsList();
+                    IEnumerable<Parcel> displayParcelsList = dal.ParcelsList();
 
-                    for (int i = 0; i < displayParcelsList.Count(); i++)
+                    foreach (var item in displayParcelsList)
                     {
-                        Console.WriteLine(displayParcelsList[i].ToString());
+                        Console.WriteLine(item);
                     }
                     break;
 
                 // ParcelsWithoutDrone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
-                    List<Parcel> displayParcelsWithoutDrone = dal.ParcelsWithoutDrone();
+                    IEnumerable<Parcel> displayParcelsWithoutDrone = dal.ParcelsWithoutDrone();
 
-                    for (int i = 0; i < displayParcelsWithoutDrone.Count(); i++)
+                    foreach (var item in displayParcelsWithoutDrone)
                     {
-                        Console.WriteLine(displayParcelsWithoutDrone[i].ToString());
+                        Console.WriteLine(item);
                     }
                     break;
 
                 // FreeChargeSlots list display
                 case ListDisplayOption.FreeChargeSlotsList:
-                    List<Station> displayStationsWithFreeChargeSlots = dal.FreeChargeSlotsList();
+                    IEnumerable<Station> displayStationsWithFreeChargeSlots = dal.FreeChargeSlotsList();
 
-                    for (int i = 0; i < displayStationsWithFreeChargeSlots.Count(); i++)
+                    foreach (var item in displayStationsWithFreeChargeSlots)
                     {
-                        Console.WriteLine(displayStationsWithFreeChargeSlots[i].ToString());
+                        Console.WriteLine(item);
                     }
                     break;
+
 
                 default:
                     break;

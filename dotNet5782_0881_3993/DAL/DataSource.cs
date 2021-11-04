@@ -33,6 +33,11 @@ namespace DalObject
         internal struct Config
         {
             public static int RunId = 0;//This parameter will be updated both in Initialize and Add methods
+            double ChargeRate;
+            static double FreeWeight;
+            static double LightWeight; 
+            static double MediumWeight; 
+            static double HeavyWeight;
         }
 
         private static int DroneId;
