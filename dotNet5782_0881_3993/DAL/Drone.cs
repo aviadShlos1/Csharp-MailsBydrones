@@ -19,9 +19,7 @@ namespace IDAL
             public int Id { get; set; }
             public string Model { get; set; }
             public WeightCategories MaxWeight { get; set; }
-            public DroneStatuses Status { get; set; }
-            public double Battery { get; set; }
-
+            
             /// </summary> This method converts the values to string values
             /// <returns> The full details by string representation  </returns>
             public override string ToString()
