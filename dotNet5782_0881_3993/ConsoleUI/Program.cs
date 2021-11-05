@@ -229,10 +229,10 @@ Your choice:");
                     Console.WriteLine("please enter a drone ID:");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     Console.WriteLine("please choose StationId ID from the List below:");
-                    List<Station> FreeChargSlots = dal.FreeChargeSlotsList();
-                    for (int i = 0; i < FreeChargSlots.Count; i++)
+                    IEnumerable<Station> FreeChargSlots = dal.FreeChargeSlotsList();
+                    foreach (var item in FreeChargSlots)
                     {
-                        Console.WriteLine(FreeChargSlots[i].ToString());
+                        Console.WriteLine(item);
                     }
                     int.TryParse(Console.ReadLine(), out StationId);
                     dal.DroneToCharge(DroneId, StationId);
@@ -392,11 +392,8 @@ Your choice:");
         static void Main(string[] args)
         {
             DalObject.DalObject dalObject = new DalObject.DalObject();
-            IDAL.IDal idal;
-            idal = dalObject;
+            IDAL.IDal idal = new DalObject.DalObject();
            
-
-
 
             Options options;
             int choice = 0;
