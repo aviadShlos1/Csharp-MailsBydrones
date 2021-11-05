@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class Location
+    public class TrackingShippment
     {
-        double longitude;
-        double latitude;
+        int Id;
+        WeightCategories Weight;
+        Priorities Priority;
+
     }
 }
