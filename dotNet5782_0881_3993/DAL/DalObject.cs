@@ -12,7 +12,7 @@ using IDAL.DO;
 
 namespace DalObject
 {
-    public class DalObject
+    public class DalObject:IDAL.IDal
     {
         public DalObject() { DataSource.Initialize(); }
 
