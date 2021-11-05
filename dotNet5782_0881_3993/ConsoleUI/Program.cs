@@ -95,7 +95,7 @@ Please enter an ID number for the station:(0-4)");
                     // User input for a new drone
                     Console.WriteLine(@"
 You selected to add a Drone.
-Please enter an ID number for the drone(4 digits):");
+Please enter an ID number for the drone(1000-9999):");
                     while (!int.TryParse(Console.ReadLine(), out newDroneID)) ;
                     Console.WriteLine("Please enter the model of the drone:(model ***) ");
                     newModel = Console.ReadLine();

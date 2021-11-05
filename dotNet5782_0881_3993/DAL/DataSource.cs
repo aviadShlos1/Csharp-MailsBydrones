@@ -30,14 +30,14 @@ namespace DalObject
         #endregion The entities lists
 
         /// <summary> Updating the parcel amount </summary>
-        internal struct Config
+        internal static class Config
         {
             public static int RunId = 0;//This parameter will be updated both in Initialize and Add methods
-            double ChargeRate;
-            static double FreeWeight;
-            static double LightWeight; 
-            static double MediumWeight; 
-            static double HeavyWeight;
+            public static double ChargeRate;
+            public static double FreeWeight;
+            public static double LightWeight;
+            public static double MediumWeight;
+            public static double HeavyWeight;
         }
 
         private static int DroneId;
