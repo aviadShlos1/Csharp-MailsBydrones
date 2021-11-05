@@ -97,9 +97,9 @@ Please enter an ID number for the station:(0-4)");
 You selected to add a Drone.
 Please enter an ID number for the drone(4 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newDroneID)) ;
-                    Console.WriteLine("Please enter the model of the Drone:");
+                    Console.WriteLine("Please enter the model of the drone:(model ***) ");
                     newModel = Console.ReadLine();
-                    Console.WriteLine("Please enter the weight category of the Drone: 0 for light, 1 for medium and 2 for heavy");
+                    Console.WriteLine("Please enter the weight category of the drone: 0 for light, 1 for medium and 2 for heavy");
                     while (!int.TryParse(Console.ReadLine(), out newMaxWeight)) ;
                     Console.WriteLine();
 
@@ -155,9 +155,9 @@ Please enter the Parcel ID (0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newSenderId)) ;
                     Console.WriteLine("Please enter the target ID number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newTargetId)) ;
-                    Console.WriteLine("Please enter the weight category of the Parcel: 0 for free, 1 for maintenance and 2 for delievery");
+                    Console.WriteLine("Please enter the weight category of the parcel: 0 for free, 1 for maintenance and 2 for delievery");
                     while (!int.TryParse(Console.ReadLine(), out newWeight)) ;
-                    Console.WriteLine("Please enter the priorities of the new Parcel: 0 for normal, 1 for fast and 2 for urgent");
+                    Console.WriteLine("Please enter the priorities of the new parcel: 0 for normal, 1 for fast and 2 for urgent");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
                     Console.WriteLine();
 
@@ -206,7 +206,7 @@ Your choice:");
             {
 
                 case UpdatesOption.ConnectDroneToParcel:
-                    Console.WriteLine("please enter a parcel ID:");
+                    Console.WriteLine("please enter a parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out ParcelId);
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
@@ -214,13 +214,13 @@ Your choice:");
                     break;
 
                 case UpdatesOption.PickUpParcel:
-                    Console.WriteLine("please enter a parcel ID:");
+                    Console.WriteLine("please enter a parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out ParcelId);
                     dal.PickUpParcel(ParcelId);
                     break;
 
                 case UpdatesOption.DelieverParcel:
-                    Console.WriteLine("please enter a parcel ID:");
+                    Console.WriteLine("please enter a parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out ParcelId);
                     dal.DelieverParcel(ParcelId);
                     break;
@@ -228,7 +228,7 @@ Your choice:");
                 case UpdatesOption.DroneToCharge:
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
-                    Console.WriteLine("please choose StationId ID from the List below:");
+                    Console.WriteLine("please choose stationId ID from the List below:");
                     IEnumerable<Station> FreeChargSlots = dal.FreeChargeSlotsList();
                     foreach (var item in FreeChargSlots)
                     {
@@ -290,7 +290,7 @@ Your choice:");
                     break;
                 // Single parcel display
                 case SingleDisplayOptions.ParcelDisplay:
-                    Console.WriteLine("Add the requested parcel ID:");
+                    Console.WriteLine("Add the requested parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
                     Console.WriteLine(dal.ParcelDisplay(displayObjectId).ToString());
                     break;
