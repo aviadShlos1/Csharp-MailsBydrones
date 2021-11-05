@@ -66,8 +66,8 @@ namespace DalObject
             #endregion adding Drone details
 
             #region adding Station details
-            Stations.Add(new Station() { Id = 0 , Name = "Herzliya Drone Station", Lattitude = 32.16472, Longitude = 34.84250, ChargeSlots = 4 });
-            Stations.Add(new Station() { Id = 1, Name = "Tel Aviv Drone Station", Lattitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 });
+            Stations.Add(new Station() { Id = 0 , Name = "Herzliya Drone Station", Latitude = 32.16472, Longitude = 34.84250, ChargeSlots = 4 });
+            Stations.Add(new Station() { Id = 1, Name = "Tel Aviv Drone Station", Latitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 });
             #endregion adding Station details
 
             #region adding Customer details

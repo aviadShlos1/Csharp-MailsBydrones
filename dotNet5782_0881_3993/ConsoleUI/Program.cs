@@ -82,7 +82,7 @@ Please enter an ID number for the station:(0-4)");
                         Name = newName,
                         ChargeSlots = newchargsSlots,
                         Longitude = newLongitude,
-                        Lattitude = newLattitude
+                        Latitude = newLattitude
                     };
                     dal.AddStation(newStation);
                     break;
