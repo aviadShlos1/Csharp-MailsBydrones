@@ -30,14 +30,14 @@ namespace DalObject
         #endregion The entities lists
 
         /// <summary> Updating the parcel amount </summary>
-        internal struct Config
+        internal static class Config
         {
             public static int RunId = 0;//This parameter will be updated both in Initialize and Add methods
-            double ChargeRate;
-            static double FreeWeight;
-            static double LightWeight; 
-            static double MediumWeight; 
-            static double HeavyWeight;
+            public static double ChargeRate;
+            public static double FreeWeight;
+            public static double LightWeight;
+            public static double MediumWeight;
+            public static double HeavyWeight;
         }
 
         private static int DroneId;
@@ -66,8 +66,8 @@ namespace DalObject
             #endregion adding Drone details
 
             #region adding Station details
-            Stations.Add(new Station() { Id = 0 , Name = "Herzliya Drone Station", Lattitude = 32.16472, Longitude = 34.84250, ChargeSlots = 4 });
-            Stations.Add(new Station() { Id = 1, Name = "Tel Aviv Drone Station", Lattitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 });
+            Stations.Add(new Station() { Id = 0 , Name = "Herzliya Drone Station", Latitude = 32.16472, Longitude = 34.84250, ChargeSlots = 4 });
+            Stations.Add(new Station() { Id = 1, Name = "Tel Aviv Drone Station", Latitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 });
             #endregion adding Station details
 
             #region adding Customer details
