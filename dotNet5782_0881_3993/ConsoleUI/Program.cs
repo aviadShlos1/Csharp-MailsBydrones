@@ -208,7 +208,7 @@ Your choice:");
                 case UpdatesOption.ConnectDroneToParcel:
                     Console.WriteLine("please enter a parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out ParcelId);
-                    Console.WriteLine("please enter a drone ID:");
+                    Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     dal.ConnectDroneToParcel(ParcelId, DroneId);
                     break;
@@ -226,7 +226,7 @@ Your choice:");
                     break;
 
                 case UpdatesOption.DroneToCharge:
-                    Console.WriteLine("please enter a drone ID:");
+                    Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     Console.WriteLine("please choose stationId ID from the List below:");
                     IEnumerable<Station> FreeChargSlots = dal.FreeChargeSlotsList();
@@ -239,7 +239,7 @@ Your choice:");
                     break;
 
                 case UpdatesOption.DroneRelease:
-                    Console.WriteLine("please enter a drone ID:");
+                    Console.WriteLine("please enter a Drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     dal.DroneRelease(DroneId);
                     break;
@@ -272,19 +272,19 @@ Your choice:");
             {
                 // Single station display
                 case SingleDisplayOptions.StationDisplay:
-                    Console.WriteLine("Add the requested station ID:");
+                    Console.WriteLine("Add the requested station ID(0-4):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
                     Console.WriteLine(dal.StationDisplay(displayObjectId).ToString());
                     break;
                 // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
-                    Console.WriteLine("Add the requested drone ID:");
+                    Console.WriteLine("Add the requested drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
                     Console.WriteLine(dal.DroneDisplay(displayObjectId).ToString());
                     break;
                 // Single customer display
                 case SingleDisplayOptions.CustomerDisplay:
-                    Console.WriteLine("Add the requested customer IDr:");
+                    Console.WriteLine("Add the requested customer ID(9 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
                     Console.WriteLine(dal.CustomerDisplay(displayObjectId).ToString());
                     break;
@@ -394,7 +394,6 @@ Your choice:");
             DalObject.DalObject dalObject = new DalObject.DalObject();
             IDAL.IDal idal = new DalObject.DalObject();
            
-
             Options options;
             int choice = 0;
             do
