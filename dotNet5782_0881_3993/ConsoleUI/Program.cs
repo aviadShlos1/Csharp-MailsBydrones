@@ -239,7 +239,7 @@ Your choice:");
                     break;
 
                 case UpdatesOption.DroneRelease:
-                    Console.WriteLine("please enter a Drone ID(4 digits):");
+                    Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     dal.DroneRelease(DroneId);
                     break;
