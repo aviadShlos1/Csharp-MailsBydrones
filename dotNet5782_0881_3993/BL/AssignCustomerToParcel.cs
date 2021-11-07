@@ -2,7 +2,7 @@
 
 namespace IBL.BO
 {
-    public class DelieveryCustomer
+    public class AssignCustomerToParcel
     {
         int Id;
         string name;

@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class Location // מיקום
+    public class DroneInShipment
     {
-        double longitude;
-        double latitude;
     }
 }

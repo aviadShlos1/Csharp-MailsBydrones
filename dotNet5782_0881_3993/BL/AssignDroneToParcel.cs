@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class TrackingShippment
+    public class AssignDroneToParcel
     {
         int Id;
-        WeightCategories Weight;
-        Priorities Priority;
-
+        double BatteryPercent;
+        Location Current;
     }
 }

@@ -12,6 +12,8 @@ namespace IBL.BO
         string Name;
         int Phone;
         Location CustLocation;
-        
+        List<ParcelByCustomer> ParcelsFromCustomerList;
+        List<ParcelByCustomer> ParcelsToCustomerList;
+
     }
 }

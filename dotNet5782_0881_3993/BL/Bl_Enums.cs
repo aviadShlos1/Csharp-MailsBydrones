@@ -12,7 +12,10 @@ namespace IBL.BO
     public enum Priorities
     { Normal, Fast, Urgent }
 
-    public enum ShippingStatus
+    public enum ParcelStatus
     {Created, Assigned, PickedUp,Supplied  }
+    public enum DroneStatus
+    { Free, Maintaince, Shipment}
+
 
 }

@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class Location // מיקום
+    public class BaseStationToList
     {
-        double longitude;
-        double latitude;
+        int Id;
+        string BaseStationName;
+        int FreeChargeSlots;
+        int FullChargeSlots;
     }
 }

@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class ShipmentInProcess
+    public class ParcelByCustomer
     {
         int Id;
         WeightCategories Weight;
         Priorities Priority;
-        bool ShippingStatus;
-        Location PickUpLocation;
-        Location TargetLocation;
-        double shippingDistance;
+        ParcelStatus State;
+        AssignCustomerToParcel SourceOrTargetMan;
+       
 
     }
 }
