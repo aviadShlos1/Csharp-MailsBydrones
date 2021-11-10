@@ -17,7 +17,7 @@ namespace IDAL
         /// Adding a new object for the all entities
         /// </summary>
         /// <param name="newStation"></param>
-        public void AddStation(Station newStation)
+        public void AddStation(BaseStation newStation)
         {
             DataSource.Stations.Add(newStation);
         }
@@ -81,7 +81,7 @@ namespace IDAL
         public void DroneToCharge(int droneId, int stationId)
         {
             int stationIndex = DataSource.Stations.FindIndex(i => i.Id == stationId);
-            Station station1 = DataSource.Stations[stationIndex];
+            BaseStation station1 = DataSource.Stations[stationIndex];
             station1.ChargeSlots--; // Reducing the free chargeSlots
             DataSource.Stations[stationIndex] = station1;
 
@@ -102,7 +102,7 @@ namespace IDAL
             int baseStationId = help.StationId;
 
             int stationIndex = DataSource.Stations.FindIndex(i => i.Id == baseStationId);
-            Station station2 = DataSource.Stations[stationIndex];
+            BaseStation station2 = DataSource.Stations[stationIndex];
             station2.ChargeSlots++;//Increasing the number of the free charge slots
             DataSource.Stations[stationIndex] = station2;
 
@@ -118,7 +118,7 @@ namespace IDAL
         /// </summary>
         /// <param name="stationId"></param>
         /// <returns>The type of the entity</returns>
-        public Station StationDisplay(int stationId)
+        public BaseStation StationDisplay(int stationId)
         {
             return DataSource.Stations.Find(i => i.Id == stationId);
         }
@@ -141,7 +141,7 @@ namespace IDAL
         /// Displaying the all list for all the entity that chosen
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Station> StationsList()
+        public IEnumerable<BaseStation> StationsList()
         {
             return DataSource.Stations;
             //return DataSource.Stations.Take(DataSource.Stations.Count).ToList();
@@ -170,7 +170,7 @@ namespace IDAL
         /// Displaying the list of station with a free charge slots 
         /// </summary>
         /// <returns>The list of station entity</returns>
-        public IEnumerable<Station> FreeChargeSlotsList()
+        public IEnumerable<BaseStation> FreeChargeSlotsList()
         {
             return DataSource.Stations.TakeWhile(i => i.ChargeSlots != 0).ToList();
         }

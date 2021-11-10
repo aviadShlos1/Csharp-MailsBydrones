@@ -23,7 +23,7 @@ namespace DalObject
 
         /// <This five rows below describe the initialize of the entities lists >
         internal static List<Drone> Drones = new List<Drone>(10) ;
-        internal static List<Station> Stations = new List<Station>(5);
+        internal static List<BaseStation> Stations = new List<BaseStation>(5);
         internal static List<Customer> Customers = new List<Customer>(100);
         internal static List<Parcel> Parcels = new List<Parcel>(1000);
         internal static List<DroneCharge> DroneCharges = new List<DroneCharge>();
@@ -66,8 +66,8 @@ namespace DalObject
             #endregion adding Drone details
 
             #region adding Station details
-            Stations.Add(new Station() { Id = 0 , Name = "Herzliya Drone Station", Latitude = 32.16472, Longitude = 34.84250, ChargeSlots = 4 });
-            Stations.Add(new Station() { Id = 1, Name = "Tel Aviv Drone Station", Latitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 });
+            Stations.Add(new BaseStation() { Id = 0 , Name = "Herzliya Drone BaseStation", Latitude = 32.16472, Longitude = 34.84250, ChargeSlots = 4 });
+            Stations.Add(new BaseStation() { Id = 1, Name = "Tel Aviv Drone BaseStation", Latitude = 32.056312, Longitude = 34.779888, ChargeSlots = 3 });
             #endregion adding Station details
 
             #region adding Customer details

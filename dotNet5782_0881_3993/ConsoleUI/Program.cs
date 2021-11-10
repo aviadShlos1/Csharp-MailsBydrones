@@ -46,7 +46,7 @@ namespace ConsoleUI
         static public void AddOptions(DalObject.DalObject dal)
         {
             Console.WriteLine(@"Add options:
-1. Station
+1. BaseStation
 2. Drone
 3. Customer
 4. Parcel
@@ -76,7 +76,7 @@ Please enter an ID number for the station:(0-4)");
                     while (!double.TryParse(Console.ReadLine(), out newLattitude)) ;
                     Console.WriteLine();
 
-                    Station newStation = new Station
+                    BaseStation newStation = new BaseStation
                     {
                         Id = newStationID,
                         Name = newName,
@@ -229,7 +229,7 @@ Your choice:");
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     Console.WriteLine("please choose stationId ID from the List below:");
-                    IEnumerable<Station> FreeChargSlots = dal.FreeChargeSlotsList();
+                    IEnumerable<BaseStation> FreeChargSlots = dal.FreeChargeSlotsList();
                     foreach (var item in FreeChargSlots)
                     {
                         Console.WriteLine(item);
@@ -323,7 +323,7 @@ Your choice:");
             {
                 // Stations list display
                 case ListDisplayOption.StationsList:
-                    IEnumerable <Station> displayStationsList = dal.StationsList();
+                    IEnumerable <BaseStation> displayStationsList = dal.StationsList();
                     foreach (var item in displayStationsList)
                     {
                         Console.WriteLine(item);
@@ -371,7 +371,7 @@ Your choice:");
 
                 // FreeChargeSlots list display
                 case ListDisplayOption.FreeChargeSlotsList:
-                    IEnumerable<Station> displayStationsWithFreeChargeSlots = dal.FreeChargeSlotsList();
+                    IEnumerable<BaseStation> displayStationsWithFreeChargeSlots = dal.FreeChargeSlotsList();
 
                     foreach (var item in displayStationsWithFreeChargeSlots)
                     {

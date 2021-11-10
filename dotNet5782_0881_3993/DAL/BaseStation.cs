@@ -13,8 +13,8 @@ namespace IDAL
 {
     namespace DO
     {
-        /// <summary> This struct is intended for Station the Drone details
-        public struct Station
+        /// <summary> This struct is intended for BaseStation the Drone details
+        public struct BaseStation
         {
             public int Id { get; set; }
             public string Name{ get; set; }

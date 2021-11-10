@@ -8,5 +8,8 @@ namespace IBL.BO
 {
     public class DroneInShipment
     {
+        int DroneId;
+        double BatteryPercent;
+        Location Current;
     }
 }
