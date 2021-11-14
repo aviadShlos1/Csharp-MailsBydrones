@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using IBL.BO;
 using IDAL.DO;
 
-namespace IBL.BO
+namespace IBL
 {
-    class BL
+    public class BL : IBL
     {
 
-        public List<DroneToList> DronesList { get; set; }
+        public List<DroneToList> DronesListBL { get; set; }
 
         public BL()
         {
@@ -23,12 +23,12 @@ namespace IBL.BO
             double HeavyWeight = Arr[3];
             double ChargeRate = Arr[4];
 
-            for (int i =0; i < AccessPoint.DronesListDisplay().Count(); i++)
+            IEnumerable<IDAL.DO.Drone> DronesDalList = AccessPoint.DronesListDisplay();
+            DronesListBL = new List<DroneToList>();
+            foreach (var item in DronesDalList)
             {
-                if (AccessPoint)
-                {
-                    
-                }
+               DronesListBL.Add(new DroneToList { DroneId=item.Id ,Model = item.Model , DroneWeight = (WeightCategoriesBL)item.MaxWeight });
+            
             }
         }
 

@@ -20,7 +20,7 @@ namespace IDAL
             public int Id { get; set; }
             public int SenderId { get; set; }
             public int TargetId { get; set; }
-            public WeightCategories Weight { get; set; }
+            public WeightCategoriesDal Weight { get; set; }
             public Priorities Priority { get; set; }
             public DateTime Requested { get; set; } //creation
             public DateTime Scheduled { get; set; } // relative to the drone 

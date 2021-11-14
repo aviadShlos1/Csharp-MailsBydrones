@@ -60,7 +60,7 @@ namespace DalObject
                 {
                     Id =rand.Next(1000,10000),
                     Model = "model:" + i.ToString(),
-                    MaxWeight = RandomEnumValue<WeightCategories>()
+                    MaxWeight = RandomEnumValue<WeightCategoriesDal>()
                 });
             }
             #endregion adding Drone details
@@ -96,7 +96,7 @@ namespace DalObject
                     Id = rand.Next(0, 1000),
                     SenderId = rand.Next(100000000, 1000000000),
                     TargetId = rand.Next(100000000, 1000000000),
-                    Weight = RandomEnumValue<WeightCategories>(),
+                    Weight = RandomEnumValue<WeightCategoriesDal>(),
                     Priority = RandomEnumValue<Priorities>(),
                     Requested = DateTime.Now,
                     Scheduled = DateTime.Now + time,

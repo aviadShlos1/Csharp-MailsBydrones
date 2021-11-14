@@ -10,7 +10,7 @@ namespace IBL.BO
     {
         public int DroneId { get; set; }
         public string Model { get; set; }
-        public WeightCategories DroneWeight { get; set; }
+        public WeightCategoriesBL DroneWeight { get; set; }
         public double BatteryPercent { get; set; }
         public DroneStatus DroneStatus { get; set; }
         public Location Current { get; set; }

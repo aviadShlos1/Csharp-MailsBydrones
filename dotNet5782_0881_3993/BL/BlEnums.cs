@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public enum WeightCategories
+    public enum WeightCategoriesBL
     { Light, Medium, Heavy }
 
     public enum Priorities

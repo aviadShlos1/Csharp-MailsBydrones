@@ -107,7 +107,7 @@ Please enter an ID number for the drone(1000-9999):");
                     {
                         Id = newDroneID,
                         Model = newModel,
-                        MaxWeight = (WeightCategories)newMaxWeight,
+                        MaxWeight = (WeightCategoriesDal)newMaxWeight,
                     };
                     dal.AddDrone(newdrone);
                     break;
@@ -166,7 +166,7 @@ Please enter the Parcel ID (0-1000):");
                         Id = newParcelId,
                         SenderId = newSenderId,
                         TargetId = newTargetId,
-                        Weight = (WeightCategories)newWeight,
+                        Weight = (WeightCategoriesDal)newWeight,
                         Priority = (Priorities)newPriorities,
                         DroneToParcel_Id = 0,
                         Requested = DateTime.Now,

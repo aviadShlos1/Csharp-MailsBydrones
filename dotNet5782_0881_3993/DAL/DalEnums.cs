@@ -12,7 +12,7 @@ namespace IDAL
 
     namespace DO
     {
-        public enum WeightCategories
+        public enum WeightCategoriesDal
         {Light,Medium,Heavy}
 
         public enum DroneStatuses

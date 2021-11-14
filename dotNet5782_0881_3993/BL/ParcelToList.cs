@@ -11,7 +11,7 @@ namespace IBL.BO
         public int Id { get; set; }
         public string SenderName { get; set; }
         public string RecieverName { get; set; }
-        public WeightCategories Weight { get; set; }
+        public WeightCategoriesBL Weight { get; set; }
         public Priorities Priority { get; set; }
         public ParcelStatus ParcelStatus{ get; set; }
         public override string ToString()

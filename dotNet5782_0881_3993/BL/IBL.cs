@@ -9,42 +9,42 @@ namespace IBL
 {
     public interface IBL
     {
-        #region AddOptions
+        //#region AddOptions
 
-        public void AddBaseStation();
-        public void AddDrone();
-        public void AddCustomer();
-        public void AddParcel();
+        //public void AddBaseStation();
+        //public void AddDrone();
+        //public void AddCustomer();
+        //public void AddParcel();
 
-        #endregion AddOptions
+        //#endregion AddOptions
 
-        #region UpdateOptions
+        //#region UpdateOptions
 
-        public void UpdateDroneName();
-        public void UpdateBaseStationData();
-        public void UpdateCustomerData();
-        public void DroneToCharge();
-        public void ReleaseDroneCharge();
-        public void AssignParcelToDrone();
-        public void PickUpParcel();
-        public void SupplyParcel();
-        #endregion UpdateOptions    
+        //public void UpdateDroneName();
+        //public void UpdateBaseStationData();
+        //public void UpdateCustomerData();
+        //public void DroneToCharge();
+        //public void ReleaseDroneCharge();
+        //public void AssignParcelToDrone();
+        //public void PickUpParcel();
+        //public void SupplyParcel();
+        //#endregion UpdateOptions    
 
-        #region DisplayOptions
-        public void BaseStationDisplay();
-        public void DroneDisplay();
-        public void CustomerDisplay();
-        public void ParcelDisplay();
+        //#region DisplayOptions
+        //public void BaseStationDisplay();
+        //public void DroneDisplay();
+        //public void CustomerDisplay();
+        //public void ParcelDisplay();
 
-        #endregion DisplayOptions
+        //#endregion DisplayOptions
 
-        #region ListDisplayOptions
-        public void BaseStationsListDisplay();
-        public void DronesListDisplay();
-        public void CustomersListDisplay();
-        public void ParcelsListDisplay();
-        public void ParcelsWithoutDroneListDisplay();
-        public void FreeChargeSlotsListDisplay();
-        #endregion ListDisplayOptions
+        //#region ListDisplayOptions
+        //public void BaseStationsListDisplay();
+        //public void DronesListDisplay();
+        //public void CustomersListDisplay();
+        //public void ParcelsListDisplay();
+        //public void ParcelsWithoutDroneListDisplay();
+        //public void FreeChargeSlotsListDisplay();
+        //#endregion ListDisplayOptions
     }
 }
