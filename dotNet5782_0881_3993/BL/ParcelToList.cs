@@ -8,12 +8,11 @@ namespace IBL.BO
 {
     public class ParcelToList // חבילה לרשימה
     {
-        int Id;
-        string SenderName;
-        string RecieverName;
-        WeightCategories Weight;
-        Priorities Priority;
-        ParcelStatus ParState;
-
+        public int Id { get; set; }
+        public string SenderName { get; set; }
+        public string RecieverName { get; set; }
+        public WeightCategories Weight { get; set; }
+        public Priorities Priority { get; set; }
+        public ParcelStatus ParState{ get; set; }
     }
 }
