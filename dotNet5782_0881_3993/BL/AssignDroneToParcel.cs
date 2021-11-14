@@ -11,6 +11,11 @@ namespace IBL.BO
         public int Id { get; set; }
         public double BatteryPercent { get; set; }
         public Location Current { get; set; }
-         
+
+        public override string ToString()
+        {
+            return $"AssignDroneToParcel: Id:{Id}, BatteryPercent:{BatteryPercent}, Location:{Current}";
+        }
+
     }
 }

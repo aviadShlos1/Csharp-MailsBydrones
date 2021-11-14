@@ -11,7 +11,11 @@ namespace IBL.BO
         public int Id { get; set; }
         public string BaseStationName { get; set; }
         public Location Loc { get; set; }
-        public int IFreeChargeSlotsd { get; set; }
+        public int FreeChargeSlots { get; set; }
         public List<DroneInCharge> DronesInChargeList { get; set; }
+        public override string ToString()
+        {
+            return $"BaseStation: Id:{Id}, BaseStationName:{BaseStationName}, Location:{Loc},FreeChargeSloted:{FreeChargeSlots}";
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace IBL.BO
         public double BatteryPercent { get; set; }
         public DroneStatus DronStatus { get; set; }
         public Location Current { get; set; }
-        public int CurrTransferParcelNument{ get; set; }
+        public int CurrTransferParcelNum{ get; set; }
          
     }
 }

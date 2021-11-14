@@ -15,5 +15,9 @@ namespace IBL.BO
         public List<ParcelByCustomer> ParcelsFromCustomerList { get; set; }
         public List<ParcelByCustomer> ParcelsToCustomerList { get; set; }
 
+        public override string ToString()
+        {
+            return $"Customer: Id:{Id}, Name:{Name}, Phone:{Phone},Location:{CustLocation}";
+        }
     }
 }

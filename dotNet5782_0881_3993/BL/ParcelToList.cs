@@ -13,6 +13,10 @@ namespace IBL.BO
         public string RecieverName { get; set; }
         public WeightCategories Weight { get; set; }
         public Priorities Priority { get; set; }
-        public ParcelStatus ParState{ get; set; }
+        public ParcelStatus ParcelStatus{ get; set; }
+        public override string ToString()
+        {
+            return $"ParcelToList: Id:{Id}, SenderName:{SenderName}, RecieverName:{RecieverName},Weight:{Weight},Priority:{Priority},ParcelStatus:{ParcelStatus}";
+        }
     }
 }
