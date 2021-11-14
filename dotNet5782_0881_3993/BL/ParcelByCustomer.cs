@@ -8,12 +8,11 @@ namespace IBL.BO
 {
     public class ParcelByCustomer
     {
-        int Id;
-        WeightCategories Weight;
-        Priorities Priority;
-        ParcelStatus State;
-        AssignCustomerToParcel SourceOrTargetMan;
-       
-
+        public int Id { get; set; }
+        public WeightCategories Weight { get; set; }
+        public Priorities Priority { get; set; }
+        public ParcelStatus State { get; set; }
+        public AssignCustomerToParcel SourceOrTargetMan { get; set; }
+ 
     }
 }

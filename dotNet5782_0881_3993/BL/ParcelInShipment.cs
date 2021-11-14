@@ -8,15 +8,15 @@ namespace IBL.BO
 {
     public class ParcelInShipment   // חבילה בהעברה
     {
-        int Id;
-        bool ShippingStatus;
-        Priorities Priority;
-        WeightCategories Weight;
-        AssignCustomerToParcel Sender;
-        AssignCustomerToParcel Reciever;
-        Location PickUpLocation;
-        Location TargetLocation;
-        double shippingDistance;
+        public int Id { get; set; }
+        public bool ShippingStatus { get; set; }
+        public Priorities Priority { get; set; }
+        public WeightCategories Weight { get; set; }
+        public AssignCustomerToParcel Sender { get; set; }
+        public AssignCustomerToParcel Reciever { get; set; }
+        public Location PickUpLocation { get; set; }
+        public Location TargetLocation { get; set; }
+        public double shippingDistance { get; set; }
 
     }
 }

@@ -8,17 +8,16 @@ namespace IBL.BO
 {
     public class Parcel // חבילה
     {
-        int ParcelId;
-        AssignCustomerToParcel Sender;
-        AssignCustomerToParcel Reciever;
-        WeightCategories ParcelWeight;
-        Priorities Priority;
-        DroneInShipment DInShip;
-        DateTime Creating;
-        DateTime Assignning;
-        DateTime PickingUp;
-        DateTime Supplying;
-
-
+        public int ParcelId { get; set; }
+        public AssignCustomerToParcel Sender { get; set; }
+        public AssignCustomerToParcel Reciever { get; set; }
+        public WeightCategories ParcelWeight { get; set; }
+        public Priorities Priority { get; set; }
+        public DroneInShipment DInShip { get; set; }
+        public DateTime Creating { get; set; }
+        public DateTime Assignning { get; set; }
+        public DateTime PickingUp { get; set; }
+        public DateTime Supplying { get; set; }
+     
     }
 }
