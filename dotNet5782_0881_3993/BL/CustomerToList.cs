@@ -8,12 +8,13 @@ namespace IBL.BO
 {
     public class CustomerToList   // לקוח לרשימה
     {
-        int Id;
-        string Name;
-        int Phone;
-        int SendAndSuppliedParcels;
-        int SendAndDontSuppliedParcels;
-        int GotParcels;
-        int InTheWayParcels;
+        public int Id { get; set; }
+        public string MyProperty { get; set; }
+        public int Name { get; set; }
+        public int Phone { get; set; }
+        public int SendAndSuppliedParcels { get; set; }
+        public int SendAndDontSuppliedParcels { get; set; }
+        public int GotParcels { get; set; }
+        public int InTheWayParcels { get; set; }
     }
 }

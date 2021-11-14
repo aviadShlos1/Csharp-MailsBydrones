@@ -8,12 +8,13 @@ namespace IBL.BO
 {
     public class DroneToList
     {
-        int DroneId;
-        string Model;
-        WeightCategories DroneWeight;
-        double BatteryPercent;
-        DroneStatus DronStatus;
-        Location Current;
-        int TransferParcelNum;
+        public int DroneId { get; set; }
+        public string Model { get; set; }
+        public WeightCategories DroneWeight { get; set; }
+        public double BatteryPercent { get; set; }
+        public DroneStatus DronStatus { get; set; }
+        public Location Current { get; set; }
+        public int CurrTransferParcelNument{ get; set; }
+         
     }
 }

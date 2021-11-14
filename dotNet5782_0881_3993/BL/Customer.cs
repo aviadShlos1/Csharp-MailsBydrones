@@ -8,12 +8,12 @@ namespace IBL.BO
 {
     public class Customer
     {
-        int Id;
-        string Name;
-        int Phone;
-        Location CustLocation;
-        List<ParcelByCustomer> ParcelsFromCustomerList;
-        List<ParcelByCustomer> ParcelsToCustomerList;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Phone { get; set; }
+        public Location CustLocation { get; set; }
+        public List<ParcelByCustomer> ParcelsFromCustomerList { get; set; }
+        public List<ParcelByCustomer> ParcelsToCustomerList { get; set; }
 
     }
 }

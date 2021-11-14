@@ -8,9 +8,9 @@ namespace IBL.BO
 {
     public class BaseStationToList
     {
-        int Id;
-        string BaseStationName;
-        int FreeChargeSlots;
-        int FullChargeSlots;
+        public int Id { get; set; }
+        public string BaseStationName { get; set; }
+        public int FreeChargeSlots { get; set; }
+        public int FullChargeSlots { get; set; }
     }
 }
