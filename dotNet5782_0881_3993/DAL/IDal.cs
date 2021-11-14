@@ -10,7 +10,17 @@ namespace IDAL
 {
     public interface IDal
     {
-        //double[] EnergyConsumption()   
+        public double[] EnergyConsumption()
+        {
+            double[] ConsumptionArr = new double[5];
+            ConsumptionArr[0] = DataSource.Config.FreeWeight;
+            ConsumptionArr[1] = DataSource.Config.LightWeight;
+            ConsumptionArr[2] = DataSource.Config.MediumWeight;
+            ConsumptionArr[3] = DataSource.Config.HeavyWeight;
+            ConsumptionArr[4] = DataSource.Config.ChargeRate;
+            return ConsumptionArr;
+        }
+     
  
         #region Add methods
         /// <summary>
@@ -141,20 +151,20 @@ namespace IDAL
         /// Displaying the all list for all the entity that chosen
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<BaseStation> StationsList()
+        public IEnumerable<BaseStation> StationsListDisplay()
         {
             return DataSource.Stations;
             //return DataSource.Stations.Take(DataSource.Stations.Count).ToList();
         }
-        public IEnumerable<Drone> DronesList()
+        public IEnumerable<Drone> DronesListDisplay()
         {
             return DataSource.Drones;
         }
-        public IEnumerable<Customer> CustomersList()
+        public IEnumerable<Customer> CustomersListDisplay()
         {
             return DataSource.Customers;
         }
-        public IEnumerable<Parcel> ParcelsList()
+        public IEnumerable<Parcel> ParcelsListDisplay()
         {
             return DataSource.Parcels;
         }

@@ -323,7 +323,7 @@ Your choice:");
             {
                 // Stations list display
                 case ListDisplayOption.StationsList:
-                    IEnumerable <BaseStation> displayStationsList = dal.StationsList();
+                    IEnumerable <BaseStation> displayStationsList = dal.StationsListDisplay();
                     foreach (var item in displayStationsList)
                     {
                         Console.WriteLine(item);
@@ -332,7 +332,7 @@ Your choice:");
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    IEnumerable<Drone> displayDronesList = dal.DronesList();
+                    IEnumerable<Drone> displayDronesList = dal.DronesListDisplay();
                     foreach (var item in displayDronesList)
                     {
                         Console.WriteLine(item);
@@ -341,7 +341,7 @@ Your choice:");
                    
                 // Customers list display
                 case ListDisplayOption.CustomersList:
-                    IEnumerable<Customer> displayCustomersList = dal.CustomersList();
+                    IEnumerable<Customer> displayCustomersList = dal.CustomersListDisplay();
 
                     foreach (var item in displayCustomersList)
                     {
@@ -351,7 +351,7 @@ Your choice:");
 
                 // Parcels list display
                 case ListDisplayOption.ParcelsList:
-                    IEnumerable<Parcel> displayParcelsList = dal.ParcelsList();
+                    IEnumerable<Parcel> displayParcelsList = dal.ParcelsListDisplay();
 
                     foreach (var item in displayParcelsList)
                     {
