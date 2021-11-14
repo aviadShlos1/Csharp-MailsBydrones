@@ -8,11 +8,11 @@ namespace IBL.BO
 {
     public class Location // מיקום
     {
-        public double longitude{ get; set; }
-        public double latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
         public override string ToString()
         {
-            return $"Drone: longitude:{longitude},  latitude:{latitude}";
+            return $"Drone: longitude:{Longitude},  latitude:{Latitude}";
         }
     }
 }
