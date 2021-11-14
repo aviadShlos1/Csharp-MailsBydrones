@@ -4,7 +4,7 @@ namespace IBL.BO
 {
     public class AssignCustomerToParcel
     {
-        int Id;
-        string name;
+        public int Id { get; set; }
+        public int name { get; set; }
     }
 }

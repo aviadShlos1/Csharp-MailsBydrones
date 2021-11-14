@@ -8,8 +8,9 @@ namespace IBL.BO
 {
     public class AssignDroneToParcel
     {
-        int Id;
-        double BatteryPercent;
-        Location Current;
+        public int Id { get; set; }
+        public double BatteryPercent { get; set; }
+        public Location Current { get; set; }
+         
     }
 }
