@@ -11,7 +11,7 @@ namespace IBL.BO
         public int Id { get; set; }
         public bool ShippingStatus { get; set; } // two conditions: waiting for pickingUp or in the way for the target 
         public WeightCategoriesBL Weight { get; set; }
-        public Priorities Priority { get; set; }
+        public PrioritiesBL Priority { get; set; }
         public AssignCustomerToParcel Sender { get; set; }
         public AssignCustomerToParcel Reciever { get; set; }
         public Location PickUpLocation { get; set; }

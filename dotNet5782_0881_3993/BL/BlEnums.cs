@@ -9,7 +9,7 @@ namespace IBL.BO
     public enum WeightCategoriesBL
     { Light, Medium, Heavy }
 
-    public enum Priorities
+    public enum PrioritiesBL
     { Normal, Fast, Urgent }
 
     public enum ParcelStatus

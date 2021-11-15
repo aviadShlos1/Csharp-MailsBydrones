@@ -10,7 +10,7 @@ namespace IBL.BO
     {
         public int Id { get; set; }
         public WeightCategoriesBL Weight { get; set; }
-        public Priorities Priority { get; set; }
+        public PrioritiesBL Priority { get; set; }
         public ParcelStatus Status { get; set; }
         public AssignCustomerToParcel SourceOrTargetMan { get; set; }
         public override string ToString()

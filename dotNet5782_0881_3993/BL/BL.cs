@@ -12,7 +12,15 @@ namespace IBL
     {
 
         public List<DroneToList> DronesListBL { get; set; }
-
+        public List<ParcelToList> ParcelsListBL { get; set; }
+        public List<BaseStationToList> BaseStationsListBL { get; set; }
+        
+        public static Random rand = new();
+        public static T RandomEnumValue<T>()
+        {
+            var v = Enum.GetValues(typeof(T));
+            return (T)v.GetValue(rand.Next(v.Length));
+        }
         public BL()
         {
             IDAL.IDal AccessPoint = new DalObject.DalObject();
@@ -27,8 +35,42 @@ namespace IBL
             DronesListBL = new List<DroneToList>();
             foreach (var item in DronesDalList)
             {
-               DronesListBL.Add(new DroneToList { DroneId=item.Id ,Model = item.Model , DroneWeight = (WeightCategoriesBL)item.MaxWeight });
-            
+                DronesListBL.Add(new DroneToList { DroneId = item.Id, Model = item.Model, DroneWeight = (WeightCategoriesBL)item.MaxWeight });
+            }
+
+            IEnumerable<IDAL.DO.Parcel> ParcelsDalList = AccessPoint.ParcelsListDisplay();
+            ParcelsListBL = new List<ParcelToList>();
+            foreach (var item in ParcelsDalList)
+            {
+                ParcelsListBL.Add(new ParcelToList { Id = item.Id, Priority = (PrioritiesBL)item.Priority, Weight = (WeightCategoriesBL)item.Weight });
+            }
+
+            IEnumerable<IDAL.DO.BaseStation> BaseStationsDalList = AccessPoint.StationsListDisplay();
+            BaseStationsListBL = new List<BaseStationToList>();
+            foreach (var item in BaseStationsDalList)
+            {
+                BaseStationsListBL.Add(new BaseStationToList { Id = item.Id, BaseStationName = item.Name });
+            }
+
+            foreach (var item in DronesListBL)
+            {
+                
+                if (item.DroneStatus != DroneStatus.Shipment) 
+                {
+                    item.DroneStatus = (DroneStatus)rand.Next(0, 1);
+                }
+                if (item.DroneStatus == DroneStatus.Maintaince)
+                {
+                    item.Current = 
+                }
+            }
+
+            foreach (var item in ParcelsListBL)
+            {
+                if (item.ParcelStatus!=ParcelStatus.Supplied)
+                {
+
+                }
             }
         }
 
