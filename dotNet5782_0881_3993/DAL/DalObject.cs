@@ -62,7 +62,7 @@ namespace DalObject
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
             Parcel parcel1 = DataSource.Parcels[parcelIndex];
             parcel1.DroneToParcel_Id = droneId;
-            parcel1.Scheduled = DateTime.Now;
+            parcel1.Assigned = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel1;
         }
         /// <summary>
@@ -84,7 +84,7 @@ namespace DalObject
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
             Parcel parcel3 = DataSource.Parcels[parcelIndex];
-            parcel3.Delievered = DateTime.Now;
+            parcel3.Supplied = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel3;
         }
         /// <summary>
