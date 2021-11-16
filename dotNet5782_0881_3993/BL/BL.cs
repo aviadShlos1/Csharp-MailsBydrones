@@ -12,8 +12,6 @@ namespace IBL
     {
 
         public List<DroneToList> DronesListBL { get; set; }
-        public List<ParcelToList> ParcelsListBL { get; set; }
-        public List<BaseStationToList> BaseStationsListBL { get; set; }
         
         public static Random rand = new();
         public static T RandomEnumValue<T>()
@@ -23,51 +21,53 @@ namespace IBL
         }
         public BL()
         {
-            IDAL.IDal AccessPoint = new DalObject.DalObject();
-            double[] Arr = AccessPoint.EnergyConsumption();
+            IDAL.IDal DalAccess = new DalObject.DalObject();
+            double[] Arr = DalAccess.EnergyConsumption();
             double FreeWeight = Arr[0];
             double LightWeight = Arr[1];
             double MediumWeight = Arr[2];
             double HeavyWeight = Arr[3];
             double ChargeRate = Arr[4];
 
-            IEnumerable<IDAL.DO.Drone> DronesDalList = AccessPoint.DronesListDisplay();
+            IEnumerable<IDAL.DO.Drone> DronesDalList = DalAccess.DronesListDisplay();
             DronesListBL = new List<DroneToList>();
             foreach (var item in DronesDalList)
             {
                 DronesListBL.Add(new DroneToList { DroneId = item.Id, Model = item.Model, DroneWeight = (WeightCategoriesBL)item.MaxWeight });
             }
 
-            IEnumerable<IDAL.DO.Parcel> ParcelsDalList = AccessPoint.ParcelsListDisplay();
-            ParcelsListBL = new List<ParcelToList>();
+            IEnumerable<IDAL.DO.Parcel> ParcelsDalList = DalAccess.ParcelsListDisplay();
+            IEnumerable<IDAL.DO.BaseStation> BaseStationsDalList = DalAccess.StationsListDisplay();
+            IEnumerable<IDAL.DO.Customer> CustomersDalList = DalAccess.CustomersListDisplay();
+
+            foreach (var drone in DronesListBL)
+            {
+
+                foreach (var parcel in ParcelsDalList)
+                {
+                    if (parcel.DroneToParcel_Id == drone.DroneId && parcel.Supplied == DateTime.MinValue) 
+                    {
+                        drone.DroneStatus = DroneStatus.Shipment;
+                        if (parcel.Assigned != DateTime.MinValue && parcel.PickedUp == DateTime.MinValue)
+                            drone.DroneLocation = SenderClosetStation(BaseStationsDalList);
+                        if(parcel.PickedUp != DateTime.MinValue && parcel.Supplied == DateTime.MinValue)
+                            drone.DroneLocation = 
+
+                    }
+                }
+                if (drone.DroneStatus != DroneStatus.Shipment)
+                {
+                    drone.DroneStatus = (DroneStatus)rand.Next(0, 1);
+                }
+                if (drone.DroneStatus == DroneStatus.Maintaince)
+                {
+                    drone.DroneLocation =
+                    }
+            }
+
             foreach (var item in ParcelsDalList)
             {
-                ParcelsListBL.Add(new ParcelToList { Id = item.Id, Priority = (PrioritiesBL)item.Priority, Weight = (WeightCategoriesBL)item.Weight });
-            }
-
-            IEnumerable<IDAL.DO.BaseStation> BaseStationsDalList = AccessPoint.StationsListDisplay();
-            BaseStationsListBL = new List<BaseStationToList>();
-            foreach (var item in BaseStationsDalList)
-            {
-                BaseStationsListBL.Add(new BaseStationToList { Id = item.Id, BaseStationName = item.Name });
-            }
-
-            foreach (var item in DronesListBL)
-            {
-                
-                if (item.DroneStatus != DroneStatus.Shipment) 
-                {
-                    item.DroneStatus = (DroneStatus)rand.Next(0, 1);
-                }
-                if (item.DroneStatus == DroneStatus.Maintaince)
-                {
-                   
-                }
-            }
-
-            foreach (var item in ParcelsListBL)
-            {
-                if (item.ParcelStatus!=ParcelStatus.Supplied)
+                if (item!=ParcelStatus.Supplied)
                 {
 
                 }

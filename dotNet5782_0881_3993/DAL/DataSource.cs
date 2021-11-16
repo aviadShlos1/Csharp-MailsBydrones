@@ -98,10 +98,10 @@ namespace DalObject
                     TargetId = rand.Next(100000000, 1000000000),
                     Weight = RandomEnumValue<WeightCategoriesDal>(),
                     Priority = RandomEnumValue<Priorities>(),
-                    Requested = DateTime.Now,
-                    Scheduled = DateTime.Now + time,
+                    Created = DateTime.Now,
+                    Assigned = DateTime.Now + time,
                     PickedUp = DateTime.Now + time + time,
-                    Delievered = DateTime.Now + time + time + time,
+                    Supplied = DateTime.Now + time + time + time,
                     DroneToParcel_Id = 0,
                 });
                 Config.RunId++;
