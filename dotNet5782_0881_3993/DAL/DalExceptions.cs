@@ -5,54 +5,36 @@ using System.Text;
 using System.Threading.Tasks;
 namespace IDAL.DO
 {
-[Serializable]
-    public class DroneIdException:Exception
+    [Serializable]
+    public class InvalidIdException : Exception
     {
         public int ID;
-        public DroneIdException(int id) : base() => ID = id;
-        public DroneIdException(int id,string message) : base(message) => ID = id;
-        public DroneIdException(int id, string message,Exception innerException) : base(message, innerException) => ID = id;
-        public override string ToString() => base.ToString() + $", invalid drone id:{ID}";
-        
-    }
- [Serializable]
-    public class ParcelIdException : Exception
-    {
-        public int ID;
-        public ParcelIdException(int id) : base() => ID = id;
-        public ParcelIdException(int id, string message) : base(message) => ID = id;
-        public ParcelIdException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
-        public override string ToString() => base.ToString() + $", invalid parcel id:{ID}";
-
-    }
- [Serializable]
-    public class BaseStationIdException : Exception
-    {
-        public int ID;
-        public BaseStationIdException(int id) : base() => ID = id;
-        public BaseStationIdException(int id, string message) : base(message) => ID = id;
-        public BaseStationIdException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
-        public override string ToString() => base.ToString() + $", invalid base station id:{ID}";
-
-    }
- [Serializable]
-    public class CustomerIdException : Exception
-    {
-        public int ID;
-        public CustomerIdException(int id) : base() => ID = id;
-        public CustomerIdException(int id, string message) : base(message) => ID = id;
-        public CustomerIdException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
-        public override string ToString() => base.ToString() + $", invalid customer id:{ID}";
+        public InvalidIdException(int id) : base() => ID = id;
+        public InvalidIdException(int id, string message) : base(message) => ID = id;
+        public InvalidIdException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
+        public override string ToString() => base.ToString() + $", invalid id:{ID}";
 
     }
     [Serializable]
-    public class CustomerPhoneException : Exception
+    public class NotExistException : Exception
     {
-        public int Phone;
-        public CustomerPhoneException(int phone) : base() => Phone = phone;
-        public CustomerPhoneException(int phone, string message) : base(message) => Phone = phone;
-        public CustomerPhoneException(int phone, string message, Exception innerException) : base(message, innerException) => Phone = phone;
-        public override string ToString() => base.ToString() + $", invalid customer phone:{Phone}";
+        public int ID;
+        public NotExistException(int id) : base() => ID = id;
+        public NotExistException(int id, string message) : base(message) => ID = id;
+        public NotExistException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
+        public override string ToString() => base.ToString() + $",id is not exist:{ID}";
+
+    }
+    [Serializable]
+    public class AlreadyExistIdException : Exception
+    {
+        public int ID;
+        public AlreadyExistIdException(int id) : base() => ID = id;
+        public AlreadyExistIdException(int id, string message) : base(message) => ID = id;
+        public AlreadyExistIdException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
+        public override string ToString() => base.ToString() + $", The id is already exist:{ID}";
 
     }
 }
+
+ 

@@ -61,7 +61,7 @@ namespace IBL
                 }
                 if (item.DroneStatus == DroneStatus.Maintaince)
                 {
-                    item.Current = 
+                   
                 }
             }
 

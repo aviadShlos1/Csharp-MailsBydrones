@@ -13,7 +13,7 @@ namespace IBL.BO
     { Normal, Fast, Urgent }
 
     public enum ParcelStatus
-    {Created, Assigned, PickedUp,Supplied  }
+    {Created, Assigned, PickedUp , Supplied  }
     public enum DroneStatus
     { Free, Maintaince, Shipment}
 
