@@ -80,7 +80,7 @@ Please enter an ID number for the station:(0-4)");
                     {
                         Id = newStationID,
                         Name = newName,
-                        ChargeSlots = newchargsSlots,
+                        FreeChargeSlots = newchargsSlots,
                         Longitude = newLongitude,
                         Latitude = newLattitude
                     };

@@ -150,25 +150,26 @@ namespace IBL
 
         public void AddBaseStation(int myId, string myBaseStationName, Location myBaseStationLocation, int myFreeChargeSlots = 0)
         {
-            BaseStationBL tempBase = new();
+            BaseStation tempBase = new();
             tempBase.Id = myId;
-            tempBase.BaseStationName = myBaseStationName;
-            tempBase.BaseStationLocation = myBaseStationLocation;
-            tempBase.BaseStationLocation = myBaseStationLocation;
+            tempBase.Name = myBaseStationName;
+            tempBase.Latitude = myBaseStationLocation.Latitude;
+            tempBase.Longitude = myBaseStationLocation.Longitude;
             tempBase.FreeChargeSlots = myFreeChargeSlots;
+            DalAccess.BaseStationsListDisplay().ToList().Add(tempBase);
             List<DroneInCharge> DronesInChargeList = null;
         }
         public void AddDrone(int myDroneId, string myModel, WeightCategoriesBL myDroneWeight, int myBaseStationId)
         {
-            DroneBL tempDrone = new();
-            tempDrone.DroneId = myDroneId;
+            Drone tempDrone = new();
+            tempDrone.Id = myDroneId;
             tempDrone.Model = myModel;
-            tempDrone.DroneWeight = myDroneWeight;
+            tempDrone.DroneWeight = (WeightCategoriesDal)myDroneWeight;
             foreach (var item in DalAccess.BaseStationsListDisplay())
             {
                 if (item.Id == myBaseStationId)
                 {
-                    tempDrone.CurrentLocation.Longitude = item.Longitude;
+                    tempDrone.Longitude = item.Longitude;
                     tempDrone.CurrentLocation.Latitude = item.Latitude;
                 }
             }
