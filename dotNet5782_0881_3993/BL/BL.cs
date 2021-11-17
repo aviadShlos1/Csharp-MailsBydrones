@@ -63,7 +63,7 @@ namespace IBL
                                                                                                                                    //We calculate the distance according to a formula that also takes into account the curvature of the earth
             return (double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));
         }
-        public IDAL.DO.BaseStation SenderClosetStation(int senderId)
+        public Location SenderClosetStation(int senderId)
         {
             List<IDAL.DO.BaseStation> stations = DalAccess.BaseStationsListDisplay().ToList();
             double myLon = GetCustomer(senderId).CustomerLongitude; //20 
@@ -81,10 +81,12 @@ namespace IBL
                     stationLat = item.Latitude;
                 }
             }
-            IDAL.DO.BaseStation closetBaseStation = new();
-            closetBaseStation.Longitude = stationLon;
-            closetBaseStation.Latitude = stationLat;
-            return closetBaseStation;
+
+            Location closetLocation = new();
+            closetLocation.Longitude = stationLon;
+            closetLocation.Latitude = stationLat;
+            return closetLocation;
+
         }
 
 
@@ -123,16 +125,13 @@ namespace IBL
                         drone.DroneStatus = DroneStatus.Shipment;
                         if (parcel.Assigned != DateTime.MinValue && parcel.PickedUp == DateTime.MinValue)
                         { 
-                            drone.DroneLocation.Longitude = SenderClosetStation(parcel.SenderId).Longitude;
-                            drone.DroneLocation.Latitude = SenderClosetStation(parcel.SenderId).Latitude;
+                            drone.DroneLocation = SenderClosetStation(parcel.SenderId);     
                         }
                         if (parcel.PickedUp != DateTime.MinValue && parcel.Supplied == DateTime.MinValue)
                         {
                             drone.DroneLocation.Longitude = GetCustomer(parcel.SenderId).CustomerLongitude;
                             drone.DroneLocation.Latitude = GetCustomer(parcel.SenderId).CustomerLatitude;
                         }
-                         
-
                     }
                 }
                 if (drone.DroneStatus != DroneStatus.Shipment)
