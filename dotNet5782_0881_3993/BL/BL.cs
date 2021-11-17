@@ -51,7 +51,7 @@ namespace IBL
                         if (parcel.Assigned != DateTime.MinValue && parcel.PickedUp == DateTime.MinValue)
                             drone.DroneLocation = SenderClosetStation(BaseStationsDalList);
                         if(parcel.PickedUp != DateTime.MinValue && parcel.Supplied == DateTime.MinValue)
-                            drone.DroneLocation = 
+                            drone.DroneLocation.Latitude = 
 
                     }
                 }
