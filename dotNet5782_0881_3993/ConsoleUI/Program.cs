@@ -274,7 +274,7 @@ Your choice:");
                 case SingleDisplayOptions.StationDisplay:
                     Console.WriteLine("Add the requested station ID(0-4):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.StationDisplay(displayObjectId).ToString());
+                    Console.WriteLine(dal.BaseStationDisplay(displayObjectId).ToString());
                     break;
                 // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
@@ -321,9 +321,9 @@ Your choice:");
 
             switch ((ListDisplayOption)choice)
             {
-                // Stations list display
+                // BaseStations list display
                 case ListDisplayOption.StationsList:
-                    IEnumerable <BaseStation> displayStationsList = dal.StationsListDisplay();
+                    IEnumerable <BaseStation> displayStationsList = dal.BaseStationsListDisplay();
                     foreach (var item in displayStationsList)
                     {
                         Console.WriteLine(item);

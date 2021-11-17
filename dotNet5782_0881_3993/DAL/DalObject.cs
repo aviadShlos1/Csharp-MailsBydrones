@@ -33,7 +33,7 @@ namespace DalObject
         /// <param name="newStation"></param>
         public void AddStation(BaseStation newStation)
         {
-            DataSource.Stations.Add(newStation);
+            DataSource.BaseStations.Add(newStation);
         }
         public void AddDrone(Drone newDrone)
         {
@@ -94,10 +94,10 @@ namespace DalObject
         /// <param name="stationId"></param>
         public void DroneToCharge(int droneId, int stationId)
         {
-            int stationIndex = DataSource.Stations.FindIndex(i => i.Id == stationId);
-            BaseStation station1 = DataSource.Stations[stationIndex];
+            int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
+            BaseStation station1 = DataSource.BaseStations[stationIndex];
             station1.ChargeSlots--; // Reducing the free chargeSlots
-            DataSource.Stations[stationIndex] = station1;
+            DataSource.BaseStations[stationIndex] = station1;
 
             DataSource.DroneCharges.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
 
@@ -115,10 +115,10 @@ namespace DalObject
             DroneCharge help = DataSource.DroneCharges[chargeIndex];
             int baseStationId = help.StationId;
 
-            int stationIndex = DataSource.Stations.FindIndex(i => i.Id == baseStationId);
-            BaseStation station2 = DataSource.Stations[stationIndex];
+            int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == baseStationId);
+            BaseStation station2 = DataSource.BaseStations[stationIndex];
             station2.ChargeSlots++;//Increasing the number of the free charge slots
-            DataSource.Stations[stationIndex] = station2;
+            DataSource.BaseStations[stationIndex] = station2;
 
             DataSource.DroneCharges.RemoveAt(DataSource.DroneCharges.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
 
@@ -132,9 +132,9 @@ namespace DalObject
         /// </summary>
         /// <param name="stationId"></param>
         /// <returns>The type of the entity</returns>
-        public BaseStation StationDisplay(int stationId)
+        public BaseStation BaseStationDisplay(int stationId)
         {
-           return DataSource.Stations.Find(i => i.Id == stationId);    
+           return DataSource.BaseStations.Find(i => i.Id == stationId);    
         }
         public Drone DroneDisplay(int droneId)
         {
@@ -155,9 +155,9 @@ namespace DalObject
         /// Displaying the all list for all the entity that chosen
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<BaseStation> StationsListDisplay()
+        public IEnumerable<BaseStation> BaseStationsListDisplay()
         {
-            return DataSource.Stations;
+            return DataSource.BaseStations;
            
         }
         public IEnumerable<Drone> DronesListDisplay()
@@ -186,7 +186,7 @@ namespace DalObject
         /// <returns>The list of station entity</returns>
         public IEnumerable<BaseStation> FreeChargeSlotsList()
         {
-            return DataSource.Stations.TakeWhile(i => i.ChargeSlots != 0).ToList();
+            return DataSource.BaseStations.TakeWhile(i => i.ChargeSlots != 0).ToList();
         }
         #endregion ListDisplay
     }

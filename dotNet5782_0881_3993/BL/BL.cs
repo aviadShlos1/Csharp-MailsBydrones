@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using IBL.BO;
 using IDAL.DO;
 
+
 namespace IBL
 {
     public class BL : IBL
     {
-
+        IDAL.IDal DalAccess;
         public List<DroneToList> DronesListBL { get; set; }
         
         public static Random rand = new();
@@ -19,13 +20,13 @@ namespace IBL
         //    var v = Enum.GetValues(typeof(T));
         //    return (T)v.GetValue(rand.Next(v.Length));
         //}
+        
 
-
-        public IDAL.DO.Customer GetCustomer(int id , IEnumerable<IDAL.DO.Customer> customers )
+        public IDAL.DO.Customer GetCustomer(int id )
         {
             IDAL.DO.Customer myCust = new();
-
-            foreach (var item in customers)
+          
+            foreach (var item in DalAccess.CustomersListDisplay())
             {
 
                 if (item.Id == id)
@@ -33,12 +34,12 @@ namespace IBL
             }
             return myCust;
         }
-        public List<IDAL.DO.Customer> CustomersSuppliedParcels(IEnumerable<IDAL.DO.Parcel> tempParcels, IEnumerable<IDAL.DO.Customer> tempCustomers)
+        public List<IDAL.DO.Customer> CustomersSuppliedParcels()
         {
             List<IDAL.DO.Customer> temp = new();
-            foreach (var itemPar in tempParcels)
+            foreach (var itemPar in DalAccess.ParcelsListDisplay())
             {
-                foreach (var itemCus in tempCustomers)
+                foreach (var itemCus in DalAccess.CustomersListDisplay())
                 {
                     if (itemPar.TargetId == itemCus.Id && itemPar.Supplied !=DateTime.MinValue) 
                     {
@@ -48,9 +49,42 @@ namespace IBL
             }
             return temp;
         }
-        public IDAL.DO.BaseStation SenderClosetStation(,IEnumerable<IDAL.DO.BaseStation>)
-        {
 
+        //For the calculation we calculate the earth into a circle (ellipse) Divide its 360 degrees by half
+        //180 for each longitude / latitude and then make a pie on each half to calculate the radius for
+        //the formula below
+        public static double GetDistance(double myLongitude, double myLatitude, double stationLongitude, double stationLatitude)
+        {
+            var num1 = myLongitude * (Math.PI / 180.0);
+            var d1 = myLatitude * (Math.PI / 180.0);
+            var d2 = stationLongitude * (Math.PI / 180.0);
+            var num2 = stationLatitude * (Math.PI / 180.0) - num1;
+            var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0); //https://iw.waldorf-am-see.org/588999-calculating-distance-between-two-latitude-QPAAIP
+                                                                                                                                   //We calculate the distance according to a formula that also takes into account the curvature of the earth
+            return (double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));
+        }
+        public IDAL.DO.BaseStation SenderClosetStation(int senderId)
+        {
+            List<IDAL.DO.BaseStation> stations = DalAccess.BaseStationsListDisplay().ToList();
+            double myLon = GetCustomer(senderId).CustomerLongitude; //20 
+            double myLat = GetCustomer(senderId).CustomerLatitude; //30 
+            double stationLon = stations[0].Longitude;
+            double stationLat = stations[0].Latitude;
+            double closetDistance = GetDistance(myLon, myLat, stationLon, stationLat);
+            foreach (var item in stations)
+            {
+                double tempDis = GetDistance(myLon, myLat, item.Longitude, item.Latitude);
+                if (tempDis<closetDistance)
+                {
+                    closetDistance = tempDis;
+                    stationLon = item.Longitude;
+                    stationLat = item.Latitude;
+                }
+            }
+            IDAL.DO.BaseStation closetBaseStation = new();
+            closetBaseStation.Longitude = stationLon;
+            closetBaseStation.Latitude = stationLat;
+            return closetBaseStation;
         }
 
 
@@ -58,16 +92,16 @@ namespace IBL
         public BL()
         {
             IDAL.IDal DalAccess = new DalObject.DalObject();
-            double[] Arr = DalAccess.EnergyConsumption();
-            double FreeWeight = Arr[0];
-            double LightWeight = Arr[1];
-            double MediumWeight = Arr[2];
-            double HeavyWeight = Arr[3];
-            double ChargeRate = Arr[4];
+            double[] energyConsumption = DalAccess.EnergyConsumption();
+            double FreeWeight = energyConsumption[0];
+            double LightWeight = energyConsumption[1];
+            double MediumWeight = energyConsumption[2];
+            double HeavyWeight = energyConsumption[3];
+            double ChargeRate = energyConsumption[4];
 
             IEnumerable<IDAL.DO.Drone> DronesDalList = DalAccess.DronesListDisplay();
             IEnumerable<IDAL.DO.Parcel> ParcelsDalList = DalAccess.ParcelsListDisplay();
-            IEnumerable<IDAL.DO.BaseStation> BaseStationsDalList = DalAccess.StationsListDisplay();
+            IEnumerable<IDAL.DO.BaseStation> BaseStationsDalList = DalAccess.BaseStationsListDisplay();
             IEnumerable<IDAL.DO.Customer> CustomersDalList = DalAccess.CustomersListDisplay();
             DronesListBL = new List<DroneToList>();
 
@@ -88,13 +122,16 @@ namespace IBL
                     {
                         drone.DroneStatus = DroneStatus.Shipment;
                         if (parcel.Assigned != DateTime.MinValue && parcel.PickedUp == DateTime.MinValue)
-                            drone.DroneLocation = SenderClosetStation(BaseStationsDalList);
+                        { 
+                            drone.DroneLocation.Longitude = SenderClosetStation(parcel.SenderId).Longitude;
+                            drone.DroneLocation.Latitude = SenderClosetStation(parcel.SenderId).Latitude;
+                        }
                         if (parcel.PickedUp != DateTime.MinValue && parcel.Supplied == DateTime.MinValue)
                         {
-                            drone.DroneLocation.Longitude = GetCustomer(parcel.SenderId, CustomersDalList).CustomerLongitude;
-                            drone.DroneLocation.Latitude = GetCustomer(parcel.SenderId, CustomersDalList).CustomerLatitude;
+                            drone.DroneLocation.Longitude = GetCustomer(parcel.SenderId).CustomerLongitude;
+                            drone.DroneLocation.Latitude = GetCustomer(parcel.SenderId).CustomerLatitude;
                         }
-                            //drone.DroneLocation = CustomersDalList
+                         
 
                     }
                 }
@@ -111,7 +148,7 @@ namespace IBL
                 }
                 if (drone.DroneStatus == DroneStatus.Free) 
                 {
-                    List<IDAL.DO.Customer> custSupplied = CustomersSuppliedParcels(ParcelsDalList, CustomersDalList);
+                    List<IDAL.DO.Customer> custSupplied = CustomersSuppliedParcels( );
                     int index = rand.Next(custSupplied.Count());
                     drone.DroneLocation.Latitude = custSupplied.ToList()[index].CustomerLatitude;
                     drone.DroneLocation.Longitude = custSupplied.ToList()[index].CustomerLongitude;
