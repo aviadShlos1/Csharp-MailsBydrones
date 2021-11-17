@@ -14,11 +14,47 @@ namespace IBL
         public List<DroneToList> DronesListBL { get; set; }
         
         public static Random rand = new();
-        public static T RandomEnumValue<T>()
+        //public static T RandomEnumValue<T>()
+        //{
+        //    var v = Enum.GetValues(typeof(T));
+        //    return (T)v.GetValue(rand.Next(v.Length));
+        //}
+
+
+        public IDAL.DO.Customer GetCustomer(int id , IEnumerable<IDAL.DO.Customer> customers )
         {
-            var v = Enum.GetValues(typeof(T));
-            return (T)v.GetValue(rand.Next(v.Length));
+            IDAL.DO.Customer myCust = new();
+
+            foreach (var item in customers)
+            {
+
+                if (item.Id == id)
+                    myCust = item;  
+            }
+            return myCust;
         }
+        public List<IDAL.DO.Customer> CustomersSuppliedParcels(IEnumerable<IDAL.DO.Parcel> tempParcels, IEnumerable<IDAL.DO.Customer> tempCustomers)
+        {
+            List<IDAL.DO.Customer> temp = new();
+            foreach (var itemPar in tempParcels)
+            {
+                foreach (var itemCus in tempCustomers)
+                {
+                    if (itemPar.TargetId == itemCus.Id && itemPar.Supplied !=DateTime.MinValue) 
+                    {
+                        temp.Add(itemCus);
+                    }
+                }
+            }
+            return temp;
+        }
+        public IDAL.DO.BaseStation SenderClosetStation(,IEnumerable<IDAL.DO.BaseStation>)
+        {
+
+        }
+
+
+
         public BL()
         {
             IDAL.IDal DalAccess = new DalObject.DalObject();
@@ -30,15 +66,18 @@ namespace IBL
             double ChargeRate = Arr[4];
 
             IEnumerable<IDAL.DO.Drone> DronesDalList = DalAccess.DronesListDisplay();
+            IEnumerable<IDAL.DO.Parcel> ParcelsDalList = DalAccess.ParcelsListDisplay();
+            IEnumerable<IDAL.DO.BaseStation> BaseStationsDalList = DalAccess.StationsListDisplay();
+            IEnumerable<IDAL.DO.Customer> CustomersDalList = DalAccess.CustomersListDisplay();
             DronesListBL = new List<DroneToList>();
+
+
             foreach (var item in DronesDalList)
             {
                 DronesListBL.Add(new DroneToList { DroneId = item.Id, Model = item.Model, DroneWeight = (WeightCategoriesBL)item.MaxWeight });
             }
 
-            IEnumerable<IDAL.DO.Parcel> ParcelsDalList = DalAccess.ParcelsListDisplay();
-            IEnumerable<IDAL.DO.BaseStation> BaseStationsDalList = DalAccess.StationsListDisplay();
-            IEnumerable<IDAL.DO.Customer> CustomersDalList = DalAccess.CustomersListDisplay();
+         
 
             foreach (var drone in DronesListBL)
             {
@@ -50,8 +89,12 @@ namespace IBL
                         drone.DroneStatus = DroneStatus.Shipment;
                         if (parcel.Assigned != DateTime.MinValue && parcel.PickedUp == DateTime.MinValue)
                             drone.DroneLocation = SenderClosetStation(BaseStationsDalList);
-                        if(parcel.PickedUp != DateTime.MinValue && parcel.Supplied == DateTime.MinValue)
-                            drone.DroneLocation = 
+                        if (parcel.PickedUp != DateTime.MinValue && parcel.Supplied == DateTime.MinValue)
+                        {
+                            drone.DroneLocation.Longitude = GetCustomer(parcel.SenderId, CustomersDalList).CustomerLongitude;
+                            drone.DroneLocation.Latitude = GetCustomer(parcel.SenderId, CustomersDalList).CustomerLatitude;
+                        }
+                            //drone.DroneLocation = CustomersDalList
 
                     }
                 }
@@ -61,17 +104,20 @@ namespace IBL
                 }
                 if (drone.DroneStatus == DroneStatus.Maintaince)
                 {
-                    drone.DroneLocation =
-                    }
-            }
-
-            foreach (var item in ParcelsDalList)
-            {
-                if (item!=ParcelStatus.Supplied)
+                    int index = rand.Next(BaseStationsDalList.Count());
+                    drone.DroneLocation.Latitude = BaseStationsDalList.ToList()[index].Latitude;
+                    drone.DroneLocation.Longitude = BaseStationsDalList.ToList()[index].Longitude;
+                    drone.BatteryPercent = rand.NextDouble() * 20;
+                }
+                if (drone.DroneStatus == DroneStatus.Free) 
                 {
-
+                    List<IDAL.DO.Customer> custSupplied = CustomersSuppliedParcels(ParcelsDalList, CustomersDalList);
+                    int index = rand.Next(custSupplied.Count());
+                    drone.DroneLocation.Latitude = custSupplied.ToList()[index].CustomerLatitude;
+                    drone.DroneLocation.Longitude = custSupplied.ToList()[index].CustomerLongitude;
                 }
             }
+
         }
 
 

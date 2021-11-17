@@ -138,7 +138,7 @@ Please enter an ID number for the Customer(9 digits):");
                         Name = newCustomerName,
                         Phone = newPhoneNumber,
                         CustomerLongitude = newCustomerLongitude,
-                        CustomerLattitude = newCustomerLattitude
+                        CustomerLatitude = newCustomerLattitude
                     };
                     dal.AddCustomer(newCustomer);
                     break;
