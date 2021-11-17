@@ -15,7 +15,7 @@ namespace IBL.BO
         public AssignCustomerToParcel SourceOrTargetMan { get; set; }
         public override string ToString()
         {
-            return $"Parcel: Id:{Id}, Weight:{Weight}, Priority:{Priority}, ParcelStatus:{Status}, SourceOrTargetMan:{SourceOrTargetMan}";
+            return $"ParcelBL: CustomerId:{Id}, Weight:{Weight}, Priority:{Priority}, ParcelStatus:{Status}, SourceOrTargetMan:{SourceOrTargetMan}";
         }
     }
 }

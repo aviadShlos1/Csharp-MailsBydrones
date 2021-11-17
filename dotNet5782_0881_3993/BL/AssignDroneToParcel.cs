@@ -14,7 +14,7 @@ namespace IBL.BO
 
         public override string ToString()
         {
-            return $"AssignDroneToParcel: Id:{Id}, BatteryPercent:{BatteryPercent}, Location:{Current}";
+            return $"AssignDroneToParcel: CustomerId:{Id}, BatteryPercent:{BatteryPercent}, Location:{Current}";
         }
 
     }

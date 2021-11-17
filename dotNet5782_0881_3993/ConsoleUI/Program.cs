@@ -107,7 +107,7 @@ Please enter an ID number for the drone(1000-9999):");
                     {
                         Id = newDroneID,
                         Model = newModel,
-                        MaxWeight = (WeightCategoriesDal)newMaxWeight,
+                        DroneWeight = (WeightCategoriesDal)newMaxWeight,
                     };
                     dal.AddDrone(newdrone);
                     break;

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class Customer
+    public class CustomerBL
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
         public int Phone { get; set; }
-        public Location CustLocation { get; set; }
+        public Location CustomerLocation { get; set; }
         public List<ParcelByCustomer> ParcelsFromCustomerList { get; set; }
         public List<ParcelByCustomer> ParcelsToCustomerList { get; set; }
 
         public override string ToString()
         {
-            return $"Customer: Id:{Id}, Name:{Name}, Phone:{Phone},Location:{CustLocation}"
+            return $"CustomerBL: CustomerId:{CustomerId}, CustomerName:{CustomerName}, Phone:{Phone},Location:{CustomerLocation}"
                 + "ParcelsFromCustomer:" + String.Join(",", ParcelsFromCustomerList) + "ParcelsToCustomer:" + String.Join(",", ParcelsToCustomerList)  ;
         }
     }

@@ -12,7 +12,7 @@ namespace IBL.BO
         public double Latitude { get; set; }
         public override string ToString()
         {
-            return $"Drone: longitude:{Longitude},  latitude:{Latitude}";
+            return $"DroneBL: longitude:{Longitude},  latitude:{Latitude}";
         }
     }
 }

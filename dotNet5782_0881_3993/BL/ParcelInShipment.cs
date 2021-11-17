@@ -19,7 +19,7 @@ namespace IBL.BO
         public double ShippingDistance { get; set; }
         public override string ToString()
         {
-            return $"ParcelInShipment: Id:{Id}, ShippingStatus:{ShippingStatus},Weight:{Weight},Priority:{Priority},AssignSenderToParcel:{Sender},AssignRecieverToParcel:{Reciever}, PickUpLocation:{PickUpLocation},TargetLocation:{TargetLocation}, ShippingDistance:{ShippingDistance}";
+            return $"ParcelInShipment: CustomerId:{Id}, ShippingStatus:{ShippingStatus},Weight:{Weight},Priority:{Priority},AssignSenderToParcel:{Sender},AssignRecieverToParcel:{Reciever}, PickUpLocation:{PickUpLocation},TargetLocation:{TargetLocation}, ShippingDistance:{ShippingDistance}";
         }
     }
 }

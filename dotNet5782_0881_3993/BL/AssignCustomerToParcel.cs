@@ -9,7 +9,7 @@ namespace IBL.BO
 
         public override string ToString()
         {
-            return $"AssignCustomerToParcel: Id:{Id}, Name:{Name}";
+            return $"AssignCustomerToParcel: CustomerId:{Id}, CustomerName:{Name}";
         }
     }
 }
