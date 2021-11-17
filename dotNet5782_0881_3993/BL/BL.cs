@@ -153,6 +153,7 @@ namespace IBL
                     drone.DroneLocation.Latitude = custSupplied.ToList()[index].CustomerLatitude;
                     drone.DroneLocation.Longitude = custSupplied.ToList()[index].CustomerLongitude;
                 }
+                //
             }
 
         }
