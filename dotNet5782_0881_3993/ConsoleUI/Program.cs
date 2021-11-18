@@ -229,7 +229,7 @@ Your choice:");
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     Console.WriteLine("please choose stationId ID from the List below:");
-                    IEnumerable<BaseStation> FreeChargSlots = dal.FreeChargeSlotsList();
+                    IEnumerable<BaseStation> FreeChargSlots = dal.StationsWithFreeChargeSlots();
                     foreach (var item in FreeChargSlots)
                     {
                         Console.WriteLine(item);
@@ -371,7 +371,7 @@ Your choice:");
 
                 // FreeChargeSlots list display
                 case ListDisplayOption.FreeChargeSlotsList:
-                    IEnumerable<BaseStation> displayStationsWithFreeChargeSlots = dal.FreeChargeSlotsList();
+                    IEnumerable<BaseStation> displayStationsWithFreeChargeSlots = dal.StationsWithFreeChargeSlots();
 
                     foreach (var item in displayStationsWithFreeChargeSlots)
                     {

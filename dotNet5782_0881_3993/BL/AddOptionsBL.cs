@@ -20,6 +20,8 @@ namespace IBL
             tempBase.FreeChargeSlots = myFreeChargeSlots;
             DalAccess.AddStation(tempBase);
             List<DroneInCharge> DronesInChargeList = null;
+            //BaseStationBL stationBL = new();
+            //stationBL.DronesInChargeList = null;
         }
         public void AddDrone(int myDroneId, string myModel, WeightCategoriesBL myDroneWeight, int myBaseStationId)
         {

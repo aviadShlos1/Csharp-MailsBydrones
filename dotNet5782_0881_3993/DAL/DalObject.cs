@@ -99,11 +99,11 @@ namespace DalObject
             station1.FreeChargeSlots--; // Reducing the free chargeSlots
             DataSource.BaseStations[stationIndex] = station1;
 
-            DataSource.DroneCharges.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
+            DataSource.DronesInCharge.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
 
-            int chargeIndex = DataSource.DroneCharges.FindIndex(i => i.DroneId==droneId);
-            DroneCharge charge1 = DataSource.DroneCharges[chargeIndex];
-            DataSource.DroneCharges[chargeIndex] = charge1;
+            int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId==droneId);
+            DroneCharge charge1 = DataSource.DronesInCharge[chargeIndex];
+            DataSource.DronesInCharge[chargeIndex] = charge1;
         }
         /// <summary>
         /// Realesing a drone from the charge base station
@@ -111,8 +111,8 @@ namespace DalObject
         /// <param name="droneId"></param>
         public void DroneRelease(int droneId)
         {
-            int chargeIndex = DataSource.DroneCharges.FindIndex(i => i.DroneId == droneId);
-            DroneCharge help = DataSource.DroneCharges[chargeIndex];
+            int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId == droneId);
+            DroneCharge help = DataSource.DronesInCharge[chargeIndex];
             int baseStationId = help.StationId;
 
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == baseStationId);
@@ -120,7 +120,7 @@ namespace DalObject
             station2.FreeChargeSlots++;//Increasing the number of the free charge slots
             DataSource.BaseStations[stationIndex] = station2;
 
-            DataSource.DroneCharges.RemoveAt(DataSource.DroneCharges.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
+            DataSource.DronesInCharge.RemoveAt(DataSource.DronesInCharge.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
 
 
         }
@@ -184,7 +184,7 @@ namespace DalObject
         /// Displaying the list of station with a free charge slots 
         /// </summary>
         /// <returns>The list of station entity</returns>
-        public IEnumerable<BaseStation> FreeChargeSlotsList()
+        public IEnumerable<BaseStation> StationsWithFreeChargeSlots()
         {
             return DataSource.BaseStations.TakeWhile(i => i.FreeChargeSlots != 0).ToList();
         }

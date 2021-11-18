@@ -26,7 +26,7 @@ namespace DalObject
         internal static List<BaseStation> BaseStations = new List<BaseStation>(5);
         internal static List<Customer> Customers = new List<Customer>(100);
         internal static List<Parcel> Parcels = new List<Parcel>(1000);
-        internal static List<DroneCharge> DroneCharges = new List<DroneCharge>();
+        internal static List<DroneCharge> DronesInCharge = new List<DroneCharge>();
         #endregion The entities lists
 
         /// <summary> Updating the parcel amount </summary>

@@ -151,19 +151,9 @@ namespace IBL
         
 
 
+      
 
-        //partial class UpdateOptions
 
-        //{
-        //    public void UpdateDroneName();
-        //    public void UpdateBaseStationData();
-        //    public void UpdateCustomerData();
-        //    public void DroneToCharge();
-        //    public void ReleaseDroneCharge();
-        //    public void AssignParcelToDrone();
-        //    public void PickUpParcel();
-        //    public void SupplyParcel();
-        //}
 
 
 
