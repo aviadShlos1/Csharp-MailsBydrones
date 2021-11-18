@@ -147,7 +147,7 @@ namespace IBL
         }
 
 
-
+        #region AddOptions
         public void AddBaseStation(int myId, string myBaseStationName, Location myBaseStationLocation, int myFreeChargeSlots = 0)
         {
             BaseStationBL tempBase = new();
@@ -198,21 +198,27 @@ namespace IBL
             tempParcel.DroneAssignToParcel = null;
         }
 
+        #endregion AddOptions
+
+        #region UpdateOptions
+
+        public void UpdateDroneName(int droneId, string newModel)
+        {
+
+        }
+
+        //public void UpdateBaseStationData();
+        //public void UpdateCustomerData();
+        //public void DroneToCharge();
+        //public void ReleaseDroneCharge();
+        //public void AssignParcelToDrone();
+        //public void PickUpParcel();
+        //public void SupplyParcel();
 
 
+        #endregion UpdateOptions
 
-        //partial class UpdateOptions
 
-        //{
-        //    public void UpdateDroneName();
-        //    public void UpdateBaseStationData();
-        //    public void UpdateCustomerData();
-        //    public void DroneToCharge();
-        //    public void ReleaseDroneCharge();
-        //    public void AssignParcelToDrone();
-        //    public void PickUpParcel();
-        //    public void SupplyParcel();
-        //}
 
 
 
