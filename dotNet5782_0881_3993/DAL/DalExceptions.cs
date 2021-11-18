@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 namespace IDAL.DO
 {
-    [Serializable]
-    public class InvalidIdException : Exception
-    {
-        public int ID;
-        public InvalidIdException(int id) : base() => ID = id;
-        public InvalidIdException(int id, string message) : base(message) => ID = id;
-        public InvalidIdException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
-        public override string ToString() => base.ToString() + $", invalid id:{ID}";
+    //[Serializable]
+    //public class InvalidIdException : Exception
+    //{
+    //    public int ID;
+    //    public InvalidIdException(int id) : base() => ID = id;
+    //    public InvalidIdException(int id, string message) : base(message) => ID = id;
+    //    public InvalidIdException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
+    //    public override string ToString() => base.ToString() + $", invalid id:{ID}";
 
-    }
+    //}
     [Serializable]
     public class NotExistException : Exception
     {
