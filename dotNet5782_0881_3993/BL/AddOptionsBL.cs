@@ -50,7 +50,7 @@ namespace IBL
             tempCust.Phone = myPhone;
             tempCust.CustomerLongitude = myCustLocation.Longitude;
             tempCust.CustomerLatitude = myCustLocation.Latitude;
-            DalAccess.AddCustomer(tempCust);
+            DalAccess.AddCustomer(tempCust);//
         }
         public void AddParcel(int mySenderId, int myRecieverId, WeightCategoriesBL myParcelWeight, PrioritiesBL myPriority)
         {
