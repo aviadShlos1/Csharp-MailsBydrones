@@ -147,73 +147,8 @@ namespace IBL
         }
 
 
-        #region AddOptions
-        public void AddBaseStation(int myId, string myBaseStationName, Location myBaseStationLocation, int myFreeChargeSlots = 0)
-        {
-            BaseStationBL tempBase = new();
-            tempBase.Id = myId;
-            tempBase.BaseStationName = myBaseStationName;
-            tempBase.BaseStationLocation = myBaseStationLocation;
-            tempBase.BaseStationLocation = myBaseStationLocation;
-            tempBase.FreeChargeSlots = myFreeChargeSlots;
-            List<DroneInCharge> DronesInChargeList = null;
-        }
-        public void AddDrone(int myDroneId, string myModel, WeightCategoriesBL myDroneWeight, int myBaseStationId)
-        {
-            DroneBL tempDrone = new();
-            tempDrone.DroneId = myDroneId;
-            tempDrone.Model = myModel;
-            tempDrone.DroneWeight = myDroneWeight;
-            foreach (var item in DalAccess.BaseStationsListDisplay())
-            {
-                if (item.Id == myBaseStationId)
-                {
-                    tempDrone.CurrentLocation.Longitude = item.Longitude;
-                    tempDrone.CurrentLocation.Latitude = item.Latitude;
-                }
-            }
-            tempDrone.BatteryPercent = (rand.NextDouble() * 20) + 20;
-            tempDrone.DroneStatus = DroneStatus.Maintaince;
-        }
 
-        public void AddCustomer(int myId, string myName, int myPhone, Location myCustLocation)
-        {
-            CustomerBL tempCust = new();
-            tempCust.CustomerId = myId;
-            tempCust.CustomerName = myName;
-            tempCust.Phone = myPhone;
-            tempCust.CustomerLocation = myCustLocation;
-        }
-        public void AddParcel(int senderId, int recieverId, WeightCategoriesBL myParcelWeight, PrioritiesBL myPriority)
-        {
-            ParcelBL tempParcel = new();
-            tempParcel.Sender.Id = senderId;
-            tempParcel.Reciever.Id = recieverId;
-            tempParcel.ParcelWeight = myParcelWeight;
-            tempParcel.Priority = myPriority;
-            tempParcel.CreatingTime = DateTime.Now;
-            tempParcel.AssignningTime = DateTime.MinValue;
-            tempParcel.PickingUpTime = DateTime.MinValue;
-            tempParcel.SupplyingTime = DateTime.MinValue;
-            tempParcel.DroneAssignToParcel = null;
-        }
-
-        #endregion AddOptions
-
-        #region UpdateOptions
-
-        public void UpdateDroneName(int droneId, string newModel)
-        {
-
-        }
-
-        //public void UpdateBaseStationData();
-        //public void UpdateCustomerData();
-        //public void DroneToCharge();
-        //public void ReleaseDroneCharge();
-        //public void AssignParcelToDrone();
-        //public void PickUpParcel();
-        //public void SupplyParcel();
+        
 
 
         #endregion UpdateOptions

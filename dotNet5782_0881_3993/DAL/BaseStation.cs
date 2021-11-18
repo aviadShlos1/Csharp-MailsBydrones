@@ -20,13 +20,13 @@ namespace IDAL
             public string Name{ get; set; }
             public double Longitude { get; set; }
             public double Latitude { get; set; }
-            public int ChargeSlots { get; set; } // empty chargeSlots
+            public int FreeChargeSlots { get; set; } // empty chargeSlots
 
             /// </summary> This method converts the values to string values
             /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
-                return $" Id:{Id}, Name:{Name}, ChargeSlots:{ChargeSlots}, CustomerLongitude:{Longitude}, CustomerLatitude:{Latitude}";
+                return $" Id:{Id}, Name:{Name}, FreeChargeSlots:{FreeChargeSlots}, CustomerLongitude:{Longitude}, CustomerLatitude:{Latitude}";
             }
         }
     }

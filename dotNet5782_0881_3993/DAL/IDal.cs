@@ -92,7 +92,7 @@ namespace IDAL
         {
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
             BaseStation station1 = DataSource.BaseStations[stationIndex];
-            station1.ChargeSlots--; // Reducing the free chargeSlots
+            station1.FreeChargeSlots--; // Reducing the free chargeSlots
             DataSource.BaseStations[stationIndex] = station1;
 
             DataSource.DroneCharges.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
@@ -113,7 +113,7 @@ namespace IDAL
 
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == baseStationId);
             BaseStation station2 = DataSource.BaseStations[stationIndex];
-            station2.ChargeSlots++;//Increasing the number of the free charge slots
+            station2.FreeChargeSlots++;//Increasing the number of the free charge slots
             DataSource.BaseStations[stationIndex] = station2;
 
             DataSource.DroneCharges.RemoveAt(DataSource.DroneCharges.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
@@ -182,7 +182,7 @@ namespace IDAL
         /// <returns>The list of station entity</returns>
         public IEnumerable<BaseStation> FreeChargeSlotsList()
         {
-            return DataSource.BaseStations.TakeWhile(i => i.ChargeSlots != 0).ToList();
+            return DataSource.BaseStations.TakeWhile(i => i.FreeChargeSlots != 0).ToList();
         }
         #endregion ListDisplay
     }
