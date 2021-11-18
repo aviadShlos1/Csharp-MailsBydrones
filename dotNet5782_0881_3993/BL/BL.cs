@@ -148,57 +148,7 @@ namespace IBL
 
 
 
-        public void AddBaseStation(int myId, string myBaseStationName, Location myBaseStationLocation, int myFreeChargeSlots = 0)
-        {
-            BaseStation tempBase = new();
-            tempBase.Id = myId;
-            tempBase.Name = myBaseStationName;
-            tempBase.Latitude = myBaseStationLocation.Latitude;
-            tempBase.Longitude = myBaseStationLocation.Longitude;
-            tempBase.FreeChargeSlots = myFreeChargeSlots;
-            DalAccess.BaseStationsListDisplay().ToList().Add(tempBase);
-            List<DroneInCharge> DronesInChargeList = null;
-        }
-        public void AddDrone(int myDroneId, string myModel, WeightCategoriesBL myDroneWeight, int myBaseStationId)
-        {
-            Drone tempDrone = new();
-            tempDrone.Id = myDroneId;
-            tempDrone.Model = myModel;
-            tempDrone.DroneWeight = (WeightCategoriesDal)myDroneWeight;
-            foreach (var item in DalAccess.BaseStationsListDisplay())
-            {
-                if (item.Id == myBaseStationId)
-                {
-                    tempDrone.Longitude = item.Longitude;
-                    tempDrone.CurrentLocation.Latitude = item.Latitude;
-                }
-            }
-            tempDrone.BatteryPercent = (rand.NextDouble() * 20) + 20;
-            tempDrone.DroneStatus = DroneStatus.Maintaince;
-        }
-
-        public void AddCustomer(int myId, string myName, int myPhone, Location myCustLocation)
-        {
-            CustomerBL tempCust = new();
-            tempCust.CustomerId = myId;
-            tempCust.CustomerName = myName;
-            tempCust.Phone = myPhone;
-            tempCust.CustomerLocation = myCustLocation;
-        }
-        public void AddParcel(int senderId, int recieverId, WeightCategoriesBL myParcelWeight, PrioritiesBL myPriority)
-        {
-            ParcelBL tempParcel = new();
-            tempParcel.Sender.Id = senderId;
-            tempParcel.Reciever.Id = recieverId;
-            tempParcel.ParcelWeight = myParcelWeight;
-            tempParcel.Priority = myPriority;
-            tempParcel.CreatingTime = DateTime.Now;
-            tempParcel.AssignningTime = DateTime.MinValue;
-            tempParcel.PickingUpTime = DateTime.MinValue;
-            tempParcel.SupplyingTime = DateTime.MinValue;
-            tempParcel.DroneAssignToParcel = null;
-        }
-
+        
 
 
 
