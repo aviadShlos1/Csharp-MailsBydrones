@@ -33,18 +33,38 @@ namespace DalObject
         /// <param name="newStation"></param>
         public void AddStation(BaseStation newStation)
         {
+            int check = DataSource.BaseStations.FindIndex(x=>x.Id==newStation.Id);
+            if (check != 0)
+            {
+                throw new AlreadyExistIdException(newStation.Id, "The id is already exists");
+            }
             DataSource.BaseStations.Add(newStation);
         }
         public void AddDrone(Drone newDrone)
         {
+            int check = DataSource.Drones.FindIndex(x => x.Id == newDrone.Id);
+            if (check != 0)
+            {
+                throw new AlreadyExistIdException(newDrone.Id, "The id is already exists");
+            }
             DataSource.Drones.Add(newDrone);
         }
         public void AddCustomer(Customer newCustomer)
         {
+            int check = DataSource.Customers.FindIndex(x => x.Id == newCustomer.Id);
+            if (check != 0)
+            {
+                throw new AlreadyExistIdException(newCustomer.Id, "The id is already exists");
+            }
             DataSource.Customers.Add(newCustomer);
         }
         public int AddParcel(Parcel newParcel)
         {
+            int check = DataSource.Parcels.FindIndex(x => x.Id == newParcel.Id);
+            if (check != 0)
+            {
+                throw new AlreadyExistIdException(newParcel.Id, "The id is already exists");
+            }
             DataSource.Parcels.Add(newParcel);
             newParcel.Id = DataSource.Config.RunId++;
             return newParcel.Id;
@@ -60,6 +80,10 @@ namespace DalObject
         public void ConnectDroneToParcel(int parcelId, int droneId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            if (parcelIndex==0)
+            {
+                throw new NotExistException(parcelId, "The parcel does not exist");
+            }
             Parcel parcel1 = DataSource.Parcels[parcelIndex];
             parcel1.DroneToParcel_Id = droneId;
             parcel1.Assigned = DateTime.Now;
@@ -72,6 +96,10 @@ namespace DalObject
         public void PickUpParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(parcelId, "The parcel does not exist");
+            }
             Parcel parcel2 = DataSource.Parcels[parcelIndex];
             parcel2.PickedUp = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel2;
@@ -83,6 +111,10 @@ namespace DalObject
         public void DelieverParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(parcelId, "The parcel does not exist");
+            }
             Parcel parcel3 = DataSource.Parcels[parcelIndex];
             parcel3.Supplied = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel3;
@@ -95,6 +127,10 @@ namespace DalObject
         public void DroneToCharge(int droneId, int stationId)
         {
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
+            if (stationIndex == 0)
+            {
+                throw new NotExistException(stationId, "The station does not exist");
+            }
             BaseStation station1 = DataSource.BaseStations[stationIndex];
             station1.FreeChargeSlots--; // Reducing the free chargeSlots
             DataSource.BaseStations[stationIndex] = station1;
@@ -102,6 +138,10 @@ namespace DalObject
             DataSource.DronesInCharge.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
 
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId==droneId);
+            if (chargeIndex == 0)
+            {
+                throw new NotExistException(droneId, "The drone does not exist");
+            }
             DroneCharge charge1 = DataSource.DronesInCharge[chargeIndex];
             DataSource.DronesInCharge[chargeIndex] = charge1;
         }

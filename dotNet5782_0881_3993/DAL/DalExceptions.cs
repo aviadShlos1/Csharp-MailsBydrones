@@ -22,7 +22,7 @@ namespace IDAL.DO
         public NotExistException(int id) : base() => ID = id;
         public NotExistException(int id, string message) : base(message) => ID = id;
         public NotExistException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
-        public override string ToString() => base.ToString() + $",id is not exist:{ID}";
+        public override string ToString() => base.ToString() + $",The id does not exist:{ID}";
 
     }
     [Serializable]
@@ -32,7 +32,7 @@ namespace IDAL.DO
         public AlreadyExistIdException(int id) : base() => ID = id;
         public AlreadyExistIdException(int id, string message) : base(message) => ID = id;
         public AlreadyExistIdException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
-        public override string ToString() => base.ToString() + $", The id is already exist:{ID}";
+        public override string ToString() => base.ToString() + $", The id is already exists:{ID}";
 
     }
 }
