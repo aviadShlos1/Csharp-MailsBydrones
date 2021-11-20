@@ -10,49 +10,83 @@ namespace IBL
     {
 
 
-        public void UpdateDroneName( int droneId, string newModel)
+        public void UpdateDroneName(int droneId, string newModel)
         {
-            bool flag = false;
-            foreach (var item in DalAccess.DronesListDisplay() )
+
+            foreach (var item in DalAccess.DronesListDisplay())
             {
-                if (item.Id==droneId)
+                if (item.Id == droneId)
                 {
                     string m = item.Model;
                     m = newModel;
-                    flag = true;
+
                 }
             }
-            if (!flag)
-            {
-                throw new IDAL.DO.NotExistException(droneId);
-            }
+
         }
-        public void UpdateBaseStationData(int baseStationId, string newName,int totalChargeSlots)
+        public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
         {
-            bool flag = false;
+
             foreach (var item in DalAccess.BaseStationsListDisplay())
             {
-                if (item.Id==baseStationId)
+                if (item.Id == baseStationId)
                 {
-                    if (newName!= "")
+                    if (newName != "")
                     {
                         string temp = item.Name;
                         temp = newName;
-                        flag = true;
+
                     }
-                    
-                    if (totalChargeSlots!=0)
+                    if (totalChargeSlots != 0)
                     {
-                        item.FreeChargeSlots = totalChargeSlots - DalAccess.                    }
+                        int dronesInCharge = 0;
+                        foreach (var item2 in DronesListBL)
+                        {
+                            if (item2.DroneStatus == BO.DroneStatus.Maintaince)
+                            {
+                                dronesInCharge++;
+                            }
+                        }
+                        int free = item.FreeChargeSlots;
+                        free = totalChargeSlots - dronesInCharge;
+                    }
                 }
             }
-            if (!flag)
+
+        }
+        public void UpdateCustomerData(int myId, string newName, string newPhone)
+        {
+            foreach (var item in DalAccess.CustomersListDisplay())
             {
-                throw new IDAL.DO.NotExistException(baseStationId);
+                if (item.Id == myId)
+                {
+                    if (newName != "")
+                    {
+                        string m = item.Name;
+                        m = newName;
+                    }
+                    if (newPhone != "")
+                    {
+                        string p = item.Phone;
+                        p = newPhone;
+                    }
+                }
             }
         }
-        //    public void UpdateCustomerData();
-        //    public void DroneToCharge();
+        public void DroneToCharge(int myDroneId)
+        {
+            var element = DronesListBL.Find(x => x.DroneId == myDroneId);
+
+            if (element != default && element.DroneStatus != BO.DroneStatus.Free)
+            {
+                throw new BO.CannotGoToChargeException(myDroneId);
+            }
+            else
+            {
+                element.DroneStatus = BO.DroneStatus.Maintaince;
+            }
+
+        }
         //    public void ReleaseDroneCharge();
         //    public void AssignParcelToDrone();
         //    public void PickUpParcel();

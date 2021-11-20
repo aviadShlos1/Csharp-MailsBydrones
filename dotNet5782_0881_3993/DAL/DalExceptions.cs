@@ -26,12 +26,12 @@ namespace IDAL.DO
 
     }
     [Serializable]
-    public class AlreadyExistIdException : Exception
+    public class AlreadyExistException : Exception
     {
         public int ID;
-        public AlreadyExistIdException(int id) : base() => ID = id;
-        public AlreadyExistIdException(int id, string message) : base(message) => ID = id;
-        public AlreadyExistIdException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
+        public AlreadyExistException(int id) : base() => ID = id;
+        public AlreadyExistException(int id, string message) : base(message) => ID = id;
+        public AlreadyExistException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
         public override string ToString() => base.ToString() + $", The id is already exists:{ID}";
 
     }

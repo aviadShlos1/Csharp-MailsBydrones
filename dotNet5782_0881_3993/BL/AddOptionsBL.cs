@@ -26,7 +26,7 @@ namespace IBL
                 //BaseStationBL stationBL = new();
                 //stationBL.DronesInChargeList = null
             }
-            catch (AlreadyExistIdException)
+            catch (IDAL.DO.AlreadyExistException)
             {
 
                 throw;
@@ -54,7 +54,7 @@ namespace IBL
                 DalAccess.AddDrone(tempDrone);
                 DronesListBL.Add(droneBL);
             }
-            catch (AlreadyExistIdException)
+            catch (IDAL.DO.AlreadyExistException)
             {
                 throw ;
             }
@@ -73,7 +73,7 @@ namespace IBL
                 DalAccess.AddCustomer(tempCust);
 
             }
-            catch (AlreadyExistIdException)
+            catch (IDAL.DO.AlreadyExistException)
             {
 
                 throw;
@@ -98,7 +98,7 @@ namespace IBL
                 //parcelBL.DroneAssignToParcel = null;
 
             }
-            catch (AlreadyExistIdException)
+            catch (IDAL.DO.AlreadyExistException)
             {
 
                 throw;

@@ -36,7 +36,7 @@ namespace DalObject
             int check = DataSource.BaseStations.FindIndex(x=>x.Id==newStation.Id);
             if (check != 0)
             {
-                throw new AlreadyExistIdException(newStation.Id, "The id is already exists");
+                throw new AlreadyExistException(newStation.Id, "The id is already exists");
             }
             DataSource.BaseStations.Add(newStation);
         }
@@ -45,7 +45,7 @@ namespace DalObject
             int check = DataSource.Drones.FindIndex(x => x.Id == newDrone.Id);
             if (check != 0)
             {
-                throw new AlreadyExistIdException(newDrone.Id, "The id is already exists");
+                throw new AlreadyExistException(newDrone.Id, "The id is already exists");
             }
             DataSource.Drones.Add(newDrone);
         }
@@ -54,7 +54,7 @@ namespace DalObject
             int check = DataSource.Customers.FindIndex(x => x.Id == newCustomer.Id);
             if (check != 0)
             {
-                throw new AlreadyExistIdException(newCustomer.Id, "The id is already exists");
+                throw new AlreadyExistException(newCustomer.Id, "The id is already exists");
             }
             DataSource.Customers.Add(newCustomer);
         }
@@ -63,7 +63,7 @@ namespace DalObject
             int check = DataSource.Parcels.FindIndex(x => x.Id == newParcel.Id);
             if (check != 0)
             {
-                throw new AlreadyExistIdException(newParcel.Id, "The id is already exists");
+                throw new AlreadyExistException(newParcel.Id, "The id is already exists");
             }
             DataSource.Parcels.Add(newParcel);
             newParcel.Id = DataSource.Config.RunId++;
