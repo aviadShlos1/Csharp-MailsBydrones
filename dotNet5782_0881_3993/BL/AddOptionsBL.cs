@@ -10,7 +10,7 @@ namespace IBL
 {
     partial class BL
     {
-        public void AddBaseStation(int myId, string myBaseStationName, Location myBaseStationLocation, int myFreeChargeSlots = 0)
+        public void AddBaseStation(int myId, string myBaseStationName, Location myBaseStationLocation, int myFreeChargeSlots)
         {
             try
             {
