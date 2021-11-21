@@ -40,7 +40,7 @@ namespace IBL
             {
                 foreach (var itemCus in DalAccess.GetCustomersList())
                 {
-                    if (itemPar.TargetId == itemCus.Id && itemPar.Supplied != DateTime.MinValue)
+                    if (itemPar.TargetId == itemCus.Id && itemPar.SupplyingTime != DateTime.MinValue)
                     {
                         temp.Add(itemCus);
                     }
@@ -75,8 +75,8 @@ namespace IBL
             }
 
             BaseStationBL closetBaseStation = new();
-            closetBaseStation.BaseStationLocation.Longitude = stationLon;
-            closetBaseStation.BaseStationLocation.Latitude = stationLat;
+            closetBaseStation.Location.Longitude = stationLon;
+            closetBaseStation.Location.Latitude = stationLat;
             return closetBaseStation;
         }
         #endregion
@@ -105,16 +105,16 @@ namespace IBL
 
                 foreach (var itemParcel in ParcelsDalList)
                 {
-                    if (itemParcel.DroneToParcel_Id == itemDrone.DroneId && itemParcel.Supplied == DateTime.MinValue)
+                    if (itemParcel.DroneToParcelId == itemDrone.DroneId && itemParcel.SupplyingTime == DateTime.MinValue)
                     {
                         itemDrone.DroneStatus = DroneStatus.Shipment;
-                        if (itemParcel.Assigned != DateTime.MinValue && itemParcel.PickedUp == DateTime.MinValue)
+                        if (itemParcel.AssignningTime != DateTime.MinValue && itemParcel.PickingUpTime == DateTime.MinValue)
                         {
                             double senderLon = GetCustomer(itemParcel.SenderId).CustomerLongitude;
                             double senderLat = GetCustomer(itemParcel.SenderId).CustomerLatitude;
-                            itemDrone.DroneLocation = ClosetStation(senderLon, senderLat, DalAccess.GetBaseStationsList().ToList()).BaseStationLocation;
+                            itemDrone.DroneLocation = ClosetStation(senderLon, senderLat, DalAccess.GetBaseStationsList().ToList()).Location;
                         }
-                        if (itemParcel.PickedUp != DateTime.MinValue && itemParcel.Supplied == DateTime.MinValue)
+                        if (itemParcel.PickingUpTime != DateTime.MinValue && itemParcel.SupplyingTime == DateTime.MinValue)
                         {
                             itemDrone.DroneLocation.Longitude = GetCustomer(itemParcel.SenderId).CustomerLongitude;
                             itemDrone.DroneLocation.Latitude = GetCustomer(itemParcel.SenderId).CustomerLatitude;
@@ -124,7 +124,7 @@ namespace IBL
                         double targerLat = GetCustomer(itemParcel.TargetId).CustomerLatitude;
                         double targetDistance = GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, targetLon, targerLat);
                         double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;
-                        Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude,itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).BaseStationLocation;
+                        Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude,itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).Location;
                         double minCharge2 = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, closetStation.Longitude, closetStation.Latitude);
                         itemDrone.BatteryPercent = rand.NextDouble() * (100 - (minCharge1+minCharge2)) + minCharge1+minCharge2;
                     }
@@ -146,7 +146,7 @@ namespace IBL
                     int index = rand.Next(custSupplied.Count());
                     itemDrone.DroneLocation.Latitude = custSupplied.ToList()[index].CustomerLatitude;
                     itemDrone.DroneLocation.Longitude = custSupplied.ToList()[index].CustomerLongitude;
-                    Location closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, DalAccess.GetBaseStationsList().ToList()).BaseStationLocation;
+                    Location closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, DalAccess.GetBaseStationsList().ToList()).Location;
                     double minCharge = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, closetStation.Longitude, closetStation.Latitude);
                     itemDrone.BatteryPercent = rand.NextDouble()*(100-minCharge)+minCharge ;
                 }

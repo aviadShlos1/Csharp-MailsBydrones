@@ -168,11 +168,11 @@ Please enter the Parcel ID (0-1000):");
                         TargetId = newTargetId,
                         Weight = (WeightCategoriesDal)newWeight,
                         Priority = (Priorities)newPriorities,
-                        DroneToParcel_Id = 0,
-                        Created = DateTime.Now,
-                        Assigned = DateTime.Now,
-                        PickedUp = DateTime.Now,
-                        Supplied = DateTime.Now
+                        DroneToParcelId = 0,
+                        CreatingTime = DateTime.Now,
+                        AssignningTime = DateTime.Now,
+                        PickingUpTime = DateTime.Now,
+                        SupplyingTime = DateTime.Now
                     };
 
                     int parcelCounter = dal.AddParcel(newParcel);

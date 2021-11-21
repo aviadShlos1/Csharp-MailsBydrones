@@ -57,8 +57,8 @@ namespace IDAL
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
             Parcel parcel1 = DataSource.Parcels[parcelIndex];
-            parcel1.DroneToParcel_Id = droneId;
-            parcel1.Assigned = DateTime.Now;
+            parcel1.DroneToParcelId = droneId;
+            parcel1.AssignningTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel1;
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace IDAL
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
             Parcel parcel2 = DataSource.Parcels[parcelIndex];
-            parcel2.PickedUp = DateTime.Now;
+            parcel2.PickingUpTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel2;
         }
         /// <summary>
@@ -80,7 +80,7 @@ namespace IDAL
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
             Parcel parcel3 = DataSource.Parcels[parcelIndex];
-            parcel3.Supplied = DateTime.Now;
+            parcel3.SupplyingTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel3;
         }
         /// <summary>
@@ -174,7 +174,7 @@ namespace IDAL
         /// <returns>The list of the parcel</returns>
         public IEnumerable<Parcel> GetParcelsWithoutDrone()
         {
-            return DataSource.Parcels.TakeWhile(i => i.DroneToParcel_Id == 0).ToList();
+            return DataSource.Parcels.TakeWhile(i => i.DroneToParcelId == 0).ToList();
         }
         /// <summary>
         /// Displaying the list of station with a free charge slots 

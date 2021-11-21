@@ -72,24 +72,24 @@ namespace IBL
         public void DroneToCharge(int myDroneId)
         {
             List<IDAL.DO.BaseStation> freeChargeSlotsStations = DalAccess.GetStationsWithFreeCharge().ToList();
-            var element = DronesListBL.Find(x => x.DroneId == myDroneId);
+            var droneItem = DronesListBL.Find(x => x.DroneId == myDroneId);
 
-            if (freeChargeSlotsStations.Count==0 || (element != default && element.DroneStatus != BO.DroneStatus.Free))
+            if (freeChargeSlotsStations.Count==0 || (droneItem != default && droneItem.DroneStatus != BO.DroneStatus.Free))
                 throw new BO.CannotGoToChargeException(myDroneId);           
             else
             {
                 double stationLon = freeChargeSlotsStations[0].Longitude;
                 double stationLat = freeChargeSlotsStations[0].Latitude;
-                double closetDistance = GetDistance(element.DroneLocation.Longitude, element.DroneLocation.Latitude, stationLon, stationLat);
-                BO.BaseStationBL closetBaseStation = ClosetStation(element.DroneLocation.Longitude, element.DroneLocation.Latitude, freeChargeSlotsStations);
-                if (element.BatteryPercent >= closetDistance * freeWeightConsumption)
+                double closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, stationLon, stationLat);
+                BO.BaseStationBL closetBaseStation = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, freeChargeSlotsStations);
+                if (droneItem.BatteryPercent >= closetDistance * freeWeightConsumption)
                 {
-                    element.BatteryPercent = closetDistance * freeWeightConsumption;
-                    element.DroneLocation.Longitude = stationLon;
-                    element.DroneLocation.Latitude = stationLat;
-                    element.DroneStatus = BO.DroneStatus.Maintaince;
+                    droneItem.BatteryPercent = closetDistance * freeWeightConsumption;
+                    droneItem.DroneLocation.Longitude = stationLon;
+                    droneItem.DroneLocation.Latitude = stationLat;
+                    droneItem.DroneStatus = BO.DroneStatus.Maintaince;
                     closetBaseStation.FreeChargeSlots--;
-                    DalAccess.DroneToCharge(element.DroneId, closetBaseStation.Id);
+                    DalAccess.DroneToCharge(droneItem.DroneId, closetBaseStation.Id);
                 }
                 else
                 {
@@ -110,6 +110,10 @@ namespace IBL
                 double timeInMinutes = chargeTime.Minutes;
                 timeInMinutes /= 60;
                 droneItem.BatteryPercent = timeInMinutes * chargeRate;
+                if (droneItem.BatteryPercent>100)
+                {
+                    droneItem.BatteryPercent = 100;
+                }
                 droneItem.DroneStatus = BO.DroneStatus.Free;
                 var droneChargeItem = DalAccess.GetDronesChargeList().ToList().Find(x => x.DroneId == myDroneId);
                 var stationItem = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == droneChargeItem.StationId);
@@ -119,6 +123,11 @@ namespace IBL
         }
         public void AssignParcelToDrone(int myDroneId)
         {
+            IDAL.DO.Parcel assignedParcel = default;
+            IDAL.DO.Customer senderCustomer = default;
+            double closetDistance = default;
+            
+            // finding the high priority parcel, taking in conclusion the priority,weight and distance. 
             var droneItem = DronesListBL.Find(x => x.DroneId == myDroneId);
             if (droneItem.DroneStatus != BO.DroneStatus.Free)
             {
@@ -126,32 +135,46 @@ namespace IBL
             }
             List<IDAL.DO.Parcel> urgentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.Priority == IDAL.DO.Priorities.Urgent).ToList();
             List<IDAL.DO.Parcel> urgentPlusHeavyParcels = urgentParcels.TakeWhile(x => x.Weight == IDAL.DO.WeightCategoriesDal.Heavy).ToList();
-            IDAL.DO.BaseStation closet = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, urgentPlusHeavyParcels);
+            senderCustomer = GetCustomer(urgentPlusHeavyParcels[0].SenderId);
+            closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
+            foreach (var item in urgentPlusHeavyParcels)
+            {
+                senderCustomer = GetCustomer(item.SenderId);
+                double tempDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
+                if (tempDistance <= closetDistance)
+                {
+                    closetDistance = tempDistance;
+                    assignedParcel = item;
+                }
+            }
+            //checking the battery level
+            double arriveToSenderBattery = closetDistance * freeWeightConsumption;
+            
+            IDAL.DO.Customer targetCustomer = GetCustomer(assignedParcel.TargetId);
+            double targetDistance = GetDistance(senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude, targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude);
+            double srcToTrgetBattery = targetDistance * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
+            
+            BO.BaseStationBL closetStationFromTarget = ClosetStation(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude,DalAccess.GetBaseStationsList().ToList());
+            double targetToCharge = GetDistance(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude, closetStationFromTarget.Location.Longitude, closetStationFromTarget.Location.Latitude);
+            double trgetToChargeBattery = targetToCharge * freeWeightConsumption;
+            if (droneItem.BatteryPercent< (arriveToSenderBattery+srcToTrgetBattery +trgetToChargeBattery))
+            {
+                throw new BO.NotEnoughBatteryException(myDroneId);
+            }
+            else
+            {
+                droneItem.DroneStatus = BO.DroneStatus.Shipment;
+                assignedParcel.DroneToParcelId = myDroneId;
+                assignedParcel.AssignningTime = DateTime.Now;
+            }
+
         }
+        
         //    public void PickUpParcel();
         //    public void SupplyParcel();
         //}
 
-        //private BaseStationBL ClosetStation(double myLon, double myLat, List<IDAL.DO.BaseStation> stationsList)
-        //{
-        //    double stationLon = stationsList[0].Longitude;
-        //    double stationLat = stationsList[0].Latitude;
-        //    double closetDistance = GetDistance(myLon, myLat, stationLon, stationLat);
-        //    foreach (var item in stationsList)
-        //    {
-        //        double tempDistance = GetDistance(myLon, myLat, item.Longitude, item.Latitude);
-        //        if (tempDistance < closetDistance)
-        //        {
-        //            closetDistance = tempDistance;
-        //            stationLon = item.Longitude;
-        //            stationLat = item.Latitude;
-        //        }
-        //    }
 
-        //    BaseStationBL closetBaseStation = new();
-        //    closetBaseStation.BaseStationLocation.Longitude = stationLon;
-        //    closetBaseStation.BaseStationLocation.Latitude = stationLat;
-        //    return closetBaseStation;
         //}
     }
 }

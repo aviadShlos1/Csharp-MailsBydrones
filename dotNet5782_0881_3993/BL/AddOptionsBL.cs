@@ -85,11 +85,11 @@ namespace IBL
                 tempParcel.TargetId = myRecieverId;
                 tempParcel.Weight = (WeightCategoriesDal)myParcelWeight;
                 tempParcel.Priority = (Priorities)myPriority;
-                tempParcel.Created = DateTime.Now;
-                tempParcel.Assigned = DateTime.MinValue;
-                tempParcel.PickedUp = DateTime.MinValue;
-                tempParcel.Supplied = DateTime.MinValue;
-                tempParcel.DroneToParcel_Id = 0;////
+                tempParcel.CreatingTime = DateTime.Now;
+                tempParcel.AssignningTime = DateTime.MinValue;
+                tempParcel.PickingUpTime = DateTime.MinValue;
+                tempParcel.SupplyingTime = DateTime.MinValue;
+                tempParcel.DroneToParcelId = 0;////
                 DalAccess.AddParcel(tempParcel);
                 //ParcelBL parcelBL = new();
                 //parcelBL.DroneAssignToParcel = null;

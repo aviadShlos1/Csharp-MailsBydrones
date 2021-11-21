@@ -10,12 +10,12 @@ namespace IBL.BO
     {
         public int Id { get; set; }
         public string BaseStationName { get; set; }
-        public Location BaseStationLocation { get; set; }
+        public Location Location { get; set; }
         public int FreeChargeSlots { get; set; }
         public List<DroneInCharge> DronesInChargeList { get; set; }
         public override string ToString()
         {
-            return $"BaseStationBL: CustomerId:{Id}, BaseStationName:{BaseStationName}, Location:{BaseStationLocation},FreeChargeSloted:{FreeChargeSlots}" +
+            return $"BaseStationBL: CustomerId:{Id}, BaseStationName:{BaseStationName}, Location:{Location},FreeChargeSloted:{FreeChargeSlots}" +
                "DroneInCharge:" + String.Join(",",DronesInChargeList); 
                
         }

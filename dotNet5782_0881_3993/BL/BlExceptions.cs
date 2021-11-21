@@ -52,6 +52,15 @@ namespace IBL.BO
         public CannotAssignDroneToParcelException(int id, string message) : base(message) => DroneID = id;
         public CannotAssignDroneToParcelException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
         public override string ToString() => base.ToString() + $", This drone cannot be assigned to a parcel:{DroneID}";
+    }
 
+    [Serializable]
+    public class NotEnoughBatteryException : Exception
+    {
+        public int DroneID;
+        public NotEnoughBatteryException(int id) : base() => DroneID = id;
+        public NotEnoughBatteryException(int id, string message) : base(message) => DroneID = id;
+        public NotEnoughBatteryException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
+        public override string ToString() => base.ToString() + $", The drone doesn't have enough battery for this mission:{DroneID}";
     }
 }
