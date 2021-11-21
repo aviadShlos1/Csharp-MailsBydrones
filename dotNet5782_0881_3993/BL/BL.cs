@@ -22,7 +22,6 @@ namespace IBL
 
             foreach (var item in DalAccess.CustomersListDisplay())
             {
-
                 if (item.Id == id)
                     myCust = item;
             }
@@ -53,11 +52,9 @@ namespace IBL
                                                                                                                                    //We calculate the distance according to a formula that also takes into account the curvature of the earth
             return (double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));
         }
-        private Location SenderClosetStation(int senderId)
+        private Location SenderClosetStation(double myLon, double myLat)
         {
-            List<IDAL.DO.BaseStation> stations = DalAccess.BaseStationsListDisplay().ToList();
-            double myLon = GetCustomer(senderId).CustomerLongitude; //20 
-            double myLat = GetCustomer(senderId).CustomerLatitude; //30 
+            List<IDAL.DO.BaseStation> stations = DalAccess.BaseStationsListDisplay().ToList();   
             double stationLon = stations[0].Longitude;
             double stationLat = stations[0].Latitude;
             double closetDistance = GetDistance(myLon, myLat, stationLon, stationLat);
@@ -76,7 +73,6 @@ namespace IBL
             closetLocation.Longitude = stationLon;
             closetLocation.Latitude = stationLat;
             return closetLocation;
-
         }
         #endregion
         //ctor
@@ -114,7 +110,9 @@ namespace IBL
                         drone.DroneStatus = DroneStatus.Shipment;
                         if (parcel.Assigned != DateTime.MinValue && parcel.PickedUp == DateTime.MinValue)
                         {
-                            drone.DroneLocation = SenderClosetStation(parcel.SenderId);
+                            double myLon = GetCustomer(parcel.SenderId).CustomerLongitude;
+                            double myLat = GetCustomer(parcel.SenderId).CustomerLatitude;
+                            drone.DroneLocation = SenderClosetStation(myLon, myLat);
                         }
                         if (parcel.PickedUp != DateTime.MinValue && parcel.Supplied == DateTime.MinValue)
                         {

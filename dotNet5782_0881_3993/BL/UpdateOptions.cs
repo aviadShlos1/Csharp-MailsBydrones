@@ -62,27 +62,43 @@ namespace IBL
                 {
                     if (newName != "")
                     {
-                        string m = item.Name;
-                        m = newName;
+                        string tempName = item.Name;
+                        tempName = newName;
                     }
                     if (newPhone != "")
                     {
-                        string p = item.Phone;
-                        p = newPhone;
+                        string tempPhone = item.Phone;
+                        tempPhone = newPhone;
                     }
                 }
             }
         }
         public void DroneToCharge(int myDroneId)
         {
+            List<IDAL.DO.BaseStation> freeChargeSlotsStations = DalAccess.StationsWithFreeChargeSlots().ToList();
             var element = DronesListBL.Find(x => x.DroneId == myDroneId);
 
-            if (element != default && element.DroneStatus != BO.DroneStatus.Free)
+            if (freeChargeSlotsStations.Count==0 || (element != default && element.DroneStatus != BO.DroneStatus.Free))
             {
                 throw new BO.CannotGoToChargeException(myDroneId);
             }
             else
             {
+                double stationLon = freeChargeSlotsStations[0].Longitude;
+                double stationLat = freeChargeSlotsStations[0].Latitude;
+                double closetDistance = GetDistance(element.DroneLocation.Longitude, element.DroneLocation.Latitude, stationLon, stationLat);
+                foreach (var item in freeChargeSlotsStations)
+                {
+                    double tempDis = GetDistance(element.DroneLocation.Longitude, element.DroneLocation.Latitude, item.Longitude, item.Latitude);
+                    if (tempDis < closetDistance)
+                    {
+                        closetDistance = tempDis;
+                        stationLon = item.Longitude;
+                        stationLat = item.Latitude;                       
+                    }
+                }
+
+
                 element.DroneStatus = BO.DroneStatus.Maintaince;
             }
 
