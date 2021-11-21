@@ -8,33 +8,29 @@ namespace IBL
 {
     partial class BL
     {
-
-
         public void UpdateDroneName(int droneId, string newModel)
         {
-
-            foreach (var item in DalAccess.DronesListDisplay())
+            foreach (var item in DalAccess.GetDronesList())
             {
                 if (item.Id == droneId)
                 {
-                    string m = item.Model;
-                    m = newModel;
+                    string tempModel = item.Model;
+                    tempModel = newModel;
 
                 }
             }
-
         }
         public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
         {
 
-            foreach (var item in DalAccess.BaseStationsListDisplay())
+            foreach (var item in DalAccess.GetBaseStationsList())
             {
                 if (item.Id == baseStationId)
                 {
                     if (newName != "")
                     {
-                        string temp = item.Name;
-                        temp = newName;
+                        string tempName = item.Name;
+                        tempName = newName;
 
                     }
                     if (totalChargeSlots != 0)
@@ -56,7 +52,7 @@ namespace IBL
         }
         public void UpdateCustomerData(int myId, string newName, string newPhone)
         {
-            foreach (var item in DalAccess.CustomersListDisplay())
+            foreach (var item in DalAccess.GetCustomersList())
             {
                 if (item.Id == myId)
                 {
@@ -75,31 +71,35 @@ namespace IBL
         }
         public void DroneToCharge(int myDroneId)
         {
-            List<IDAL.DO.BaseStation> freeChargeSlotsStations = DalAccess.StationsWithFreeChargeSlots().ToList();
+            List<IDAL.DO.BaseStation> freeChargeSlotsStations = DalAccess.GetStationsWithFreeCharge().ToList();
             var element = DronesListBL.Find(x => x.DroneId == myDroneId);
 
             if (freeChargeSlotsStations.Count==0 || (element != default && element.DroneStatus != BO.DroneStatus.Free))
-            {
                 throw new BO.CannotGoToChargeException(myDroneId);
-            }
+            
             else
             {
                 double stationLon = freeChargeSlotsStations[0].Longitude;
                 double stationLat = freeChargeSlotsStations[0].Latitude;
                 double closetDistance = GetDistance(element.DroneLocation.Longitude, element.DroneLocation.Latitude, stationLon, stationLat);
-                foreach (var item in freeChargeSlotsStations)
+                BO.BaseStationBL closetBaseStation = ClosetStation(element.DroneLocation.Longitude, element.DroneLocation.Latitude, freeChargeSlotsStations);
+                if (element.BatteryPercent >= closetDistance * DalAccess.EnergyConsumption()[0])
                 {
-                    double tempDis = GetDistance(element.DroneLocation.Longitude, element.DroneLocation.Latitude, item.Longitude, item.Latitude);
-                    if (tempDis < closetDistance)
-                    {
-                        closetDistance = tempDis;
-                        stationLon = item.Longitude;
-                        stationLat = item.Latitude;                       
-                    }
+                    element.BatteryPercent = closetDistance * DalAccess.EnergyConsumption()[0];
+                    element.DroneLocation.Longitude = stationLon;
+                    element.DroneLocation.Latitude = stationLat;
+                    element.DroneStatus = BO.DroneStatus.Maintaince;
+                    closetBaseStation.FreeChargeSlots--;
+
+                    BO.DroneInCharge newDroneInCharge=new();
+                    newDroneInCharge.Id = element.DroneId;
+                    newDroneInCharge.BatteryPercent = element.BatteryPercent;
+                    closetBaseStation.DronesInChargeList.Add(newDroneInCharge);
                 }
-
-
-                element.DroneStatus = BO.DroneStatus.Maintaince;
+                else
+                {
+                    throw new BO.CannotGoToChargeException(myDroneId);
+                }
             }
 
         }

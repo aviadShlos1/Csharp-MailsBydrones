@@ -31,18 +31,18 @@ namespace IBL
         //#endregion UpdateOptions    
 
         //#region DisplayOptions
-        //public void BaseStationDisplay();
-        //public void DroneDisplay();
-        //public void CustomerDisplay();
-        //public void ParcelDisplay();
+        //public void GetBaseStation();
+        //public void GetDrone();
+        //public void GetCustomer();
+        //public void GetParcel();
 
         //#endregion DisplayOptions
 
         //#region ListDisplayOptions
-        //public void BaseStationsListDisplay();
-        //public void DronesListDisplay();
-        //public void CustomersListDisplay();
-        //public void ParcelsListDisplay();
+        //public void GetBaseStationsList();
+        //public void GetDronesList();
+        //public void GetCustomersList();
+        //public void GetParcelsList();
         //public void ParcelsWithoutDroneListDisplay();
         //public void FreeChargeSlotsListDisplay();
         //#endregion ListDisplayOptions

@@ -8,14 +8,10 @@ namespace IBL.BO
 {
     public enum WeightCategoriesBL
     { Light, Medium, Heavy }
-
     public enum PrioritiesBL
     { Normal, Fast, Urgent }
-
     public enum ParcelStatus
     {Created, Assigned, PickedUp , Supplied  }
     public enum DroneStatus
     { Free, Maintaince, Shipment}
-
-
 }

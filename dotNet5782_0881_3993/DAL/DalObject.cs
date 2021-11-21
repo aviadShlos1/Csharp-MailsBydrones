@@ -17,10 +17,10 @@ namespace DalObject
         public double[] EnergyConsumption()
         {
             double[] ConsumptionArr = new double[5]; 
-            ConsumptionArr[0] = DataSource.Config.FreeWeight;
-            ConsumptionArr[1] = DataSource.Config.LightWeight;
-            ConsumptionArr[2] = DataSource.Config.MediumWeight;
-            ConsumptionArr[3] = DataSource.Config.HeavyWeight;
+            ConsumptionArr[0] = DataSource.Config.FreeWeightConsumption;
+            ConsumptionArr[1] = DataSource.Config.LightWeightConsumption;
+            ConsumptionArr[2] = DataSource.Config.MediumWeightConsumption;
+            ConsumptionArr[3] = DataSource.Config.HeavyWeightConsumption;
             ConsumptionArr[4] = DataSource.Config.ChargeRate;
             return ConsumptionArr;
         }
@@ -172,19 +172,19 @@ namespace DalObject
         /// </summary>
         /// <param name="stationId"></param>
         /// <returns>The type of the entity</returns>
-        public BaseStation BaseStationDisplay(int stationId)
+        public BaseStation GetBaseStation(int stationId)
         {
            return DataSource.BaseStations.Find(i => i.Id == stationId);    
         }
-        public Drone DroneDisplay(int droneId)
+        public Drone GetDrone(int droneId)
         {
             return DataSource.Drones.Find(i => i.Id == droneId);
         }
-        public Customer CustomerDisplay(int customerId)
+        public Customer GetCustomer(int customerId)
         {
             return DataSource.Customers.Find(i => i.Id == customerId);
         }
-        public Parcel ParcelDisplay(int parcelId)
+        public Parcel GetParcel(int parcelId)
         {
             return DataSource.Parcels.Find(i => i.Id == parcelId);
         }
@@ -195,20 +195,20 @@ namespace DalObject
         /// Displaying the all list for all the entity that chosen
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<BaseStation> BaseStationsListDisplay()
+        public IEnumerable<BaseStation> GetBaseStationsList()
         {
             return DataSource.BaseStations;
            
         }
-        public IEnumerable<Drone> DronesListDisplay()
+        public IEnumerable<Drone> GetDronesList()
         {
             return DataSource.Drones;
         }
-        public IEnumerable<Customer> CustomersListDisplay()
+        public IEnumerable<Customer> GetCustomersList()
         {
             return DataSource.Customers;
         }
-        public IEnumerable<Parcel> ParcelsListDisplay()
+        public IEnumerable<Parcel> GetParcelsList()
         {
             return DataSource.Parcels;
         }
@@ -216,7 +216,7 @@ namespace DalObject
         /// Displaying the parcel without assinged drone
         /// </summary>
         /// <returns>The list of the parcel</returns>
-        public IEnumerable<Parcel> ParcelsWithoutDrone()
+        public IEnumerable<Parcel> GetParcelsWithoutDrone()
         {
             return DataSource.Parcels.TakeWhile(i => i.DroneToParcel_Id == 0).ToList();
         }
@@ -224,7 +224,7 @@ namespace DalObject
         /// Displaying the list of station with a free charge slots 
         /// </summary>
         /// <returns>The list of station entity</returns>
-        public IEnumerable<BaseStation> StationsWithFreeChargeSlots()
+        public IEnumerable<BaseStation> GetStationsWithFreeCharge()
         {
             return DataSource.BaseStations.TakeWhile(i => i.FreeChargeSlots != 0).ToList();
         }

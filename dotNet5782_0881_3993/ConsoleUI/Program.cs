@@ -229,7 +229,7 @@ Your choice:");
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     Console.WriteLine("please choose stationId ID from the List below:");
-                    IEnumerable<BaseStation> FreeChargSlots = dal.StationsWithFreeChargeSlots();
+                    IEnumerable<BaseStation> FreeChargSlots = dal.GetStationsWithFreeCharge();
                     foreach (var item in FreeChargSlots)
                     {
                         Console.WriteLine(item);
@@ -274,25 +274,25 @@ Your choice:");
                 case SingleDisplayOptions.StationDisplay:
                     Console.WriteLine("Add the requested station ID(0-4):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.BaseStationDisplay(displayObjectId).ToString());
+                    Console.WriteLine(dal.GetBaseStation(displayObjectId).ToString());
                     break;
                 // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
                     Console.WriteLine("Add the requested drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.DroneDisplay(displayObjectId).ToString());
+                    Console.WriteLine(dal.GetDrone(displayObjectId).ToString());
                     break;
                 // Single customer display
                 case SingleDisplayOptions.CustomerDisplay:
                     Console.WriteLine("Add the requested customer ID(9 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.CustomerDisplay(displayObjectId).ToString());
+                    Console.WriteLine(dal.GetCustomer(displayObjectId).ToString());
                     break;
                 // Single parcel display
                 case SingleDisplayOptions.ParcelDisplay:
                     Console.WriteLine("Add the requested parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.ParcelDisplay(displayObjectId).ToString());
+                    Console.WriteLine(dal.GetParcel(displayObjectId).ToString());
                     break;
 
                 default:
@@ -323,7 +323,7 @@ Your choice:");
             {
                 // BaseStations list display
                 case ListDisplayOption.StationsList:
-                    IEnumerable <BaseStation> displayStationsList = dal.BaseStationsListDisplay();
+                    IEnumerable <BaseStation> displayStationsList = dal.GetBaseStationsList();
                     foreach (var item in displayStationsList)
                     {
                         Console.WriteLine(item);
@@ -332,7 +332,7 @@ Your choice:");
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    IEnumerable<Drone> displayDronesList = dal.DronesListDisplay();
+                    IEnumerable<Drone> displayDronesList = dal.GetDronesList();
                     foreach (var item in displayDronesList)
                     {
                         Console.WriteLine(item);
@@ -341,7 +341,7 @@ Your choice:");
                    
                 // Customers list display
                 case ListDisplayOption.CustomersList:
-                    IEnumerable<Customer> displayCustomersList = dal.CustomersListDisplay();
+                    IEnumerable<Customer> displayCustomersList = dal.GetCustomersList();
 
                     foreach (var item in displayCustomersList)
                     {
@@ -351,7 +351,7 @@ Your choice:");
 
                 // Parcels list display
                 case ListDisplayOption.ParcelsList:
-                    IEnumerable<Parcel> displayParcelsList = dal.ParcelsListDisplay();
+                    IEnumerable<Parcel> displayParcelsList = dal.GetParcelsList();
 
                     foreach (var item in displayParcelsList)
                     {
@@ -359,9 +359,9 @@ Your choice:");
                     }
                     break;
 
-                // ParcelsWithoutDrone list display
+                // GetParcelsWithoutDrone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
-                    IEnumerable<Parcel> displayParcelsWithoutDrone = dal.ParcelsWithoutDrone();
+                    IEnumerable<Parcel> displayParcelsWithoutDrone = dal.GetParcelsWithoutDrone();
 
                     foreach (var item in displayParcelsWithoutDrone)
                     {
@@ -371,7 +371,7 @@ Your choice:");
 
                 // FreeChargeSlots list display
                 case ListDisplayOption.FreeChargeSlotsList:
-                    IEnumerable<BaseStation> displayStationsWithFreeChargeSlots = dal.StationsWithFreeChargeSlots();
+                    IEnumerable<BaseStation> displayStationsWithFreeChargeSlots = dal.GetStationsWithFreeCharge();
 
                     foreach (var item in displayStationsWithFreeChargeSlots)
                     {

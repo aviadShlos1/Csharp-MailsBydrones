@@ -23,8 +23,8 @@ namespace IBL
                 DalAccess.AddStation(tempBase);
 
                 //List<DroneInCharge> DronesInChargeList = null;
-                //BaseStationBL stationBL = new();
-                //stationBL.DronesInChargeList = null
+                BaseStationBL stationBL = new();
+                stationBL.DronesInChargeList = null;
             }
             catch (IDAL.DO.AlreadyExistException)
             {
@@ -41,7 +41,7 @@ namespace IBL
                 tempDrone.Id = myDroneId;
                 tempDrone.Model = myModel;
                 tempDrone.DroneWeight = (WeightCategoriesDal)myDroneWeight;
-                foreach (var item in DalAccess.BaseStationsListDisplay())
+                foreach (var item in DalAccess.GetBaseStationsList())
                 {
                     if (item.Id == myBaseStationId)
                     {
