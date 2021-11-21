@@ -117,12 +117,41 @@ namespace IBL
                 DalAccess.GetDronesChargeList().ToList().Remove(droneChargeItem);
             }
         }
-        public void AssignParcelToDrone()
+        public void AssignParcelToDrone(int myDroneId)
         {
-
+            var droneItem = DronesListBL.Find(x => x.DroneId == myDroneId);
+            if (droneItem.DroneStatus != BO.DroneStatus.Free)
+            {
+                throw new BO.CannotAssignDroneToParcelException(myDroneId);
+            }
+            List<IDAL.DO.Parcel> urgentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.Priority == IDAL.DO.Priorities.Urgent).ToList();
+            List<IDAL.DO.Parcel> urgentPlusHeavyParcels = urgentParcels.TakeWhile(x => x.Weight == IDAL.DO.WeightCategoriesDal.Heavy).ToList();
+            IDAL.DO.BaseStation closet = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, urgentPlusHeavyParcels);
         }
         //    public void PickUpParcel();
         //    public void SupplyParcel();
+        //}
+
+        //private BaseStationBL ClosetStation(double myLon, double myLat, List<IDAL.DO.BaseStation> stationsList)
+        //{
+        //    double stationLon = stationsList[0].Longitude;
+        //    double stationLat = stationsList[0].Latitude;
+        //    double closetDistance = GetDistance(myLon, myLat, stationLon, stationLat);
+        //    foreach (var item in stationsList)
+        //    {
+        //        double tempDistance = GetDistance(myLon, myLat, item.Longitude, item.Latitude);
+        //        if (tempDistance < closetDistance)
+        //        {
+        //            closetDistance = tempDistance;
+        //            stationLon = item.Longitude;
+        //            stationLat = item.Latitude;
+        //        }
+        //    }
+
+        //    BaseStationBL closetBaseStation = new();
+        //    closetBaseStation.BaseStationLocation.Longitude = stationLon;
+        //    closetBaseStation.BaseStationLocation.Latitude = stationLat;
+        //    return closetBaseStation;
         //}
     }
 }

@@ -40,7 +40,18 @@ namespace IBL.BO
         public CannotReleaseFromChargeException(int id) : base() => DroneID = id;
         public CannotReleaseFromChargeException(int id, string message) : base(message) => DroneID = id;
         public CannotReleaseFromChargeException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
-        public override string ToString() => base.ToString() + $", This drone cannot go to charge:{DroneID}";
+        public override string ToString() => base.ToString() + $", This drone cannot release from charge:{DroneID}";
+
+    }
+
+    [Serializable]
+    public class CannotAssignDroneToParcelException : Exception
+    {
+        public int DroneID;
+        public CannotAssignDroneToParcelException(int id) : base() => DroneID = id;
+        public CannotAssignDroneToParcelException(int id, string message) : base(message) => DroneID = id;
+        public CannotAssignDroneToParcelException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
+        public override string ToString() => base.ToString() + $", This drone cannot be assigned to a parcel:{DroneID}";
 
     }
 }
