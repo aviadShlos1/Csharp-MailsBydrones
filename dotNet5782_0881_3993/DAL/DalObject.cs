@@ -161,8 +161,6 @@ namespace DalObject
             DataSource.BaseStations[stationIndex] = station2;
 
             DataSource.DronesInCharge.RemoveAt(DataSource.DronesInCharge.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
-
-
         }
         #endregion Update methods
 
@@ -197,8 +195,7 @@ namespace DalObject
         /// <returns></returns>
         public IEnumerable<BaseStation> GetBaseStationsList()
         {
-            return DataSource.BaseStations;
-           
+            return DataSource.BaseStations;          
         }
         public IEnumerable<Drone> GetDronesList()
         {
@@ -212,6 +209,7 @@ namespace DalObject
         {
             return DataSource.Parcels;
         }
+        
         /// <summary>
         /// Displaying the parcel without assinged drone
         /// </summary>
@@ -227,6 +225,10 @@ namespace DalObject
         public IEnumerable<BaseStation> GetStationsWithFreeCharge()
         {
             return DataSource.BaseStations.TakeWhile(i => i.FreeChargeSlots != 0).ToList();
+        }
+        public IEnumerable<DroneCharge> GetDronesChargeList()
+        {
+            return DataSource.DronesInCharge;
         }
         #endregion ListDisplay
     }

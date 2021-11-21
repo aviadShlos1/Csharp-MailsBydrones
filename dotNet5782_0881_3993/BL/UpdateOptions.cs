@@ -75,26 +75,21 @@ namespace IBL
             var element = DronesListBL.Find(x => x.DroneId == myDroneId);
 
             if (freeChargeSlotsStations.Count==0 || (element != default && element.DroneStatus != BO.DroneStatus.Free))
-                throw new BO.CannotGoToChargeException(myDroneId);
-            
+                throw new BO.CannotGoToChargeException(myDroneId);           
             else
             {
                 double stationLon = freeChargeSlotsStations[0].Longitude;
                 double stationLat = freeChargeSlotsStations[0].Latitude;
                 double closetDistance = GetDistance(element.DroneLocation.Longitude, element.DroneLocation.Latitude, stationLon, stationLat);
                 BO.BaseStationBL closetBaseStation = ClosetStation(element.DroneLocation.Longitude, element.DroneLocation.Latitude, freeChargeSlotsStations);
-                if (element.BatteryPercent >= closetDistance * DalAccess.EnergyConsumption()[0])
+                if (element.BatteryPercent >= closetDistance * freeWeightConsumption)
                 {
-                    element.BatteryPercent = closetDistance * DalAccess.EnergyConsumption()[0];
+                    element.BatteryPercent = closetDistance * freeWeightConsumption;
                     element.DroneLocation.Longitude = stationLon;
                     element.DroneLocation.Latitude = stationLat;
                     element.DroneStatus = BO.DroneStatus.Maintaince;
                     closetBaseStation.FreeChargeSlots--;
-
-                    BO.DroneInCharge newDroneInCharge=new();
-                    newDroneInCharge.Id = element.DroneId;
-                    newDroneInCharge.BatteryPercent = element.BatteryPercent;
-                    closetBaseStation.DronesInChargeList.Add(newDroneInCharge);
+                    DalAccess.DroneToCharge(element.DroneId, closetBaseStation.Id);
                 }
                 else
                 {
@@ -103,8 +98,29 @@ namespace IBL
             }
 
         }
-        //    public void ReleaseDroneCharge();
-        //    public void AssignParcelToDrone();
+        public void ReleaseDroneCharge(int myDroneId,TimeSpan chargeTime)
+        {
+            var droneItem = DronesListBL.Find(x => x.DroneId == myDroneId);
+            if (droneItem.DroneStatus!=BO.DroneStatus.Maintaince)
+            {
+                throw new BO.CannotReleaseFromChargeException(myDroneId);
+            }
+            else
+            {
+                double timeInMinutes = chargeTime.Minutes;
+                timeInMinutes /= 60;
+                droneItem.BatteryPercent = timeInMinutes * chargeRate;
+                droneItem.DroneStatus = BO.DroneStatus.Free;
+                var droneChargeItem = DalAccess.GetDronesChargeList().ToList().Find(x => x.DroneId == myDroneId);
+                var stationItem = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == droneChargeItem.StationId);
+                stationItem.FreeChargeSlots++;
+                DalAccess.GetDronesChargeList().ToList().Remove(droneChargeItem);
+            }
+        }
+        public void AssignParcelToDrone()
+        {
+
+        }
         //    public void PickUpParcel();
         //    public void SupplyParcel();
         //}

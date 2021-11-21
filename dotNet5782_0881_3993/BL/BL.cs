@@ -15,6 +15,12 @@ namespace IBL
         public List<DroneToList> DronesListBL { get; set; }
         public static Random rand = new();
 
+        public double freeWeightConsumption;
+        public double lightWeightConsumption;
+        public double mediumWeightConsumption;
+        public double heavyWeightConsumption;
+        public double chargeRate;
+
         #region Help methods
         private IDAL.DO.Customer GetCustomer(int id)
         {
@@ -79,12 +85,12 @@ namespace IBL
         {
             IDAL.IDal DalAccess = new DalObject.DalObject();
             double[] energyConsumption = DalAccess.EnergyConsumption();
-            double freeWeightConsumption = energyConsumption[0];
-            double lightWeightConsumption = energyConsumption[1];
-            double mediumWeightConsumption = energyConsumption[2];
-            double heavyWeightConsumption = energyConsumption[3];
-            double chargeRate = energyConsumption[4];
-
+            freeWeightConsumption = energyConsumption[0];
+            lightWeightConsumption = energyConsumption[1];
+            mediumWeightConsumption = energyConsumption[2];
+            heavyWeightConsumption = energyConsumption[3];
+            chargeRate = energyConsumption[4];
+            
             IEnumerable<IDAL.DO.Drone> DronesDalList = DalAccess.GetDronesList();
             IEnumerable<IDAL.DO.Parcel> ParcelsDalList = DalAccess.GetParcelsList();
             IEnumerable<IDAL.DO.BaseStation> BaseStationsDalList = DalAccess.GetBaseStationsList();

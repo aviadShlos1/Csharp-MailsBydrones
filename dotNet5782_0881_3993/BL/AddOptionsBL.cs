@@ -22,9 +22,6 @@ namespace IBL
                 tempBase.FreeChargeSlots = myFreeChargeSlots;
                 DalAccess.AddStation(tempBase);
 
-                //List<DroneInCharge> DronesInChargeList = null;
-                BaseStationBL stationBL = new();
-                stationBL.DronesInChargeList = null;
             }
             catch (IDAL.DO.AlreadyExistException)
             {

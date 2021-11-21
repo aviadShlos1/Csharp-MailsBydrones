@@ -184,6 +184,10 @@ namespace IDAL
         {
             return DataSource.BaseStations.TakeWhile(i => i.FreeChargeSlots != 0).ToList();
         }
+        public IEnumerable<DroneCharge> GetDronesChargeList()
+        {
+            return DataSource.DronesInCharge;
+        }
         #endregion ListDisplay
     }
 }

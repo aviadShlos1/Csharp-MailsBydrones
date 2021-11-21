@@ -33,4 +33,14 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $", This drone cannot go to charge:{DroneID}";
 
     }
+    [Serializable]
+    public class CannotReleaseFromChargeException : Exception
+    {
+        public int DroneID;
+        public CannotReleaseFromChargeException(int id) : base() => DroneID = id;
+        public CannotReleaseFromChargeException(int id, string message) : base(message) => DroneID = id;
+        public CannotReleaseFromChargeException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
+        public override string ToString() => base.ToString() + $", This drone cannot go to charge:{DroneID}";
+
+    }
 }
