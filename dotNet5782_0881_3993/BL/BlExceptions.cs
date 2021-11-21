@@ -63,4 +63,23 @@ namespace IBL.BO
         public NotEnoughBatteryException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
         public override string ToString() => base.ToString() + $", The drone doesn't have enough battery for this mission:{DroneID}";
     }
+
+    [Serializable]
+    public class CannotPickUpException : Exception
+    {
+        public int DroneID;
+        public CannotPickUpException(int id) : base() => DroneID = id;
+        public CannotPickUpException(int id, string message) : base(message) => DroneID = id;
+        public CannotPickUpException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
+        public override string ToString() => base.ToString() + $", The drone cannot pick up the parcel:{DroneID}";
+    }
+    [Serializable]
+    public class CannotSupplyException : Exception
+    {
+        public int DroneID;
+        public CannotSupplyException(int id) : base() => DroneID = id;
+        public CannotSupplyException(int id, string message) : base(message) => DroneID = id;
+        public CannotSupplyException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
+        public override string ToString() => base.ToString() + $", The drone cannot supply the parcel:{DroneID}";
+    }
 }
