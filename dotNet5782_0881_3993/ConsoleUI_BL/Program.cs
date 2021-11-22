@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using IBL;
 using IBL.BO;
 
@@ -63,7 +68,7 @@ Please enter an ID number for the station:(0-4)");
                     while (!double.TryParse(Console.ReadLine(), out newLatitude)) ;
                     Console.WriteLine();
 
-                    BaseStationBl newStation = new BaseStationBl
+                    BaseStationBl newBaseStation = new BaseStationBl
                     {
                         Id = newStationID,
                         BaseStationName = newName,
@@ -71,7 +76,7 @@ Please enter an ID number for the station:(0-4)");
                         Location = newLocation,
                         DronesInChargeList = new()
                     };
-                   bl.Add
+                    bl.AddBaseStation(newStationID, newName, newLocation, newchargsSlots);
                     break;
 
                 // Adding a new drone
