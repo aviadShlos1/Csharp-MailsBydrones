@@ -196,7 +196,7 @@ namespace IBL
 
             if (!(parcelItem.PickingUpTime != DateTime.MinValue && parcelItem.SupplyingTime == DateTime.MinValue))
             {
-                throw new BO.CannotSupplyException(droneId);//
+                throw new BO.CannotSupplyException(droneId);
             }
             else
             {
