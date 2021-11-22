@@ -138,8 +138,8 @@ namespace IBL
                 throw;
             }
             
-            AssignCustomerToParcel senderItem = new AssignCustomerToParcel { Id = dalParcel.SenderId, Name = GetCustomer(dalParcel.SenderId).CustomerName };
-            AssignCustomerToParcel recieverItem = new AssignCustomerToParcel { Id = dalParcel.TargetId, Name = GetCustomer(dalParcel.TargetId).CustomerName };
+            AssignCustomerToParcel senderItem = new AssignCustomerToParcel { Id = dalParcel.SenderId, Name = GetCustomerDetails(dalParcel.SenderId).Name };
+            AssignCustomerToParcel recieverItem = new AssignCustomerToParcel { Id = dalParcel.TargetId, Name = GetCustomerDetails(dalParcel.TargetId).Name };
             ParcelBl myParcelBl = new() { ParcelId = dalParcel.Id, ParcelWeight=(WeightCategoriesBL)dalParcel.Weight, Priority=(PrioritiesBL)dalParcel.Priority, CreatingTime=dalParcel.CreatingTime, AssignningTime=dalParcel.AssignningTime, PickingUpTime=dalParcel.PickingUpTime, SupplyingTime=dalParcel.SupplyingTime, Sender=senderItem, Reciever=recieverItem};
             if (myParcelBl.AssignningTime!=DateTime.MinValue)
             {
