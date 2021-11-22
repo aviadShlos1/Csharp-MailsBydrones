@@ -9,7 +9,7 @@ namespace IBL.BO
     public class ParcelInShipment   // חבילה בהעברה
     {
         public int Id { get; set; }
-        public bool ShippingStatus { get; set; } // two conditions: waiting for pickingUp or in the way for the target 
+        public bool ShippingOnTheWay { get; set; } // two conditions:false if waiting for pickingUp or true if it on the way for the target 
         public WeightCategoriesBL Weight { get; set; }
         public PrioritiesBL Priority { get; set; }
         public AssignCustomerToParcel Sender { get; set; }
@@ -19,7 +19,7 @@ namespace IBL.BO
         public double ShippingDistance { get; set; }
         public override string ToString()
         {
-            return $"ParcelInShipment: CustomerId:{Id}, ShippingStatus:{ShippingStatus},Weight:{Weight},Priority:{Priority},AssignSenderToParcel:{Sender},AssignRecieverToParcel:{Reciever}, PickUpLocation:{PickUpLocation},TargetLocation:{TargetLocation}, ShippingDistance:{ShippingDistance}";
+            return $"ParcelInShipment: CustomerId:{Id}, ShippingOnTheWay:{ShippingOnTheWay},Weight:{Weight},Priority:{Priority},AssignSenderToParcel:{Sender},AssignRecieverToParcel:{Reciever}, PickUpLocation:{PickUpLocation},TargetLocation:{TargetLocation}, ShippingDistance:{ShippingDistance}";
         }
     }
 }
