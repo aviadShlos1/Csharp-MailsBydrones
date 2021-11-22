@@ -22,10 +22,10 @@ namespace DalObject
         // Pay attention - we chose to work with lists, so we don't need to initialize the sizes
 
         /// <This five rows below describe the initialize of the entities lists >
-        internal static List<Drone> Drones = new List<Drone>(10) ;
-        internal static List<BaseStation> BaseStations = new List<BaseStation>(5);
-        internal static List<Customer> Customers = new List<Customer>(100);
-        internal static List<Parcel> Parcels = new List<Parcel>(1000);
+        internal static List<DroneDal> Drones = new List<DroneDal>(10) ;
+        internal static List<BaseStationDal> BaseStations = new List<BaseStationDal>(5);
+        internal static List<CustomerDal> Customers = new List<CustomerDal>(100);
+        internal static List<ParcelDal> Parcels = new List<ParcelDal>(1000);
         internal static List<DroneCharge> DronesInCharge = new List<DroneCharge>();
         #endregion The entities lists
 
@@ -56,7 +56,7 @@ namespace DalObject
             #region adding Drone details
             for (int i = 0; i < 5; i++)
             {
-                Drones.Add(new Drone()
+                Drones.Add(new DroneDal()
                 {
                     Id =rand.Next(1000,10000),
                     Model = "model:" + i.ToString(),
@@ -66,8 +66,8 @@ namespace DalObject
             #endregion adding Drone details
 
             #region adding Station details
-            BaseStations.Add(new BaseStation() { Id = 0 , Name = "Herzliya Drone BaseStation", Latitude = 32.16472, Longitude = 34.84250, FreeChargeSlots = 4 });
-            BaseStations.Add(new BaseStation() { Id = 1, Name = "Tel Aviv Drone BaseStation", Latitude = 32.056312, Longitude = 34.779888, FreeChargeSlots = 3 });
+            BaseStations.Add(new BaseStationDal() { Id = 0 , Name = "Herzliya DroneDal BaseStationDal", Latitude = 32.16472, Longitude = 34.84250, FreeChargeSlots = 4 });
+            BaseStations.Add(new BaseStationDal() { Id = 1, Name = "Tel Aviv DroneDal BaseStationDal", Latitude = 32.056312, Longitude = 34.779888, FreeChargeSlots = 3 });
             #endregion adding Station details
 
             #region adding Customer details
@@ -75,7 +75,7 @@ namespace DalObject
             for (int i = 0; i < 10; i++)
             {
 
-                Customers.Add(new Customer()
+                Customers.Add(new CustomerDal()
                 {
                     Id = rand.Next(100000000, 1000000000),
                     Name = CustomerName[rand.Next(CustomerName.Length)],
@@ -91,7 +91,7 @@ namespace DalObject
             {
                 /// ‹summary›TimeSpan field which will be used to determine time
                 TimeSpan time = new TimeSpan(0, rand.Next(0, 60), rand.Next(0, 60)); 
-                Parcels.Add (new Parcel()
+                Parcels.Add (new ParcelDal()
                 {
                     Id = rand.Next(0, 1000),
                     SenderId = rand.Next(100000000, 1000000000),

@@ -46,10 +46,10 @@ namespace ConsoleUI
         static public void AddOptions(DalObject.DalObject dal)
         {
             Console.WriteLine(@"Add options:
-1. BaseStation
-2. Drone
-3. Customer
-4. Parcel
+1. BaseStationDal
+2. DroneDal
+3. CustomerDal
+4. ParcelDal
 Your choice:");
     
             int.TryParse(Console.ReadLine(), out int choice);
@@ -76,7 +76,7 @@ Please enter an ID number for the station:(0-4)");
                     while (!double.TryParse(Console.ReadLine(), out newLattitude)) ;
                     Console.WriteLine();
 
-                    BaseStation newStation = new BaseStation
+                    BaseStationDal newStation = new BaseStationDal
                     {
                         Id = newStationID,
                         Name = newName,
@@ -94,7 +94,7 @@ Please enter an ID number for the station:(0-4)");
                   
                     // User input for a new drone
                     Console.WriteLine(@"
-You selected to add a Drone.
+You selected to add a DroneDal.
 Please enter an ID number for the drone(1000-9999):");
                     while (!int.TryParse(Console.ReadLine(), out newDroneID)) ;
                     Console.WriteLine("Please enter the model of the drone:(model ***) ");
@@ -103,7 +103,7 @@ Please enter an ID number for the drone(1000-9999):");
                     while (!int.TryParse(Console.ReadLine(), out newMaxWeight)) ;
                     Console.WriteLine();
 
-                    Drone newdrone = new Drone
+                    DroneDal newdrone = new DroneDal
                     {
                         Id = newDroneID,
                         Model = newModel,
@@ -119,8 +119,8 @@ Please enter an ID number for the drone(1000-9999):");
                     double newCustomerLongitude, newCustomerLattitude;
                     // User input for a new customer
                     Console.WriteLine(@"
-You selected to add a Customer.
-Please enter an ID number for the Customer(9 digits):");
+You selected to add a CustomerDal.
+Please enter an ID number for the CustomerDal(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newCustomerID)) ;
                     Console.WriteLine("Please enter the name of the customer:");
                     newCustomerName = Console.ReadLine();
@@ -132,7 +132,7 @@ Please enter an ID number for the Customer(9 digits):");
                     while (!double.TryParse(Console.ReadLine(), out newCustomerLattitude)) ;
                     Console.WriteLine();
 
-                    Customer newCustomer = new Customer
+                    CustomerDal newCustomer = new CustomerDal
                     {
                         Id = newCustomerID,
                         Name = newCustomerName,
@@ -148,8 +148,8 @@ Please enter an ID number for the Customer(9 digits):");
                     int newParcelId, newSenderId, newTargetId, newWeight, newPriorities;
                     // User input for a new parcel
                     Console.WriteLine(@"
-You selected to add a Parcel.
-Please enter the Parcel ID (0-1000):");
+You selected to add a ParcelDal.
+Please enter the ParcelDal ID (0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newParcelId)) ;
                     Console.WriteLine("Please enter the sender ID number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newSenderId)) ;
@@ -161,7 +161,7 @@ Please enter the Parcel ID (0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
                     Console.WriteLine();
                     //
-                    Parcel newParcel = new Parcel
+                    ParcelDal newParcel = new ParcelDal
                     {
                         Id = newParcelId,
                         SenderId = newSenderId,
@@ -229,7 +229,7 @@ Your choice:");
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     Console.WriteLine("please choose stationId ID from the List below:");
-                    IEnumerable<BaseStation> FreeChargSlots = dal.GetStationsWithFreeCharge();
+                    IEnumerable<BaseStationDal> FreeChargSlots = dal.GetStationsWithFreeCharge();
                     foreach (var item in FreeChargSlots)
                     {
                         Console.WriteLine(item);
@@ -259,9 +259,9 @@ Your choice:");
         {
             Console.WriteLine(@"Single display options:
 1. Base station display
-2. Drone display
-3. Customer display
-4. Parcel display
+2. DroneDal display
+3. CustomerDal display
+4. ParcelDal display
 
 Your choice:");
             int.TryParse(Console.ReadLine(), out int choice);
@@ -323,7 +323,7 @@ Your choice:");
             {
                 // BaseStations list display
                 case ListDisplayOption.StationsList:
-                    IEnumerable <BaseStation> displayStationsList = dal.GetBaseStationsList();
+                    IEnumerable <BaseStationDal> displayStationsList = dal.GetBaseStationsList();
                     foreach (var item in displayStationsList)
                     {
                         Console.WriteLine(item);
@@ -332,7 +332,7 @@ Your choice:");
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    IEnumerable<Drone> displayDronesList = dal.GetDronesList();
+                    IEnumerable<DroneDal> displayDronesList = dal.GetDronesList();
                     foreach (var item in displayDronesList)
                     {
                         Console.WriteLine(item);
@@ -341,7 +341,7 @@ Your choice:");
                    
                 // Customers list display
                 case ListDisplayOption.CustomersList:
-                    IEnumerable<Customer> displayCustomersList = dal.GetCustomersList();
+                    IEnumerable<CustomerDal> displayCustomersList = dal.GetCustomersList();
 
                     foreach (var item in displayCustomersList)
                     {
@@ -351,7 +351,7 @@ Your choice:");
 
                 // Parcels list display
                 case ListDisplayOption.ParcelsList:
-                    IEnumerable<Parcel> displayParcelsList = dal.GetParcelsList();
+                    IEnumerable<ParcelDal> displayParcelsList = dal.GetParcelsList();
 
                     foreach (var item in displayParcelsList)
                     {
@@ -361,7 +361,7 @@ Your choice:");
 
                 // GetParcelsWithoutDrone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
-                    IEnumerable<Parcel> displayParcelsWithoutDrone = dal.GetParcelsWithoutDrone();
+                    IEnumerable<ParcelDal> displayParcelsWithoutDrone = dal.GetParcelsWithoutDrone();
 
                     foreach (var item in displayParcelsWithoutDrone)
                     {
@@ -371,7 +371,7 @@ Your choice:");
 
                 // FreeChargeSlots list display
                 case ListDisplayOption.FreeChargeSlotsList:
-                    IEnumerable<BaseStation> displayStationsWithFreeChargeSlots = dal.GetStationsWithFreeCharge();
+                    IEnumerable<BaseStationDal> displayStationsWithFreeChargeSlots = dal.GetStationsWithFreeCharge();
 
                     foreach (var item in displayStationsWithFreeChargeSlots)
                     {

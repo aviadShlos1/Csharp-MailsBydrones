@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class DroneBL
+    public class DroneBl
     {
         public int DroneId { get; set; }
         public string Model { get; set; }
@@ -17,7 +17,7 @@ namespace IBL.BO
         public Location DroneLocation { get; set; }
         public override string ToString()
         {
-            return $"DroneBL: DroneId:{DroneId}, Model:{Model}, DroneWeight:{DroneWeight}, BatteryPercent:{BatteryPercent}, DroneStatus:{DroneStatus}, ParcelInShipment:{ParcelInShip}, Location:{DroneLocation}";
+            return $"DroneBl: DroneId:{DroneId}, Model:{Model}, DroneWeight:{DroneWeight}, BatteryPercent:{BatteryPercent}, DroneStatus:{DroneStatus}, ParcelInShipment:{ParcelInShip}, Location:{DroneLocation}";
         }
     }
 }

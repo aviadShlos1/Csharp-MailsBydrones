@@ -17,7 +17,7 @@ namespace IBL.BO
         public int CurrentTransferParcelNum { get; set; }
         public override string ToString()
         {
-            return $"DroneBL: DroneId:{DroneId}, Model:{Model}, DroneWeight:{DroneWeight}, BatteryPercent:{BatteryPercent}, DroneStatus:{DroneStatus}, Location:{DroneLocation}, CurrentTransferParcelNum:{CurrentTransferParcelNum}";
+            return $"DroneBl: DroneId:{DroneId}, Model:{Model}, DroneWeight:{DroneWeight}, BatteryPercent:{BatteryPercent}, DroneStatus:{DroneStatus}, Location:{DroneLocation}, CurrentTransferParcelNum:{CurrentTransferParcelNum}";
         }
     }
 }

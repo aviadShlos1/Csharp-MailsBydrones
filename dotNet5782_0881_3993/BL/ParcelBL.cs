@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class ParcelBL // חבילה
+    public class ParcelBl 
     {
         public int ParcelId { get; set; }
         public AssignCustomerToParcel Sender { get; set; }
@@ -20,7 +20,7 @@ namespace IBL.BO
         public DateTime SupplyingTime { get; set; }
         public override string ToString()
         {
-            return $"ParcelBL: ParcelId:{ParcelId}, AssignSenderToParcel:{Sender}, AssignRecieverToParcel:{Reciever}, ParcelWeight:{ParcelWeight}, Priority:{Priority}, DroneInShipment:{DroneAssignToParcel}, " +
+            return $"ParcelBl: ParcelId:{ParcelId}, AssignSenderToParcel:{Sender}, AssignRecieverToParcel:{Reciever}, ParcelWeight:{ParcelWeight}, Priority:{Priority}, DroneInShipment:{DroneAssignToParcel}, " +
                 $"CreatingTime:{CreatingTime}, AssignningTime:{AssignningTime}, PickingUpTime:{PickingUpTime}, SupplyingTime:{SupplyingTime}";
         }
     }

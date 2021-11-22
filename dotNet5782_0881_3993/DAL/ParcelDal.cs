@@ -14,8 +14,8 @@ namespace IDAL
 
     namespace DO
     {
-        /// <summary> This struct is intended for storing the Parcel details
-        public struct Parcel
+        /// <summary> This struct is intended for storing the ParcelDal details
+        public struct ParcelDal
         {
             public int Id { get; set; }
             public int SenderId { get; set; }
@@ -32,7 +32,7 @@ namespace IDAL
             /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
-                return $"Parcel: Id:{Id}, SenderId:{SenderId}, TargetId:{TargetId}, Weight:{Weight}, Priority:{Priority}, CreatingTime:{CreatingTime}, " +
+                return $"ParcelDal: Id:{Id}, SenderId:{SenderId}, TargetId:{TargetId}, Weight:{Weight}, Priority:{Priority}, CreatingTime:{CreatingTime}, " +
                     $"DroneToParcelId:{DroneToParcelId}, AssignningTime:{AssignningTime}, PickingUpTime:{PickingUpTime}, SupplyingTime:{SupplyingTime}";
             }
         }

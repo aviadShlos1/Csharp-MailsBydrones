@@ -12,7 +12,7 @@ namespace IBL.BO
         public double BatteryPercent { get; set; }
         public override string ToString()
         {
-            return $"DroneBL: DroneId:{Id},  BatteryPercent:{BatteryPercent}";
+            return $"DroneBl: DroneId:{Id},  BatteryPercent:{BatteryPercent}";
         }
     }
 }

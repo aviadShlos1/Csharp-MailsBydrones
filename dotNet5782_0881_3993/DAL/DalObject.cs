@@ -31,7 +31,7 @@ namespace DalObject
         /// Adding a new object for the all entities
         /// </summary>
         /// <param name="newStation"></param>
-        public void AddStation(BaseStation newStation)
+        public void AddStation(BaseStationDal newStation)
         {
             int check = DataSource.BaseStations.FindIndex(x=>x.Id==newStation.Id);
             if (check != 0)
@@ -40,7 +40,7 @@ namespace DalObject
             }
             DataSource.BaseStations.Add(newStation);
         }
-        public void AddDrone(Drone newDrone)
+        public void AddDrone(DroneDal newDrone)
         {
             int check = DataSource.Drones.FindIndex(x => x.Id == newDrone.Id);
             if (check != 0)
@@ -49,7 +49,7 @@ namespace DalObject
             }
             DataSource.Drones.Add(newDrone);
         }
-        public void AddCustomer(Customer newCustomer)
+        public void AddCustomer(CustomerDal newCustomer)
         {
             int check = DataSource.Customers.FindIndex(x => x.Id == newCustomer.Id);
             if (check != 0)
@@ -58,7 +58,7 @@ namespace DalObject
             }
             DataSource.Customers.Add(newCustomer);
         }
-        public int AddParcel(Parcel newParcel)
+        public int AddParcel(ParcelDal newParcel)
         {
             int check = DataSource.Parcels.FindIndex(x => x.Id == newParcel.Id);
             if (check != 0)
@@ -84,7 +84,7 @@ namespace DalObject
             {
                 throw new NotExistException(parcelId, "The parcel does not exist");
             }
-            Parcel parcel1 = DataSource.Parcels[parcelIndex];
+            ParcelDal parcel1 = DataSource.Parcels[parcelIndex];
             parcel1.DroneToParcelId = droneId;
             parcel1.AssignningTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel1;
@@ -100,7 +100,7 @@ namespace DalObject
             {
                 throw new NotExistException(parcelId, "The parcel does not exist");
             }
-            Parcel parcel2 = DataSource.Parcels[parcelIndex];
+            ParcelDal parcel2 = DataSource.Parcels[parcelIndex];
             parcel2.PickingUpTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel2;
         }
@@ -115,7 +115,7 @@ namespace DalObject
             {
                 throw new NotExistException(parcelId, "The parcel does not exist");
             }
-            Parcel parcel3 = DataSource.Parcels[parcelIndex];
+            ParcelDal parcel3 = DataSource.Parcels[parcelIndex];
             parcel3.SupplyingTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel3;
         }
@@ -131,7 +131,7 @@ namespace DalObject
             {
                 throw new NotExistException(stationId, "The station does not exist");
             }
-            BaseStation station1 = DataSource.BaseStations[stationIndex];
+            BaseStationDal station1 = DataSource.BaseStations[stationIndex];
             station1.FreeChargeSlots--; // Reducing the free chargeSlots
             DataSource.BaseStations[stationIndex] = station1;
 
@@ -156,7 +156,7 @@ namespace DalObject
             int baseStationId = help.StationId;
 
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == baseStationId);
-            BaseStation station2 = DataSource.BaseStations[stationIndex];
+            BaseStationDal station2 = DataSource.BaseStations[stationIndex];
             station2.FreeChargeSlots++;//Increasing the number of the free charge slots
             DataSource.BaseStations[stationIndex] = station2;
 
@@ -170,7 +170,7 @@ namespace DalObject
         /// </summary>
         /// <param name="stationId"></param>
         /// <returns>The type of the entity</returns>
-        public BaseStation GetSingleBaseStation(int stationId)
+        public BaseStationDal GetSingleBaseStation(int stationId)
         {
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
             if (stationIndex == 0)
@@ -179,7 +179,7 @@ namespace DalObject
             }
             return DataSource.BaseStations.Find(i => i.Id == stationId);    
         }
-        public Drone GetSingleDrone(int droneId)
+        public DroneDal GetSingleDrone(int droneId)
         {
             int droneIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
             if (droneIndex == 0)
@@ -188,7 +188,7 @@ namespace DalObject
             }
             return DataSource.Drones.Find(i => i.Id == droneId);
         }
-        public Customer GetSingleCustomer(int customerId)
+        public CustomerDal GetSingleCustomer(int customerId)
         {
             int customerIndex = DataSource.Customers.FindIndex(i => i.Id == customerId);
             if (customerIndex == 0)
@@ -197,7 +197,7 @@ namespace DalObject
             }
             return DataSource.Customers.Find(i => i.Id == customerId);
         }
-        public Parcel GetSingleParcel(int parcelId)
+        public ParcelDal GetSingleParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
             if (parcelIndex == 0)
@@ -213,19 +213,19 @@ namespace DalObject
         /// Displaying the all list for all the entity that chosen
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<BaseStation> GetBaseStationsList()
+        public IEnumerable<BaseStationDal> GetBaseStationsList()
         {
             return DataSource.BaseStations;          
         }
-        public IEnumerable<Drone> GetDronesList()
+        public IEnumerable<DroneDal> GetDronesList()
         {
             return DataSource.Drones;
         }
-        public IEnumerable<Customer> GetCustomersList()
+        public IEnumerable<CustomerDal> GetCustomersList()
         {
             return DataSource.Customers;
         }
-        public IEnumerable<Parcel> GetParcelsList()
+        public IEnumerable<ParcelDal> GetParcelsList()
         {
             return DataSource.Parcels;
         }
@@ -234,7 +234,7 @@ namespace DalObject
         /// Displaying the parcel without assinged drone
         /// </summary>
         /// <returns>The list of the parcel</returns>
-        public IEnumerable<Parcel> GetParcelsWithoutDrone()
+        public IEnumerable<ParcelDal> GetParcelsWithoutDrone()
         {
             return DataSource.Parcels.TakeWhile(i => i.DroneToParcelId == 0).ToList();
         }
@@ -242,7 +242,7 @@ namespace DalObject
         /// Displaying the list of station with a free charge slots 
         /// </summary>
         /// <returns>The list of station entity</returns>
-        public IEnumerable<BaseStation> GetStationsWithFreeCharge()
+        public IEnumerable<BaseStationDal> GetStationsWithFreeCharge()
         {
             return DataSource.BaseStations.TakeWhile(i => i.FreeChargeSlots != 0).ToList();
         }

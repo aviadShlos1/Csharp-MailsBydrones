@@ -22,9 +22,9 @@ namespace IBL
         public double chargeRate;
 
         #region Help methods
-        private IDAL.DO.Customer GetCustomerDetails(int id)
+        private IDAL.DO.CustomerDal GetCustomerDetails(int id)
         {
-            IDAL.DO.Customer myCust = new();
+            IDAL.DO.CustomerDal myCust = new();
 
             foreach (var item in DalAccess.GetCustomersList())
             {
@@ -33,9 +33,9 @@ namespace IBL
             }
             return myCust;
         }
-        private List<IDAL.DO.Customer> CustomersSuppliedParcels()
+        private List<IDAL.DO.CustomerDal> CustomersSuppliedParcels()
         {
-            List<IDAL.DO.Customer> temp = new();
+            List<IDAL.DO.CustomerDal> temp = new();
             foreach (var itemPar in DalAccess.GetParcelsList())
             {
                 foreach (var itemCus in DalAccess.GetCustomersList())
@@ -58,7 +58,7 @@ namespace IBL
                                                                                                                                    //We calculate the distance according to a formula that also takes into account the curvature of the earth
             return (double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));
         }
-        private BaseStationBL ClosetStation(double myLon, double myLat, List<IDAL.DO.BaseStation> stationsList )
+        private BaseStationBl ClosetStation(double myLon, double myLat, List<IDAL.DO.BaseStationDal> stationsList )
         { 
             double stationLon = stationsList[0].Longitude;
             double stationLat = stationsList[0].Latitude;
@@ -74,7 +74,7 @@ namespace IBL
                 }
             }
 
-            BaseStationBL closetBaseStation = new();
+            BaseStationBl closetBaseStation = new();
             closetBaseStation.Location.Longitude = stationLon;
             closetBaseStation.Location.Latitude = stationLat;
             return closetBaseStation;
@@ -91,10 +91,10 @@ namespace IBL
             heavyWeightConsumption = energyConsumption[3];
             chargeRate = energyConsumption[4];
             
-            IEnumerable<IDAL.DO.Drone> DronesDalList = DalAccess.GetDronesList();
-            IEnumerable<IDAL.DO.Parcel> ParcelsDalList = DalAccess.GetParcelsList();
-            IEnumerable<IDAL.DO.BaseStation> BaseStationsDalList = DalAccess.GetBaseStationsList();
-            IEnumerable<IDAL.DO.Customer> CustomersDalList = DalAccess.GetCustomersList();
+            IEnumerable<IDAL.DO.DroneDal> DronesDalList = DalAccess.GetDronesList();
+            IEnumerable<IDAL.DO.ParcelDal> ParcelsDalList = DalAccess.GetParcelsList();
+            IEnumerable<IDAL.DO.BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList();
+            IEnumerable<IDAL.DO.CustomerDal> CustomersDalList = DalAccess.GetCustomersList();
             DronesListBL = new List<DroneToList>();
             foreach (var item in DronesDalList)
             {
@@ -142,7 +142,7 @@ namespace IBL
                 }
                 if (itemDrone.DroneStatus == DroneStatus.Free)
                 {
-                    List<IDAL.DO.Customer> custSupplied = CustomersSuppliedParcels();
+                    List<IDAL.DO.CustomerDal> custSupplied = CustomersSuppliedParcels();
                     int index = rand.Next(custSupplied.Count());
                     itemDrone.DroneLocation.Latitude = custSupplied.ToList()[index].CustomerLatitude;
                     itemDrone.DroneLocation.Longitude = custSupplied.ToList()[index].CustomerLongitude;
@@ -154,15 +154,7 @@ namespace IBL
         }
       
 
-        //partial class ListDisplayOptions
-        //{
-        //public void GetBaseStationsList();
-        //public void GetDronesList();
-        //public void GetCustomersList();
-        //public void GetParcelsList();
-        //public void ParcelsWithoutDroneListDisplay();
-        //public void FreeChargeSlotsListDisplay();
-        //}
+        
 
     }
 
