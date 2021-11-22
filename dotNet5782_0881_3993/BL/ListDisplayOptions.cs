@@ -63,8 +63,15 @@ namespace IBL
             }
             return myParcelsBl;
         }
-        public void ParcelsWithoutDroneListDisplay();
-        public void FreeChargeSlotsListDisplay();
+        public List<ParcelToList> ParcelsWithoutDroneListDisplay()
+        {
+            List<ParcelToList> parcelsWithoutDrone = new();
+            return 
+        }
+        public void FreeChargeSlotsListDisplay()
+        {
+
+        }
         
     }
 }
