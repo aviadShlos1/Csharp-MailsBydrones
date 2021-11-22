@@ -9,7 +9,7 @@ namespace IBL
 {
     partial class BL
     {
-        public BaseStationBl GetBaseStation(int baseStationId)
+        public BaseStationBl GetSingleBaseStation(int baseStationId)
         {
             IDAL.DO.BaseStationDal dalBaseStation = new();
             try
@@ -32,7 +32,7 @@ namespace IBL
             }
             return myStationBl;
         }
-        public DroneBl GetDrone(int myDroneId)
+        public DroneBl GetSingleDrone(int myDroneId)
         {
             IDAL.DO.DroneDal dalDrone = new();
             try
@@ -68,7 +68,7 @@ namespace IBL
             }
             return myDroneBl;
         }
-        public CustomerBL GetCustomer(int customerId)
+        public CustomerBL GetSingleCustomer(int customerId)
         {
             IDAL.DO.CustomerDal myCustomer = new();
             try
@@ -125,7 +125,7 @@ namespace IBL
             }
             return myCustomerBl;
         }
-        public ParcelBl GetParcel(int parcelId)
+        public ParcelBl GetSingleParcel(int parcelId)
         {
             IDAL.DO.ParcelDal dalParcel = new();
             try

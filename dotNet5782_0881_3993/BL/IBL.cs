@@ -31,15 +31,15 @@ namespace IBL
         #endregion UpdateOptions    
 
         #region DisplayOptions
-        public void GetSingleBaseStation(int baseStationId);
-        public void GetSingleDrone(int myDroneId);
-        public void GetSingleCustomer(int customerId);
-        public void GetSingleParcel(int parcelId);
+        public BaseStationBl GetSingleBaseStation(int baseStationId);
+        public DroneBl GetSingleDrone(int myDroneId);
+        public CustomerBL GetSingleCustomer(int customerId)(int customerId);
+        public ParcelBl GetSingleParcel(int parcelId);
 
         #endregion DisplayOptions
 
         #region ListDisplayOptions
-        public void GetBaseStationsList();
+       
         public void GetDronesList();
         public void GetCustomersList();
         public void GetParcelsList();
