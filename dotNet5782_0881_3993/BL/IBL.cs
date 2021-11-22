@@ -12,9 +12,9 @@ namespace IBL
         #region AddOptions
 
         public void AddBaseStation(BaseStationBl newBaseStationBl);
-        public void AddDrone(DroneBl newDroneBl,int firstChargeStation);
-        public void AddCustomer(int myId, string myName, string myPhone, Location myCustLocation);
-        public void AddParcel(int mySenderId, int myRecieverId, WeightCategoriesBL myParcelWeight, PrioritiesBL myPriority);
+        public void AddDrone(DroneToList newDroneBl,int firstChargeStation);
+        public void AddCustomer(CustomerBL newCustomer);
+        public void AddParcel(ParcelBl newParcel);
 
         #endregion AddOptions
 

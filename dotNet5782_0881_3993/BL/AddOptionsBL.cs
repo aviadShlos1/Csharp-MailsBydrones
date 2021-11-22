@@ -54,16 +54,17 @@ namespace IBL
                 throw ;
             }
         }
-        public void AddCustomer(int myId, string myName, string myPhone, Location myCustLocation)
+
+        public void AddCustomer(CustomerBL newCustomer)
         {
             try
             {
                 CustomerDal tempCust = new();
-                tempCust.Id = myId;
-                tempCust.Name = myName;
-                tempCust.Phone = myPhone;
-                tempCust.CustomerLongitude = myCustLocation.Longitude;
-                tempCust.CustomerLatitude = myCustLocation.Latitude;
+                tempCust.Id = newCustomer.CustomerId;
+                tempCust.Name = newCustomer.CustomerName;
+                tempCust.Phone = newCustomer.CustomerPhone;
+                tempCust.CustomerLongitude = newCustomer.CustomerLocation.Longitude;
+                tempCust.CustomerLatitude = newCustomer.CustomerLocation.Latitude;
                 DalAccess.AddCustomer(tempCust);
 
             }
@@ -73,20 +74,20 @@ namespace IBL
                 throw;
             }
         }
-        public void AddParcel(int mySenderId, int myRecieverId, WeightCategoriesBL myParcelWeight, PrioritiesBL myPriority)
+        public void AddParcel(ParcelBl newParcel)
         {
             try
             {
                 ParcelDal tempParcel = new();
-                tempParcel.SenderId = mySenderId;
-                tempParcel.TargetId = myRecieverId;
-                tempParcel.Weight = (WeightCategoriesDal)myParcelWeight;
-                tempParcel.Priority = (Priorities)myPriority;
+                tempParcel.SenderId = newParcel.Sender.Id;
+                tempParcel.TargetId = newParcel.Reciever.Id;
+                tempParcel.Weight = (WeightCategoriesDal)newParcel.ParcelWeight;
+                tempParcel.Priority = (Priorities)newParcel.Priority;
                 tempParcel.CreatingTime = DateTime.Now;
                 tempParcel.AssignningTime = DateTime.MinValue;
                 tempParcel.PickingUpTime = DateTime.MinValue;
                 tempParcel.SupplyingTime = DateTime.MinValue;
-                tempParcel.DroneToParcelId = 0;////
+                tempParcel.DroneToParcelId = 0;
                 DalAccess.AddParcel(tempParcel);
                 //ParcelBl parcelBL = new();
                 //parcelBL.DroneAssignToParcel = null;
