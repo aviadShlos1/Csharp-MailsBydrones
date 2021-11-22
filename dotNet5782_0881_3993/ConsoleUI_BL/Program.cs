@@ -1,4 +1,6 @@
 ﻿using System;
+using IBL;
+using IBL.BO;
 
 namespace ConsoleUI_BL
 {
@@ -27,13 +29,13 @@ namespace ConsoleUI_BL
         /// The function handles various addition options.
         /// </summary>
         /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
-        static public void AddOptions(IBL.IBL blObject)
+        static public void AddOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Add options:
-1. BaseStationDal
-2. DroneDal
-3. CustomerDal
-4. ParcelDal
+1. BaseStationBl
+2. DroneBl
+3. CustomerBl
+4. ParcelBl
 Your choice:");
 
             int.TryParse(Console.ReadLine(), out int choice);
@@ -41,10 +43,11 @@ Your choice:");
             switch ((AddOptions)choice)
             {
                 // Adding a new station
-                case ConsoleUI.AddOptions.AddStation:
+                case ConsoleUI_BL.AddOptions.AddBaseStation:
                     int newStationID, newchargsSlots;
-                    string newName;
-                    double newLongitude, newLattitude;
+                    string newName;                   
+                    double newLongitude= default, newLatitude=default;
+                    Location newLocation = new() { Longitude = newLongitude, Latitude = newLatitude };
                     // User input for a new station
                     Console.WriteLine(@"
 You selected to add a station.
@@ -56,23 +59,23 @@ Please enter an ID number for the station:(0-4)");
                     while (!int.TryParse(Console.ReadLine(), out newchargsSlots)) ;
                     Console.WriteLine("Please enter the longitude of the station:");
                     while (!double.TryParse(Console.ReadLine(), out newLongitude)) ;
-                    Console.WriteLine("Please enter the lattitude of the station:");
-                    while (!double.TryParse(Console.ReadLine(), out newLattitude)) ;
+                    Console.WriteLine("Please enter the latitude of the station:");
+                    while (!double.TryParse(Console.ReadLine(), out newLatitude)) ;
                     Console.WriteLine();
 
-                    BaseStationDal newStation = new BaseStationDal
+                    BaseStationBl newStation = new BaseStationBl
                     {
                         Id = newStationID,
-                        Name = newName,
+                        BaseStationName = newName,
                         FreeChargeSlots = newchargsSlots,
-                        Longitude = newLongitude,
-                        Latitude = newLattitude
+                        Location = newLocation,
+                        DronesInChargeList = new()
                     };
-                    dal.AddStation(newStation);
+                   bl.
                     break;
 
                 // Adding a new drone
-                case ConsoleUI.AddOptions.AddDrone:
+                case ConsoleUI_BL.AddOptions.AddDrone:
                     int newDroneID, newMaxWeight;
                     string newModel;
 
@@ -97,10 +100,10 @@ Please enter an ID number for the drone(1000-9999):");
                     break;
 
                 // Adding a new customer
-                case ConsoleUI.AddOptions.AddCustomer:
+                case ConsoleUI_BL.AddOptions.AddCustomer:
                     int newCustomerID;
                     string newCustomerName, newPhoneNumber;
-                    double newCustomerLongitude, newCustomerLattitude;
+                    double newCustomerLongitude, newCustomerLatitude;
                     // User input for a new customer
                     Console.WriteLine(@"
 You selected to add a CustomerDal.
@@ -112,8 +115,8 @@ Please enter an ID number for the CustomerDal(9 digits):");
                     newPhoneNumber = Console.ReadLine();
                     Console.WriteLine("Please enter the longitude of the customer city:");
                     while (!double.TryParse(Console.ReadLine(), out newCustomerLongitude)) ;
-                    Console.WriteLine("Please enter the lattitude of the customer city:");
-                    while (!double.TryParse(Console.ReadLine(), out newCustomerLattitude)) ;
+                    Console.WriteLine("Please enter the Latitude of the customer city:");
+                    while (!double.TryParse(Console.ReadLine(), out newCustomerLatitude)) ;
                     Console.WriteLine();
 
                     CustomerDal newCustomer = new CustomerDal
@@ -122,13 +125,13 @@ Please enter an ID number for the CustomerDal(9 digits):");
                         Name = newCustomerName,
                         Phone = newPhoneNumber,
                         CustomerLongitude = newCustomerLongitude,
-                        CustomerLatitude = newCustomerLattitude
+                        CustomerLatitude = newCustomerLatitude
                     };
                     dal.AddCustomer(newCustomer);
                     break;
 
                 // Adding a new parcel
-                case ConsoleUI.AddOptions.AddParcel:
+                case ConsoleUI_BL.AddOptions.AddParcel:
                     int newParcelId, newSenderId, newTargetId, newWeight, newPriorities;
                     // User input for a new parcel
                     Console.WriteLine(@"
@@ -376,6 +379,7 @@ Your choice:");
         {
             
             IBL.IBL blObject = new IBL.BL();
+
             Options options;
             int choice = 0;
             do
