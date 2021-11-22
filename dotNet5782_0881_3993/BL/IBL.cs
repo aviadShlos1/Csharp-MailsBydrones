@@ -39,12 +39,12 @@ namespace IBL
         #endregion DisplayOptions
 
         #region ListDisplayOptions
-       
-        public void GetDronesList();
-        public void GetCustomersList();
-        public void GetParcelsList();
-        public void ParcelsWithoutDroneListDisplay();
-        public void FreeChargeSlotsListDisplay();
+        public List<BaseStationToList> GetBaseStationsBl();
+        public List<DroneToList> GetDronesBl();
+        public List<CustomerToList> GetCustomersBl();
+        public List<ParcelToList> GetParcelsBl();
+        public List<ParcelToList> GetParcelsWithoutDroneBl();
+        public List<BaseStationToList> GetStationsWithFreeChargeBl();
         #endregion ListDisplayOptions
     }
 }
