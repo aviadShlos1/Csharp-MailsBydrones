@@ -21,8 +21,9 @@ namespace IBL
                 throw;
             }
             int i = 0;
-            DalAccess.GetBaseStation(baseStationId);
-            BO.BaseStationBL myStationBl = new();
+            BO.Location myLocation = new() { Latitude = myBaseStation.Latitude, Longitude = myBaseStation.Longitude };
+            BO.BaseStationBL myStationBl = new() { Id = myBaseStation.Id, BaseStationName = myBaseStation.Name, Location = myLocation, FreeChargeSlots = myBaseStation.FreeChargeSlots, DronesInChargeList = new() };
+            
             var dronesInChargePerStation = DalAccess.GetDronesChargeList().TakeWhile(x => x.StationId == baseStationId).ToList();
             foreach (var item in dronesInChargePerStation)
             {
@@ -38,8 +39,7 @@ namespace IBL
             DalAccess.GetDrone(droneId);
 
 
-        }
-        public void GetDrone();
+        }       
         public void GetCustomer(int customerId)
         {
             DalAccess.GetCustomer(customerId);
