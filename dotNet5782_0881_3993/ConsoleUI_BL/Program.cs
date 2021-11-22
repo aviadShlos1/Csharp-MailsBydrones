@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using IBL;
 using IBL.BO;
 
@@ -262,45 +261,45 @@ Your choice:");
         /// <summary>
         /// The function handles single display options.
         /// </summary>
-        /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
-        static public void DisplaySingleOptions(IBL.IBL blObject)
+        /// <param name="bl"> DalObject object is a parameter which enables access to the DalObject class functions</param>
+        static public void DisplaySingleOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Single display options:
 1. Base station display
-2. DroneDal display
-3. CustomerDal display
-4. ParcelDal display
+2. Drone display
+3. Customer display
+4. Parcel display
 
 Your choice:");
             int.TryParse(Console.ReadLine(), out int choice);
 
-            int displayObjectId;
+            int objectId;
 
             switch ((SingleDisplayOptions)choice)
             {
                 // Single station display
                 case SingleDisplayOptions.BaseStationDisplay:
                     Console.WriteLine("Add the requested station ID(0-4):");
-                    int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(blObject.GetSingleBaseStation(displayObjectId).ToString());
+                    int.TryParse(Console.ReadLine(), out objectId);
+                    Console.WriteLine(bl.GetSingleBaseStation(objectId).ToString());
                     break;
                 // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
                     Console.WriteLine("Add the requested drone ID(4 digits):");
-                    int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(blObject.GetSingleDrone(displayObjectId).ToString());
+                    int.TryParse(Console.ReadLine(), out objectId);
+                    Console.WriteLine(bl.GetSingleDrone(objectId).ToString());
                     break;
                 // Single customer display
                 case SingleDisplayOptions.CustomerDisplay:
                     Console.WriteLine("Add the requested customer ID(9 digits):");
-                    int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(blObject.GetSingleCustomer(displayObjectId).ToString());
+                    int.TryParse(Console.ReadLine(), out objectId);
+                    Console.WriteLine(bl.GetSingleCustomer(objectId).ToString());
                     break;
                 // Single parcel display
                 case SingleDisplayOptions.ParcelDisplay:
                     Console.WriteLine("Add the requested parcel ID(0-1000):");
-                    int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(blObject.GetSingleParcel(displayObjectId).ToString());
+                    int.TryParse(Console.ReadLine(), out objectId);
+                    Console.WriteLine(bl.GetSingleParcel(objectId).ToString());
                     break;
 
                 default:
@@ -313,9 +312,9 @@ Your choice:");
         /// <summary>
         /// The function handles list display options.
         /// </summary>
-        /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
+        /// <param name="bl"> DalObject object is a parameter which enables access to the DalObject class functions</param>
 
-        static public void DisplayListOptions(IBL.IBL blObject)
+        static public void DisplayListOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"List display options:
 1. Base stations list 
@@ -331,7 +330,7 @@ Your choice:");
             {
                 // BaseStations list display
                 case ListDisplayOption.BaseStationsList:
-                    IEnumerable<BaseStationBl> displayStationsList = bl.GetBaseStationsList();
+                    IEnumerable<BaseStationToList> displayStationsList = bl.GetBaseStationsBl();
                     foreach (var item in displayStationsList)
                     {
                         Console.WriteLine(item);
@@ -340,7 +339,7 @@ Your choice:");
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    IEnumerable<DroneBl> displayDronesList = dal.GetDronesList();
+                    IEnumerable<DroneToList> displayDronesList = bl.GetDronesBl();
                     foreach (var item in displayDronesList)
                     {
                         Console.WriteLine(item);
@@ -349,7 +348,7 @@ Your choice:");
 
                 // Customers list display
                 case ListDisplayOption.CustomersList:
-                    IEnumerable<CustomerDal> displayCustomersList = dal.GetCustomersList();
+                    IEnumerable<CustomerToList> displayCustomersList = bl.GetCustomersBl();
 
                     foreach (var item in displayCustomersList)
                     {
@@ -359,7 +358,7 @@ Your choice:");
 
                 // Parcels list display
                 case ListDisplayOption.ParcelsList:
-                    IEnumerable<ParcelDal> displayParcelsList = dal.GetParcelsList();
+                    IEnumerable<ParcelToList> displayParcelsList = bl.GetParcelsBl();
 
                     foreach (var item in displayParcelsList)
                     {
@@ -369,8 +368,7 @@ Your choice:");
 
                 // GetParcelsWithoutDrone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
-                    IEnumerable<ParcelDal> displayParcelsWithoutDrone = dal.GetParcelsWithoutDrone();
-
+                    IEnumerable<ParcelToList> displayParcelsWithoutDrone = bl.GetParcelsWithoutDroneBl();
                     foreach (var item in displayParcelsWithoutDrone)
                     {
                         Console.WriteLine(item);
@@ -378,15 +376,13 @@ Your choice:");
                     break;
 
                 // FreeChargeSlots list display
-                case ListDisplayOption.FreeChargeSlotsList:
-                    IEnumerable<BaseStationDal> displayStationsWithFreeChargeSlots = dal.GetStationsWithFreeCharge();
-
+                case ListDisplayOption.StationsWithFreeChargeSlots:
+                    IEnumerable<BaseStationToList> displayStationsWithFreeChargeSlots = bl.GetStationsWithFreeChargeBl();
                     foreach (var item in displayStationsWithFreeChargeSlots)
                     {
                         Console.WriteLine(item);
                     }
                     break;
-
 
                 default:
                     break;
