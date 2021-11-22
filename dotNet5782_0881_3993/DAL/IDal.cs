@@ -10,6 +10,16 @@ namespace IDAL
 {
     public interface IDal
     {
+        public double[] EnergyConsumption()
+        {
+            double[] ConsumptionArr = new double[5];
+            ConsumptionArr[0] = DataSource.Config.FreeWeightConsumption;
+            ConsumptionArr[1] = DataSource.Config.LightWeightConsumption;
+            ConsumptionArr[2] = DataSource.Config.MediumWeightConsumption;
+            ConsumptionArr[3] = DataSource.Config.HeavyWeightConsumption;
+            ConsumptionArr[4] = DataSource.Config.ChargeRate;
+            return ConsumptionArr;
+        }
         #region Add methods
         public void AddStation(BaseStationDal newStation);
         public void AddDrone(DroneDal newDrone);

@@ -11,8 +11,8 @@ namespace IBL
     {
         #region AddOptions
 
-        public void AddBaseStation(int myId, string myBaseStationName, Location myBaseStationLocation, int myFreeChargeSlots);
-        public void AddDrone(int myDroneId, string myModel, WeightCategoriesBL myDroneWeight, int myBaseStationId);
+        public void AddBaseStation(BaseStationBl newBaseStationBl);
+        public void AddDrone(DroneBl newDroneBl,int firstChargeStation);
         public void AddCustomer(int myId, string myName, string myPhone, Location myCustLocation);
         public void AddParcel(int mySenderId, int myRecieverId, WeightCategoriesBL myParcelWeight, PrioritiesBL myPriority);
 
@@ -33,7 +33,7 @@ namespace IBL
         #region DisplayOptions
         public BaseStationBl GetSingleBaseStation(int baseStationId);
         public DroneBl GetSingleDrone(int myDroneId);
-        public CustomerBL GetSingleCustomer(int customerId)(int customerId);
+        public CustomerBL GetSingleCustomer(int customerId);
         public ParcelBl GetSingleParcel(int parcelId);
 
         #endregion DisplayOptions

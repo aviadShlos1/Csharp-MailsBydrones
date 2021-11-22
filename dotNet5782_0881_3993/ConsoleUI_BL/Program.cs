@@ -76,12 +76,12 @@ Please enter an ID number for the station:(0-4)");
                         Location = newLocation,
                         DronesInChargeList = new()
                     };
-                    bl.AddBaseStation(newStationID, newName, newLocation, newchargsSlots);
+                    bl.AddBaseStation(newBaseStation);
                     break;
 
                 // Adding a new drone
                 case ConsoleUI_BL.AddOptions.AddDrone:
-                    int newDroneID, newMaxWeight;
+                    int newDroneID, newMaxWeight , firstChargeStation;
                     string newModel;
 
                     // User input for a new drone
@@ -95,13 +95,15 @@ Please enter an ID number for the drone(1000-9999):");
                     while (!int.TryParse(Console.ReadLine(), out newMaxWeight)) ;
                     Console.WriteLine();
 
-                    DroneDal newdrone = new DroneDal
+                    DroneToList newdrone = new DroneToList
                     {
-                        Id = newDroneID,
+
+                        DroneId = newDroneID,
                         Model = newModel,
-                        DroneWeight = (WeightCategoriesDal)newMaxWeight,
+                        DroneWeight = (WeightCategoriesBL)newMaxWeight,
+                         
                     };
-                    dal.AddDrone(newdrone);
+                    bl.AddDrone(newdrone,firstChargeStation);
                     break;
 
                 // Adding a new customer
