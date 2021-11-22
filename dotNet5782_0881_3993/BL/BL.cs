@@ -152,14 +152,7 @@ namespace IBL
                 }
             }
         }
-        //partial class DisplayOptions
-        //{
-        //public void GetBaseStation();
-        //public void GetDrone();
-        //public void GetCustomer();
-        //public void GetParcel();
-        //}
-
+      
 
         //partial class ListDisplayOptions
         //{
