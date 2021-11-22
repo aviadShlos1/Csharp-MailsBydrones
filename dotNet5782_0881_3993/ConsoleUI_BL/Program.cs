@@ -204,13 +204,13 @@ Your choice:");
                     int.TryParse(Console.ReadLine(), out ParcelId);
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
-                    dal.ConnectDroneToParcel(ParcelId, DroneId);
+                    blObject.ConnectDroneToParcel(ParcelId, DroneId);
                     break;
 
                 case UpdatesOption.PickUpParcel:
                     Console.WriteLine("please enter a parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out ParcelId);
-                    dal.PickUpParcel(ParcelId);
+                    blObject.PickUpParcel(ParcelId);
                     break;
 
                 case UpdatesOption.DelieverParcel:
@@ -265,28 +265,28 @@ Your choice:");
             switch ((SingleDisplayOptions)choice)
             {
                 // Single station display
-                case SingleDisplayOptions.StationDisplay:
+                case SingleDisplayOptions.BaseStationDisplay:
                     Console.WriteLine("Add the requested station ID(0-4):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetSingleBaseStation(displayObjectId).ToString());
+                    Console.WriteLine(blObject.GetSingleBaseStation(displayObjectId).ToString());
                     break;
                 // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
                     Console.WriteLine("Add the requested drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetSingleDrone(displayObjectId).ToString());
+                    Console.WriteLine(blObject.GetSingleDrone(displayObjectId).ToString());
                     break;
                 // Single customer display
                 case SingleDisplayOptions.CustomerDisplay:
                     Console.WriteLine("Add the requested customer ID(9 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetSingleCustomer(displayObjectId).ToString());
+                    Console.WriteLine(blObject.GetSingleCustomer(displayObjectId).ToString());
                     break;
                 // Single parcel display
                 case SingleDisplayOptions.ParcelDisplay:
                     Console.WriteLine("Add the requested parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetSingleParcel(displayObjectId).ToString());
+                    Console.WriteLine(blObject.GetSingleParcel(displayObjectId).ToString());
                     break;
 
                 default:
@@ -316,7 +316,7 @@ Your choice:");
             switch ((ListDisplayOption)choice)
             {
                 // BaseStations list display
-                case ListDisplayOption.StationsList:
+                case ListDisplayOption.:
                     IEnumerable<BaseStationDal> displayStationsList = dal.GetBaseStationsList();
                     foreach (var item in displayStationsList)
                     {
