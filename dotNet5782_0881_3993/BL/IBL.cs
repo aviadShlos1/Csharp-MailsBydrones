@@ -31,10 +31,10 @@ namespace IBL
         //#endregion UpdateOptions    
 
         //#region DisplayOptions
-        //public void GetBaseStation();
-        //public void GetDrone();
-        //public void GetCustomer();
-        //public void GetParcel();
+        //public void GetSingleBaseStation();
+        //public void GetSingleDrone();
+        //public void GetSingleCustomer();
+        //public void GetSingleParcel();
 
         //#endregion DisplayOptions
 

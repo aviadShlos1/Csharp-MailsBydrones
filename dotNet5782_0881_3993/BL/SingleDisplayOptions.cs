@@ -11,18 +11,18 @@ namespace IBL
     {
         public BaseStationBL GetBaseStation(int baseStationId)
         {
-            IDAL.DO.BaseStation myBaseStation = new();
+            IDAL.DO.BaseStation dalBaseStation = new();
             try
             {
-                myBaseStation = DalAccess.GetBaseStation(baseStationId);
+                dalBaseStation = DalAccess.GetSingleBaseStation(baseStationId);
             }
             catch (IDAL.DO.NotExistException)
             {
                /* throw new BO.NotExistException(baseStationId,"baseStationId",*/ /*);*/
             }
             
-            Location myLocation = new() { Latitude = myBaseStation.Latitude, Longitude = myBaseStation.Longitude };
-            BaseStationBL myStationBl = new() { Id = myBaseStation.Id, BaseStationName = myBaseStation.Name, Location = myLocation, FreeChargeSlots = myBaseStation.FreeChargeSlots, DronesInChargeList = new() };
+            Location myLocation = new() { Latitude = dalBaseStation.Latitude, Longitude = dalBaseStation.Longitude };
+            BaseStationBL myStationBl = new() { Id = dalBaseStation.Id, BaseStationName = dalBaseStation.Name, Location = myLocation, FreeChargeSlots = dalBaseStation.FreeChargeSlots, DronesInChargeList = new() };
             
             var dronesInChargePerStation = DalAccess.GetDronesChargeList().TakeWhile(x => x.StationId == baseStationId).ToList();
             foreach (var item in dronesInChargePerStation)
@@ -32,19 +32,37 @@ namespace IBL
             }
             return myStationBl;
         }
-        public List<BO.DroneInShipment> GetDrone(int droneId)
+        public DroneBL GetDrone(int myDroneId)
         {
-            DalAccess.GetDrone(droneId);
+            IDAL.DO.Drone dalDrone = new();
+            try
+            {
+                dalDrone = DalAccess.GetSingleDrone(myDroneId);
+            }
+            catch (IDAL.DO.NotExistException)
+            {
+                throw;
+            }
+
+            var tempDroneBl = DronesListBL.Find(x => x.DroneId == myDroneId);
+            if (tempDroneBl.DroneStatus==DroneStatus.Shipment)
+            {
+
+            }
+            
+            DroneBL myDroneBl = new() {DroneId=dalDrone.Id , Model=dalDrone.Model , DroneWeight =(WeightCategoriesBL)dalDrone.DroneWeight , BatteryPercent=tempDroneBl.BatteryPercent , DroneStatus=tempDroneBl.DroneStatus , /*ParcelInShip=*/ DroneLocation=tempDroneBl.DroneLocation};
+           
+            return myDroneBl;
 
 
         }       
         public void GetCustomer(int customerId)
         {
-            DalAccess.GetCustomer(customerId);
+            DalAccess.GetSingleCustomer(customerId);
         }
         public void GetParcel(int parcelId)
         {
-            DalAccess.GetParcel(parcelId);
+            DalAccess.GetSingleParcel(parcelId);
         }
         
 

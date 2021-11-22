@@ -107,7 +107,7 @@ namespace IBL
             }
             else
             {
-                double timeInMinutes = chargeTime.Minutes;
+                double timeInMinutes = chargeTime.TotalMinutes;
                 timeInMinutes /= 60;
                 droneItem.BatteryPercent = timeInMinutes * chargeRate;
                 if (droneItem.BatteryPercent > 100)
@@ -135,11 +135,11 @@ namespace IBL
             }
             List<IDAL.DO.Parcel> urgentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.Priority == IDAL.DO.Priorities.Urgent).ToList();
             List<IDAL.DO.Parcel> urgentPlusHeavyParcels = urgentParcels.TakeWhile(x => x.Weight == IDAL.DO.WeightCategoriesDal.Heavy).ToList();
-            senderCustomer = GetCustomer(urgentPlusHeavyParcels[0].SenderId);
+            senderCustomer = GetCustomerDetails(urgentPlusHeavyParcels[0].SenderId);
             closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
             foreach (var item in urgentPlusHeavyParcels)
             {
-                senderCustomer = GetCustomer(item.SenderId);
+                senderCustomer = GetCustomerDetails(item.SenderId);
                 double tempDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
                 if (tempDistance <= closetDistance)
                 {
@@ -150,7 +150,7 @@ namespace IBL
             //checking the battery level
             double arriveToSenderBattery = closetDistance * freeWeightConsumption;
 
-            IDAL.DO.Customer targetCustomer = GetCustomer(assignedParcel.TargetId);
+            IDAL.DO.Customer targetCustomer = GetCustomerDetails(assignedParcel.TargetId);
             double targetDistance = GetDistance(senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude, targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude);
             double srcToTrgetBattery = targetDistance * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
 
@@ -174,7 +174,7 @@ namespace IBL
         {
             var droneItem = DronesListBL.Find(x => x.DroneId == droneId);
             var parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
-            var senderItem = GetCustomer(parcelItem.SenderId);
+            var senderItem = GetCustomerDetails(parcelItem.SenderId);
 
             if (!(parcelItem.AssignningTime != DateTime.MinValue && parcelItem.PickingUpTime == DateTime.MinValue))
             {
@@ -193,7 +193,7 @@ namespace IBL
         {
             var droneItem = DronesListBL.Find(x => x.DroneId == droneId);
             var parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
-            var targetItem = GetCustomer(parcelItem.TargetId);
+            var targetItem = GetCustomerDetails(parcelItem.TargetId);
 
             if (!(parcelItem.PickingUpTime != DateTime.MinValue && parcelItem.SupplyingTime == DateTime.MinValue))
             {

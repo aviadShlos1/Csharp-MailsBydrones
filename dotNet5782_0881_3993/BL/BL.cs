@@ -22,7 +22,7 @@ namespace IBL
         public double chargeRate;
 
         #region Help methods
-        private IDAL.DO.Customer GetCustomer(int id)
+        private IDAL.DO.Customer GetCustomerDetails(int id)
         {
             IDAL.DO.Customer myCust = new();
 
@@ -110,18 +110,18 @@ namespace IBL
                         itemDrone.DroneStatus = DroneStatus.Shipment;
                         if (itemParcel.AssignningTime != DateTime.MinValue && itemParcel.PickingUpTime == DateTime.MinValue)
                         {
-                            double senderLon = GetCustomer(itemParcel.SenderId).CustomerLongitude;
-                            double senderLat = GetCustomer(itemParcel.SenderId).CustomerLatitude;
+                            double senderLon = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
+                            double senderLat = GetCustomerDetails(itemParcel.SenderId).CustomerLatitude;
                             itemDrone.DroneLocation = ClosetStation(senderLon, senderLat, DalAccess.GetBaseStationsList().ToList()).Location;
                         }
                         if (itemParcel.PickingUpTime != DateTime.MinValue && itemParcel.SupplyingTime == DateTime.MinValue)
                         {
-                            itemDrone.DroneLocation.Longitude = GetCustomer(itemParcel.SenderId).CustomerLongitude;
-                            itemDrone.DroneLocation.Latitude = GetCustomer(itemParcel.SenderId).CustomerLatitude;
+                            itemDrone.DroneLocation.Longitude = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
+                            itemDrone.DroneLocation.Latitude = GetCustomerDetails(itemParcel.SenderId).CustomerLatitude;
                         }
 
-                        double targetLon = GetCustomer(itemParcel.TargetId).CustomerLongitude;
-                        double targerLat = GetCustomer(itemParcel.TargetId).CustomerLatitude;
+                        double targetLon = GetCustomerDetails(itemParcel.TargetId).CustomerLongitude;
+                        double targerLat = GetCustomerDetails(itemParcel.TargetId).CustomerLatitude;
                         double targetDistance = GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, targetLon, targerLat);
                         double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;
                         Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude,itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).Location;

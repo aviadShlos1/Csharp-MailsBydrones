@@ -33,14 +33,14 @@ namespace DalObject
         internal static class Config
         {
             public static int RunId = 0;//This parameter will be updated both in Initialize and Add methods
-            public static double FreeWeightConsumption; // The power consumption for free weight drone. 
-            public static double LightWeightConsumption;
-            public static double MediumWeightConsumption;
-            public static double HeavyWeightConsumption;
-            public static double ChargeRate;
+            public static double FreeWeightConsumption = default; // The power consumption for free weight drone. 
+            public static double LightWeightConsumption = default;
+            public static double MediumWeightConsumption = default;
+            public static double HeavyWeightConsumption = default;
+            public static double ChargeRate = default;
         }
 
-        private static int DroneId;
+        private static int DroneId = default;
 
         /// ‹summary›This method allows us to rand objects from the enum class
         /// ‹return› A random value that exist in the enum class.‹/returns›

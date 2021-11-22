@@ -166,7 +166,7 @@ namespace IDAL
         /// </summary>
         /// <param name="stationId"></param>
         /// <returns>The type of the entity</returns>
-        public BaseStation GetBaseStation(int stationId)
+        public BaseStation GetSingleBaseStation(int stationId)
         {
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
             if (stationIndex == 0)
@@ -175,7 +175,7 @@ namespace IDAL
             }
             return DataSource.BaseStations.Find(i => i.Id == stationId);
         }
-        public Drone GetDrone(int droneId)
+        public Drone GetSingleDrone(int droneId)
         {
             int droneIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
             if (droneIndex == 0)
@@ -184,7 +184,7 @@ namespace IDAL
             }
             return DataSource.Drones.Find(i => i.Id == droneId);
         }
-        public Customer GetCustomer(int customerId)
+        public Customer GetSingleCustomer(int customerId)
         {
             int customerIndex = DataSource.Customers.FindIndex(i => i.Id == customerId);
             if (customerIndex == 0)
@@ -193,7 +193,7 @@ namespace IDAL
             }
             return DataSource.Customers.Find(i => i.Id == customerId);
         }
-        public Parcel GetParcel(int parcelId)
+        public Parcel GetSingleParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
             if (parcelIndex == 0)

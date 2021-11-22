@@ -14,10 +14,10 @@ namespace IBL.BO
         public double BatteryPercent { get; set; }
         public DroneStatus DroneStatus { get; set; }
         public ParcelInShipment ParcelInShip { get; set; }
-        public Location CurrentLocation { get; set; }
+        public Location DroneLocation { get; set; }
         public override string ToString()
         {
-            return $"DroneBL: DroneId:{DroneId}, Model:{Model}, DroneWeight:{DroneWeight}, BatteryPercent:{BatteryPercent}, DroneStatus:{DroneStatus}, ParcelInShipment:{ParcelInShip}, Location:{CurrentLocation}";
+            return $"DroneBL: DroneId:{DroneId}, Model:{Model}, DroneWeight:{DroneWeight}, BatteryPercent:{BatteryPercent}, DroneStatus:{DroneStatus}, ParcelInShipment:{ParcelInShip}, Location:{DroneLocation}";
         }
     }
 }

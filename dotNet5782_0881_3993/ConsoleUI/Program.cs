@@ -274,25 +274,25 @@ Your choice:");
                 case SingleDisplayOptions.StationDisplay:
                     Console.WriteLine("Add the requested station ID(0-4):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetBaseStation(displayObjectId).ToString());
+                    Console.WriteLine(dal.GetSingleBaseStation(displayObjectId).ToString());
                     break;
                 // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
                     Console.WriteLine("Add the requested drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetDrone(displayObjectId).ToString());
+                    Console.WriteLine(dal.GetSingleDrone(displayObjectId).ToString());
                     break;
                 // Single customer display
                 case SingleDisplayOptions.CustomerDisplay:
                     Console.WriteLine("Add the requested customer ID(9 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetCustomer(displayObjectId).ToString());
+                    Console.WriteLine(dal.GetSingleCustomer(displayObjectId).ToString());
                     break;
                 // Single parcel display
                 case SingleDisplayOptions.ParcelDisplay:
                     Console.WriteLine("Add the requested parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetParcel(displayObjectId).ToString());
+                    Console.WriteLine(dal.GetSingleParcel(displayObjectId).ToString());
                     break;
 
                 default:
