@@ -21,7 +21,8 @@ namespace IBL
                 tempBase.Longitude = myBaseStationLocation.Longitude;
                 tempBase.FreeChargeSlots = myFreeChargeSlots;
                 DalAccess.AddStation(tempBase);
-
+                BaseStationBL myStationBl = new();
+                myStationBl.DronesInChargeList = null;
             }
             catch (IDAL.DO.AlreadyExistException)
             {
