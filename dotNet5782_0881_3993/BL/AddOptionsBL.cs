@@ -54,7 +54,6 @@ namespace IBL
                 throw ;
             }
         }
-
         public void AddCustomer(CustomerBL newCustomer)
         {
             try
@@ -84,14 +83,8 @@ namespace IBL
                 tempParcel.Weight = (WeightCategoriesDal)newParcel.ParcelWeight;
                 tempParcel.Priority = (Priorities)newParcel.Priority;
                 tempParcel.CreatingTime = DateTime.Now;
-                tempParcel.AssignningTime = DateTime.MinValue;
-                tempParcel.PickingUpTime = DateTime.MinValue;
-                tempParcel.SupplyingTime = DateTime.MinValue;
                 tempParcel.DroneToParcelId = 0;
                 DalAccess.AddParcel(tempParcel);
-                //ParcelBl parcelBL = new();
-                //parcelBL.DroneAssignToParcel = null;
-
             }
             catch (IDAL.DO.AlreadyExistException)
             {
@@ -99,7 +92,5 @@ namespace IBL
                 throw;
             }
         }
-
-
     }
 }

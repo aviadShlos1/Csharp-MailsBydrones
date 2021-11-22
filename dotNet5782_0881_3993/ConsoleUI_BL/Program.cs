@@ -177,18 +177,46 @@ Please enter an ID number for the CustomerDal(9 digits):");
         static public void UpdateOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Update options:
-1. Attributing a drone to a parcel
-2. Picking up the parcel by the drone
-3. Deliever the package to the customer
-4. Sending a drone for battery charging 
-5. Release drone from charging at base station
+1. Updating a drone name       
+2. Updating base station's data (new name or new chrage slots number )
+3. Updating customer's data (new name or new phone number)
+4. Sending drone to charge
+5. Releasing drone from charge
+6. Assigning between parcel to drone 
+7. Picking Up parcel by a drone
+8. Supplying Parcel to customer
 Your choice:");
             int.TryParse(Console.ReadLine(), out int choice);
 
-            int ParcelId, DroneId, StationId;
+            int DroneId, baseStationId, chargeSlots, customerId;
+            string newModel ,baseStationName, customerName , phoneNumber;
 
             switch ((UpdatesOption)choice)
             {
+                case UpdatesOption.UpdateDroneName:
+                    Console.WriteLine("Please enter a drone ID(4 digits):");
+                    int.TryParse(Console.ReadLine(), out DroneId);
+                    Console.WriteLine("Next Please enter the new Model name:");
+                    newModel = Console.ReadLine();
+                    bl.UpdateDroneName(DroneId,newModel);
+                    break;
+
+                case UpdatesOption.UpdateBaseStationData:
+                    Console.WriteLine("Please enter base station id for update:");
+                    while (!int.TryParse(Console.ReadLine(), out baseStationId)) ;
+                    Console.WriteLine("Please enter the new base station name, if there isn't, send an empty line:");
+                    baseStationName = Console.ReadLine();
+                    Console.WriteLine("Please enter a new Charge slots number:");
+                    while (!int.TryParse(Console.ReadLine(), out chargeSlots)) ;
+                    break;
+
+                case UpdatesOption.UpdateCustomerData:
+                    Console.WriteLine("Please enter customer id for update:");
+                    while (!int.TryParse(Console.ReadLine(), out customerId)) ;
+                    Console.WriteLine("Please enter a new customer name:");
+                    customerName = Console.ReadLine();
+                    Console.WriteLine("Please enter a new phone number:");
+                    phoneNumber = Console.ReadLine();
                 case UpdatesOption.DroneToCharge:
                     Console.WriteLine("Please enter a drone id(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);              
@@ -244,28 +272,28 @@ Your choice:");
             switch ((SingleDisplayOptions)choice)
             {
                 // Single station display
-                case SingleDisplayOptions.StationDisplay:
+                case SingleDisplayOptions.BaseStationDisplay:
                     Console.WriteLine("Add the requested station ID(0-4):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetSingleBaseStation(displayObjectId).ToString());
+                    Console.WriteLine(blObject.GetSingleBaseStation(displayObjectId).ToString());
                     break;
                 // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
                     Console.WriteLine("Add the requested drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetSingleDrone(displayObjectId).ToString());
+                    Console.WriteLine(blObject.GetSingleDrone(displayObjectId).ToString());
                     break;
                 // Single customer display
                 case SingleDisplayOptions.CustomerDisplay:
                     Console.WriteLine("Add the requested customer ID(9 digits):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetSingleCustomer(displayObjectId).ToString());
+                    Console.WriteLine(blObject.GetSingleCustomer(displayObjectId).ToString());
                     break;
                 // Single parcel display
                 case SingleDisplayOptions.ParcelDisplay:
                     Console.WriteLine("Add the requested parcel ID(0-1000):");
                     int.TryParse(Console.ReadLine(), out displayObjectId);
-                    Console.WriteLine(dal.GetSingleParcel(displayObjectId).ToString());
+                    Console.WriteLine(blObject.GetSingleParcel(displayObjectId).ToString());
                     break;
 
                 default:
@@ -295,8 +323,8 @@ Your choice:");
             switch ((ListDisplayOption)choice)
             {
                 // BaseStations list display
-                case ListDisplayOption.StationsList:
-                    IEnumerable<BaseStationDal> displayStationsList = dal.GetBaseStationsList();
+                case ListDisplayOption.BaseStationsList:
+                    IEnumerable<BaseStationBl> displayStationsList = bl.GetBaseStationsList();
                     foreach (var item in displayStationsList)
                     {
                         Console.WriteLine(item);
@@ -305,7 +333,7 @@ Your choice:");
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    IEnumerable<DroneDal> displayDronesList = dal.GetDronesList();
+                    IEnumerable<DroneBl> displayDronesList = dal.GetDronesList();
                     foreach (var item in displayDronesList)
                     {
                         Console.WriteLine(item);
