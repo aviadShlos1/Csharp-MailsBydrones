@@ -14,14 +14,14 @@ namespace IBL
         {
             try
             {
-                BaseStation tempBase = new();
+                BaseStationDal tempBase = new();
                 tempBase.Id = myId;
                 tempBase.Name = myBaseStationName;
                 tempBase.Latitude = myBaseStationLocation.Latitude;
                 tempBase.Longitude = myBaseStationLocation.Longitude;
                 tempBase.FreeChargeSlots = myFreeChargeSlots;
                 DalAccess.AddStation(tempBase);
-                BaseStationBL myStationBl = new();
+                BaseStationBl myStationBl = new();
                 myStationBl.DronesInChargeList = null;
             }
             catch (IDAL.DO.AlreadyExistException)
@@ -35,7 +35,7 @@ namespace IBL
             try
             {
                 DroneToList droneBL = new();
-                Drone tempDrone = new();
+                DroneDal tempDrone = new();
                 tempDrone.Id = myDroneId;
                 tempDrone.Model = myModel;
                 tempDrone.DroneWeight = (WeightCategoriesDal)myDroneWeight;
@@ -62,7 +62,7 @@ namespace IBL
         {
             try
             {
-                Customer tempCust = new();
+                CustomerDal tempCust = new();
                 tempCust.Id = myId;
                 tempCust.Name = myName;
                 tempCust.Phone = myPhone;
@@ -81,7 +81,7 @@ namespace IBL
         {
             try
             {
-                Parcel tempParcel = new();
+                ParcelDal tempParcel = new();
                 tempParcel.SenderId = mySenderId;
                 tempParcel.TargetId = myRecieverId;
                 tempParcel.Weight = (WeightCategoriesDal)myParcelWeight;
@@ -92,7 +92,7 @@ namespace IBL
                 tempParcel.SupplyingTime = DateTime.MinValue;
                 tempParcel.DroneToParcelId = 0;////
                 DalAccess.AddParcel(tempParcel);
-                //ParcelBL parcelBL = new();
+                //ParcelBl parcelBL = new();
                 //parcelBL.DroneAssignToParcel = null;
 
             }

@@ -10,10 +10,10 @@ namespace IBL.BO
     {
         public int DroneId { get; set; }
         public double BatteryPercent { get; set; }
-        public Location Current { get; set; }
+        public Location DroneInShipLocation { get; set; }
         public override string ToString()
         {
-            return $"DroneBL: DroneId:{DroneId}, BatteryPercent:{BatteryPercent}, Location:{Current}";
+            return $"DroneBl: DroneId:{DroneId}, BatteryPercent:{BatteryPercent}, Location:{DroneInShipLocation}";
         }
     }
 }

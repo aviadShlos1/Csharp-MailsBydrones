@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class BaseStationBL
+    public class BaseStationBl
     {
         public int Id { get; set; }
         public string BaseStationName { get; set; }
@@ -15,7 +15,7 @@ namespace IBL.BO
         public List<DroneInCharge> DronesInChargeList { get; set; }
         public override string ToString()
         {
-            return $"BaseStationBL: CustomerId:{Id}, BaseStationName:{BaseStationName}, Location:{Location},FreeChargeSloted:{FreeChargeSlots}" +
+            return $"BaseStationBl: CustomerId:{Id}, BaseStationName:{BaseStationName}, Location:{Location},FreeChargeSloted:{FreeChargeSlots}" +
                "DroneInCharge:" + String.Join(",",DronesInChargeList); 
                
         }

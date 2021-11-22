@@ -71,7 +71,7 @@ namespace IBL
         }
         public void DroneToCharge(int myDroneId)
         {
-            List<IDAL.DO.BaseStation> freeChargeSlotsStations = DalAccess.GetStationsWithFreeCharge().ToList();
+            List<IDAL.DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetStationsWithFreeCharge().ToList();
             var droneItem = DronesListBL.Find(x => x.DroneId == myDroneId);
 
             if (freeChargeSlotsStations.Count == 0 || (droneItem != default && droneItem.DroneStatus != BO.DroneStatus.Free))
@@ -81,7 +81,7 @@ namespace IBL
                 double stationLon = freeChargeSlotsStations[0].Longitude;
                 double stationLat = freeChargeSlotsStations[0].Latitude;
                 double closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, stationLon, stationLat);
-                BO.BaseStationBL closetBaseStation = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, freeChargeSlotsStations);
+                BO.BaseStationBl closetBaseStation = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, freeChargeSlotsStations);
                 if (droneItem.BatteryPercent >= closetDistance * freeWeightConsumption)
                 {
                     droneItem.BatteryPercent = closetDistance * freeWeightConsumption;
@@ -123,8 +123,8 @@ namespace IBL
         }
         public void AssignParcelToDrone(int myDroneId)
         {
-            IDAL.DO.Parcel assignedParcel = default;
-            IDAL.DO.Customer senderCustomer = default;
+            IDAL.DO.ParcelDal assignedParcel = default;
+            IDAL.DO.CustomerDal senderCustomer = default;
             double closetDistance = default;
 
             // finding the high priority parcel, taking in conclusion the priority,weight and distance. 
@@ -133,8 +133,8 @@ namespace IBL
             {
                 throw new BO.CannotAssignDroneToParcelException(myDroneId);
             }
-            List<IDAL.DO.Parcel> urgentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.Priority == IDAL.DO.Priorities.Urgent).ToList();
-            List<IDAL.DO.Parcel> urgentPlusHeavyParcels = urgentParcels.TakeWhile(x => x.Weight == IDAL.DO.WeightCategoriesDal.Heavy).ToList();
+            List<IDAL.DO.ParcelDal> urgentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.Priority == IDAL.DO.Priorities.Urgent).ToList();
+            List<IDAL.DO.ParcelDal> urgentPlusHeavyParcels = urgentParcels.TakeWhile(x => x.Weight == IDAL.DO.WeightCategoriesDal.Heavy).ToList();
             senderCustomer = GetCustomerDetails(urgentPlusHeavyParcels[0].SenderId);
             closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
             foreach (var item in urgentPlusHeavyParcels)
@@ -150,11 +150,11 @@ namespace IBL
             //checking the battery level
             double arriveToSenderBattery = closetDistance * freeWeightConsumption;
 
-            IDAL.DO.Customer targetCustomer = GetCustomerDetails(assignedParcel.TargetId);
+            IDAL.DO.CustomerDal targetCustomer = GetCustomerDetails(assignedParcel.TargetId);
             double targetDistance = GetDistance(senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude, targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude);
             double srcToTrgetBattery = targetDistance * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
 
-            BO.BaseStationBL closetStationFromTarget = ClosetStation(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude, DalAccess.GetBaseStationsList().ToList());
+            BO.BaseStationBl closetStationFromTarget = ClosetStation(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude, DalAccess.GetBaseStationsList().ToList());
             double targetToCharge = GetDistance(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude, closetStationFromTarget.Location.Longitude, closetStationFromTarget.Location.Latitude);
             double trgetToChargeBattery = targetToCharge * freeWeightConsumption;
             if (droneItem.BatteryPercent < (arriveToSenderBattery + srcToTrgetBattery + trgetToChargeBattery))
@@ -169,7 +169,6 @@ namespace IBL
             }
 
         }
-
         public void PickUpParcel(int droneId)
         {
             var droneItem = DronesListBL.Find(x => x.DroneId == droneId);
@@ -210,6 +209,5 @@ namespace IBL
             }
 
         }
-
     }
 }

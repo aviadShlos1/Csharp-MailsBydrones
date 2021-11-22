@@ -11,10 +11,10 @@ namespace IBL.BO
         public int Id { get; set; }
         public string BaseStationName { get; set; }
         public int FreeChargeSlots { get; set; }
-        public int FullChargeSlots { get; set; }
+        public int BusyChargeSlots { get; set; }
         public override string ToString()
         {
-            return $"BaseStationToList: CustomerId:{Id}, BaseStationName:{BaseStationName},FreeChargeSlots:{FreeChargeSlots},FullChargeSlots:{FullChargeSlots} ";
+            return $"BaseStationToList: CustomerId:{Id}, BaseStationName:{BaseStationName},FreeChargeSlots:{FreeChargeSlots},BusyChargeSlots:{BusyChargeSlots} ";
         }
     }
 }
