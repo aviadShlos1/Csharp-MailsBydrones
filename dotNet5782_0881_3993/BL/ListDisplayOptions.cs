@@ -10,7 +10,7 @@ namespace IBL
 {
     partial class BL
     {
-        public List<BaseStationToList> GetBaseStationsList()
+        public List<BaseStationToList> GetBaseStationsBl ()
         {
             List<BaseStationToList> myBaseStationsBl = new();
             List<IDAL.DO.BaseStationDal> dalBaseStations = DalAccess.GetBaseStationsList().ToList();
@@ -21,11 +21,11 @@ namespace IBL
             }
             return myBaseStationsBl;
         }
-        public List<DroneToList> GetDronesList()
+        public List<DroneToList> GetDronesBl()
         {
             return DronesListBL;
         }
-        public List<CustomerToList> GetCustomersList()
+        public List<CustomerToList> GetCustomersBl()
         {
             List<CustomerToList> myCustomersBl = new();
             List<IDAL.DO.CustomerDal> dalCustomers = DalAccess.GetCustomersList().ToList();
@@ -41,7 +41,7 @@ namespace IBL
             }
             return myCustomersBl;
         }
-        public List<ParcelToList> GetParcelsList()
+        public List<ParcelToList> GetParcelsBl()
         {
             List<ParcelToList> myParcelsBl = new();
             List<IDAL.DO.ParcelDal> dalParcels = DalAccess.GetParcelsList().ToList();
@@ -63,8 +63,19 @@ namespace IBL
             }
             return myParcelsBl;
         }
-        public void ParcelsWithoutDroneListDisplay();
-        public void FreeChargeSlotsListDisplay();
+        public List<ParcelToList> GetParcelsWithoutDroneBl()
+        {
+            List<ParcelToList> myParcelsWithoutDroneBl = new();
+            myParcelsWithoutDroneBl = GetParcelsBl().TakeWhile(x => x.ParcelStatus == ParcelStatus.Created).ToList();
+            return myParcelsWithoutDroneBl;
+        }
+
+        public List<BaseStationToList> GetStationsWithFreeChargeBl()
+        {
+            List<BaseStationToList> myBaseStationsWithFreeChargeBl = new();
+            myBaseStationsWithFreeChargeBl = GetBaseStationsBl().TakeWhile(x => x.FreeChargeSlots != 0).ToList();
+            return myBaseStationsWithFreeChargeBl;
+        }
         
     }
 }
