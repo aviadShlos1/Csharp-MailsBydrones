@@ -20,8 +20,8 @@ namespace IDAL
             ConsumptionArr[4] = DataSource.Config.ChargeRate;
             return ConsumptionArr;
         }
-     
- 
+
+
         #region Add methods
         /// <summary>
         /// Adding a new object for the all entities
@@ -29,18 +29,38 @@ namespace IDAL
         /// <param name="newStation"></param>
         public void AddStation(BaseStation newStation)
         {
+            int check = DataSource.BaseStations.FindIndex(x => x.Id == newStation.Id);
+            if (check != 0)
+            {
+                throw new AlreadyExistException(newStation.Id, "The id is already exists");
+            }
             DataSource.BaseStations.Add(newStation);
         }
         public void AddDrone(Drone newDrone)
         {
+            int check = DataSource.Drones.FindIndex(x => x.Id == newDrone.Id);
+            if (check != 0)
+            {
+                throw new AlreadyExistException(newDrone.Id, "The id is already exists");
+            }
             DataSource.Drones.Add(newDrone);
         }
         public void AddCustomer(Customer newCustomer)
         {
+            int check = DataSource.Customers.FindIndex(x => x.Id == newCustomer.Id);
+            if (check != 0)
+            {
+                throw new AlreadyExistException(newCustomer.Id, "The id is already exists");
+            }
             DataSource.Customers.Add(newCustomer);
         }
         public int AddParcel(Parcel newParcel)
         {
+            int check = DataSource.Parcels.FindIndex(x => x.Id == newParcel.Id);
+            if (check != 0)
+            {
+                throw new AlreadyExistException(newParcel.Id, "The id is already exists");
+            }
             DataSource.Parcels.Add(newParcel);
             newParcel.Id = DataSource.Config.RunId++;
             return newParcel.Id;
@@ -56,6 +76,10 @@ namespace IDAL
         public void ConnectDroneToParcel(int parcelId, int droneId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(parcelId, "The parcel does not exist");
+            }
             Parcel parcel1 = DataSource.Parcels[parcelIndex];
             parcel1.DroneToParcelId = droneId;
             parcel1.AssignningTime = DateTime.Now;
@@ -68,6 +92,10 @@ namespace IDAL
         public void PickUpParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(parcelId, "The parcel does not exist");
+            }
             Parcel parcel2 = DataSource.Parcels[parcelIndex];
             parcel2.PickingUpTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel2;
@@ -79,6 +107,10 @@ namespace IDAL
         public void DelieverParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(parcelId, "The parcel does not exist");
+            }
             Parcel parcel3 = DataSource.Parcels[parcelIndex];
             parcel3.SupplyingTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel3;
@@ -91,6 +123,10 @@ namespace IDAL
         public void DroneToCharge(int droneId, int stationId)
         {
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
+            if (stationIndex == 0)
+            {
+                throw new NotExistException(stationId, "The station does not exist");
+            }
             BaseStation station1 = DataSource.BaseStations[stationIndex];
             station1.FreeChargeSlots--; // Reducing the free chargeSlots
             DataSource.BaseStations[stationIndex] = station1;
@@ -98,6 +134,10 @@ namespace IDAL
             DataSource.DronesInCharge.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
 
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId == droneId);
+            if (chargeIndex == 0)
+            {
+                throw new NotExistException(droneId, "The drone does not exist");
+            }
             DroneCharge charge1 = DataSource.DronesInCharge[chargeIndex];
             DataSource.DronesInCharge[chargeIndex] = charge1;
         }
@@ -117,8 +157,6 @@ namespace IDAL
             DataSource.BaseStations[stationIndex] = station2;
 
             DataSource.DronesInCharge.RemoveAt(DataSource.DronesInCharge.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
-
-
         }
         #endregion Update methods
 
@@ -130,18 +168,38 @@ namespace IDAL
         /// <returns>The type of the entity</returns>
         public BaseStation GetBaseStation(int stationId)
         {
+            int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
+            if (stationIndex == 0)
+            {
+                throw new NotExistException(stationId, "The station does not exist");
+            }
             return DataSource.BaseStations.Find(i => i.Id == stationId);
         }
         public Drone GetDrone(int droneId)
         {
+            int droneIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
+            if (droneIndex == 0)
+            {
+                throw new NotExistException(droneId, "The drone does not exist");
+            }
             return DataSource.Drones.Find(i => i.Id == droneId);
         }
         public Customer GetCustomer(int customerId)
         {
+            int customerIndex = DataSource.Customers.FindIndex(i => i.Id == customerId);
+            if (customerIndex == 0)
+            {
+                throw new NotExistException(customerId, "The customer does not exist");
+            }
             return DataSource.Customers.Find(i => i.Id == customerId);
         }
         public Parcel GetParcel(int parcelId)
         {
+            int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(parcelId, "The parcel does not exist");
+            }
             return DataSource.Parcels.Find(i => i.Id == parcelId);
         }
         #endregion Single display
@@ -154,7 +212,6 @@ namespace IDAL
         public IEnumerable<BaseStation> GetBaseStationsList()
         {
             return DataSource.BaseStations;
-            //return DataSource.BaseStations.Take(DataSource.BaseStations.Count).ToList();
         }
         public IEnumerable<Drone> GetDronesList()
         {
@@ -168,6 +225,7 @@ namespace IDAL
         {
             return DataSource.Parcels;
         }
+
         /// <summary>
         /// Displaying the parcel without assinged drone
         /// </summary>

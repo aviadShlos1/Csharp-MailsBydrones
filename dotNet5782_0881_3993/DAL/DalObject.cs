@@ -172,18 +172,38 @@ namespace DalObject
         /// <returns>The type of the entity</returns>
         public BaseStation GetBaseStation(int stationId)
         {
-           return DataSource.BaseStations.Find(i => i.Id == stationId);    
+            int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
+            if (stationIndex == 0)
+            {
+                throw new NotExistException(stationId, "The station does not exist");
+            }
+            return DataSource.BaseStations.Find(i => i.Id == stationId);    
         }
         public Drone GetDrone(int droneId)
         {
+            int droneIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
+            if (droneIndex == 0)
+            {
+                throw new NotExistException(droneId, "The drone does not exist");
+            }
             return DataSource.Drones.Find(i => i.Id == droneId);
         }
         public Customer GetCustomer(int customerId)
         {
+            int customerIndex = DataSource.Customers.FindIndex(i => i.Id == customerId);
+            if (customerIndex == 0)
+            {
+                throw new NotExistException(customerId, "The customer does not exist");
+            }
             return DataSource.Customers.Find(i => i.Id == customerId);
         }
         public Parcel GetParcel(int parcelId)
         {
+            int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(parcelId, "The parcel does not exist");
+            }
             return DataSource.Parcels.Find(i => i.Id == parcelId);
         }
         #endregion Single display
