@@ -217,11 +217,14 @@ Your choice:");
                     customerName = Console.ReadLine();
                     Console.WriteLine("Please enter a new phone number:");
                     phoneNumber = Console.ReadLine();
+                    break;
+
                 case UpdatesOption.DroneToCharge:
                     Console.WriteLine("Please enter a drone id(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);              
                     bl.DroneToCharge(DroneId);
                     break;
+
                 case UpdatesOption.ReleaseDroneCharge:
                     TimeSpan chargeTime = default;
                     Console.WriteLine("Please enter a drone id(4 digits):");
@@ -230,21 +233,25 @@ Your choice:");
                     TimeSpan.TryParse(Console.ReadLine(), out chargeTime);
                     bl.ReleaseDroneCharge(DroneId, chargeTime);
                     break;
+
                 case UpdatesOption.AssignParcelToDrone:
                     Console.WriteLine("Please enter a drone id(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     bl.AssignParcelToDrone(DroneId);
                     break;
+
                 case UpdatesOption.PickUpParcel:
                     Console.WriteLine("Please enter a drone id(0-1000):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     bl.PickUpParcel(DroneId);
                     break;
+                
                 case UpdatesOption.SupplyParcel:
                     Console.WriteLine("Please enter a drone id(0-1000):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     bl.SupplyParcel(DroneId);
                     break;
+
                 default:
                     break;
             }
