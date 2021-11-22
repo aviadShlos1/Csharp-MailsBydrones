@@ -8,11 +8,36 @@ namespace IBL
 {
     partial class BL
     {
-
-        public void GetBaseStation(int baseStationId)
+        public List<BO.DroneInCharge> GetBaseStation(int baseStationId)
         {
+            IDAL.DO.BaseStation myBaseStation = new();
+            try
+            {
+                myBaseStation = DalAccess.GetBaseStation(baseStationId);
+            }
+            catch (Exception)
+            {
 
-            return DalAccess.GetBaseStation();
+                throw;
+            }
+            int i = 0;
+            DalAccess.GetBaseStation(baseStationId);
+            BO.BaseStationBL myStationBl = new();
+            var dronesInChargePerStation = DalAccess.GetDronesChargeList().TakeWhile(x => x.StationId == baseStationId).ToList();
+            foreach (var item in dronesInChargePerStation)
+            {
+                var tempDrone = DronesListBL.Find(x => x.DroneId == item.DroneId);
+                myStationBl.DronesInChargeList[i].Id = tempDrone.DroneId;
+                myStationBl.DronesInChargeList[i].BatteryPercent = tempDrone.BatteryPercent;
+                i++;
+            }
+            return myStationBl.DronesInChargeList;
+        }
+        public List<BO.DroneInShipment> GetDrone(int droneId)
+        {
+            DalAccess.GetDrone(droneId);
+
+
         }
         public void GetDrone();
         public void GetCustomer(int customerId)
