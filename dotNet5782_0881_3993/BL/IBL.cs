@@ -13,7 +13,7 @@ namespace IBL
 
         public void AddBaseStation(int myId, string myBaseStationName, Location myBaseStationLocation, int myFreeChargeSlots);
         public void AddDrone(int myDroneId, string myModel, WeightCategoriesBL myDroneWeight, int myBaseStationId);
-        public void AddCustomer(int myId, string myName, string myPhone, Location myCustLocation);
+        public void AddCustomer(CustomerBL newCustomer);
         public void AddParcel(int mySenderId, int myRecieverId, WeightCategoriesBL myParcelWeight, PrioritiesBL myPriority);
 
         #endregion AddOptions

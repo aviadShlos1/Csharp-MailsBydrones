@@ -58,16 +58,16 @@ namespace IBL
             }
         }
 
-        public void AddCustomer(int myId, string myName, string myPhone, Location myCustLocation)
+        public void AddCustomer(CustomerBL newCustomer)
         {
             try
             {
                 CustomerDal tempCust = new();
-                tempCust.Id = myId;
-                tempCust.Name = myName;
-                tempCust.Phone = myPhone;
-                tempCust.CustomerLongitude = myCustLocation.Longitude;
-                tempCust.CustomerLatitude = myCustLocation.Latitude;
+                tempCust.Id = newCustomer.CustomerId;
+                tempCust.Name = newCustomer.CustomerName;
+                tempCust.Phone = newCustomer.CustomerPhone;
+                tempCust.CustomerLongitude = newCustomer.CustomerLocation.Longitude;
+                tempCust.CustomerLatitude = newCustomer.CustomerLocation.Latitude;
                 DalAccess.AddCustomer(tempCust);
 
             }

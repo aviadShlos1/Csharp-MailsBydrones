@@ -108,7 +108,8 @@ Please enter an ID number for the drone(1000-9999):");
                 case ConsoleUI_BL.AddOptions.AddCustomer:
                     int newCustomerID;
                     string newCustomerName, newPhoneNumber;
-                    double newCustomerLongitude, newCustomerLatitude;
+                    double newCustomerLongitude=default, newCustomerLatitude = default;
+                    Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
                     // User input for a new customer
                     Console.WriteLine(@"
 You selected to add a CustomerDal.
@@ -124,15 +125,14 @@ Please enter an ID number for the CustomerDal(9 digits):");
                     while (!double.TryParse(Console.ReadLine(), out newCustomerLatitude)) ;
                     Console.WriteLine();
 
-                    CustomerDal newCustomer = new CustomerDal
+                    CustomerBL newCustomer = new CustomerBL
                     {
-                        Id = newCustomerID,
-                        Name = newCustomerName,
-                        Phone = newPhoneNumber,
-                        CustomerLongitude = newCustomerLongitude,
-                        CustomerLatitude = newCustomerLatitude
+                        CustomerId = newCustomerID,
+                        CustomerName = newCustomerName,
+                        CustomerPhone = newPhoneNumber,
+                        CustomerLocation  = newCustomerLocation,               
                     };
-                    dal.AddCustomer(newCustomer);
+                    bl.AddCustomer(newCustomer);
                     break;
 
                 // Adding a new parcel
@@ -153,10 +153,10 @@ Please enter the ParcelDal ID (0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
                     Console.WriteLine();
                     //
-                    ParcelDal newParcel = new ParcelDal
+                    ParcelBl newParcel = new ParcelBl
                     {
-                        Id = newParcelId,
-                        SenderId = newSenderId,
+                        ParcelId = newParcelId,
+                        Sender = newSenderId,
                         TargetId = newTargetId,
                         Weight = (WeightCategoriesDal)newWeight,
                         Priority = (Priorities)newPriorities,
