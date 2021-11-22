@@ -81,7 +81,7 @@ Please enter an ID number for the station:(0-4)");
 
                 // Adding a new drone
                 case ConsoleUI_BL.AddOptions.AddDrone:
-                    int newDroneID, newMaxWeight , firstChargeStation;
+                    int newDroneID, newMaxWeight , firstChargeStation=0;
                     string newModel;
 
                     // User input for a new drone
@@ -139,12 +139,8 @@ Please enter an ID number for the CustomerDal(9 digits):");
 
                 // Adding a new parcel
                 case ConsoleUI_BL.AddOptions.AddParcel:
-                    int newParcelId, newSenderId, newTargetId, newWeight, newPriorities;
+                    int newSenderId, newTargetId, newWeight, newPriorities;
                     // User input for a new parcel
-                    Console.WriteLine(@"
-You selected to add a ParcelDal.
-Please enter the ParcelDal ID (0-1000):");
-                    while (!int.TryParse(Console.ReadLine(), out newParcelId)) ;
                     Console.WriteLine("Please enter the sender ID number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newSenderId)) ;
                     Console.WriteLine("Please enter the target ID number(9 digits):");
@@ -155,21 +151,18 @@ Please enter the ParcelDal ID (0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
                     Console.WriteLine();
                     //
+                    AssignCustomerToParcel myAssignSenderToParcel = new() { Id = newSenderId };
+                    AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = newTargetId };
                     ParcelBl newParcel = new ParcelBl
                     {
-                        ParcelId = newParcelId,
-                        Sender = newSenderId,
-                        TargetId = newTargetId,
-                        Weight = (WeightCategoriesDal)newWeight,
-                        Priority = (Priorities)newPriorities,
-                        DroneToParcelId = 0,
-                        CreatingTime = DateTime.Now,
-                        AssignningTime = DateTime.Now,
-                        PickingUpTime = DateTime.Now,
-                        SupplyingTime = DateTime.Now
+                         
+                        Sender= myAssignSenderToParcel,
+                        Reciever = myAssignRecieverToParcel,
+                        ParcelWeight = (WeightCategoriesBL)newWeight,
+                        Priority = (PrioritiesBL)newPriorities
                     };
 
-                    int parcelCounter = dal.AddParcel(newParcel);
+                    int parcelCounter = bl.AddParcel(newParcel);
                     break;
 
                 default:
