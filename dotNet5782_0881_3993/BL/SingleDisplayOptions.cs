@@ -40,7 +40,7 @@ namespace IBL
 
 
         }       
-        public void GetCustomer(int customerId)
+        public  GetCustomer(int customerId)
         {
             DalAccess.GetCustomer(customerId);
         }
