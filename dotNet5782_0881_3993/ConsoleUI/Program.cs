@@ -15,7 +15,7 @@ namespace ConsoleUI
 {
     #region Enums
     /// <summary>
-    enum Options { Add = 1, Update, SingleDisplay, ListDisplay, Distance, EXIT }
+    enum Options { Add = 1, Update, SingleDisplay, ListDisplay, Exit }
   
     /// <summary> enum for AddOption</summary>
     enum AddOptions { AddStation = 1, AddDrone, AddCustomer, AddParcel }
@@ -426,7 +426,7 @@ Your choice:");
                     case Options.ListDisplay:
                         DisplayListOptions(dalObject);
                         break;
-                    case Options.EXIT:
+                    case Options.Exit:
                         Console.WriteLine("Thanks for using our system, see you soon");
                         break;
 
