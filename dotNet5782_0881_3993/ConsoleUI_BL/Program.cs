@@ -154,15 +154,13 @@ Please enter an ID number for the CustomerDal(9 digits):");
                     AssignCustomerToParcel myAssignSenderToParcel = new() { Id = newSenderId };
                     AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = newTargetId };
                     ParcelBl newParcel = new ParcelBl
-                    {
-                         
+                    {                        
                         Sender= myAssignSenderToParcel,
                         Reciever = myAssignRecieverToParcel,
                         ParcelWeight = (WeightCategoriesBL)newWeight,
                         Priority = (PrioritiesBL)newPriorities
                     };
-
-                    int parcelCounter = bl.AddParcel(newParcel);
+                    bl.AddParcel(newParcel);
                     break;
 
                 default:
@@ -176,7 +174,7 @@ Please enter an ID number for the CustomerDal(9 digits):");
         /// The function handles various update options.
         /// </summary>
         /// <param name="dal"> DalObject object that enables access to the DalObject class functions </param>
-        static public void UpdateOptions(IBL.IBL blObject)
+        static public void UpdateOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Update options:
 1. Attributing a drone to a parcel
@@ -191,46 +189,34 @@ Your choice:");
 
             switch ((UpdatesOption)choice)
             {
-
-                case UpdatesOption.ConnectDroneToParcel:
-                    Console.WriteLine("please enter a parcel ID(0-1000):");
-                    int.TryParse(Console.ReadLine(), out ParcelId);
-                    Console.WriteLine("please enter a drone ID(4 digits):");
-                    int.TryParse(Console.ReadLine(), out DroneId);
-                    dal.ConnectDroneToParcel(ParcelId, DroneId);
-                    break;
-
-                case UpdatesOption.PickUpParcel:
-                    Console.WriteLine("please enter a parcel ID(0-1000):");
-                    int.TryParse(Console.ReadLine(), out ParcelId);
-                    dal.PickUpParcel(ParcelId);
-                    break;
-
-                case UpdatesOption.DelieverParcel:
-                    Console.WriteLine("please enter a parcel ID(0-1000):");
-                    int.TryParse(Console.ReadLine(), out ParcelId);
-                    dal.DelieverParcel(ParcelId);
-                    break;
-
                 case UpdatesOption.DroneToCharge:
-                    Console.WriteLine("please enter a drone ID(4 digits):");
-                    int.TryParse(Console.ReadLine(), out DroneId);
-                    Console.WriteLine("please choose stationId ID from the List below:");
-                    IEnumerable<BaseStationDal> FreeChargSlots = dal.GetStationsWithFreeCharge();
-                    foreach (var item in FreeChargSlots)
-                    {
-                        Console.WriteLine(item);
-                    }
-                    int.TryParse(Console.ReadLine(), out StationId);
-                    dal.DroneToCharge(DroneId, StationId);
+                    Console.WriteLine("Please enter a drone id(4 digits):");
+                    int.TryParse(Console.ReadLine(), out DroneId);              
+                    bl.DroneToCharge(DroneId);
                     break;
-
-                case UpdatesOption.DroneRelease:
-                    Console.WriteLine("please enter a drone ID(4 digits):");
+                case UpdatesOption.ReleaseDroneCharge:
+                    TimeSpan chargeTime = default;
+                    Console.WriteLine("Please enter a drone id(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
-                    dal.DroneRelease(DroneId);
+                    Console.WriteLine("Please enter the length of time the drone has been charging:");
+                    TimeSpan.TryParse(Console.ReadLine(), out chargeTime);
+                    bl.ReleaseDroneCharge(DroneId, chargeTime);
                     break;
-
+                case UpdatesOption.AssignParcelToDrone:
+                    Console.WriteLine("Please enter a drone id(4 digits):");
+                    int.TryParse(Console.ReadLine(), out DroneId);
+                    bl.AssignParcelToDrone(DroneId);
+                    break;
+                case UpdatesOption.PickUpParcel:
+                    Console.WriteLine("Please enter a drone id(0-1000):");
+                    int.TryParse(Console.ReadLine(), out DroneId);
+                    bl.PickUpParcel(DroneId);
+                    break;
+                case UpdatesOption.SupplyParcel:
+                    Console.WriteLine("Please enter a drone id(0-1000):");
+                    int.TryParse(Console.ReadLine(), out DroneId);
+                    bl.SupplyParcel(DroneId);
+                    break;
                 default:
                     break;
             }
