@@ -172,6 +172,7 @@ namespace DalObject
         /// <returns>The type of the entity</returns>
         public BaseStation GetBaseStation(int stationId)
         {
+
            return DataSource.BaseStations.Find(i => i.Id == stationId);    
         }
         public Drone GetDrone(int droneId)
