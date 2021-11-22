@@ -13,21 +13,21 @@ namespace IBL
 
         public void AddBaseStation(int myId, string myBaseStationName, Location myBaseStationLocation, int myFreeChargeSlots);
         public void AddDrone(int myDroneId, string myModel, WeightCategoriesBL myDroneWeight, int myBaseStationId);
-        public void AddCustomer();
-        public void AddParcel();
+        public void AddCustomer(int myId, string myName, string myPhone, Location myCustLocation);
+        public void AddParcel(int mySenderId, int myRecieverId, WeightCategoriesBL myParcelWeight, PrioritiesBL myPriority);
 
         #endregion AddOptions
 
         #region UpdateOptions
 
-        public void UpdateDroneName();
-        public void UpdateBaseStationData();
-        public void UpdateCustomerData();
-        public void DroneToCharge();
-        public void ReleaseDroneCharge();
-        public void AssignParcelToDrone();
-        public void PickUpParcel();
-        public void SupplyParcel();
+        public void UpdateDroneName(int droneId, string newModel);
+        public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots);
+        public void UpdateCustomerData(int myId, string newName, string newPhone);
+        public void DroneToCharge(int myDroneId);
+        public void ReleaseDroneCharge(int myDroneId, TimeSpan chargeTime);
+        public void AssignParcelToDrone(int myDroneId);
+        public void PickUpParcel(int droneId);
+        public void SupplyParcel(int droneId);
         #endregion UpdateOptions    
 
         #region DisplayOptions
