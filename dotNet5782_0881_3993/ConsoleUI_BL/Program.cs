@@ -71,7 +71,7 @@ Please enter an ID number for the station:(0-4)");
                         Location = newLocation,
                         DronesInChargeList = new()
                     };
-                   bl.
+                   bl.Add
                     break;
 
                 // Adding a new drone
