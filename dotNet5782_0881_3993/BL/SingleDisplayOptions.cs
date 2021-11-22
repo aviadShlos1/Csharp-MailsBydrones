@@ -13,7 +13,7 @@ namespace IBL
             IDAL.DO.BaseStation myBaseStation = new();
             try
             {
-                myBaseStation = DalAccess.GetBaseStation(baseStationId);
+                myBaseStation = DalAccess.GetBaseStation(baseStationId);//
             }
             catch (Exception)
             {
