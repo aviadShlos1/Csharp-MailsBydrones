@@ -11,7 +11,7 @@ namespace IBL
 {
     public partial class BL : IBL
     {
-        public IDAL.IDal DalAccess;
+        IDAL.IDal DalAccess = new DalObject.DalObject();
         public List<DroneToList> DronesListBL { get; set; }
         public static Random rand = new();
 
@@ -33,21 +33,7 @@ namespace IBL
             }
             return myCust;
         }
-        private List<IDAL.DO.CustomerDal> CustomersSuppliedParcels()
-        {
-            List<IDAL.DO.CustomerDal> temp = new();
-            foreach (var itemPar in DalAccess.GetParcelsList())
-            {
-                foreach (var itemCus in DalAccess.GetCustomersList())
-                {
-                    if (itemPar.TargetId == itemCus.Id && itemPar.SupplyingTime != DateTime.MinValue)
-                    {
-                        temp.Add(itemCus);
-                    }
-                }
-            }
-            return temp;
-        }
+
         private static double GetDistance(double myLongitude, double myLatitude, double stationLongitude, double stationLatitude)
         {
             var num1 = myLongitude * (Math.PI / 180.0);
@@ -58,8 +44,8 @@ namespace IBL
                                                                                                                                    //We calculate the distance according to a formula that also takes into account the curvature of the earth
             return (double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));
         }
-        private BaseStationBl ClosetStation(double myLon, double myLat, List<IDAL.DO.BaseStationDal> stationsList )
-        { 
+        private BaseStationBl ClosetStation(double myLon, double myLat, List<IDAL.DO.BaseStationDal> stationsList)
+        {
             double stationLon = stationsList[0].Longitude;
             double stationLat = stationsList[0].Latitude;
             double closetDistance = GetDistance(myLon, myLat, stationLon, stationLat);
@@ -79,11 +65,26 @@ namespace IBL
             closetBaseStation.Location.Latitude = stationLat;
             return closetBaseStation;
         }
+        private List<IDAL.DO.CustomerDal> CustomersSuppliedParcels()
+        {
+            List<IDAL.DO.CustomerDal> temp = new();
+            foreach (var itemPar in DalAccess.GetParcelsList())
+            {
+                foreach (var itemCus in DalAccess.GetCustomersList())
+                {
+                    if (itemPar.TargetId == itemCus.Id && itemPar.SupplyingTime != DateTime.MinValue)
+                    {
+                        temp.Add(itemCus);
+                    }
+                }
+            }
+            return temp;
+        }
         #endregion
         //ctor
         public BL()
         {
-            IDAL.IDal DalAccess = new DalObject.DalObject();
+            
             double[] energyConsumption = DalAccess.EnergyConsumption();
             freeWeightConsumption = energyConsumption[0];
             lightWeightConsumption = energyConsumption[1];
@@ -151,6 +152,7 @@ namespace IBL
                     itemDrone.BatteryPercent = rand.NextDouble()*(100-minCharge)+minCharge ;
                 }
             }
+            
         }
       
 
