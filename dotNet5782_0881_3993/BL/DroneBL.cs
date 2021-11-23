@@ -17,7 +17,7 @@ namespace IBL.BO
         public Location DroneLocation { get; set; }
         public override string ToString()
         {
-            return $"DroneBl: DroneId:{DroneId}, Model:{Model}, DroneWeight:{DroneWeight}, BatteryPercent:{BatteryPercent}, DroneStatus:{DroneStatus}, ParcelInShipment:{ParcelInShip}, Location:{DroneLocation}";
+            return $"DroneId: {DroneId}, Model: {Model}, DroneWeight: {DroneWeight}, BatteryPercent: {BatteryPercent}, DroneStatus: {DroneStatus}, ParcelInShipment: {ParcelInShip}, Location: {DroneLocation}";
         }
     }
 }

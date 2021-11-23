@@ -80,7 +80,7 @@ namespace DalObject
         public void AssignParcelToDrone(int parcelId, int droneId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
-            if (parcelIndex == 0)
+            if (parcelIndex == -1)
             {
                 throw new NotExistException(parcelId);
             }
@@ -97,7 +97,7 @@ namespace DalObject
         {
             
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.DroneToParcelId == droneId);
-            if (parcelIndex == 0)
+            if (parcelIndex == -1)
             {
                 throw new NotExistException(droneId);
             }
@@ -112,7 +112,7 @@ namespace DalObject
         public void SupplyParcel(int droneId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.DroneToParcelId == droneId);
-            if (parcelIndex == 0)
+            if (parcelIndex == -1)
             {
                 throw new NotExistException(droneId);
             }
@@ -135,7 +135,7 @@ namespace DalObject
             DataSource.DronesInCharge.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
 
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId==droneId);
-            if (droneId == 0)
+            if (droneId == -1)
             {
                 throw new NotExistException(droneId);
             }
@@ -149,7 +149,7 @@ namespace DalObject
         public void DroneRelease(int droneId)
         {
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId == droneId);
-            if (droneId == 0)
+            if (droneId == -1)
             {
                 throw new NotExistException(droneId);
             }
@@ -174,7 +174,7 @@ namespace DalObject
         public BaseStationDal GetSingleBaseStation(int stationId)
         {
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
-            if (stationIndex == 0)
+            if (stationIndex == -1)
             {
                 throw new NotExistException(stationId);
             }
@@ -183,7 +183,7 @@ namespace DalObject
         public DroneDal GetSingleDrone(int droneId)
         {
             int droneIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
-            if (droneIndex == 0)
+            if (droneIndex == -1)
             {
                 throw new NotExistException(droneId);
             }
@@ -192,7 +192,7 @@ namespace DalObject
         public CustomerDal GetSingleCustomer(int customerId)
         {
             int customerIndex = DataSource.Customers.FindIndex(i => i.Id == customerId);
-            if (customerIndex == 0)
+            if (customerIndex == -1)
             {
                 throw new NotExistException(customerId);
             }
@@ -201,7 +201,7 @@ namespace DalObject
         public ParcelDal GetSingleParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
-            if (parcelIndex == 0)
+            if (parcelIndex == -1)
             {
                 throw new NotExistException(parcelId);
             }

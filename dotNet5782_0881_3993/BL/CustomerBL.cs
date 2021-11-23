@@ -17,8 +17,8 @@ namespace IBL.BO
 
         public override string ToString()
         {
-            return $"CustomerBL: CustomerId:{CustomerId}, CustomerName:{CustomerName}, Phone:{CustomerPhone},Location:{CustomerLocation}"
-                + "ParcelsFromCustomer:" + String.Join(",", ParcelsFromCustomerList) + "ParcelsToCustomer:" + String.Join(",", ParcelsToCustomerList)  ;
+            return $"CustomerId: {CustomerId}, CustomerName: {CustomerName}, Phone: {CustomerPhone},Location: {CustomerLocation}"
+                + "ParcelsFromCustomer: " + String.Join(",", ParcelsFromCustomerList) + "ParcelsToCustomer: " + String.Join(",", ParcelsToCustomerList)  ;
         }
     }
 }
