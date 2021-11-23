@@ -172,12 +172,16 @@ namespace IBL
         public void PickUpParcel(int droneId)
         {
             var droneItem = DronesListBL.Find(x => x.DroneId == droneId);
+            if (droneItem == default)
+                throw new BO.NotExistException();
+            if(droneItem.TransferParcelsNum==0)
+                throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
             var parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
             var senderItem = GetCustomerDetails(parcelItem.SenderId);
 
-            if (!(parcelItem.AssignningTime != DateTime.MinValue && parcelItem.PickingUpTime == DateTime.MinValue))
+            if (parcelItem.PickingUpTime != DateTime.MinValue)
             {
-                throw new BO.CannotPickUpException(droneId);
+                throw new BO.CannotPickUpException("The parcel has already picked up");
             }
             else
             {
@@ -191,19 +195,23 @@ namespace IBL
         public void SupplyParcel(int droneId)
         {
             var droneItem = DronesListBL.Find(x => x.DroneId == droneId);
+            if (droneItem == default)
+                throw new BO.NotExistException();
+            if (droneItem.TransferParcelsNum == 0)
+                throw new BO.CannotSupplyException("The drone has not transfered parcels yet");
             var parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
             var targetItem = GetCustomerDetails(parcelItem.TargetId);
-
-            if (!(parcelItem.PickingUpTime != DateTime.MinValue && parcelItem.SupplyingTime == DateTime.MinValue))
-            {
-                throw new BO.CannotSupplyException(droneId);
-            }
+            if (parcelItem.PickingUpTime == DateTime.MinValue)
+                throw new BO.CannotSupplyException("The parcel has not picked up yet");
+            if (parcelItem.SupplyingTime != DateTime.MinValue)
+                throw new BO.CannotSupplyException("The parcel has already supplied");
             else
             {
                 double currentToTarget = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, targetItem.CustomerLongitude, targetItem.CustomerLatitude);
                 droneItem.BatteryPercent = currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
                 droneItem.DroneLocation.Longitude = targetItem.CustomerLongitude;
                 droneItem.DroneLocation.Latitude = targetItem.CustomerLatitude;
+                droneItem.TransferParcelsNum = 0;
                 droneItem.DroneStatus = BO.DroneStatus.Free;
                 parcelItem.SupplyingTime = DateTime.Now;
             }

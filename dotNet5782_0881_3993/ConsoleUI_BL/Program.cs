@@ -41,8 +41,8 @@ namespace ConsoleUI_BL
 3. CustomerBl
 4. ParcelBl
 Your choice:");
-
-            int.TryParse(Console.ReadLine(), out int choice);
+          int choice;
+          while(!int.TryParse(Console.ReadLine(), out choice));
 
             switch ((AddOptions)choice)
             {
@@ -54,8 +54,8 @@ Your choice:");
                     Location newLocation = new() { Longitude = newLongitude, Latitude = newLatitude };
                     // User input for a new station
                     Console.WriteLine(@"
-You selected to add a station.
-Please enter an ID number for the station:(0-4)");
+You selected to add a new station.
+Please enter an id number for the new station:(0-4)");
                     while (!int.TryParse(Console.ReadLine(), out newStationID)) ;
                     Console.WriteLine("Please enter the name of the station:");
                     newName = Console.ReadLine();
@@ -87,29 +87,40 @@ Please enter an ID number for the station:(0-4)");
 
                 // Adding a new drone
                 case ConsoleUI_BL.AddOptions.AddDrone:
-                    int newDroneID, newMaxWeight , firstChargeStation=0;
+                    int newDroneID, newMaxWeight , firstChargeStation;
                     string newModel;
 
                     // User input for a new drone
                     Console.WriteLine(@"
-You selected to add a DroneDal.
-Please enter an ID number for the drone(1000-9999):");
+You selected to add a new Drone.
+Please enter an id number for the new Drone(1000-9999):");
                     while (!int.TryParse(Console.ReadLine(), out newDroneID)) ;
                     Console.WriteLine("Please enter the model of the drone:(model ***) ");
                     newModel = Console.ReadLine();
                     Console.WriteLine("Please enter the weight category of the drone: 0 for light, 1 for medium and 2 for heavy");
                     while (!int.TryParse(Console.ReadLine(), out newMaxWeight)) ;
+                    Console.WriteLine("Please enter the id of the Station to put the drone for first charge");
+                    while (!int.TryParse(Console.ReadLine(), out firstChargeStation)) ;
                     Console.WriteLine();
 
                     DroneToList newdrone = new DroneToList
                     {
-
                         DroneId = newDroneID,
                         Model = newModel,
-                        DroneWeight = (WeightCategoriesBL)newMaxWeight,
-                         
+                        DroneWeight = (WeightCategoriesBL)newMaxWeight,                   
                     };
-                    bl.AddDrone(newdrone,firstChargeStation);
+                    try
+                    {
+                        bl.AddDrone(newdrone,firstChargeStation);
+                    }
+                    catch (AlreadyExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch(NoStationsWithFreeChargeException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 // Adding a new customer
@@ -120,8 +131,8 @@ Please enter an ID number for the drone(1000-9999):");
                     Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
                     // User input for a new customer
                     Console.WriteLine(@"
-You selected to add a CustomerDal.
-Please enter an ID number for the CustomerDal(9 digits):");
+You selected to add a new Customer.
+Please enter an id number for the new Customer(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newCustomerID)) ;
                     Console.WriteLine("Please enter the name of the customer:");
                     newCustomerName = Console.ReadLine();
@@ -140,23 +151,32 @@ Please enter an ID number for the CustomerDal(9 digits):");
                         CustomerPhone = newPhoneNumber,
                         CustomerLocation  = newCustomerLocation,               
                     };
-                    bl.AddCustomer(newCustomer);
+                    try
+                    {
+                        bl.AddCustomer(newCustomer);
+                    }
+                    catch (AlreadyExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 // Adding a new parcel
                 case ConsoleUI_BL.AddOptions.AddParcel:
                     int newSenderId, newTargetId, newWeight, newPriorities;
                     // User input for a new parcel
-                    Console.WriteLine("Please enter the sender ID number(9 digits):");
+                    Console.WriteLine(@"
+You selected to add a new Parcel.
+Please enter the sender id number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newSenderId)) ;
-                    Console.WriteLine("Please enter the target ID number(9 digits):");
+                    Console.WriteLine("Please enter the target id number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newTargetId)) ;
                     Console.WriteLine("Please enter the weight category of the parcel: 0 for free, 1 for maintenance and 2 for delievery");
                     while (!int.TryParse(Console.ReadLine(), out newWeight)) ;
                     Console.WriteLine("Please enter the priorities of the new parcel: 0 for normal, 1 for fast and 2 for urgent");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
                     Console.WriteLine();
-                    //
+                    
                     AssignCustomerToParcel myAssignSenderToParcel = new() { Id = newSenderId };
                     AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = newTargetId };
                     ParcelBl newParcel = new ParcelBl
@@ -166,10 +186,18 @@ Please enter an ID number for the CustomerDal(9 digits):");
                         ParcelWeight = (WeightCategoriesBL)newWeight,
                         Priority = (PrioritiesBL)newPriorities
                     };
-                    bl.AddParcel(newParcel);
+                    try
+                    {
+                        bl.AddParcel(newParcel);
+                    }
+                    catch (AlreadyExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 default:
+                    Console.WriteLine("you entered a wrong number please choose again");
                     break;
             }
         }
@@ -248,17 +276,41 @@ Your choice:");
 
                 case UpdatesOption.PickUpParcel:
                     Console.WriteLine("Please enter a drone id(0-1000):");
-                    int.TryParse(Console.ReadLine(), out DroneId);
-                    bl.PickUpParcel(DroneId);
+                    while (!int.TryParse(Console.ReadLine(), out DroneId)) ;
+                    try
+                    {
+                        bl.PickUpParcel(DroneId);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch(CannotPickUpException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
                 
                 case UpdatesOption.SupplyParcel:
                     Console.WriteLine("Please enter a drone id(0-1000):");
                     int.TryParse(Console.ReadLine(), out DroneId);
-                    bl.SupplyParcel(DroneId);
+                    while (!int.TryParse(Console.ReadLine(), out DroneId)) ;
+                    try
+                    {
+                        bl.SupplyParcel(DroneId);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch(CannotSupplyException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 default:
+                    Console.WriteLine("you entered a wrong number please choose again");
                     break;
             }
         }
@@ -278,7 +330,8 @@ Your choice:");
 4. Parcel display
 
 Your choice:");
-            int.TryParse(Console.ReadLine(), out int choice);
+            int choice;
+            while(!int.TryParse(Console.ReadLine(), out choice));
 
             int objectId;
 
@@ -286,30 +339,59 @@ Your choice:");
             {
                 // Single station display
                 case SingleDisplayOptions.BaseStationDisplay:
-                    Console.WriteLine("Add the requested station ID(0-4):");
-                    int.TryParse(Console.ReadLine(), out objectId);
-                    Console.WriteLine(bl.GetSingleBaseStation(objectId).ToString());
+                    Console.WriteLine("Add the requested station id(0-4):");
+                    while (!int.TryParse(Console.ReadLine(), out objectId)) ;
+                    try
+                    {
+                        Console.WriteLine(bl.GetSingleBaseStation(objectId).ToString());
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
                 // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
-                    Console.WriteLine("Add the requested drone ID(4 digits):");
-                    int.TryParse(Console.ReadLine(), out objectId);
-                    Console.WriteLine(bl.GetSingleDrone(objectId).ToString());
+                    Console.WriteLine("Add the requested drone id(4 digits):");
+                    while (!int.TryParse(Console.ReadLine(), out objectId)) ;
+                    try
+                    {
+                        Console.WriteLine(bl.GetSingleDrone(objectId).ToString());
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
                 // Single customer display
                 case SingleDisplayOptions.CustomerDisplay:
-                    Console.WriteLine("Add the requested customer ID(9 digits):");
-                    int.TryParse(Console.ReadLine(), out objectId);
-                    Console.WriteLine(bl.GetSingleCustomer(objectId).ToString());
+                    Console.WriteLine("Add the requested customer id(9 digits):");
+                    while (!int.TryParse(Console.ReadLine(), out objectId)) ;
+                    try
+                    {
+                        Console.WriteLine(bl.GetSingleCustomer(objectId).ToString());
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }                   
                     break;
                 // Single parcel display
                 case SingleDisplayOptions.ParcelDisplay:
-                    Console.WriteLine("Add the requested parcel ID(0-1000):");
-                    int.TryParse(Console.ReadLine(), out objectId);
-                    Console.WriteLine(bl.GetSingleParcel(objectId).ToString());
+                    Console.WriteLine("Add the requested parcel id(0-1000):");
+                    while (!int.TryParse(Console.ReadLine(), out objectId)) ;
+                    try
+                    {
+                        Console.WriteLine(bl.GetSingleParcel(objectId).ToString());
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }                   
                     break;
 
                 default:
+                    Console.WriteLine("you entered a wrong number please choose again");
                     break;
             }
         }
@@ -331,7 +413,8 @@ Your choice:");
 5. Parcels which haven't been assigned to a drone
 6. Available charging stations
 Your choice:");
-            int.TryParse(Console.ReadLine(), out int choice);
+            int choice;
+            while (!int.TryParse(Console.ReadLine(), out choice)) ;
 
             switch ((ListDisplayOption)choice)
             {
@@ -392,6 +475,7 @@ Your choice:");
                     break;
 
                 default:
+                    Console.WriteLine("you entered a wrong number please choose again");
                     break;
             }
 

@@ -53,45 +53,45 @@ namespace IBL
             }
             catch (IDAL.DO.AlreadyExistException)
             {
-                throw new BO.AlreadyExistException;
+                throw new BO.AlreadyExistException();
             }
+            if (DalAccess.GetSingleBaseStation(firstChargeStation).FreeChargeSlots <= 0)
+                throw new NoStationsWithFreeChargeException();
         }
         public void AddCustomer(CustomerBL newCustomer)
         {
+            
+            CustomerDal tempCust = new();
+            tempCust.Id = newCustomer.CustomerId;
+            tempCust.Name = newCustomer.CustomerName;
+            tempCust.Phone = newCustomer.CustomerPhone;
+            tempCust.CustomerLongitude = newCustomer.CustomerLocation.Longitude;
+            tempCust.CustomerLatitude = newCustomer.CustomerLocation.Latitude;
             try
             {
-                CustomerDal tempCust = new();
-                tempCust.Id = newCustomer.CustomerId;
-                tempCust.Name = newCustomer.CustomerName;
-                tempCust.Phone = newCustomer.CustomerPhone;
-                tempCust.CustomerLongitude = newCustomer.CustomerLocation.Longitude;
-                tempCust.CustomerLatitude = newCustomer.CustomerLocation.Latitude;
                 DalAccess.AddCustomer(tempCust);
-
             }
             catch (IDAL.DO.AlreadyExistException)
             {
-
-                throw;
+                throw new BO.AlreadyExistException();
             }
         }
         public void AddParcel(ParcelBl newParcel)
         {
+            ParcelDal tempParcel = new();
+            tempParcel.SenderId = newParcel.Sender.Id;
+            tempParcel.TargetId = newParcel.Reciever.Id;
+            tempParcel.Weight = (WeightCategoriesDal)newParcel.ParcelWeight;
+            tempParcel.Priority = (Priorities)newParcel.Priority;
+            tempParcel.CreatingTime = DateTime.Now;
+            tempParcel.DroneToParcelId = 0;
             try
             {
-                ParcelDal tempParcel = new();
-                tempParcel.SenderId = newParcel.Sender.Id;
-                tempParcel.TargetId = newParcel.Reciever.Id;
-                tempParcel.Weight = (WeightCategoriesDal)newParcel.ParcelWeight;
-                tempParcel.Priority = (Priorities)newParcel.Priority;
-                tempParcel.CreatingTime = DateTime.Now;
-                tempParcel.DroneToParcelId = 0;
                 DalAccess.AddParcel(tempParcel);
             }
             catch (IDAL.DO.AlreadyExistException)
             {
-
-                throw;
+                throw new BO.AlreadyExistException();
             }
         }
     }
