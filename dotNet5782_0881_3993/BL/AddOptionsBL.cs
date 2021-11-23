@@ -12,46 +12,48 @@ namespace IBL
     {
         public void AddBaseStation(BaseStationBl newBaseStationBl)
         {
+            
+            BaseStationDal tempBase = new();
+            tempBase.Id = newBaseStationBl.Id;
+            tempBase.Name = newBaseStationBl.BaseStationName;
+            tempBase.Latitude = newBaseStationBl.Location.Latitude;
+            tempBase.Longitude = newBaseStationBl.Location.Longitude;
+            tempBase.FreeChargeSlots = newBaseStationBl.FreeChargeSlots;
             try
             {
-                BaseStationDal tempBase = new();
-                tempBase.Id = newBaseStationBl.Id;
-                tempBase.Name = newBaseStationBl.BaseStationName;
-                tempBase.Latitude = newBaseStationBl.Location.Latitude;
-                tempBase.Longitude = newBaseStationBl.Location.Longitude;
-                tempBase.FreeChargeSlots = newBaseStationBl.FreeChargeSlots;
                 DalAccess.AddStation(tempBase);
             }
             catch (IDAL.DO.AlreadyExistException)
             {
-                throw;
+                throw new BO.AlreadyExistException();
             }
         }
         public void AddDrone(DroneToList newDroneBl, int firstChargeStation)
         {
+            
+            DroneDal tempDrone = new();
+            tempDrone.Id = newDroneBl.DroneId;
+            tempDrone.Model = newDroneBl.Model;
+            tempDrone.DroneWeight = (WeightCategoriesDal)newDroneBl.DroneWeight;
+            
+            foreach (var item in DalAccess.GetBaseStationsList())
+            {
+                if (item.Id == firstChargeStation)
+                {
+                    newDroneBl.DroneLocation.Longitude = item.Longitude;
+                    newDroneBl.DroneLocation.Latitude = item.Latitude;
+                }
+            }
+            newDroneBl.BatteryPercent = (rand.NextDouble() * 20) + 20;
+            newDroneBl.DroneStatus = DroneStatus.Maintaince;
             try
             {
-                DroneDal tempDrone = new();
-                tempDrone.Id = newDroneBl.DroneId;
-                tempDrone.Model = newDroneBl.Model;
-                tempDrone.DroneWeight = (WeightCategoriesDal)newDroneBl.DroneWeight;
-                
-                foreach (var item in DalAccess.GetBaseStationsList())
-                {
-                    if (item.Id == firstChargeStation)
-                    {
-                        newDroneBl.DroneLocation.Longitude = item.Longitude;
-                        newDroneBl.DroneLocation.Latitude = item.Latitude;
-                    }
-                }
-                newDroneBl.BatteryPercent = (rand.NextDouble() * 20) + 20;
-                newDroneBl.DroneStatus = DroneStatus.Maintaince;
                 DalAccess.AddDrone(tempDrone);
                 DronesListBL.Add(newDroneBl);
             }
             catch (IDAL.DO.AlreadyExistException)
             {
-                throw ;
+                throw new BO.AlreadyExistException;
             }
         }
         public void AddCustomer(CustomerBL newCustomer)

@@ -75,7 +75,14 @@ Please enter an ID number for the station:(0-4)");
                         Location = newLocation,
                         DronesInChargeList = new()
                     };
-                    bl.AddBaseStation(newBaseStation);
+                    try
+                    {
+                         bl.AddBaseStation(newBaseStation);
+                    }
+                    catch (AlreadyExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 // Adding a new drone

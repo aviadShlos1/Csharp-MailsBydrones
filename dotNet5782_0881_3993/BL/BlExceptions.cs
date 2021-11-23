@@ -10,7 +10,8 @@ namespace IBL.BO
     [Serializable]
     public class NotExistException : Exception
     {
-        public int ID;  
+        public int ID;
+        public NotExistException() : base() { }
         public NotExistException(int id, string message, Exception innerException) : base(message, innerException) => ID =((IDAL.DO.NotExistException)innerException).ID;
         public override string ToString() => base.ToString() + $",The id does not exist:{ID}";
 
@@ -19,6 +20,7 @@ namespace IBL.BO
     public class AlreadyExistException : Exception
     {
         public int ID;
+        public AlreadyExistException() : base() { }
         public AlreadyExistException(int id, string message, Exception innerException) : base(message, innerException) => ID = ((IDAL.DO.AlreadyExistException)innerException).ID;
         public override string ToString() => base.ToString() + $", The id is already exists:{ID}";
 
