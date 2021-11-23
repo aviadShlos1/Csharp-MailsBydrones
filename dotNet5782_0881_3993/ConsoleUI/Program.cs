@@ -210,7 +210,7 @@ Your choice:");
                     int.TryParse(Console.ReadLine(), out ParcelId);
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
-                    dal.ConnectDroneToParcel(ParcelId, DroneId);
+                    dal.AssignParcelToDrone(ParcelId, DroneId);
                     break;
 
                 case UpdatesOption.PickUpParcel:

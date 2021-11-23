@@ -142,7 +142,7 @@ namespace IBL
                 }
                 if (itemDrone.DroneStatus == DroneStatus.Free)
                 {
-                    List<IDAL.DO.CustomerDal> custSupplied = CustomersSuppliedParcels();
+                    List<CustomerDal> custSupplied = CustomersSuppliedParcels();
                     int index = rand.Next(custSupplied.Count());
                     itemDrone.DroneLocation.Latitude = custSupplied.ToList()[index].CustomerLatitude;
                     itemDrone.DroneLocation.Longitude = custSupplied.ToList()[index].CustomerLongitude;

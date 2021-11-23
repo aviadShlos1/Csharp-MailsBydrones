@@ -28,7 +28,7 @@ namespace IDAL
         #endregion Add methods
 
         #region Update methods        
-        public void ConnectDroneToParcel(int parcelId, int droneId);    
+        public void AssignParcelToDrone(int parcelId, int droneId);    
         public void PickUpParcel(int parcelId);
         public void DelieverParcel(int parcelId);
         public void DroneToCharge(int droneId, int stationId);
