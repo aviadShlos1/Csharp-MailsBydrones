@@ -30,7 +30,7 @@ namespace IBL
                     if (newName != "")
                     {
                         string tempName = item.Name;
-                        tempName = newName;/
+                        tempName = newName;
                     }
                     if (totalChargeSlots != 0)
                     {
@@ -137,9 +137,9 @@ namespace IBL
                 throw new BO.DroneIsNotAvailable(myDroneId);
             }
 
-            senderCustomer = GetCustomerDetails (highestPriorityAndWeightParcels()[0].SenderId);
+            senderCustomer = GetCustomerDetails (HighestPriorityAndWeightParcels()[0].SenderId);
             closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
-            foreach (var item in highestPriorityAndWeightParcels())
+            foreach (var item in HighestPriorityAndWeightParcels())
             {
                 senderCustomer = GetCustomerDetails(item.SenderId);
                 double tempDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
@@ -172,7 +172,7 @@ namespace IBL
 
         }
         #region Help methods for AssignParcelToDrone method
-        private List<IDAL.DO.ParcelDal> highestPriorityParcels()
+        private List<IDAL.DO.ParcelDal> HighestPriorityParcels()
         {
             List<IDAL.DO.ParcelDal> parcelsWithUrgentPriority = new();
             List<IDAL.DO.ParcelDal> parcelsWithFastPriority = new();
@@ -200,13 +200,13 @@ namespace IBL
                 parcelsWithFastPriority.Any() ? parcelsWithFastPriority
                 :parcelsWithNormalPriority );
         }
-        private List<IDAL.DO.ParcelDal> highestPriorityAndWeightParcels()
+        private List<IDAL.DO.ParcelDal> HighestPriorityAndWeightParcels()
         {
             List<IDAL.DO.ParcelDal> heavyParcels = new ();
             List<IDAL.DO.ParcelDal> mediumParcels = new ();
             List<IDAL.DO.ParcelDal> lightParcels = new ();
 
-            foreach (var item in highestPriorityParcels())
+            foreach (var item in HighestPriorityParcels())
             {
                 switch ((WeightCategoriesBL)item.Weight)
                 {
