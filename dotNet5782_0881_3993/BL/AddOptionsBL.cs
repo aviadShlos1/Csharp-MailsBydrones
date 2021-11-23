@@ -81,6 +81,7 @@ namespace IBL
         public void AddParcel(ParcelBl newParcel)
         {
             ParcelDal tempParcel = new();
+            tempParcel.Id = newParcel.ParcelId;   
             tempParcel.SenderId = newParcel.Sender.Id;
             tempParcel.TargetId = newParcel.Reciever.Id;
             tempParcel.Weight = (WeightCategoriesDal)newParcel.ParcelWeight;

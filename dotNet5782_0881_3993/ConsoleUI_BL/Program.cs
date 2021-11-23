@@ -149,7 +149,6 @@ Please enter an id number for the new Customer(9 digits):");
                     Console.WriteLine();
                     Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
 
-                    Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
                     CustomerBL newCustomer = new CustomerBL
                     {
                         CustomerId = newCustomerID,
@@ -237,7 +236,7 @@ Your choice:");
             switch ((UpdatesOption)choice)
             {
                 case UpdatesOption.UpdateDroneName:
-                    Console.WriteLine("Please enter a drone id (4 digits):");
+                    Console.WriteLine("Please choose a drone id for update:");
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     Console.WriteLine("Please enter a new name:");
                     newModel = Console.ReadLine();
@@ -253,7 +252,7 @@ Your choice:");
                     break;
 
                 case UpdatesOption.UpdateBaseStationData:
-                    Console.WriteLine("Please enter base station id: ");
+                    Console.WriteLine("Please choose a base station id for update ");
                     while (!int.TryParse(Console.ReadLine(), out baseStationId)) ;
                     Console.WriteLine("Please enter a base station name, if there isn't, send an empty line:");
                     baseStationName = Console.ReadLine();
@@ -274,7 +273,7 @@ Your choice:");
                     break;
 
                 case UpdatesOption.UpdateCustomerData:
-                    Console.WriteLine("Please enter a customer id: ");
+                    Console.WriteLine("Please choose a customer id for update: ");
                     while (!int.TryParse(Console.ReadLine(), out customerId)) ;
                     Console.WriteLine("Please enter a new customer name: ");
                     customerName = Console.ReadLine();

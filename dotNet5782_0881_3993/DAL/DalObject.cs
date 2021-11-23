@@ -24,7 +24,7 @@ namespace DalObject
             ConsumptionArr[4] = DataSource.Config.ChargeRate;
             return ConsumptionArr;
         }
-        public DalObject() { DataSource.Initialize(); }
+        public DalObject() { /*DataSource.Initialize();*/ }
 
         #region Add methods
         /// <summary>
@@ -58,7 +58,7 @@ namespace DalObject
             }
             DataSource.Customers.Add(newCustomer);
         }
-        public int AddParcel(ParcelDal newParcel)
+        public void AddParcel(ParcelDal newParcel)
         {
             int existIndex = DataSource.Parcels.FindIndex(x => x.Id == newParcel.Id);
             if (existIndex != -1)
@@ -66,8 +66,8 @@ namespace DalObject
                 throw new AlreadyExistException(newParcel.Id);
             }
             DataSource.Parcels.Add(newParcel);
-            newParcel.Id = DataSource.Config.RunId++;
-            return newParcel.Id;
+            //newParcel.Id = DataSource.Config.RunId++;
+            //return newParcel.Id;
         }
         #endregion Add methods
 

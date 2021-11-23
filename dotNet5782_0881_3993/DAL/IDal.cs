@@ -40,7 +40,7 @@ namespace IDAL
         /// Adding a new object for the parcels list
         /// </summary>
         /// <param name="newParcel"></param>
-        public int AddParcel(ParcelDal newParcel);
+        public void AddParcel(ParcelDal newParcel);
         #endregion Add methods
 
         #region Update methods    
