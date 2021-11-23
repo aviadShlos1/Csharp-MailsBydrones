@@ -22,11 +22,11 @@ namespace DalObject
         // Pay attention - we chose to work with lists, so we don't need to initialize the sizes
 
         /// <This five rows below describe the initialize of the entities lists >
-        internal static List<DroneDal> Drones = new List<DroneDal>(10) ;
-        internal static List<BaseStationDal> BaseStations = new List<BaseStationDal>(5);
-        internal static List<CustomerDal> Customers = new List<CustomerDal>(100);
-        internal static List<ParcelDal> Parcels = new List<ParcelDal>(1000);
-        internal static List<DroneCharge> DronesInCharge = new List<DroneCharge>();
+        internal static List<DroneDal> Drones = new(10) ;
+        internal static List<BaseStationDal> BaseStations = new(5);
+        internal static List<CustomerDal> Customers = new(100);
+        internal static List<ParcelDal> Parcels = new(1000);
+        internal static List<DroneCharge> DronesInCharge = new();
         #endregion The entities lists
 
         /// <summary> Updating the parcel amount </summary>

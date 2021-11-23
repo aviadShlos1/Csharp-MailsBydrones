@@ -220,7 +220,8 @@ Please enter the sender id number(9 digits):");
 7. Picking Up parcel by a drone
 8. Supplying Parcel to customer
 Your choice:");
-            int.TryParse(Console.ReadLine(), out int choice);
+            int choice;
+            while (!int.TryParse(Console.ReadLine(), out choice)) ;
 
             int droneId, baseStationId, totalChargeSlots, customerId;
             string newModel ,baseStationName, customerName , phoneNumber;
@@ -229,7 +230,7 @@ Your choice:");
             {
                 case UpdatesOption.UpdateDroneName:
                     Console.WriteLine("Please enter a drone id (4 digits):");
-                    int.TryParse(Console.ReadLine(), out droneId);
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     Console.WriteLine("Please enter a new name:");
                     newModel = Console.ReadLine();
 
@@ -283,7 +284,7 @@ Your choice:");
 
                 case UpdatesOption.DroneToCharge:
                     Console.WriteLine("Please enter a drone id (4 digits): ");
-                    int.TryParse(Console.ReadLine(), out droneId);
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     try
                     {
                         bl.DroneToCharge(droneId);
@@ -301,9 +302,9 @@ Your choice:");
                 case UpdatesOption.ReleaseDroneCharge:
                     TimeSpan chargeTime = default;
                     Console.WriteLine("Please enter a drone id (4 digits):");
-                    int.TryParse(Console.ReadLine(), out droneId);
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     Console.WriteLine("Please enter the length of time the drone has been charging:");
-                    TimeSpan.TryParse(Console.ReadLine(), out chargeTime);
+                    while(!TimeSpan.TryParse(Console.ReadLine(), out chargeTime));
                     try
                     {
                         bl.ReleaseDroneCharge(droneId, chargeTime);
@@ -321,7 +322,7 @@ Your choice:");
 
                 case UpdatesOption.AssignParcelToDrone:
                     Console.WriteLine("Please enter a drone id (4 digits):");
-                    int.TryParse(Console.ReadLine(), out droneId);
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     try
                     {
                         bl.AssignParcelToDrone(droneId);
@@ -360,7 +361,7 @@ Your choice:");
                 
                 case UpdatesOption.SupplyParcel:
                     Console.WriteLine("Please enter a drone id(0-1000):");
-                    int.TryParse(Console.ReadLine(), out droneId);
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     try
                     {
@@ -555,7 +556,7 @@ Your choice:");
             IBL.IBL blObject = new BL();
 
             Options options;
-            int choice = 0;
+            int choice;
             do
             {
                 Console.WriteLine(@"Hello guest, the program offers you the following options (select number): 
