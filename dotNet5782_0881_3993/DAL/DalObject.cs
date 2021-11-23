@@ -34,7 +34,7 @@ namespace DalObject
         public void AddStation(BaseStationDal newStation)
         {
             int check = DataSource.BaseStations.FindIndex(x=>x.Id==newStation.Id);
-            if (check != 0)
+            if (check != -1) 
             {
                 throw new AlreadyExistException(newStation.Id);
             }
@@ -42,8 +42,8 @@ namespace DalObject
         }
         public void AddDrone(DroneDal newDrone)
         {
-            int check = DataSource.Drones.FindIndex(x => x.Id == newDrone.Id);
-            if (check != 0)
+            int existIndex = DataSource.Drones.FindIndex(x => x.Id == newDrone.Id);
+            if (existIndex != -1)
             {
                 throw new AlreadyExistException(newDrone.Id);
             }
@@ -51,8 +51,8 @@ namespace DalObject
         }
         public void AddCustomer(CustomerDal newCustomer)
         {
-            int check = DataSource.Customers.FindIndex(x => x.Id == newCustomer.Id);
-            if (check != 0)
+            int existIndex = DataSource.Customers.FindIndex(x => x.Id == newCustomer.Id);
+            if (existIndex != -1)
             {
                 throw new AlreadyExistException(newCustomer.Id);
             }
@@ -60,8 +60,8 @@ namespace DalObject
         }
         public int AddParcel(ParcelDal newParcel)
         {
-            int check = DataSource.Parcels.FindIndex(x => x.Id == newParcel.Id);
-            if (check != 0)
+            int existIndex = DataSource.Parcels.FindIndex(x => x.Id == newParcel.Id);
+            if (existIndex != -1)
             {
                 throw new AlreadyExistException(newParcel.Id);
             }

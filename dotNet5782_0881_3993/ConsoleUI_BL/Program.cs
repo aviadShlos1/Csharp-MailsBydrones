@@ -51,7 +51,6 @@ Your choice:");
                     int newStationID, newchargsSlots;
                     string newName;                   
                     double newLongitude= default, newLatitude=default;
-                    Location newLocation = new() { Longitude = newLongitude, Latitude = newLatitude };
                     // User input for a new station
                     Console.WriteLine(@"
 You selected to add a new station.
@@ -67,6 +66,7 @@ Please enter an id number for the new station:(0-4)");
                     while (!double.TryParse(Console.ReadLine(), out newLatitude)) ;
                     Console.WriteLine();
 
+                    Location newLocation = new() { Longitude = newLongitude, Latitude = newLatitude };
                     BaseStationBl newBaseStation = new BaseStationBl
                     {
                         Id = newStationID,
@@ -128,7 +128,6 @@ Please enter an id number for the new Drone(1000-9999):");
                     int newCustomerID;
                     string newCustomerName, newPhoneNumber;
                     double newCustomerLongitude=default, newCustomerLatitude = default;
-                    Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
                     // User input for a new customer
                     Console.WriteLine(@"
 You selected to add a new Customer.
@@ -144,6 +143,7 @@ Please enter an id number for the new Customer(9 digits):");
                     while (!double.TryParse(Console.ReadLine(), out newCustomerLatitude)) ;
                     Console.WriteLine();
 
+                    Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
                     CustomerBL newCustomer = new CustomerBL
                     {
                         CustomerId = newCustomerID,
@@ -163,11 +163,13 @@ Please enter an id number for the new Customer(9 digits):");
 
                 // Adding a new parcel
                 case ConsoleUI_BL.AddOptions.AddParcel:
-                    int newSenderId, newTargetId, newWeight, newPriorities;
+                    int newId, newSenderId, newTargetId, newWeight, newPriorities;
                     // User input for a new parcel
                     Console.WriteLine(@"
 You selected to add a new Parcel.
-Please enter the sender id number(9 digits):");
+Please enter the parcel id number(0-1000):");
+                    while (!int.TryParse(Console.ReadLine(), out newId)) ;
+                    Console.WriteLine("Please enter the sender id number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newSenderId)) ;
                     Console.WriteLine("Please enter the target id number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newTargetId)) ;

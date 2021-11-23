@@ -35,13 +35,15 @@ namespace IBL
             tempDrone.Id = newDroneBl.DroneId;
             tempDrone.Model = newDroneBl.Model;
             tempDrone.DroneWeight = (WeightCategoriesDal)newDroneBl.DroneWeight;
-            
+            int existIndex = DalAccess.GetBaseStationsList().ToList().FindIndex(x => x.Id == firstChargeStation);
+            if (existIndex == -1)
+                throw new BO.NotExistException();
             foreach (var item in DalAccess.GetBaseStationsList())
             {
                 if (item.Id == firstChargeStation)
                 {
-                    newDroneBl.DroneLocation.Longitude = item.Longitude;
-                    newDroneBl.DroneLocation.Latitude = item.Latitude;
+                    Location location = new() { Longitude = item.Longitude, Latitude = item.Latitude };
+                    newDroneBl.DroneLocation = location;                  
                 }
             }
             newDroneBl.BatteryPercent = (rand.NextDouble() * 20) + 20;

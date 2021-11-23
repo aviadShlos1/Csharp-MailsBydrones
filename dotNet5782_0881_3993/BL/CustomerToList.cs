@@ -17,7 +17,7 @@ namespace IBL.BO
         public int ParcelsInWayToReciever { get; set; }
         public override string ToString()
         {
-            return $"CustomerToList: CustomerId:{Id}, CustomerName:{Name}, Phone:{Phone},SendAndSuppliedParcels:{SendAndSuppliedParcels},SendAndNotSuppliedParcels:{SendAndNotSuppliedParcels},RecieverGotParcels:{RecieverGotParcels},InTheWayParcels:{ParcelsInWayToReciever}";
+            return $"CustomerId: {Id}, CustomerName: {Name}, Phone: {Phone},SendAndSuppliedParcels: {SendAndSuppliedParcels},SendAndNotSuppliedParcels: {SendAndNotSuppliedParcels},RecieverGotParcels: {RecieverGotParcels},InTheWayParcels: {ParcelsInWayToReciever}";
         }
     }
 }
