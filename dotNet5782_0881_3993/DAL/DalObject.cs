@@ -58,16 +58,11 @@ namespace DalObject
             }
             DataSource.Customers.Add(newCustomer);
         }
-        public void AddParcel(ParcelDal newParcel)
-        {
-            int existIndex = DataSource.Parcels.FindIndex(x => x.Id == newParcel.Id);
-            if (existIndex != -1)
-            {
-                throw new AlreadyExistException(newParcel.Id);
-            }
+        public int AddParcel(ParcelDal newParcel)
+        {           
             DataSource.Parcels.Add(newParcel);
-            //newParcel.Id = DataSource.Config.RunId++;
-            //return newParcel.Id;
+            newParcel.Id = DataSource.Config.RunId++;
+            return newParcel.Id;
         }
         #endregion Add methods
 

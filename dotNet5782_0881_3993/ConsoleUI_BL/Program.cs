@@ -168,17 +168,15 @@ Please enter an id number for the new Customer(9 digits):");
 
                 // Adding a new parcel
                 case ConsoleUI_BL.AddOptions.AddParcel:
-                    int newId, newSenderId, newTargetId, newWeight, newPriorities;
+                    int newSenderId, newTargetId, newWeight, newPriorities;
                     // User input for a new parcel
                     Console.WriteLine(@"
 You selected to add a new Parcel.
-Please enter the parcel id number(0-1000):");
-                    while (!int.TryParse(Console.ReadLine(), out newId)) ;
-                    Console.WriteLine("Please enter the sender id number(9 digits):");
+Please enter the sender id number(0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newSenderId)) ;
                     Console.WriteLine("Please enter the target id number (9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newTargetId)) ;
-                    Console.WriteLine("Please enter the weight category of the parcel: 0 for free, 1 for maintenance and 2 for delievery");
+                    Console.WriteLine("Please enter the weight category of the parcel: 0 for light, 1 for medium and 2 for heavy");
                     while (!int.TryParse(Console.ReadLine(), out newWeight)) ;
                     Console.WriteLine("Please enter the priorities of the new parcel: 0 for normal, 1 for fast and 2 for urgent");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
@@ -187,20 +185,13 @@ Please enter the parcel id number(0-1000):");
                     AssignCustomerToParcel myAssignSenderToParcel = new() { Id = newSenderId };/
                     AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = newTargetId };
                     ParcelBl newParcel = new ParcelBl
-                    {                        
+                    {   
                         Sender= myAssignSenderToParcel,
                         Reciever = myAssignRecieverToParcel,
                         ParcelWeight = (WeightCategoriesBL)newWeight,
                         Priority = (PrioritiesBL)newPriorities
                     };
-                    try
-                    {
-                        bl.AddParcel(newParcel);
-                    }
-                    catch (AlreadyExistException ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
+                    bl.AddParcel(newParcel);
                     break;
 
                 default:
@@ -368,7 +359,6 @@ Your choice:");
                 
                 case UpdatesOption.SupplyParcel:
                     Console.WriteLine("Please enter a drone id (0-1000):");
-                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     try
                     {

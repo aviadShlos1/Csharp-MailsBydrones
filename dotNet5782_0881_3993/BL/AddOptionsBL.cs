@@ -81,21 +81,13 @@ namespace IBL
         public void AddParcel(ParcelBl newParcel)
         {
             ParcelDal tempParcel = new();
-            tempParcel.Id = newParcel.ParcelId;   
             tempParcel.SenderId = newParcel.Sender.Id;
             tempParcel.TargetId = newParcel.Reciever.Id;
             tempParcel.Weight = (WeightCategoriesDal)newParcel.ParcelWeight;
             tempParcel.Priority = (Priorities)newParcel.Priority;
             tempParcel.CreatingTime = DateTime.Now;
             tempParcel.DroneToParcelId = 0;
-            try
-            {
-                DalAccess.AddParcel(tempParcel);
-            }
-            catch (IDAL.DO.AlreadyExistException)
-            {
-                throw new BO.AlreadyExistException();
-            }
+            DalAccess.AddParcel(tempParcel);
         }
     }
 }
