@@ -91,10 +91,10 @@ namespace IBL
             heavyWeightConsumption = energyConsumption[3];
             chargeRate = energyConsumption[4];
             
-            IEnumerable<IDAL.DO.DroneDal> DronesDalList = DalAccess.GetDronesList();
-            IEnumerable<IDAL.DO.ParcelDal> ParcelsDalList = DalAccess.GetParcelsList();
-            IEnumerable<IDAL.DO.BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList();
-            IEnumerable<IDAL.DO.CustomerDal> CustomersDalList = DalAccess.GetCustomersList();
+            IEnumerable<DroneDal> DronesDalList = DalAccess.GetDronesList();
+            IEnumerable<ParcelDal> ParcelsDalList = DalAccess.GetParcelsList();
+            IEnumerable<BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList();
+            IEnumerable<CustomerDal> CustomersDalList = DalAccess.GetCustomersList();
             DronesListBL = new List<DroneToList>();
             foreach (var item in DronesDalList)
             {
