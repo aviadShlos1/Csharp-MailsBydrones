@@ -21,34 +21,117 @@ namespace IDAL
             return ConsumptionArr;
         }
         #region Add methods
+
+        /// Adding a new object for the base stations list
+        /// </summary>
+        /// <param name="newStation"></param>
         public void AddStation(BaseStationDal newStation);
+
+        /// Adding a new object for the drones list
+        /// </summary>
+        /// <param name="newDrone"></param>
         public void AddDrone(DroneDal newDrone);
+
+        /// Adding a new object for the customers list
+        /// </summary>
+        /// <param name="newCustomer"></param>
         public void AddCustomer(CustomerDal newCustomer);
+
+        /// Adding a new object for the parcels list
+        /// </summary>
+        /// <param name="newParcel"></param>
         public int AddParcel(ParcelDal newParcel);
         #endregion Add methods
 
-        #region Update methods        
-        public void AssignParcelToDrone(int parcelId, int droneId);    
+        #region Update methods    
+        /// Assining a drone to a parcel by the parcel and drone id 
+        /// </summary>
+        /// <param name="parcelId"></param>
+        /// <param name="droneId"></param>
+        public void AssignParcelToDrone(int parcelId, int droneId);
+
+        /// Picking up a parcel by the assined drone before, with given the parcel id
+        /// </summary>
+        /// <param name="parcelId"></param>
         public void PickUpParcel(int parcelId);
+
+        /// Delivering the parcel to the customer
+        /// </summary>
+        /// <param name="parcelId"></param>
         public void DelieverParcel(int parcelId);
+
+        /// Sending a drone to charge in the base station, with given the drone and station id
+        /// </summary>
+        /// <param name="droneId"></param>
+        /// <param name="stationId"></param>
         public void DroneToCharge(int droneId, int stationId);
+
+        /// Realesing a drone from the charge base station
+        /// </summary>
+        /// <param name="droneId"></param>
         public void DroneRelease(int droneId);
         #endregion Update methods
 
         #region Single display 
+        /// Displaying the details for a single base station 
+        /// </summary>
+        /// <param name="stationId"></param>
+        /// <returns>The type of the entity</returns>
         public BaseStationDal GetSingleBaseStation(int stationId);
+
+        /// Displaying the details for a single drone 
+        /// </summary>
+        /// <param name="droneId"></param>
+        /// <returns>The type of the entity</returns>
         public DroneDal GetSingleDrone(int droneId);
+
+        /// Displaying the details for a single customer 
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns>The type of the entity</returns>
         public CustomerDal GetSingleCustomer(int customerId);
+
+        /// Displaying the details for a single parcel 
+        /// </summary>
+        /// <param name="parcelId"></param>
+        /// <returns>The type of the entity</returns>
         public ParcelDal GetSingleParcel(int parcelId);
         #endregion Single display
 
         #region ListDisplay
+        /// Displaying the base stations list which includes the details of the all base stations
+        /// </summary>
+        /// <returns> The ienumerable list </returns>
         public IEnumerable<BaseStationDal> GetBaseStationsList();
+
+        /// Displaying the drones list which includes the details of the all drones
+        /// </summary>
+        /// <returns> The ienumerable list </returns>
         public IEnumerable<DroneDal> GetDronesList();
+
+        /// Displaying the customers list which includes the details of the all customers
+        /// </summary>
+        /// <returns> The ienumerable list </returns>
         public IEnumerable<CustomerDal> GetCustomersList();
+
+        /// Displaying the parcels list which includes the details of the all parcels
+        /// </summary>
+        /// <returns> The ienumerable list </returns>
         public IEnumerable<ParcelDal> GetParcelsList();
+
+        /// Displaying the parcels without drone 
+        /// </summary>
+        /// <returns> The ienumerable list </returns>
         public IEnumerable<ParcelDal> GetParcelsWithoutDrone();
+
+        /// Displaying the base stations with free charge slots 
+        /// </summary>
+        /// <returns> The ienumerable list </returns>
         public IEnumerable<BaseStationDal> GetStationsWithFreeCharge();
+
+        /// Displaying the drones in charge
+        /// </summary>
+        /// <returns> The ienumerable list </returns>
         public IEnumerable<DroneCharge> GetDronesChargeList();     
         #endregion ListDisplay
     }

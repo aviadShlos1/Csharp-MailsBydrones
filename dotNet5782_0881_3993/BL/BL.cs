@@ -60,7 +60,7 @@ namespace IBL
                 }
             }
 
-            BaseStationBl closetBaseStation = new();
+            BaseStationBl closetBaseStation = new BaseStationBl() { Location=new () };
             closetBaseStation.Location.Longitude = stationLon;
             closetBaseStation.Location.Latitude = stationLat;
             return closetBaseStation;
@@ -84,7 +84,6 @@ namespace IBL
         //ctor
         public BL()
         {
-            
             double[] energyConsumption = DalAccess.EnergyConsumption();
             freeWeightConsumption = energyConsumption[0];
             lightWeightConsumption = energyConsumption[1];
@@ -92,14 +91,16 @@ namespace IBL
             heavyWeightConsumption = energyConsumption[3];
             chargeRate = energyConsumption[4];
             
-            IEnumerable<DroneDal> DronesDalList = DalAccess.GetDronesList();
-            IEnumerable<ParcelDal> ParcelsDalList = DalAccess.GetParcelsList();
-            IEnumerable<BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList();
-            IEnumerable<CustomerDal> CustomersDalList = DalAccess.GetCustomersList();
+            // initializing the entities lists from the dal layer
+            List <DroneDal> DronesDalList = DalAccess.GetDronesList().ToList();
+            List <ParcelDal> ParcelsDalList = DalAccess.GetParcelsList().ToList();
+            List <BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList().ToList();
+            List <CustomerDal> CustomersDalList = DalAccess.GetCustomersList().ToList();
+            
             DronesListBL = new List<DroneToList>();
             foreach (var item in DronesDalList)
             {
-                DronesListBL.Add(new DroneToList { DroneId = item.Id, Model = item.Model, DroneWeight = (WeightCategoriesBL)item.DroneWeight });
+                DronesListBL.Add(new DroneToList { DroneId = item.Id, Model = item.Model, DroneWeight = (WeightCategoriesBL)item.DroneWeight, DroneLocation = new() });
             }
             foreach (var itemDrone in DronesListBL)
             {
@@ -137,31 +138,33 @@ namespace IBL
                 if (itemDrone.DroneStatus == DroneStatus.Maintaince)
                 {
                     int index = rand.Next(BaseStationsDalList.Count());
-                    itemDrone.DroneLocation.Latitude = BaseStationsDalList.ToList()[index].Latitude;
-                    itemDrone.DroneLocation.Longitude = BaseStationsDalList.ToList()[index].Longitude;
+                    itemDrone.DroneLocation.Latitude = BaseStationsDalList[index].Latitude;
+                    itemDrone.DroneLocation.Longitude = BaseStationsDalList[index].Longitude;
                     itemDrone.BatteryPercent = rand.NextDouble() * 20;
                 }
                 if (itemDrone.DroneStatus == DroneStatus.Free)
                 {
 
-                    List<IDAL.DO.ParcelDal> assignedParcels = DalAccess.GetParcelsList().ToList().FindAll(x => x.DroneToParcelId == itemDrone.DroneId && x.SupplyingTime != DateTime.MinValue);
-                    
-                    if (assignedParcels.Count != 0 )
+                    List<IDAL.DO.ParcelDal> assignedParcels = ParcelsDalList.FindAll(x => x.DroneToParcelId == itemDrone.DroneId && x.SupplyingTime != DateTime.MinValue);
+
+                    if (assignedParcels.Count != 0) //the list isn't empty 
                     {
-                        itemDrone.DroneLocation.Latitude = DalAccess.GetCustomersList().ToList().Find(x => x.Id == assignedParcels[(rand.Next(assignedParcels.Count))-1].TargetId).CustomerLatitude;
-                        itemDrone.DroneLocation.Longitude = DalAccess.GetCustomersList().ToList().Find(x => x.Id == assignedParcels[(rand.Next(assignedParcels.Count))-1].TargetId).CustomerLongitude;
+                        int index = rand.Next(0, assignedParcels.Count);
+                        itemDrone.DroneLocation.Latitude = CustomersDalList.Find(x => x.Id == assignedParcels[index].TargetId).CustomerLatitude;
+                        itemDrone.DroneLocation.Longitude = CustomersDalList.Find(x => x.Id == assignedParcels[index].TargetId).CustomerLongitude;
                     }
                     else
                     {
-                        if (!DalAccess.GetBaseStationsList().Any())
+                        IDAL.DO.BaseStationDal temp = BaseStationsDalList[rand.Next(0, BaseStationsDalList.Count)];
+                        if (!BaseStationsDalList.Any())
                         {
-                            itemDrone.DroneLocation.Latitude = DalAccess.GetBaseStationsList().ToList()[(rand.Next( 0, DalAccess.GetBaseStationsList().ToList().Count))-1].Latitude ;
-                            itemDrone.DroneLocation.Longitude = DalAccess.GetBaseStationsList().ToList()[(rand.Next(0, DalAccess.GetBaseStationsList().ToList().Count))-1].Longitude;
+                            itemDrone.DroneLocation.Latitude = temp.Latitude;
+                            itemDrone.DroneLocation.Longitude = temp.Longitude;
                         }
-
                     }
-                    Location closetStation = new();
-                    closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, DalAccess.GetBaseStationsList().ToList()).Location;
+                    
+                    Location closetStation = new Location();
+                    closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude,BaseStationsDalList).Location;
                     double minCharge = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, closetStation.Longitude, closetStation.Latitude);
                     itemDrone.BatteryPercent = rand.NextDouble()*(100-minCharge)+minCharge ;
                 }
