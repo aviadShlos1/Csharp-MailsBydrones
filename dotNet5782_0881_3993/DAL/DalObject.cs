@@ -80,10 +80,10 @@ namespace DalObject
         public void AssignParcelToDrone(int parcelId, int droneId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
-            //if (parcelIndex==0)
-            //{
-            //    throw new NotExistException(parcelId);
-            //}
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(parcelId);
+            }
             ParcelDal parcel1 = DataSource.Parcels[parcelIndex];
             parcel1.DroneToParcelId = droneId;
             parcel1.AssignningTime = DateTime.Now;
@@ -93,13 +93,14 @@ namespace DalObject
         /// Picking up a parcel by the assined drone before, with given the parcel id
         /// </summary>
         /// <param name="parcelId"></param>
-        public void PickUpParcel(int parcelId)
+        public void PickUpParcel(int droneId)
         {
-            int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
-            //if (parcelIndex == 0)
-            //{
-            //    throw new NotExistException(parcelId);
-            //}
+            
+            int parcelIndex = DataSource.Parcels.FindIndex(i => i.DroneToParcelId == droneId);
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(droneId);
+            }
             ParcelDal parcel2 = DataSource.Parcels[parcelIndex];
             parcel2.PickingUpTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel2;
@@ -108,13 +109,13 @@ namespace DalObject
         /// Delivering the parcel to the customer
         /// </summary>
         /// <param name="parcelId"></param>
-        public void DelieverParcel(int parcelId)
+        public void SupplyParcel(int droneId)
         {
-            int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
-            //if (parcelIndex == 0)
-            //{
-            //    throw new NotExistException(parcelId);
-            //}
+            int parcelIndex = DataSource.Parcels.FindIndex(i => i.DroneToParcelId == droneId);
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(droneId);
+            }
             ParcelDal parcel3 = DataSource.Parcels[parcelIndex];
             parcel3.SupplyingTime = DateTime.Now;
             DataSource.Parcels[parcelIndex] = parcel3;
@@ -127,10 +128,10 @@ namespace DalObject
         public void DroneToCharge(int droneId, int stationId)
         {
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
-            //if (stationIndex == 0)
-            //{
-            //    throw new NotExistException(stationId);
-            //}
+            if (stationId == 0)
+            {
+                throw new NotExistException("Invalid staion id");
+            }
             BaseStationDal station1 = DataSource.BaseStations[stationIndex];
             station1.FreeChargeSlots--; // Reducing the free chargeSlots
             DataSource.BaseStations[stationIndex] = station1;
@@ -138,10 +139,10 @@ namespace DalObject
             DataSource.DronesInCharge.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
 
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId==droneId);
-            //if (chargeIndex == 0)
-            //{
-            //    throw new NotExistException(droneId);
-            //}
+            if (droneId == 0)
+            {
+                throw new NotExistException(droneId);
+            }
             DroneCharge charge1 = DataSource.DronesInCharge[chargeIndex];
             DataSource.DronesInCharge[chargeIndex] = charge1;
         }

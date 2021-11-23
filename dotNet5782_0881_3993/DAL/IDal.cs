@@ -58,7 +58,7 @@ namespace IDAL
         /// Delivering the parcel to the customer
         /// </summary>
         /// <param name="parcelId"></param>
-        public void DelieverParcel(int parcelId);
+        public void SupplyParcel(int parcelId);
 
         /// Sending a drone to charge in the base station, with given the drone and station id
         /// </summary>
