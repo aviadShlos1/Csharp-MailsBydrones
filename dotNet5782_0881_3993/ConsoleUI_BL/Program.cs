@@ -184,7 +184,7 @@ Please enter the parcel id number(0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
                     Console.WriteLine();
                     
-                    AssignCustomerToParcel myAssignSenderToParcel = new() { Id = newSenderId };
+                    AssignCustomerToParcel myAssignSenderToParcel = new() { Id = newSenderId };/
                     AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = newTargetId };
                     ParcelBl newParcel = new ParcelBl
                     {                        
