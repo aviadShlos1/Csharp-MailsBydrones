@@ -10,6 +10,7 @@ namespace IDAL.DO
     public class NotExistException : Exception
     {
         public int ID;
+        public string msg;
         public NotExistException(int id) : base() => ID = id;
         public NotExistException(int id, string message) : base(message) => ID = id;
         public NotExistException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
