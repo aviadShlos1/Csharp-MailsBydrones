@@ -13,7 +13,7 @@ namespace IBL.BO
         public int ID;
         public NotExistException() : base() { }
         public NotExistException(int id, string message, Exception innerException) : base(message, innerException) => ID =((IDAL.DO.NotExistException)innerException).ID;
-        public override string ToString() => base.ToString() + $",The id does not exist:{ID}";
+        public override string ToString() => base.ToString() + $",The id does not exist";
 
     }
     [Serializable]
@@ -22,7 +22,7 @@ namespace IBL.BO
         public int ID;
         public AlreadyExistException() : base() { }
         public AlreadyExistException(int id, string message, Exception innerException) : base(message, innerException) => ID = ((IDAL.DO.AlreadyExistException)innerException).ID;
-        public override string ToString() => base.ToString() + $", The id is already exists:{ID}";
+        public override string ToString() => base.ToString() + $", The id is already exists";
 
     }
     [Serializable]
@@ -32,7 +32,7 @@ namespace IBL.BO
         public CannotGoToChargeException(int id) : base() => DroneID = id;
         public CannotGoToChargeException(int id, string message) : base(message) => DroneID = id;
         public CannotGoToChargeException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
-        public override string ToString() => base.ToString() + $", This drone cannot go to charge:{DroneID}";
+        public override string ToString() => base.ToString() + $", This drone cannot go to charge";
 
     }
     [Serializable]
@@ -42,7 +42,7 @@ namespace IBL.BO
         public CannotReleaseFromChargeException(int id) : base() => DroneID = id;
         public CannotReleaseFromChargeException(int id, string message) : base(message) => DroneID = id;
         public CannotReleaseFromChargeException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
-        public override string ToString() => base.ToString() + $", This drone cannot release from charge:{DroneID}";
+        public override string ToString() => base.ToString() + $", This drone cannot release from charge";
 
     }
 
@@ -53,7 +53,7 @@ namespace IBL.BO
         public CannotAssignDroneToParcelException(int id) : base() => DroneID = id;
         public CannotAssignDroneToParcelException(int id, string message) : base(message) => DroneID = id;
         public CannotAssignDroneToParcelException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
-        public override string ToString() => base.ToString() + $", This drone {DroneID} cannot be assigned to this parcel:";
+        public override string ToString() => base.ToString() + $", This drone cannot be assigned to this parcel:";
     }
 
     [Serializable]
@@ -63,7 +63,7 @@ namespace IBL.BO
         public DroneIsNotAvailable(int id) : base() => DroneID = id;
         public DroneIsNotAvailable(int id, string message) : base(message) => DroneID = id;
         public DroneIsNotAvailable(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
-        public override string ToString() => base.ToString() + $", The drone {DroneID} is not available now:";
+        public override string ToString() => base.ToString() + $", The drone is not available now:";
     }
 
 
@@ -74,7 +74,7 @@ namespace IBL.BO
         public NotEnoughChargeSlotsInThisStation(int id) : base() => stationId = id;
         public NotEnoughChargeSlotsInThisStation(int id, string message) : base(message) => stationId = id;
         public NotEnoughChargeSlotsInThisStation(int id, string message, Exception innerException) : base(message, innerException) => stationId = id;
-        public override string ToString() => base.ToString() + $", There are'nt enough charge slots in this station:{stationId} ";
+        public override string ToString() => base.ToString() + $", There are'nt enough charge slots in this station";
     }
 
     [Serializable]
@@ -85,7 +85,7 @@ namespace IBL.BO
         public CannotPickUpException(string msg) { Console.WriteLine(msg); }
         public CannotPickUpException(int id, string message) : base(message) => DroneID = id;
         public CannotPickUpException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
-        public override string ToString() => base.ToString() + $", The drone cannot pick up the parcel:{DroneID}";
+        public override string ToString() => base.ToString() + $", The drone cannot pick up the parcel";
     }
     [Serializable]
     public class CannotSupplyException : Exception
@@ -95,7 +95,7 @@ namespace IBL.BO
         public CannotSupplyException(string msg) { Console.WriteLine(msg); }
         public CannotSupplyException(int id, string message) : base(message) => DroneID = id;
         public CannotSupplyException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
-        public override string ToString() => base.ToString() + $", The drone cannot supply the parcel:{DroneID}";
+        public override string ToString() => base.ToString() + $", The drone cannot supply the parcel";
     }
     [Serializable]
     public class NoStationsWithFreeChargeException : Exception
@@ -105,7 +105,7 @@ namespace IBL.BO
         public NoStationsWithFreeChargeException(int id) : base() => firstChargeStation = id;
         public NoStationsWithFreeChargeException(int id, string message) : base(message) => firstChargeStation = id;
         public NoStationsWithFreeChargeException(int id, string message, Exception innerException) : base(message, innerException) => firstChargeStation = id;
-        public override string ToString() => base.ToString() + $", This station doesn't have enough slots for charge:{firstChargeStation}";
+        public override string ToString() => base.ToString() + $", This station doesn't have enough slots for charge";
 
     }
 }

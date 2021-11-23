@@ -14,7 +14,7 @@ namespace IBL.BO
         public int BusyChargeSlots { get; set; }
         public override string ToString()
         {
-            return $"BaseStationToList: CustomerId:{Id}, BaseStationName:{BaseStationName},FreeChargeSlots:{FreeChargeSlots},BusyChargeSlots:{BusyChargeSlots} ";
+            return $"CustomerId: {Id}, BaseStationName: {BaseStationName},FreeChargeSlots: {FreeChargeSlots},BusyChargeSlots: {BusyChargeSlots} ";
         }
     }
 }

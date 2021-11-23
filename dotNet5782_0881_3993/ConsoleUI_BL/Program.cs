@@ -36,10 +36,10 @@ namespace ConsoleUI_BL
         static public void AddOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Add options:
-1. BaseStationBl
-2. DroneBl
-3. CustomerBl
-4. ParcelBl
+1. BaseStation
+2. Drone
+3. Customer
+4. Parcel
 Your choice:");
           int choice;
           while(!int.TryParse(Console.ReadLine(), out choice));
@@ -83,6 +83,7 @@ Please enter an id number for the new station:(0-4)");
                     {
                         Console.WriteLine(ex);
                     }
+                    
                     break;
 
                 // Adding a new drone
@@ -95,11 +96,11 @@ Please enter an id number for the new station:(0-4)");
 You selected to add a new Drone.
 Please enter an id number for the new Drone(1000-9999):");
                     while (!int.TryParse(Console.ReadLine(), out newDroneID)) ;
-                    Console.WriteLine("Please enter the model of the drone:(model ***) ");
+                    Console.WriteLine("Please enter the model of the drone:(model: num (0-100) ");
                     newModel = Console.ReadLine();
                     Console.WriteLine("Please enter the weight category of the drone: 0 for light, 1 for medium and 2 for heavy");
                     while (!int.TryParse(Console.ReadLine(), out newMaxWeight)) ;
-                    Console.WriteLine("Please enter the id of the Station to put the drone for first charge");
+                    Console.WriteLine("Please enter a station id for being the first charge station");
                     while (!int.TryParse(Console.ReadLine(), out firstChargeStation)) ;
                     Console.WriteLine();
 
@@ -117,7 +118,11 @@ Please enter an id number for the new Drone(1000-9999):");
                     {
                         Console.WriteLine(ex);
                     }
-                    catch(NoStationsWithFreeChargeException ex)
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch (NoStationsWithFreeChargeException ex)
                     {
                         Console.WriteLine(ex);
                     }
@@ -128,7 +133,6 @@ Please enter an id number for the new Drone(1000-9999):");
                     int newCustomerID;
                     string newCustomerName, newPhoneNumber;
                     double newCustomerLongitude=default, newCustomerLatitude = default;
-                    Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
                     // User input for a new customer
                     Console.WriteLine(@"
 You selected to add a new Customer.
@@ -140,9 +144,10 @@ Please enter an id number for the new Customer(9 digits):");
                     newPhoneNumber = Console.ReadLine();
                     Console.WriteLine("Please enter the longitude of the customer city:");
                     while (!double.TryParse(Console.ReadLine(), out newCustomerLongitude)) ;
-                    Console.WriteLine("Please enter the Latitude of the customer city:");
+                    Console.WriteLine("Please enter the latitude of the customer city:");
                     while (!double.TryParse(Console.ReadLine(), out newCustomerLatitude)) ;
                     Console.WriteLine();
+                    Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
 
                     CustomerBL newCustomer = new CustomerBL
                     {
@@ -169,7 +174,7 @@ Please enter an id number for the new Customer(9 digits):");
 You selected to add a new Parcel.
 Please enter the sender id number(9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newSenderId)) ;
-                    Console.WriteLine("Please enter the target id number(9 digits):");
+                    Console.WriteLine("Please enter the target id number (9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newTargetId)) ;
                     Console.WriteLine("Please enter the weight category of the parcel: 0 for free, 1 for maintenance and 2 for delievery");
                     while (!int.TryParse(Console.ReadLine(), out newWeight)) ;
@@ -197,7 +202,7 @@ Please enter the sender id number(9 digits):");
                     break;
 
                 default:
-                    Console.WriteLine("you entered a wrong number please choose again");
+                    Console.WriteLine("you entered a wrong number. Please choose a number again");
                     break;
             }
         }
@@ -343,7 +348,7 @@ Your choice:");
                     break;
 
                 case UpdatesOption.PickUpParcel:
-                    Console.WriteLine("Please enter a drone id(0-1000):");
+                    Console.WriteLine("Please enter a drone id (0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     try
                     {
@@ -360,7 +365,7 @@ Your choice:");
                     break;
                 
                 case UpdatesOption.SupplyParcel:
-                    Console.WriteLine("Please enter a drone id(0-1000):");
+                    Console.WriteLine("Please enter a drone id (0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     try
@@ -407,7 +412,7 @@ Your choice:");
             {
                 // Single station display
                 case SingleDisplayOptions.BaseStationDisplay:
-                    Console.WriteLine("Add the requested station id(0-4):");
+                    Console.WriteLine("Add the station id (0-4):");
                     while (!int.TryParse(Console.ReadLine(), out objectId)) ;
                     try
                     {
@@ -420,7 +425,7 @@ Your choice:");
                     break;
                 // Single drone display
                 case SingleDisplayOptions.DroneDisplay:
-                    Console.WriteLine("Add the requested drone id(4 digits):");
+                    Console.WriteLine("Add the drone id (4 digits):");
                     while (!int.TryParse(Console.ReadLine(), out objectId)) ;
                     try
                     {
@@ -433,7 +438,7 @@ Your choice:");
                     break;
                 // Single customer display
                 case SingleDisplayOptions.CustomerDisplay:
-                    Console.WriteLine("Add the requested customer id(9 digits):");
+                    Console.WriteLine("Add the customer id (9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out objectId)) ;
                     try
                     {
@@ -446,7 +451,7 @@ Your choice:");
                     break;
                 // Single parcel display
                 case SingleDisplayOptions.ParcelDisplay:
-                    Console.WriteLine("Add the requested parcel id(0-1000):");
+                    Console.WriteLine("Add the parcel id (0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out objectId)) ;
                     try
                     {

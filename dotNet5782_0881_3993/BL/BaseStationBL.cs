@@ -15,8 +15,8 @@ namespace IBL.BO
         public List<DroneInCharge> DronesInChargeList { get; set; }
         public override string ToString()
         {
-            return $"BaseStationBl: CustomerId:{Id}, BaseStationName:{BaseStationName}, Location:{Location},FreeChargeSloted:{FreeChargeSlots}" +
-               "DroneInCharge:" + String.Join(",",DronesInChargeList); 
+            return $"CustomerId: {Id}, BaseStationName: {BaseStationName}, Location: {Location},FreeChargeSloted: {FreeChargeSlots}" +
+               "DroneInCharge: " + String.Join(",",DronesInChargeList); 
                
         }
     }

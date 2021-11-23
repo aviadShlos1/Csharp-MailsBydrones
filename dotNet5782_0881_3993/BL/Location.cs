@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class Location // מיקום
+    public class Location 
     {
         public double Longitude { get; set; }
         public double Latitude { get; set; }
         public override string ToString()
         {
-            return $"DroneBl: longitude:{Longitude},  latitude:{Latitude}";
+            return $"longitude: {Longitude},  latitude: {Latitude} ";
         }
     }
 }
