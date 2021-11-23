@@ -20,8 +20,8 @@ namespace IBL.BO
         public DateTime SupplyingTime { get; set; }
         public override string ToString()
         {
-            return $"ParcelBl: ParcelId:{ParcelId}, AssignSenderToParcel:{Sender}, AssignRecieverToParcel:{Reciever}, ParcelWeight:{ParcelWeight}, Priority:{Priority}, DroneInShipment:{DroneAssignToParcel}, " +
-                $"CreatingTime:{CreatingTime}, AssignningTime:{AssignningTime}, PickingUpTime:{PickingUpTime}, SupplyingTime:{SupplyingTime}";
+            return $"ParcelId: {ParcelId}, AssignSenderToParcel: {Sender}, AssignRecieverToParcel: {Reciever}, ParcelWeight: {ParcelWeight}, Priority: {Priority}, DroneInShipment: {DroneAssignToParcel}, " +
+                $"CreatingTime: {CreatingTime}, AssignningTime: {AssignningTime}, PickingUpTime: {PickingUpTime}, SupplyingTime: {SupplyingTime}";
         }
     }
 }
