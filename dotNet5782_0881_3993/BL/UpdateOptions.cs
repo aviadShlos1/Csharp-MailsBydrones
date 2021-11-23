@@ -22,7 +22,6 @@ namespace IBL
         }
         public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
         {
-
             foreach (var item in DalAccess.GetBaseStationsList())
             {
                 if (item.Id == baseStationId)
@@ -228,10 +227,6 @@ namespace IBL
                 mediumParcels : lightParcels);
         }
         #endregion
-
-
-
-
         public void PickUpParcel(int droneId)
         {
             var droneItem = DronesListBL.Find(x => x.DroneId == droneId);

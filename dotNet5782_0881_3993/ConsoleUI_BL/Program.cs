@@ -553,9 +553,7 @@ Your choice:");
         #endregion MainFunctions
         static void Main(string[] args)
         {
-            
-            
-            IBL.IBL blObject = new IBL.BL();
+            IBL.IBL blObject = new BL();
 
             Options options;
             int choice;
