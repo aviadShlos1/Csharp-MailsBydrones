@@ -41,7 +41,7 @@ namespace IBL
                                 dronesInCharge++;
                         }
                         if (dronesInCharge > totalChargeSlots)
-                            throw new BO.NotEnoughChargeSlotsInThisStation();
+                            throw new BO.NotEnoughChargeSlotsInThisStation(baseStationId);
                         int free = item.FreeChargeSlots;
                         free = totalChargeSlots - dronesInCharge;
                     }
