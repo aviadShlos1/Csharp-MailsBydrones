@@ -66,6 +66,17 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $", The drone {DroneID} is not available now:";
     }
 
+
+    [Serializable]
+    public class NotEnoughChargeSlotsInThisStation : Exception
+    {
+        public int stationId;
+        public NotEnoughChargeSlotsInThisStation(int id) : base() => stationId = id;
+        public NotEnoughChargeSlotsInThisStation(int id, string message) : base(message) => stationId = id;
+        public NotEnoughChargeSlotsInThisStation(int id, string message, Exception innerException) : base(message, innerException) => stationId = id;
+        public override string ToString() => base.ToString() + $", There are'nt enough charge slots in this station:{stationId} ";
+    }
+
     [Serializable]
     public class CannotPickUpException : Exception
     {

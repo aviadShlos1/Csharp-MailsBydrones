@@ -343,10 +343,10 @@ Your choice:");
 
                 case UpdatesOption.PickUpParcel:
                     Console.WriteLine("Please enter a drone id(0-1000):");
-                    while (!int.TryParse(Console.ReadLine(), out DroneId)) ;
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     try
                     {
-                        bl.PickUpParcel(DroneId);
+                        bl.PickUpParcel(droneId);
                     }
                     catch (NotExistException ex)
                     {
@@ -360,11 +360,11 @@ Your choice:");
                 
                 case UpdatesOption.SupplyParcel:
                     Console.WriteLine("Please enter a drone id(0-1000):");
-                    int.TryParse(Console.ReadLine(), out DroneId);
-                    while (!int.TryParse(Console.ReadLine(), out DroneId)) ;
+                    int.TryParse(Console.ReadLine(), out droneId);
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
                     try
                     {
-                        bl.SupplyParcel(DroneId);
+                        bl.SupplyParcel(droneId);
                     }
                     catch (NotExistException ex)
                     {
