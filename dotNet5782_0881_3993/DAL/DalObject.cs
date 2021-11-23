@@ -128,10 +128,6 @@ namespace DalObject
         public void DroneToCharge(int droneId, int stationId)
         {
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
-            if (stationId == 0)
-            {
-                throw new NotExistException("Invalid staion id");
-            }
             BaseStationDal station1 = DataSource.BaseStations[stationIndex];
             station1.FreeChargeSlots--; // Reducing the free chargeSlots
             DataSource.BaseStations[stationIndex] = station1;
@@ -153,6 +149,10 @@ namespace DalObject
         public void DroneRelease(int droneId)
         {
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId == droneId);
+            if (droneId == 0)
+            {
+                throw new NotExistException(droneId);
+            }
             DroneCharge help = DataSource.DronesInCharge[chargeIndex];
             int baseStationId = help.StationId;
 
@@ -174,37 +174,37 @@ namespace DalObject
         public BaseStationDal GetSingleBaseStation(int stationId)
         {
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
-            //if (stationIndex == 0)
-            //{
-            //    throw new NotExistException(stationId);
-            //}
+            if (stationIndex == 0)
+            {
+                throw new NotExistException(stationId);
+            }
             return DataSource.BaseStations.Find(i => i.Id == stationId);    
         }
         public DroneDal GetSingleDrone(int droneId)
         {
             int droneIndex = DataSource.Drones.FindIndex(i => i.Id == droneId);
-            //if (droneIndex == 0)
-            //{
-            //    throw new NotExistException(droneId);
-            //}
+            if (droneIndex == 0)
+            {
+                throw new NotExistException(droneId);
+            }
             return DataSource.Drones.Find(i => i.Id == droneId);
         }
         public CustomerDal GetSingleCustomer(int customerId)
         {
             int customerIndex = DataSource.Customers.FindIndex(i => i.Id == customerId);
-            //if (customerIndex == 0)
-            //{
-            //    throw new NotExistException(customerId);
-            //}
+            if (customerIndex == 0)
+            {
+                throw new NotExistException(customerId);
+            }
             return DataSource.Customers.Find(i => i.Id == customerId);
         }
         public ParcelDal GetSingleParcel(int parcelId)
         {
             int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
-            //if (parcelIndex == 0)
-            //{
-            //    throw new NotExistException(parcelId);
-            //}
+            if (parcelIndex == 0)
+            {
+                throw new NotExistException(parcelId);
+            }
             return DataSource.Parcels.Find(i => i.Id == parcelId);
         }
         #endregion Single display

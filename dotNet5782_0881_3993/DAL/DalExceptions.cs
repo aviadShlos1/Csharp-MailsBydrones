@@ -11,7 +11,6 @@ namespace IDAL.DO
     {
         public int ID;
         public NotExistException(int id) : base() => ID = id;
-        public NotExistException(string msg) : base() { }
         public NotExistException(int id, string message) : base(message) => ID = id;
         public NotExistException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
         public override string ToString() => base.ToString() + $",The id does not exist:{ID}";
