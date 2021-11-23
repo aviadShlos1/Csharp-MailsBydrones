@@ -30,7 +30,7 @@ namespace IBL
                     if (newName != "")
                     {
                         string tempName = item.Name;
-                        tempName = newName;
+                        tempName = newName;/
                     }
                     if (totalChargeSlots != 0)
                     {
