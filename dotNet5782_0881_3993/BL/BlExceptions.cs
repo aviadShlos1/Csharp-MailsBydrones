@@ -53,17 +53,17 @@ namespace IBL.BO
         public CannotAssignDroneToParcelException(int id) : base() => DroneID = id;
         public CannotAssignDroneToParcelException(int id, string message) : base(message) => DroneID = id;
         public CannotAssignDroneToParcelException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
-        public override string ToString() => base.ToString() + $", This drone cannot be assigned to a parcel:{DroneID}";
+        public override string ToString() => base.ToString() + $", This drone {DroneID} cannot be assigned to this parcel:";
     }
 
     [Serializable]
-    public class NotEnoughBatteryException : Exception
+    public class DroneIsNotAvailable : Exception
     {
         public int DroneID;
-        public NotEnoughBatteryException(int id) : base() => DroneID = id;
-        public NotEnoughBatteryException(int id, string message) : base(message) => DroneID = id;
-        public NotEnoughBatteryException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
-        public override string ToString() => base.ToString() + $", The drone doesn't have enough battery for this mission:{DroneID}";
+        public DroneIsNotAvailable(int id) : base() => DroneID = id;
+        public DroneIsNotAvailable(int id, string message) : base(message) => DroneID = id;
+        public DroneIsNotAvailable(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
+        public override string ToString() => base.ToString() + $", The drone {DroneID} is not available now:";
     }
 
     [Serializable]
@@ -83,5 +83,15 @@ namespace IBL.BO
         public CannotSupplyException(int id, string message) : base(message) => DroneID = id;
         public CannotSupplyException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
         public override string ToString() => base.ToString() + $", The drone cannot supply the parcel:{DroneID}";
+    }
+
+    [Serializable]
+    public class NotEnoughChargeSlotsInThisStation : Exception
+    {
+        public int stationId;
+        public NotEnoughChargeSlotsInThisStation() : base() { }
+        public NotEnoughChargeSlotsInThisStation(int id, string message, Exception innerException) : base(message, innerException) => stationId = ((IDAL.DO.NotExistException)innerException).ID;
+        public override string ToString() => base.ToString() + $",There are few charge slots in this station :{stationId}";
+
     }
 }
