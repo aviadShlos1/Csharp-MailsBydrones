@@ -143,10 +143,12 @@ namespace IBL
                 }
                 if (itemDrone.DroneStatus == DroneStatus.Free)
                 {
+                    int index = 0;
                     List<CustomerDal> custSupplied = CustomersSuppliedParcels();
-                    int index = rand.Next(custSupplied.Count());
-                    itemDrone.DroneLocation.Latitude = custSupplied.ToList()[index].CustomerLatitude;
-                    itemDrone.DroneLocation.Longitude = custSupplied.ToList()[index].CustomerLongitude;
+                    if(custSupplied.Count>0)
+                        index = rand.Next((custSupplied.Count)-1);
+                    itemDrone.DroneLocation.Latitude = custSupplied[index].CustomerLatitude;
+                    itemDrone.DroneLocation.Longitude = custSupplied[index].CustomerLongitude;
                     Location closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, DalAccess.GetBaseStationsList().ToList()).Location;
                     double minCharge = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, closetStation.Longitude, closetStation.Latitude);
                     itemDrone.BatteryPercent = rand.NextDouble()*(100-minCharge)+minCharge ;
