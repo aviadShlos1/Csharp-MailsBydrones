@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using IBL.BO;
 namespace IBL
 {
     partial class BL
@@ -31,7 +31,6 @@ namespace IBL
                     {
                         string tempName = item.Name;
                         tempName = newName;
-
                     }
                     if (totalChargeSlots != 0)
                     {
@@ -39,10 +38,10 @@ namespace IBL
                         foreach (var item2 in DronesListBL)
                         {
                             if (item2.DroneStatus == BO.DroneStatus.Maintaince)
-                            {
                                 dronesInCharge++;
-                            }
                         }
+                        if (dronesInCharge > totalChargeSlots)
+                            throw new BO.NotEnoughChargeSlotsInThisStation();
                         int free = item.FreeChargeSlots;
                         free = totalChargeSlots - dronesInCharge;
                     }
@@ -129,15 +128,18 @@ namespace IBL
 
             // finding the high priority parcel, taking in conclusion the priority,weight and distance. 
             var droneItem = DronesListBL.Find(x => x.DroneId == myDroneId);
+            if (droneItem==default)
+            {
+                throw new BO.NotExistException();
+            }
             if (droneItem.DroneStatus != BO.DroneStatus.Free)
             {
-                throw new BO.CannotAssignDroneToParcelException(myDroneId);
+                throw new BO.DroneIsNotAvailable(myDroneId);
             }
-            List<IDAL.DO.ParcelDal> urgentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.Priority == IDAL.DO.Priorities.Urgent).ToList();
-            List<IDAL.DO.ParcelDal> urgentPlusHeavyParcels = urgentParcels.TakeWhile(x => x.Weight == IDAL.DO.WeightCategoriesDal.Heavy).ToList();
-            senderCustomer = GetCustomerDetails(urgentPlusHeavyParcels[0].SenderId);
+
+            senderCustomer = GetCustomerDetails (highestPriorityAndWeightParcels()[0].SenderId);
             closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
-            foreach (var item in urgentPlusHeavyParcels)
+            foreach (var item in highestPriorityAndWeightParcels())
             {
                 senderCustomer = GetCustomerDetails(item.SenderId);
                 double tempDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
@@ -159,7 +161,7 @@ namespace IBL
             double trgetToChargeBattery = targetToCharge * freeWeightConsumption;
             if (droneItem.BatteryPercent < (arriveToSenderBattery + srcToTrgetBattery + trgetToChargeBattery))
             {
-                throw new BO.NotEnoughBatteryException(myDroneId);
+                throw new BO.CannotAssignDroneToParcelException(myDroneId);
             }
             else
             {
@@ -169,6 +171,67 @@ namespace IBL
             }
 
         }
+        #region Help methods for AssignParcelToDrone method
+        private List<IDAL.DO.ParcelDal> highestPriorityParcels()
+        {
+            List<IDAL.DO.ParcelDal> parcelsWithUrgentPriority = new();
+            List<IDAL.DO.ParcelDal> parcelsWithFastPriority = new();
+            List<IDAL.DO.ParcelDal> parcelsWithNormalPriority = new();
+
+            foreach (var item in DalAccess.GetParcelsWithoutDrone())
+            {
+                switch ((PrioritiesBL)item.Priority)
+                {
+                    case PrioritiesBL.Normal:
+                        parcelsWithNormalPriority.Add(item);
+                        break;
+                    case PrioritiesBL.Fast:
+                        parcelsWithFastPriority.Add(item);
+                        break;
+                    case PrioritiesBL.Urgent:
+                        parcelsWithUrgentPriority.Add(item);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            // checking the highest exist priority and return it 
+            return (parcelsWithUrgentPriority.Any() ? parcelsWithUrgentPriority :
+                parcelsWithFastPriority.Any() ? parcelsWithFastPriority
+                :parcelsWithNormalPriority );
+        }
+        private List<IDAL.DO.ParcelDal> highestPriorityAndWeightParcels()
+        {
+            List<IDAL.DO.ParcelDal> heavyParcels = new ();
+            List<IDAL.DO.ParcelDal> mediumParcels = new ();
+            List<IDAL.DO.ParcelDal> lightParcels = new ();
+
+            foreach (var item in highestPriorityParcels())
+            {
+                switch ((WeightCategoriesBL)item.Weight)
+                {
+                    case WeightCategoriesBL.Light:
+                        lightParcels.Add(item);
+                        break;
+                    case WeightCategoriesBL.Medium:
+                        mediumParcels.Add(item);
+                        break;
+                    case WeightCategoriesBL.Heavy:
+                        heavyParcels.Add(item);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            // checking the highest exist weight and return it 
+            return (heavyParcels.Any() ? heavyParcels : mediumParcels.Any() ?
+                mediumParcels : lightParcels);
+        }
+        #endregion
+
+
+
+
         public void PickUpParcel(int droneId)
         {
             var droneItem = DronesListBL.Find(x => x.DroneId == droneId);

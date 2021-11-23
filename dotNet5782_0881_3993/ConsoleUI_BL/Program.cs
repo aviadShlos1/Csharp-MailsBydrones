@@ -222,56 +222,123 @@ Please enter the sender id number(9 digits):");
 Your choice:");
             int.TryParse(Console.ReadLine(), out int choice);
 
-            int DroneId, baseStationId, chargeSlots, customerId;
+            int droneId, baseStationId, totalChargeSlots, customerId;
             string newModel ,baseStationName, customerName , phoneNumber;
 
             switch ((UpdatesOption)choice)
             {
                 case UpdatesOption.UpdateDroneName:
-                    Console.WriteLine("Please enter a drone ID(4 digits):");
-                    int.TryParse(Console.ReadLine(), out DroneId);
-                    Console.WriteLine("Next Please enter the new Model name:");
+                    Console.WriteLine("Please enter a drone id (4 digits):");
+                    int.TryParse(Console.ReadLine(), out droneId);
+                    Console.WriteLine("Please enter a new name:");
                     newModel = Console.ReadLine();
-                    bl.UpdateDroneName(DroneId,newModel);
+
+                    try
+                    {
+                        bl.UpdateDroneName(droneId,newModel);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 case UpdatesOption.UpdateBaseStationData:
-                    Console.WriteLine("Please enter base station id for update:");
+                    Console.WriteLine("Please enter base station id: ");
                     while (!int.TryParse(Console.ReadLine(), out baseStationId)) ;
-                    Console.WriteLine("Please enter the new base station name, if there isn't, send an empty line:");
+                    Console.WriteLine("Please enter a base station name, if there isn't, send an empty line:");
                     baseStationName = Console.ReadLine();
-                    Console.WriteLine("Please enter a new Charge slots number:");
-                    while (!int.TryParse(Console.ReadLine(), out chargeSlots)) ;
+                    Console.WriteLine("Please enter a charge slots number: ");
+                    while (!int.TryParse(Console.ReadLine(), out totalChargeSlots)) ;
+                    try
+                    {
+                        bl.UpdateBaseStationData(baseStationId, baseStationName, totalChargeSlots);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch (NotEnoughChargeSlotsInThisStation ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 case UpdatesOption.UpdateCustomerData:
-                    Console.WriteLine("Please enter customer id for update:");
+                    Console.WriteLine("Please enter a customer id: ");
                     while (!int.TryParse(Console.ReadLine(), out customerId)) ;
-                    Console.WriteLine("Please enter a new customer name:");
+                    Console.WriteLine("Please enter a new customer name: ");
                     customerName = Console.ReadLine();
-                    Console.WriteLine("Please enter a new phone number:");
+                    Console.WriteLine("Please enter a new phone number: ");
                     phoneNumber = Console.ReadLine();
+                    try
+                    {
+                        bl.UpdateCustomerData(customerId, customerName, phoneNumber);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 case UpdatesOption.DroneToCharge:
-                    Console.WriteLine("Please enter a drone id(4 digits):");
-                    int.TryParse(Console.ReadLine(), out DroneId);              
-                    bl.DroneToCharge(DroneId);
+                    Console.WriteLine("Please enter a drone id (4 digits): ");
+                    int.TryParse(Console.ReadLine(), out droneId);
+                    try
+                    {
+                        bl.DroneToCharge(droneId);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch (CannotGoToChargeException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 case UpdatesOption.ReleaseDroneCharge:
                     TimeSpan chargeTime = default;
-                    Console.WriteLine("Please enter a drone id(4 digits):");
-                    int.TryParse(Console.ReadLine(), out DroneId);
+                    Console.WriteLine("Please enter a drone id (4 digits):");
+                    int.TryParse(Console.ReadLine(), out droneId);
                     Console.WriteLine("Please enter the length of time the drone has been charging:");
                     TimeSpan.TryParse(Console.ReadLine(), out chargeTime);
-                    bl.ReleaseDroneCharge(DroneId, chargeTime);
+                    try
+                    {
+                        bl.ReleaseDroneCharge(droneId, chargeTime);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch (CannotReleaseFromChargeException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+
                     break;
 
                 case UpdatesOption.AssignParcelToDrone:
-                    Console.WriteLine("Please enter a drone id(4 digits):");
-                    int.TryParse(Console.ReadLine(), out DroneId);
-                    bl.AssignParcelToDrone(DroneId);
+                    Console.WriteLine("Please enter a drone id (4 digits):");
+                    int.TryParse(Console.ReadLine(), out droneId);
+                    try
+                    {
+                        bl.AssignParcelToDrone(droneId);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch (DroneIsNotAvailable ex)
+                    { 
+                        Console.WriteLine(ex);
+                    }
+                    catch(CannotAssignDroneToParcelException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+
                     break;
 
                 case UpdatesOption.PickUpParcel:
