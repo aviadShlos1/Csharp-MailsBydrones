@@ -148,8 +148,6 @@ Please enter an id number for the new Customer(9 digits):");
                     while (!double.TryParse(Console.ReadLine(), out newCustomerLatitude)) ;
                     Console.WriteLine();
                     Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
-
-                    Location newCustomerLocation = new() { Longitude = newCustomerLongitude, Latitude = newCustomerLatitude };
                     CustomerBL newCustomer = new CustomerBL
                     {
                         CustomerId = newCustomerID,
@@ -179,7 +177,7 @@ Please enter the parcel id number(0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newSenderId)) ;
                     Console.WriteLine("Please enter the target id number (9 digits):");
                     while (!int.TryParse(Console.ReadLine(), out newTargetId)) ;
-                    Console.WriteLine("Please enter the weight category of the parcel: 0 for free, 1 for maintenance and 2 for delievery");
+                    Console.WriteLine("Please enter the weight category of the parcel: 0 for free, 1 for maintenance and 2 for shipment");
                     while (!int.TryParse(Console.ReadLine(), out newWeight)) ;
                     Console.WriteLine("Please enter the priorities of the new parcel: 0 for normal, 1 for fast and 2 for urgent");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
