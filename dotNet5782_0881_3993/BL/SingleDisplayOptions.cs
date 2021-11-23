@@ -18,7 +18,7 @@ namespace IBL
             }
             catch (IDAL.DO.NotExistException)
             {
-                /* throw new BO.NotExistException(baseStationId,"baseStationId",*/ /*);*/
+                throw new BO.NotExistException();
             }
 
             Location myLocation = new() { Latitude = dalBaseStation.Latitude, Longitude = dalBaseStation.Longitude };
@@ -41,7 +41,7 @@ namespace IBL
             }
             catch (IDAL.DO.NotExistException)
             {
-                throw;
+                throw new BO.NotExistException();
             }
 
             var tempDroneBl = DronesListBL.Find(x => x.DroneId == myDroneId);
@@ -75,11 +75,11 @@ namespace IBL
             {
                 myCustomer = DalAccess.GetSingleCustomer(customerId);
             }
-            catch (Exception)
+            catch (IDAL.DO.NotExistException)
             {
-
-                throw;
+                throw new BO.NotExistException();
             }
+
             Location myLocation = new() { Latitude = myCustomer.CustomerLatitude, Longitude = myCustomer.CustomerLongitude };
             CustomerBL myCustomerBl = new() { CustomerId = myCustomer.Id, CustomerName = myCustomer.Name, CustomerPhone = myCustomer.Phone, CustomerLocation = myLocation, ParcelsFromCustomerList = new(), ParcelsToCustomerList = new() };
             List<IDAL.DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == customerId).ToList();
@@ -132,12 +132,11 @@ namespace IBL
             {
                 dalParcel = DalAccess.GetSingleParcel(parcelId);
             }
-            catch (Exception)
+            catch (IDAL.DO.NotExistException)
             {
-
-                throw;
+                throw new BO.NotExistException();
             }
-            
+
             AssignCustomerToParcel senderItem = new AssignCustomerToParcel { Id = dalParcel.SenderId, Name = GetCustomerDetails(dalParcel.SenderId).Name };
             AssignCustomerToParcel recieverItem = new AssignCustomerToParcel { Id = dalParcel.TargetId, Name = GetCustomerDetails(dalParcel.TargetId).Name };
             ParcelBl myParcelBl = new() { ParcelId = dalParcel.Id, ParcelWeight=(WeightCategoriesBL)dalParcel.Weight, Priority=(PrioritiesBL)dalParcel.Priority, CreatingTime=dalParcel.CreatingTime, AssignningTime=dalParcel.AssignningTime, PickingUpTime=dalParcel.PickingUpTime, SupplyingTime=dalParcel.SupplyingTime, Sender=senderItem, Reciever=recieverItem};
