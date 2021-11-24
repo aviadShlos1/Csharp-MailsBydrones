@@ -195,7 +195,15 @@ Please enter the sender id number(0-1000):");
                         ParcelWeight = (WeightCategoriesBL)newWeight,
                         Priority = (PrioritiesBL)newPriorities
                     };
-                    bl.AddParcel(newParcel);
+                    try
+                    {
+                        bl.AddParcel(newParcel);
+
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
 
                 default:

@@ -83,6 +83,15 @@ namespace IBL
         }
         public void AddParcel(ParcelBl newParcel)
         {
+            try
+            {
+                DalAccess.GetSingleCustomer(newParcel.Sender.Id);
+                DalAccess.GetSingleCustomer(newParcel.Reciever.Id);
+            }
+            catch (BO.NotExistException)
+            {
+                throw new BO.NotExistException("Not exist customer id");
+            }
             ParcelDal tempParcel = new();
             tempParcel.SenderId = newParcel.Sender.Id;
             tempParcel.TargetId = newParcel.Reciever.Id;
