@@ -576,6 +576,7 @@ Your choice:");
 
 Your choice:");
                 while (!int.TryParse(Console.ReadLine(), out choice)) ;
+                
                 options = (Options)choice;
 
                 switch (options)
