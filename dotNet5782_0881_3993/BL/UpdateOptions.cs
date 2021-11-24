@@ -133,10 +133,10 @@ namespace IBL
             {
                 throw new BO.NotExistException();
             }
-            if (droneItem.TransferParcelsNum == 0)
-                throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
-            var parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
-            var senderItem = GetCustomerDetails(parcelItem.SenderId);
+            //if (droneItem.TransferParcelsNum == 0)
+            //    throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
+            IDAL.DO.ParcelDal parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
+            IDAL.DO.CustomerDal senderItem = GetCustomerDetails(parcelItem.SenderId);
 
             if (parcelItem.PickingUpTime != DateTime.MinValue)
             {
