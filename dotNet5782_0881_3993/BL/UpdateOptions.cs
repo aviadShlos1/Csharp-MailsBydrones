@@ -8,10 +8,69 @@ namespace IBL
 {
     partial class BL
     {
+        public void UpdateDroneName(int droneId, string newModel)
+        {
+            foreach (var item in DalAccess.GetDronesList())
+            {
+                if (item.Id == droneId)
+                {
+                    string tempModel = item.Model;
+                    tempModel = newModel;
+
+                }
+            }
+        }
+        public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
+        {
+            foreach (var item in DalAccess.GetBaseStationsList())
+            {
+                if (item.Id == baseStationId)
+                {
+                    if (newName != "")
+                    {
+                        string tempName = item.Name;
+                        tempName = newName;
+                    }
+                    if (totalChargeSlots != 0)
+                    {
+                        int dronesInCharge = 0;
+                        foreach (var item2 in DronesListBL)
+                        {
+                            if (item2.DroneStatus == BO.DroneStatus.Maintaince)
+                                dronesInCharge++;
+                        }
+                        if (dronesInCharge > totalChargeSlots)
+                            throw new BO.NotEnoughChargeSlotsInThisStation(baseStationId);
+                        int free = item.FreeChargeSlots;
+                        free = totalChargeSlots - dronesInCharge;
+                    }
+                }
+            }
+
+        }
+        public void UpdateCustomerData(int myId, string newName, string newPhone)
+        {
+            foreach (var item in DalAccess.GetCustomersList())
+            {
+                if (item.Id == myId)
+                {
+                    if (newName != "")
+                    {
+                        string tempName = item.Name;
+                        tempName = newName;
+                    }
+                    if (newPhone != "")
+                    {
+                        string tempPhone = item.Phone;
+                        tempPhone = newPhone;
+                    }
+                }
+            }
+        }
         public void AssignParcelToDrone(int myDroneId)
         {
-            IDAL.DO.ParcelDal assignedParcel = default;
-            IDAL.DO.CustomerDal senderCustomer = default;
+            IDAL.DO.ParcelDal assignedParcel = new();
+            IDAL.DO.CustomerDal senderCustomer = new();
             double closetDistance = default;
 
             // finding the high priority parcel, taking in conclusion the priority,weight and distance. 
@@ -124,6 +183,8 @@ namespace IBL
         #endregion
         public void PickUpParcel(int droneId)
         {
+            IDAL.DO.ParcelDal parcelItem = new();
+            IDAL.DO.CustomerDal senderItem = new();
             DroneToList droneItem = new();
             try
             {
@@ -135,8 +196,8 @@ namespace IBL
             }
             //if (droneItem.TransferParcelsNum == 0)
             //    throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
-            IDAL.DO.ParcelDal parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
-            IDAL.DO.CustomerDal senderItem = GetCustomerDetails(parcelItem.SenderId);
+            parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
+            senderItem = GetCustomerDetails(parcelItem.SenderId);
 
             if (parcelItem.PickingUpTime != DateTime.MinValue)
             {
@@ -253,65 +314,6 @@ namespace IBL
                 DalAccess.GetDronesChargeList().ToList().Remove(droneChargeItem);
             }
         }
-        public void UpdateDroneName(int droneId, string newModel)
-        {
-            foreach (var item in DalAccess.GetDronesList())
-            {
-                if (item.Id == droneId)
-                {
-                    string tempModel = item.Model;
-                    tempModel = newModel;
-
-                }
-            }
-        }
-        public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
-        {
-            foreach (var item in DalAccess.GetBaseStationsList())
-            {
-                if (item.Id == baseStationId)
-                {
-                    if (newName != "")
-                    {
-                        string tempName = item.Name;
-                        tempName = newName;
-                    }
-                    if (totalChargeSlots != 0)
-                    {
-                        int dronesInCharge = 0;
-                        foreach (var item2 in DronesListBL)
-                        {
-                            if (item2.DroneStatus == BO.DroneStatus.Maintaince)
-                                dronesInCharge++;
-                        }
-                        if (dronesInCharge > totalChargeSlots)
-                            throw new BO.NotEnoughChargeSlotsInThisStation(baseStationId);
-                        int free = item.FreeChargeSlots;
-                        free = totalChargeSlots - dronesInCharge;
-                    }
-                }
-            }
-
-        }
-        public void UpdateCustomerData(int myId, string newName, string newPhone)
-        {
-            foreach (var item in DalAccess.GetCustomersList())
-            {
-                if (item.Id == myId)
-                {
-                    if (newName != "")
-                    {
-                        string tempName = item.Name;
-                        tempName = newName;
-                    }
-                    if (newPhone != "")
-                    {
-                        string tempPhone = item.Phone;
-                        tempPhone = newPhone;
-                    }
-                }
-            }
-        }
-      
+        
     }
 }
