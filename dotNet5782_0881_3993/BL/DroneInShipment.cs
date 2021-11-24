@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
+    /// <summary>
+    /// This class presents a drone in shipment entity
+    /// </summary>
     public class DroneInShipment
     {
         public int DroneId { get; set; }

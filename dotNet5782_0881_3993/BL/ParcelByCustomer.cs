@@ -10,13 +10,16 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
+    /// <summary>
+    /// This class presents a parcel by customer entity
+    /// </summary>
     public class ParcelByCustomer
     {
         public int Id { get; set; }
         public WeightCategoriesBL Weight { get; set; }
         public PrioritiesBL Priority { get; set; }
         public ParcelStatus Status { get; set; }
-        public AssignCustomerToParcel SourceOrTargetMan { get; set; }
+        public AssignCustomerToParcel SourceOrTargetMan { get; set; } // This field can contain the source or the targed, corresponding to the situation
         public override string ToString()
         {
             return $"ParcelId: {Id}, Weight: {Weight}, Priority: {Priority}, ParcelStatus: {Status}, SourceOrTargetMan: {SourceOrTargetMan}";

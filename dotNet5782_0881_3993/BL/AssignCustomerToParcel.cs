@@ -7,7 +7,7 @@ using System;
 namespace IBL.BO
 {
     /// <summary>
-    /// This class contains the assignning details 
+    /// This class presents an assign customer entity
     /// </summary>
     public class AssignCustomerToParcel
     {

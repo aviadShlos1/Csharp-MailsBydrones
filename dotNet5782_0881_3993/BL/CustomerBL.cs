@@ -10,14 +10,17 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
+    /// <summary>
+    /// This class presents a bl customer entity
+    /// </summary>
     public class CustomerBL
     {
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
         public string CustomerPhone { get; set; }
         public Location CustomerLocation { get; set; }
-        public List<ParcelByCustomer> ParcelsFromCustomerList { get; set; }
-        public List<ParcelByCustomer> ParcelsToCustomerList { get; set; }
+        public List<ParcelByCustomer> ParcelsFromCustomerList { get; set; } // parcels which were received
+        public List<ParcelByCustomer> ParcelsToCustomerList { get; set; } // parcels which were sent
 
         public override string ToString()
         {

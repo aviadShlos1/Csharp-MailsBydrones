@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class ParcelInShipment   // חבילה בהעברה
+    /// <summary>
+    /// This class presents a parcel in shipment entity
+    /// </summary>
+    public class ParcelInShipment  
     {
         public int Id { get; set; }
         public bool ShippingOnTheWay { get; set; } // two conditions:false if waiting for pickingUp or true if it on the way for the target 

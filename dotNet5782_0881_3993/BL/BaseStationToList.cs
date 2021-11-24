@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 namespace IBL.BO
 {
     /// <summary>
-    /// This entity is contain details of base station with a type of "base station to list" that will present in list displaying
+    /// This class presents a base station to list entity
     /// </summary>
     public class BaseStationToList
     {
         public int Id { get; set; }
         public string BaseStationName { get; set; }
-        public int FreeChargeSlots { get; set; }
-        public int BusyChargeSlots { get; set; }
+        public int FreeChargeSlots { get; set; } 
+        public int BusyChargeSlots { get; set; } // full charge slots
         public override string ToString()
         {
             return $"BaseStationId:{Id}, BaseStationName:{BaseStationName},FreeChargeSlots:{FreeChargeSlots},BusyChargeSlots:{BusyChargeSlots} ";

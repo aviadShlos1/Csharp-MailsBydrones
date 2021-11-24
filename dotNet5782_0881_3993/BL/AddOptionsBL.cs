@@ -13,7 +13,7 @@ using IDAL.DO;
 namespace IBL
 {
     /// <summary>
-    /// This class imlements the add methods of the buisneess layer
+    /// This class implements the add methods of the buisness layer
     /// </summary>
     partial class BL
     {

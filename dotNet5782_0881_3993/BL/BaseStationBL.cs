@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace IBL.BO
 {
     /// <summary>
-    /// This entity is contain details of base station
+    /// This class presents a base station entity
     /// </summary>
     public class BaseStationBl
     {
@@ -19,7 +19,7 @@ namespace IBL.BO
         public string BaseStationName { get; set; }
         public Location Location { get; set; }
         public int FreeChargeSlots { get; set; }
-        public List<DroneInCharge> DronesInChargeList { get; set; }//List of the drones in charge
+        public List<DroneInCharge> DronesInChargeList { get; set; } //List of the drones in charge
         public override string ToString()
         {
             return $"CustomerId: {Id}, BaseStationName: {BaseStationName}, Location: {Location},FreeChargeSloted: {FreeChargeSlots}" +

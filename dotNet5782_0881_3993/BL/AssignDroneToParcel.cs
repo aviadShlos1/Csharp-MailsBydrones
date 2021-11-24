@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    /// <summary>
-    /// This class assignning drone to a parcel and set id, battery and the current location  
-    /// </summary>
+  /// <summary>
+  /// This class presents an assign drone to parcel entity
+  /// </summary>
     public class AssignDroneToParcel
     {
         public int Id { get; set; }

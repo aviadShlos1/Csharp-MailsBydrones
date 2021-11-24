@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
-    public class ParcelToList // חבילה לרשימה
+    /// <summary>
+    /// This class presents a parcel to list entity
+    /// </summary>
+    public class ParcelToList 
     {
         public int Id { get; set; }
         public string SenderName { get; set; }

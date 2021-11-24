@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
+    /// <summary>
+    /// This class presents a parcel bl entity
+    /// </summary>
     public class ParcelBl 
     {
         public int ParcelId { get; set; }

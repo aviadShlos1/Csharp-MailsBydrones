@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
+    /// <summary>
+    /// This class presents a drone bl entity
+    /// </summary>
     public class DroneBl
     {
         public int DroneId { get; set; }
@@ -17,7 +20,7 @@ namespace IBL.BO
         public WeightCategoriesBL DroneWeight { get; set; }
         public double BatteryPercent { get; set; }
         public DroneStatus DroneStatus { get; set; }
-        public ParcelInShipment ParcelInShip { get; set; }
+        public ParcelInShipment ParcelInShip { get; set; } // This field contains the details of the parcek in shipment
         public Location DroneLocation { get; set; }
         public override string ToString()
         {
