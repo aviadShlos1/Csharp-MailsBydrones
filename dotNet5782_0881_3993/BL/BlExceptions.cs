@@ -1,5 +1,5 @@
 ﻿//Names: Aviad Shlosberg       314960881      
-///       Evyatar Levi Ben Ston 318753993 
+//       Evyatar Levi Ben Ston 318753993 
 //Targil2
 //brief: In this program we built the logic business layer
 using System;
