@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Targil2
+//brief: In this program we built the logic business layer
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +13,14 @@ using IDAL.DO;
 namespace IBL
 {
     /// <summary>
-    /// This class includes the add methods of the bl entities
+    /// This class includes the add methods of the Bl entities
     /// </summary>
     partial class BL
     {
+        /// <summary>
+        /// Adding a new Bl base station
+        /// </summary>
+        /// <param name="newBaseStationBl">The entity for adding</param>
         public void AddBaseStation(BaseStationBl newBaseStationBl)
         {
             
@@ -31,6 +39,10 @@ namespace IBL
                 throw new BO.AlreadyExistException();
             }
         }
+        /// <summary>
+        /// Adding a new Bl drone
+        /// </summary>
+        /// <param name="newDroneBl">The entity for adding</param>
         public void AddDrone(DroneToList newDroneBl, int firstChargeStation)
         {
             
@@ -49,7 +61,7 @@ namespace IBL
                     newDroneBl.DroneLocation = location;                  
                 }
             }
-            newDroneBl.BatteryPercent = (rand.NextDouble() * 20) + 20;
+            newDroneBl.BatteryPercent = (rand.NextDouble() * 20) + 20;//rand between 20-40 percent
             newDroneBl.DroneStatus = DroneStatus.Maintaince;
             try
             {
@@ -63,6 +75,10 @@ namespace IBL
             if (DalAccess.GetSingleBaseStation(firstChargeStation).FreeChargeSlots <= 0)
                 throw new NoStationsWithFreeChargeException();
         }
+        /// <summary>
+        /// Adding a new Bl customer
+        /// </summary>
+        /// <param name="newCustomer">The entity for adding</param>
         public void AddCustomer(CustomerBL newCustomer)
         {
             
@@ -81,6 +97,10 @@ namespace IBL
                 throw new BO.AlreadyExistException();
             }
         }
+        /// <summary>
+        /// Adding a new Bl parcel
+        /// </summary>
+        /// <param name="newParcel">The entity for adding</param>
         public void AddParcel(ParcelBl newParcel)
         {
             try
