@@ -241,10 +241,10 @@ namespace IBL
                 droneItem.BatteryPercent -= currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
                 droneItem.DroneLocation.Longitude = targetItem.CustomerLongitude;
                 droneItem.DroneLocation.Latitude = targetItem.CustomerLatitude;
-                droneItem.TransferParcelsNum = 0;
+                droneItem.TransferParcelsNum = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission
                 droneItem.DroneStatus = BO.DroneStatus.Free;
                 parcelItem.SupplyingTime = DateTime.Now;
-                DalAccess.SupplyParcel(parcelItem.Id);
+                DalAccess.SupplyParcel(droneItem.DroneId);
             }
 
         }
@@ -267,15 +267,15 @@ namespace IBL
                 throw new BO.CannotGoToChargeException(droneId);
             else
             {
-                double stationLon = freeChargeSlotsStations[0].Longitude;
-                double stationLat = freeChargeSlotsStations[0].Latitude;
-                double closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, stationLon, stationLat);
-                BO.BaseStationBl closetBaseStation = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, freeChargeSlotsStations);
+                BO.BaseStationBl closetBaseStation = new();
+                closetBaseStation = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, freeChargeSlotsStations);
+                double closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, closetBaseStation.Location.Longitude, closetBaseStation.Location.Latitude);
+             
                 if (droneItem.BatteryPercent >= closetDistance * freeWeightConsumption)
                 {
                     droneItem.BatteryPercent -= closetDistance * freeWeightConsumption;
-                    droneItem.DroneLocation.Longitude = stationLon;
-                    droneItem.DroneLocation.Latitude = stationLat;
+                    droneItem.DroneLocation.Longitude = closetBaseStation.Location.Longitude;
+                    droneItem.DroneLocation.Latitude = closetBaseStation.Location.Latitude;
                     droneItem.DroneStatus = BO.DroneStatus.Maintaince;
                     closetBaseStation.FreeChargeSlots--;
                     DalAccess.DroneToCharge(droneItem.DroneId, closetBaseStation.Id);

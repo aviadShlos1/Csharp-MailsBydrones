@@ -46,23 +46,20 @@ namespace IBL
         }
         private BaseStationBl ClosetStation(double myLon, double myLat, List<IDAL.DO.BaseStationDal> stationsList)
         {
+            BaseStationBl closetBaseStation = default;
             double stationLon = stationsList[0].Longitude;
             double stationLat = stationsList[0].Latitude;
             double closetDistance = GetDistance(myLon, myLat, stationLon, stationLat);
             foreach (var item in stationsList)
             {
                 double tempDistance = GetDistance(myLon, myLat, item.Longitude, item.Latitude);
-                if (tempDistance < closetDistance)
+                if (tempDistance <= closetDistance)
                 {
                     closetDistance = tempDistance;
-                    stationLon = item.Longitude;
-                    stationLat = item.Latitude;
-                }
+                    Location myLoc = new() { Longitude = item.Longitude, Latitude = item.Latitude };
+                    closetBaseStation = new() { Id = item.Id, BaseStationName = item.Name, Location = myLoc, FreeChargeSlots = item.FreeChargeSlots };
+                }  
             }
-
-            BaseStationBl closetBaseStation = new BaseStationBl() { Location=new () };
-            closetBaseStation.Location.Longitude = stationLon;
-            closetBaseStation.Location.Latitude = stationLat;
             return closetBaseStation;
         }
         //private List<IDAL.DO.CustomerDal> CustomersSuppliedParcels()
