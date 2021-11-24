@@ -182,7 +182,7 @@ Please enter the sender id number(0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
                     Console.WriteLine();
                     
-                    AssignCustomerToParcel myAssignSenderToParcel = new() { Id = newSenderId };/
+                    AssignCustomerToParcel myAssignSenderToParcel = new() { Id = newSenderId };
                     AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = newTargetId };
                     ParcelBl newParcel = new ParcelBl
                     {   
@@ -210,13 +210,13 @@ Please enter the sender id number(0-1000):");
         {
             Console.WriteLine(@"Update options:
 1. Updating a drone name       
-2. Updating base station's data (new name or new chrage slots number )
-3. Updating customer's data (new name or new phone number)
-4. Sending drone to charge
-5. Releasing drone from charge
-6. Assigning between parcel to drone 
-7. Picking Up parcel by a drone
-8. Supplying Parcel to customer
+2. Updating base station data (new name or new chrage slots number )
+3. Updating customer data (new name or new phone number)
+4. Assigning between parcel to drone 
+5. Picking Up parcel by a drone
+6. Supplying Parcel to customer
+7. Sending drone to charge
+8. Releasing drone from charge
 Your choice:");
             int choice;
             while (!int.TryParse(Console.ReadLine(), out choice)) ;
@@ -301,7 +301,7 @@ Your choice:");
                     TimeSpan chargeTime = default;
                     Console.WriteLine("Please enter a drone id (4 digits):");
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
-                    Console.WriteLine("Please enter the length of time the drone has been charging:");
+                    Console.WriteLine("Please enter the time the drone has been charged:");
                     while(!TimeSpan.TryParse(Console.ReadLine(), out chargeTime));
                     try
                     {
