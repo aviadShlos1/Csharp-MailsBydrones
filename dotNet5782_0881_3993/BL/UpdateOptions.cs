@@ -52,8 +52,8 @@ namespace IBL
             BO.BaseStationBl closetStationFromTarget = ClosetStation(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude, DalAccess.GetBaseStationsList().ToList());
             double targetToCharge = GetDistance(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude, closetStationFromTarget.Location.Longitude, closetStationFromTarget.Location.Latitude);
             double trgetToChargeBattery = targetToCharge * freeWeightConsumption;
-
-            if (droneItem.BatteryPercent < (arriveToSenderBattery + srcToTrgetBattery + trgetToChargeBattery))
+            double totalDemandBattery = arriveToSenderBattery + srcToTrgetBattery + trgetToChargeBattery;
+            if (droneItem.BatteryPercent < totalDemandBattery)
             {
                 throw new BO.CannotAssignDroneToParcelException(myDroneId);
             }
