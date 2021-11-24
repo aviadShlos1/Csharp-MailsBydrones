@@ -59,8 +59,8 @@ namespace DalObject
             DataSource.Customers.Add(newCustomer);
         }
         public int AddParcel(ParcelDal newParcel)
-        {           
-            newParcel.Id = DataSource.Config.RunId++;
+        {  
+            newParcel.Id = ++(DataSource.Config.RunId); 
             DataSource.Parcels.Add(newParcel);
             return newParcel.Id;
         }

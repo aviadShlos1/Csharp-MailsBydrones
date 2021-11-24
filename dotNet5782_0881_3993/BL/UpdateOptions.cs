@@ -197,8 +197,8 @@ namespace IBL
             {
                 throw new BO.NotExistException();
             }
-            if (droneItem.TransferParcelsNum == 0)
-                throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
+            //if (droneItem.TransferParcelsNum == 0)
+            //    throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
             parcelItem = DalAccess.GetSingleParcel(droneItem.TransferParcelsNum);
             senderItem = GetCustomerDetails(parcelItem.SenderId);
 
@@ -213,7 +213,7 @@ namespace IBL
                 droneItem.DroneLocation.Longitude = senderItem.CustomerLongitude;
                 droneItem.DroneLocation.Latitude = senderItem.CustomerLatitude;
                 parcelItem.PickingUpTime = DateTime.Now;
-                DalAccess.PickUpParcel(parcelItem.Id);
+                DalAccess.PickUpParcel(droneItem.DroneId);
             }
         }
         public void SupplyParcel(int droneId)
