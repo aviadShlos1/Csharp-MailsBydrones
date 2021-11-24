@@ -36,7 +36,7 @@ namespace ConsoleUI_BL
         /// <summary>
         /// The function handles various addition options.
         /// </summary>
-        /// <param name="bl"> DalObject object is a parameter which enables access to the DalObject class functions</param>
+        /// <param name="bl"> bl object is a parameter which enables access to the BL class functions</param>
         static public void AddOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Add options:
@@ -217,7 +217,7 @@ Please enter the sender id number(0-1000):");
         /// <summary>
         /// The function handles various update options.
         /// </summary>
-        /// <param name="dal"> DalObject object that enables access to the DalObject class functions </param>
+        /// <param name="bl"> bl object is a parameter which enables access to the BL class functions </param>
         static public void UpdateOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Update options:
@@ -404,7 +404,7 @@ Your choice:");
         /// <summary>
         /// The function handles single display options.
         /// </summary>
-        /// <param name="bl"> DalObject object is a parameter which enables access to the DalObject class functions</param>
+        /// <param name="bl">bl object is a parameter which enables access to the BL class functions</param>
         static public void DisplaySingleOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Single display options:
@@ -485,7 +485,7 @@ Your choice:");
         /// <summary>
         /// The function handles list display options.
         /// </summary>
-        /// <param name="bl"> DalObject object is a parameter which enables access to the DalObject class functions</param>
+        /// <param name="bl">bl object is a parameter which enables access to the BL class functions</param>
 
         static public void DisplayListOptions(IBL.IBL bl)
         {
@@ -540,7 +540,7 @@ Your choice:");
                     }
                     break;
 
-                // GetParcelsWithoutDrone list display
+                // Get parcels without drone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
                     IEnumerable<ParcelToList> displayParcelsWithoutDrone = bl.GetParcelsWithoutDroneBl();
                     foreach (var item in displayParcelsWithoutDrone)
@@ -549,7 +549,7 @@ Your choice:");
                     }
                     break;
 
-                // FreeChargeSlots list display
+                // Get stations with free charge slots list display
                 case ListDisplayOption.StationsWithFreeChargeSlots:
                     IEnumerable<BaseStationToList> displayStationsWithFreeChargeSlots = bl.GetStationsWithFreeChargeBl();
                     foreach (var item in displayStationsWithFreeChargeSlots)
@@ -569,7 +569,7 @@ Your choice:");
         #endregion MainFunctions
         static void Main(string[] args)
         {
-            IBL.IBL blObject = new BL();
+            IBL.IBL blObject = new BL();//This object gives the point access from the buissness layer
 
             Options options;
             int choice;

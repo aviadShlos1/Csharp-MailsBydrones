@@ -12,7 +12,7 @@ using IDAL.DO;
 namespace IBL.BO
 {
     /// <summary>
-    /// Exception for object that not exist
+    ///This exception will be thrown when the object isn't exist
     /// </summary>
     [Serializable]
     public class NotExistException : Exception
@@ -24,8 +24,9 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $",The id does not exist";
 
     }
+
     /// <summary>
-    /// Exception for object that already exist
+    /// This exception will be thrown when the object is already exist
     /// </summary>
     [Serializable]
     public class AlreadyExistException : Exception
@@ -36,8 +37,9 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $", The id is already exists";
 
     }
+
     /// <summary>
-    /// Exception for drone that cannot go to charge
+    ///This Exception will be thrown when the drone cannot go to charge
     /// </summary>
     [Serializable]
     public class CannotGoToChargeException:Exception
@@ -49,8 +51,9 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $", This drone cannot go to charge";
 
     }
+
     /// <summary>
-    /// Exception for object that not exist
+    /// This Exception will be thrown when the drone cannot release from charging
     /// </summary>
     [Serializable]
     public class CannotReleaseFromChargeException : Exception
@@ -63,6 +66,9 @@ namespace IBL.BO
 
     }
 
+    /// <summary>
+    /// This Exception will be thrown when the drone cannot assign to parcel
+    /// </summary>
     [Serializable]
     public class CannotAssignDroneToParcelException : Exception
     {
@@ -73,6 +79,9 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $", This drone cannot be assigned to this parcel:";
     }
 
+    /// <summary>
+    /// This Exception will be thrown when the drone is not available now from some reasons
+    /// </summary>
     [Serializable]
     public class DroneIsNotAvailable : Exception
     {
@@ -83,7 +92,9 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $", The drone is not available now:";
     }
 
-
+    /// <summary>
+    /// This Exception will be thrown when the station haven't enough charge slots 
+    /// </summary>
     [Serializable]
     public class NotEnoughChargeSlotsInThisStation : Exception
     {
@@ -94,6 +105,9 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $", There are'nt enough charge slots in this station";
     }
 
+    /// <summary>
+    /// This Exception will be thrown when the drone cannot pick up a parcel from some reasons 
+    /// </summary>
     [Serializable]
     public class CannotPickUpException : Exception
     {
@@ -104,6 +118,10 @@ namespace IBL.BO
         public CannotPickUpException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
         public override string ToString() => base.ToString() + $", The drone cannot pick up the parcel";
     }
+
+    /// <summary>
+    /// This Exception will be thrown when the drone cannot supply a parcel from some reasons 
+    /// </summary>
     [Serializable]
     public class CannotSupplyException : Exception
     {
@@ -114,6 +132,10 @@ namespace IBL.BO
         public CannotSupplyException(int id, string message, Exception innerException) : base(message, innerException) => DroneID = id;
         public override string ToString() => base.ToString() + $", The drone cannot supply the parcel";
     }
+
+    /// <summary>
+    /// This Exception will be thrown when there don't have stations with free charge slots 
+    /// </summary>
     [Serializable]
     public class NoStationsWithFreeChargeException : Exception
     {
