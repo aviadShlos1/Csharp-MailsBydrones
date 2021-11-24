@@ -60,8 +60,11 @@ namespace IBL
             else
             {
                 droneItem.DroneStatus = BO.DroneStatus.Shipment;
+                droneItem.TransferParcelsNum = assignedParcel.Id;
                 assignedParcel.DroneToParcelId = myDroneId;
                 assignedParcel.AssignningTime = DateTime.Now;
+
+                DalAccess.AssignParcelToDrone(assignedParcel.Id, myDroneId);
             }
 
         }
@@ -124,6 +127,8 @@ namespace IBL
         #endregion
         public void PickUpParcel(int droneId)
         {
+            IDAL.DO.ParcelDal parcelItem = new();
+            IDAL.DO.CustomerDal senderItem = new();
             DroneToList droneItem = new();
             try
             {
@@ -133,10 +138,10 @@ namespace IBL
             {
                 throw new BO.NotExistException();
             }
-            //if (droneItem.TransferParcelsNum == 0)
-            //    throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
-            IDAL.DO.ParcelDal parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
-            IDAL.DO.CustomerDal senderItem = GetCustomerDetails(parcelItem.SenderId);
+            if (droneItem.TransferParcelsNum == 0)
+                throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
+            parcelItem = DalAccess.GetSingleParcel(droneItem.TransferParcelsNum);
+            senderItem = GetCustomerDetails(parcelItem.SenderId);
 
             if (parcelItem.PickingUpTime != DateTime.MinValue)
             {
@@ -145,10 +150,11 @@ namespace IBL
             else
             {
                 double currentToSender = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderItem.CustomerLongitude, senderItem.CustomerLatitude);
-                droneItem.BatteryPercent = currentToSender * freeWeightConsumption;
+                droneItem.BatteryPercent -= currentToSender * freeWeightConsumption;
                 droneItem.DroneLocation.Longitude = senderItem.CustomerLongitude;
                 droneItem.DroneLocation.Latitude = senderItem.CustomerLatitude;
                 parcelItem.PickingUpTime = DateTime.Now;
+                DalAccess.PickUpParcel(parcelItem.Id);
             }
         }
         public void SupplyParcel(int droneId)
@@ -164,7 +170,7 @@ namespace IBL
             }
             if (droneItem.TransferParcelsNum == 0)
                 throw new BO.CannotSupplyException("The drone has not transfered parcels yet");
-            var parcelItem = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == droneId);
+            var parcelItem = DalAccess.GetSingleParcel(droneItem.TransferParcelsNum);
             var targetItem = GetCustomerDetails(parcelItem.TargetId);
             if (parcelItem.PickingUpTime == DateTime.MinValue)
                 throw new BO.CannotSupplyException("The parcel has not picked up yet");
@@ -173,12 +179,13 @@ namespace IBL
             else
             {
                 double currentToTarget = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, targetItem.CustomerLongitude, targetItem.CustomerLatitude);
-                droneItem.BatteryPercent = currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
+                droneItem.BatteryPercent -= currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
                 droneItem.DroneLocation.Longitude = targetItem.CustomerLongitude;
                 droneItem.DroneLocation.Latitude = targetItem.CustomerLatitude;
                 droneItem.TransferParcelsNum = 0;
                 droneItem.DroneStatus = BO.DroneStatus.Free;
                 parcelItem.SupplyingTime = DateTime.Now;
+                DalAccess.SupplyParcel(parcelItem.Id);
             }
 
         }
@@ -207,7 +214,7 @@ namespace IBL
                 BO.BaseStationBl closetBaseStation = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, freeChargeSlotsStations);
                 if (droneItem.BatteryPercent >= closetDistance * freeWeightConsumption)
                 {
-                    droneItem.BatteryPercent = closetDistance * freeWeightConsumption;
+                    droneItem.BatteryPercent -= closetDistance * freeWeightConsumption;
                     droneItem.DroneLocation.Longitude = stationLon;
                     droneItem.DroneLocation.Latitude = stationLat;
                     droneItem.DroneStatus = BO.DroneStatus.Maintaince;
