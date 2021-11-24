@@ -8,6 +8,9 @@ using IDAL.DO;
 
 namespace IBL
 {
+    /// <summary>
+    /// This class includes the add methods of the bl entities
+    /// </summary>
     partial class BL
     {
         public void AddBaseStation(BaseStationBl newBaseStationBl)

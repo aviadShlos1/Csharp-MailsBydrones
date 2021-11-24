@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Targil2
+//brief: In this program we built the logic business layer
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +36,7 @@ namespace ConsoleUI_BL
         /// <summary>
         /// The function handles various addition options.
         /// </summary>
-        /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
+        /// <param name="bl"> DalObject object is a parameter which enables access to the DalObject class functions</param>
         static public void AddOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Add options:
@@ -288,6 +292,10 @@ Your choice:");
                         bl.DroneToCharge(droneId);
                     }
                     catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch (DroneIsNotAvailable ex)
                     {
                         Console.WriteLine(ex);
                     }
