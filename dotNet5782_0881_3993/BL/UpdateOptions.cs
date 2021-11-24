@@ -195,9 +195,9 @@ namespace IBL
             }
             
             List<IDAL.DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetStationsWithFreeCharge().ToList();
-            droneItem = DronesListBL.Find(x => x.DroneId == droneId);
-
-            if (freeChargeSlotsStations.Count == 0 || (droneItem.DroneStatus != BO.DroneStatus.Free) )
+            if ((droneItem.DroneStatus != BO.DroneStatus.Free))
+                throw new DroneIsNotAvailable(droneId);
+            if (freeChargeSlotsStations.Count == 0 )
                 throw new BO.CannotGoToChargeException(droneId);
             else
             {

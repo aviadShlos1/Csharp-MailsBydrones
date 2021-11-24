@@ -33,11 +33,11 @@ namespace DalObject
         internal static class Config
         {
             public static int RunId = 0;//This parameter will be updated both in Initialize and Add methods
-            public static double FreeWeightConsumption = default; // The power consumption for free weight drone. 
-            public static double LightWeightConsumption = default;
-            public static double MediumWeightConsumption = default;
-            public static double HeavyWeightConsumption = default;
-            public static double ChargeRate = default;
+            public static double FreeWeightConsumption = 0.03; // The power consumption for free weight drone. 
+            public static double LightWeightConsumption = 0.05;
+            public static double MediumWeightConsumption = 0.07;
+            public static double HeavyWeightConsumption = 1;
+            public static double ChargeRate = 0.5; // 50 percent for hour
         }
 
         //private static int DroneId = default;
