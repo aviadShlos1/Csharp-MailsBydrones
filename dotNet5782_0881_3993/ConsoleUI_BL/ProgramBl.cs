@@ -216,7 +216,7 @@ Please enter the sender id number(0-1000):");
 1. Updating a drone name       
 2. Updating base station data (new name or new chrage slots number )
 3. Updating customer data (new name or new phone number)
-4. Assigning between parcel to drone 
+4. Assigning between parcel to drone (In the first time you should release from charge) 
 5. Picking Up parcel by a drone
 6. Supplying Parcel to customer
 7. Sending drone to charge
@@ -284,6 +284,62 @@ Your choice:");
                     }
                     break;
 
+                case UpdatesOption.AssignParcelToDrone:
+                    Console.WriteLine("Please enter a drone id (4 digits):");
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
+                    try
+                    {
+                        bl.AssignParcelToDrone(droneId);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch (DroneIsNotAvailable ex)
+                    { 
+                        Console.WriteLine(ex);
+                    }
+                    catch(CannotAssignDroneToParcelException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+
+                    break;
+
+                case UpdatesOption.PickUpParcel:
+                    Console.WriteLine("Please enter a drone id (0-1000):");
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
+                    try
+                    {
+                        bl.PickUpParcel(droneId);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch(CannotPickUpException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    break;
+
+                case UpdatesOption.SupplyParcel:
+                    Console.WriteLine("Please enter a drone id (0-1000):");
+                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
+                    try
+                    {
+                        bl.SupplyParcel(droneId);
+                    }
+                    catch (NotExistException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    catch(CannotSupplyException ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                    break;
+
                 case UpdatesOption.DroneToCharge:
                     Console.WriteLine("Please enter a drone id (4 digits): ");
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
@@ -326,61 +382,8 @@ Your choice:");
 
                     break;
 
-                case UpdatesOption.AssignParcelToDrone:
-                    Console.WriteLine("Please enter a drone id (4 digits):");
-                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
-                    try
-                    {
-                        bl.AssignParcelToDrone(droneId);
-                    }
-                    catch (NotExistException ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-                    catch (DroneIsNotAvailable ex)
-                    { 
-                        Console.WriteLine(ex);
-                    }
-                    catch(CannotAssignDroneToParcelException ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
 
-                    break;
-
-                case UpdatesOption.PickUpParcel:
-                    Console.WriteLine("Please enter a drone id (0-1000):");
-                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
-                    try
-                    {
-                        bl.PickUpParcel(droneId);
-                    }
-                    catch (NotExistException ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-                    catch(CannotPickUpException ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-                    break;
                 
-                case UpdatesOption.SupplyParcel:
-                    Console.WriteLine("Please enter a drone id (0-1000):");
-                    while (!int.TryParse(Console.ReadLine(), out droneId)) ;
-                    try
-                    {
-                        bl.SupplyParcel(droneId);
-                    }
-                    catch (NotExistException ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-                    catch(CannotSupplyException ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-                    break;
 
                 default:
                     Console.WriteLine("you entered a wrong number please choose again");
