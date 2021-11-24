@@ -1,6 +1,8 @@
 ﻿//Names: Aviad Shlosberg       314960881      
 //       Evyatar Levi Ben Ston 318753993 
 //Targil1
+//brief: In this program we built the data access layer
+
 
 
 using System;
@@ -13,7 +15,7 @@ namespace IDAL
 {
     namespace DO
     {
-        /// <summary> This struct is intended for BaseStationDal the DroneDal details
+        /// <summary> This struct is intended for BaseStationDal details
         public struct BaseStationDal
         {
             public int Id { get; set; }

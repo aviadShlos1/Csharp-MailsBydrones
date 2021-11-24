@@ -1,8 +1,7 @@
 ﻿//Names: Aviad Shlosberg       314960881      
 //       Evyatar Levi Ben Ston 318753993 
 //Targil1
-//Brief: The data layer details
-
+//brief: In this program we built the data access layer
 
 using System;
 using System.Collections.Generic;
@@ -19,7 +18,6 @@ namespace DalObject
         public static Random rand = new();
 
         #region The entities lists
-        // Pay attention - we chose to work with lists, so we don't need to initialize the sizes
 
         /// <This five rows below describe the initialize of the entities lists >
         internal static List<DroneDal> Drones = new(10) ;
