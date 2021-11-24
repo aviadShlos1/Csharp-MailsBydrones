@@ -24,7 +24,10 @@ namespace DalObject
             ConsumptionArr[4] = DataSource.Config.ChargeRate;
             return ConsumptionArr;
         }
-        public DalObject() { /*DataSource.Initialize();*/ }
+        public DalObject() 
+        { 
+            DataSource.Initialize();  //call the first initialize in the dal ctor
+        }
 
         #region Add methods
         /// <summary>
