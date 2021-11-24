@@ -13,7 +13,7 @@ using IDAL.DO;
 namespace IBL
 {
     /// <summary>
-    /// This class includes the add methods of the Bl entities
+    /// This class imlements the add methods of the buisneess layer
     /// </summary>
     partial class BL
     {
@@ -72,7 +72,7 @@ namespace IBL
             {
                 throw new BO.AlreadyExistException();
             }
-            if (DalAccess.GetSingleBaseStation(firstChargeStation).FreeChargeSlots <= 0)
+            if (DalAccess.GetSingleBaseStation(firstChargeStation).FreeChargeSlots <= 0)//Checks if the station doesn't have free charge slots
                 throw new NoStationsWithFreeChargeException();
         }
         /// <summary>
@@ -103,7 +103,7 @@ namespace IBL
         /// <param name="newParcel">The entity for adding</param>
         public void AddParcel(ParcelBl newParcel)
         {
-            try
+            try//Checks if its have a customer assigned to the parcel 
             {
                 DalAccess.GetSingleCustomer(newParcel.Sender.Id);
                 DalAccess.GetSingleCustomer(newParcel.Reciever.Id);

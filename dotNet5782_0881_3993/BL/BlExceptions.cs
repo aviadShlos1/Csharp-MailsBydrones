@@ -11,6 +11,9 @@ using IDAL.DO;
 
 namespace IBL.BO
 {
+    /// <summary>
+    /// Exception for object that not exist
+    /// </summary>
     [Serializable]
     public class NotExistException : Exception
     {
@@ -21,6 +24,9 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $",The id does not exist";
 
     }
+    /// <summary>
+    /// Exception for object that already exist
+    /// </summary>
     [Serializable]
     public class AlreadyExistException : Exception
     {
@@ -30,6 +36,9 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $", The id is already exists";
 
     }
+    /// <summary>
+    /// Exception for drone that cannot go to charge
+    /// </summary>
     [Serializable]
     public class CannotGoToChargeException:Exception
     {
@@ -40,6 +49,9 @@ namespace IBL.BO
         public override string ToString() => base.ToString() + $", This drone cannot go to charge";
 
     }
+    /// <summary>
+    /// Exception for object that not exist
+    /// </summary>
     [Serializable]
     public class CannotReleaseFromChargeException : Exception
     {

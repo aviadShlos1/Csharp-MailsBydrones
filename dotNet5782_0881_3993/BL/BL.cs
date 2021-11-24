@@ -13,10 +13,13 @@ using IDAL.DO;
 
 namespace IBL
 {
+    /// <summary>
+    /// This class is divided to modules that contains the methods implement of the CRUD options
+    /// </summary>
     public partial class BL : IBL
     {
-        IDAL.IDal DalAccess = new DalObject.DalObject();
-        public List<DroneToList> DronesListBL { get; set; }
+        IDAL.IDal DalAccess = new DalObject.DalObject();//This is the access point from the data layer
+        public List<DroneToList> DronesListBL { get; set; }//This list is contains drones of type of "Drone to list" 
         public static Random rand = new();
 
         public double freeWeightConsumption;
@@ -26,6 +29,11 @@ namespace IBL
         public double chargeRate;
 
         #region Help methods
+        /// <summary>
+        /// This function gives the customer details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>entity of customerDal</returns>
         private IDAL.DO.CustomerDal GetCustomerDetails(int id)
         {
             IDAL.DO.CustomerDal myCust = new();
@@ -37,7 +45,14 @@ namespace IBL
             }
             return myCust;
         }
-
+        /// <summary>
+        /// The function get the distance between two locations
+        /// </summary>
+        /// <param name="myLongitude"></param>
+        /// <param name="myLatitude"></param>
+        /// <param name="stationLongitude"></param>
+        /// <param name="stationLatitude"></param>
+        /// <returns>The distance in double number</returns>
         private static double GetDistance(double myLongitude, double myLatitude, double stationLongitude, double stationLatitude)
         {
             var num1 = myLongitude * (Math.PI / 180.0);
@@ -48,6 +63,13 @@ namespace IBL
             double distanceInMeters = (double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));                                                                                                                 //We calculate the distance according to a formula that also takes into account the curvature of the earth
             return distanceInMeters/1000 ; //return ditance in kilometers
         }
+        /// <summary>
+        /// This func checks who is the closet station to my location that i gives
+        /// </summary>
+        /// <param name="myLon">my longitude</param>
+        /// <param name="myLat">my latitude</param>
+        /// <param name="stationsList">A list of stations to looking for</param>
+        /// <returns></returns>
         private BaseStationBl ClosetStation(double myLon, double myLat, List<IDAL.DO.BaseStationDal> stationsList)
         {
             BaseStationBl closetBaseStation = default;
@@ -66,26 +88,11 @@ namespace IBL
             }
             return closetBaseStation;
         }
-        //private List<IDAL.DO.CustomerDal> CustomersSuppliedParcels()
-        //{
-        //    List<IDAL.DO.CustomerDal> temp = new();
-        //    foreach (var itemPar in DalAccess.GetParcelsList())
-        //    {
-        //        foreach (var itemCus in DalAccess.GetCustomersList())
-        //        {
-        //            if (itemPar.TargetId == itemCus.Id && itemPar.SupplyingTime != DateTime.MinValue)
-        //            {
-        //                temp.Add(itemCus);
-        //            }
-        //        }
-        //    }
-        //    return temp;
-        //}
         #endregion
         //ctor
         public BL()
         {
-            double[] energyConsumption = DalAccess.EnergyConsumption();
+            double[] energyConsumption = DalAccess.EnergyConsumption();//Get from the dal layer the array that contains the energy consumption
             freeWeightConsumption = energyConsumption[0];
             lightWeightConsumption = energyConsumption[1];
             mediumWeightConsumption = energyConsumption[2];
@@ -108,16 +115,17 @@ namespace IBL
 
                 foreach (var itemParcel in ParcelsDalList)
                 {
+                    //If the parcel not supplied but the drone is already assign
                     if (itemParcel.DroneToParcelId == itemDrone.DroneId && itemParcel.SupplyingTime == DateTime.MinValue)
                     {
                         itemDrone.DroneStatus = DroneStatus.Shipment;
-                        if (itemParcel.AssignningTime != DateTime.MinValue && itemParcel.PickingUpTime == DateTime.MinValue)
+                        if (itemParcel.AssignningTime != DateTime.MinValue && itemParcel.PickingUpTime == DateTime.MinValue)//If the parcel is already assigned but isn't picked up
                         {
                             double senderLon = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
                             double senderLat = GetCustomerDetails(itemParcel.SenderId).CustomerLatitude;
                             itemDrone.DroneLocation = ClosetStation(senderLon, senderLat, DalAccess.GetBaseStationsList().ToList()).Location;
                         }
-                        if (itemParcel.PickingUpTime != DateTime.MinValue && itemParcel.SupplyingTime == DateTime.MinValue)
+                        if (itemParcel.PickingUpTime != DateTime.MinValue && itemParcel.SupplyingTime == DateTime.MinValue)//If the parcel is already picked up but isn't supplied
                         {
                             itemDrone.DroneLocation.Longitude = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
                             itemDrone.DroneLocation.Latitude = GetCustomerDetails(itemParcel.SenderId).CustomerLatitude;
@@ -126,26 +134,29 @@ namespace IBL
                         double targetLon = GetCustomerDetails(itemParcel.TargetId).CustomerLongitude;
                         double targerLat = GetCustomerDetails(itemParcel.TargetId).CustomerLatitude;
                         double targetDistance = GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, targetLon, targerLat);
-                        double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;
+                        double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;//The battery consumption that enables to the drone to supply the parcel
                         Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude,itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).Location;
-                        double minCharge2 = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, closetStation.Longitude, closetStation.Latitude);
+                        double minCharge2 = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, closetStation.Longitude, closetStation.Latitude);//The battery consumption that enables to the drone to arrive the station for charge
                         itemDrone.BatteryPercent = rand.NextDouble() * (100 - (minCharge1+minCharge2)) + minCharge1+minCharge2;
                     }
                 }
+                //If the drone not doing a shipment
                 if (itemDrone.DroneStatus != DroneStatus.Shipment)
                 {
                     itemDrone.DroneStatus = (DroneStatus)rand.Next(0, 1);
                 }
+                //If the drone is in maintaince status
                 if (itemDrone.DroneStatus == DroneStatus.Maintaince)
                 {
                     int index = rand.Next(BaseStationsDalList.Count());
                     itemDrone.DroneLocation.Latitude = BaseStationsDalList[index].Latitude;
                     itemDrone.DroneLocation.Longitude = BaseStationsDalList[index].Longitude;
-                    itemDrone.BatteryPercent = rand.NextDouble() * 20;
+                    itemDrone.BatteryPercent = rand.NextDouble() * 20;//rand between 0-20 percent
                 }
+                //If the drone is free
                 if (itemDrone.DroneStatus == DroneStatus.Free)
                 {
-
+                    //Finding the customers that have supplied parcels
                     List<IDAL.DO.ParcelDal> assignedParcels = ParcelsDalList.FindAll(x => x.DroneToParcelId == itemDrone.DroneId && x.SupplyingTime != DateTime.MinValue);
 
                     if (assignedParcels.Count != 0) //the list isn't empty 
@@ -156,6 +167,7 @@ namespace IBL
                     }
                     else
                     {
+                        //rand a base station from the list and set the location of the drone in the station
                         IDAL.DO.BaseStationDal temp = BaseStationsDalList[rand.Next(0, BaseStationsDalList.Count)];
                         if (!BaseStationsDalList.Any())
                         {
@@ -166,7 +178,7 @@ namespace IBL
                     
                     Location closetStation = new Location();
                     closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude,BaseStationsDalList).Location;
-                    double minCharge = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, closetStation.Longitude, closetStation.Latitude);
+                    double minCharge = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, closetStation.Longitude, closetStation.Latitude);//the minimum charge to enable it going to charge
                     itemDrone.BatteryPercent = rand.NextDouble()*(100-minCharge)+minCharge ;
                 }
             }
