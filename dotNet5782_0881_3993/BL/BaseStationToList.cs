@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace IBL.BO
 {
+    /// <summary>
+    /// This entity is contain details of base station with a type of "base station to list" that will present in list displaying
+    /// </summary>
     public class BaseStationToList
     {
         public int Id { get; set; }

@@ -6,6 +6,9 @@ using System;
 
 namespace IBL.BO
 {
+    /// <summary>
+    /// This class contains the assignning details 
+    /// </summary>
     public class AssignCustomerToParcel
     {
         public int Id { get; set; }
