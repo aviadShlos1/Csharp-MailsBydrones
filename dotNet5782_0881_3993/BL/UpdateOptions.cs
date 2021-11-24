@@ -10,8 +10,16 @@ using System.Threading.Tasks;
 using IBL.BO;
 namespace IBL
 {
+    /// <summary>
+    /// This class implements the update methods of the business layer
+    /// </summary>
     partial class BL
     {
+        /// <summary>
+        /// Updating a drone model name
+        /// </summary>
+        /// <param name="droneId">The id of the exist drone</param>
+        /// <param name="newModel">The new model name</param>
         public void UpdateDroneName(int droneId, string newModel)
         {
             foreach (var item in DalAccess.GetDronesList())
@@ -20,17 +28,23 @@ namespace IBL
                 {
                     string tempModel = item.Model;
                     tempModel = newModel;
-
                 }
             }
         }
+       
+        /// <summary>
+        /// Updating base station name and update the free charge slots number 
+        /// </summary>
+        /// <param name="baseStationId"> The id of the exist base station</param>
+        /// <param name="newName">a new name</param>
+        /// <param name="totalChargeSlots">a new total charge slots number</param>
         public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
         {
             foreach (var item in DalAccess.GetBaseStationsList())
             {
                 if (item.Id == baseStationId)
                 {
-                    if (newName != "")
+                    if (newName != "") // the user input something
                     {
                         string tempName = item.Name;
                         tempName = newName;
@@ -52,6 +66,13 @@ namespace IBL
             }
 
         }
+        
+        /// <summary>
+        /// Updating customer details: new name and phone
+        /// </summary>
+        /// <param name="myId">The id of the exist customer</param>
+        /// <param name="newName">a new name</param>
+        /// <param name="newPhone">a new phone</param>
         public void UpdateCustomerData(int myId, string newName, string newPhone)
         {
             foreach (var item in DalAccess.GetCustomersList())
@@ -71,13 +92,18 @@ namespace IBL
                 }
             }
         }
+        
+        /// <summary>
+        /// Assigning a parcel to a drone 
+        /// </summary>
+        /// <param name="myDroneId">an exist drone</param>
         public void AssignParcelToDrone(int myDroneId)
         {
             IDAL.DO.ParcelDal assignedParcel = new();
             IDAL.DO.CustomerDal senderCustomer = new();
             double closetDistance = default;
 
-            // finding the high priority parcel, taking in conclusion the priority,weight and distance. 
+            // finding the high priority parcel, taking in conclusion the priority,weight and distance
             DroneToList droneItem = new();
             try
             {
@@ -85,7 +111,6 @@ namespace IBL
             }
             catch (IDAL.DO.NotExistException)
             {
-
                 throw new BO.NotExistException();
             }
             if (droneItem.DroneStatus != BO.DroneStatus.Free)
@@ -94,6 +119,7 @@ namespace IBL
             }
 
             senderCustomer = GetCustomerDetails(HighestPriorityAndWeightParcels()[0].SenderId);
+            /// Finding the closet parcel among the highest priority and weight parcels list
             closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
             foreach (var item in HighestPriorityAndWeightParcels())
             {
@@ -103,9 +129,9 @@ namespace IBL
                 {
                     closetDistance = tempDistance;
                     assignedParcel = item;
-                }//
+                }
             }
-            //checking the battery level
+            //checking the battery consumption
             double arriveToSenderBattery = closetDistance * freeWeightConsumption;
 
             IDAL.DO.CustomerDal targetCustomer = GetCustomerDetails(assignedParcel.TargetId);
@@ -116,7 +142,8 @@ namespace IBL
             double targetToCharge = GetDistance(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude, closetStationFromTarget.Location.Longitude, closetStationFromTarget.Location.Latitude);
             double trgetToChargeBattery = targetToCharge * freeWeightConsumption;
             double totalDemandBattery = arriveToSenderBattery + srcToTrgetBattery + trgetToChargeBattery;
-            if (droneItem.BatteryPercent < totalDemandBattery)
+
+            if (droneItem.BatteryPercent < totalDemandBattery) //if the drone will not be able to do the shipment
             {
                 throw new BO.CannotAssignDroneToParcelException(myDroneId);
             }
@@ -132,6 +159,10 @@ namespace IBL
 
         }
         #region Help methods for AssignParcelToDrone method
+        /// <summary>
+        /// Auxiliary method: Searching the highest priority parcels, according to the priority field
+        /// </summary>
+        /// <returns>The highest priority parcels list</returns>
         private List<IDAL.DO.ParcelDal> HighestPriorityParcels()
         {
             List<IDAL.DO.ParcelDal> parcelsWithUrgentPriority = new();
@@ -160,6 +191,10 @@ namespace IBL
                 parcelsWithFastPriority.Any() ? parcelsWithFastPriority
                 : parcelsWithNormalPriority);
         }
+        /// <summary>
+        /// Auxiliary method: Searching the highest priority and weight parcels based on the highest priority parcels list
+        /// </summary>
+        /// <returns>The highest priority and weight parcels list</returns>
         private List<IDAL.DO.ParcelDal> HighestPriorityAndWeightParcels()
         {
             List<IDAL.DO.ParcelDal> heavyParcels = new();
@@ -188,6 +223,11 @@ namespace IBL
                 mediumParcels : lightParcels);
         }
         #endregion
+
+        /// <summary>
+        /// Updating the parcel pick up details
+        /// </summary>
+        /// <param name="droneId"> an exist drone</param>
         public void PickUpParcel(int droneId)
         {
             IDAL.DO.ParcelDal parcelItem = new();
@@ -201,16 +241,15 @@ namespace IBL
             {
                 throw new BO.NotExistException();
             }
-            //if (droneItem.TransferParcelsNum == 0)
-            //    throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
+            if (droneItem.TransferParcelsNum == 0) // if the drone doesn't take any parcel
+                throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
             parcelItem = DalAccess.GetSingleParcel(droneItem.TransferParcelsNum);
             senderItem = GetCustomerDetails(parcelItem.SenderId);
 
-            if (parcelItem.PickingUpTime != DateTime.MinValue)
-            {
+            if (parcelItem.PickingUpTime != DateTime.MinValue) //checking if the parcel has already picked up
                 throw new BO.CannotPickUpException("The parcel has already picked up");
-            }
-            else
+
+            else //updating the battery,location and picking up time
             {
                 double currentToSender = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderItem.CustomerLongitude, senderItem.CustomerLatitude);
                 droneItem.BatteryPercent -= currentToSender * freeWeightConsumption;
@@ -220,6 +259,11 @@ namespace IBL
                 DalAccess.PickUpParcel(droneItem.DroneId);
             }
         }
+        
+        /// <summary>
+        /// Updating the parcel supply details
+        /// </summary>
+        /// <param name="droneId"> an exist drone</param>
         public void SupplyParcel(int droneId)
         {
             DroneToList droneItem = new();
@@ -231,15 +275,17 @@ namespace IBL
             {
                 throw new BO.NotExistException();
             }
-            if (droneItem.TransferParcelsNum == 0)
+            if (droneItem.TransferParcelsNum == 0) //if the drone doesn't take any parcel
                 throw new BO.CannotSupplyException("The drone has not transfered parcels yet");
+            
             var parcelItem = DalAccess.GetSingleParcel(droneItem.TransferParcelsNum);
             var targetItem = GetCustomerDetails(parcelItem.TargetId);
             if (parcelItem.PickingUpTime == DateTime.MinValue)
                 throw new BO.CannotSupplyException("The parcel has not picked up yet");
             if (parcelItem.SupplyingTime != DateTime.MinValue)
                 throw new BO.CannotSupplyException("The parcel has already supplied");
-            else
+           
+            else //updating the battery,location, status and suppling time
             {
                 double currentToTarget = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, targetItem.CustomerLongitude, targetItem.CustomerLatitude);
                 droneItem.BatteryPercent -= currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
@@ -252,6 +298,11 @@ namespace IBL
             }
 
         }
+
+        /// <summary>
+        /// Sending drone for charging in order to fill its battery
+        /// </summary>
+        /// <param name="droneId"></param>
         public void DroneToCharge(int droneId)
         {
             DroneToList droneItem = new();
@@ -265,7 +316,7 @@ namespace IBL
             }
             
             List<IDAL.DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetStationsWithFreeCharge().ToList();
-            if ((droneItem.DroneStatus != BO.DroneStatus.Free))
+            if ((droneItem.DroneStatus != BO.DroneStatus.Free)) //if the drone is not available (maintaince or shipment)
                 throw new DroneIsNotAvailable(droneId);
             if (freeChargeSlotsStations.Count == 0 )
                 throw new BO.CannotGoToChargeException(droneId);
@@ -291,6 +342,12 @@ namespace IBL
             }
 
         }
+        
+        /// <summary>
+        /// Releasing a drone from charging
+        /// </summary>
+        /// <param name="droneId"></param>
+        /// <param name="chargeTime"></param>
         public void ReleaseDroneCharge(int droneId, TimeSpan chargeTime)
         {
             DroneToList droneItem = new();
@@ -309,13 +366,12 @@ namespace IBL
             }
             else
             {
-                double timeInMinutes = chargeTime.TotalMinutes;
-                timeInMinutes /= 60;
-                droneItem.BatteryPercent = timeInMinutes * chargeRate;
-                if (droneItem.BatteryPercent > 100)
-                {
+                double timeInMinutes = chargeTime.TotalMinutes;//converting the format to number of minutes, for instance, 1:30 to 90 minutes
+                timeInMinutes /= 60; //getting the time in hours 
+                droneItem.BatteryPercent = timeInMinutes * chargeRate; // the battery calculation
+                if (droneItem.BatteryPercent > 100) //battery can't has more than a 100 percent
                     droneItem.BatteryPercent = 100;
-                }
+                
                 droneItem.DroneStatus = BO.DroneStatus.Free;
                 var droneChargeItem = DalAccess.GetDronesChargeList().ToList().Find(x => x.DroneId == droneId);
                 var stationItem = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == droneChargeItem.StationId);

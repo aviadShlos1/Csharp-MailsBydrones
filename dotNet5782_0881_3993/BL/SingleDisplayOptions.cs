@@ -11,8 +11,14 @@ using IDAL.DO;
 using IBL.BO;
 namespace IBL
 {
+    //This class implements the single display methods of the business layer
     partial class BL
     {
+        /// <summary>
+        /// Getting the details of a single base station
+        /// </summary>
+        /// <param name="baseStationId"> The wanted object to display</param>
+        /// <returns> Base station bl object</returns>
         public BaseStationBl GetSingleBaseStation(int baseStationId)
         {
             IDAL.DO.BaseStationDal dalBaseStation = new();
@@ -36,6 +42,12 @@ namespace IBL
             }
             return myStationBl;
         }
+
+        /// <summary>
+        /// Getting the details of a single drone 
+        /// </summary>
+        /// <param name="myDroneId"> The wanted object to display</param>
+        /// <returns> drone bl object</returns>
         public DroneBl GetSingleDrone(int myDroneId)
         {
             IDAL.DO.DroneDal dalDrone = new();
@@ -65,13 +77,20 @@ namespace IBL
                 Location myTargetLocation = new Location() { Longitude = GetCustomerDetails(tempParcel.TargetId).CustomerLongitude, Latitude = GetCustomerDetails(tempParcel.TargetId).CustomerLatitude };
                 myDroneBl.ParcelInShip.TargetLocation = myTargetLocation;
                 myDroneBl.ParcelInShip.ShippingDistance = GetDistance(myPickUpLocation.Longitude, myPickUpLocation.Latitude, myTargetLocation.Longitude, myTargetLocation.Latitude);
-                if (tempParcel.PickingUpTime != DateTime.MinValue)
+                
+                if (tempParcel.PickingUpTime != DateTime.MinValue) //if the parcel has already picked up
                     myDroneBl.ParcelInShip.ShippingOnTheWay = true;
                 else
                     myDroneBl.ParcelInShip.ShippingOnTheWay = false;
             }
             return myDroneBl;
         }
+
+        /// <summary>
+        /// Getting the details of a single customer
+        /// </summary>
+        /// <param name="customerId"> The wanted object to display</param>
+        /// <returns> customer bl object</returns>
         public CustomerBL GetSingleCustomer(int customerId)
         {
             IDAL.DO.CustomerDal myCustomer = new();
@@ -88,6 +107,7 @@ namespace IBL
             CustomerBL myCustomerBl = new() { CustomerId = myCustomer.Id, CustomerName = myCustomer.Name, CustomerPhone = myCustomer.Phone, CustomerLocation = myLocation, ParcelsFromCustomerList = new(), ParcelsToCustomerList = new() };
             List<IDAL.DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == customerId).ToList();
             List<IDAL.DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().TakeWhile(x => x.TargetId == customerId).ToList();
+            // getting the all parcels which were sent by the customer 
             foreach (var senderItem in mySentParcels)
             {
                 ParcelByCustomer myParcelByCustomer = new ParcelByCustomer()
@@ -107,6 +127,7 @@ namespace IBL
                     myParcelByCustomer.Status = ParcelStatus.Supplied;
                 myCustomerBl.ParcelsFromCustomerList.Add(myParcelByCustomer);
             }
+            // getting the all parcels which were recieved by the customer 
             foreach (var TargetItem in myRecievedParcels)
             {
                 ParcelByCustomer targetParcelByCustomer = new ParcelByCustomer()
@@ -129,6 +150,12 @@ namespace IBL
             }
             return myCustomerBl;
         }
+
+        /// <summary>
+        /// Getting the details of a single parcel
+        /// </summary>
+        /// <param name="parcelId"> The wanted object to display</param>
+        /// <returns> parcel bl object</returns>
         public ParcelBl GetSingleParcel(int parcelId)
         {
             IDAL.DO.ParcelDal dalParcel = new();
