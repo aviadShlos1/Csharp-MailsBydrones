@@ -19,7 +19,7 @@ namespace ConsoleUI_BL
     enum AddOptions { AddBaseStation = 1, AddDrone, AddCustomer, AddParcel }
 
     /// <summary> enum for UpdatesOption</summary>
-    enum UpdatesOption { UpdateDroneName = 1, UpdateBaseStationData, UpdateCustomerData, DroneToCharge, ReleaseDroneCharge, AssignParcelToDrone, PickUpParcel, SupplyParcel }
+    enum UpdatesOption { UpdateDroneName = 1, UpdateBaseStationData, UpdateCustomerData, AssignParcelToDrone, PickUpParcel, SupplyParcel, DroneToCharge, ReleaseDroneCharge,  }
 
     /// <summary> enum for SingleOptionDisplay </summary>
     enum SingleDisplayOptions { BaseStationDisplay = 1, DroneDisplay, CustomerDisplay, ParcelDisplay }
@@ -213,14 +213,14 @@ Please enter the sender id number(0-1000):");
         static public void UpdateOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"Update options:
-1. Updating a drone name       
-2. Updating base station data (new name or new chrage slots number )
-3. Updating customer data (new name or new phone number)
-4. Assigning between parcel to drone (In the first time you should release from charge) 
-5. Picking Up parcel by a drone
-6. Supplying Parcel to customer
-7. Sending drone to charge
-8. Releasing drone from charge
+1. Update a drone name       
+2. Update base station data (new name or new chrage slots number )
+3. Update customer data (new name or new phone number)
+4. Assign between parcel to drone (In the first time you should release from charge) 
+5. Pick Up parcel by a drone
+6. Supply Parcel to customer
+7. Send drone to charge
+8. Release drone from charge
 Your choice:");
             int choice;
             while (!int.TryParse(Console.ReadLine(), out choice)) ;
