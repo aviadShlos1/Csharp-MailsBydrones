@@ -60,8 +60,8 @@ namespace DalObject
         }
         public int AddParcel(ParcelDal newParcel)
         {           
-            DataSource.Parcels.Add(newParcel);
             newParcel.Id = DataSource.Config.RunId++;
+            DataSource.Parcels.Add(newParcel);
             return newParcel.Id;
         }
         #endregion Add methods
