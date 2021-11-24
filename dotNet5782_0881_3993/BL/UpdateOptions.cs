@@ -40,7 +40,7 @@ namespace IBL
                 {
                     closetDistance = tempDistance;
                     assignedParcel = item;
-                }
+                }//
             }
             //checking the battery level
             double arriveToSenderBattery = closetDistance * freeWeightConsumption;
