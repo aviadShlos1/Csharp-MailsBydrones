@@ -108,7 +108,7 @@ namespace IDAL
         /// Displaying the base stations list which includes the details of the all base stations
         /// </summary>
         /// <returns> The ienumerable list </returns>
-        public IEnumerable<BaseStationDal> GetBaseStationsList();
+        public IEnumerable<BaseStationDal> GetBaseStationsList(Predicate<BaseStationDal> myPredicate = null);
 
         /// Displaying the drones list which includes the details of the all drones
         /// </summary>
@@ -123,22 +123,24 @@ namespace IDAL
         /// Displaying the parcels list which includes the details of the all parcels
         /// </summary>
         /// <returns> The ienumerable list </returns>
-        public IEnumerable<ParcelDal> GetParcelsList();
+        public IEnumerable<ParcelDal> GetParcelsList(Predicate<ParcelDal> myPredicate = null);
 
-        /// Displaying the parcels without drone 
-        /// </summary>
-        /// <returns> The ienumerable list </returns>
-        public IEnumerable<ParcelDal> GetParcelsWithoutDrone();
-
-        /// Displaying the base stations with free charge slots 
-        /// </summary>
-        /// <returns> The ienumerable list </returns>
-        public IEnumerable<BaseStationDal> GetStationsWithFreeCharge();
-
+      
         /// Displaying the drones in charge
         /// </summary>
         /// <returns> The ienumerable list </returns>
-        public IEnumerable<DroneCharge> GetDronesChargeList();     
+        public IEnumerable<DroneChargeDal> GetDronesChargeList(Predicate<DroneChargeDal> myPredicate = null);
+
+
+        ///// Displaying the parcels without drone 
+        ///// </summary>
+        ///// <returns> The ienumerable list </returns>
+        //public IEnumerable<ParcelDal> GetParcelsWithoutDrone();
+
+        ///// Displaying the base stations with free charge slots 
+        ///// </summary>
+        ///// <returns> The ienumerable list </returns>
+        //public IEnumerable<BaseStationDal> GetStationsWithFreeCharge();
         #endregion ListDisplay
     }
 }

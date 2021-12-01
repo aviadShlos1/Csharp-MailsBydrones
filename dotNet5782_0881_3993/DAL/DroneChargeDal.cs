@@ -14,8 +14,8 @@ namespace IDAL
 {
     namespace DO
     {
-        /// <summary> This struct is intended for storing the DroneCharge details
-        public struct DroneCharge
+        /// <summary> This struct is intended for storing the DroneChargeDal details
+        public struct DroneChargeDal
         {
             public int DroneId { get; set; }
             public int StationId { get; set; }
@@ -24,7 +24,7 @@ namespace IDAL
             /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
-                return $"DroneCharge: DroneToParcelId{DroneId}, StationId{StationId}";
+                return $"DroneChargeDal: DroneToParcelId{DroneId}, StationId{StationId}";
             }
         }
     }

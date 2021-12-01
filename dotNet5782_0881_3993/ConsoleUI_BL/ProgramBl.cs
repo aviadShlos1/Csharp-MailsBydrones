@@ -487,6 +487,7 @@ Your choice:");
         /// </summary>
         /// <param name="bl">bl object is a parameter which enables access to the BL class functions</param>
 
+        
         static public void DisplayListOptions(IBL.IBL bl)
         {
             Console.WriteLine(@"List display options:
@@ -500,62 +501,43 @@ Your choice:");
             int choice;
             while (!int.TryParse(Console.ReadLine(), out choice)) ;
 
+            // auxiliary method for list printing
+            void printTheList<T>(List<T> list)
+            {
+                foreach (var item in list)
+                    Console.WriteLine(item);
+            } 
+
             switch ((ListDisplayOption)choice)
             {
                 // BaseStations list display
                 case ListDisplayOption.BaseStationsList:
-                    IEnumerable<BaseStationToList> displayStationsList = bl.GetBaseStationsBl();
-                    foreach (var item in displayStationsList)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(bl.GetBaseStationsBl().ToList());
                     break;
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    IEnumerable<DroneToList> displayDronesList = bl.GetDronesBl();
-                    foreach (var item in displayDronesList)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(bl.GetDronesBl().ToList());
                     break;
 
                 // Customers list display
                 case ListDisplayOption.CustomersList:
-                    IEnumerable<CustomerToList> displayCustomersList = bl.GetCustomersBl();
-
-                    foreach (var item in displayCustomersList)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(bl.GetCustomersBl().ToList());
                     break;
 
                 // Parcels list display
                 case ListDisplayOption.ParcelsList:
-                    IEnumerable<ParcelToList> displayParcelsList = bl.GetParcelsBl();
-
-                    foreach (var item in displayParcelsList)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(bl.GetParcelsBl().ToList());
                     break;
 
                 // Get parcels without drone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
-                    IEnumerable<ParcelToList> displayParcelsWithoutDrone = bl.GetParcelsWithoutDroneBl();
-                    foreach (var item in displayParcelsWithoutDrone)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(bl.GetParcelsBl(x => x.ParcelStatus==ParcelStatus.Created).ToList());
                     break;
 
                 // Get stations with free charge slots list display
                 case ListDisplayOption.StationsWithFreeChargeSlots:
-                    IEnumerable<BaseStationToList> displayStationsWithFreeChargeSlots = bl.GetStationsWithFreeChargeBl();
-                    foreach (var item in displayStationsWithFreeChargeSlots)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(bl.GetBaseStationsBl(x => x.FreeChargeSlots > 0).ToList());
                     break;
 
                 default:

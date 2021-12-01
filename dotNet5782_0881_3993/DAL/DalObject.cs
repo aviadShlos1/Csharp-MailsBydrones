@@ -131,14 +131,14 @@ namespace DalObject
             station1.FreeChargeSlots--; // Reducing the free chargeSlots
             DataSource.BaseStations[stationIndex] = station1;
 
-            DataSource.DronesInCharge.Add(new DroneCharge() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
+            DataSource.DronesInCharge.Add(new DroneChargeDal() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
 
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId==droneId);
             if (droneId == -1)
             {
                 throw new NotExistException(droneId);
             }
-            DroneCharge charge1 = DataSource.DronesInCharge[chargeIndex];
+            DroneChargeDal charge1 = DataSource.DronesInCharge[chargeIndex];
             DataSource.DronesInCharge[chargeIndex] = charge1;
         }
         /// <summary>
@@ -152,7 +152,7 @@ namespace DalObject
             {
                 throw new NotExistException(droneId);
             }
-            DroneCharge help = DataSource.DronesInCharge[chargeIndex];
+            DroneChargeDal help = DataSource.DronesInCharge[chargeIndex];
             int baseStationId = help.StationId;
 
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == baseStationId);
@@ -213,9 +213,10 @@ namespace DalObject
         /// Displaying the all list for all the entity that chosen
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<BaseStationDal> GetBaseStationsList()
+        public IEnumerable<BaseStationDal> GetBaseStationsList(Predicate<BaseStationDal> myPredicate=null )
         {
-            return DataSource.BaseStations;          
+
+            return DataSource.BaseStations.FindAll(x => myPredicate == null? true : myPredicate(x)).ToList();
         }
         public IEnumerable<DroneDal> GetDronesList()
         {
@@ -225,31 +226,31 @@ namespace DalObject
         {
             return DataSource.Customers;
         }
-        public IEnumerable<ParcelDal> GetParcelsList()
+        public IEnumerable<ParcelDal> GetParcelsList(Predicate<ParcelDal> myPredicate = null)
         {
-            return DataSource.Parcels;
+            return DataSource.Parcels.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList();
         }
-        
+        public IEnumerable<DroneChargeDal> GetDronesChargeList(Predicate<DroneChargeDal> myPredicate = null)
+        {
+            return DataSource.DronesInCharge.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList(); ;
+        }
         /// <summary>
         /// Displaying the parcel without assinged drone
         /// </summary>
         /// <returns>The list of the parcel</returns>
-        public IEnumerable<ParcelDal> GetParcelsWithoutDrone()
-        {
-            return DataSource.Parcels.TakeWhile(i => i.DroneToParcelId == 0).ToList();
-        }
-        /// <summary>
-        /// Displaying the list of station with a free charge slots 
-        /// </summary>
-        /// <returns>The list of station entity</returns>
-        public IEnumerable<BaseStationDal> GetStationsWithFreeCharge()
-        {
-            return DataSource.BaseStations.TakeWhile(i => i.FreeChargeSlots != 0).ToList();
-        }
-        public IEnumerable<DroneCharge> GetDronesChargeList()
-        {
-            return DataSource.DronesInCharge;
-        }
+        //public IEnumerable<ParcelDal> GetParcelsWithoutDrone()
+        //{
+        //    return DataSource.Parcels.FindAll(i => i.DroneToParcelId == 0).ToList();
+        //}
+        ///// <summary>
+        ///// Displaying the list of station with a free charge slots 
+        ///// </summary>
+        ///// <returns>The list of station entity</returns>
+        //public IEnumerable<BaseStationDal> GetStationsWithFreeCharge()
+        //{
+        //    return DataSource.BaseStations.FindAll(i => i.FreeChargeSlots != 0).ToList();
+        //}
+
         #endregion ListDisplay
     }
 }

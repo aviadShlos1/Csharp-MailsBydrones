@@ -11,6 +11,9 @@ using IDAL.DO;
 
 namespace IBL.BO
 {
+
+    // An exceptions class for the business layer
+
     /// <summary>
     ///This exception will be thrown when the object isn't exist
     /// </summary>

@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 namespace IDAL.DO
 {
+
+    // An exceptions class for the data access layer
+
     /// <summary>
     ///This exception will be thrown when the object isn't exist
     /// </summary>
@@ -17,7 +20,7 @@ namespace IDAL.DO
     public class NotExistException : Exception
     {
         public int ID;
-        public string msg;
+
         public NotExistException(int id) : base() => ID = id;
         public NotExistException(int id, string message) : base(message) => ID = id;
         public NotExistException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;

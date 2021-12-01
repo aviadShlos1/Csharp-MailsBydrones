@@ -169,7 +169,7 @@ namespace IBL
             List<IDAL.DO.ParcelDal> parcelsWithFastPriority = new();
             List<IDAL.DO.ParcelDal> parcelsWithNormalPriority = new();
 
-            foreach (var item in DalAccess.GetParcelsWithoutDrone())
+            foreach (var item in DalAccess.GetParcelsList())/////////////////!!!!!!!!!!!!!!!!!!add condition
             {
                 switch ((PrioritiesBL)item.Priority)
                 {
@@ -315,7 +315,7 @@ namespace IBL
                 throw new BO.NotExistException();
             }
             
-            List<IDAL.DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetStationsWithFreeCharge().ToList();
+            List<IDAL.DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetBaseStationsList().ToList(); /////////////////!!!!!!!!!!!!!!!!!!add condition
             if ((droneItem.DroneStatus != BO.DroneStatus.Free)) //if the drone is not available (maintaince or shipment)
                 throw new DroneIsNotAvailable(droneId);
             if (freeChargeSlotsStations.Count == 0 )

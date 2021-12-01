@@ -14,16 +14,17 @@ namespace IBL
 {
     partial class BL
     {
-        public List<BaseStationToList> GetBaseStationsBl ()
+        public List<BaseStationToList> GetBaseStationsBl (Predicate<BaseStationToList> myPredicate=null)
         {
             List<BaseStationToList> myBaseStationsBl = new();
             List<IDAL.DO.BaseStationDal> dalBaseStations = DalAccess.GetBaseStationsList().ToList();
             foreach (var item in dalBaseStations)
             {
-                int busyChargeSlots = DalAccess.GetDronesChargeList().ToList().FindAll(x => x.StationId == item.Id).Count();
-                myBaseStationsBl.Add(new BaseStationToList { Id = item.Id, BaseStationName = item.Name, FreeChargeSlots = item.FreeChargeSlots, BusyChargeSlots=busyChargeSlots });
+                //int busyChargeSlots = DalAccess.GetDronesChargeList().ToList().FindAll(x => x.StationId == item.Id).Count();
+                myBaseStationsBl.Add(new BaseStationToList { Id = item.Id, BaseStationName = item.Name,
+                    FreeChargeSlots = item.FreeChargeSlots, BusyChargeSlots = DalAccess.GetDronesChargeList(x => x.StationId == item.Id).Count() });
             }
-            return myBaseStationsBl;
+            return myBaseStationsBl.FindAll(x=> myPredicate == null ? true : myPredicate(x));
         }
         public List<DroneToList> GetDronesBl()
         {
@@ -45,7 +46,7 @@ namespace IBL
             }
             return myCustomersBl;
         }
-        public List<ParcelToList> GetParcelsBl()
+        public List<ParcelToList> GetParcelsBl(Predicate<ParcelToList> myPredicate = null)
         {
             List<ParcelToList> myParcelsBl = new();
             List<IDAL.DO.ParcelDal> dalParcels = DalAccess.GetParcelsList().ToList();
@@ -65,21 +66,22 @@ namespace IBL
 
                 myParcelsBl.Add(tempParcelTolist);
             }
-            return myParcelsBl;
-        }
-        public List<ParcelToList> GetParcelsWithoutDroneBl()
-        {
-            List<ParcelToList> myParcelsWithoutDroneBl = new();
-            myParcelsWithoutDroneBl = GetParcelsBl().TakeWhile(x => x.ParcelStatus == ParcelStatus.Created).ToList();
-            return myParcelsWithoutDroneBl;
+            return myParcelsBl.FindAll(x => myPredicate == null ? true : myPredicate(x));
         }
 
-        public List<BaseStationToList> GetStationsWithFreeChargeBl()
-        {
-            List<BaseStationToList> myBaseStationsWithFreeChargeBl = new();
-            myBaseStationsWithFreeChargeBl = GetBaseStationsBl().TakeWhile(x => x.FreeChargeSlots != 0).ToList();
-            return myBaseStationsWithFreeChargeBl;
-        }
+        //public List<ParcelToList> GetParcelsWithoutDroneBl()
+        //{
+        //    List<ParcelToList> myParcelsWithoutDroneBl = new();
+        //    myParcelsWithoutDroneBl = GetParcelsBl().TakeWhile(x => x.ParcelStatus == ParcelStatus.Created).ToList();
+        //    return myParcelsWithoutDroneBl;
+        //}
+
+        //public List<BaseStationToList> GetStationsWithFreeChargeBl()
+        //{
+        //    List<BaseStationToList> myBaseStationsWithFreeChargeBl = new();
+        //    myBaseStationsWithFreeChargeBl = GetBaseStationsBl().TakeWhile(x => x.FreeChargeSlots != 0).ToList();
+        //    return myBaseStationsWithFreeChargeBl;
+        //}
         
     }
 }
