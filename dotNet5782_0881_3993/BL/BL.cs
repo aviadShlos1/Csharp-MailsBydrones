@@ -116,16 +116,16 @@ namespace IBL
                 foreach (var itemParcel in ParcelsDalList)
                 {
                     //If the parcel not supplied but the drone is already assign
-                    if (itemParcel.DroneToParcelId == itemDrone.DroneId && itemParcel.SupplyingTime == DateTime.MinValue)
+                    if (itemParcel.DroneToParcelId == itemDrone.DroneId && itemParcel.SupplyingTime == null)
                     {
                         itemDrone.DroneStatus = DroneStatus.Shipment;
-                        if (itemParcel.AssignningTime != DateTime.MinValue && itemParcel.PickingUpTime == DateTime.MinValue)//If the parcel is already assigned but isn't picked up
+                        if (itemParcel.AssignningTime != null && itemParcel.PickingUpTime == null)//If the parcel is already assigned but isn't picked up
                         {
                             double senderLon = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
                             double senderLat = GetCustomerDetails(itemParcel.SenderId).CustomerLatitude;
                             itemDrone.DroneLocation = ClosetStation(senderLon, senderLat, DalAccess.GetBaseStationsList().ToList()).Location;
                         }
-                        if (itemParcel.PickingUpTime != DateTime.MinValue && itemParcel.SupplyingTime == DateTime.MinValue)//If the parcel is already picked up but isn't supplied
+                        if (itemParcel.PickingUpTime != null && itemParcel.SupplyingTime == null)//If the parcel is already picked up but isn't supplied
                         {
                             itemDrone.DroneLocation.Longitude = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
                             itemDrone.DroneLocation.Latitude = GetCustomerDetails(itemParcel.SenderId).CustomerLatitude;
@@ -157,7 +157,7 @@ namespace IBL
                 if (itemDrone.DroneStatus == DroneStatus.Free)
                 {
                     //Finding the customers that have supplied parcels
-                    List<IDAL.DO.ParcelDal> assignedParcels = ParcelsDalList.FindAll(x => x.DroneToParcelId == itemDrone.DroneId && x.SupplyingTime != DateTime.MinValue);
+                    List<IDAL.DO.ParcelDal> assignedParcels = ParcelsDalList.FindAll(x => x.DroneToParcelId == itemDrone.DroneId && x.SupplyingTime != null);
 
                     if (assignedParcels.Count != 0) //the list isn't empty 
                     {
@@ -184,20 +184,6 @@ namespace IBL
             }
             
         }
-      
-
-        
-
     }
-
-
-
-
-
-
-
-
-
-
 }
 

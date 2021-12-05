@@ -532,12 +532,12 @@ Your choice:");
 
                 // Get parcels without drone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
-                    printTheList(bl.GetParcelsBl(x => x.ParcelStatus==ParcelStatus.Created).ToList());
+                    printTheList(bl.GetParcelsBl().ToList());
                     break;
 
                 // Get stations with free charge slots list display
                 case ListDisplayOption.StationsWithFreeChargeSlots:
-                    printTheList(bl.GetBaseStationsBl(x => x.FreeChargeSlots > 0).ToList());
+                    printTheList(bl.GetBaseStationsBl().ToList());
                     break;
 
                 default:

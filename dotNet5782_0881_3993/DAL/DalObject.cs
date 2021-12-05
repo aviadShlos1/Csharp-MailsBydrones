@@ -230,27 +230,10 @@ namespace DalObject
         {
             return DataSource.Parcels.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList();
         }
-        public IEnumerable<DroneChargeDal> GetDronesChargeList(Predicate<DroneChargeDal> myPredicate = null)
+        public IEnumerable<DroneChargeDal> GetDronesChargeList()
         {
-            return DataSource.DronesInCharge.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList(); ;
+            return DataSource.DronesInCharge;
         }
-        /// <summary>
-        /// Displaying the parcel without assinged drone
-        /// </summary>
-        /// <returns>The list of the parcel</returns>
-        //public IEnumerable<ParcelDal> GetParcelsWithoutDrone()
-        //{
-        //    return DataSource.Parcels.FindAll(i => i.DroneToParcelId == 0).ToList();
-        //}
-        ///// <summary>
-        ///// Displaying the list of station with a free charge slots 
-        ///// </summary>
-        ///// <returns>The list of station entity</returns>
-        //public IEnumerable<BaseStationDal> GetStationsWithFreeCharge()
-        //{
-        //    return DataSource.BaseStations.FindAll(i => i.FreeChargeSlots != 0).ToList();
-        //}
-
         #endregion ListDisplay
     }
 }

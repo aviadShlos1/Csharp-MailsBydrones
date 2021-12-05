@@ -129,18 +129,7 @@ namespace IDAL
         /// Displaying the drones in charge
         /// </summary>
         /// <returns> The ienumerable list </returns>
-        public IEnumerable<DroneChargeDal> GetDronesChargeList(Predicate<DroneChargeDal> myPredicate = null);
-
-
-        ///// Displaying the parcels without drone 
-        ///// </summary>
-        ///// <returns> The ienumerable list </returns>
-        //public IEnumerable<ParcelDal> GetParcelsWithoutDrone();
-
-        ///// Displaying the base stations with free charge slots 
-        ///// </summary>
-        ///// <returns> The ienumerable list </returns>
-        //public IEnumerable<BaseStationDal> GetStationsWithFreeCharge();
+        public IEnumerable<DroneChargeDal> GetDronesChargeList();
         #endregion ListDisplay
     }
 }

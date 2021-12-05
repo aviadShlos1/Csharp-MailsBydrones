@@ -246,7 +246,7 @@ namespace IBL
             parcelItem = DalAccess.GetSingleParcel(droneItem.TransferParcelsNum);
             senderItem = GetCustomerDetails(parcelItem.SenderId);
 
-            if (parcelItem.PickingUpTime != DateTime.MinValue) //checking if the parcel has already picked up
+            if (parcelItem.PickingUpTime != null) //checking if the parcel has already picked up
                 throw new BO.CannotPickUpException("The parcel has already picked up");
 
             else //updating the battery,location and picking up time
@@ -280,9 +280,9 @@ namespace IBL
             
             var parcelItem = DalAccess.GetSingleParcel(droneItem.TransferParcelsNum);
             var targetItem = GetCustomerDetails(parcelItem.TargetId);
-            if (parcelItem.PickingUpTime == DateTime.MinValue)
+            if (parcelItem.PickingUpTime == null)
                 throw new BO.CannotSupplyException("The parcel has not picked up yet");
-            if (parcelItem.SupplyingTime != DateTime.MinValue)
+            if (parcelItem.SupplyingTime != null)
                 throw new BO.CannotSupplyException("The parcel has already supplied");
            
             else //updating the battery,location, status and suppling time

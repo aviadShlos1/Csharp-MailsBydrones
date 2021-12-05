@@ -43,10 +43,11 @@ namespace IBL
         #endregion DisplayOptions
 
         #region ListDisplayOptions
-        public List<BaseStationToList> GetBaseStationsBl(Predicate<BaseStationToList> myPredicate = null);
+        public List<BaseStationToList> GetBaseStationsBl();
         public List<DroneToList> GetDronesBl();
         public List<CustomerToList> GetCustomersBl();
-        public List<ParcelToList> GetParcelsBl(Predicate<ParcelToList> myPredicate = null);
+        public List<ParcelToList> GetParcelsBl();
+
         //public List<ParcelToList> GetParcelsWithoutDroneBl();
         //public List<BaseStationToList> GetStationsWithFreeChargeBl();
         #endregion ListDisplayOptions

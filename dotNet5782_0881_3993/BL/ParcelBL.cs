@@ -13,7 +13,7 @@ namespace IBL.BO
     /// <summary>
     /// This class presents a parcel bl entity
     /// </summary>
-    public class ParcelBl 
+    public class ParcelBl
     {
         public int ParcelId { get; set; }
         public AssignCustomerToParcel Sender { get; set; }
@@ -21,10 +21,10 @@ namespace IBL.BO
         public WeightCategoriesBL ParcelWeight { get; set; }
         public PrioritiesBL Priority { get; set; }
         public DroneInShipment DroneAssignToParcel { get; set; }
-        public DateTime? CreatingTime { get; set; }
-        public DateTime? AssignningTime { get; set; }
-        public DateTime? PickingUpTime { get; set; }
-        public DateTime? SupplyingTime { get; set; }
+        public DateTime? CreatingTime { get => CreatingTime; set => CreatingTime = null; }
+        public DateTime? AssignningTime { get => AssignningTime; set => AssignningTime = null; }
+        public DateTime? PickingUpTime { get => PickingUpTime; set => PickingUpTime = null; }
+        public DateTime? SupplyingTime { get => SupplyingTime; set => SupplyingTime = null; }
         public override string ToString()
         {
             return $"ParcelId: {ParcelId}, AssignSenderToParcel: {Sender}, AssignRecieverToParcel: {Reciever}, ParcelWeight: {ParcelWeight}, Priority: {Priority}, DroneInShipment: {DroneAssignToParcel}, " +
