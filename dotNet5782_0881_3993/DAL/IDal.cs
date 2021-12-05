@@ -113,7 +113,7 @@ namespace IDAL
         /// Displaying the drones list which includes the details of the all drones
         /// </summary>
         /// <returns> The ienumerable list </returns>
-        public IEnumerable<DroneDal> GetDronesList();
+        public IEnumerable<DroneDal> GetDronesList(Predicate<DroneDal> myPredicate = null);
 
         /// Displaying the customers list which includes the details of the all customers
         /// </summary>

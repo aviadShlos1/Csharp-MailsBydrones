@@ -14,7 +14,7 @@ namespace IBL
 {
     partial class BL
     {
-        public List<BaseStationToList> GetBaseStationsBl ()
+        public List<BaseStationToList> GetBaseStationsBl (Predicate<BaseStationToList> myPredicate = null)
         {
             List<BaseStationToList> myBaseStationsBl = new();
             List<IDAL.DO.BaseStationDal> dalBaseStations = DalAccess.GetBaseStationsList().ToList();
@@ -24,11 +24,11 @@ namespace IBL
                 myBaseStationsBl.Add(new BaseStationToList { Id = item.Id, BaseStationName = item.Name,
                     FreeChargeSlots = item.FreeChargeSlots, BusyChargeSlots = DalAccess.GetDronesChargeList().Count() });
             }
-            return myBaseStationsBl.FindAll(x => x.FreeChargeSlots > 0);
+            return myBaseStationsBl.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList()/*x => x.FreeChargeSlots > 0*/;
         }
-        public List<DroneToList> GetDronesBl()
+        public List<DroneToList> GetDronesBl(Predicate<DroneToList> myPredicate = null)
         {
-            return DronesListBL;
+            return DronesListBL.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList();
         }
         public List<CustomerToList> GetCustomersBl()
         {
@@ -46,7 +46,7 @@ namespace IBL
             }
             return myCustomersBl;
         }
-        public List<ParcelToList> GetParcelsBl()
+        public List<ParcelToList> GetParcelsBl(Predicate<ParcelToList> myPredicate = null)
         {
             List<ParcelToList> myParcelsBl = new();
             List<IDAL.DO.ParcelDal> dalParcels = DalAccess.GetParcelsList().ToList();
@@ -66,7 +66,7 @@ namespace IBL
 
                 myParcelsBl.Add(tempParcelTolist);
             }
-            return myParcelsBl.FindAll((x => x.ParcelStatus == ParcelStatus.Created));
+            return myParcelsBl.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList()/*(x => x.ParcelStatus == ParcelStatus.Created)*/;
         }
 
         //public List<ParcelToList> GetParcelsWithoutDroneBl()

@@ -218,9 +218,9 @@ namespace DalObject
 
             return DataSource.BaseStations.FindAll(x => myPredicate == null? true : myPredicate(x)).ToList();
         }
-        public IEnumerable<DroneDal> GetDronesList()
+        public IEnumerable<DroneDal> GetDronesList(Predicate<DroneDal> myPredicate = null)
         {
-            return DataSource.Drones;
+            return DataSource.Drones.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList();
         }
         public IEnumerable<CustomerDal> GetCustomersList()
         {
