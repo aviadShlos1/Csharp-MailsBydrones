@@ -58,7 +58,7 @@ namespace IBL
             var d1 = myLatitude * (Math.PI / 180.0);
             var d2 = stationLatitude * (Math.PI / 180.0);
             var num1 = myLongitude * (Math.PI / 180.0);
-            var num2 = stationLongitude * (Math.PI / 180.0);
+            var num2 = stationLongitude * (Math.PI / 180.0);//
             var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin((num2-num1) / 2.0), 2.0); //calculate according to the formula in this site: https://www.movable-type.co.uk/scripts/latlong.html
             double distanceInMeters = (double)(6371000.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));                             
             return distanceInMeters/100000 ; //return ditance in format that matches the battery units
