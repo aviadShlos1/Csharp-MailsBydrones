@@ -55,13 +55,13 @@ namespace IBL
         /// <returns>The distance in double number</returns>
         private static double GetDistance(double myLongitude, double myLatitude, double stationLongitude, double stationLatitude)
         {
-            var num1 = myLongitude * (Math.PI / 180.0);
             var d1 = myLatitude * (Math.PI / 180.0);
-            var d2 = stationLongitude * (Math.PI / 180.0);
-            var num2 = stationLatitude * (Math.PI / 180.0) - num1;
-            var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0); //https://iw.waldorf-am-see.org/588999-calculating-distance-between-two-latitude-QPAAIP
-            double distanceInMeters = (double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));                                                                                                                 //We calculate the distance according to a formula that also takes into account the curvature of the earth
-            return distanceInMeters/1000 ; //return ditance in kilometers
+            var d2 = stationLatitude * (Math.PI / 180.0);
+            var num1 = myLongitude * (Math.PI / 180.0);
+            var num2 = stationLongitude * (Math.PI / 180.0);
+            var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin((num2-num1) / 2.0), 2.0); //calculate according to the formula in this site: https://www.movable-type.co.uk/scripts/latlong.html
+            double distanceInMeters = (double)(6371000.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));                             
+            return distanceInMeters/100000 ; //return ditance in format that matches the battery units
         }
         /// <summary>
         /// This func checks who is the closet station to my location that i gives
@@ -134,10 +134,10 @@ namespace IBL
                         double targetLon = GetCustomerDetails(itemParcel.TargetId).CustomerLongitude;
                         double targerLat = GetCustomerDetails(itemParcel.TargetId).CustomerLatitude;
                         double targetDistance = GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, targetLon, targerLat);
-                        double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;//The battery consumption that enables to the drone to supply the parcel
+                        double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;//The battery consumption that enables the drone to supply the parcel
                         Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude,itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).Location;
                         double minCharge2 = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, closetStation.Longitude, closetStation.Latitude);//The battery consumption that enables to the drone to arrive the station for charge
-                        itemDrone.BatteryPercent = rand.NextDouble() * (100 - (minCharge1+minCharge2)) + minCharge1+minCharge2;
+                        itemDrone.BatteryPercent = rand.NextDouble() * (minCharge1 + minCharge2) + (100 - (minCharge1 + minCharge2));
                     }
                 }
                 //If the drone not doing a shipment
