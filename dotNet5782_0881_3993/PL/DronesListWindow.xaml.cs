@@ -26,5 +26,10 @@ namespace PL
             dronesList = blAccess;
             DronesListView.ItemsSource = blAccess.GetDronesBl();//
         }
+
+        public void ShowDroneButton_Click(object sender, RoutedEventArgs e, IBL.IBL dronesList)
+        {
+
+        }
     }
 }
