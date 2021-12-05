@@ -137,7 +137,7 @@ namespace IBL
                         double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;//The battery consumption that enables the drone to supply the parcel
                         Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude,itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).Location;
                         double minCharge2 = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, closetStation.Longitude, closetStation.Latitude);//The battery consumption that enables to the drone to arrive the station for charge
-                        itemDrone.BatteryPercent = rand.NextDouble() * (minCharge1 + minCharge2) + (100 - (minCharge1 + minCharge2));
+                        itemDrone.BatteryPercent = Math.Round(rand.NextDouble() * (minCharge1 + minCharge2) + (100 - (minCharge1 + minCharge2)));
                     }
                 }
                 //If the drone not doing a shipment
@@ -179,7 +179,7 @@ namespace IBL
                     Location closetStation = new Location();
                     closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude,BaseStationsDalList).Location;
                     double minCharge = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, closetStation.Longitude, closetStation.Latitude);//the minimum charge to enable it going to charge
-                    itemDrone.BatteryPercent = rand.NextDouble()*(100-minCharge)+minCharge ;
+                    itemDrone.BatteryPercent = Math.Round(rand.NextDouble()*(100-minCharge)+minCharge) ;
                 }
             }
             
