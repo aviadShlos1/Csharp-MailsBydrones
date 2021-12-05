@@ -21,7 +21,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
+            <ComboBox Name="StatusSelector"  Grid.Column="1"  SelectionChanged="ComboBox_SelectionChanged"/>
+            <Label Content="Label" Grid.Column="0" HorizontalAlignment="Stretch" Margin="67,30,0,0" VerticalAlignment="Stretch"/>
         </Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="236,103,0,0" Grid.Row="1" VerticalAlignment="Top" Click="ShowDronesButton_Click"/>
     </Grid>
-   
+
 </Window>

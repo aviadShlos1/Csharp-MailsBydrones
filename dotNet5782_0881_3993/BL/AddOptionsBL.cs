@@ -118,6 +118,9 @@ namespace IBL
             tempParcel.Weight = (WeightCategoriesDal)newParcel.ParcelWeight;
             tempParcel.Priority = (Priorities)newParcel.Priority;
             tempParcel.CreatingTime = DateTime.Now;
+            tempParcel.AssignningTime = null;
+            tempParcel.PickingUpTime = null;
+            tempParcel.SupplyingTime = null;
             tempParcel.DroneToParcelId = 0;
             DalAccess.AddParcel(tempParcel);
         }

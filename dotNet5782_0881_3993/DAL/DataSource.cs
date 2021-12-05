@@ -96,12 +96,16 @@ namespace DalObject
                     TargetId = rand.Next(100000000, 1000000000),
                     Weight = RandomEnumValue<WeightCategoriesDal>(),
                     Priority = RandomEnumValue<Priorities>(),
-                    CreatingTime = DateTime.Now,
-                    AssignningTime = DateTime.Now + time,
-                    PickingUpTime = DateTime.Now + time + time,
-                    SupplyingTime = DateTime.Now + time + time + time,
+                    CreatingTime = null,
+                    AssignningTime = null,
+                    PickingUpTime = null,
+                    SupplyingTime = null,
                     DroneToParcelId = 0,
                 });
+                //CreatingTime = DateTime.Now,
+                //    AssignningTime = DateTime.Now + time,
+                //    PickingUpTime = DateTime.Now + time + time,
+                //    SupplyingTime = DateTime.Now + time + time + time,
                 Config.RunId++;
             }
             #endregion adding Parcel details

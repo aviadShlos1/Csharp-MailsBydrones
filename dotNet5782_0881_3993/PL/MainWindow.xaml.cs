@@ -23,9 +23,18 @@ namespace PL
     {
         private IBL.IBL blAccess = new IBL.BL();
         public MainWindow()
-        {
-            
+        {            
             InitializeComponent();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ShowDronesButton_Click(object sender, RoutedEventArgs e)
+        {
+            new DronesListWindow(blAccess).Show();
         }
     }
 }

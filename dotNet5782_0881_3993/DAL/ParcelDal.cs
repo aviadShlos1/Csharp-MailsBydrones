@@ -24,10 +24,10 @@ namespace IDAL
             public int TargetId { get; set; }
             public WeightCategoriesDal Weight { get; set; }
             public Priorities Priority { get; set; }
-            public DateTime? CreatingTime { get => CreatingTime; set => CreatingTime = null; }//creation
-            public DateTime? AssignningTime { get => AssignningTime; set => AssignningTime = null; } // relative to the drone 
-            public DateTime? PickingUpTime { get => PickingUpTime; set => PickingUpTime = null; }// picked up time from the deliver
-            public DateTime? SupplyingTime { get => SupplyingTime; set => SupplyingTime = null; }// customer's arrival time
+            public DateTime? CreatingTime { get; set; }//creation
+            public DateTime? AssignningTime { get; set; } // relative to the drone 
+            public DateTime? PickingUpTime { get; set; }// picked up time from the deliver
+            public DateTime? SupplyingTime { get; set; }// customer's arrival time
             public int DroneToParcelId { get; set; }
 
             /// </summary> This method converts the values to string values
