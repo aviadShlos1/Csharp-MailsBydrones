@@ -19,9 +19,12 @@ namespace PL
     /// </summary>
     public partial class DronesListWindow : Window
     {
+        private IBL.IBL dronesList;
         public DronesListWindow(IBL.IBL blAccess)
         {
             InitializeComponent();
+            dronesList = blAccess;
+            DronesListView.ItemsSource = blAccess.GetDronesBl();
         }
     }
 }
