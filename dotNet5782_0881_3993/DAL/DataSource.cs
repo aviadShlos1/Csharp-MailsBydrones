@@ -57,7 +57,7 @@ namespace DalObject
                 Drones.Add(new DroneDal()
                 {
                     Id = rand.Next(1000, 10000),
-                    Model = "model:" + i.ToString(),
+                    Model = i.ToString(),
                     DroneWeight = RandomEnumValue<WeightCategoriesDal>()
                 });
             }

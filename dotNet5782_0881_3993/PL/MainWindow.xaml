@@ -21,10 +21,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="StatusSelector"  Grid.Column="1"  SelectionChanged="ComboBox_SelectionChanged"/>
+            <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="ComboBox_StatusSelection"/>
             <Label Content="Label" Grid.Column="0" HorizontalAlignment="Stretch" Margin="67,30,0,0" VerticalAlignment="Stretch"/>
+
+            <ComboBox Name="WeightSelector" Grid.Column="2" SelectionChanged="ComboBox_WeightSelection"/>
         </Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="236,103,0,0" Grid.Row="1" VerticalAlignment="Top" Click="ShowDronesButton_Click"/>
+        <Button Content="DronesDisplay" HorizontalAlignment="Left" Margin="236,103,0,0" Grid.Row="1" VerticalAlignment="Top" Click="ShowDronesButton_Click"/>
     </Grid>
 
 </Window>

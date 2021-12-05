@@ -24,7 +24,7 @@ namespace PL
         {
             InitializeComponent();
             dronesList = blAccess;
-            DronesListView.ItemsSource = blAccess.GetDronesBl();
+            DronesListView.ItemsSource = blAccess.GetDronesBl();//
         }
     }
 }
