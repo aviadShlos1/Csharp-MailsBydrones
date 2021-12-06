@@ -62,7 +62,7 @@ namespace IBL
 
             var tempDroneBl = DronesListBL.Find(x => x.DroneId == myDroneId);
             DroneBl myDroneBl = new() { DroneId = dalDrone.Id, Model = dalDrone.Model, DroneWeight = (WeightCategoriesBL)dalDrone.DroneWeight, BatteryPercent = tempDroneBl.BatteryPercent, DroneStatus = tempDroneBl.DroneStatus, DroneLocation = tempDroneBl.DroneLocation };
-            if (myDroneBl.DroneStatus == DroneStatus.Shipment)
+            if (myDroneBl.DroneStatus == DroneStatusesBL.Shipment)
             {
                 var tempParcel= DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == myDroneId);
                 myDroneBl.ParcelInShip.Id =tempParcel.Id ;

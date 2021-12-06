@@ -26,17 +26,16 @@ namespace PL
             InitializeComponent();
             blAccess = blAccessTemp;
             DronesListView.ItemsSource = blAccess.GetDronesBl();
-            StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatus));
+            StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
         }
         private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)
         {
-            DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatus)StatusSelector.SelectedItem);
+            DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
         }
         private void ComboBox_WeightSelection(object sender, SelectionChangedEventArgs e)
         {
             DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
         }
-
     }
 }

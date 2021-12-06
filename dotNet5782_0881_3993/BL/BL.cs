@@ -104,7 +104,7 @@ namespace IBL
             List <ParcelDal> ParcelsDalList = DalAccess.GetParcelsList().ToList();
             List <BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList().ToList();
             List <CustomerDal> CustomersDalList = DalAccess.GetCustomersList().ToList();
-            
+
             DronesListBL = new List<DroneToList>();
             foreach (var item in DronesDalList)
             {
@@ -112,13 +112,12 @@ namespace IBL
             }
             foreach (var itemDrone in DronesListBL)
             {
-
                 foreach (var itemParcel in ParcelsDalList)
                 {
                     //If the parcel not supplied but the drone is already assign
                     if (itemParcel.DroneToParcelId == itemDrone.DroneId && itemParcel.SupplyingTime == null)
                     {
-                        itemDrone.DroneStatus = DroneStatus.Shipment;
+                        itemDrone.DroneStatus = DroneStatusesBL.Shipment;
                         if (itemParcel.AssignningTime != null && itemParcel.PickingUpTime == null)//If the parcel is already assigned but isn't picked up
                         {
                             double senderLon = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
@@ -130,7 +129,6 @@ namespace IBL
                             itemDrone.DroneLocation.Longitude = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
                             itemDrone.DroneLocation.Latitude = GetCustomerDetails(itemParcel.SenderId).CustomerLatitude;
                         }
-
                         double targetLon = GetCustomerDetails(itemParcel.TargetId).CustomerLongitude;
                         double targerLat = GetCustomerDetails(itemParcel.TargetId).CustomerLatitude;
                         double targetDistance = GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, targetLon, targerLat);
@@ -141,41 +139,45 @@ namespace IBL
                     }
                 }
                 //If the drone not doing a shipment
-                if (itemDrone.DroneStatus != DroneStatus.Shipment)
+                if (itemDrone.DroneStatus != DroneStatusesBL.Shipment)
                 {
-                    itemDrone.DroneStatus = (DroneStatus)rand.Next(0, 1);
+                    itemDrone.DroneStatus = (DroneStatusesBL)rand.Next(0, 2);
                 }
                 //If the drone is in maintaince status
-                if (itemDrone.DroneStatus == DroneStatus.Maintaince)
+                if (itemDrone.DroneStatus == DroneStatusesBL.Maintaince)
                 {
                     int index = rand.Next(BaseStationsDalList.Count());
                     itemDrone.DroneLocation.Latitude = BaseStationsDalList[index].Latitude;
                     itemDrone.DroneLocation.Longitude = BaseStationsDalList[index].Longitude;
-                    itemDrone.BatteryPercent = rand.NextDouble() * 20;//rand between 0-20 percent
+                    itemDrone.BatteryPercent = Math.Round(rand.NextDouble() * 20);//rand between 0-20 percent
                 }
                 //If the drone is free
-                if (itemDrone.DroneStatus == DroneStatus.Free)
+                if (itemDrone.DroneStatus == DroneStatusesBL.Available)
                 {
                     //Finding the customers that have supplied parcels
-                    List<IDAL.DO.ParcelDal> assignedParcels = ParcelsDalList.FindAll(x => x.DroneToParcelId == itemDrone.DroneId && x.SupplyingTime != null);
-
-                    if (assignedParcels.Count != 0) //the list isn't empty 
+                    List<IDAL.DO.ParcelDal> suppliedParcels = ParcelsDalList.FindAll(x=>x.SupplyingTime != null);
+                    List<IDAL.DO.CustomerDal> suppliedCustomers = new();
+                    foreach (var item in DalAccess.GetCustomersList())
                     {
-                        int index = rand.Next(0, assignedParcels.Count);
-                        itemDrone.DroneLocation.Latitude = CustomersDalList.Find(x => x.Id == assignedParcels[index].TargetId).CustomerLatitude;
-                        itemDrone.DroneLocation.Longitude = CustomersDalList.Find(x => x.Id == assignedParcels[index].TargetId).CustomerLongitude;
+                        foreach (var item2 in suppliedParcels)
+                        {
+                            if (item.Id==item2.TargetId)
+                                suppliedCustomers.Add(item);
+                        }
+                    }
+                    if (suppliedCustomers.Count != 0) //the list isn't empty 
+                    {
+                        int index = rand.Next(0, suppliedCustomers.Count);
+                        itemDrone.DroneLocation.Latitude = suppliedCustomers[index].CustomerLatitude;
+                        itemDrone.DroneLocation.Longitude = suppliedCustomers[index].CustomerLongitude;
                     }
                     else
                     {
                         //rand a base station from the list and set the location of the drone in the station
                         IDAL.DO.BaseStationDal temp = BaseStationsDalList[rand.Next(0, BaseStationsDalList.Count)];
-                        if (!BaseStationsDalList.Any())
-                        {
-                            itemDrone.DroneLocation.Latitude = temp.Latitude;
-                            itemDrone.DroneLocation.Longitude = temp.Longitude;
-                        }
+                        itemDrone.DroneLocation.Latitude = temp.Latitude;
+                        itemDrone.DroneLocation.Longitude = temp.Longitude;
                     }
-                    
                     Location closetStation = new Location();
                     closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude,BaseStationsDalList).Location;
                     double minCharge = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, closetStation.Longitude, closetStation.Latitude);//the minimum charge to enable it going to charge
