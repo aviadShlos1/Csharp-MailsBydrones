@@ -61,7 +61,7 @@ namespace IBL
                     newDroneBl.DroneLocation = location;                  
                 }
             }
-            newDroneBl.BatteryPercent = (rand.NextDouble() * 20) + 20;//rand between 20-40 percent
+            newDroneBl.BatteryPercent = Math.Round( (rand.NextDouble() * 20) + 20);//rand between 20-40 percent
             newDroneBl.DroneStatus = DroneStatusesBL.Maintaince;
             try
             {

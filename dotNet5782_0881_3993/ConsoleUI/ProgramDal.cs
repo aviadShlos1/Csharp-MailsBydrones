@@ -230,7 +230,7 @@ Your choice:");
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
                     Console.WriteLine("please choose stationId ID from the List below:");
-                    IEnumerable<BaseStationDal> FreeChargSlots = dal.GetStationsWithFreeCharge();
+                    IEnumerable<BaseStationDal> FreeChargSlots = dal.GetBaseStationsList().ToList().FindAll(x=>x.FreeChargeSlots>0);
                     foreach (var item in FreeChargSlots)
                     {
                         Console.WriteLine(item);
@@ -319,68 +319,43 @@ Your choice:");
 6. Available charging stations
 Your choice:");
             int.TryParse(Console.ReadLine(), out int choice);
-
+            // auxiliary method for list printing
+            void printTheList<T>(List<T> list)
+            {
+                foreach (var item in list)
+                    Console.WriteLine(item);
+            }
             switch ((ListDisplayOption)choice)
             {
                 // BaseStations list display
                 case ListDisplayOption.StationsList:
-                    IEnumerable <BaseStationDal> displayStationsList = dal.GetBaseStationsList();
-                    foreach (var item in displayStationsList)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(dal.GetBaseStationsList().ToList());
                     break;
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    IEnumerable<DroneDal> displayDronesList = dal.GetDronesList();
-                    foreach (var item in displayDronesList)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(dal.GetDronesList().ToList());
                     break;
                    
                 // Customers list display
                 case ListDisplayOption.CustomersList:
-                    IEnumerable<CustomerDal> displayCustomersList = dal.GetCustomersList();
-
-                    foreach (var item in displayCustomersList)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(dal.GetCustomersList().ToList());
                     break;
 
                 // Parcels list display
                 case ListDisplayOption.ParcelsList:
-                    IEnumerable<ParcelDal> displayParcelsList = dal.GetParcelsList();
-
-                    foreach (var item in displayParcelsList)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(dal.GetParcelsList().ToList());
                     break;
 
                 // GetParcelsWithoutDrone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
-                    IEnumerable<ParcelDal> displayParcelsWithoutDrone = dal.GetParcelsWithoutDrone();
-
-                    foreach (var item in displayParcelsWithoutDrone)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(dal.GetParcelsList().ToList());
                     break;
 
                 // FreeChargeSlots list display
                 case ListDisplayOption.FreeChargeSlotsList:
-                    IEnumerable<BaseStationDal> displayStationsWithFreeChargeSlots = dal.GetStationsWithFreeCharge();
-
-                    foreach (var item in displayStationsWithFreeChargeSlots)
-                    {
-                        Console.WriteLine(item);
-                    }
+                    printTheList(dal.GetBaseStationsList().ToList().FindAll(x=>x.FreeChargeSlots>0));
                     break;
-
-
                 default:
                     break;
             }

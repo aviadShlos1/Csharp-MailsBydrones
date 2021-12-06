@@ -38,7 +38,7 @@ namespace DalObject
             public static double ChargeRate = 50; // 50 percent for hour
         }
 
-        private static int DroneId = default;
+        //private static int DroneId = default;
 
         /// ‹summary›This method allows us to rand objects from the enum class
         /// ‹return› A random value that exist in the enum class.‹/returns›

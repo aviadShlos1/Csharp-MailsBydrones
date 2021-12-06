@@ -28,19 +28,44 @@ namespace PL
             DronesListView.ItemsSource = blAccess.GetDronesBl();
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
+            
+        }
+        /// <summary>
+        /// Auxiliary method that taking into consideration all the selection options 
+        /// </summary>
+        public void selectionOptions()
+        {
+            if (WeightSelector.SelectedItem == null && StatusSelector.SelectedItem == null) //the user select none
+            {
+                DronesListView.ItemsSource = blAccess.GetDronesBl();
+            }
+            else if (WeightSelector.SelectedItem == null) // the user selected by status
+            {
+                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
+            }
+            else if (StatusSelector.SelectedItem == null)// the user selected by weight
+            {
+                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
+            }
+            else // the user selected both by status and weight
+            {
+                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem && x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
+            }
         }
         private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)
         {
-            DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
+            selectionOptions();
+            //DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
         }
         private void ComboBox_WeightSelection(object sender, SelectionChangedEventArgs e)
         {
-            DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
+            selectionOptions();
+            //DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
         }
 
         private void AddDroneButton_Click(object sender, RoutedEventArgs e)
         {
-            new DroneWindow(blAccess).Show();
+            new DroneWindow(blAccess,this).Show();
         }
 
         private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)

@@ -79,7 +79,7 @@ namespace IBL
         //public List<BaseStationToList> GetStationsWithFreeChargeBl()
         //{
         //    List<BaseStationToList> myBaseStationsWithFreeChargeBl = new();
-        //    myBaseStationsWithFreeChargeBl = GetBaseStationsBl().FindAll(x => x.FreeChargeSlots != 0).ToList();
+        //    myBaseStationsWithFreeChargeBl = GetBaseStationsBl().FindAll(x => x.FreeChargeSlots > 0).ToList();
         //    return myBaseStationsWithFreeChargeBl;
         //}
 

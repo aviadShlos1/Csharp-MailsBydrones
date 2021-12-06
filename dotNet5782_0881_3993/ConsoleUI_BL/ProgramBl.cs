@@ -100,7 +100,7 @@ Please enter an id number for the new station:(0-4)");
 You selected to add a new Drone.
 Please enter an id number for the new Drone(1000-9999):");
                     while (!int.TryParse(Console.ReadLine(), out newDroneID)) ;
-                    Console.WriteLine("Please enter the model of the drone:(model: num (0-100) ");
+                    Console.WriteLine("Please enter the model of the drone:( num (0-100) ");
                     newModel = Console.ReadLine();
                     Console.WriteLine("Please enter the weight category of the drone: 0 for light, 1 for medium and 2 for heavy");
                     while (!int.TryParse(Console.ReadLine(), out newMaxWeight)) ;
