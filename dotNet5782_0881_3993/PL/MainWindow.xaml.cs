@@ -26,13 +26,9 @@ namespace PL
         {            
             InitializeComponent();
         }
-
-      
         private void ShowDronesButton_Click(object sender, RoutedEventArgs e)
         {
             new DronesListWindow(blAccess).Show();
         }
-
-        
     }
 }

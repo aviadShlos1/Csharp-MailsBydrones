@@ -19,12 +19,12 @@ namespace IBL.BO
         public string Model { get; set; }
         public WeightCategoriesBL DroneWeight { get; set; }
         public double BatteryPercent { get; set; }
-        public DroneStatus DroneStatus { get; set; }
+        public DroneStatusesBL DroneStatus { get; set; }
         public Location DroneLocation { get; set; }
         public int TransferParcelsNum { get; set; } // This field includes the parcel id which is related to this drone 
         public override string ToString()
         {
-            return $"DroneId: {DroneId}, Model: {Model}, DroneWeight: {DroneWeight}, BatteryPercent: {BatteryPercent}, DroneStatus: {DroneStatus}, Location: {DroneLocation}, TransferParcelsNum: {TransferParcelsNum}";
+            return $"DroneId: {DroneId}, Model: {Model}, DroneWeight: {DroneWeight}, BatteryPercent: {BatteryPercent}, DroneStatusesBL: {DroneStatus}, Location: {DroneLocation}, TransferParcelsNum: {TransferParcelsNum}";
         }
     }
 }

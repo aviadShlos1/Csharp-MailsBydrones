@@ -54,7 +54,7 @@ namespace IBL
                         int dronesInCharge = 0;
                         foreach (var item2 in DronesListBL)
                         {
-                            if (item2.DroneStatus == BO.DroneStatus.Maintaince)
+                            if (item2.DroneStatus == BO.DroneStatusesBL.Maintaince)
                                 dronesInCharge++;
                         }
                         if (dronesInCharge > totalChargeSlots)
@@ -113,7 +113,7 @@ namespace IBL
             {
                 throw new BO.NotExistException();
             }
-            if (droneItem.DroneStatus != BO.DroneStatus.Free)
+            if (droneItem.DroneStatus != BO.DroneStatusesBL.Available)
             {
                 throw new BO.DroneIsNotAvailable(myDroneId);
             }
@@ -149,7 +149,7 @@ namespace IBL
             }
             else
             {
-                droneItem.DroneStatus = BO.DroneStatus.Shipment;
+                droneItem.DroneStatus = BO.DroneStatusesBL.Shipment;
                 droneItem.TransferParcelsNum = assignedParcel.Id;
                 assignedParcel.DroneToParcelId = myDroneId;
                 assignedParcel.AssignningTime = DateTime.Now;
@@ -292,7 +292,7 @@ namespace IBL
                 droneItem.DroneLocation.Longitude = targetItem.CustomerLongitude;
                 droneItem.DroneLocation.Latitude = targetItem.CustomerLatitude;
                 droneItem.TransferParcelsNum = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission
-                droneItem.DroneStatus = BO.DroneStatus.Free;
+                droneItem.DroneStatus = BO.DroneStatusesBL.Available;
                 parcelItem.SupplyingTime = DateTime.Now;
                 DalAccess.SupplyParcel(droneItem.DroneId);
             }
@@ -316,7 +316,7 @@ namespace IBL
             }
             
             List<IDAL.DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetBaseStationsList().ToList(); /////////////////!!!!!!!!!!!!!!!!!!add condition
-            if ((droneItem.DroneStatus != BO.DroneStatus.Free)) //if the drone is not available (maintaince or shipment)
+            if ((droneItem.DroneStatus != BO.DroneStatusesBL.Available)) //if the drone is not available (maintaince or shipment)
                 throw new DroneIsNotAvailable(droneId);
             if (freeChargeSlotsStations.Count == 0 )
                 throw new BO.CannotGoToChargeException(droneId);
@@ -331,7 +331,7 @@ namespace IBL
                     droneItem.BatteryPercent -= closetDistance * freeWeightConsumption;
                     droneItem.DroneLocation.Longitude = closetBaseStation.Location.Longitude;
                     droneItem.DroneLocation.Latitude = closetBaseStation.Location.Latitude;
-                    droneItem.DroneStatus = BO.DroneStatus.Maintaince;
+                    droneItem.DroneStatus = BO.DroneStatusesBL.Maintaince;
                     closetBaseStation.FreeChargeSlots--;
                     DalAccess.DroneToCharge(droneItem.DroneId, closetBaseStation.Id);
                 }
@@ -360,7 +360,7 @@ namespace IBL
                 throw new BO.NotExistException();
             }
             droneItem = DronesListBL.Find(x => x.DroneId == droneId);
-            if (droneItem.DroneStatus != BO.DroneStatus.Maintaince)
+            if (droneItem.DroneStatus != BO.DroneStatusesBL.Maintaince)
             {
                 throw new BO.CannotReleaseFromChargeException(droneId);
             }
@@ -372,7 +372,7 @@ namespace IBL
                 if (droneItem.BatteryPercent > 100) //battery can't has more than a 100 percent
                     droneItem.BatteryPercent = 100;
                 
-                droneItem.DroneStatus = BO.DroneStatus.Free;
+                droneItem.DroneStatus = BO.DroneStatusesBL.Available;
                 var droneChargeItem = DalAccess.GetDronesChargeList().ToList().Find(x => x.DroneId == droneId);
                 var stationItem = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == droneChargeItem.StationId);
                 stationItem.FreeChargeSlots++;

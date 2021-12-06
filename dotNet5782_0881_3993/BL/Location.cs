@@ -19,7 +19,7 @@ namespace IBL.BO
         public double Latitude { get; set; }
         public override string ToString()
         {
-            return $"longitude: {Longitude},  latitude: {Latitude} ";
+            return $"Longitude: {Longitude},  Latitude: {Latitude} ";
         }
     }
 }

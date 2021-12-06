@@ -62,7 +62,7 @@ namespace IBL
                 }
             }
             newDroneBl.BatteryPercent = (rand.NextDouble() * 20) + 20;//rand between 20-40 percent
-            newDroneBl.DroneStatus = DroneStatus.Maintaince;
+            newDroneBl.DroneStatus = DroneStatusesBL.Maintaince;
             try
             {
                 DalAccess.AddDrone(tempDrone);
