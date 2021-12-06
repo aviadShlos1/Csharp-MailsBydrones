@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using IBL.BO;
 
 namespace PL
 {
@@ -19,17 +20,23 @@ namespace PL
     /// </summary>
     public partial class DronesListWindow : Window
     {
-        private IBL.IBL dronesList;
-        public DronesListWindow(IBL.IBL blAccess)
+        private IBL.IBL blAccess;
+        public DronesListWindow(IBL.IBL blAccessTemp)
         {
             InitializeComponent();
-            dronesList = blAccess;
-            DronesListView.ItemsSource = blAccess.GetDronesBl();//
+            blAccess = blAccessTemp;
+            DronesListView.ItemsSource = blAccess.GetDronesBl();
+            StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatus));
+            WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
         }
-
-        public void ShowDroneButton_Click(object sender, RoutedEventArgs e, IBL.IBL dronesList)
+        private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)
         {
-
+            DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatus)StatusSelector.SelectedItem);
         }
+        private void ComboBox_WeightSelection(object sender, SelectionChangedEventArgs e)
+        {
+            DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
+        }
+
     }
 }

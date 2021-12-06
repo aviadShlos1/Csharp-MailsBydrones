@@ -27,21 +27,12 @@ namespace PL
             InitializeComponent();
         }
 
-        private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)
-        {
-            StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatus));
-            StatusSelector.SelectedItem = StatusSelector.ItemsSource;
-            blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatus)StatusSelector.SelectedItem);   
-        }
-
+      
         private void ShowDronesButton_Click(object sender, RoutedEventArgs e)
         {
             new DronesListWindow(blAccess).Show();
         }
 
-        private void ComboBox_WeightSelection(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
