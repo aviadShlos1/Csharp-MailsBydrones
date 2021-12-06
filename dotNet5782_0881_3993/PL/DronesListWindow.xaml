@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions >
             <Label Content="Drone Status:" Grid.Column="0" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
             <Label Content="Drone Weight:" Grid.Column="2" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
-            <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="ComboBox_StatusSelection"/>
+            <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="ComboBox_StatusSelection" HorizontalAlignment="Left" Width="200"/>
             <ComboBox Name="WeightSelector" Grid.Column="3" SelectionChanged="ComboBox_WeightSelection"/>
         </Grid>
         <Button Content="Add new drone" HorizontalAlignment="Left" Margin="652,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="112" Click="AddDroneButton_Click"/>
