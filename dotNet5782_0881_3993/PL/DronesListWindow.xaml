@@ -32,5 +32,8 @@
             <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="ComboBox_StatusSelection"/>
             <ComboBox Name="WeightSelector" Grid.Column="3" SelectionChanged="ComboBox_WeightSelection"/>
         </Grid>
+        <Button Content="Add new drone" HorizontalAlignment="Left" Margin="652,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="112" Click="AddDroneButton_Click"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="39,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="109" Click="ClosingWindowButton_Click"/>
+
     </Grid>
 </Window>

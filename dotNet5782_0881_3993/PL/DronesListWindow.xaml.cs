@@ -37,5 +37,16 @@ namespace PL
         {
             DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
         }
+
+        private void AddDroneButton_Click(object sender, RoutedEventArgs e)
+        {
+            new DroneWindow(blAccess).Show();
+        }
+
+        private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)
+        {          
+            new MainWindow().Show();
+            this.Close();
+        }
     }
 }
