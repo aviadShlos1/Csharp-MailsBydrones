@@ -8,6 +8,11 @@
         Title="MainWindow" Height="640" Width="800">
 
     <Grid >
+      
+         <!--<Grid.Background>
+            <ImageBrush ImageSource = "C:\Users\aviad\source\repos\dotNet5782_0881_3993\dotNet5782_0881_3993\Images\Drone.jpg"  Stretch="UniformToFill"/>
+        </Grid.Background>-->
+   
         <Button Content="DronesDisplay" HorizontalAlignment="Left" Margin="236,103,0,0" Grid.Row="1" VerticalAlignment="Top" Click="ShowDronesButton_Click"/>
     </Grid>
 
