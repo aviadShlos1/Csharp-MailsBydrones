@@ -7,10 +7,8 @@
         mc:Ignorable="d"
         Title="Drone" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="189*"/>
-            <ColumnDefinition Width="211*"/>
-        </Grid.ColumnDefinitions>
+        <TextBox HorizontalAlignment="Left" Margin="291,90,0,0" Text="Id:" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
 
     </Grid>
 </Window>
