@@ -24,9 +24,11 @@ namespace PL
         {
             InitializeComponent();
             blAccess = blAccessTemp;
-            DroneToList newDrone = new({ DroneId=int.Parse(TextBlock.TextProperty)})
+            DroneToList newDrone = new DroneToList();
+                
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
+        
         }
 
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -38,24 +40,14 @@ namespace PL
             StatusSelector.SelectedItem = Enum.GetValues(typeof(DroneStatusesBL));
         }
 
-        private void Battery_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
-        private void Id_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void AddButton_Click_1(object sender, RoutedEventArgs e)
         {
-            blAccess.AddDrone();
+            //blAccess.AddDrone();
         }
     }
 }
