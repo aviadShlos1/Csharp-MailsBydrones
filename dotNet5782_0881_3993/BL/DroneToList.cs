@@ -24,7 +24,7 @@ namespace IBL.BO
         public int Delivery { get; set; } // This field includes the parcel id which is related to this drone 
         public override string ToString()
         {
-            return $"DroneId: {DroneId}, Model: {Model}, DroneWeight: {DroneWeight}, BatteryPercent: {BatteryPercent}, DroneStatusesBL: {DroneStatus}, Location: {DroneLocation}, Delivery: {Delivery}";
+            return $"Id: {DroneId}, Model: {Model}, Weight: {DroneWeight}, Battery: {BatteryPercent + "%"}, Status: {DroneStatus}, Location: {DroneLocation}, Delivery: {Delivery}";
         }
     }
 }

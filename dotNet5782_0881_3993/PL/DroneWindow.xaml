@@ -12,8 +12,8 @@
             <ColumnDefinition Width="51*"/>
             <ColumnDefinition Width="730*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="112,40,537,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.Column="2"/>
-        <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,40,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Margin="112,80,537,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.Column="2"/>
+        <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="112,120,0,0" Text="Max Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
         <ComboBox Name="WeightSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,120,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="WeightComboBox_SelectionChanged"/>
@@ -28,7 +28,7 @@
         <TextBox Name="BaseStationIdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,240,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
         <Button Content="Close" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
-        <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="Button_Click_1"/>
+        <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddButton_Click"/>
 
 
 

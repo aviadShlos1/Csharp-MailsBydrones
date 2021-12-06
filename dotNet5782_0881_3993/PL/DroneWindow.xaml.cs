@@ -44,15 +44,24 @@ namespace PL
             this.Close();
         }
 
-        private void AddButton_Click_1(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            DroneToList newDrone = new DroneToList
+            try
             {
-                DroneId = int.Parse(IdTbx.Text),
-                Model = ModelTbx.Text,
-                DroneWeight = (WeightCategoriesBL)WeightSelector.SelectedItem
-            };
-            blAccess.AddDrone(newDrone, int.Parse(BaseStationIdTbx.Text));
+                DroneToList newDrone = new DroneToList
+                {
+                    DroneId = int.Parse(IdTbx.Text),
+                    Model = ModelTbx.Text,
+                    DroneWeight = (WeightCategoriesBL)WeightSelector.SelectedItem
+                };
+                blAccess.AddDrone(newDrone, int.Parse(BaseStationIdTbx.Text));
+                MessageBox.Show("The adding was done successfully");
+                this.Close();
+            }
+            catch (AlreadyExistException ex)
+            {
+                MessageBox.Show(ex.ToString()); //"This drone is already exists"
+            }
         }
     }
 }
