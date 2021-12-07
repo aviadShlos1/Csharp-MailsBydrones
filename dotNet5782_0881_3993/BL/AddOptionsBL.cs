@@ -43,7 +43,7 @@ namespace IBL
         /// Adding a new Bl drone
         /// </summary>
         /// <param name="newDroneBl">The entity for adding</param>
-        public void AddDrone(DroneToList newDroneBl, int firstChargeStation)
+        public void AddDrone(DroneToList newDroneBl , int firstChargeStation)
         {
             
             DroneDal tempDrone = new();
