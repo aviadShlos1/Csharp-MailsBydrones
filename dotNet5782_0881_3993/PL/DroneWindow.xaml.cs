@@ -21,7 +21,7 @@ namespace PL
     {
         private IBL.IBL blAccess;
         private DronesListWindow localDronesListWindow;
-        private int[] BaseStationNum = new int[] { 1, 2 };
+        private int[] BaseStationNum = new int[] { 0,1 };
         private int firstChargeStation = default;
         public DroneWindow(IBL.IBL blAccessTemp, DronesListWindow dronesListTemp)//C-tor for add option
         {

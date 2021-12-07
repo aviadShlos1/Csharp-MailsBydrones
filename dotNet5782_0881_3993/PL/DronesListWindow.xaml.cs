@@ -66,6 +66,8 @@ namespace PL
 
         private void AddDroneButton_Click(object sender, RoutedEventArgs e)
         {
+            DroneWindow drone = new DroneWindow(blAccess);
+            drone.AddOption.Visibility = Visibility.Visible;
             new DroneWindow(blAccess,this).Show();
         }
 
@@ -77,6 +79,8 @@ namespace PL
 
         private void DronesListView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            DroneWindow drone = new DroneWindow(blAccess);
+            drone.UpdateOptions.Visibility = Visibility.Visible;
             new DroneWindow(blAccess).Show();
             this.Close();
         }
