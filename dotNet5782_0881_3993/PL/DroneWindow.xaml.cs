@@ -44,7 +44,7 @@ namespace PL
             InitializeComponent();
             UpdateOptions.Visibility = Visibility.Visible;           
             blAccess = blAccessTemp;
-            MyDrone = blAccess.GetSingleDrone(droneId);
+            MyDrone = blAccess.GetSingleDrone(droneId);//
             UpdateOptions.DataContext = MyDrone;
         }
         #endregion
