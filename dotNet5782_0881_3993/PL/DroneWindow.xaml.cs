@@ -36,7 +36,7 @@ namespace PL
         public DroneWindow(IBL.IBL blAccessTemp,DroneToList temp)//C-tor for update options
         {
             InitializeComponent();
-            UpdateOptions.Visibility = Visibility.Visible;
+            UpdateOptions.Visibility = Visibility.Visible;           
             blAccess = blAccessTemp;
      
 
