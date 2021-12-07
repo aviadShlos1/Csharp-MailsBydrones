@@ -29,6 +29,7 @@ namespace PL
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             
+            
         }
         /// <summary>
         /// Bonus : Auxiliary method that taking into consideration all the selection options 
@@ -68,6 +69,12 @@ namespace PL
         private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)
         {          
             new MainWindow().Show();
+            this.Close();
+        }
+
+        private void DronesListView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            new DroneWindow(blAccess).Show();
             this.Close();
         }
     }

@@ -12,7 +12,7 @@
             <RowDefinition Height=" 50*"/>
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="DronesListView" Grid.Row="1">
+        <ListView x:Name="DronesListView" Grid.Row="1" PreviewMouseDoubleClick="DronesListView_PreviewMouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
