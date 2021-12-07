@@ -51,7 +51,7 @@ namespace PL
                 DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem && x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
             }
         }
-        private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)//
         {
             selectionOptions();
 
