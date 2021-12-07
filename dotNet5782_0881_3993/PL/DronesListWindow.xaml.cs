@@ -31,7 +31,7 @@ namespace PL
             
         }
         /// <summary>
-        /// Auxiliary method that taking into consideration all the selection options 
+        /// Bonus : Auxiliary method that taking into consideration all the selection options 
         /// </summary>
         public void selectionOptions()
         {
@@ -55,19 +55,16 @@ namespace PL
         private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
-            //DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
         }
         private void ComboBox_WeightSelection(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
-            //DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
         }
 
         private void AddDroneButton_Click(object sender, RoutedEventArgs e)
         {
             new DroneWindow(blAccess,this).Show();
         }
-
         private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)
         {          
             new MainWindow().Show();
