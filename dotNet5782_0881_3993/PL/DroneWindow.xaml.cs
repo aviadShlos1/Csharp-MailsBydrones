@@ -26,16 +26,20 @@ namespace PL
         public DroneWindow(IBL.IBL blAccessTemp, DronesListWindow dronesListTemp)//C-tor for add option
         {
             InitializeComponent();
+            AddOption.Visibility = Visibility.Visible;
             blAccess = blAccessTemp;
             localDronesListWindow = dronesListTemp;
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             BaseStationIdSelector.ItemsSource = BaseStationNum;
         }
-        public DroneWindow(IBL.IBL blAccessTemp)//C-tor for update options
+        public DroneWindow(IBL.IBL blAccessTemp,DroneToList temp)//C-tor for update options
         {
             InitializeComponent();
+            UpdateOptions.Visibility = Visibility.Visible;
             blAccess = blAccessTemp;
+            temp.DroneId = 
+            
 
         }
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -56,6 +60,7 @@ namespace PL
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+
             try
             {
                 DroneToList newDrone = new DroneToList

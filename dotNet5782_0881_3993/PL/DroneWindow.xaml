@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DroneWindow" Height="450" Width="800">
-    <Grid x:Name="MainGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="51*"/>
-            <ColumnDefinition Width="730*"/>
-        </Grid.ColumnDefinitions>
-        
+
+    <Grid Name="MainGrid">
         <Grid x:Name="AddOption" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="51*"/>
+                <ColumnDefinition Width="730*"/>
+            </Grid.ColumnDefinitions>
+
             <TextBlock Name="IdTbl" Margin="112,80,537,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.Column="2"/>
             <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="4"/>
 
@@ -33,9 +34,18 @@
             <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddButton_Click"/>
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Hidden">
-            
-        </Grid>
-        
+        <Grid x:Name="UpdateOptions" Visibility="Visible"/>
+        <TextBlock Name="DroneIdTbl" Margin="112,80,537,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.Column="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="112,120,0,0" Text="Max Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="112,160,0,0" Text="Model:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
+        <TextBox Name="ModelTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,160,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="112,200,0,0" Text="Status:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
+        <ComboBox Name="StatusSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,200,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="StatusComboBox_SelectionChanged"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="112,240,0,0" Text="BaseStationId:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
+        <ComboBox Name="BaseStationIdSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,240,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="BaseStationIdComboBox_SelectionChanged"/>
+
+        <Button Content="Close" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
     </Grid>
 </Window>
