@@ -36,11 +36,10 @@ namespace PL
         public DroneWindow(IBL.IBL blAccessTemp,DroneToList temp)//C-tor for update options
         {
             InitializeComponent();
-            UpdateOptions.Visibility = Visibility.Visible;
+            UpdateOptions.Visibility = Visibility.Visible;           
             blAccess = blAccessTemp;
-            temp.DroneId = 
-            
-
+            //localDronesListWindow.DronesListView = temp;
+            DataContext = temp;
         }
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
