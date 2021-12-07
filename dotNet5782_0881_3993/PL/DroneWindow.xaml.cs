@@ -45,7 +45,7 @@ namespace PL
             UpdateOptions.Visibility = Visibility.Visible;           
             blAccess = blAccessTemp;
             MyDrone = blAccess.GetSingleDrone(droneId);
-            
+            UpdateOptions.DataContext = MyDrone;
         }
         #endregion
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
