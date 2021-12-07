@@ -35,6 +35,6 @@
         </Grid>
         <Button Content="Add new drone" HorizontalAlignment="Left" Margin="652,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="112" Click="AddDroneButton_Click"/>
         <Button Content="Close" HorizontalAlignment="Left" Margin="39,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="109" Click="ClosingWindowButton_Click"/>
-
+        <Button Content="Reset" HorizontalAlignment="Center" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="108" Click="ResetButton_Click"/>
     </Grid>
 </Window>

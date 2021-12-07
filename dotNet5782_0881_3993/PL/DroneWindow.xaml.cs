@@ -23,6 +23,8 @@ namespace PL
         private DronesListWindow localDronesListWindow;
         private int[] BaseStationNum = new int[] { 0,1 };
         private int firstChargeStation = default;
+
+        #region Add ctor
         public DroneWindow(IBL.IBL blAccessTemp, DronesListWindow dronesListTemp)//C-tor for add option
         {
             InitializeComponent();
@@ -33,14 +35,19 @@ namespace PL
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             BaseStationIdSelector.ItemsSource = BaseStationNum;
         }
-        public DroneWindow(IBL.IBL blAccessTemp,DroneToList temp)//C-tor for update options
+        #endregion
+
+        #region Update ctor
+        public DroneBl MyDrone;
+        public DroneWindow(IBL.IBL blAccessTemp,int droneId)//C-tor for update options
         {
             InitializeComponent();
             UpdateOptions.Visibility = Visibility.Visible;           
             blAccess = blAccessTemp;
-     
-
+            MyDrone = blAccess.GetSingleDrone(droneId);
+            
         }
+        #endregion
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             WeightSelector.SelectedItem = Enum.GetValues(typeof(WeightCategoriesBL));
