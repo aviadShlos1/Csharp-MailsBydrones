@@ -38,8 +38,7 @@ namespace PL
             InitializeComponent();
             UpdateOptions.Visibility = Visibility.Visible;
             blAccess = blAccessTemp;
-            temp.DroneId = 
-            
+     
 
         }
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
