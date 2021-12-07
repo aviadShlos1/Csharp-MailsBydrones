@@ -76,8 +76,8 @@ namespace PL
             catch (AlreadyExistException)
             {
                 MessageBox.Show("This drone is already exists");
-                IdTbx.Background = Brushes.Red;
                 IdTbx.BorderBrush = Brushes.Red;
+                IdTbl.Background= Brushes.Red;
             }
         }
 

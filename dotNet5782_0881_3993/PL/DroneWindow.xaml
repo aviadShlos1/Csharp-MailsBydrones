@@ -13,7 +13,7 @@
             <ColumnDefinition Width="730*"/>
         </Grid.ColumnDefinitions>
         
-        <TextBlock Margin="112,80,537,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.Column="2"/>
+        <TextBlock Name="IdTbl" Margin="112,80,537,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.Column="2"/>
         <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="4"/>
         
         <TextBlock HorizontalAlignment="Left" Margin="112,120,0,0" Text="Max Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
