@@ -38,7 +38,7 @@ namespace PL
         #endregion
 
         #region Update ctor
-        public DroneBl MyDrone;
+        public DroneBl MyDrone; 
         public DroneWindow(IBL.IBL blAccessTemp,int droneId)//C-tor for update options
         {
             InitializeComponent();
@@ -48,6 +48,34 @@ namespace PL
             UpdateOptions.DataContext = MyDrone;
             DroneLocation.Text = MyDrone.DroneLocation.ToString();
             //ParcelInShipment.Text = MyDrone.ParcelInShip.ToString();
+
+            switch ((DroneStatusesBL)MyDrone.DroneStatus) // checking the drone status, correspondingly enables the operations
+            {
+                case DroneStatusesBL.Available:
+                    DroneToChargeButton.Visibility = Visibility.Visible;
+                    SendToShipButton.Visibility = Visibility.Visible;
+                    break;
+
+                case DroneStatusesBL.Maintaince:
+                    ReleaseFromChargeButton.Visibility = Visibility.Visible;
+                    //BReleaseDrone.IsEnabled = false;
+                    //TimeChoose.Visibility = Visibility.Visible;
+                    break;
+
+                case DroneStatusesBL.Shipment:
+                    if (MyDrone.ParcelInShip.ShippingOnTheSupplyWay==true)
+                    {
+                        SupplyParcelButton.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        PickUpParcelButton.Visibility = Visibility.Visible;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
         #endregion
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -96,7 +124,10 @@ namespace PL
 
         private void NameUpdateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            DroneModelTbx.IsEnabled = true;
+            DroneModelTbx.Background = Brushes.Yellow;
+            MyDrone.Model = ModelTbx.Text;
+            DroneModelTbx.IsEnabled = false;
         }
 
         private void DroneToChargeButton_Click(object sender, RoutedEventArgs e)
@@ -123,5 +154,6 @@ namespace PL
         {
 
         }
+
     }
 }

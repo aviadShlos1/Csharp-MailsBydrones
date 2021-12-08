@@ -79,9 +79,9 @@ namespace IBL
                 myDroneBl.ParcelInShip.ShippingDistance = GetDistance(myPickUpLocation.Longitude, myPickUpLocation.Latitude, myTargetLocation.Longitude, myTargetLocation.Latitude);
                 
                 if (tempParcel.PickingUpTime != DateTime.MinValue) //if the parcel has already picked up
-                    myDroneBl.ParcelInShip.ShippingOnTheWay = true;
+                    myDroneBl.ParcelInShip.ShippingOnTheSupplyWay = true;
                 else
-                    myDroneBl.ParcelInShip.ShippingOnTheWay = false;
+                    myDroneBl.ParcelInShip.ShippingOnTheSupplyWay = false;
             }
             return myDroneBl;
         }
