@@ -54,7 +54,6 @@ namespace PL
         private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)//
         {
             selectionOptions();
-
         }
         private void ComboBox_WeightSelection(object sender, SelectionChangedEventArgs e)
         {
@@ -80,7 +79,7 @@ namespace PL
         private void DronesListView_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             DroneToList temp = (DroneToList)DronesListView.SelectedItem;
-            new DroneWindow(blAccess,temp.DroneId).Show();
+            new DroneWindow(blAccess,temp.DroneId,this).Show();
         }
     }
 }
