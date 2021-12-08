@@ -38,6 +38,8 @@
             <TextBox x:Name="DroneModelTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="220,160,0,0" Text="{Binding Path= Model}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="DroneStatusSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="220,200,0,0" Text="{Binding Path= DroneStatus}" VerticalAlignment="Top" Width="120" />
             <TextBox x:Name="DroneBattery" Grid.Column="2" HorizontalAlignment="Left" Margin="220,240,0,0" Text="{Binding Path= BatteryPercent}" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="DroneLocation" HorizontalAlignment="Left" Margin="220,280,0,0" Text="" VerticalAlignment="Top" Width="239" />
+            <TextBox x:Name="ParcelInShipment" HorizontalAlignment="Left" Margin="220,320,0,0" Text="" VerticalAlignment="Top" Width="239" Height="61" />
 
             <TextBlock x:Name="DroneIdTbl" Margin="76,80,573,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" />
             <TextBlock HorizontalAlignment="Left" Margin="76,120,0,0" Text="Max Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
@@ -58,14 +60,6 @@
             </WrapPanel>
             
             <Button Content="Close" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseButton_Click"/>
-            <ListView Name="Location" Margin="220,280,460,110">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <WrapPanel Margin="220,338,235,59" Name="ParcelDetails"/>
         </Grid>
     </Grid>
 </Window>
