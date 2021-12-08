@@ -46,6 +46,7 @@ namespace PL
             blAccess = blAccessTemp;
             MyDrone = blAccess.GetSingleDrone(droneId);//
             UpdateOptions.DataContext = MyDrone;
+            ParcelDetails.DataContext = MyDrone.ParcelInShip;
         }
         #endregion
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,7 +93,37 @@ namespace PL
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NameUpdateButton_Click(object sender, RoutedEventArgs e)//
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
         {
 
         }
