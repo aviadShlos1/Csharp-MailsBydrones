@@ -102,7 +102,7 @@ namespace PL
             UpdateOptions.DataContext = MyDrone;
             DroneLocation.Text = MyDrone.DroneLocation.ToString();
             //ParcelInShipment.Text = MyDrone.ParcelInShip.ToString();
-
+            
             switch ((DroneStatusesBL)MyDrone.DroneStatus) // checking the drone status, correspondingly enables the operations
             {
                 case DroneStatusesBL.Available:
