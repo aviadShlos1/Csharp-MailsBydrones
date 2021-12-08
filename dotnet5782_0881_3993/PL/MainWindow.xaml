@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
-
+    <!--giving background to the main window -->
     <Grid >
         <Grid.Background>
             <ImageBrush ImageSource="C:\Users\aviad\source\repos\dotNet5782_0881_3993\dotNet5782_0881_3993\PL\Images\Drone.jpg.jpg"/>

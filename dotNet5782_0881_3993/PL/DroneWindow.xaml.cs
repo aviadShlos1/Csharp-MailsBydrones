@@ -33,38 +33,65 @@ namespace PL
         /// Ctor for add option
         /// </summary>
         /// <param name="blAccessTemp">The access parameter to the bl </param>
-        /// <param name="dronesListTemp"> </param>
+        /// <param name="dronesListTemp">Presents the drones window </param>
         public DroneWindow(IBL.IBL blAccessTemp, DronesListWindow dronesListTemp)
         {
             InitializeComponent();
-            AddOption.Visibility = Visibility.Visible;
+            AddOption.Visibility = Visibility.Visible; // the add option will be shown
             blAccess = blAccessTemp;
-            localDronesListWindow = dronesListTemp;
+            localDronesListWindow = dronesListTemp; 
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             BaseStationIdSelector.ItemsSource = BaseStationNum;
         }
+        /// <summary>
+        /// A selection event, the user will choose between the weight categories 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             WeightSelector.SelectedItem = Enum.GetValues(typeof(WeightCategoriesBL));
         }
+        /// <summary>
+        /// A selection event, the user will choose between the status categories 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             StatusSelector.SelectedItem = Enum.GetValues(typeof(DroneStatusesBL));
         }
+        /// <summary>
+        /// A selection event, the user will choose between the base stations  
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BaseStationIdComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BaseStationIdSelector.SelectedItem = BaseStationNum;
         }
+        /// <summary>
+        /// A click buttun event. When the user will click this button, the add options window will be closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            localDronesListWindow.selectionOptions();
+            localDronesListWindow.selectionOptions(); // Call the selection function to present the selected list according to the user selection
             this.Close();
         }
+        /// <summary>
+        /// An add click buttun event. When the user will click this button, the add options window will be opened
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                // adding the new drone details
+
                 DroneToList newDrone = new DroneToList
                 {
                     DroneId = int.Parse(IdTbx.Text),
@@ -73,6 +100,7 @@ namespace PL
                 };
                 firstChargeStation = (int)BaseStationIdSelector.SelectedItem;
                 blAccess.AddDrone(newDrone, firstChargeStation);
+                
                 MessageBoxResult result = MessageBox.Show("The operation was done successfully");
                 if (result == MessageBoxResult.OK)
                 {
@@ -91,19 +119,22 @@ namespace PL
         #endregion
 
         #region Update 
-        public DroneBl MyDrone; 
-        public DroneWindow(IBL.IBL blAccessTemp, int droneId, DronesListWindow dronesListTemp)//C-tor for update options
+        public DroneBl MyDrone;
+
+        // Ctor for update options
+        public DroneWindow(IBL.IBL blAccessTemp, int droneId, DronesListWindow dronesListTemp)
         {
             InitializeComponent();
-            UpdateOptions.Visibility = Visibility.Visible;
+            UpdateOptions.Visibility = Visibility.Visible; //The update options window will be shown
             localDronesListWindow = dronesListTemp;
             blAccess = blAccessTemp;
             MyDrone = blAccess.GetSingleDrone(droneId);
             UpdateOptions.DataContext = MyDrone;
             DroneLocation.Text = MyDrone.DroneLocation.ToString();
             //ParcelInShipment.Text = MyDrone.ParcelInShip.ToString();
-            
-            switch ((DroneStatusesBL)MyDrone.DroneStatus) // checking the drone status, correspondingly enables the operations
+
+            // checking the drone status, correspondingly enables the operations
+            switch ((DroneStatusesBL)MyDrone.DroneStatus) 
             {
                 case DroneStatusesBL.Available:
                     DroneToChargeButton.Visibility = Visibility.Visible;
@@ -129,7 +160,11 @@ namespace PL
                     break;
             }
         }
-     
+         /// <summary>
+         /// Button click event, which will enable the user to update the drone name
+         /// </summary>
+         /// <param name="sender"></param>
+         /// <param name="e"></param>
         private void NameUpdateButton_Click(object sender, RoutedEventArgs e)
         {
             blAccess.UpdateDroneName(MyDrone.DroneId, DroneModelTbx.Text);
@@ -137,7 +172,11 @@ namespace PL
             new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show(); 
             Close();
         }
-
+        /// <summary>
+        /// Button click event, which will enable the user to send the drone to charge
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>    
         private void DroneToChargeButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -152,7 +191,11 @@ namespace PL
                 MessageBox.Show(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// Button click event, which will enable the user to release the drone from charge
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReleaseFromChargeButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -167,7 +210,11 @@ namespace PL
                 MessageBox.Show(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// Button click event, which will enable the user to assign bewteen drone to parcel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AssignParcelToDroneButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -182,7 +229,11 @@ namespace PL
                 MessageBox.Show(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// Button click event, which will enable the user to send the dron to pick up a parcel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PickUpParcelButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -197,7 +248,11 @@ namespace PL
                 MessageBox.Show(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// Button click event, which will enable the user to send the dron to supply a parcel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SupplyParcelButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -212,6 +267,11 @@ namespace PL
                 MessageBox.Show(ex.ToString());
             }
         }
+        /// <summary>
+        /// Button click event, which will enable the user to close the update window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
