@@ -23,7 +23,10 @@ namespace IBL
         public void UpdateDroneName(int droneId, string newModel)
         {
             IDAL.DO.DroneDal myDrone = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
-            myDrone.Model = newModel;
+            if (newModel!="")
+            {
+                myDrone.Model = newModel;
+            }
             DalAccess.UpdateDrone(myDrone);
         }
        
@@ -35,18 +38,15 @@ namespace IBL
         /// <param name="totalChargeSlots">a new total charge slots number</param>
         public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
         {
-            IDAL.DO.BaseStationDal my = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
-            myDrone.Model = newModel;
-            DalAccess.UpdateDrone(myDrone);
+            IDAL.DO.BaseStationDal myBaseStation = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == baseStationId);
+            if (newName!="")
+            {
+                 myBaseStation.Name = newName;
+            }
             foreach (var item in DalAccess.GetBaseStationsList())
             {
                 if (item.Id == baseStationId)
                 {
-                    if (newName != "") // the user input something
-                    {
-                        string tempName = item.Name;
-                        tempName = newName;
-                    }
                     if (totalChargeSlots != 0)
                     {
                         int dronesInCharge = 0;
@@ -57,12 +57,12 @@ namespace IBL
                         }
                         if (dronesInCharge > totalChargeSlots)
                             throw new BO.NotEnoughChargeSlotsInThisStation(baseStationId);
-                        int free = item.FreeChargeSlots;
-                        free = totalChargeSlots - dronesInCharge;
+                       int free = totalChargeSlots - dronesInCharge;
+                        myBaseStation.FreeChargeSlots = free;
                     }
                 }
             }
-
+            DalAccess.UpdateBaseStation(myBaseStation);
         }
         
         /// <summary>

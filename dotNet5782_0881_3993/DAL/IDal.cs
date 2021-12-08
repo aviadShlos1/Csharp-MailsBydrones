@@ -51,6 +51,7 @@ namespace IDAL
 
         #region Update methods   
         public void UpdateDrone(DroneDal myDrone);
+        public void UpdateBaseStation(BaseStationDal myBaseStation);
         /// Assining a drone to a parcel by the parcel and drone id 
         /// </summary>
         /// <param name="parcelId"></param>

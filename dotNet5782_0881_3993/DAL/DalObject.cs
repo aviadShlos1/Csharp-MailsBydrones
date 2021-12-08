@@ -77,6 +77,12 @@ namespace DalObject
             int index = DataSource.Drones.IndexOf(tempDrone);
             DataSource.Drones[index] = myDrone;
         }
+        public void UpdateBaseStation(BaseStationDal myBaseStation)
+        {
+            BaseStationDal tempBaseStation = DataSource.BaseStations.FirstOrDefault(x => x.Id == myBaseStation.Id);
+            int index = DataSource.BaseStations.IndexOf(tempBaseStation);
+            DataSource.BaseStations[index] = myBaseStation;
+        }
 
         /// <summary>
         /// Assining a drone to a parcel by the parcel and drone id 
