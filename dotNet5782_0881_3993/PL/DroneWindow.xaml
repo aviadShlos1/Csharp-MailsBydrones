@@ -54,7 +54,7 @@
                 <Button x:Name="UpdateNameButton" Content="UpdateName" Width="106" Click="NameUpdateButton_Click" Visibility="Visible" />
                 <Button x:Name="DroneToChargeButton" Content="DroneToCharge" Width="106" Click="DroneToChargeButton_Click" Visibility="Collapsed"/>
                 <Button x:Name="ReleaseFromChargeButton" Content="ReleaseFromCharge" Width="123" Click="ReleaseFromChargeButton_Click" Visibility="Collapsed"/>
-                <Button x:Name="SendToShipButton" Content="SendToShip" Width="88" Click="SendToShipButton_Click" Visibility="Collapsed"/>
+                <Button x:Name="AssignParcelToDroneButton" Content="SendToShip" Width="88" Click="AssignParcelToDroneButton_Click" Visibility="Collapsed"/>
                 <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Width="86" Click="PickUpParcelButton_Click" Visibility="Collapsed" />
                 <Button x:Name="SupplyParcelButton" Content="SupplyParcel" Width="88" Click="SupplyParcelButton_Click" Visibility="Collapsed" />
             </WrapPanel>

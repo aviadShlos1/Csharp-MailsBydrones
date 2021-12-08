@@ -145,23 +145,18 @@ namespace DalObject
         /// <param name="droneId"></param>
         /// <param name="stationId"></param>
         public void DroneToCharge(int droneId, int stationId)
-        {
-            
-            int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
-            BaseStationDal station1 = DataSource.BaseStations[stationIndex];
-            station1.FreeChargeSlots--; // Reducing the free chargeSlots
-            DataSource.BaseStations[stationIndex] = station1;
-
-            DataSource.DronesInCharge.Add(new DroneChargeDal() { DroneId = droneId, StationId = stationId });//initiate a new drone charge
-
+        {           
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId==droneId);
             if (droneId == -1)
             {
                 throw new NotExistException(droneId);
             }
-            DroneChargeDal myDroneCharge = DataSource.DronesInCharge[chargeIndex];
-            myDroneCharge.StartChargeTime = DateTime.Now;
-            DataSource.DronesInCharge[chargeIndex] = myDroneCharge;
+            int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
+            BaseStationDal station1 = DataSource.BaseStations[stationIndex];
+            station1.FreeChargeSlots--; // Reducing the free chargeSlots
+            DataSource.BaseStations[stationIndex] = station1;
+
+            DataSource.DronesInCharge.Add(new DroneChargeDal() { DroneId = droneId, StationId = stationId, StartChargeTime=DateTime.Now });//initiate a new drone charge
         }
         /// <summary>
         /// Realesing a drone from the charge base station
@@ -169,8 +164,9 @@ namespace DalObject
         /// <param name="droneId"></param>
         public TimeSpan DroneRelease(int droneId)
         {
+            
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId == droneId);
-            if (droneId == -1)
+            if (chargeIndex == -1)
             {
                 throw new NotExistException(droneId);
             }

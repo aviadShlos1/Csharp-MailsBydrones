@@ -98,7 +98,7 @@ namespace PL
             {
                 case DroneStatusesBL.Available:
                     DroneToChargeButton.Visibility = Visibility.Visible;
-                    SendToShipButton.Visibility = Visibility.Visible;
+                    AssignParcelToDroneButton.Visibility = Visibility.Visible;
                     break;
 
                 case DroneStatusesBL.Maintaince:
@@ -149,30 +149,61 @@ namespace PL
         private void ReleaseFromChargeButton_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                
+            {               
                 blAccess.ReleaseDroneCharge(MyDrone.DroneId);
+                MessageBox.Show("The drone released from charge successfully");
+                new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
+                Close();
             }
-            catch (Exception)
+            catch (CannotReleaseFromChargeException ex)
             {
-
-                throw;
+                MessageBox.Show(ex.ToString());
             }
         }
 
-        private void SendToShipButton_Click(object sender, RoutedEventArgs e)
+        private void AssignParcelToDroneButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                blAccess.AssignParcelToDrone(MyDrone.DroneId);
+                MessageBox.Show("The drone assigned to parcel successfully");
+                new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
+                Close();
+            }
+            catch (CannotAssignDroneToParcelException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void PickUpParcelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                blAccess.PickUpParcel(MyDrone.DroneId);
+                MessageBox.Show("The drone picked up the parcel successfully");
+                new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
+                Close();
+            }
+            catch (CannotPickUpException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void SupplyParcelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                blAccess.SupplyParcel(MyDrone.DroneId);
+                MessageBox.Show("The drone supplied the parcel successfully");
+                new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
+                Close();
+            }
+            catch (CannotSupplyException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
         private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
         {
