@@ -98,7 +98,7 @@ namespace PL
             switch ((DroneStatusesBL)MyDrone.DroneStatus) // checking the drone status, correspondingly enables the operations
             {
                 case DroneStatusesBL.Available:
-                    DroneToChargeButton.Visibility = Visibility.Visible;//
+                    DroneToChargeButton.Visibility = Visibility.Visible;
                     SendToShipButton.Visibility = Visibility.Visible;
                     break;
 
@@ -126,6 +126,7 @@ namespace PL
      
         private void NameUpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            //MyDrone.Model = DroneModelTbx.Text;
             blAccess.UpdateDroneName(MyDrone.DroneId, MyDrone.Model);
             MessageBoxResult result = MessageBox.Show("Your update was done");
             //if (result == MessageBoxResult.OK)
