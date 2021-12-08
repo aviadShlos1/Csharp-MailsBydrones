@@ -53,7 +53,7 @@ namespace PL
         }
         private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)//
         {
-            selectionOptions();
+            selectionOptions();//
         }
         private void ComboBox_WeightSelection(object sender, SelectionChangedEventArgs e)
         {
