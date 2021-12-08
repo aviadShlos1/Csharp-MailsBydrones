@@ -137,7 +137,12 @@ namespace PL
 
         private void DroneToChargeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            blAccess.DroneToCharge(MyDrone.DroneId);
+            MessageBoxResult result = MessageBox.Show("The drone sent to charge successfuly");
+            if (result == MessageBoxResult.OK)
+            {
+                
+            }
         }
 
         private void ReleaseFromChargeButton_Click(object sender, RoutedEventArgs e)
