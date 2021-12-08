@@ -24,7 +24,7 @@ namespace PL
         private int[] BaseStationNum = new int[] { 0,1 };
         private int firstChargeStation = default;
 
-        #region Add ctor
+        #region Add
         public DroneWindow(IBL.IBL blAccessTemp, DronesListWindow dronesListTemp)//C-tor for add option
         {
             InitializeComponent();
@@ -35,14 +35,60 @@ namespace PL
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             BaseStationIdSelector.ItemsSource = BaseStationNum;
         }
+        private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WeightSelector.SelectedItem = Enum.GetValues(typeof(WeightCategoriesBL));
+        }
+        private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StatusSelector.SelectedItem = Enum.GetValues(typeof(DroneStatusesBL));
+        }
+        private void BaseStationIdComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BaseStationIdSelector.SelectedItem = BaseStationNum;
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            localDronesListWindow.selectionOptions();
+            this.Close();
+        }
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                DroneToList newDrone = new DroneToList
+                {
+                    DroneId = int.Parse(IdTbx.Text),
+                    Model = ModelTbx.Text,
+                    DroneWeight = (WeightCategoriesBL)WeightSelector.SelectedItem,
+                };
+                firstChargeStation = (int)BaseStationIdSelector.SelectedItem;
+                blAccess.AddDrone(newDrone, firstChargeStation);
+                MessageBoxResult result = MessageBox.Show("The operation was done successfully");
+                if (result == MessageBoxResult.OK)
+                {
+                    this.Close();
+                    localDronesListWindow.selectionOptions();
+                }
+            }
+            catch (AlreadyExistException)
+            {
+                MessageBox.Show("This drone is already exists");
+                IdTbx.BorderBrush = Brushes.Red;
+                IdTbl.Background = Brushes.Red;
+            }
+        }
+
         #endregion
 
-        #region Update ctor
-        public DroneBl MyDrone; 
-        public DroneWindow(IBL.IBL blAccessTemp,int droneId)//C-tor for update options
+        #region Update 
+        public DroneBl MyDrone;
+        public DroneWindow(IBL.IBL blAccessTemp, int droneId, DronesListWindow dronesListTemp)//C-tor for update options
         {
             InitializeComponent();
-            UpdateOptions.Visibility = Visibility.Visible;           
+            UpdateOptions.Visibility = Visibility.Visible;
+            localDronesListWindow = dronesListTemp;
             blAccess = blAccessTemp;
             MyDrone = blAccess.GetSingleDrone(droneId);
             UpdateOptions.DataContext = MyDrone;
@@ -77,57 +123,15 @@ namespace PL
                     break;
             }
         }
-        #endregion
-        private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            WeightSelector.SelectedItem = Enum.GetValues(typeof(WeightCategoriesBL));
-        }
-        private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            StatusSelector.SelectedItem = Enum.GetValues(typeof(DroneStatusesBL));
-        }
-        private void BaseStationIdComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            BaseStationIdSelector.SelectedItem = BaseStationNum;
-        }
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            try
-            {
-                DroneToList newDrone = new DroneToList
-                {
-                    DroneId = int.Parse(IdTbx.Text),
-                    Model = ModelTbx.Text,
-                    DroneWeight = (WeightCategoriesBL)WeightSelector.SelectedItem, 
-                };
-                firstChargeStation = (int)BaseStationIdSelector.SelectedItem;
-                blAccess.AddDrone(newDrone,firstChargeStation);               
-                MessageBoxResult result = MessageBox.Show("The operation was done successfully");
-                if (result==MessageBoxResult.OK)
-                {
-                    this.Close();
-                    localDronesListWindow.selectionOptions();
-                }
-            }
-            catch (AlreadyExistException)
-            {
-                MessageBox.Show("This drone is already exists");
-                IdTbx.BorderBrush = Brushes.Red;
-                IdTbl.Background= Brushes.Red;
-            }
-        }
-
+     
         private void NameUpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            DroneModelTbx.IsEnabled = true;
-            DroneModelTbx.Background = Brushes.Yellow;
-            MyDrone.Model = ModelTbx.Text;
-            DroneModelTbx.IsEnabled = false;
+            blAccess.UpdateDroneName(MyDrone.DroneId, MyDrone.Model);
+            MessageBoxResult result = MessageBox.Show("Your update was done");
+            //if (result == MessageBoxResult.OK)
+            //{
+            //    localDronesListWindow.selectionOptions();
+            //}
         }
 
         private void DroneToChargeButton_Click(object sender, RoutedEventArgs e)
@@ -154,6 +158,11 @@ namespace PL
         {
 
         }
-
+        private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            localDronesListWindow.selectionOptions();
+        }
+        #endregion
     }
 }

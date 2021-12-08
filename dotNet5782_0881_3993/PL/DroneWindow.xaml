@@ -35,7 +35,7 @@
 
             <TextBox x:Name="DroneIdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="220,80,0,0" Text="{Binding Path= DroneId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
             <TextBox x:Name="DroneWeightSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="220,120,0,0" Text="{Binding Path= DroneWeight}" VerticalAlignment="Top" Width="120" IsEnabled="False" />
-            <TextBox x:Name="DroneModelTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="220,160,0,0" Text="{Binding Path= Model}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+            <TextBox x:Name="DroneModelTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="220,160,0,0" Text="{Binding Path= Model}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" MaxLength="3"/>
             <TextBox x:Name="DroneStatusSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="220,200,0,0" Text="{Binding Path= DroneStatus}" VerticalAlignment="Top" Width="120" IsEnabled="False" />
             <TextBox x:Name="DroneBattery" Grid.Column="2" HorizontalAlignment="Left" Margin="220,240,0,0" Text="{Binding Path= BatteryPercent}" VerticalAlignment="Top" Width="120" IsEnabled="False" />
             <TextBox x:Name="DroneLocation" HorizontalAlignment="Left" Margin="220,280,0,0" Text="" VerticalAlignment="Top" Width="239" IsEnabled="False" />
@@ -58,8 +58,7 @@
                 <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Width="86" Click="PickUpParcelButton_Click" Visibility="Collapsed" />
                 <Button x:Name="SupplyParcelButton" Content="SupplyParcel" Width="88" Click="SupplyParcelButton_Click" Visibility="Collapsed" />
             </WrapPanel>
-
-            <Button Content="Close" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseButton_Click"/>
+            <Button Content="Close" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseUpdateButton_Click"/>
         </Grid>
     </Grid>
 </Window>
