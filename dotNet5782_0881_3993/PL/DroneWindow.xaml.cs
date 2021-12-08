@@ -54,7 +54,6 @@ namespace PL
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 DroneToList newDrone = new DroneToList
@@ -126,13 +125,10 @@ namespace PL
      
         private void NameUpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            //MyDrone.Model = DroneModelTbx.Text;
-            blAccess.UpdateDroneName(MyDrone.DroneId, MyDrone.Model);
-            MessageBoxResult result = MessageBox.Show("Your update was done");
-            //if (result == MessageBoxResult.OK)
-            //{
-            //    localDronesListWindow.selectionOptions();
-            //}
+            blAccess.UpdateDroneName(MyDrone.DroneId, DroneModelTbx.Text);
+            MessageBox.Show("Your update was done");
+            localDronesListWindow.selectionOptions();
+            
         }
 
         private void DroneToChargeButton_Click(object sender, RoutedEventArgs e)
