@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Targil3
+//brief: In this program we built the presentation layer
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +25,17 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        // access point between the bl to the pl
         private IBL.IBL blAccess = new IBL.BL();
         public MainWindow()
         {            
             InitializeComponent();
         }
+        /// <summary>
+        /// A button click event which lead the user to the drones window display
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowDronesButton_Click(object sender, RoutedEventArgs e)
         {
             new DronesListWindow(blAccess).Show();
