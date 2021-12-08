@@ -56,7 +56,7 @@ namespace PL
             }
         }
        
-        /// <summary>
+        /// <summary>//
         /// A selection event, the user will choose between the status categories 
         /// </summary>
         /// <param name="sender"></param>
