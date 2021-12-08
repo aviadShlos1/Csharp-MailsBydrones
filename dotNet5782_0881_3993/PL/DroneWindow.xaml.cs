@@ -128,7 +128,6 @@ namespace PL
             new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show(); 
             Close();
         }
-
         private void DroneToChargeButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -143,7 +142,6 @@ namespace PL
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void ReleaseFromChargeButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -158,7 +156,6 @@ namespace PL
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void AssignParcelToDroneButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -173,7 +170,6 @@ namespace PL
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void PickUpParcelButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -188,7 +184,6 @@ namespace PL
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void SupplyParcelButton_Click(object sender, RoutedEventArgs e)
         {
             try
