@@ -49,7 +49,8 @@ namespace IDAL
         public int AddParcel(ParcelDal newParcel);
         #endregion Add methods
 
-        #region Update methods    
+        #region Update methods   
+        public void UpdateDrone(DroneDal myDrone);
         /// Assining a drone to a parcel by the parcel and drone id 
         /// </summary>
         /// <param name="parcelId"></param>

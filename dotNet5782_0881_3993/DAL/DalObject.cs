@@ -71,6 +71,13 @@ namespace DalObject
         #endregion Add methods
 
         #region Update methods
+        public void UpdateDrone(DroneDal myDrone)
+        {
+            DroneDal tempDrone= DataSource.Drones.FirstOrDefault(x => x.Id == myDrone.Id);
+            int index = DataSource.Drones.IndexOf(tempDrone);
+            DataSource.Drones[index] = myDrone;
+        }
+
         /// <summary>
         /// Assining a drone to a parcel by the parcel and drone id 
         /// </summary>
