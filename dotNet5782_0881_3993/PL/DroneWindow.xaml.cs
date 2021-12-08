@@ -126,24 +126,38 @@ namespace PL
         private void NameUpdateButton_Click(object sender, RoutedEventArgs e)
         {
             blAccess.UpdateDroneName(MyDrone.DroneId, DroneModelTbx.Text);
-            MessageBox.Show("Your update was done");
-            localDronesListWindow.selectionOptions();
-            
+            MessageBox.Show("Your update was done successfully");
+            new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show(); 
+            Close();
         }
 
         private void DroneToChargeButton_Click(object sender, RoutedEventArgs e)
         {
-            blAccess.DroneToCharge(MyDrone.DroneId);
-            MessageBoxResult result = MessageBox.Show("The drone sent to charge successfuly");
-            if (result == MessageBoxResult.OK)
+            try
             {
-                
+                blAccess.DroneToCharge(MyDrone.DroneId);
+                MessageBox.Show("The drone sent to charge successfully");
+                new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
+                Close();
+            }
+            catch (CannotGoToChargeException ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
         private void ReleaseFromChargeButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                
+                blAccess.ReleaseDroneCharge(MyDrone.DroneId);
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
         }
 
         private void SendToShipButton_Click(object sender, RoutedEventArgs e)

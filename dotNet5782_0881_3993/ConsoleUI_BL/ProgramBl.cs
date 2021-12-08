@@ -370,14 +370,14 @@ Your choice:");
                     break;
 
                 case UpdatesOption.ReleaseDroneCharge:
-                    TimeSpan chargeTime = default;
                     Console.WriteLine("Please enter a drone id (4 digits):");
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
-                    Console.WriteLine("Please enter the time the drone has been charged:");
-                    while(!TimeSpan.TryParse(Console.ReadLine(), out chargeTime));
+                    //TimeSpan chargeTime = default;
+                    //Console.WriteLine("Please enter the time the drone has been charged:");
+                    //while (!TimeSpan.TryParse(Console.ReadLine(), out chargeTime)) ;
                     try
                     {
-                        bl.ReleaseDroneCharge(droneId, chargeTime);
+                        bl.ReleaseDroneCharge(droneId);
                     }
                     catch (NotExistException ex)
                     {

@@ -146,6 +146,7 @@ namespace DalObject
         /// <param name="stationId"></param>
         public void DroneToCharge(int droneId, int stationId)
         {
+            
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
             BaseStationDal station1 = DataSource.BaseStations[stationIndex];
             station1.FreeChargeSlots--; // Reducing the free chargeSlots
@@ -158,29 +159,32 @@ namespace DalObject
             {
                 throw new NotExistException(droneId);
             }
-            DroneChargeDal charge1 = DataSource.DronesInCharge[chargeIndex];
-            DataSource.DronesInCharge[chargeIndex] = charge1;
+            DroneChargeDal myDroneCharge = DataSource.DronesInCharge[chargeIndex];
+            myDroneCharge.StartChargeTime = DateTime.Now;
+            DataSource.DronesInCharge[chargeIndex] = myDroneCharge;
         }
         /// <summary>
         /// Realesing a drone from the charge base station
         /// </summary>
         /// <param name="droneId"></param>
-        public void DroneRelease(int droneId)
+        public TimeSpan DroneRelease(int droneId)
         {
             int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId == droneId);
             if (droneId == -1)
             {
                 throw new NotExistException(droneId);
             }
-            DroneChargeDal help = DataSource.DronesInCharge[chargeIndex];
-            int baseStationId = help.StationId;
+            DroneChargeDal myDroneRelease = DataSource.DronesInCharge[chargeIndex];
+            int baseStationId = myDroneRelease.StationId;
 
             int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == baseStationId);
             BaseStationDal station2 = DataSource.BaseStations[stationIndex];
             station2.FreeChargeSlots++;//Increasing the number of the free charge slots
             DataSource.BaseStations[stationIndex] = station2;
-
+            DateTime releaseTime = DateTime.Now;
+            TimeSpan totalCharge = releaseTime - myDroneRelease.StartChargeTime; 
             DataSource.DronesInCharge.RemoveAt(DataSource.DronesInCharge.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
+            return totalCharge;
         }
         #endregion Update methods
 

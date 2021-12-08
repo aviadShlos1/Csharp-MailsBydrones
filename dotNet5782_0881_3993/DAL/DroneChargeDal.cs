@@ -19,12 +19,13 @@ namespace IDAL
         {
             public int DroneId { get; set; }
             public int StationId { get; set; }
+            public DateTime StartChargeTime { get; set; } //Dan Zilberstein said to add it. This field gives us the starting charge time. 
 
             /// </summary> This method converts the values to string values
             /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
-                return $"DroneChargeDal: DroneToParcelId{DroneId}, StationId{StationId}";
+                return $"DroneChargeDal: DroneToParcelId, StationId";
             }
         }
     }

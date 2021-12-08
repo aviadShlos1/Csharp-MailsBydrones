@@ -79,7 +79,7 @@ namespace IDAL
         /// Realesing a drone from the charge base station
         /// </summary>
         /// <param name="droneId"></param>
-        public void DroneRelease(int droneId);
+        public TimeSpan DroneRelease(int droneId);
         #endregion Update methods
 
         #region Single display 

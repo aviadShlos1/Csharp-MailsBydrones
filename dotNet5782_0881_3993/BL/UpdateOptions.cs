@@ -307,7 +307,7 @@ namespace IBL
                 throw new BO.NotExistException();
             }
             
-            List<IDAL.DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetBaseStationsList().ToList(); /////////////////!!!!!!!!!!!!!!!!!!add condition
+            List<IDAL.DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetBaseStationsList(x=>x.FreeChargeSlots>0).ToList(); 
             if ((droneItem.DroneStatus != BO.DroneStatusesBL.Available)) //if the drone is not available (maintaince or shipment)
                 throw new DroneIsNotAvailable(droneId);
             if (freeChargeSlotsStations.Count == 0 )
@@ -340,7 +340,7 @@ namespace IBL
         /// </summary>
         /// <param name="droneId"></param>
         /// <param name="chargeTime"></param>
-        public void ReleaseDroneCharge(int droneId, TimeSpan chargeTime)
+        public void ReleaseDroneCharge(int droneId)
         {
             DroneToList droneItem = new();
             try
@@ -351,13 +351,13 @@ namespace IBL
             {
                 throw new BO.NotExistException();
             }
-            droneItem = DronesListBL.Find(x => x.DroneId == droneId);
             if (droneItem.DroneStatus != BO.DroneStatusesBL.Maintaince)
             {
                 throw new BO.CannotReleaseFromChargeException(droneId);
             }
             else
             {
+                TimeSpan chargeTime = DalAccess.DroneRelease(droneId);
                 double timeInMinutes = chargeTime.TotalMinutes;//converting the format to number of minutes, for instance, 1:30 to 90 minutes
                 timeInMinutes /= 60; //getting the time in hours 
                 droneItem.BatteryPercent = timeInMinutes * chargeRate; // the battery calculation
