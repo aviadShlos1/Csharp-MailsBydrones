@@ -44,9 +44,10 @@ namespace PL
             InitializeComponent();
             UpdateOptions.Visibility = Visibility.Visible;           
             blAccess = blAccessTemp;
-            MyDrone = blAccess.GetSingleDrone(droneId);//
+            MyDrone = blAccess.GetSingleDrone(droneId);
             UpdateOptions.DataContext = MyDrone;
-            ParcelDetails.DataContext = MyDrone.ParcelInShip;
+            DroneLocation.Text = MyDrone.DroneLocation.ToString();
+            //ParcelInShipment.Text = MyDrone.ParcelInShip.ToString();
         }
         #endregion
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -93,37 +94,32 @@ namespace PL
             }
         }
 
-        private void NameUpdateButton_Click(object sender, RoutedEventArgs e)//
+        private void NameUpdateButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void DroneToChargeButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void ReleaseFromChargeButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void SendToShipButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void PickUpParcelButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_6(object sender, RoutedEventArgs e)
+        private void SupplyParcelButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
