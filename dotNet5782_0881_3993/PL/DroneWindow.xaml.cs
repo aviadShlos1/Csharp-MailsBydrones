@@ -101,7 +101,6 @@ namespace PL
             MyDrone = blAccess.GetSingleDrone(droneId);
             UpdateOptions.DataContext = MyDrone;
             DroneLocation.Text = MyDrone.DroneLocation.ToString();
-            //ParcelInShipment.Text = MyDrone.ParcelInShip.ToString();
             
             switch ((DroneStatusesBL)MyDrone.DroneStatus) // checking the drone status, correspondingly enables the operations
             {
@@ -115,6 +114,9 @@ namespace PL
                     break;
 
                 case DroneStatusesBL.Shipment:
+                    ParcelInShipmentTbl.Visibility = Visibility.Visible;
+                    ParcelInShipmentTbx.Visibility = Visibility.Visible;
+                    ParcelInShipmentTbx.Text = MyDrone.ParcelInShip.ToString();
                     if (MyDrone.ParcelInShip.ShippingOnTheSupplyWay==true)
                     {
                         SupplyParcelButton.Visibility = Visibility.Visible;
