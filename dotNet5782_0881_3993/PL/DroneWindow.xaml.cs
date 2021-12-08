@@ -103,8 +103,6 @@ namespace PL
 
                 case DroneStatusesBL.Maintaince:
                     ReleaseFromChargeButton.Visibility = Visibility.Visible;
-                    //BReleaseDrone.IsEnabled = false;
-                    //TimeChoose.Visibility = Visibility.Visible;
                     break;
 
                 case DroneStatusesBL.Shipment:
