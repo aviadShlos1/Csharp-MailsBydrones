@@ -35,9 +35,7 @@ namespace IBL
         /// <param name="totalChargeSlots">a new total charge slots number</param>
         public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
         {
-            IDAL.DO.BaseStationDal my = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
-            myDrone.Model = newModel;
-            DalAccess.UpdateDrone(myDrone);
+           
             foreach (var item in DalAccess.GetBaseStationsList())
             {
                 if (item.Id == baseStationId)
@@ -73,22 +71,16 @@ namespace IBL
         /// <param name="newPhone">a new phone</param>
         public void UpdateCustomerData(int myId, string newName, string newPhone)
         {
-            foreach (var item in DalAccess.GetCustomersList())
+            IDAL.DO.CustomerDal myCustomer = DalAccess.GetCustomersList().ToList().Find(x => x.Id == myId);
+            if (newName != "")
             {
-                if (item.Id == myId)
-                {
-                    if (newName != "")
-                    {
-                        string tempName = item.Name;
-                        tempName = newName;
-                    }
-                    if (newPhone != "")
-                    {
-                        string tempPhone = item.Phone;
-                        tempPhone = newPhone;
-                    }
-                }
+                myCustomer.Name = newName;
             }
+            if (newPhone != "")
+            {
+                myCustomer.Phone = newPhone;
+            }
+            DalAccess.UpdateCustomer(myCustomer);
         }
         
         /// <summary>

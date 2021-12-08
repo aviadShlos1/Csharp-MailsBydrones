@@ -77,6 +77,13 @@ namespace DalObject
             int index = DataSource.Drones.IndexOf(tempDrone);
             DataSource.Drones[index] = myDrone;
         }
+        public void UpdateCustomer(CustomerDal myCustomer)
+        {
+            CustomerDal tempCustomer = DataSource.Customers.FirstOrDefault(x => x.Id == myCustomer.Id);
+            int index = DataSource.Customers.IndexOf(tempCustomer);
+            DataSource.Customers[index] = myCustomer;
+        }
+
 
         /// <summary>
         /// Assining a drone to a parcel by the parcel and drone id 
