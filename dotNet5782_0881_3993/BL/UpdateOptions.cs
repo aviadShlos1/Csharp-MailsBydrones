@@ -22,7 +22,8 @@ namespace IBL
         /// <param name="newModel">The new model name</param>
         public void UpdateDroneName(int droneId, string newModel)
         {
-            IDAL.DO.DroneDal droneDal = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
+            IDAL.DO.DroneDal droneDal = new();
+            droneDal = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
             droneDal.Model = newModel;
         }
        
