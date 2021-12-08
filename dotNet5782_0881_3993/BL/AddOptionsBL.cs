@@ -57,6 +57,7 @@ namespace IBL
             {
                 if (item.Id == firstChargeStation)
                 {
+                    DalAccess.DroneToCharge(newDroneBl.DroneId, firstChargeStation);
                     Location location = new() { Longitude = item.Longitude, Latitude = item.Latitude };
                     newDroneBl.DroneLocation = location;                  
                 }
