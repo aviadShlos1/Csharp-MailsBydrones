@@ -98,7 +98,7 @@ namespace PL
             switch ((DroneStatusesBL)MyDrone.DroneStatus) // checking the drone status, correspondingly enables the operations
             {
                 case DroneStatusesBL.Available:
-                    DroneToChargeButton.Visibility = Visibility.Visible;
+                    DroneToChargeButton.Visibility = Visibility.Visible;//
                     SendToShipButton.Visibility = Visibility.Visible;
                     break;
 
