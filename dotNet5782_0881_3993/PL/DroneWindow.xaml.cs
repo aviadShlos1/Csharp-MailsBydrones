@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Targil3
+//brief: In this program we built the presentation layer
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +25,16 @@ namespace PL
     {
         private IBL.IBL blAccess;
         private DronesListWindow localDronesListWindow;
-        private int[] BaseStationNum = new int[] { 0,1 };
+        private int[] BaseStationNum = new int[] { 0,1 }; //An array which includes the base stations id
         private int firstChargeStation = default;
 
         #region Add
-        public DroneWindow(IBL.IBL blAccessTemp, DronesListWindow dronesListTemp)//C-tor for add option
+        /// <summary>
+        /// Ctor for add option
+        /// </summary>
+        /// <param name="blAccessTemp">The access parameter to the bl </param>
+        /// <param name="dronesListTemp"> </param>
+        public DroneWindow(IBL.IBL blAccessTemp, DronesListWindow dronesListTemp)
         {
             InitializeComponent();
             AddOption.Visibility = Visibility.Visible;
@@ -82,7 +91,7 @@ namespace PL
         #endregion
 
         #region Update 
-        public DroneBl MyDrone;
+        public DroneBl MyDrone; 
         public DroneWindow(IBL.IBL blAccessTemp, int droneId, DronesListWindow dronesListTemp)//C-tor for update options
         {
             InitializeComponent();

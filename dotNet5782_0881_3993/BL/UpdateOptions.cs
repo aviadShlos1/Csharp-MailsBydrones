@@ -360,7 +360,7 @@ namespace IBL
                 TimeSpan chargeTime = DalAccess.DroneRelease(droneId);
                 double timeInMinutes = chargeTime.TotalMinutes;//converting the format to number of minutes, for instance, 1:30 to 90 minutes
                 timeInMinutes /= 60; //getting the time in hours 
-                droneItem.BatteryPercent =Math.Round(timeInMinutes * chargeRate); // the battery calculation
+                droneItem.BatteryPercent +=Math.Ceiling(timeInMinutes * chargeRate); // the battery calculation
                 if (droneItem.BatteryPercent > 100) //battery can't has more than a 100 percent
                     droneItem.BatteryPercent = 100;
                 
