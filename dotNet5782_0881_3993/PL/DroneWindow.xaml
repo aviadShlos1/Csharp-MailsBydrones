@@ -16,18 +16,15 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Name="IdTbl" Margin="112,80,537,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.Column="2"/>
-            <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="4"/>
-
             <TextBlock HorizontalAlignment="Left" Margin="112,120,0,0" Text="Max Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
-            <ComboBox Name="WeightSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,120,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="WeightComboBox_SelectionChanged"/>
-
             <TextBlock HorizontalAlignment="Left" Margin="112,160,0,0" Text="Model:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
-            <TextBox Name="ModelTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,160,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
             <TextBlock HorizontalAlignment="Left" Margin="112,200,0,0" Text="Status:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
-            <ComboBox Name="StatusSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,200,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="StatusComboBox_SelectionChanged"/>
-
             <TextBlock HorizontalAlignment="Left" Margin="112,240,0,0" Text="BaseStationId:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
+
+            <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="4"/>
+            <ComboBox Name="WeightSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,120,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="WeightComboBox_SelectionChanged"/>
+            <TextBox Name="ModelTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,160,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <ComboBox Name="StatusSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,200,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="StatusComboBox_SelectionChanged"/>
             <ComboBox Name="BaseStationIdSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,240,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="BaseStationIdComboBox_SelectionChanged"/>
 
             <Button Content="Close" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
@@ -35,11 +32,35 @@
         </Grid>
 
         <Grid x:Name="UpdateOptions" Visibility="Visible">
-            <TextBox x:Name="DroneIdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="220,80,0,0" Text="{Binding Path= DroneId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="4"/>
-            <TextBox x:Name="DroneWeightSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="220,120,0,0" Text="{Binding Path= DroneWeight}" VerticalAlignment="Top" Width="120" />
-            <TextBox x:Name="DroneModelTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="220,160,0,0" Text="{Binding Path= Model}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="DroneStatusSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="220,200,0,0" Text="{Binding Path= DroneStatus}" VerticalAlignment="Top" Width="120" />
-            <TextBox x:Name="DroneBattery" Grid.Column="2" HorizontalAlignment="Left" Margin="220,240,0,0" Text="{Binding Path= BatteryPercent}" VerticalAlignment="Top" Width="120" />
+
+            <TextBox x:Name="DroneIdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,80,0,0" Text="{Binding Path= DroneId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="4"/>
+            <TextBox x:Name="DroneWeightSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,120,0,0" Text="{Binding Path= DroneWeight}" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="DroneModelTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,160,0,0" Text="{Binding Path= Model}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="DroneStatusSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="329,200,0,0" Text="{Binding Path= DroneStatus}" VerticalAlignment="Top" Width="120" />
+            <TextBox x:Name="DroneBattery" Grid.Column="2" HorizontalAlignment="Left" Margin="329,240,0,0" Text="{Binding Path= BatteryPercent}" VerticalAlignment="Top" Width="120" />
+
+            <TextBlock x:Name="DroneIdTbl" Margin="112,80,537,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.Column="2" />
+            <TextBlock HorizontalAlignment="Left" Margin="112,120,0,0" Text="Max Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
+            <ComboBox x:Name="DroneWeightSelectorTbl" Grid.Column="2" HorizontalAlignment="Left" Margin="329,120,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="WeightComboBox_SelectionChanged"/>
+            <TextBlock HorizontalAlignment="Left" Margin="112,160,0,0" Text="Model:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
+          
+
+
+            
+
+            <TextBlock HorizontalAlignment="Left" Margin="112,200,0,0" Text="Status:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="112,240,0,0" Text="Battery:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
+
+            <WrapPanel x:Name="UpdateMethods">
+                <TextBlock Text=" Update Options : " FontSize="12" FontWeight="Bold"/>
+                <Button Content="NameUpdate" Width="107" Click="NameUpdateButton_Click" />
+                <Button Content="DroneToCharge" Width="107" Click="DroneToChargeButton_Click"/>
+                <Button Content="ReleaseFromCharge" Width="118" Click="ReleaseFromChargeButton_Click"/>
+                <Button Content="SendToShip" Width="94" Click="SendToShipButton_Click"/>
+                <Button Content="PickUpParcel" Width="87" Click="PickUpParcelButton_Click" />
+                <Button Content="SupplyParcel" Width="103" Click="SupplyParcelButton_Click"/>
+                <Button Content="Close" Width="67" Click="CloseButton_Click"/>
+            </WrapPanel>
 
 
             <TextBlock x:Name="DroneIdTbl" Margin="76,80,573,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" />
