@@ -22,8 +22,9 @@ namespace IBL
         /// <param name="newModel">The new model name</param>
         public void UpdateDroneName(int droneId, string newModel)
         {
-            IDAL.DO.DroneDal droneDal = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
-            droneDal.Model = newModel;
+            IDAL.DO.DroneDal myDrone = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
+            myDrone.Model = newModel;
+            DalAccess.UpdateDrone(myDrone);
         }
        
         /// <summary>
@@ -34,6 +35,9 @@ namespace IBL
         /// <param name="totalChargeSlots">a new total charge slots number</param>
         public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
         {
+            IDAL.DO.BaseStationDal my = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
+            myDrone.Model = newModel;
+            DalAccess.UpdateDrone(myDrone);
             foreach (var item in DalAccess.GetBaseStationsList())
             {
                 if (item.Id == baseStationId)
