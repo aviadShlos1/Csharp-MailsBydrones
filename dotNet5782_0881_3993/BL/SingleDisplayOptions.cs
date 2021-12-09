@@ -50,6 +50,7 @@ namespace IBL
         /// <returns> drone bl object</returns>
         public DroneBl GetSingleDrone(int myDroneId)
         {
+            DroneBl myDroneBl = default;
             IDAL.DO.DroneDal dalDrone = new();
             try
             {
@@ -59,20 +60,20 @@ namespace IBL
             {
                 throw new BO.NotExistException();
             }
-
+            
             var tempDroneBl = DronesListBL.Find(x => x.DroneId == myDroneId);
-            DroneBl myDroneBl = new() { DroneId = dalDrone.Id, Model = dalDrone.Model, DroneWeight = (WeightCategoriesBL)dalDrone.DroneWeight, BatteryPercent = tempDroneBl.BatteryPercent, DroneStatus = tempDroneBl.DroneStatus, DroneLocation = tempDroneBl.DroneLocation };
-            if (myDroneBl.DroneStatus == DroneStatusesBL.Shipment)
+            if (tempDroneBl.DroneStatus == DroneStatusesBL.Shipment)
             {
                 var tempParcel = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == myDroneId);
                 AssignCustomerToParcel mySender = new() { Id = tempParcel.SenderId, Name = GetCustomerDetails(tempParcel.SenderId).Name };
                 AssignCustomerToParcel myReciever = new() { Id = tempParcel.TargetId, Name = GetCustomerDetails(tempParcel.TargetId).Name };
                 Location myPickUpLocation = new() { Longitude = GetCustomerDetails(tempParcel.SenderId).CustomerLongitude, Latitude = GetCustomerDetails(tempParcel.SenderId).CustomerLatitude };
                 Location myTargetLocation = new() { Longitude = GetCustomerDetails(tempParcel.TargetId).CustomerLongitude, Latitude = GetCustomerDetails(tempParcel.TargetId).CustomerLatitude };
-                if (tempParcel.PickingUpTime != DateTime.MinValue) //if the parcel has already picked up
-                    myDroneBl.ParcelInShip.ShippingOnTheSupplyWay = true;
+                bool isOnTheWay=default;
+                if (tempParcel.PickingUpTime != null) //if the parcel has already picked up
+                    isOnTheWay = true;
                 else
-                    myDroneBl.ParcelInShip.ShippingOnTheSupplyWay = false;
+                    isOnTheWay = false;
                 ParcelInShipment myParcel = new()
                 {
                     Id = tempParcel.Id,
@@ -83,7 +84,10 @@ namespace IBL
                     PickUpLocation = myPickUpLocation,
                     TargetLocation = myTargetLocation,
                     ShippingDistance = GetDistance(myPickUpLocation.Longitude, myPickUpLocation.Latitude, myTargetLocation.Longitude, myTargetLocation.Latitude),
+                    ShippingOnTheSupplyWay=isOnTheWay
                 };
+                //Location droneLocation = new() { Latitude = tempDroneBl.DroneLocation.Latitude, Longitude = tempDroneBl.DroneLocation.Longitude };
+                myDroneBl = new(){ DroneId = dalDrone.Id, Model = dalDrone.Model, DroneWeight = (WeightCategoriesBL)dalDrone.DroneWeight, BatteryPercent = tempDroneBl.BatteryPercent, DroneStatus = tempDroneBl.DroneStatus, DroneLocation =tempDroneBl.DroneLocation /*droneLocation*/, ParcelInShip= myParcel };
             }
             return myDroneBl;
         }
@@ -119,13 +123,13 @@ namespace IBL
                     Weight = (WeightCategoriesBL)senderItem.Weight,
                     SourceOrTargetMan = new AssignCustomerToParcel { Id = senderItem.Id, Name = GetCustomerDetails(senderItem.SenderId).Name }
                 };
-                if (senderItem.AssignningTime != DateTime.MinValue)
+                if (senderItem.AssignningTime != null)
                     myParcelByCustomer.Status = ParcelStatus.Assigned;
-                if (senderItem.CreatingTime != DateTime.MinValue)
+                if (senderItem.CreatingTime != null)
                     myParcelByCustomer.Status = ParcelStatus.Created;
-                if (senderItem.PickingUpTime != DateTime.MinValue)
+                if (senderItem.PickingUpTime != null)
                     myParcelByCustomer.Status = ParcelStatus.PickedUp;
-                if (senderItem.SupplyingTime != DateTime.MinValue)
+                if (senderItem.SupplyingTime != null)
                     myParcelByCustomer.Status = ParcelStatus.Supplied;
                 myCustomerBl.ParcelsFromCustomerList.Add(myParcelByCustomer);
             }
@@ -139,13 +143,13 @@ namespace IBL
                     Weight = (WeightCategoriesBL)TargetItem.Weight,
                     SourceOrTargetMan = new AssignCustomerToParcel { Id = TargetItem.Id, Name = GetCustomerDetails(TargetItem.TargetId).Name }
                 };
-                if (TargetItem.AssignningTime != DateTime.MinValue)
+                if (TargetItem.AssignningTime != null)
                     targetParcelByCustomer.Status = ParcelStatus.Assigned;
-                if (TargetItem.CreatingTime != DateTime.MinValue)
+                if (TargetItem.CreatingTime != null)
                     targetParcelByCustomer.Status = ParcelStatus.Created;
-                if (TargetItem.PickingUpTime != DateTime.MinValue)
+                if (TargetItem.PickingUpTime != null)
                     targetParcelByCustomer.Status = ParcelStatus.PickedUp;
-                if (TargetItem.SupplyingTime != DateTime.MinValue)
+                if (TargetItem.SupplyingTime != null)
                     targetParcelByCustomer.Status = ParcelStatus.Supplied;
                 myCustomerBl.ParcelsToCustomerList.Add(targetParcelByCustomer);
 
@@ -173,7 +177,7 @@ namespace IBL
             AssignCustomerToParcel senderItem = new AssignCustomerToParcel { Id = dalParcel.SenderId, Name = GetCustomerDetails(dalParcel.SenderId).Name };
             AssignCustomerToParcel recieverItem = new AssignCustomerToParcel { Id = dalParcel.TargetId, Name = GetCustomerDetails(dalParcel.TargetId).Name };
             ParcelBl myParcelBl = new() { ParcelId = dalParcel.Id, ParcelWeight = (WeightCategoriesBL)dalParcel.Weight, Priority = (PrioritiesBL)dalParcel.Priority, CreatingTime = dalParcel.CreatingTime, AssignningTime = dalParcel.AssignningTime, PickingUpTime = dalParcel.PickingUpTime, SupplyingTime = dalParcel.SupplyingTime, Sender = senderItem, Reciever = recieverItem };
-            if (myParcelBl.AssignningTime != DateTime.MinValue)
+            if (myParcelBl.AssignningTime != null)
             {
                 var tempDrone = DronesListBL.Find(x => x.DroneId == dalParcel.DroneToParcelId);
                 DroneInShipment droneInShipmentItem = new DroneInShipment { DroneId = tempDrone.DroneId, BatteryPercent = tempDrone.BatteryPercent, DroneInShipLocation = tempDrone.DroneLocation };
