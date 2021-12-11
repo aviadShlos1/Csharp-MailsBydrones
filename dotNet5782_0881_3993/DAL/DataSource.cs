@@ -92,8 +92,8 @@ namespace DalObject
                 Parcels.Add(new ParcelDal()
                 {
                     Id = rand.Next(0, 1000),
-                    SenderId = rand.Next(100000000, 1000000000),
-                    TargetId = rand.Next(100000000, 1000000000),
+                    SenderId = Customers[rand.Next(0,10)].Id,
+                    TargetId = Customers[rand.Next(0,10)].Id,
                     Weight = RandomEnumValue<WeightCategoriesDal>(),
                     Priority = RandomEnumValue<Priorities>(),
                     CreatingTime = null,
