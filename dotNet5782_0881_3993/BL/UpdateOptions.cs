@@ -245,10 +245,9 @@ namespace IBL
             else //updating the battery,location and picking up time
             {
                 double currentToSender = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderItem.CustomerLongitude, senderItem.CustomerLatitude);
-                droneItem.BatteryPercent -= currentToSender * freeWeightConsumption;
+                droneItem.BatteryPercent -= Math.Floor(currentToSender * freeWeightConsumption);
                 droneItem.DroneLocation.Longitude = senderItem.CustomerLongitude;
                 droneItem.DroneLocation.Latitude = senderItem.CustomerLatitude;
-                parcelItem.PickingUpTime = DateTime.Now;
                 DalAccess.PickUpParcel(droneItem.DroneId);
             }
         }
@@ -281,7 +280,7 @@ namespace IBL
             else //updating the battery,location, status and suppling time
             {
                 double currentToTarget = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, targetItem.CustomerLongitude, targetItem.CustomerLatitude);
-                droneItem.BatteryPercent -= currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
+                droneItem.BatteryPercent -= Math.Floor(currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1]);
                 droneItem.DroneLocation.Longitude = targetItem.CustomerLongitude;
                 droneItem.DroneLocation.Latitude = targetItem.CustomerLatitude;
                 droneItem.Delivery = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission

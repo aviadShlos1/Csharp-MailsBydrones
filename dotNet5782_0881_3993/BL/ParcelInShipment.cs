@@ -27,8 +27,8 @@ namespace IBL.BO
         public override string ToString()
         {
             return $"ParcelId: {Id},ShippingOnTheSupplyWay: {ShippingOnTheSupplyWay},Weight: {Weight},Priority: {Priority}," +
-                $"Sender: {Sender},Reciever: {Reciever},PickUpLocation: {PickUpLocation}," +
-                $"TargetLocation: {TargetLocation},ShippingDistance: {ShippingDistance}";
+                   $"Sender: {Sender},Reciever: {Reciever},PickUpLocation: {PickUpLocation}," +
+                   $"TargetLocation: {TargetLocation},ShippingDistance: {ShippingDistance}";
         }
     }
 }
