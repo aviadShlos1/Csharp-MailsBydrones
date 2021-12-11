@@ -61,6 +61,7 @@ namespace IBL
                 throw new BO.NotExistException();
             }
             
+            ParcelInShipment myParcel = default;
             var tempDroneBl = DronesListBL.Find(x => x.DroneId == myDroneId);
             if (tempDroneBl.DroneStatus == DroneStatusesBL.Shipment)
             {
@@ -74,7 +75,7 @@ namespace IBL
                     isOnTheWay = true;
                 else
                     isOnTheWay = false;
-                ParcelInShipment myParcel = new()
+                myParcel = new()
                 {
                     Id = tempParcel.Id,
                     Weight = (WeightCategoriesBL)tempParcel.Weight,
@@ -86,9 +87,9 @@ namespace IBL
                     ShippingDistance = GetDistance(myPickUpLocation.Longitude, myPickUpLocation.Latitude, myTargetLocation.Longitude, myTargetLocation.Latitude),
                     ShippingOnTheSupplyWay=isOnTheWay
                 };
-                //Location droneLocation = new() { Latitude = tempDroneBl.DroneLocation.Latitude, Longitude = tempDroneBl.DroneLocation.Longitude };
-                myDroneBl = new(){ DroneId = dalDrone.Id, Model = dalDrone.Model, DroneWeight = (WeightCategoriesBL)dalDrone.DroneWeight, BatteryPercent = tempDroneBl.BatteryPercent, DroneStatus = tempDroneBl.DroneStatus, DroneLocation =tempDroneBl.DroneLocation /*droneLocation*/, ParcelInShip= myParcel };
             }
+            Location droneLocation = new() { Latitude = tempDroneBl.DroneLocation.Latitude, Longitude = tempDroneBl.DroneLocation.Longitude };
+            myDroneBl = new(){ DroneId = dalDrone.Id, Model = dalDrone.Model, DroneWeight = (WeightCategoriesBL)dalDrone.DroneWeight, BatteryPercent = tempDroneBl.BatteryPercent, DroneStatus = tempDroneBl.DroneStatus, DroneLocation = droneLocation, ParcelInShip= myParcel };
             return myDroneBl;
         }
 
