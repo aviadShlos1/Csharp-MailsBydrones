@@ -50,19 +50,12 @@ namespace IBL
         /// <returns> drone bl object</returns>
         public DroneBl GetSingleDrone(int myDroneId)
         {
-            DroneBl myDroneBl = default;
-            IDAL.DO.DroneDal dalDrone = new();
-            try
-            {
-                dalDrone = DalAccess.GetSingleDrone(myDroneId);
-            }
-            catch (IDAL.DO.NotExistException)
+            var tempDroneBl = DronesListBL.Find(x => x.DroneId == myDroneId); //type of "DroneToList"
+            if (tempDroneBl ==default)
             {
                 throw new BO.NotExistException();
             }
-            
-            ParcelInShipment myParcel = default;
-            var tempDroneBl = DronesListBL.Find(x => x.DroneId == myDroneId);
+            DroneBl droneToDisplay = new() { DroneId = tempDroneBl.DroneId, Model = tempDroneBl.Model, DroneWeight = tempDroneBl.DroneWeight, BatteryPercent = tempDroneBl.BatteryPercent, DroneStatus = tempDroneBl.DroneStatus, DroneLocation = tempDroneBl.DroneLocation, ParcelInShip = new() };
             if (tempDroneBl.DroneStatus == DroneStatusesBL.Shipment)
             {
                 var tempParcel = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == myDroneId);
@@ -70,27 +63,23 @@ namespace IBL
                 AssignCustomerToParcel myReciever = new() { Id = tempParcel.TargetId, Name = GetCustomerDetails(tempParcel.TargetId).Name };
                 Location myPickUpLocation = new() { Longitude = GetCustomerDetails(tempParcel.SenderId).CustomerLongitude, Latitude = GetCustomerDetails(tempParcel.SenderId).CustomerLatitude };
                 Location myTargetLocation = new() { Longitude = GetCustomerDetails(tempParcel.TargetId).CustomerLongitude, Latitude = GetCustomerDetails(tempParcel.TargetId).CustomerLatitude };
-                bool isOnTheWay=default;
+                bool isOnTheSupplyWay=default;
                 if (tempParcel.PickingUpTime != null) //if the parcel has already picked up
-                    isOnTheWay = true;
+                    isOnTheSupplyWay = true;
                 else
-                    isOnTheWay = false;
-                myParcel = new()
-                {
-                    Id = tempParcel.Id,
-                    Weight = (WeightCategoriesBL)tempParcel.Weight,
-                    Priority = (PrioritiesBL)tempParcel.Priority,
-                    Sender = mySender,
-                    Reciever = myReciever,
-                    PickUpLocation = myPickUpLocation,
-                    TargetLocation = myTargetLocation,
-                    ShippingDistance = GetDistance(myPickUpLocation.Longitude, myPickUpLocation.Latitude, myTargetLocation.Longitude, myTargetLocation.Latitude),
-                    ShippingOnTheSupplyWay=isOnTheWay
-                };
-            }
-            Location droneLocation = new() { Latitude = tempDroneBl.DroneLocation.Latitude, Longitude = tempDroneBl.DroneLocation.Longitude };
-            myDroneBl = new(){ DroneId = dalDrone.Id, Model = dalDrone.Model, DroneWeight = (WeightCategoriesBL)dalDrone.DroneWeight, BatteryPercent = tempDroneBl.BatteryPercent, DroneStatus = tempDroneBl.DroneStatus, DroneLocation = droneLocation, ParcelInShip= myParcel };
-            return myDroneBl;
+                    isOnTheSupplyWay = false;
+
+                droneToDisplay.ParcelInShip.Id = tempParcel.Id;
+                droneToDisplay.ParcelInShip.Weight = (WeightCategoriesBL)tempParcel.Weight;
+                droneToDisplay.ParcelInShip.Priority = (PrioritiesBL)tempParcel.Priority;
+                droneToDisplay.ParcelInShip.Sender = mySender;
+                droneToDisplay.ParcelInShip.Reciever = myReciever;
+                droneToDisplay.ParcelInShip.PickUpLocation = myPickUpLocation;
+                droneToDisplay.ParcelInShip.TargetLocation = myTargetLocation;
+                droneToDisplay.ParcelInShip.ShippingDistance = GetDistance(myPickUpLocation.Longitude, myPickUpLocation.Latitude, myTargetLocation.Longitude, myTargetLocation.Latitude);
+                droneToDisplay.ParcelInShip.ShippingOnTheSupplyWay = isOnTheSupplyWay;               
+            }         
+            return droneToDisplay;
         }
 
         /// <summary>
