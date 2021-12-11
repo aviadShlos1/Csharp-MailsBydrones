@@ -110,7 +110,8 @@ namespace IBL
                 throw new BO.DroneIsNotAvailable(myDroneId);
             }
 
-            senderCustomer = GetCustomerDetails(HighestPriorityAndWeightParcels()[0].SenderId);
+            int senderId = HighestPriorityAndWeightParcels()[0].SenderId;
+            senderCustomer = GetCustomerDetails(senderId);
             /// Finding the closet parcel among the highest priority and weight parcels list
             closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
             foreach (var item in HighestPriorityAndWeightParcels())
@@ -161,7 +162,7 @@ namespace IBL
             List<IDAL.DO.ParcelDal> parcelsWithFastPriority = new();
             List<IDAL.DO.ParcelDal> parcelsWithNormalPriority = new();
 
-            foreach (var item in DalAccess.GetParcelsList())/////////////////!!!!!!!!!!!!!!!!!!add condition
+            foreach (var item in DalAccess.GetParcelsList(x=>x.DroneToParcelId==0))
             {
                 switch ((PrioritiesBL)item.Priority)
                 {
