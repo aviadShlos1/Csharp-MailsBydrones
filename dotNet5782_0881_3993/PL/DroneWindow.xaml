@@ -32,37 +32,41 @@
         </Grid>
 
         <Grid x:Name="UpdateOptions" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="41*"/>
+            </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="DroneIdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="220,80,0,0" Text="{Binding Path= DroneId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-            <TextBox x:Name="DroneWeightSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="220,120,0,0" Text="{Binding Path= DroneWeight}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" />
-            <TextBox x:Name="DroneModelTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="220,160,0,0" Text="{Binding Path= Model}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" MaxLength="3"/>
-            <TextBox x:Name="DroneStatusSelector" Grid.Column="2" HorizontalAlignment="Left" Margin="220,200,0,0" Text="{Binding Path= DroneStatus}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" />
-            <TextBox x:Name="DroneBattery" Grid.Column="2" HorizontalAlignment="Left" Margin="220,240,0,0" Text="{Binding Path= BatteryPercent}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" />
-            <TextBox x:Name="DroneLocation" HorizontalAlignment="Left" Margin="220,280,0,0" Text="" VerticalAlignment="Top" Width="239"  IsReadOnly="True" />
-            <Grid>
-                <TextBlock x:Name="ParcelInShipmentTbl" HorizontalAlignment="Left" Margin="76,338,0,0" Text="Parcel in shipment:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Visibility="Hidden"/>
-                <TextBox x:Name="ParcelInShipmentTbx" HorizontalAlignment="Left" Margin="220,320,0,0" Text="" VerticalAlignment="Top" Width="239" Height="61" IsEnabled="False" Visibility="Hidden"/>
+            <TextBox x:Name="DroneIdTbx" Grid.Column="1" HorizontalAlignment="Left" Margin="76,80,0,0" Text="{Binding Path= DroneId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="DroneWeightSelector" Grid.Column="1" HorizontalAlignment="Left" Margin="76,120,0,0" Text="{Binding Path= DroneWeight}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" />
+            <TextBox x:Name="DroneModelTbx" Grid.Column="1" HorizontalAlignment="Left" Margin="76,160,0,0" Text="{Binding Path= Model}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" MaxLength="3"/>
+            <TextBox x:Name="DroneStatusSelector" Grid.Column="1" HorizontalAlignment="Left" Margin="76,200,0,0" Text="{Binding Path= DroneStatus}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" />
+            <TextBox x:Name="DroneBattery" Grid.Column="1" HorizontalAlignment="Left" Margin="76,240,0,0" Text="{Binding Path= BatteryPercent}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" />
+            <TextBox x:Name="DroneLocation" HorizontalAlignment="Left" Margin="76,280,0,0" Text="" VerticalAlignment="Top" Width="239"  IsReadOnly="True" Grid.Column="1" />
+            <Grid Grid.ColumnSpan="2">
+                <TextBlock x:Name="ParcelInShipmentTbl" HorizontalAlignment="Left" Margin="76,338,0,0" Text="Parcel in shipment:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Visibility="Visible"/>
+                <TextBox x:Name="ParcelInShipmentTbx" HorizontalAlignment="Left" Margin="220,320,0,0" Text="" VerticalAlignment="Top" Width="549" Height="61" IsEnabled="False" Visibility="Visible"/>
             </Grid>
 
-            <TextBlock Margin="76,80,573,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" />
-            <TextBlock HorizontalAlignment="Left" Margin="76,120,0,0" Text="Max Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-            <TextBlock Name="ModelTbl" HorizontalAlignment="Left" Margin="76,160,0,0" Text="Model:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-            <TextBlock HorizontalAlignment="Left" Margin="76,200,0,0" Text="Status:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-            <TextBlock HorizontalAlignment="Left" Margin="76,240,0,0" Text="Battery:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-            <TextBlock HorizontalAlignment="Left" Margin="76,290,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-            
+            <TextBlock Margin="76,80,573,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.ColumnSpan="2" />
+            <TextBlock HorizontalAlignment="Left" Margin="76,120,0,0" Text="Max Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"/>
+            <TextBlock Name="ModelTbl" HorizontalAlignment="Left" Margin="76,160,0,0" Text="Model:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="76,200,0,0" Text="Status:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="76,240,0,0" Text="Battery:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="76,290,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2"/>
 
-            <WrapPanel x:Name="UpdateMethods" Margin="0,10,8,8">
-                <TextBlock Text="         Update Options : " FontSize="12" FontWeight="Bold" Width="149"/>
-                <Button x:Name="UpdateNameButton" Content="UpdateName" Width="106" Click="NameUpdateButton_Click" Visibility="Visible" />
+
+            <WrapPanel x:Name="UpdateMethods" Margin="0,0,34,23" Grid.ColumnSpan="2">
+                <TextBlock Text="    Update Options : " FontSize="11" FontWeight="Bold" Width="118"/>
+                <Button x:Name="UpdateNameButton" Content="UpdateName" Width="99" Click="NameUpdateButton_Click" Visibility="Visible" />
                 <Button x:Name="DroneToChargeButton" Content="DroneToCharge" Width="106" Click="DroneToChargeButton_Click" Visibility="Collapsed"/>
-                <Button x:Name="ReleaseFromChargeButton" Content="ReleaseFromCharge" Width="123" Click="ReleaseFromChargeButton_Click" Visibility="Collapsed"/>
-                <Button x:Name="AssignParcelToDroneButton" Content="AssignParcelToDrone" Width="88" Click="AssignParcelToDroneButton_Click" Visibility="Collapsed"/>
-                <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Width="86" Click="PickUpParcelButton_Click" Visibility="Collapsed" />
-                <Button x:Name="SupplyParcelButton" Content="SupplyParcel" Width="88" Click="SupplyParcelButton_Click" Visibility="Collapsed" />
+                <Button x:Name="ReleaseFromChargeButton" Content="ReleaseFromCharge" Width="127" Click="ReleaseFromChargeButton_Click" Visibility="Collapsed"/>
+                <Button x:Name="AssignParcelToDroneButton" Content="AssignParcel" Width="107" Click="AssignParcelToDroneButton_Click" Visibility="Collapsed"/>
+                <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Width="97" Click="PickUpParcelButton_Click" Visibility="Collapsed" />
+                <Button x:Name="SupplyParcelButton" Content="SupplyParcel" Width="108" Click="SupplyParcelButton_Click" Visibility="Collapsed" />
             </WrapPanel>
             <Button Content="Close" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseUpdateButton_Click"/>
-            
+
         </Grid>
     </Grid>
 </Window>
