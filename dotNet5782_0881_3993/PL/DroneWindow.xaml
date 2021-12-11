@@ -31,7 +31,7 @@
             <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddButton_Click"/>
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Hidden">
+        <Grid x:Name="UpdateOptions" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="41*"/>
@@ -45,7 +45,8 @@
             <TextBox x:Name="DroneLocation" HorizontalAlignment="Left" Margin="76,280,0,0" Text="" VerticalAlignment="Top" Width="239"  IsReadOnly="True" Grid.Column="1" />
             <Grid Grid.ColumnSpan="2">
                 <TextBlock x:Name="ParcelInShipmentTbl" HorizontalAlignment="Left" Margin="76,338,0,0" Text="Parcel in shipment:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Visibility="Visible"/>
-                <TextBox x:Name="ParcelInShipmentTbx" HorizontalAlignment="Left" Margin="220,320,0,0" Text="" VerticalAlignment="Top" Width="549" Height="61" IsEnabled="False" Visibility="Visible"/>
+                <TextBox x:Name="ParcelInShipmentTbx" HorizontalAlignment="Left" Margin="207,0,0,18" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="565" IsReadOnly="True" Height="78"/>
+  
             </Grid>
 
             <TextBlock Margin="76,80,573,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.ColumnSpan="2" />
@@ -56,7 +57,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="76,290,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2"/>
 
 
-            <WrapPanel x:Name="UpdateMethods" Margin="0,0,34,23" Grid.ColumnSpan="2">
+            <WrapPanel x:Name="UpdateMethods" Margin="0,3,34,20" Grid.ColumnSpan="2">
                 <TextBlock Text="    Update Options : " FontSize="11" FontWeight="Bold" Width="118"/>
                 <Button x:Name="UpdateNameButton" Content="UpdateName" Width="99" Click="NameUpdateButton_Click" Visibility="Visible" />
                 <Button x:Name="DroneToChargeButton" Content="DroneToCharge" Width="106" Click="DroneToChargeButton_Click" Visibility="Collapsed"/>
