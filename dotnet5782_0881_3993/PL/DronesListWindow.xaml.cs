@@ -31,7 +31,8 @@ namespace PL
             blAccess = blAccessTemp;
             DronesListView.ItemsSource = blAccess.GetDronesBl();
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
-            WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL)); 
+            WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
+            
         }
         /// <summary>
         /// Bonus : Auxiliary method that taking into consideration all the selection options 
