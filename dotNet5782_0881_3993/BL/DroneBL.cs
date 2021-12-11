@@ -20,7 +20,7 @@ namespace IBL.BO
         public WeightCategoriesBL DroneWeight { get; set; }
         public double BatteryPercent { get; set; }
         public DroneStatusesBL DroneStatus { get; set; }
-        public ParcelInShipment ParcelInShip { get; set; } // This field contains the details of the parcek in shipment
+        public ParcelInShipment ParcelInShip { get; set; } // This field contains the details of the parcel in shipment
         public Location DroneLocation { get; set; }
         public override string ToString()
         {
