@@ -15,6 +15,8 @@ namespace DalObject
 {
     public class DalObject:DalApi.IDal
     {
+        //static readonly DalObject instance = new DalObject();
+        //internal static DalObject Instance { get => instance; }
         public double[] EnergyConsumption()
         {
             double[] ConsumptionArr = new double[5]; 
