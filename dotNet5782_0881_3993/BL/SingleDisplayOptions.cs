@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
+using DO;
 using IBL.BO;
 namespace IBL
 {
@@ -21,12 +21,12 @@ namespace IBL
         /// <returns> Base station bl object</returns>
         public BaseStationBl GetSingleBaseStation(int baseStationId)
         {
-            IDAL.DO.BaseStationDal dalBaseStation = new();
+            DO.BaseStationDal dalBaseStation = new();
             try
             {
                 dalBaseStation = DalAccess.GetSingleBaseStation(baseStationId);
             }
-            catch (IDAL.DO.NotExistException)
+            catch (DO.NotExistException)
             {
                 throw new BO.NotExistException();
             }
@@ -89,20 +89,20 @@ namespace IBL
         /// <returns> customer bl object</returns>
         public CustomerBL GetSingleCustomer(int customerId)
         {
-            IDAL.DO.CustomerDal myCustomer = new();
+            DO.CustomerDal myCustomer = new();
             try
             {
                 myCustomer = DalAccess.GetSingleCustomer(customerId);
             }
-            catch (IDAL.DO.NotExistException)
+            catch (DO.NotExistException)
             {
                 throw new BO.NotExistException();
             }
 
             Location myLocation = new() { Latitude = myCustomer.CustomerLatitude, Longitude = myCustomer.CustomerLongitude };
             CustomerBL myCustomerBl = new() { CustomerId = myCustomer.Id, CustomerName = myCustomer.Name, CustomerPhone = myCustomer.Phone, CustomerLocation = myLocation, ParcelsFromCustomerList = new(), ParcelsToCustomerList = new() };
-            List<IDAL.DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == customerId).ToList();
-            List<IDAL.DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().TakeWhile(x => x.TargetId == customerId).ToList();
+            List<DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == customerId).ToList();
+            List<DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().TakeWhile(x => x.TargetId == customerId).ToList();
             // getting the all parcels which were sent by the customer 
             foreach (var senderItem in mySentParcels)
             {
@@ -154,12 +154,12 @@ namespace IBL
         /// <returns> parcel bl object</returns>
         public ParcelBl GetSingleParcel(int parcelId)
         {
-            IDAL.DO.ParcelDal dalParcel = new();
+            DO.ParcelDal dalParcel = new();
             try
             {
                 dalParcel = DalAccess.GetSingleParcel(parcelId);
             }
-            catch (IDAL.DO.NotExistException)
+            catch (DO.NotExistException)
             {
                 throw new BO.NotExistException();
             }

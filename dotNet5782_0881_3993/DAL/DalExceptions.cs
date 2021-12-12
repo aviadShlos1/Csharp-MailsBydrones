@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace IDAL.DO
+namespace DO
 {
 
     // An exceptions class for the data access layer
@@ -38,6 +38,15 @@ namespace IDAL.DO
         public AlreadyExistException(int id, string message) : base(message) => ID = id;
         public AlreadyExistException(int id, string message, Exception innerException) : base(message, innerException) => ID = id;
         public override string ToString() => base.ToString() + $", The id is already exists:{ID}";
+
+    }
+
+    [Serializable]
+    public class CannotCreateTheObject : Exception
+    {
+        public string Msg;
+        public CannotCreateTheObject(string msg) : base() => Msg = msg;
+        public override string ToString() => base.ToString() + $",The string isn't valid for creation an object:{Msg}";
 
     }
 }

@@ -6,8 +6,8 @@
 
 using System;
 
-namespace IDAL
-{
+//namespace DalApi
+//{
     namespace DO
     {
         /// <summary> This struct is intended for storing the CustomerDal details
@@ -27,6 +27,6 @@ namespace IDAL
             }
         }
     }
-}
+//}
 
 

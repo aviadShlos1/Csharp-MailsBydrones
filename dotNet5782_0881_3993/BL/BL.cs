@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IBL.BO;
-using IDAL.DO;
+using DO;
 
 
 namespace IBL
@@ -18,7 +18,7 @@ namespace IBL
     /// </summary>
     public partial class BL : IBL
     {
-        IDAL.IDal DalAccess = new DalObject.DalObject();//This is the access point from the data layer
+        DalApi.IDal DalAccess = new DalObject.DalObject();//This is the access point from the data layer
         public List<DroneToList> DronesListBL { get; set; }//This list is contains drones of type of "Drone to list" 
         public static Random rand = new();
 
@@ -34,9 +34,9 @@ namespace IBL
         /// </summary>
         /// <param name="id"></param>
         /// <returns>entity of customerDal</returns>
-        private IDAL.DO.CustomerDal GetCustomerDetails(int id)
+        private DO.CustomerDal GetCustomerDetails(int id)
         {
-            IDAL.DO.CustomerDal myCust = new();
+            DO.CustomerDal myCust = new();
 
             foreach (var item in DalAccess.GetCustomersList())
             {
@@ -70,7 +70,7 @@ namespace IBL
         /// <param name="myLat">my latitude</param>
         /// <param name="stationsList">A list of stations to looking for</param>
         /// <returns></returns>
-        private BaseStationBl ClosetStation(double myLon, double myLat, List<IDAL.DO.BaseStationDal> stationsList)
+        private BaseStationBl ClosetStation(double myLon, double myLat, List<DO.BaseStationDal> stationsList)
         {
             BaseStationBl closetBaseStation = default;
             double stationLon = stationsList[0].Longitude;
@@ -155,8 +155,8 @@ namespace IBL
                 if (itemDrone.DroneStatus == DroneStatusesBL.Available)
                 {
                     //Finding the customers that have supplied parcels
-                    List<IDAL.DO.ParcelDal> suppliedParcels = ParcelsDalList.FindAll(x=>x.SupplyingTime != null);
-                    List<IDAL.DO.CustomerDal> suppliedCustomers = new();
+                    List<DO.ParcelDal> suppliedParcels = ParcelsDalList.FindAll(x=>x.SupplyingTime != null);
+                    List<DO.CustomerDal> suppliedCustomers = new();
                     foreach (var item in DalAccess.GetCustomersList())
                     {
                         foreach (var item2 in suppliedParcels)
@@ -174,7 +174,7 @@ namespace IBL
                     else
                     {
                         //rand a base station from the list and set the location of the drone in the station
-                        IDAL.DO.BaseStationDal temp = BaseStationsDalList[rand.Next(0, BaseStationsDalList.Count)];
+                        DO.BaseStationDal temp = BaseStationsDalList[rand.Next(0, BaseStationsDalList.Count)];
                         itemDrone.DroneLocation.Latitude = temp.Latitude;
                         itemDrone.DroneLocation.Longitude = temp.Longitude;
                     }
