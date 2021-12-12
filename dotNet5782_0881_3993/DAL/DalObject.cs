@@ -9,11 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
+using DO;
 
 namespace DalObject
 {
-    public class DalObject:IDAL.IDal
+    public class DalObject:DalApi.IDal
     {
         public double[] EnergyConsumption()
         {

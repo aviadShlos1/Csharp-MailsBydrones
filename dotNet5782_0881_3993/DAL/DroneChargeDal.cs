@@ -10,8 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IDAL
-{
+//namespace DalApi
+//{
     namespace DO
     {
         /// <summary> This struct is intended for storing the DroneChargeDal details
@@ -29,4 +29,4 @@ namespace IDAL
             }
         }
     }
-}
+//}

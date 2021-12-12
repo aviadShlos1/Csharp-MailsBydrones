@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
+using DO;
 using IBL.BO;
 
 namespace IBL
@@ -17,7 +17,7 @@ namespace IBL
         public List<BaseStationToList> GetBaseStationsBl (Predicate<BaseStationToList> myPredicate = null)
         {
             List<BaseStationToList> myBaseStationsBl = new();
-            List<IDAL.DO.BaseStationDal> dalBaseStations = DalAccess.GetBaseStationsList().ToList();
+            List<DO.BaseStationDal> dalBaseStations = DalAccess.GetBaseStationsList().ToList();
             foreach (var item in dalBaseStations)
             {
                 //int busyChargeSlots = DalAccess.GetDronesChargeList().ToList().FindAll(x => x.StationId == item.Id).Count();
@@ -33,13 +33,13 @@ namespace IBL
         public List<CustomerToList> GetCustomersBl()
         {
             List<CustomerToList> myCustomersBl = new();
-            List<IDAL.DO.CustomerDal> dalCustomers = DalAccess.GetCustomersList().ToList();
+            List<DO.CustomerDal> dalCustomers = DalAccess.GetCustomersList().ToList();
             foreach (var item in dalCustomers)
             {
-                List<IDAL.DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == item.Id).ToList();
+                List<DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == item.Id).ToList();
                 int sentAndSuppliedParcels = mySentParcels.TakeWhile(x => x.SupplyingTime != DateTime.MinValue).Count();
                 int sentAndNotSuppliedParcels = mySentParcels.TakeWhile(x => x.SupplyingTime == DateTime.MinValue).Count();
-                List<IDAL.DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().TakeWhile(x => x.TargetId == item.Id).ToList();
+                List<DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().TakeWhile(x => x.TargetId == item.Id).ToList();
                 int recieverGotParcels = myRecievedParcels.TakeWhile(x => x.SupplyingTime != DateTime.MinValue).Count();
                 int parcelsInWayToReciever = myRecievedParcels.TakeWhile(x => x.SupplyingTime == DateTime.MinValue).Count();
                 myCustomersBl.Add(new CustomerToList { Id = item.Id, Name = item.Name, Phone = item.Phone, SendAndSuppliedParcels = sentAndSuppliedParcels, SendAndNotSuppliedParcels = sentAndNotSuppliedParcels, RecieverGotParcels = recieverGotParcels, ParcelsInWayToReciever = parcelsInWayToReciever });
@@ -49,7 +49,7 @@ namespace IBL
         public List<ParcelToList> GetParcelsBl(Predicate<ParcelToList> myPredicate = null)
         {
             List<ParcelToList> myParcelsBl = new();
-            List<IDAL.DO.ParcelDal> dalParcels = DalAccess.GetParcelsList().ToList();
+            List<DO.ParcelDal> dalParcels = DalAccess.GetParcelsList().ToList();
 
             foreach (var item in dalParcels)
             {

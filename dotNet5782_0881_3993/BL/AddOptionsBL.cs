@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IBL.BO;
-using IDAL.DO;
+using DO;
 
 namespace IBL
 {
@@ -34,7 +34,7 @@ namespace IBL
             {
                 DalAccess.AddStation(tempBase);
             }
-            catch (IDAL.DO.AlreadyExistException)
+            catch (DO.AlreadyExistException)
             {
                 throw new BO.AlreadyExistException();
             }
@@ -69,7 +69,7 @@ namespace IBL
                 DalAccess.AddDrone(tempDrone);
                 DronesListBL.Add(newDroneBl);
             }
-            catch (IDAL.DO.AlreadyExistException)
+            catch (DO.AlreadyExistException)
             {
                 throw new BO.AlreadyExistException();
             }
@@ -93,7 +93,7 @@ namespace IBL
             {
                 DalAccess.AddCustomer(tempCust);
             }
-            catch (IDAL.DO.AlreadyExistException)
+            catch (DO.AlreadyExistException)
             {
                 throw new BO.AlreadyExistException();
             }

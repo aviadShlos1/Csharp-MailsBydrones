@@ -10,8 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IDAL
-{
+//namespace DalApi
+//{
 
     namespace DO
     {
@@ -24,4 +24,4 @@ namespace IDAL
         public enum MainOptions
         {Add,Update,Display,ListDisplay}
     }
-}
+//}

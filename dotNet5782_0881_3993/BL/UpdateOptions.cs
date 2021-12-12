@@ -22,7 +22,7 @@ namespace IBL
         /// <param name="newModel">The new model name</param>
         public void UpdateDroneName(int droneId, string newModel)
         {
-            IDAL.DO.DroneDal myDrone = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
+            DO.DroneDal myDrone = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
             if (newModel!="")
             {
                 myDrone.Model = newModel;
@@ -38,7 +38,7 @@ namespace IBL
         /// <param name="totalChargeSlots">a new total charge slots number</param>
         public void UpdateBaseStationData(int baseStationId, string newName, int totalChargeSlots)
         {
-            IDAL.DO.BaseStationDal myBaseStation = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == baseStationId);
+            DO.BaseStationDal myBaseStation = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == baseStationId);
             if (newName!="")
             {
                  myBaseStation.Name = newName;
@@ -73,7 +73,7 @@ namespace IBL
         /// <param name="newPhone">a new phone</param>
         public void UpdateCustomerData(int myId, string newName, string newPhone)
         {
-            IDAL.DO.CustomerDal myCustomer = DalAccess.GetCustomersList().ToList().Find(x => x.Id == myId);
+            DO.CustomerDal myCustomer = DalAccess.GetCustomersList().ToList().Find(x => x.Id == myId);
             if (newName != "")
             {
                 myCustomer.Name = newName;
@@ -91,8 +91,8 @@ namespace IBL
         /// <param name="myDroneId">an exist drone</param>
         public void AssignParcelToDrone(int myDroneId)
         {
-            IDAL.DO.ParcelDal assignedParcel = new();
-            IDAL.DO.CustomerDal senderCustomer = new();
+            DO.ParcelDal assignedParcel = new();
+            DO.CustomerDal senderCustomer = new();
             double closetDistance = default;
 
             // finding the high priority parcel, taking in conclusion the priority,weight and distance
@@ -101,7 +101,7 @@ namespace IBL
             {
                 droneItem = DronesListBL.Find(x => x.DroneId == myDroneId);
             }
-            catch (IDAL.DO.NotExistException)
+            catch (DO.NotExistException)
             {
                 throw new BO.NotExistException();
             }
@@ -127,7 +127,7 @@ namespace IBL
             //checking the battery consumption
             double arriveToSenderBattery = closetDistance * freeWeightConsumption;
 
-            IDAL.DO.CustomerDal targetCustomer = GetCustomerDetails(assignedParcel.TargetId);
+            DO.CustomerDal targetCustomer = GetCustomerDetails(assignedParcel.TargetId);
             double targetDistance = GetDistance(senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude, targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude);
             double srcToTrgetBattery = targetDistance * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
 
@@ -156,11 +156,11 @@ namespace IBL
         /// Auxiliary method: Searching the highest priority parcels, according to the priority field
         /// </summary>
         /// <returns>The highest priority parcels list</returns>
-        private List<IDAL.DO.ParcelDal> HighestPriorityParcels()
+        private List<DO.ParcelDal> HighestPriorityParcels()
         {
-            List<IDAL.DO.ParcelDal> parcelsWithUrgentPriority = new();
-            List<IDAL.DO.ParcelDal> parcelsWithFastPriority = new();
-            List<IDAL.DO.ParcelDal> parcelsWithNormalPriority = new();
+            List<DO.ParcelDal> parcelsWithUrgentPriority = new();
+            List<DO.ParcelDal> parcelsWithFastPriority = new();
+            List<DO.ParcelDal> parcelsWithNormalPriority = new();
 
             foreach (var item in DalAccess.GetParcelsList(x=>x.DroneToParcelId==0))
             {
@@ -188,11 +188,11 @@ namespace IBL
         /// Auxiliary method: Searching the highest priority and weight parcels based on the highest priority parcels list
         /// </summary>
         /// <returns>The highest priority and weight parcels list</returns>
-        private List<IDAL.DO.ParcelDal> HighestPriorityAndWeightParcels()
+        private List<DO.ParcelDal> HighestPriorityAndWeightParcels()
         {
-            List<IDAL.DO.ParcelDal> heavyParcels = new();
-            List<IDAL.DO.ParcelDal> mediumParcels = new();
-            List<IDAL.DO.ParcelDal> lightParcels = new();
+            List<DO.ParcelDal> heavyParcels = new();
+            List<DO.ParcelDal> mediumParcels = new();
+            List<DO.ParcelDal> lightParcels = new();
 
             foreach (var item in HighestPriorityParcels())
             {
@@ -223,14 +223,14 @@ namespace IBL
         /// <param name="droneId"> an exist drone</param>
         public void PickUpParcel(int droneId)
         {
-            IDAL.DO.ParcelDal parcelItem = new();
-            IDAL.DO.CustomerDal senderItem = new();
+            DO.ParcelDal parcelItem = new();
+            DO.CustomerDal senderItem = new();
             DroneToList droneItem = new();
             try
             {
                 droneItem = DronesListBL.Find(x => x.DroneId == droneId);
             }
-            catch (IDAL.DO.NotExistException)
+            catch (DO.NotExistException)
             {
                 throw new BO.NotExistException();
             }
@@ -263,7 +263,7 @@ namespace IBL
             {
                 droneItem = DronesListBL.Find(x => x.DroneId == droneId);
             }
-            catch (IDAL.DO.NotExistException)
+            catch (DO.NotExistException)
             {
                 throw new BO.NotExistException();
             }
@@ -302,12 +302,12 @@ namespace IBL
             {
                 droneItem = DronesListBL.Find(x => x.DroneId == droneId);
             }
-            catch (IDAL.DO.NotExistException)
+            catch (DO.NotExistException)
             {
                 throw new BO.NotExistException();
             }
             
-            List<IDAL.DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetBaseStationsList(x=>x.FreeChargeSlots>0).ToList(); 
+            List<DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetBaseStationsList(x=>x.FreeChargeSlots>0).ToList(); 
             if ((droneItem.DroneStatus != BO.DroneStatusesBL.Available)) //if the drone is not available (maintaince or shipment)
                 throw new DroneIsNotAvailable(droneId);
             if (freeChargeSlotsStations.Count == 0 )
@@ -347,7 +347,7 @@ namespace IBL
             {
                 droneItem = DronesListBL.Find(x => x.DroneId == droneId);
             }
-            catch (IDAL.DO.NotExistException)
+            catch (DO.NotExistException)
             {
                 throw new BO.NotExistException();
             }
