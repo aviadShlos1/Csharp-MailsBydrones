@@ -4,7 +4,7 @@
 //brief: In this program we built the logic business layer
 using System;
 
-namespace IBL.BO
+namespace BO
 {
     /// <summary>
     /// This class presents an assign customer entity

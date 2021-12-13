@@ -7,18 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IBL.BO;
+using BO;
 using DO;
 
 
-namespace IBL
+namespace BlApi
 {
     /// <summary>
     /// This class is divided to modules that contains the methods implement of the CRUD options
     /// </summary>
     public partial class BL : IBL
     {
-        DalApi.IDal DalAccess = new DalObject.DalObject();//This is the access point from the data layer
+        DalApi.IDal DalAccess = DAL.DalFactory.GetDal("DalObject");//This is the access point from the data layer
         public List<DroneToList> DronesListBL { get; set; }//This list is contains drones of type of "Drone to list" 
         public static Random rand = new();
 

@@ -12,7 +12,7 @@ using DO;
 
 namespace DalObject
 {
-    struct DataSource
+    static class DataSource
     {
         /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();

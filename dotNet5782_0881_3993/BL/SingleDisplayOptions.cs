@@ -8,8 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DO;
-using IBL.BO;
-namespace IBL
+using BO;
+namespace BlApi
 {
     //This class implements the single display methods of the business layer
     partial class BL

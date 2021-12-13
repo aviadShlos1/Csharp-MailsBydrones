@@ -12,7 +12,7 @@ namespace DAL
     {
         public static DalApi.IDal GetDal(string str)
         {
-            DalObject.DalObject dalObject = new();
+            DalObject.DalObject dalObject = DalObject.DalObject.Instance;   
 
             if (str=="DalObject")
             {

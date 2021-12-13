@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IBL;
-using IBL.BO;
+using BlApi;
+using BO;
 
 namespace ConsoleUI_BL
 {
