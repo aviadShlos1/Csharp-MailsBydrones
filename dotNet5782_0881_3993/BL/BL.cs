@@ -16,17 +16,23 @@ namespace BlApi
     /// <summary>
     /// This class is divided to modules that contains the methods implement of the CRUD options
     /// </summary>
-    public partial class BL : IBL
+    partial class BL : BlApi.IBL
     {
-        DalApi.IDal DalAccess = DAL.DalFactory.GetDal("DalObject");//This is the access point from the data layer
-        public List<DroneToList> DronesListBL { get; set; }//This list is contains drones of type of "Drone to list" 
-        public static Random rand = new();
+        #region Singelton
+        static readonly BL instance = new BL();
+        public static BL Instance { get => instance; }
+        //BL() { }
+        #endregion
 
-        public double freeWeightConsumption;
-        public double lightWeightConsumption;
-        public double mediumWeightConsumption;
-        public double heavyWeightConsumption;
-        public double chargeRate;
+        static DalApi.IDal DalAccess = DalApi.DalFactory.GetDal("DalObject");//This is the access point from the data layer
+        internal static List<DroneToList> DronesListBL { get; set; }//This list contains drones of type of "Drone to list" 
+        static Random rand = new();
+
+        static double freeWeightConsumption;
+        static double lightWeightConsumption;
+        static double mediumWeightConsumption;
+        static double heavyWeightConsumption;
+        static double chargeRate;
 
         #region Help methods
         /// <summary>
@@ -34,7 +40,7 @@ namespace BlApi
         /// </summary>
         /// <param name="id"></param>
         /// <returns>entity of customerDal</returns>
-        private DO.CustomerDal GetCustomerDetails(int id)
+        private static DO.CustomerDal GetCustomerDetails(int id)
         {
             DO.CustomerDal myCust = new();
 
@@ -70,7 +76,7 @@ namespace BlApi
         /// <param name="myLat">my latitude</param>
         /// <param name="stationsList">A list of stations to looking for</param>
         /// <returns></returns>
-        private BaseStationBl ClosetStation(double myLon, double myLat, List<DO.BaseStationDal> stationsList)
+        private static BaseStationBl ClosetStation(double myLon, double myLat, List<DO.BaseStationDal> stationsList)
         {
             BaseStationBl closetBaseStation = default;
             double stationLon = stationsList[0].Longitude;
@@ -90,7 +96,7 @@ namespace BlApi
         }
         #endregion
         //ctor
-        public BL()
+        static BL()
         {
             double[] energyConsumption = DalAccess.EnergyConsumption();//Get from the dal layer the array that contains the energy consumption
             freeWeightConsumption = energyConsumption[0];

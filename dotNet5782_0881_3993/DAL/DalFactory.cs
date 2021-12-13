@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using DalApi;
 using DO;
 
-namespace DAL
+namespace DalApi
 {
     public static class DalFactory
     {
         public static DalApi.IDal GetDal(string str)
         {
-            DalObject.DalObject dalObject = DalObject.DalObject.Instance;   
+            DalApi.DalObject dalObject = DalApi.DalObject.Instance;   
 
             if (str=="DalObject")
             {

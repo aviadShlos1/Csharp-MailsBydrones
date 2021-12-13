@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DO;
 
-namespace DalObject
+namespace DalApi
 {
     sealed class DalObject:DalApi.IDal//internal
     {
@@ -22,7 +22,7 @@ namespace DalObject
         { 
             DataSource.Initialize();  //call the first initialize in the dal ctor
         }       
-        DalObject() { }
+        //DalObject() { }
         #endregion
         public double[] EnergyConsumption()
         {
