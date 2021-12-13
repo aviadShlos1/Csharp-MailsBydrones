@@ -144,7 +144,7 @@ namespace BlApi
                         itemDrone.BatteryPercent = Math.Round(rand.NextDouble() * (minCharge1 + minCharge2) + (100 - (minCharge1 + minCharge2)));
                     }
                 }
-                //If the drone not doing a shipment
+                //If the drone isn't in a shipment
                 if (itemDrone.DroneStatus != DroneStatusesBL.Shipment)
                 {
                     itemDrone.DroneStatus = (DroneStatusesBL)rand.Next(0, 2);
@@ -156,6 +156,7 @@ namespace BlApi
                     itemDrone.DroneLocation.Latitude = BaseStationsDalList[index].Latitude;
                     itemDrone.DroneLocation.Longitude = BaseStationsDalList[index].Longitude;
                     itemDrone.BatteryPercent = Math.Round(rand.NextDouble() * 20);//rand between 0-20 percent
+                    DalAccess.DroneToCharge(itemDrone.DroneId, BaseStationsDalList[index].Id);
                 }
                 //If the drone is free
                 if (itemDrone.DroneStatus == DroneStatusesBL.Available)
