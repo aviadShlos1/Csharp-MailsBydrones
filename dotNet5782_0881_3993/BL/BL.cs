@@ -1,7 +1,7 @@
 ﻿//Names: Aviad Shlosberg       314960881      
 //       Evyatar Levi Ben Ston 318753993 
-//Targil2
-//brief: In this program we built the logic business layer
+//PR01 
+//brief: In this program we define singleton classes, add factories and change the namespace names.
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +18,13 @@ namespace BlApi
     /// </summary>
     partial class BL : BlApi.IBL
     {
+
+        /// <summary>
+        /// Singleton definition to ensure the uniqueness of an object 
+        /// </summary>
         #region Singelton
         static readonly BL instance = new BL();
         public static BL Instance { get => instance; }
-        //BL() { }
         #endregion
 
         static DalApi.IDal DalAccess = DalApi.DalFactory.GetDal("DalObject");//This is the access point from the data layer
@@ -95,6 +98,7 @@ namespace BlApi
             return closetBaseStation;
         }
         #endregion
+        
         //ctor
         static BL()
         {

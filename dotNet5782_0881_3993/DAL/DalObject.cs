@@ -1,7 +1,7 @@
 ﻿//Names: Aviad Shlosberg       314960881      
 //       Evyatar Levi Ben Ston 318753993 
-//Targil1
-//brief: In this program we built the data access layer
+//PR01 
+//brief: In this program we define singleton classes, add factories and change the namespace names.
 
 
 using System;
@@ -15,6 +15,9 @@ namespace DalApi
 {
     sealed class DalObject:DalApi.IDal//internal
     {
+        /// <summary>
+        /// Singleton definition to ensure the uniqueness of an object 
+        /// </summary>
         #region Singelton
         static readonly DalObject instance = new DalObject();
         public static DalObject Instance { get => instance; }
@@ -22,7 +25,6 @@ namespace DalApi
         { 
             DataSource.Initialize();  //call the first initialize in the dal ctor
         }       
-        //DalObject() { }
         #endregion
         public double[] EnergyConsumption()
         {
