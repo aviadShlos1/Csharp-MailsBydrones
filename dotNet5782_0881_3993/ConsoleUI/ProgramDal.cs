@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DO;
+using DalApi;
 
 
 namespace ConsoleUI
@@ -43,8 +44,8 @@ namespace ConsoleUI
         /// <summary>
         /// The function handles various addition options.
         /// </summary>
-        /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
-        static public void AddOptions(DalObject.DalObject dal)
+        /// <param name="dal"> idal object is a parameter which enables access to the idal class functions</param>
+        static public void AddOptions(DalApi.IDal dal)
         {
             Console.WriteLine(@"Add options:
 1. BaseStationDal
@@ -189,8 +190,8 @@ Please enter the ParcelDal ID (0-1000):");
         /// <summary>
         /// The function handles various update options.
         /// </summary>
-        /// <param name="dal"> DalObject object that enables access to the DalObject class functions </param>
-        static public void UpdateOptions(DalObject.DalObject dal)
+        /// <param name="dal"> idal object that enables access to the idal class functions </param>
+        static public void UpdateOptions(DalApi.IDal dal)
         {
             Console.WriteLine(@"Update options:
 1. Attributing a drone to a parcel
@@ -255,8 +256,8 @@ Your choice:");
         /// <summary>
         /// The function handles single display options.
         /// </summary>
-        /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
-        static public void DisplaySingleOptions(DalObject.DalObject dal)
+        /// <param name="dal"> idal object is a parameter which enables access to the idal class functions</param>
+        static public void DisplaySingleOptions(DalApi.IDal dal)
         {
             Console.WriteLine(@"Single display options:
 1. Base station display
@@ -306,9 +307,9 @@ Your choice:");
         /// <summary>
         /// The function handles list display options.
         /// </summary>
-        /// <param name="dal"> DalObject object is a parameter which enables access to the DalObject class functions</param>
+        /// <param name="dal"> idal object is a parameter which enables access to the idal class functions</param>
 
-        static public void DisplayListOptions(DalObject.DalObject dal)
+        static public void DisplayListOptions(DalApi.IDal dal)
         {
             Console.WriteLine(@"List display options:
 1. Base stations list 
@@ -367,9 +368,9 @@ Your choice:");
 
         static void Main(string[] args)
         {
-            DalObject.DalObject dalObject = new DalObject.DalObject();
-            DalApi.IDal idal = new DalObject.DalObject();
-           
+            //DalApi.IDal idal = DalApi.IDal.Instance;
+            DalApi.IDal idal = DAL.DalFactory.GetDal("idal");
+
             Options options;
             int choice = 0;
             do
@@ -388,19 +389,19 @@ Your choice:");
                 switch (options)
                 {
                     case Options.Add:
-                        AddOptions(dalObject);
+                        AddOptions(idal);
                         break;
 
                     case Options.Update:
-                        UpdateOptions(dalObject);
+                        UpdateOptions(idal);
                         break;
 
                     case Options.SingleDisplay:
-                        DisplaySingleOptions(dalObject);
+                        DisplaySingleOptions(idal);
                         break;
 
                     case Options.ListDisplay:
-                        DisplayListOptions(dalObject);
+                        DisplayListOptions(idal);
                         break;
                     case Options.Exit:
                         Console.WriteLine("Thanks for using our system, see you soon");

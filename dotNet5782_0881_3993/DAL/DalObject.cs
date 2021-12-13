@@ -11,10 +11,19 @@ using System.Text;
 using System.Threading.Tasks;
 using DO;
 
-namespace DalObject
+namespace DalApi
 {
-    public class DalObject:DalApi.IDal
+    sealed class DalObject:DalApi.IDal//internal
     {
+        #region Singelton
+        static readonly DalObject instance = new DalObject();
+        public static DalObject Instance { get => instance; }
+        static DalObject() 
+        { 
+            DataSource.Initialize();  //call the first initialize in the dal ctor
+        }       
+        //DalObject() { }
+        #endregion
         public double[] EnergyConsumption()
         {
             double[] ConsumptionArr = new double[5]; 
@@ -24,10 +33,6 @@ namespace DalObject
             ConsumptionArr[3] = DataSource.Config.HeavyWeightConsumption;
             ConsumptionArr[4] = DataSource.Config.ChargeRate;
             return ConsumptionArr;
-        }
-        public DalObject() 
-        { 
-            DataSource.Initialize();  //call the first initialize in the dal ctor
         }
 
         #region Add methods

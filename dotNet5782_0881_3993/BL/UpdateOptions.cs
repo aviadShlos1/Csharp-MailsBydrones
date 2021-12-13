@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IBL.BO;
-namespace IBL
+using BO;
+namespace BlApi
 {
     /// <summary>
     /// This class implements the update methods of the business layer

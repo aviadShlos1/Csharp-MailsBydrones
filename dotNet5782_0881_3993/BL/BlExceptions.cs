@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DO;
 
-namespace IBL.BO
+namespace BO
 {
 
     // An exceptions class for the business layer

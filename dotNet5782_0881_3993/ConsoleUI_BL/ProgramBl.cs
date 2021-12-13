@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IBL;
-using IBL.BO;
+using BlApi;
+using BO;
 
 namespace ConsoleUI_BL
 {
@@ -37,7 +37,7 @@ namespace ConsoleUI_BL
         /// The function handles various addition options.
         /// </summary>
         /// <param name="bl"> bl object is a parameter which enables access to the BL class functions</param>
-        static public void AddOptions(IBL.IBL bl)
+        static public void AddOptions(BlApi.IBL bl)
         {
             Console.WriteLine(@"Add options:
 1. BaseStation
@@ -218,7 +218,7 @@ Please enter the sender id number(0-1000):");
         /// The function handles various update options.
         /// </summary>
         /// <param name="bl"> bl object is a parameter which enables access to the BL class functions </param>
-        static public void UpdateOptions(IBL.IBL bl)
+        static public void UpdateOptions(BlApi.IBL bl)
         {
             Console.WriteLine(@"Update options:
 1. Update a drone name       
@@ -405,7 +405,7 @@ Your choice:");
         /// The function handles single display options.
         /// </summary>
         /// <param name="bl">bl object is a parameter which enables access to the BL class functions</param>
-        static public void DisplaySingleOptions(IBL.IBL bl)
+        static public void DisplaySingleOptions(BlApi.IBL bl)
         {
             Console.WriteLine(@"Single display options:
 1. Base station display
@@ -488,7 +488,7 @@ Your choice:");
         /// <param name="bl">bl object is a parameter which enables access to the BL class functions</param>
 
         
-        static public void DisplayListOptions(IBL.IBL bl)
+        static public void DisplayListOptions(BlApi.IBL bl)
         {
             Console.WriteLine(@"List display options:
 1. Base stations list 
@@ -551,7 +551,7 @@ Your choice:");
         #endregion MainFunctions
         static void Main(string[] args)
         {
-            IBL.IBL blObject = new BL();//This object gives the point access from the buissness layer
+            BlApi.IBL blObject = BL.BlFactory.GetBl();//This object gives the point access from the buissness layer
 
             Options options;
             int choice;

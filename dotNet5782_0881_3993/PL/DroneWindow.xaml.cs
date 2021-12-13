@@ -15,7 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using IBL.BO;
+using BO;
 namespace PL
 {
     /// <summary>
@@ -23,7 +23,7 @@ namespace PL
     /// </summary>
     public partial class DroneWindow : Window
     {
-        private IBL.IBL blAccess;
+        private BlApi.IBL blAccess;
         private DronesListWindow localDronesListWindow;
         private int[] BaseStationNum = new int[] { 0,1 }; //An array which includes the base stations id
         private int firstChargeStation = default;
@@ -34,7 +34,7 @@ namespace PL
         /// </summary>
         /// <param name="blAccessTemp">The access parameter to the bl </param>
         /// <param name="dronesListTemp">Presents the drones window </param>
-        public DroneWindow(IBL.IBL blAccessTemp, DronesListWindow dronesListTemp)
+        public DroneWindow(BlApi.IBL blAccessTemp, DronesListWindow dronesListTemp)
         {
             InitializeComponent();
             AddOption.Visibility = Visibility.Visible; // the add option will be shown
@@ -122,7 +122,7 @@ namespace PL
         public DroneBl MyDrone;
 
         // Ctor for update options
-        public DroneWindow(IBL.IBL blAccessTemp, int droneId, DronesListWindow dronesListTemp)
+        public DroneWindow(BlApi.IBL blAccessTemp, int droneId, DronesListWindow dronesListTemp)
         {
             InitializeComponent();
             UpdateOptions.Visibility = Visibility.Visible; //The update options window will be shown
