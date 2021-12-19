@@ -24,7 +24,7 @@ namespace BO
 
         public override string ToString()
         {
-            return $"CustomerId: {CustomerId}, CustomerName: {CustomerName}, Phone: {CustomerPhone},Location: {CustomerLocation}"
+            return $"Id: {CustomerId}, Name: {CustomerName}, Phone: {CustomerPhone},Location: {CustomerLocation}"
                 + "ParcelsFromCustomer: " + String.Join(",", ParcelsFromCustomerList) + "ParcelsToCustomer: " + String.Join(",", ParcelsToCustomerList)  ;
         }
     }

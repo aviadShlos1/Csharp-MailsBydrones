@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using BO;
 
 namespace PL
@@ -25,6 +26,8 @@ namespace PL
     public partial class DronesListWindow : Window
     {
         private BlApi.IBL blAccess;
+        //private ObservableCollection<DroneBl> _myCollection = new();
+
         public DronesListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
@@ -57,14 +60,14 @@ namespace PL
             }
         }
        
-        /// <summary>//
+        /// <summary>
         /// A selection event, the user will choose between the status categories 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)//
+        private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)
         {
-            selectionOptions();//
+            selectionOptions();
         }
       
         /// <summary>
