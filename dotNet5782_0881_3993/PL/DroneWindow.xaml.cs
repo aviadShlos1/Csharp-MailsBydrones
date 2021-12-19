@@ -25,8 +25,9 @@ namespace PL
     {
         private BlApi.IBL blAccess;
         private DronesListWindow localDronesListWindow;
-        private int[] BaseStationNum = new int[] { 0,1 }; //An array which includes the base stations id
+        //private int[] BaseStationNum = new int[] { 0,1 }; //An array which includes the base stations id
         private int firstChargeStation = default;
+        public IEnumerable<int> baseId;
 
         #region Add
         /// <summary>
@@ -42,7 +43,8 @@ namespace PL
             localDronesListWindow = dronesListTemp; 
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
-            BaseStationIdSelector.ItemsSource = BaseStationNum;
+            baseId = blAccess.GetBaseStationsBl().Select(item => item.Id);
+            BaseStationIdSelector.ItemsSource = baseId;
         }
         /// <summary>
         /// A selection event, the user will choose between the weight categories 
@@ -69,7 +71,7 @@ namespace PL
         /// <param name="e"></param>
         private void BaseStationIdComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            BaseStationIdSelector.SelectedItem = BaseStationNum;
+            BaseStationIdSelector.SelectedItem = baseId;
         }
         /// <summary>
         /// A click buttun event. When the user will click this button, the add options window will be closed

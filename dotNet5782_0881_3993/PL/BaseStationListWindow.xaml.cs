@@ -12,79 +12,61 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media; 
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BO;
 
 namespace PL
 {
+    enum ChargeSlotStatus { Free, Full}
     /// <summary>
     /// Interaction logic for DronesListWindow.xaml
     /// </summary>
-    public partial class DronesListWindow : Window
+    public partial class BaseStationListWindow : Window
     {
         private BlApi.IBL blAccess;
-        public DronesListWindow(BlApi.IBL blAccessTemp)
+        public BaseStationListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
             blAccess = blAccessTemp;
-            DronesListView.ItemsSource = blAccess.GetDronesBl();
-            StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
-            WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
-            
+            BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl();
+            FreeChargeSlotsSelector.ItemsSource = Enum.GetValues(typeof(ChargeSlotStatus));
         }
         /// <summary>
         /// Bonus : Auxiliary method that taking into consideration all the selection options 
         /// </summary>
         public void selectionOptions()
         {
-            if (WeightSelector.SelectedItem == null && StatusSelector.SelectedItem == null) //the user select none
+            if (FreeChargeSlotsSelector.SelectedItem==null) //the user select none
             {
-                DronesListView.ItemsSource = blAccess.GetDronesBl();
+                BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl();
             }
-            else if (WeightSelector.SelectedItem == null) // the user selected by status
+            else if (FreeChargeSlotsSelector.SelectedItem != null)
             {
-                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
-            }
-            else if (StatusSelector.SelectedItem == null)// the user selected by weight
-            {
-                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
-            }
-            else // the user selected both by status and weight
-            {
-                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem && x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
+                BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl(x => x.FreeChargeSlots == (int)FreeChargeSlotsSelector.SelectedItem) ;
             }
         }
-       
+
         /// <summary>//
         /// A selection event, the user will choose between the status categories 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)//
+        private void ComboBox_FreeChargeSlotsSelection(object sender, SelectionChangedEventArgs e)//
         {
             selectionOptions();
         }
-      
-        /// <summary>
-        /// A selection event, the user will choose between the weight categories 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ComboBox_WeightSelection(object sender, SelectionChangedEventArgs e)
-        {
-            selectionOptions();
-        }
+
 
         /// <summary>
         /// A button click event, the add drone window will be opened
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddDroneButton_Click(object sender, RoutedEventArgs e)
+        private void AddBaseStationButton_Click(object sender, RoutedEventArgs e)
         {
-            new DroneWindow(blAccess,this).Show();
+            new BaseStationWindow(blAccess, this).Show();
         }
         /// <summary>
         /// A button click event, the add drone window will be opened
@@ -92,7 +74,7 @@ namespace PL
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)
-        {          
+        {
             new MainWindow().Show();
             this.Close();
         }
@@ -103,20 +85,19 @@ namespace PL
         /// <param name="e"></param>
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            StatusSelector.SelectedItem = null;
-            WeightSelector.SelectedItem = null;
+            FreeChargeSlotsSelector.SelectedItem = null;
             //DroneListView.ItemsSource = droneToLists;
-            selectionOptions();
+            //selectionOptions();
         }
         /// <summary>
         /// A double click event. The user will click double click on the wanted drone, in that he will be able to do some action with it
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DronesListView_DoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            DroneToList temp = (DroneToList)DronesListView.SelectedItem;
-            new DroneWindow(blAccess,temp.DroneId,this).Show();
-        }
+        //private void BaseStationList_DoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    BaseStationToList temp = (BaseStationToList)BaseStationListView.SelectedItem;
+        //    new BaseStationWindow(blAccess, temp.Id, this).Show();
+        //}
     }
 }
