@@ -67,5 +67,48 @@ namespace PL
             this.Close();
         }
         #endregion
+
+        #region Update 
+        public CustomerBL MyCustomer;
+
+        // Ctor for update options
+        public CustomerWindow(BlApi.IBL blAccessTemp, int CustomerId, CustomersWindow customersListTemp)
+        {
+            InitializeComponent();
+            UpdateOptions.Visibility = Visibility.Visible; //The update options window will be shown
+            localCustomersWindow = customersListTemp;
+            blAccess = blAccessTemp;
+            MyCustomer = blAccess.GetSingleCustomer(CustomerId);
+            UpdateOptions.DataContext = MyCustomer;
+            CustomerLocationTbx.Text = MyCustomer.CustomerLocation.ToString();
+
+        }
+        /// <summary>
+        /// Button click event, which will enable the user to close the update window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            localCustomersWindow.selectionOptions();
+        }
+        #endregion
+        private void UpdateCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            blAccess.UpdateCustomerData(MyCustomer.CustomerId, CustomerNameTbx.Text, CustomerPhoneTbx.Text);
+            MessageBox.Show("Your update was done successfully");
+            localCustomersWindow.selectionOptions();
+            this.Close();
+        }
+
+        private void DeleteCustomerButton_Click(object sender, RoutedEventArgs e)
+        {
+            int myIndex = blAccess.GetCustomersBl().FindIndex(x => x.Id == MyCustomer.CustomerId);
+            blAccess.GetCustomersBl().RemoveAt(myIndex);
+            MessageBox.Show("Your delete was done successfully");
+            this.Close();
+            //localCustomersWindow.selectionOptions();
+        }
     }
 }

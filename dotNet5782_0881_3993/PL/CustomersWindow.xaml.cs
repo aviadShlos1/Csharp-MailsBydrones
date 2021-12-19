@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BO;
 
 namespace PL
 {
@@ -49,11 +50,11 @@ namespace PL
             new MainWindow().Show();
             this.Close();
         }
-       
-        
-        //private void DronesListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
 
-        //}
+        private void CustomersListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            CustomerToList temp = (CustomerToList)CustomersListView.SelectedItem;
+            new CustomerWindow(blAccess, temp.Id, this).Show();
+        }
     }
 }

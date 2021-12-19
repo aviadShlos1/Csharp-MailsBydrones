@@ -36,12 +36,12 @@ namespace BlApi
             List<DO.CustomerDal> dalCustomers = DalAccess.GetCustomersList().ToList();
             foreach (var item in dalCustomers)
             {
-                List<DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == item.Id).ToList();
-                int sentAndSuppliedParcels = mySentParcels.TakeWhile(x => x.SupplyingTime != DateTime.MinValue).Count();
-                int sentAndNotSuppliedParcels = mySentParcels.TakeWhile(x => x.SupplyingTime == DateTime.MinValue).Count();
-                List<DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().TakeWhile(x => x.TargetId == item.Id).ToList();
-                int recieverGotParcels = myRecievedParcels.TakeWhile(x => x.SupplyingTime != DateTime.MinValue).Count();
-                int parcelsInWayToReciever = myRecievedParcels.TakeWhile(x => x.SupplyingTime == DateTime.MinValue).Count();
+                List<DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().ToList().FindAll(x => x.SenderId == item.Id).ToList();
+                int sentAndSuppliedParcels = mySentParcels.FindAll(x => x.SupplyingTime != null).Count();
+                int sentAndNotSuppliedParcels = mySentParcels.FindAll(x => x.SupplyingTime == null).Count();
+                List<DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().ToList().FindAll(x => x.TargetId == item.Id).ToList();
+                int recieverGotParcels = myRecievedParcels.FindAll(x => x.SupplyingTime != null).Count();
+                int parcelsInWayToReciever = myRecievedParcels.FindAll(x => x.SupplyingTime == null).Count();
                 myCustomersBl.Add(new CustomerToList { Id = item.Id, Name = item.Name, Phone = item.Phone, SendAndSuppliedParcels = sentAndSuppliedParcels, SendAndNotSuppliedParcels = sentAndNotSuppliedParcels, RecieverGotParcels = recieverGotParcels, ParcelsInWayToReciever = parcelsInWayToReciever });
             }
             return myCustomersBl;

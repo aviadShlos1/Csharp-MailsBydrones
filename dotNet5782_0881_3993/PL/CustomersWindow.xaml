@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomersWindow" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="CustomersListView" Grid.Row="1" Margin="0,5,0,-5" Background="AliceBlue" >
+        <ListView x:Name="CustomersListView" MouseDoubleClick="CustomersListView_MouseDoubleClick" Grid.Row="1" Margin="0,5,0,-5" Background="AliceBlue" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>

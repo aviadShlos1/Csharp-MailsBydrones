@@ -64,8 +64,8 @@ namespace DalApi
             #endregion adding Drone details
 
             #region adding Station details
-            BaseStations.Add(new BaseStationDal() { Id = 0, Name = "Herzliya", Latitude = 32.16472, Longitude = 34.84250, FreeChargeSlots = 4 });
-            BaseStations.Add(new BaseStationDal() { Id = 1, Name = "Tel Aviv", Latitude = 32.056312, Longitude = 34.779888, FreeChargeSlots = 3 });
+            BaseStations.Add(new BaseStationDal() { Id = 0, Name = "Herzliya", Latitude = 32.16472, Longitude = 34.84250, FreeChargeSlots = rand.Next(0, 10) });
+            BaseStations.Add(new BaseStationDal() { Id = 1, Name = "Tel Aviv", Latitude = 32.056312, Longitude = 34.779888, FreeChargeSlots = rand.Next(0, 10) });
             #endregion adding Station details
 
             #region adding Customer details

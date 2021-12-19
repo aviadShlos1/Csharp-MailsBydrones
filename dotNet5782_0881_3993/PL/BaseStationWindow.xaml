@@ -8,7 +8,7 @@
         Title="BaseStationWindow" Height="450" Width="800">
 
     <Grid Name="MainGrid">
-        <Grid x:Name="BaseStaionAddOption" Visibility="Visible">
+        <Grid x:Name="BaseStaionAddOption" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>
@@ -33,7 +33,7 @@
             <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddBaseStationButton_Click"/>
         </Grid>
 
-        <!--<Grid x:Name="UpdateOptions" Visibility="Hidden">
+        <Grid x:Name="UpdateOptions" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="41*"/>
@@ -59,17 +59,13 @@
             <TextBlock HorizontalAlignment="Left" Margin="76,290,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2"/>
 
 
-            <WrapPanel x:Name="UpdateMethods" Margin="0,3,34,20" Grid.ColumnSpan="2">
+            
                 <TextBlock Text="    Update Options : " FontSize="11" FontWeight="Bold" Width="118"/>
                 <Button x:Name="UpdateNameButton" Content="UpdateName" Width="99" Click="NameUpdateButton_Click" Visibility="Visible" />
                 <Button x:Name="DroneToChargeButton" Content="DroneToCharge" Width="106" Click="DroneToChargeButton_Click" Visibility="Collapsed"/>
-                <Button x:Name="ReleaseFromChargeButton" Content="ReleaseFromCharge" Width="127" Click="ReleaseFromChargeButton_Click" Visibility="Collapsed"/>
-                <Button x:Name="AssignParcelToDroneButton" Content="AssignParcel" Width="107" Click="AssignParcelToDroneButton_Click" Visibility="Collapsed"/>
-                <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Width="97" Click="PickUpParcelButton_Click" Visibility="Collapsed" />
-                <Button x:Name="SupplyParcelButton" Content="SupplyParcel" Width="108" Click="SupplyParcelButton_Click" Visibility="Collapsed" />
-            </WrapPanel>
+                
             <Button Content="Close" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseUpdateButton_Click"/>
 
-        </Grid>-->
+        </Grid>
     </Grid>
 </Window>
