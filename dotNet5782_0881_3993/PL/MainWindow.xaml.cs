@@ -46,5 +46,11 @@ namespace PL
             new BaseStationListWindow(blAccess).Show();
             this.Close();
         }
+
+        private void ShowCustomersButton_Click(object sender, RoutedEventArgs e)
+        {
+            new CustomersWindow(blAccess).Show();
+            this.Close();
+        }
     }
 }

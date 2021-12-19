@@ -76,7 +76,7 @@ namespace DalApi
                 Customers.Add(new CustomerDal()
                 {
                     Id = rand.Next(100000000, 1000000000),
-                    Name = CustomerName[rand.Next(CustomerName.Length)],
+                    Name = CustomerName[i],
                     Phone = $"05{ rand.Next(2, 9) }{ rand.Next(1000000, 10000000) }",
                     CustomerLatitude = rand.NextDouble() * (33.4188709641265 - 29.49970431757609) + 29.49970431757609,
                     CustomerLongitude = rand.NextDouble() * (35.89927249423983 - 34.26371323423407) + 34.26371323423407,
