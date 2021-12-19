@@ -36,7 +36,7 @@ namespace PL
         public BaseStationWindow(BlApi.IBL blAccessTemp, BaseStationListWindow BaseStationsListTemp)
         {
             InitializeComponent();
-            BaseStaionAddOption.Visibility = Visibility.Visible; // the add option will be shown
+            BaseStaionAddOption.Visibility = Visibility.Visible; // the add option will be shown 
             blAccess = blAccessTemp;
             localBaseStationListWindow = BaseStationsListTemp;
         }
