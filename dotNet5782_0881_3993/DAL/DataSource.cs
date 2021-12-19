@@ -58,7 +58,7 @@ namespace DalApi
                 {
                     Id = rand.Next(1000, 10000),
                     Model = i.ToString(),
-                    DroneWeight = RandomEnumValue<WeightCategoriesDal>()
+                    DroneWeight = RandomEnumValue<WeightCategoriesDal>() 
                 });
             }
             #endregion adding Drone details
