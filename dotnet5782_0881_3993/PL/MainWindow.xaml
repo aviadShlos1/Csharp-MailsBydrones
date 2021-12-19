@@ -11,7 +11,9 @@
         <Grid.Background>
             <ImageBrush ImageSource="Images\Drone.jpg"/>
         </Grid.Background>
-        <Button Content="Login" HorizontalAlignment="Center" Margin="0,529,0,0" VerticalAlignment="Top" Click="ShowDronesButton_Click" Height="50" Width="108" RenderTransformOrigin="0.456,1.266" Background="#FF9FD8DD" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
+        <Button Content="Drones" HorizontalAlignment="Center" Margin="0,529,0,0" VerticalAlignment="Top" Click="ShowDronesButton_Click" Height="50" Width="108" RenderTransformOrigin="0.456,1.266" Background="#FF9FD8DD" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
+        <Button Content="Base Stations" HorizontalAlignment="Center" Margin="400,529,0,0" VerticalAlignment="Top" Click="ShowBaseStationButton_Click" Height="50" Width="108" RenderTransformOrigin="0.456,1.266" Background="#FF9FD8DD" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
+        <Button Content="Customers" HorizontalAlignment="Center" Margin="-500,529,0,0" VerticalAlignment="Top" Click="ShowCustomersButton_Click" Height="50" Width="108" RenderTransformOrigin="0.456,1.266" Background="#FF9FD8DD" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
     </Grid>
 
 </Window>
