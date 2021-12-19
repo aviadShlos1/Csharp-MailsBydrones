@@ -27,7 +27,7 @@ namespace PL
         private BaseStationListWindow localBaseStationListWindow;
         //private int[] BaseStationNum = new int[] { 0, 1 }; //An array which includes the base stations id
 
-
+        #region add
         /// <summary>
         /// Ctor for add option
         /// </summary>
@@ -50,11 +50,7 @@ namespace PL
             localBaseStationListWindow.selectionOptions(); // Call the selection function to present the selected list according to the user selection
             this.Close();
         }
-        /// <summary>
-        /// An add click buttun event. When the user will click this button, the add options window will be opened
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void AddBaseStationButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -66,7 +62,7 @@ namespace PL
                 {
                     Id = int.Parse(IdTbx.Text),
                     BaseStationName = NameTbx.Text,
-                    FreeChargeSlots = int.Parse(FreeSlotsTbx.Text),
+                    FreeChargeSlots = int.Parse(AddFreeSlotsTbx.Text),
                     Location = new Location() { Longitude = double.Parse(LongitudeTbx.Text), Latitude = double.Parse(LatitudeTbx.Text) },
                 };
                 blAccess.AddBaseStation(newBaseStation);
@@ -85,5 +81,38 @@ namespace PL
                 IdTbl.Background = Brushes.Red;
             }
         }
+        #endregion add
+
+        #region Update 
+        public BaseStationBl MyBase;
+
+        // Ctor for update options
+        public BaseStationWindow(BlApi.IBL blAccessTemp, int baseId, BaseStationListWindow baseStationsListTemp)
+        {
+            InitializeComponent();
+            UpdateOptions.Visibility = Visibility.Visible; //The update options window will be shown
+            localBaseStationListWindow = baseStationsListTemp;
+            blAccess = blAccessTemp;
+            MyBase = blAccess.GetSingleBaseStation(baseId);
+            UpdateOptions.DataContext = MyBase;
+            BaseLocation.Text = MyBase.Location.ToString();
+
+
+        }
+        private void UpdateNameButton_Click(object sender, RoutedEventArgs e)
+        {
+            blAccess.UpdateBaseStationData(MyBase.Id, NameTbx.Text, int.Parse(UpdateFreeChargeTbx.Text));
+            MessageBox.Show("Your update was done successfully");
+            localBaseStationListWindow.selectionOptions();
+            this.Close();
+
+        }
+
+        private void CloseBaseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            localBaseStationListWindow.selectionOptions();
+        }
+        #endregion update
     }
 }

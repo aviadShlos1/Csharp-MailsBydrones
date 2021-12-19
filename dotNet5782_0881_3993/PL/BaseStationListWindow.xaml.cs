@@ -89,6 +89,18 @@ namespace PL
             //DroneListView.ItemsSource = droneToLists;
             //selectionOptions();
         }
+
+        private void BaseStationListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void BaseStationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BaseStationToList temp = (BaseStationToList)BaseStationListView.SelectedItem;
+            new BaseStationWindow(blAccess, temp.Id, this).Show();
+        }
+
         /// <summary>
         /// A double click event. The user will click double click on the wanted drone, in that he will be able to do some action with it
         /// </summary>
