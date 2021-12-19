@@ -551,7 +551,7 @@ Your choice:");
         #endregion MainFunctions
         static void Main(string[] args)
         {
-            BlApi.IBL blObject = BL.BlFactory.GetBl();//This object gives the point access from the buissness layer
+            BlApi.IBL blObject = BlApi.BlFactory.GetBl();//This object gives the point access from the buissness layer
 
             Options options;
             int choice;
