@@ -8,7 +8,7 @@
         Title="BaseStationWindow" Height="450" Width="800">
 
     <Grid Name="MainGrid">
-        <Grid x:Name="BaseStaionAddOption" Visibility="Visible">
+        <Grid x:Name="BaseStaionAddOption" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>

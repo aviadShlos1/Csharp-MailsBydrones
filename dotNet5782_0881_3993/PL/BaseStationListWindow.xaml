@@ -30,7 +30,7 @@
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
 
-        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" Margin="0,30,0,-5" Background="AliceBlue" SelectionChanged="BaseStationListView_SelectionChanged" MouseDoubleClick="BaseStationListView_MouseDoubleClick"  >
+        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" Margin="0,30,0,-5" Background="AliceBlue" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
             <ListView.View >
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
                     <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="auto" />
@@ -51,9 +51,8 @@
 
             <Label Content="        Free / Full :" Grid.Column="0" FontSize="16" Margin="-6,5,194,5" Height="38" FontFamily="Rockwell Extra Bold" Grid.ColumnSpan="2"/>
             <Label Content=" Charge slots amount :" Grid.Column="1" FontSize="15" HorizontalAlignment="Left" Margin="165,5,0,5" Height="38" Width="212" FontFamily="Rockwell Extra Bold" Grid.ColumnSpan="2"/>
-            <ComboBox Name="FreeChargeSlotsSelector"  SelectionChanged="ComboBox_FreeChargeSlotsSelection" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2" Margin="160,0,0,0"/>
-            <ComboBox x:Name="SlotsAmount" Grid.Column="2"  SelectionChanged="ComboBox_FreeChargeSlotsSelection" HorizontalAlignment="Left" Width="208" Grid.ColumnSpan="2" Margin="182,0,0,0"/>
-
+            <TextBox Name="FreeChargeSlotsSelector" PreviewKeyDown="EnterClicked1" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2" Margin="160,0,0,0"/>
+            <TextBox x:Name="SlotsAmount" PreviewKeyDown="EnterClicked" Grid.Column="2" HorizontalAlignment="Left" Width="208" Grid.ColumnSpan="2" Margin="182,0,0,0"/>
         </Grid>
         <Button Content="Add base Station" HorizontalAlignment="Left" Margin="529,318,0,0" Grid.Row="1" Width="235" Click="AddBaseStationButton_Click"/>
         <Button Content="Close" HorizontalAlignment="Left" Margin="39,318,0,0" Grid.Row="1"  Width="109" Click="ClosingWindowButton_Click"/>

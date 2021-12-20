@@ -31,33 +31,30 @@ namespace PL
             InitializeComponent();
             blAccess = blAccessTemp;
             BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl();
-            FreeChargeSlotsSelector.ItemsSource = Enum.GetValues(typeof(ChargeSlotStatus));
+            //FreeChargeSlotsSelector.DataContext = Enum.GetValues(typeof(ChargeSlotStatus));
         }
         /// <summary>
         /// Bonus : Auxiliary method that taking into consideration all the selection options 
         /// </summary>
         public void selectionOptions()
         {
-            if (FreeChargeSlotsSelector.SelectedItem==null) //the user select none
+            if (SlotsAmount.Text=="") //the user select none
             {
                 BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl();
             }
-            else if (FreeChargeSlotsSelector.SelectedItem != null)
+            else if (SlotsAmount.Text != "")
             {
-                BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl(x => x.FreeChargeSlots == (int)FreeChargeSlotsSelector.SelectedItem) ;
+                BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl().Where(x => x.FreeChargeSlots == int.Parse(SlotsAmount.Text));               
+            }
+            else if(FreeChargeSlotsSelector.Text=="Free")
+            {
+                BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl().Where(x => x.FreeChargeSlots > 0);
+            }
+            else if (FreeChargeSlotsSelector.Text == "Full")
+            {
+                BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl().Where(x => x.FreeChargeSlots == 0);
             }
         }
-
-        /// <summary>//
-        /// A selection event, the user will choose between the status categories 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ComboBox_FreeChargeSlotsSelection(object sender, SelectionChangedEventArgs e)//
-        {
-            selectionOptions();
-        }
-
 
         /// <summary>
         /// A button click event, the add drone window will be opened
@@ -84,21 +81,32 @@ namespace PL
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {
-            FreeChargeSlotsSelector.SelectedItem = null;
-            //DroneListView.ItemsSource = droneToLists;
-            //selectionOptions();
+        {           
+            selectionOptions();
         }
 
-        private void BaseStationListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
+        
         private void BaseStationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BaseStationToList temp = (BaseStationToList)BaseStationListView.SelectedItem;
             new BaseStationWindow(blAccess, temp.Id, this).Show();
+        }
+
+        private void EnterClicked(object sender, KeyEventArgs e)
+        {
+            if (e.Key==Key.Return)
+            {
+                selectionOptions();
+                e.Handled = true;
+            }
+        }
+        private void EnterClicked1(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                selectionOptions();
+                e.Handled = true;
+            }
         }
 
         /// <summary>
