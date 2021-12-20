@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BO;
 namespace PL
 {
     /// <summary>
@@ -25,6 +25,7 @@ namespace PL
             InitializeComponent();
             blAccess = blAccessTemp;
             ParcelsListView.ItemsSource = blAccess.GetParcelsBl();
+            
         }
 
         private void AddParcelButton_Click(object sender, RoutedEventArgs e)
