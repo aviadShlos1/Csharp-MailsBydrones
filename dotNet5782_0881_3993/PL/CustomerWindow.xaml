@@ -22,6 +22,7 @@
     </Window.Resources>
 
 
+
     <Grid>
         <Grid x:Name="AddOption" Visibility="Visible">
             <Grid.ColumnDefinitions>
@@ -30,17 +31,18 @@
                 <ColumnDefinition Width="730*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Name="IdTbl" Margin="112,80,537,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.Column="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="112,120,0,0" Text="Name:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="112,160,0,0" Text="Phone:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="112,200,0,0" Text="Longitude:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="112,240,0,0" Text="Latitude:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.Column="2"/>
 
-            <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="9"/>
-            <TextBox Name="NameTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,120,0,0" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="PhoneTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,160,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="LongitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,200,0,0" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,240,0,0" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Name="IdTbl" Margin="28,80,621,0" Text="Id:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="28,131,0,0" Text="Name:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="28,184,0,0" Text="Phone:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="28,234,0,0" Text="Longitude:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="28,280,0,0" Text="Longitude:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
+
+            <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,81,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="9"/>
+            <TextBox Name="NameTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,123,0,0" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="PhoneTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="LongitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,231,0,0" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,278,0,0" Text="" VerticalAlignment="Top" Width="120"/>
 
 
             <Button Content="Close" Style="{StaticResource myButtonStyle}" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
@@ -73,5 +75,9 @@
             <Button Content="Close" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseUpdateButton_Click"/>
 
         </Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images\cus2.png"/>
+        </Grid.Background>
+
     </Grid>
 </Window>
