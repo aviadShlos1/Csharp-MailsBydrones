@@ -51,7 +51,7 @@
 
             <Label Content="        Free / Full :" Grid.Column="0" FontSize="16" Margin="-6,5,194,5" Height="38" FontFamily="Rockwell Extra Bold" Grid.ColumnSpan="2"/>
             <Label Content=" Charge slots amount :" Grid.Column="1" FontSize="15" HorizontalAlignment="Left" Margin="165,5,0,5" Height="38" Width="212" FontFamily="Rockwell Extra Bold" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="FreeChargeSlotsSelector" PreviewKeyDown="EnterClick_PreviewKeyDown" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2" Margin="160,0,0,0" SelectionChanged="FreeChargeSlotsSelector_SelectionChanged" />
+            <ComboBox x:Name="FreeChargeSlotsSelector" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2" Margin="160,0,0,0" SelectionChanged="FreeChargeSlotsSelector_SelectionChanged" />
             <TextBox x:Name="SlotsAmountSelector" PreviewKeyDown="EnterClicked" Grid.Column="2" HorizontalAlignment="Left" Width="208" Grid.ColumnSpan="2" Margin="182,0,0,0"/>
         </Grid>
         <Button Content="Add base Station" HorizontalAlignment="Left" Margin="529,318,0,0" Grid.Row="1" Width="235" Click="AddBaseStationButton_Click"/>

@@ -111,14 +111,6 @@ namespace PL
                 e.Handled = true;
             }
         }
-        private void EnterClick_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                selectionOptions();
-                e.Handled = true;
-            }
-        }
         private void FreeChargeSlotsSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();

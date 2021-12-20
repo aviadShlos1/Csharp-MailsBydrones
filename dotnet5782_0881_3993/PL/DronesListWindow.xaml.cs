@@ -108,7 +108,6 @@ namespace PL
         {
             StatusSelector.SelectedItem = null;
             WeightSelector.SelectedItem = null;
-            //DroneListView.ItemsSource = droneToLists;
             selectionOptions();
         }
         /// <summary>
