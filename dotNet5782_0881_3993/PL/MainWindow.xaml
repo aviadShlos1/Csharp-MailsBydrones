@@ -31,10 +31,10 @@
             <ImageBrush ImageSource="Images\Drone.jpg"/>
         </Grid.Background>
 
-        <Button Content="Drones" Margin="262,529,0,0" Click="ShowDronesButton_Click" HorizontalAlignment="Left"/>
-        <Button Content="Base Stations" Margin="400,529,0,0" Click="ShowBaseStationButton_Click"/>
+        <Button Content="Drones" Margin="247,529,0,0" Click="ShowDronesButton_Click" HorizontalAlignment="Left"/>
+        <Button Content="Base Stations" Margin="555,529,0,0" Click="ShowBaseStationButton_Click" HorizontalAlignment="Left"/>
         <Button Content="Customers" Margin="47,529,0,0" HorizontalAlignment="Left" />
-        <Button Content="Parcels"  Margin="248,529,0,0"  Click="ShowParcelsButton_Click" />
-    </Grid>x
+        <Button Content="Parcels"  Margin="400,529,0,0"  Click="ShowParcelsButton_Click" HorizontalAlignment="Left" />
+    </Grid>
 
 </Window>
