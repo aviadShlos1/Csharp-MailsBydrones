@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Images\addDrone.jpg" />
+    <None Remove="Images\addParcel.jpg" />
     <None Remove="Images\Base.jpg" />
     <None Remove="Images\cus2.png" />
     <None Remove="Images\Drone.jpg" />
@@ -20,6 +21,9 @@
 
   <ItemGroup>
     <Resource Include="Images\addDrone.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\addParcel.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Base.jpg">

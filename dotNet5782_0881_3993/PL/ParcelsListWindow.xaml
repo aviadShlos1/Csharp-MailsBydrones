@@ -40,6 +40,10 @@
 
         <Button Content="Add parcel" Margin="544,318,0,0" Width="220" Click="AddParcelButton_Click"/>
         <Button Content="Close"  Margin="94,318,0,0" Width="109" Click="ClosingButton_Click" HorizontalAlignment="Left"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images\addParcel.jpg" />
+        </Grid.Background>
+        
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
                             VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
