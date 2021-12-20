@@ -19,7 +19,7 @@
             <Setter Property="Foreground" Value="Black"></Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="DarkOliveGreen"/>
+                    <Setter Property="Foreground" Value="#FFF0C00C"/>
                 </Trigger>
             </Style.Triggers>
 
