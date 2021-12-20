@@ -96,7 +96,7 @@ namespace PL
         /// <param name="e"></param>
         private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)
         {          
-            new MainWindow().Show();
+            new MainWindow().Show(); 
             this.Close();
         }
         /// <summary>
@@ -108,7 +108,6 @@ namespace PL
         {
             StatusSelector.SelectedItem = null;
             WeightSelector.SelectedItem = null;
-            //DroneListView.ItemsSource = droneToLists;
             selectionOptions();
         }
         /// <summary>
