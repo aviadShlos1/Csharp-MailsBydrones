@@ -19,40 +19,52 @@ using BO;
 
 namespace PL
 {
-    enum ChargeSlotStatus { Free, Full}
     /// <summary>
     /// Interaction logic for DronesListWindow.xaml
     /// </summary>
     public partial class BaseStationListWindow : Window
     {
+        private string[] chargeStatus = { "Free", "Full" };
         private BlApi.IBL blAccess;
         public BaseStationListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
             blAccess = blAccessTemp;
             BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl();
-            //FreeChargeSlotsSelector.DataContext = Enum.GetValues(typeof(ChargeSlotStatus));
+            FreeChargeSlotsSelector.ItemsSource = chargeStatus;
         }
         /// <summary>
         /// Bonus : Auxiliary method that taking into consideration all the selection options 
         /// </summary>
         public void selectionOptions()
         {
-            if (SlotsAmount.Text=="") //the user select none
+            if (SlotsAmountSelector.Text == "" && FreeChargeSlotsSelector.SelectedItem == null) //the user select none
             {
                 BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl();
             }
-            else if (SlotsAmount.Text != "")
+            else if (SlotsAmountSelector.Text != "" && FreeChargeSlotsSelector.SelectedItem == null)
             {
-                BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl().Where(x => x.FreeChargeSlots == int.Parse(SlotsAmount.Text));               
+                BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl().Where(x => x.FreeChargeSlots == int.Parse(SlotsAmountSelector.Text));
             }
-            else if(FreeChargeSlotsSelector.Text=="Free")
+            else if (SlotsAmountSelector.Text == "" && (string)FreeChargeSlotsSelector.SelectedItem == "Free")
             {
                 BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl().Where(x => x.FreeChargeSlots > 0);
             }
-            else if (FreeChargeSlotsSelector.Text == "Full")
+            else if (SlotsAmountSelector.Text != "" && (string)FreeChargeSlotsSelector.SelectedItem == "Free")
+            {
+                BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl().Where(x => x.FreeChargeSlots == int.Parse(SlotsAmountSelector.Text));
+            }
+            else if (SlotsAmountSelector.Text == "" && (string)FreeChargeSlotsSelector.SelectedItem == "Full")
             {
                 BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl().Where(x => x.FreeChargeSlots == 0);
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("invalid data, please select again");
+                if (result==MessageBoxResult.OK)
+                {
+                    new BaseStationListWindow(blAccess);
+                }
             }
         }
 
@@ -81,17 +93,16 @@ namespace PL
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {           
+        {
+            SlotsAmountSelector.Text = "";
+            FreeChargeSlotsSelector.SelectedItem = null;
             selectionOptions();
         }
-
-        
         private void BaseStationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BaseStationToList temp = (BaseStationToList)BaseStationListView.SelectedItem;
             new BaseStationWindow(blAccess, temp.Id, this).Show();
         }
-
         private void EnterClicked(object sender, KeyEventArgs e)
         {
             if (e.Key==Key.Return)
@@ -100,13 +111,17 @@ namespace PL
                 e.Handled = true;
             }
         }
-        private void EnterClicked1(object sender, KeyEventArgs e)
+        private void EnterClick_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
                 selectionOptions();
                 e.Handled = true;
             }
+        }
+        private void FreeChargeSlotsSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectionOptions();
         }
 
         /// <summary>
