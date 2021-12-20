@@ -18,13 +18,13 @@ namespace BO
         public int Id { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
-        public int SendAndSuppliedParcels { get; set; } // a number of parcels which were sent and supplied
-        public int SendAndNotSuppliedParcels { get; set; } // a number of parcels which were sent but weren't supplied
+        public int SentAndSupplied { get; set; } // a number of parcels which were sent and supplied
+        public int SentAndNotSupplied { get; set; } // a number of parcels which were sent but weren't supplied
         public int RecieverGotParcels { get; set; } // a number of parcels which were recieved
-        public int ParcelsInWayToReciever { get; set; } // a number of parcels which will be recieved (in the way)
+        public int InWayToReciever { get; set; } // a number of parcels which will be recieved (in the way)
         public override string ToString()
         {
-            return $"Id: {Id}, Name: {Name}, Phone: {Phone},SendAndSuppliedParcels: {SendAndSuppliedParcels},SendAndNotSuppliedParcels: {SendAndNotSuppliedParcels},RecieverGotParcels: {RecieverGotParcels},InTheWayParcels: {ParcelsInWayToReciever}";
+            return $"Id: {Id}, Name: {Name}, Phone: {Phone},SentAndSupplied: {SentAndSupplied},SentAndNotSupplied: {SentAndNotSupplied},RecieverGotParcels: {RecieverGotParcels},InTheWayParcels: {InWayToReciever}";
         }
     }
 }

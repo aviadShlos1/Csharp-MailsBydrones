@@ -9,8 +9,13 @@
     <Grid>
         <ListView x:Name="ParcelsListView" MouseDoubleClick="ParcelsListView_MouseDoubleClick" Grid.Row="1" Margin="0,5,0,-5" Background="AliceBlue" >
             <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
+                <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding SenderName}" x:Name="SenderName" Header="Sender Name" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding RecieverName}" x:Name="RecieverName" Header="Reciever Name" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Weight}" x:Name="Weight" Header="Weight" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Priority}" x:Name="Priority" Header="Priority" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding ParcelStatus}" x:Name="Status" Header="Status" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>
