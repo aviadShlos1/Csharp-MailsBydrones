@@ -123,5 +123,15 @@ namespace PL
             this.Close();
             localBaseStationListWindow.selectionOptions();
         }
+
+        private void DronesInCharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DronesInCharge_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

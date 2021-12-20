@@ -6,6 +6,24 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="CustomersWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Britannic Bold"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FFF0C00C"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <ListView x:Name="CustomersListView" MouseDoubleClick="CustomersListView_MouseDoubleClick" Grid.Row="1" Margin="0,5,0,-5" Background="AliceBlue" >
             <ListView.View>
@@ -22,9 +40,9 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Add new customer" HorizontalAlignment="Left" Margin="652,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="112" Click="AddCustomerButton_Click"/>
-        <Button Content="Close" HorizontalAlignment="Left" Margin="39,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="109" Click="ClosingWindowButton_Click"/>
-        
+        <Button Content="Add customer" HorizontalAlignment="Left" Margin="537,320,0,0" Width="auto" Click="AddCustomerButton_Click"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="39,318,0,0" Height="32" Width="120" Click="ClosingWindowButton_Click"/>
+
 
     </Grid>
 </Window>
