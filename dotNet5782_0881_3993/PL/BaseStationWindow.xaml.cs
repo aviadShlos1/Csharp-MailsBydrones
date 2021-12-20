@@ -129,9 +129,6 @@ namespace PL
 
         }
 
-        private void DronesInCharge_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
