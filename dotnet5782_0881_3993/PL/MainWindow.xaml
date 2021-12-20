@@ -6,14 +6,35 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
-    <!--giving background to the main window -->
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Britannic Bold"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FFF0C00C"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+    </Window.Resources>
+
     <Grid >
         <Grid.Background>
             <ImageBrush ImageSource="Images\Drone.jpg"/>
         </Grid.Background>
-        <Button Content="Drones" HorizontalAlignment="Center" Margin="0,529,0,0" VerticalAlignment="Top" Click="ShowDronesButton_Click" Height="50" Width="108" RenderTransformOrigin="0.456,1.266" Background="#FF9FD8DD" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
-        <Button Content="Base Stations" HorizontalAlignment="Center" Margin="400,529,0,0" VerticalAlignment="Top" Click="ShowBaseStationButton_Click" Height="50" Width="108" RenderTransformOrigin="0.456,1.266" Background="#FF9FD8DD" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
-        <Button Content="Customers" HorizontalAlignment="Center" Margin="-500,529,0,0" VerticalAlignment="Top" Click="ShowCustomersButton_Click" Height="50" Width="108" RenderTransformOrigin="0.456,1.266" Background="#FF9FD8DD" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
+
+        <Button Content="Drones" Margin="247,529,0,0" Click="ShowDronesButton_Click" HorizontalAlignment="Left"/>
+        <Button Content="Base Stations" Margin="555,529,0,0" Click="ShowBaseStationButton_Click" HorizontalAlignment="Left"/>
+        <Button Content="Customers" Margin="47,529,0,0" Click="ShowCustomersButton_Click" HorizontalAlignment="Left" />
+        <Button Content="Parcels"  Margin="400,529,0,0"  Click="ShowParcelsButton_Click" HorizontalAlignment="Left" />
     </Grid>
 
 </Window>

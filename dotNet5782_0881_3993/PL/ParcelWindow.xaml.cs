@@ -63,8 +63,18 @@ namespace PL
             {
                 MessageBox.Show("This parcel is already exists");
                 SenderIdTbx.BorderBrush = Brushes.Red;
-                SenderIdTbl.Background = Brushes.Red;
+                PriorityTbx.Background = Brushes.Red;
             }
+        }
+
+        private void PriorityTbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void WeightTbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
