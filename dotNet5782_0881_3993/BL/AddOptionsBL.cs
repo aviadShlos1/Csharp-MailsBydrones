@@ -73,7 +73,7 @@ namespace BlApi
             {
                 throw new BO.AlreadyExistException();
             }
-            if (DalAccess.GetSingleBaseStation(firstChargeStation).FreeChargeSlots <= 0)//Checks if the station doesn't have free charge slots
+            if (DalAccess.GetSingleBaseStation(firstChargeStation).FreeChargeSlots == 0)//Checks if the station doesn't have free charge slots
                 throw new NoStationsWithFreeChargeException();
         }
         /// <summary>
