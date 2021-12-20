@@ -107,8 +107,8 @@ namespace PL
             int myIndex = blAccess.GetCustomersBl().FindIndex(x => x.Id == MyCustomer.CustomerId);
             blAccess.GetCustomersBl().RemoveAt(myIndex);
             MessageBox.Show("Your delete was done successfully");
-            this.Close();
-            //localCustomersWindow.selectionOptions();
+            this.Close();           
+            localCustomersWindow.selectionOptions();
         }
     }
 }

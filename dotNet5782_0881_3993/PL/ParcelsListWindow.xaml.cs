@@ -19,9 +19,27 @@ namespace PL
     /// </summary>
     public partial class ParcelsListWindow : Window
     {
-        public ParcelsListWindow()
+        private BlApi.IBL blAccess;
+        public ParcelsListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
+            blAccess = blAccessTemp;
+            ParcelsListView.ItemsSource = blAccess.GetParcelsBl();
+        }
+
+        private void AddParcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            new ParcelWindow(blAccess, this).Show();
+        }
+
+        private void ClosingButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ParcelsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BO;
 namespace PL
 {
     /// <summary>
@@ -19,9 +19,52 @@ namespace PL
     /// </summary>
     public partial class ParcelWindow : Window
     {
-        public ParcelWindow()
+        private BlApi.IBL blAccess;
+        private ParcelsListWindow localParcelsListWindow;
+        public ParcelWindow(BlApi.IBL blAccessTemp, ParcelsListWindow parcelsListTemp)
         {
             InitializeComponent();
+            AddOption.Visibility = Visibility.Visible; // the add option will be shown
+            blAccess = blAccessTemp;
+            localParcelsListWindow = parcelsListTemp;
+            WeightTbx.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
+            PriorityTbx.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // adding the new customer details
+                AssignCustomerToParcel myAssignSenderToParcel = new() { Id = int.Parse(SenderIdTbx.Text) };
+                AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = int.Parse(TargetIdTbx.Text) };
+                ParcelBl newParcel = new ParcelBl
+                {
+                    Sender = myAssignSenderToParcel,
+                    Reciever = myAssignRecieverToParcel,
+                    ParcelWeight = (WeightCategoriesBL)WeightTbx.SelectedItem,
+                    Priority = (PrioritiesBL)PriorityTbx.SelectedItem
+                };
+                blAccess.AddParcel(newParcel);
+
+                MessageBoxResult result = MessageBox.Show("The operation was done successfully");
+                if (result == MessageBoxResult.OK)
+                {
+                    this.Close();
+                    //localParcelsListWindow.selectionOptions();
+                }
+            }
+            catch (AlreadyExistException)
+            {
+                MessageBox.Show("This parcel is already exists");
+                SenderIdTbx.BorderBrush = Brushes.Red;
+                SenderIdTbl.Background = Brushes.Red;
+            }
         }
     }
 }

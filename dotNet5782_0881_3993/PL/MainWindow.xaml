@@ -34,6 +34,7 @@
         <Button Content="Drones" Margin="262,529,0,0" Click="ShowDronesButton_Click" HorizontalAlignment="Left"/>
         <Button Content="Base Stations" Margin="400,529,0,0" Click="ShowBaseStationButton_Click"/>
         <Button Content="Customers" Margin="47,529,0,0" HorizontalAlignment="Left" />
-    </Grid>
+        <Button Content="Parcels"  Margin="248,529,0,0"  Click="ShowParcelsButton_Click" />
+    </Grid>x
 
 </Window>

@@ -6,8 +6,24 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="CustomerWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="myButtonStyle"   TargetType="Button">
+            <Setter Property="FontSize"
+              Value="14" />
+            <Setter Property="Background"
+              Value="LightBlue" />
+            <Setter Property="FontFamily"
+              Value="Britannic Bold" />
+            <Setter Property="FontWeight"
+              Value="Bold" />
+            <Setter Property="Foreground"
+              Value="White" />
+        </Style>
+    </Window.Resources>
+
+
     <Grid>
-        <Grid x:Name="AddOption" Visibility="Hidden">
+        <Grid x:Name="AddOption" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>
@@ -27,11 +43,11 @@
             <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="329,240,0,0" Text="" VerticalAlignment="Top" Width="120"/>
 
 
-            <Button Content="Close" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
-            <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddButton_Click"/>
+            <Button Content="Close" Style="{StaticResource myButtonStyle}" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
+            <Button Content="Add"  Style="{StaticResource myButtonStyle}" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddButton_Click"/>
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="41*"/>
@@ -52,9 +68,9 @@
             <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" Margin="76,0,0,0" Text="ParcelsFromCustomerList:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center" Width="169" Visibility="Visible" Grid.ColumnSpan="2"/>
             <ListBox x:Name="ParcelsFromCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45" Grid.Column="1"/>
 
-            <Button x:Name="UpdateCustomerButton" Content="Update Customer Data" Click="UpdateCustomerButton_Click" Visibility="Visible" Margin="281,364,235,23" Grid.Column="1" />
-            <Button x:Name="DeleteCustomerButton" Content="Delete" Margin="461,364,81,23" Click="DeleteCustomerButton_Click" Visibility="Visible" Grid.Column="1"/>
-            <Button Content="Close" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseUpdateButton_Click"/>
+            <Button x:Name="UpdateCustomerButton" Style="{StaticResource myButtonStyle}" Content="Update Customer Data" Click="UpdateCustomerButton_Click" Visibility="Visible" Margin="281,364,235,23" Grid.Column="1" />
+            <Button x:Name="DeleteCustomerButton" Style="{StaticResource myButtonStyle}" Content="Delete" Margin="461,364,81,23" Click="DeleteCustomerButton_Click" Visibility="Visible" Grid.Column="1"/>
+            <Button Content="Close" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseUpdateButton_Click"/>
 
         </Grid>
     </Grid>
