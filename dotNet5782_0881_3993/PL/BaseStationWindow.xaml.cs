@@ -114,5 +114,14 @@ namespace PL
             localBaseStationListWindow.selectionOptions();
         }
         #endregion update
+
+        private void DeleteBaseStationButton_Click(object sender, RoutedEventArgs e)
+        {
+            int index = blAccess.GetBaseStationsBl().FindIndex(x => x.Id == MyBase.Id);
+            blAccess.GetBaseStationsBl().RemoveAt(index);
+            MessageBox.Show("Your delete was done successfully");
+            this.Close();
+            localBaseStationListWindow.selectionOptions();
+        }
     }
 }

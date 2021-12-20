@@ -58,8 +58,7 @@
 
             <TextBlock Text="    Update Options : " FontSize="11" FontWeight="Bold" Width="118"/>
             <Button x:Name="UpdateNameButton" HorizontalAlignment="Left" Content="Update Data" Width="118" Click="UpdateNameButton_Click" Visibility="Visible" Margin="305,23,0,373" />
-
-            <Button Content="Delete" HorizontalAlignment="Left" Margin="37,23,0,0" VerticalAlignment="Top"  Width="118" Grid.Column="1" Height="38"/>
+            <Button Content="Delete" HorizontalAlignment="Left" Margin="37,23,0,0" VerticalAlignment="Top"  Width="118" Grid.Column="1" Height="38" Click="DeleteBaseStationButton_Click"/>
             <Button Content="Close" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseBaseButton_Click"/>
 
         </Grid>
