@@ -42,7 +42,7 @@
 
             <TextBox x:Name="BaseIdTbx" BorderThickness="0" HorizontalAlignment="Left" Margin="250,83,0,0" Text="{Binding Path=Id}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Height="16"/>
             <TextBox x:Name="BaseNameTbx" BorderThickness="0" HorizontalAlignment="Left" Margin="250,120,0,0" Text="{Binding Path=BaseStationName}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" Height="16" />
-            <TextBox x:Name="BaseLocation" BorderThickness="0"  HorizontalAlignment="Left" Margin="250,160,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" IsEnabled="True" MaxLength="3" Height="16" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="BaseLocation" BorderThickness="0"  HorizontalAlignment="Left" Margin="250,160,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" IsReadOnly="True" MaxLength="3" Height="16" Grid.ColumnSpan="2"/>
             <TextBox x:Name="UpdateFreeChargeTbx" BorderThickness="0"  HorizontalAlignment="Left" Margin="250,200,0,0" Text="{Binding Path=FreeChargeSlots}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" Height="16" />
             <ListBox x:Name="DronesInChargeLbx" Margin="250,240,110,60" Grid.ColumnSpan="2" SelectionChanged="DronesInCharge_SelectionChanged"/>
 

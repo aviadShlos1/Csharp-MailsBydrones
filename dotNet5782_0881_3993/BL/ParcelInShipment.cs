@@ -26,9 +26,9 @@ namespace BO
         public double ShippingDistance { get; set; }
         public override string ToString()
         {
-            return $"Id: {Id},ShippingOnTheSupplyWay: {ShippingOnTheSupplyWay},Weight: {Weight},Priority: {Priority},\n" +
-                   $"Sender: {Sender} Reciever: {Reciever}\n" +
-                   $",PickUpLocation: {PickUpLocation}, TargetLocation: {TargetLocation}, Distance: {ShippingDistance}";
+            return $"Id: {Id}, ShippingOnTheSupplyWay: {ShippingOnTheSupplyWay}, Weight: {Weight}, Priority: {Priority}\n" +
+                   $"Sender: {Sender}\nReciever: {Reciever}\nPickUpLocation: {PickUpLocation}\n" +
+                   $"TargetLocation: {TargetLocation}\nDistance: {ShippingDistance}";
         }
     }
 }
