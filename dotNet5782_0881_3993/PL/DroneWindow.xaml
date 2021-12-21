@@ -45,7 +45,7 @@
             <TextBox x:Name="DroneLocation" BorderThickness="0" HorizontalAlignment="Left" Margin="76,290,0,0" Text="" VerticalAlignment="Top" Width="384"  IsReadOnly="True" Grid.Column="1" Height="19" />
             <Grid Grid.ColumnSpan="2">
                 <TextBlock x:Name="ParcelInShipmentTbl" HorizontalAlignment="Left" Margin="76,338,0,0" Text="Parcel in shipment:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Visibility="Visible"/>
-                <TextBox x:Name="ParcelInShipmentTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="207,0,0,18" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="565" IsReadOnly="True" Height="78"/>
+                <TextBox x:Name="ParcelInShipmentTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="221,0,0,42" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="446" IsReadOnly="True" Height="54"/>
 
             </Grid>
 
@@ -57,7 +57,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="76,290,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.ColumnSpan="2"/>
 
 
-            <WrapPanel x:Name="UpdateMethods" Margin="0,3,34,20" Grid.ColumnSpan="2">
+            <WrapPanel x:Name="UpdateMethods" Margin="0,3,41,23" Grid.ColumnSpan="2">
                 <TextBlock Text="    Update Options : " FontSize="11" FontWeight="Bold" Width="118"/>
                 <Button x:Name="UpdateNameButton" Content="UpdateName" Width="99" Click="NameUpdateButton_Click" Visibility="Visible" />
                 <Button x:Name="DroneToChargeButton" Content="DroneToCharge" Width="106" Click="DroneToChargeButton_Click" Visibility="Collapsed"/>
