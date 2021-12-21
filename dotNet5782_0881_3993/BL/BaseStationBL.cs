@@ -22,7 +22,7 @@ namespace BO
         public List<DroneInCharge> DronesInChargeList { get; set; } //List of the drones in charge
         public override string ToString()
         {
-            return $"CustomerId: {Id}, BaseStationName: {BaseStationName}, Location: {Location},FreeChargeSloted: {FreeChargeSlots} " +
+            return $"Id: {Id}, BaseStationName: {BaseStationName}, Location: {Location},FreeChargeSloted: {FreeChargeSlots} " +
                "DroneInCharge: " + String.Join(",",DronesInChargeList); 
                
         }

@@ -104,15 +104,12 @@ namespace PL
             MessageBox.Show("Your update was done successfully");
             localBaseStationListWindow.selectionOptions();
             this.Close();
-
         }
-
         private void CloseBaseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             localBaseStationListWindow.selectionOptions();
         }
-
         private void DeleteBaseStationButton_Click(object sender, RoutedEventArgs e)
         {
             int index = blAccess.GetBaseStationsBl().FindIndex(x => x.Id == MyBase.Id);

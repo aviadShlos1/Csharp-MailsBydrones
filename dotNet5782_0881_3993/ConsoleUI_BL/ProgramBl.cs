@@ -155,10 +155,10 @@ Please enter an id number for the new Customer(9 digits):");
 
                     CustomerBL newCustomer = new CustomerBL
                     {
-                        CustomerId = newCustomerID,
-                        CustomerName = newCustomerName,
-                        CustomerPhone = newPhoneNumber,
-                        CustomerLocation  = newCustomerLocation,               
+                        Id = newCustomerID,
+                        Name = newCustomerName,
+                        Phone = newPhoneNumber,
+                        Location  = newCustomerLocation,               
                     };
                     try
                     {

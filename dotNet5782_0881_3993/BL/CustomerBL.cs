@@ -15,16 +15,16 @@ namespace BO
     /// </summary>
     public class CustomerBL
     {
-        public int CustomerId { get; set; }
-        public string CustomerName { get; set; }
-        public string CustomerPhone { get; set; }
-        public Location CustomerLocation { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public Location Location { get; set; }
         public List<ParcelByCustomer> ParcelsFromCustomerList { get; set; } // parcels which were received
         public List<ParcelByCustomer> ParcelsToCustomerList { get; set; } // parcels which were sent
 
         public override string ToString()
         {
-            return $"Id: {CustomerId}, Name: {CustomerName}, Phone: {CustomerPhone},Location: {CustomerLocation}"
+            return $"Id: {Id}, Name: {Name}, Phone: {Phone},Location: {Location}"
                 + "ParcelsFromCustomer: " + String.Join(",", ParcelsFromCustomerList) + "ParcelsToCustomer: " + String.Join(",", ParcelsToCustomerList)  ;
         }
     }
