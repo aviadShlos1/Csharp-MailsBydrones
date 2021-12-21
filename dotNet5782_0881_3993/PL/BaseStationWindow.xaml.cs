@@ -96,7 +96,7 @@ namespace PL
             MyBase = blAccess.GetSingleBaseStation(baseId);
             UpdateOptions.DataContext = MyBase;
             BaseLocation.Text = MyBase.Location.ToString();
-            DronesInChargeLbx.DataContext = MyBase.DronesInChargeList;
+            DronesInChargeLbx.ItemsSource = MyBase.DronesInChargeList;
         }
         private void UpdateNameButton_Click(object sender, RoutedEventArgs e)
         {
@@ -123,9 +123,9 @@ namespace PL
         }
         private void DronesInCharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DroneToList temp = (DroneToList)DronesInChargeLbx.SelectedItem;
+            DroneInCharge temp = (DroneInCharge)DronesInChargeLbx.SelectedItem;
             DronesListWindow dronesListWindow = new DronesListWindow(blAccess);
-            new DroneWindow(blAccess, temp.DroneId, dronesListWindow).Show();
+            new DroneWindow(blAccess, temp.Id, dronesListWindow).Show();
         }
         #endregion update
     }
