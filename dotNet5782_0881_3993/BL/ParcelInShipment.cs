@@ -27,7 +27,7 @@ namespace BO
         public override string ToString()
         {
             return $"Id: {Id},ShippingOnTheSupplyWay: {ShippingOnTheSupplyWay},Weight: {Weight},Priority: {Priority},\n" +
-                   $"Sender: {Sender},Reciever: {Reciever}\n" +
+                   $"Sender: {Sender} Reciever: {Reciever}\n" +
                    $",PickUpLocation: {PickUpLocation}, TargetLocation: {TargetLocation}, Distance: {ShippingDistance}";
         }
     }
