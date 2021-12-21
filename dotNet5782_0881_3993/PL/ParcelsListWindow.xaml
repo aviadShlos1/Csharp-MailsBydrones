@@ -41,6 +41,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding ParcelStatus}" x:Name="Status" Header="Status" Width="auto"/>
                 </GridView>
             </ListView.View>
+            <Button Content="Button"/>
         </ListView>
 
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
