@@ -111,7 +111,6 @@ namespace PL
                 e.Handled = true;
             }
         }
-        
         private void FreeChargeSlotsSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
