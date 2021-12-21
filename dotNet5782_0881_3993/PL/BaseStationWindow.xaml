@@ -34,7 +34,7 @@
             <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddBaseStationButton_Click"/>
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="433*"/>
                 <ColumnDefinition Width="367*"/>

@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,7 @@ namespace PL
     /// </summary>
     public partial class DroneWindow : Window
     {
+       // private ObservableCollection<DroneBl> myDronesPl = new ObservableCollection<DroneBl>();
         private BlApi.IBL blAccess;
         private DronesListWindow localDronesListWindow;
         //private int[] BaseStationNum = new int[] { 0,1 }; //An array which includes the base stations id
@@ -132,7 +134,7 @@ namespace PL
             blAccess = blAccessTemp;
             MyDrone = blAccess.GetSingleDrone(droneId);
             UpdateOptions.DataContext = MyDrone;
-            DroneLocation.Text = MyDrone.DroneLocation.ToString();
+           // DroneLocation.Text = MyDrone.DroneLocation.ToString();
             
             switch ((DroneStatusesBL)MyDrone.DroneStatus) // checking the drone status, correspondingly enables the operations
             {
