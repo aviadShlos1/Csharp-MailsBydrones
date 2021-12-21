@@ -47,18 +47,17 @@ namespace BlApi
             {
                 if (item.Id == baseStationId)
                 {
-                    if (totalChargeSlots != 0)
+                    if (totalChargeSlots > 0)
                     {
                         int dronesInCharge = 0;
                         foreach (var item2 in DronesListBL)
                         {
-                            if (item2.DroneStatus == BO.DroneStatusesBL.Maintaince)
+                            if (item.Latitude==item2.DroneLocation.Latitude&& item.Longitude == item2.DroneLocation.Longitude)
                                 dronesInCharge++;
                         }
                         if (dronesInCharge > totalChargeSlots)
                             throw new BO.NotEnoughChargeSlotsInThisStation(baseStationId);
-                       int free = totalChargeSlots - dronesInCharge;
-                        myBaseStation.FreeChargeSlots = free;
+                        myBaseStation.FreeChargeSlots = totalChargeSlots - dronesInCharge;
                     }
                 }
             }
@@ -324,7 +323,6 @@ namespace BlApi
                     droneItem.DroneLocation.Longitude = closetBaseStation.Location.Longitude;
                     droneItem.DroneLocation.Latitude = closetBaseStation.Location.Latitude;
                     droneItem.DroneStatus = BO.DroneStatusesBL.Maintaince;
-                    closetBaseStation.FreeChargeSlots--;
                     DalAccess.DroneToCharge(droneItem.DroneId, closetBaseStation.Id);
                 }
                 else
@@ -367,7 +365,6 @@ namespace BlApi
                 droneItem.DroneStatus = BO.DroneStatusesBL.Available;
                 var droneChargeItem = DalAccess.GetDronesChargeList().ToList().Find(x => x.DroneId == droneId);
                 var stationItem = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == droneChargeItem.StationId);
-                stationItem.FreeChargeSlots++;
                 DalAccess.GetDronesChargeList().ToList().Remove(droneChargeItem);
             }
         }

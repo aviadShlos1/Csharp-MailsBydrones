@@ -64,8 +64,8 @@ namespace DalApi
             #endregion adding Drone details
 
             #region adding Station details
-            BaseStations.Add(new BaseStationDal() { Id = 0, Name = "Herzliya", Latitude = 32.16472, Longitude = 34.84250, FreeChargeSlots = rand.Next(0, 10) });
-            BaseStations.Add(new BaseStationDal() { Id = 1, Name = "Tel Aviv", Latitude = 32.056312, Longitude = 34.779888, FreeChargeSlots = rand.Next(0, 10) });
+            BaseStations.Add(new BaseStationDal() { Id = 0, Name = "Herzliya", Latitude = 32.164, Longitude = 34.842, FreeChargeSlots = 8/*rand.Next(0, 10)*/ });
+            BaseStations.Add(new BaseStationDal() { Id = 1, Name = "Tel Aviv", Latitude = 32.056, Longitude = 34.779, FreeChargeSlots = 8/*rand.Next(0, 10)*/ });
             #endregion adding Station details
 
             #region adding Customer details
@@ -78,8 +78,8 @@ namespace DalApi
                     Id = rand.Next(100000000, 1000000000),
                     Name = CustomerName[i],
                     Phone = $"05{ rand.Next(2, 9) }{ rand.Next(1000000, 10000000) }",
-                    CustomerLatitude = rand.NextDouble() * (33.4188709641265 - 29.49970431757609) + 29.49970431757609,
-                    CustomerLongitude = rand.NextDouble() * (35.89927249423983 - 34.26371323423407) + 34.26371323423407,
+                    CustomerLatitude = rand.NextDouble() * (33.418 - 29.499) + 29.499,
+                    CustomerLongitude = rand.NextDouble() * (35.899 - 34.263) + 34.263,
                 });
             }
             #endregion adding Customer details

@@ -19,7 +19,7 @@ namespace BO
         public double BatteryPercent { get; set; }
         public override string ToString()
         {
-            return $" DroneId: {Id},  BatteryPercent: {BatteryPercent}";
+            return $" Id: {Id},  Battery: {BatteryPercent}";
         }
     }
 }

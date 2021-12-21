@@ -136,7 +136,6 @@ namespace PL
             MyDrone = blAccess.GetSingleDrone(droneId);
             UpdateOptions.DataContext = MyDrone;
             DroneLocation.Text = MyDrone.DroneLocation.ToString();
-
             
             switch ((DroneStatusesBL)MyDrone.DroneStatus) // checking the drone status, correspondingly enables the operations
             {

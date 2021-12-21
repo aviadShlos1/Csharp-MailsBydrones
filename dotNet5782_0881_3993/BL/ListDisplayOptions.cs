@@ -20,11 +20,11 @@ namespace BlApi
             List<DO.BaseStationDal> dalBaseStations = DalAccess.GetBaseStationsList().ToList();
             foreach (var item in dalBaseStations)
             {
-                //int busyChargeSlots = DalAccess.GetDronesChargeList().ToList().FindAll(x => x.StationId == item.Id).Count();
+                int busyChargeSlots = DalAccess.GetDronesChargeList().ToList().FindAll(x => x.StationId == item.Id).Count();
                 myBaseStationsBl.Add(new BaseStationToList { Id = item.Id, BaseStationName = item.Name,
-                    FreeChargeSlots = item.FreeChargeSlots, BusyChargeSlots = DalAccess.GetDronesChargeList().Count() });
+                    FreeChargeSlots = item.FreeChargeSlots, BusyChargeSlots = busyChargeSlots });
             }
-            return myBaseStationsBl.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList()/*x => x.FreeChargeSlots > 0*/;
+            return myBaseStationsBl.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList();
         }
         public List<DroneToList> GetDronesBl(Predicate<DroneToList> myPredicate = null)
         {
