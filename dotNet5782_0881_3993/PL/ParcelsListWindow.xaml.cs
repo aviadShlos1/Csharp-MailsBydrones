@@ -69,7 +69,8 @@ namespace PL
         }
         private void ParcelsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            ParcelToList temp = (ParcelToList)ParcelsListView.SelectedItem;
+            new ParcelWindow(blAccess, temp.Id, this).Show();
         }
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -80,12 +81,7 @@ namespace PL
         {
             selectionOptions();
         }
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {
-            StatusSelector.SelectedItem = null;
-            PrioritySelector.SelectedItem = null;
-            selectionOptions();
-        }
+       
 
     }
 }

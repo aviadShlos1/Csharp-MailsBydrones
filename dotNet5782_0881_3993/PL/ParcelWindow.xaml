@@ -23,7 +23,7 @@
 
 
     <Grid>
-        <Grid x:Name="AddOption" Visibility="Visible">
+        <Grid x:Name="AddOption" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>
@@ -36,41 +36,49 @@
             <TextBlock HorizontalAlignment="Left" Margin="25,184,0,0" Text="Weight:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="1" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" Margin="25,245,0,0" Text="Priority:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="1" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto" Grid.ColumnSpan="2"/>
 
-            <ComboBox Name="SenderIdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="69,82,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="SenderIdTbx_SelectionChanged"/>
-            <ComboBox Name="TargetIdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="69,129,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="TargetIdTbx_SelectionChanged"/>
-            <ComboBox Name="WeightTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="69,184,0,0" Text=""  VerticalAlignment="Top" Width="120"  SelectionChanged="WeightTbx_SelectionChanged"/>
-            <ComboBox Name="PriorityTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="69,244,0,0" Text="" VerticalAlignment="Top" Width="120" SelectionChanged="PriorityTbx_SelectionChanged"/>
+            <ComboBox Name="SenderIdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="69,82,0,0" Text="" VerticalAlignment="Top" Width="120" />
+            <ComboBox Name="TargetIdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="69,129,0,0" Text="" VerticalAlignment="Top" Width="120" />
+            <ComboBox Name="WeightTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="69,184,0,0" Text=""  VerticalAlignment="Top" Width="120"  />
+            <ComboBox Name="PriorityTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="69,244,0,0" Text="" VerticalAlignment="Top" Width="120" />
 
             <Button Content="Close" Style="{StaticResource myButtonStyle}" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
             <Button Content="Add"  Style="{StaticResource myButtonStyle}" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddButton_Click"/>
         </Grid>
 
-        <!--<Grid x:Name="UpdateOptions" Visibility="Hidden">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="41*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="CustomerIdTbx" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="101,60,0,0" Text="{Binding Path= CustomerId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-            <TextBox x:Name="CustomerNameTbx" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="101,90,0,0" Text="{Binding Path= CustomerName }" VerticalAlignment="Top" Width="120"  IsEnabled="True" />
-            <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="101,131,0,0" Text="{Binding Path= CustomerPhone}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" MaxLength="10"/>
-            <TextBox x:Name="CustomerLocationTbx" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="101,161,0,0" Text="" VerticalAlignment="Top" Width="412"  IsReadOnly="True" />
+            <TextBox x:Name="ParcelIdTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,60,0,0" Text="{Binding Path= ParcelId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsReadOnly="True" Height="19"/>
+            <TextBox x:Name="SenderTbx" BorderThickness="1" Background="LightBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,91,0,0" Text="" VerticalAlignment="Top" Width="100"  IsEnabled="True" />
+            <TextBox x:Name="RecieverTbx" BorderThickness="1"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,129,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsEnabled="True" MaxLength="10"/>
+            <TextBox x:Name="DroneAssignTbx" BorderThickness="0" Background="LightBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,249,0,0" Text="" VerticalAlignment="Top" Width="100"  IsReadOnly="True" />
+            <TextBox x:Name="WightTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,164,0,0" Text="{Binding Path=Weight}" VerticalAlignment="Top" Width="100"  IsReadOnly="True" Height="23" />
+            <TextBox x:Name="Priority" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,0,0,0" Text="{Binding Path=Priority}" VerticalAlignment="Center" Width="100"  IsReadOnly="True" />
+            <TextBox x:Name="CreateTbx" BorderThickness="0" Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,55,0,0" Text="{Binding Path= CreatingTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
+            <TextBox x:Name="AssignTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,100,0,0" Text="{Binding Path=AssignningTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
+            <TextBox x:Name="PickTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,138,0,0" Text="{Binding Path= PickingUpTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
+            <TextBox x:Name="SupplyTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,173,0,0" Text="{Binding Path= SupplyingTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
 
 
             <TextBlock Margin="76,60,573,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.ColumnSpan="2" />
-            <TextBlock HorizontalAlignment="Left" Margin="76,90,0,0" Text="Name:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"/>
-            <TextBlock Name="PhoneTbl" HorizontalAlignment="Left" Margin="76,128,0,0" Text="Phone:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="76,160,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Grid.ColumnSpan="2"/>
-            <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" Margin="76,293,0,0" Text="ParcelsToCustomerList:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Visibility="Visible" Grid.ColumnSpan="2"/>
-            <ListBox x:Name="ParcelsToCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="245,0,0,116"  VerticalAlignment="Bottom" Width="527" Height="39"/>
-            <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" Margin="76,0,0,0" Text="ParcelsFromCustomerList:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center" Width="169" Visibility="Visible" Grid.ColumnSpan="2"/>
-            <ListBox x:Name="ParcelsFromCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="76,90,0,0" Text="Sender:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.ColumnSpan="2"/>
+            <TextBlock Name="PhoneTbl" HorizontalAlignment="Left" Margin="76,128,0,0" Text="Reciever:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="75,169,0,0" Text="Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="76,0,0,0" Text="Priority:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Visibility="Visible" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="76,246,0,0" Text="Drone Assigned:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="494,0,0,340" Text="Creating:" VerticalAlignment="Bottom" Width="auto" Height="39" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="494,0,0,303"  VerticalAlignment="Bottom" Width="auto" Height="35" Text="Assignning:" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="494,0,0,265"  VerticalAlignment="Bottom" Width="auto" Height="35" Text="Picking Up:" Grid.Column="1"/>
+            <TextBlock Margin="494,0,77,230"  VerticalAlignment="Bottom" Width="auto" Height="35" Text="Supplying:" Grid.Column="1"/>
 
-            <Button x:Name="UpdateCustomerButton" Style="{StaticResource myButtonStyle}" Content="Update Customer Data" Click="UpdateCustomerButton_Click" Visibility="Visible" Margin="281,364,235,23" Grid.Column="1" />
-            <Button x:Name="DeleteCustomerButton" Style="{StaticResource myButtonStyle}" Content="Delete" Margin="461,364,81,23" Click="DeleteCustomerButton_Click" Visibility="Visible" Grid.Column="1"/>
-            <Button Content="Close" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseUpdateButton_Click"/>
+            
+            <Button x:Name="DeleteParcelButton" Style="{StaticResource myButtonStyle}" Content="Delete" Margin="461,364,81,23" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Column="1"/>
+            <Button Content="Close" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseButton" />
 
-        </Grid>-->
+        </Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Images\addParcel.jpg" />
         </Grid.Background>

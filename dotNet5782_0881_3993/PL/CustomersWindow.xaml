@@ -40,9 +40,9 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Add customer" HorizontalAlignment="Left" Margin="537,320,0,0" Width="auto" Click="AddCustomerButton_Click"/>
-      
-        <Button Content="Close" HorizontalAlignment="Left" Margin="39,318,0,0" Height="32" Width="120" Click="ClosingWindowButton_Click"/>
+        <Button Content="Add customer" HorizontalAlignment="Left" Margin="539,366,0,0" Width="auto" Click="AddCustomerButton_Click"/>
+
+        <Button Content="Close" HorizontalAlignment="Left" Margin="46,364,0,0" Width="120" Click="ClosingWindowButton_Click"/>
 
     </Grid>
 </Window>

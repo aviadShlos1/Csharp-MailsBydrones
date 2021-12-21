@@ -21,6 +21,8 @@ namespace PL
     {
         private BlApi.IBL blAccess;
         private ParcelsListWindow localParcelsListWindow;
+
+        #region add
         public ParcelWindow(BlApi.IBL blAccessTemp, ParcelsListWindow parcelsListTemp)
         {
             InitializeComponent();
@@ -69,25 +71,33 @@ namespace PL
                 PriorityTbx.Background = Brushes.Red;
             }
         }
+        #endregion add
 
-        private void PriorityTbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        #region update
+        public ParcelBl MyParcel;
+
+        // Ctor for update options
+        public ParcelWindow(BlApi.IBL blAccessTemp, int parcelId, ParcelsListWindow parcelListTemp)
+        {
+            InitializeComponent();
+            this.Topmost = true;
+            UpdateOptions.Visibility = Visibility.Visible; //The update options window will be shown
+            localParcelsListWindow = parcelListTemp;
+            blAccess = blAccessTemp;
+            MyParcel = blAccess.GetSingleParcel(parcelId);
+            UpdateOptions.DataContext = MyParcel;
+
+        }
+        #endregion update
+
+        private void DeleteParcelButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
-        private void WeightTbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CloseButton(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void SenderIdTbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void TargetIdTbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            this.Close();
+            localParcelsListWindow.selectionOptions();
         }
     }
 }
