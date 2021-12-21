@@ -55,9 +55,15 @@ namespace PL
 
         private void ClosingButton_Click(object sender, RoutedEventArgs e)
         {
-
+            new MainWindow().Show();
+            this.Close();
         }
-
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            StatusSelector.SelectedItem = null;
+            PrioritySelector.SelectedItem = null;
+            selectionOptions();
+        }
         private void ParcelsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
@@ -72,5 +78,6 @@ namespace PL
         {
             selectionOptions();
         }
+
     }
 }

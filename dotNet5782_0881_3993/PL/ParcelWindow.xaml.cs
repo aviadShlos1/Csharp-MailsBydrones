@@ -29,6 +29,9 @@ namespace PL
             localParcelsListWindow = parcelsListTemp;
             WeightTbx.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             PriorityTbx.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
+            IEnumerable<int> customersId = blAccess.GetCustomersBl().Select(x => x.Id);
+            SenderIdTbx.ItemsSource = customersId;
+            TargetIdTbx.ItemsSource = customersId;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -41,8 +44,8 @@ namespace PL
             try
             {
                 // adding the new parcel details
-                AssignCustomerToParcel myAssignSenderToParcel = new() { Id = int.Parse(SenderIdTbx.Text) };
-                AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = int.Parse(TargetIdTbx.Text) };
+                AssignCustomerToParcel myAssignSenderToParcel = new() { Id = (int)SenderIdTbx.SelectedItem };
+                AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = (int)TargetIdTbx.SelectedItem };
                 ParcelBl newParcel = new ParcelBl
                 {
                     Sender = myAssignSenderToParcel,
@@ -73,6 +76,16 @@ namespace PL
         }
 
         private void WeightTbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void SenderIdTbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TargetIdTbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
