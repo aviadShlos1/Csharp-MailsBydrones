@@ -26,13 +26,15 @@ namespace PL
     public partial class DronesListWindow : Window
     {
         private BlApi.IBL blAccess;
-        //private ObservableCollection<DroneBl> _myCollection = new();
+        private ObservableCollection<DroneToList> myDronesPl = new();
+
 
         public DronesListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
             blAccess = blAccessTemp;
-            DronesListView.ItemsSource = blAccess.GetDronesBl();
+            blAccess.GetDronesBl().ToList().ForEach(x => myDronesPl.Add(x));
+            DronesListView.ItemsSource = myDronesPl;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             
