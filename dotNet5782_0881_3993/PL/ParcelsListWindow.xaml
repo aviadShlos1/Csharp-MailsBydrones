@@ -41,6 +41,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding ParcelStatus}" x:Name="Status" Header="Status" Width="auto"/>
                 </GridView>
             </ListView.View>
+            <Button Content="Button"/>
         </ListView>
 
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
@@ -55,11 +56,12 @@
             <Label Content="Parcel Status:" Grid.Column="0" FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch" FontWeight="Normal"/>
             <Label Content="Priority:" Grid.Column="2" FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch" FontWeight="Normal"/>
             <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="StatusSelector_SelectionChanged" HorizontalAlignment="Left" Width="200"/>
-            <ComboBox Name="PrioritySelector" Grid.Column="3"  SelectionChanged="PrioritySelector_SelectionChanged" HorizontalAlignment="Left" Width="200"/>   
+            <ComboBox Name="PrioritySelector" Grid.Column="3"  SelectionChanged="PrioritySelector_SelectionChanged" HorizontalAlignment="Left" Width="200"/>
         </Grid>
 
-        <Button Content="Add parcel" Margin="515,280,0,0" Width="220" Click="AddParcelButton_Click" HorizontalAlignment="Left" Grid.Row="1"/>
-        <Button Content="Close"  Margin="107,280,0,0" Width="109" Click="ClosingButton_Click" HorizontalAlignment="Left" Grid.Row="1"/>
+        <Button Content="Add parcel" Margin="546,300,0,0" Width="220" Click="AddParcelButton_Click" HorizontalAlignment="Left" Grid.Row="1"/>
+        <Button Content="Reset"  Margin="324,300,0,0" Width="109" Click="ResetButton_Click" HorizontalAlignment="Left" Grid.Row="1"/>
+        <Button Content="Close"  Margin="56,300,0,0" Width="109" Click="ClosingButton_Click" HorizontalAlignment="Left" Grid.Row="1"/>
         <Grid.Background>
             <ImageBrush ImageSource="Images\addParcel.jpg" />
         </Grid.Background>

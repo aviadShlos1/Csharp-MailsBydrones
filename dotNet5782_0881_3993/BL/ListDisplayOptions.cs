@@ -69,19 +69,6 @@ namespace BlApi
             return myParcelsBl.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList()/*(x => x.ParcelStatus == ParcelStatus.Created)*/;
         }
 
-        //public List<ParcelToList> GetParcelsWithoutDroneBl()
-        //{
-        //    List<ParcelToList> myParcelsWithoutDroneBl = new();
-        //    myParcelsWithoutDroneBl = GetParcelsBl().FindAll(x => x.ParcelStatus == ParcelStatus.Created).ToList();
-        //    return myParcelsWithoutDroneBl;
-        //}
-
-        //public List<BaseStationToList> GetStationsWithFreeChargeBl()
-        //{
-        //    List<BaseStationToList> myBaseStationsWithFreeChargeBl = new();
-        //    myBaseStationsWithFreeChargeBl = GetBaseStationsBl().FindAll(x => x.FreeChargeSlots > 0).ToList();
-        //    return myBaseStationsWithFreeChargeBl;
-        //}
-
+       
     }
 }

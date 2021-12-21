@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
 using System.Windows.Shapes;
 using BO;
 namespace PL
@@ -20,11 +21,13 @@ namespace PL
     public partial class ParcelsListWindow : Window
     {
         private BlApi.IBL blAccess;
+        private ObservableCollection<ParcelToList> myParcelsPl = new();
         public ParcelsListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
             blAccess = blAccessTemp;
-            ParcelsListView.ItemsSource = blAccess.GetParcelsBl();
+            blAccess.GetParcelsBl().ToList().ForEach(x => myParcelsPl.Add(x));
+            ParcelsListView.ItemsSource = myParcelsPl;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
             PrioritySelector.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
         }
@@ -52,17 +55,10 @@ namespace PL
         {
             new ParcelWindow(blAccess, this).Show();
         }
-
-        private void ClosingButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ParcelsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
         }
-
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
@@ -71,6 +67,17 @@ namespace PL
         private void PrioritySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
+        }
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            StatusSelector.SelectedItem = null;
+            PrioritySelector.SelectedItem = null;
+            selectionOptions();
+        }
+        private void ClosingButton_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }
