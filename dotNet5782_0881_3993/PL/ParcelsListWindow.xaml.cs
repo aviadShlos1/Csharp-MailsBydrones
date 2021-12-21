@@ -25,7 +25,16 @@ namespace PL
             InitializeComponent();
             blAccess = blAccessTemp;
             ParcelsListView.ItemsSource = blAccess.GetParcelsBl();
-            
+            StatusSelector.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
+            PriorityTbx.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
+        }
+        public void selectionOptions()
+        {
+            if (StatusSelector.SelectedItem==null)
+            {
+                ParcelsListView.ItemsSource = blAccess.GetParcelsBl();
+            }
+            else if()
         }
 
         private void AddParcelButton_Click(object sender, RoutedEventArgs e)
@@ -41,6 +50,11 @@ namespace PL
         private void ParcelsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectionOptions();
         }
     }
 }

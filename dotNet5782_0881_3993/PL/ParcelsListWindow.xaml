@@ -24,12 +24,12 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-
     <Grid Name= "MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height=" 50*"/>
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
+
         <ListView x:Name="ParcelsListView" MouseDoubleClick="ParcelsListView_MouseDoubleClick" Grid.Row="1" Margin="0,5,0,-5" Background="AliceBlue" >
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
@@ -43,8 +43,23 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Add parcel" Margin="544,318,0,0" Width="220" Click="AddParcelButton_Click"/>
-        <Button Content="Close"  Margin="94,318,0,0" Width="109" Click="ClosingButton_Click" HorizontalAlignment="Left"/>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+                            VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+
+            <Label Content="Parcel Status:" Grid.Column="0" FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch" FontWeight="Normal"/>
+            <Label Content="Drone Weight:" Grid.Column="2" FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch" FontWeight="Normal"/>
+            <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="StatusSelector_SelectionChanged" HorizontalAlignment="Left" Width="200"/>
+            
+        </Grid>
+
+        <Button Content="Add parcel" Margin="515,280,0,0" Width="220" Click="AddParcelButton_Click" HorizontalAlignment="Left" Grid.Row="1"/>
+        <Button Content="Close"  Margin="107,280,0,0" Width="109" Click="ClosingButton_Click" HorizontalAlignment="Left" Grid.Row="1"/>
         <Grid.Background>
             <ImageBrush ImageSource="Images\addParcel.jpg" />
         </Grid.Background>

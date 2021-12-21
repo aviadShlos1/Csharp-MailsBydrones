@@ -118,11 +118,13 @@ namespace PL
             this.Close();
             localBaseStationListWindow.selectionOptions();
         }
-        private void DronesInCharge_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        
+        private void DronesInChargeLbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DroneInCharge temp = (DroneInCharge)DronesInChargeLbx.SelectedItem;
             DronesListWindow dronesListWindow = new DronesListWindow(blAccess);
             new DroneWindow(blAccess, temp.Id, dronesListWindow).Show();
+            
         }
         #endregion update
     }

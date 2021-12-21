@@ -81,7 +81,8 @@ namespace PL
             MyCustomer = blAccess.GetSingleCustomer(CustomerId);
             UpdateOptions.DataContext = MyCustomer;
             CustomerLocationTbx.Text = MyCustomer.Location.ToString();
-
+            ParcelsFromCustomerListTbx.ItemsSource = MyCustomer.ParcelsFromCustomerList;
+            ParcelsToCustomerListTbx.ItemsSource = MyCustomer.ParcelsToCustomerList;
         }
         /// <summary>
         /// Button click event, which will enable the user to close the update window
@@ -93,7 +94,6 @@ namespace PL
             this.Close();
             localCustomersWindow.selectionOptions();
         }
-        #endregion
         private void UpdateCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             blAccess.UpdateCustomerData(MyCustomer.Id, CustomerNameTbx.Text, CustomerPhoneTbx.Text);
@@ -110,5 +110,6 @@ namespace PL
             this.Close();           
             localCustomersWindow.selectionOptions();
         }
+        #endregion Update
     }
 }

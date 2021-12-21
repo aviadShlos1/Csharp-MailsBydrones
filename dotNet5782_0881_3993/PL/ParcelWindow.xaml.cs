@@ -40,7 +40,7 @@ namespace PL
         {
             try
             {
-                // adding the new customer details
+                // adding the new parcel details
                 AssignCustomerToParcel myAssignSenderToParcel = new() { Id = int.Parse(SenderIdTbx.Text) };
                 AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = int.Parse(TargetIdTbx.Text) };
                 ParcelBl newParcel = new ParcelBl
@@ -56,7 +56,7 @@ namespace PL
                 if (result == MessageBoxResult.OK)
                 {
                     this.Close();
-                    //localParcelsListWindow.selectionOptions();
+                    localParcelsListWindow.selectionOptions();
                 }
             }
             catch (AlreadyExistException)
