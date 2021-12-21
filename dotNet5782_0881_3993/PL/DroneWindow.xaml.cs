@@ -130,6 +130,7 @@ namespace PL
         public DroneWindow(BlApi.IBL blAccessTemp, int droneId, DronesListWindow dronesListTemp)
         {
             InitializeComponent();
+            this.Topmost = true;
             UpdateOptions.Visibility = Visibility.Visible; //The update options window will be shown
             localDronesListWindow = dronesListTemp;
             blAccess = blAccessTemp;

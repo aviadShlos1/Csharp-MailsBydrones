@@ -22,7 +22,7 @@ namespace BO
         public AssignCustomerToParcel SourceOrTargetMan { get; set; } // This field can contain the source or the targed, corresponding to the situation
         public override string ToString()
         {
-            return $"ParcelId: {Id}, Weight: {Weight}, Priority: {Priority}, ParcelStatus: {Status}, SourceOrTargetMan: {SourceOrTargetMan}";
+            return $"Id: {Id}, Weight: {Weight}, Priority: {Priority}, Status: {Status}, SourceOrTargetMan: {SourceOrTargetMan}";
         }
     }
 }
