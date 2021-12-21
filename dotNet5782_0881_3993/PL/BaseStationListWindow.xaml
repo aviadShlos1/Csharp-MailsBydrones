@@ -34,7 +34,7 @@
             <ListView.View >
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
                     <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="auto" />
-                    <GridViewColumn DisplayMemberBinding="{Binding BaseStationName}" x:Name="Name" Header="Name" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding BaseStationName}" x:Name="BaseName" Header="Name" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding FreeChargeSlots}" x:Name="FreeChargeSlots" Header="Free Charge Slots" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding BusyChargeSlots}" x:Name="BusyChargeSlots" Header="Busy Charge Slots" Width="auto"/>
                 </GridView>

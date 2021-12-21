@@ -30,7 +30,7 @@
 
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
                     <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="auto" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" x:Name="Name" Header="Name" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" x:Name="CustName" Header="Name" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Phone}" x:Name="Phone" Header="Phone Number" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding SentAndSuppliedParcels}" x:Name="SentAndSuppliedParcels" Header="Sent And Supplied" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding SentAndNotSuppliedParcels}" x:Name="SentAndNotSuppliedParcels" Header="Sent And Weren't Supplied" Width="auto"/>

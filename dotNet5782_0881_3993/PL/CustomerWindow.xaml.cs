@@ -39,10 +39,10 @@ namespace PL
                 // adding the new customer details
                 CustomerBL newCustomer = new CustomerBL
                 {
-                    CustomerId = int.Parse(IdTbx.Text),
-                    CustomerName = NameTbx.Text,
-                    CustomerPhone = PhoneTbx.Text,
-                    CustomerLocation = new Location() { Latitude = double.Parse(LatitudeTbx.Text), Longitude = double.Parse(LongitudeTbx.Text) },
+                    Id = int.Parse(IdTbx.Text),
+                    Name = NameTbx.Text,
+                    Phone = PhoneTbx.Text,
+                    Location = new Location() { Latitude = double.Parse(LatitudeTbx.Text), Longitude = double.Parse(LongitudeTbx.Text) },
 
                 };
                 blAccess.AddCustomer(newCustomer);
@@ -80,7 +80,7 @@ namespace PL
             blAccess = blAccessTemp;
             MyCustomer = blAccess.GetSingleCustomer(CustomerId);
             UpdateOptions.DataContext = MyCustomer;
-            CustomerLocationTbx.Text = MyCustomer.CustomerLocation.ToString();
+            CustomerLocationTbx.Text = MyCustomer.Location.ToString();
 
         }
         /// <summary>
@@ -96,7 +96,7 @@ namespace PL
         #endregion
         private void UpdateCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            blAccess.UpdateCustomerData(MyCustomer.CustomerId, CustomerNameTbx.Text, CustomerPhoneTbx.Text);
+            blAccess.UpdateCustomerData(MyCustomer.Id, CustomerNameTbx.Text, CustomerPhoneTbx.Text);
             MessageBox.Show("Your update was done successfully");
             localCustomersWindow.selectionOptions();
             this.Close();
@@ -104,7 +104,7 @@ namespace PL
 
         private void DeleteCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            int myIndex = blAccess.GetCustomersBl().FindIndex(x => x.Id == MyCustomer.CustomerId);
+            int myIndex = blAccess.GetCustomersBl().FindIndex(x => x.Id == MyCustomer.Id);
             blAccess.GetCustomersBl().RemoveAt(myIndex);
             MessageBox.Show("Your delete was done successfully");
             this.Close();           

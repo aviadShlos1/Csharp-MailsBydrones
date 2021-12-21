@@ -100,7 +100,7 @@ namespace BlApi
             }
 
             Location myLocation = new() { Latitude = myCustomer.CustomerLatitude, Longitude = myCustomer.CustomerLongitude };
-            CustomerBL myCustomerBl = new() { CustomerId = myCustomer.Id, CustomerName = myCustomer.Name, CustomerPhone = myCustomer.Phone, CustomerLocation = myLocation, ParcelsFromCustomerList = new(), ParcelsToCustomerList = new() };
+            CustomerBL myCustomerBl = new() { Id = myCustomer.Id, Name = myCustomer.Name, Phone = myCustomer.Phone, Location = myLocation, ParcelsFromCustomerList = new(), ParcelsToCustomerList = new() };
             List<DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == customerId).ToList();
             List<DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().TakeWhile(x => x.TargetId == customerId).ToList();
             // getting the all parcels which were sent by the customer 
