@@ -26,15 +26,26 @@ namespace PL
             blAccess = blAccessTemp;
             ParcelsListView.ItemsSource = blAccess.GetParcelsBl();
             StatusSelector.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
-            PriorityTbx.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
+            PrioritySelector.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
         }
         public void selectionOptions()
-        {
-            if (StatusSelector.SelectedItem==null)
+        {           
+            if (PrioritySelector.SelectedItem == null && StatusSelector.SelectedItem == null) //the user select none
             {
                 ParcelsListView.ItemsSource = blAccess.GetParcelsBl();
             }
-            else if()
+            else if (PrioritySelector.SelectedItem == null) // the user selected by status
+            {
+                ParcelsListView.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == (ParcelStatus)StatusSelector.SelectedItem);
+            }
+            else if (StatusSelector.SelectedItem == null)// the user selected by weight
+            {
+                ParcelsListView.ItemsSource = blAccess.GetParcelsBl(x => x.Priority == (PrioritiesBL)PrioritySelector.SelectedItem);
+            }
+            else // the user selected both by status and weight
+            {
+                ParcelsListView.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == (ParcelStatus)StatusSelector.SelectedItem && x.Priority == (PrioritiesBL)PrioritySelector.SelectedItem);
+            }
         }
 
         private void AddParcelButton_Click(object sender, RoutedEventArgs e)
@@ -53,6 +64,11 @@ namespace PL
         }
 
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectionOptions();
+        }
+
+        private void PrioritySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
         }
