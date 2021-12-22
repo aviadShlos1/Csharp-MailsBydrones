@@ -81,7 +81,19 @@ namespace PL
         {
             selectionOptions();
         }
-       
 
+        private void SenderButton_Click(object sender, RoutedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ParcelsListView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("SenderName");
+            view.GroupDescriptions.Add(groupDescription);
+        }
+
+        private void RecieverButton_Click(object sender, RoutedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ParcelsListView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("RecieverName");
+            view.GroupDescriptions.Add(groupDescription);
+        }
     }
 }

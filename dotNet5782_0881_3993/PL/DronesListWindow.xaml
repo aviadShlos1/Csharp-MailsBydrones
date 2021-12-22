@@ -30,7 +30,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding BatteryPercent}" x:Name="Battery" Header="Battery %" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding DroneWeight}" x:Name="Weight" Header="Weight" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding DroneStatus}" x:Name="DronesStatus" Header="Status" Width="auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Delievery}" x:Name="ParcelTransfer"  Header="parcel in transfer" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Delivery}" x:Name="ParcelTransfer"  Header="parcel in transfer" Width="auto"/>
                 </GridView>
 
             </ListView.View>
@@ -56,16 +56,7 @@
             <!--<Image Source="{StaticResource closeIcon}" Stretch="Fill" Height="45" Width="64"></Image>-->
         </Button>
         <Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="ResetButton_Click">
-            <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5" Width="20" RenderTransformOrigin="0.5,0.5"  >
-                <fa:FontAwesome.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="0.99999999999999989" ScaleX="0.99999999999999989"/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="180.604"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </fa:FontAwesome.RenderTransform>
-            </fa:FontAwesome>
+            <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>
         </Button>
         <Grid.Background>
             <ImageBrush ImageSource="Images\DronesBackground.jpg"/>

@@ -116,6 +116,13 @@ namespace PL
             selectionOptions();
         }
 
+        private void ChargeSlotsButton_Click(object sender, RoutedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(BaseStationListView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("FreeChargeSlots");
+            view.GroupDescriptions.Add(groupDescription);
+        }
+
         /// <summary>
         /// A double click event. The user will click double click on the wanted drone, in that he will be able to do some action with it
         /// </summary>

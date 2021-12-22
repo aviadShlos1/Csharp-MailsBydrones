@@ -42,7 +42,7 @@
             <TextBox x:Name="DroneModelTbx" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="76,160,0,0" Text="{Binding Path= Model}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" MaxLength="3"/>
             <TextBox x:Name="DroneStatusSelector" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="76,200,0,0" Text="{Binding Path= DroneStatus}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" />
             <TextBox x:Name="DroneBattery" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="76,240,0,0" Text="{Binding Path= BatteryPercent}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" />
-            <TextBox x:Name="DroneLoc" BorderThickness="0" HorizontalAlignment="Left" Margin="76,290,0,0" Text="{Binding Path=DroneLocation}" VerticalAlignment="Top" Width="384"  IsReadOnly="True" Grid.Column="1" Height="19" />
+            <TextBox x:Name="DroneLoc" BorderThickness="0" HorizontalAlignment="Left" Margin="76,290,0,0" Text="" VerticalAlignment="Top" Width="384"  IsReadOnly="True" Grid.Column="1" Height="19" />
             <Grid Grid.ColumnSpan="2">
                 <TextBlock x:Name="ParcelInShipmentTbl" HorizontalAlignment="Left" Margin="76,338,0,0" Text="Parcel in shipment:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Visibility="Visible"/>
                 <TextBox x:Name="ParcelInShipmentTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="221,0,0,42" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="382" IsReadOnly="True" Height="54"/>

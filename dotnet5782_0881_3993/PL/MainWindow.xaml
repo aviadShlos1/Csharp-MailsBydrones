@@ -22,8 +22,8 @@
                     <Setter Property="Foreground" Value="#FFF0C00C"/>
                 </Trigger>
             </Style.Triggers>
-
         </Style>
+    
     </Window.Resources>
 
     <Grid >
