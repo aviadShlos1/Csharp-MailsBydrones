@@ -59,7 +59,7 @@
 
             <WrapPanel x:Name="UpdateMethods" Margin="0,3,41,23" Grid.ColumnSpan="2">
                 <TextBlock Text="    Update Options : " FontSize="11" FontWeight="Bold" Width="118"/>
-                <Button x:Name="UpdateNameButton" Content="UpdateName" Width="99" Click="NameUpdateButton_Click" Visibility="Visible" />
+                <Button x:Name="UpdateNameButton" Content="UpdateName" Width="99" Click="NameUpdateButton_Click" Visibility="Visible"/>
                 <Button x:Name="DroneToChargeButton" Content="DroneToCharge" Width="106" Click="DroneToChargeButton_Click" Visibility="Collapsed"/>
                 <Button x:Name="ReleaseFromChargeButton" Content="ReleaseFromCharge" Width="127" Click="ReleaseFromChargeButton_Click" Visibility="Collapsed"/>
                 <Button x:Name="AssignParcelToDroneButton" Content="AssignParcel" Width="107" Click="AssignParcelToDroneButton_Click" Visibility="Collapsed"/>

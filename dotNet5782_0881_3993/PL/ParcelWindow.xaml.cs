@@ -86,10 +86,7 @@ namespace PL
             blAccess = blAccessTemp;
             MyParcel = blAccess.GetSingleParcel(parcelId);
             UpdateOptions.DataContext = MyParcel;
-
         }
-        #endregion update
-
         private void DeleteParcelButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -99,5 +96,6 @@ namespace PL
             this.Close();
             localParcelsListWindow.selectionOptions();
         }
+        #endregion update
     }
 }
