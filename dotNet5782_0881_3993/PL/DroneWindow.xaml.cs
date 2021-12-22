@@ -104,6 +104,7 @@ namespace PL
                 };
                 firstChargeStation = (int)BaseStationIdSelector.SelectedItem;
                 blAccess.AddDrone(newDrone, firstChargeStation);
+                //myDronesPl.Add(newDrone);
                 
                 MessageBoxResult result = MessageBox.Show("The operation was done successfully");
                 if (result == MessageBoxResult.OK)
@@ -130,6 +131,7 @@ namespace PL
         {
             InitializeComponent();
             this.Topmost = true;
+            
             UpdateOptions.Visibility = Visibility.Visible; //The update options window will be shown
             localDronesListWindow = dronesListTemp;
             blAccess = blAccessTemp;
