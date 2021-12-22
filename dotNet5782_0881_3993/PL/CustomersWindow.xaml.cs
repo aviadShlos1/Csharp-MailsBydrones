@@ -57,9 +57,6 @@ namespace PL
             new CustomerWindow(blAccess, temp.Id, this).Show();
         }
 
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }
