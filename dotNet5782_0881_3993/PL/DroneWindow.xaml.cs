@@ -175,7 +175,8 @@ namespace PL
          /// <param name="e"></param>
         private void NameUpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            blAccess.UpdateDroneName(MyDrone.DroneId, DroneModelTbx.Text);
+            var textBox = new TextBox();
+            blAccess.UpdateDroneName(MyDrone.DroneId, textBox.Text);
             MessageBox.Show("Your update was done successfully");
             new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show(); 
             Close();
