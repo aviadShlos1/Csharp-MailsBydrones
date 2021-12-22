@@ -58,9 +58,9 @@
                 <ColumnDefinition Width="41*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="CustomerIdTbx" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="101,60,0,0" Text="{Binding Path= CustomerId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-            <TextBox x:Name="CustomerNameTbx" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="101,90,0,0" Text="{Binding Path= CustomerName }" VerticalAlignment="Top" Width="120"  IsEnabled="True" />
-            <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="101,131,0,0" Text="{Binding Path= CustomerPhone}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" MaxLength="10"/>
+            <TextBox x:Name="CustomerIdTbx" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="101,60,0,0" Text="{Binding Path= Id}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="CustomerNameTbx" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="101,90,0,0" Text="{Binding Path= Name }" VerticalAlignment="Top" Width="120"  IsEnabled="True" />
+            <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="101,131,0,0" Text="{Binding Path= Phone}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" MaxLength="10"/>
             <TextBox x:Name="CustomerLocationTbx" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="101,161,0,0" Text="" VerticalAlignment="Top" Width="263"  IsReadOnly="True" Height="18" />
 
 
@@ -69,9 +69,9 @@
             <TextBlock Name="PhoneTbl" HorizontalAlignment="Left" Margin="76,128,0,0" Text="Phone:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" Margin="76,160,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Grid.ColumnSpan="2"/>
             <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" Margin="76,0,0,0" Text="ParcelsFromCustomerList:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center" Width="169" Visibility="Visible" Grid.ColumnSpan="2"/>
-            <ListView x:Name="ParcelsFromCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45" Grid.Column="1"/>
+            <ListView x:Name="ParcelsFromCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45" Grid.Column="1" MouseDoubleClick="ParcelsFromCustomerListTbx_MouseDoubleClick"/>
             <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" Margin="76,293,0,0" Text="ParcelsToCustomerList:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Visibility="Visible" Grid.ColumnSpan="2"/>
-            <ListView x:Name="ParcelsToCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="245,0,0,116"  VerticalAlignment="Bottom" Width="527" Height="39"/>
+            <ListView x:Name="ParcelsToCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="245,0,0,116"  VerticalAlignment="Bottom" Width="527" Height="39" MouseDoubleClick="ParcelsToCustomerListTbx_MouseDoubleClick"/>
 
             <Button x:Name="UpdateCustomerButton" Style="{StaticResource myButtonStyle}" Content="Update Customer Data" Click="UpdateCustomerButton_Click" Visibility="Visible" Width="auto"  Margin="281,364,235,23" Grid.Column="1" />
             <Button x:Name="DeleteCustomerButton" Style="{StaticResource myButtonStyle}" Content="Delete" Margin="461,364,81,23" Click="DeleteCustomerButton_Click" Visibility="Visible" Grid.Column="1"/>

@@ -111,5 +111,19 @@ namespace PL
             localCustomersWindow.selectionOptions();
         }
         #endregion Update
+
+        private void ParcelsFromCustomerListTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ParcelsListWindow parcelsListWindow = new(blAccess);
+            ParcelByCustomer temp = (ParcelByCustomer)ParcelsFromCustomerListTbx.SelectedItem;
+            new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
+        }
+
+        private void ParcelsToCustomerListTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ParcelsListWindow parcelsListWindow = new(blAccess);
+            ParcelByCustomer temp = (ParcelByCustomer)ParcelsToCustomerListTbx.SelectedItem;
+            new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
+        }
     }
 }
