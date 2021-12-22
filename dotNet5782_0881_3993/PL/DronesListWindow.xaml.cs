@@ -25,13 +25,12 @@ namespace PL
     /// </summary>
     public partial class DronesListWindow : Window
     {
-        private BlApi.IBL blAccess;
-        private ObservableCollection<DroneToList> myDronesPl = new();
+       private BlApi.IBL blAccess;
+       public ObservableCollection<DroneToList> myDronesPl = new();
 
-        public DronesListWindow(BlApi.IBL blAccessTemp)
+        public DronesListWindow(BlApi.IBL blAccess)
         {
             InitializeComponent();
-            blAccess = blAccessTemp;
             blAccess.GetDronesBl().ToList().ForEach(x => myDronesPl.Add(x));
             DronesListView.ItemsSource = myDronesPl;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
@@ -45,11 +44,13 @@ namespace PL
         {
             if (WeightSelector.SelectedItem == null && StatusSelector.SelectedItem == null) //the user select none
             {
-                DronesListView.ItemsSource = blAccess.GetDronesBl();
+                //DronesListView.ItemsSource = blAccess.GetDronesBl();
+                DronesListView.ItemsSource = myDronesPl;
             }
             else if (WeightSelector.SelectedItem == null) // the user selected by status
             {
-                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
+                //DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
+                DronesListView.ItemsSource = myDronesPl.Where(X=>X.DroneStatus== (DroneStatusesBL)StatusSelector.SelectedItem);
             }
             else if (StatusSelector.SelectedItem == null)// the user selected by weight
             {

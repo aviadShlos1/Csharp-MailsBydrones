@@ -24,7 +24,7 @@ namespace PL
     /// </summary>
     public partial class DroneWindow : Window
     {
-       // private ObservableCollection<DroneBl> myDronesPl = new ObservableCollection<DroneBl>();
+        //private ObservableCollection<DroneToList> myDronesPl = new ObservableCollection<DroneToList>();
         private BlApi.IBL blAccess;
         private DronesListWindow localDronesListWindow;
         //private int[] BaseStationNum = new int[] { 0,1 }; //An array which includes the base stations id
@@ -104,6 +104,7 @@ namespace PL
                 };
                 firstChargeStation = (int)BaseStationIdSelector.SelectedItem;
                 blAccess.AddDrone(newDrone, firstChargeStation);
+                //myDronesPl.Add(newDrone);
                 
                 MessageBoxResult result = MessageBox.Show("The operation was done successfully");
                 if (result == MessageBoxResult.OK)
@@ -130,12 +131,13 @@ namespace PL
         {
             InitializeComponent();
             this.Topmost = true;
+            
             UpdateOptions.Visibility = Visibility.Visible; //The update options window will be shown
             localDronesListWindow = dronesListTemp;
             blAccess = blAccessTemp;
             MyDrone = blAccess.GetSingleDrone(droneId);
             UpdateOptions.DataContext = MyDrone;
-            //DroneLocation.Text = MyDrone.DroneLocation.ToString();
+            DroneLoc.Text = MyDrone.DroneLocation.ToString();
             
             switch ((DroneStatusesBL)MyDrone.DroneStatus) // checking the drone status, correspondingly enables the operations
             {

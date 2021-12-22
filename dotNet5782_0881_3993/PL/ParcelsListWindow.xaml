@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ParcelsListWindow" Height="450" Width="800">
@@ -41,7 +42,6 @@
                     <GridViewColumn DisplayMemberBinding="{Binding ParcelStatus}" x:Name="Status" Header="Status" Width="auto"/>
                 </GridView>
             </ListView.View>
-            <Button Content="Button"/>
         </ListView>
 
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
@@ -59,9 +59,13 @@
             <ComboBox Name="PrioritySelector" Grid.Column="3"  SelectionChanged="PrioritySelector_SelectionChanged" HorizontalAlignment="Left" Width="200"/>
         </Grid>
 
-        <Button Content="Add parcel" Margin="515,280,0,0" Width="220" Click="AddParcelButton_Click" HorizontalAlignment="Left" Grid.Row="1"/>
-        <Button Content="Reset" HorizontalAlignment="Left" Margin="319,280,0,0" Height="32" Width="120" Click="ResetButton_Click" Grid.Row="1"/>
-        <Button Content="Close"  Margin="89,280,0,0" Width="109" Click="ClosingButton_Click" HorizontalAlignment="Left" Grid.Row="1"/>
+        <Button Content="Add parcel" HorizontalAlignment="Left" Margin="531,318,0,0" Grid.Row="1" Width="233" Click="AddParcelButton_Click" />
+        <Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="ResetButton_Click">
+            <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>
+        </Button>
+        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="81,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="74" Click="ClosingButton_Click" >
+            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
+        </Button>
         <Grid.Background>
             <ImageBrush ImageSource="Images\addParcel.jpg" />
         </Grid.Background>

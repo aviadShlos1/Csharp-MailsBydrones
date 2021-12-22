@@ -10,9 +10,10 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Collections.ObjectModel;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using BO;
+
 namespace PL
 {
     /// <summary>
@@ -31,6 +32,10 @@ namespace PL
             StatusSelector.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
             PrioritySelector.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
         }
+
+        /// <summary>
+        /// Bonus : Auxiliary method that taking into consideration all the selection options 
+        /// </summary>
         public void selectionOptions()
         {           
             if (PrioritySelector.SelectedItem == null && StatusSelector.SelectedItem == null) //the user select none
@@ -51,27 +56,7 @@ namespace PL
             }
         }
 
-        private void AddParcelButton_Click(object sender, RoutedEventArgs e)
-        {
-            new ParcelWindow(blAccess, this).Show();
-        }
-
-        private void ClosingButton_Click(object sender, RoutedEventArgs e)
-        {
-            new MainWindow().Show();
-            this.Close();
-        }
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {
-            StatusSelector.SelectedItem = null;
-            PrioritySelector.SelectedItem = null;
-            selectionOptions();
-        }
-        private void ParcelsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            ParcelToList temp = (ParcelToList)ParcelsListView.SelectedItem;
-            new ParcelWindow(blAccess, temp.Id, this).Show();
-        }
+     
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
@@ -81,7 +66,28 @@ namespace PL
         {
             selectionOptions();
         }
-       
+        private void AddParcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            new ParcelWindow(blAccess, this).Show();
+        }
+        private void ParcelsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ParcelToList temp = (ParcelToList)ParcelsListView.SelectedItem;
+            new ParcelWindow(blAccess, temp.Id, this).Show();
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            StatusSelector.SelectedItem = null;
+            PrioritySelector.SelectedItem = null;
+            selectionOptions();
+        }
+        private void ClosingButton_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
+        }
+
 
     }
 }
