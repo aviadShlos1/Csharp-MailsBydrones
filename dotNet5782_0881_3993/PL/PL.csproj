@@ -10,9 +10,14 @@
     <None Remove="Images\addDrone.jpg" />
     <None Remove="Images\addParcel.jpg" />
     <None Remove="Images\Base.jpg" />
+    <None Remove="Images\close.jpg" />
     <None Remove="Images\cus2.png" />
     <None Remove="Images\Drone.jpg" />
     <None Remove="Images\DronesBackground.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +33,9 @@
     </Resource>
     <Resource Include="Images\Base.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\close.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\cus2.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
