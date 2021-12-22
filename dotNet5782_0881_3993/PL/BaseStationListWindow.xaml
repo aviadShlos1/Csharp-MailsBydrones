@@ -31,7 +31,7 @@
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
 
-        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" Margin="0,30,0,-5" Background="AliceBlue" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
+        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" Margin="0,29,0,-5" Background="AliceBlue" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
             <ListView.View >
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
                     <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="auto" />
@@ -41,19 +41,23 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-                            VerticalAlignment="Stretch" Width="auto" >
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,362" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
             <Label Content="        Free / Full :" Grid.Column="0" FontSize="16" Margin="-6,5,194,5" Height="38" FontFamily="Rockwell Extra Bold" Grid.ColumnSpan="2"/>
             <Label Content=" Charge slots amount :" Grid.Column="1" FontSize="15" HorizontalAlignment="Left" Margin="165,5,0,5" Height="38" Width="212" FontFamily="Rockwell Extra Bold" Grid.ColumnSpan="2"/>
             <ComboBox x:Name="FreeChargeSlotsSelector" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2" Margin="160,0,0,0" SelectionChanged="FreeChargeSlotsSelector_SelectionChanged" />
             <TextBox x:Name="SlotsAmountSelector" PreviewKeyDown="EnterClicked" Grid.Column="2" HorizontalAlignment="Left" Width="208" Grid.ColumnSpan="2" Margin="182,0,0,0"/>
+            <Button Content="Group By Charge Slots" Foreground="YellowGreen" FontSize="16" Margin="-6,0,0,0" Height="67" Click="ChargeSlotsButton_Click" Width="206" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center"/>
         </Grid>
         <Button Content="Add base Station" HorizontalAlignment="Left" Margin="531,318,0,0" Grid.Row="1" Width="233" Click="AddBaseStationButton_Click"/>
         <Button HorizontalAlignment="Left" BorderThickness="0" Margin="81,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="74" Click="ClosingWindowButton_Click">
