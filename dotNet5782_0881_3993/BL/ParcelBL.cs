@@ -20,7 +20,7 @@ namespace BO
         public AssignCustomerToParcel Reciever { get; set; }
         public WeightCategoriesBL ParcelWeight { get; set; }
         public PrioritiesBL Priority { get; set; }
-        public DroneInShipment DroneAssignToParcel { get; set; }
+        public DroneInShipment DroneAssignToParcel { get; set; } 
         public DateTime? CreatingTime { get ; set ; }
         public DateTime? AssignningTime { get; set; }
         public DateTime? PickingUpTime { get; set; }
