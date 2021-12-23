@@ -26,7 +26,7 @@ namespace PL
     public partial class DronesListWindow : Window
     {
         private BlApi.IBL blAccess;
-        private ObservableCollection<DroneToList> myDronesPl;
+        public ObservableCollection<DroneToList> myDronesPl;
         public DronesListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();

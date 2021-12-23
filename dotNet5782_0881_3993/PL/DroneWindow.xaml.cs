@@ -96,16 +96,15 @@ namespace PL
             {
                 // adding the new drone details
 
-                DroneToList newDrone = new();
-                //{
-                //    DroneId = int.Parse(IdTbx.Text),
-                //    Model = ModelTbx.Text,
-                //    DroneWeight = (WeightCategoriesBL)WeightSelector.SelectedItem,
-                //};
+                DroneToList newDrone = new()
+                {
+                    DroneId = int.Parse(IdTbx.Text),
+                    Model = ModelTbx.Text,
+                };
                 firstChargeStation = (int)BaseStationIdSelector.SelectedItem;
                 this.AddOption.DataContext = newDrone;
                 blAccess.AddDrone(newDrone, firstChargeStation);
-                //myDronesPl.Add(newDrone);
+                localDronesListWindow.myDronesPl.Add(newDrone);
                 
                 MessageBoxResult result = MessageBox.Show("The operation was done successfully");
                 if (result == MessageBoxResult.OK)
