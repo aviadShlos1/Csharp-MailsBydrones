@@ -24,10 +24,8 @@ namespace PL
     /// </summary>
     public partial class DroneWindow : Window
     {
-        //private ObservableCollection<DroneBl> myDronesPl = new ObservableCollection<DroneBl>();
         private BlApi.IBL blAccess;
         private DronesListWindow localDronesListWindow;
-        //private int[] BaseStationNum = new int[] { 0,1 }; //An array which includes the base stations id
         private int firstChargeStation = default;
         public IEnumerable<int> baseId;
 
@@ -104,11 +102,11 @@ namespace PL
                 firstChargeStation = (int)BaseStationIdSelector.SelectedItem;
                 this.AddOption.DataContext = newDrone;
                 blAccess.AddDrone(newDrone, firstChargeStation);
-                localDronesListWindow.myDronesPl.Add(newDrone);
                 
                 MessageBoxResult result = MessageBox.Show("The operation was done successfully");
                 if (result == MessageBoxResult.OK)
                 {
+                    localDronesListWindow.myDronesPl.Add(newDrone);
                     this.Close();
                     localDronesListWindow.selectionOptions();
                 }

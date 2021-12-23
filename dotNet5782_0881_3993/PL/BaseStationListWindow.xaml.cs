@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
 using System.Windows.Shapes;
 using BO;
 
@@ -26,11 +27,13 @@ namespace PL
     {
         private string[] chargeStatus = { "Free", "Full" };
         private BlApi.IBL blAccess;
+        public ObservableCollection<BaseStationToList> myBaseStatiobnsPl;
         public BaseStationListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
             blAccess = blAccessTemp;
-            BaseStationListView.ItemsSource = blAccess.GetBaseStationsBl();
+            myBaseStatiobnsPl = new ObservableCollection<BaseStationToList>(blAccess.GetBaseStationsBl());
+            BaseStationListView.DataContext = myBaseStatiobnsPl;
             FreeChargeSlotsSelector.ItemsSource = chargeStatus;
         }
         /// <summary>

@@ -31,7 +31,7 @@
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
 
-        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" FontFamily="Comic Sans MS" Margin="0,29,0,-5" Background="AliceBlue" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
+        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" FontFamily="Comic Sans MS" Margin="0,29,0,-5" Background="AliceBlue" ItemsSource="{Binding}" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
             <ListView.View >
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
                     <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="120" />
