@@ -45,22 +45,22 @@
             <Button Content="Add"  Style="{StaticResource myButtonStyle}" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddButton_Click"/>
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Hidden">
+        <Grid x:Name="UpdateOptions" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="41*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="ParcelIdTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,60,0,0" Text="{Binding Path= ParcelId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsReadOnly="True" Height="19"/>
-            <TextBox x:Name="SenderTbx" BorderThickness="1" Background="LightBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,91,0,0" Text="" VerticalAlignment="Top" Width="100"  IsEnabled="True" />
-            <TextBox x:Name="RecieverTbx" BorderThickness="1"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,129,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsEnabled="True" MaxLength="10"/>
-            <TextBox x:Name="DroneAssignTbx" BorderThickness="0" Background="LightBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,249,0,0" Text="" VerticalAlignment="Top" Width="100"  IsReadOnly="True" />
-            <TextBox x:Name="WightTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,164,0,0" Text="{Binding Path=Weight}" VerticalAlignment="Top" Width="100"  IsReadOnly="True" Height="23" />
-            <TextBox x:Name="Priority" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,0,0,0" Text="{Binding Path=Priority}" VerticalAlignment="Center" Width="100"  IsReadOnly="True" />
-            <TextBox x:Name="CreateTbx" BorderThickness="0" Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,55,0,0" Text="{Binding Path= CreatingTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
-            <TextBox x:Name="AssignTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,100,0,0" Text="{Binding Path=AssignningTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
-            <TextBox x:Name="PickTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,138,0,0" Text="{Binding Path= PickingUpTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
-            <TextBox x:Name="SupplyTbx" BorderThickness="0"  Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,173,0,0" Text="{Binding Path= SupplyingTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
+            <TextBox x:Name="ParcelIdTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,60,0,0" Text="{Binding Path= ParcelId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsReadOnly="True" Height="19"/>
+            <TextBox x:Name="SenderTbx" BorderThickness="1" Background="SkyBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,91,0,0" Text="" VerticalAlignment="Top" Width="100"  IsEnabled="True" Height="23" />
+            <TextBox x:Name="RecieverTbx" BorderThickness="1"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,129,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsEnabled="True" MaxLength="10" Height="23"/>
+            <TextBox x:Name="DroneAssignTbx" BorderThickness="0" Background="SkyBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,249,0,0" Text="" VerticalAlignment="Top" Width="100"  IsReadOnly="True" />
+            <TextBox x:Name="WightTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,164,0,0" Text="{Binding Path=ParcelWeight}" VerticalAlignment="Top" Width="100"  IsReadOnly="True" Height="16" />
+            <TextBox x:Name="Priority" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,0,0,0" Text="{Binding Path=Priority}" VerticalAlignment="Center" Width="100"  IsReadOnly="True" />
+            <TextBox x:Name="CreateTbx" BorderThickness="0" Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,56,0,0" Text="{Binding Path= CreatingTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
+            <TextBox x:Name="AssignTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,100,0,0" Text="{Binding Path=AssignningTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" RenderTransformOrigin="0.44,-0.116" />
+            <TextBox x:Name="PickTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,138,0,0" Text="{Binding Path= PickingUpTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
+            <TextBox x:Name="SupplyTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="561,173,0,0" Text="{Binding Path= SupplyingTime}" VerticalAlignment="Top" Width="66"  IsReadOnly="True" Height="14" />
 
 
             <TextBlock Margin="76,60,573,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.ColumnSpan="2" />
@@ -69,12 +69,12 @@
             <TextBlock HorizontalAlignment="Left" Margin="75,169,0,0" Text="Weight:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto"/>
             <TextBlock HorizontalAlignment="Left" Margin="76,0,0,0" Text="Priority:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Visibility="Visible" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" Margin="76,246,0,0" Text="Drone Assigned:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="494,0,0,340" Text="Creating:" VerticalAlignment="Bottom" Width="auto" Height="39" Grid.Column="1"/>
-            <TextBlock HorizontalAlignment="Left" Margin="494,0,0,303"  VerticalAlignment="Bottom" Width="auto" Height="35" Text="Assignning:" Grid.Column="1"/>
-            <TextBlock HorizontalAlignment="Left" Margin="494,0,0,265"  VerticalAlignment="Bottom" Width="auto" Height="35" Text="Picking Up:" Grid.Column="1"/>
-            <TextBlock Margin="494,0,77,230"  VerticalAlignment="Bottom" Width="auto" Height="35" Text="Supplying:" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="495,0,0,359" Text="Creating:" VerticalAlignment="Bottom" Width="58" Height="24" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="494,0,0,318"  VerticalAlignment="Bottom" Width="auto" Height="18" Text="Assignning:" Grid.Column="1"/>
+            <TextBlock HorizontalAlignment="Left" Margin="494,0,0,280"  VerticalAlignment="Bottom" Width="auto" Height="18" Text="Picking Up:" Grid.Column="1"/>
+            <TextBlock Margin="495,0,99,244"  VerticalAlignment="Bottom" Width="auto" Height="20" Text="Supplying:" Grid.Column="1"/>
 
-            
+
             <Button x:Name="DeleteParcelButton" Style="{StaticResource myButtonStyle}" Content="Delete" Margin="461,364,81,23" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Column="1"/>
             <Button Content="Close" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseButton" />
 
