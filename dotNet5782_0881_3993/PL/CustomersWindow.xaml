@@ -26,7 +26,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <ListView x:Name="CustomersListView" MouseDoubleClick="CustomersListView_MouseDoubleClick" Grid.Row="1" Margin="0,5,0,-5" Background="AliceBlue" >
+        <ListView x:Name="CustomersListView" FontFamily="Comic Sans MS" MouseDoubleClick="CustomersListView_MouseDoubleClick" Grid.Row="1" Margin="0,5,0,-5" Background="AliceBlue" >
             <ListView.View>
 
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">

@@ -46,7 +46,7 @@ namespace PL
         private void AddDroneButton_Click(object sender, RoutedEventArgs e)
         {
             new DroneWindow(blAccess,this).ShowDialog();
-           // DronesListView.Items.Refresh();
+            DronesListView.Items.Refresh();
         }
         /// <summary>
         /// Bonus : Auxiliary method that taking into consideration all the selection options 
