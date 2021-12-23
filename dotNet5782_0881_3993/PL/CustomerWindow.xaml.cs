@@ -110,8 +110,6 @@ namespace PL
             this.Close();           
             localCustomersWindow.selectionOptions();
         }
-        #endregion Update
-
         private void ParcelsFromCustomerListTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ParcelsListWindow parcelsListWindow = new(blAccess);
@@ -125,5 +123,6 @@ namespace PL
             ParcelByCustomer temp = (ParcelByCustomer)ParcelsToCustomerListTbx.SelectedItem;
             new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
         }
+        #endregion Update
     }
 }

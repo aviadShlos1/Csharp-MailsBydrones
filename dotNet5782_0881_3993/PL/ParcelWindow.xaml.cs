@@ -86,6 +86,12 @@ namespace PL
             blAccess = blAccessTemp;
             MyParcel = blAccess.GetSingleParcel(parcelId);
             UpdateOptions.DataContext = MyParcel;
+            SenderTbx.Text = MyParcel.Sender.ToString();
+            RecieverTbx.Text = MyParcel.Reciever.ToString();
+            if (MyParcel.AssignningTime != null && MyParcel.SupplyingTime == null) 
+            {
+                AssignTbx.Text = MyParcel.DroneAssignToParcel.ToString();
+            }
         }
         private void DeleteParcelButton_Click(object sender, RoutedEventArgs e)
         {

@@ -74,10 +74,9 @@
             <TextBlock Name="PhoneTbl" HorizontalAlignment="Left" Margin="76,128,0,0" Text="Phone:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" Margin="76,160,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Grid.ColumnSpan="2"/>
             <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" Margin="76,0,0,0" Text="ParcelsFromCustomerList:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center" Width="169" Visibility="Visible" Grid.ColumnSpan="2"/>
-            <ListView x:Name="ParcelsFromCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45" Grid.Column="1" MouseDoubleClick="ParcelsFromCustomerListTbx_MouseDoubleClick"/>
-            <ListView x:Name="ParcelsFromCustomerListTbx" BorderThickness="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45" Grid.Column="1"/>
+            <ListView x:Name="ParcelsFromCustomerListTbx" BorderThickness="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45" Grid.Column="1" MouseDoubleClick="ParcelsFromCustomerListTbx_MouseDoubleClick"/>
             <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" Margin="76,293,0,0" Text="ParcelsToCustomerList:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Visibility="Visible" Grid.ColumnSpan="2"/>
-            <ListView x:Name="ParcelsToCustomerListTbx" BorderThickness="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,0,0,112"  VerticalAlignment="Bottom" Width="527" Height="39"  Grid.Column="1"/>
+            <ListView x:Name="ParcelsToCustomerListTbx" BorderThickness="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,0,0,112"  VerticalAlignment="Bottom" Width="527" Height="39"  Grid.Column="1" MouseDoubleClick="ParcelsToCustomerListTbx_MouseDoubleClick"/>
 
             <Button x:Name="UpdateCustomerButton" Content="Update Data" Click="UpdateCustomerButton_Click" Visibility="Visible" Width="275"  Margin="101,364,0,0" Grid.Column="1" HorizontalAlignment="Left" />
             <Button x:Name="DeleteCustomerButton"  Margin="461,364,81,23" Click="DeleteCustomerButton_Click" Visibility="Visible" Grid.Column="1">
@@ -85,7 +84,6 @@
             </Button>
             <Button  HorizontalAlignment="Left" Margin="46,364,0,0" Height="40" Width="88" Click="CloseUpdateButton_Click">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
-            <ListView x:Name="ParcelsToCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="245,0,0,116"  VerticalAlignment="Bottom" Width="527" Height="39" MouseDoubleClick="ParcelsToCustomerListTbx_MouseDoubleClick"/>
 
             </Button>
 
