@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using BO;
 
 namespace PL
@@ -27,6 +28,10 @@ namespace PL
     {
         // access point between the bl to the pl
         private BlApi.IBL blAccess = BlApi.BlFactory.GetBl();
+        //ObservableCollection<par> myDronesPl;
+        //ObservableCollection<DroneToList> myDronesPl;
+        //ObservableCollection<DroneToList> myDronesPl;
+
         public MainWindow()
         {            
             InitializeComponent();

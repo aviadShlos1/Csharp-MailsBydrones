@@ -96,13 +96,14 @@ namespace PL
             {
                 // adding the new drone details
 
-                DroneToList newDrone = new DroneToList
-                {
-                    DroneId = int.Parse(IdTbx.Text),
-                    Model = ModelTbx.Text,
-                    DroneWeight = (WeightCategoriesBL)WeightSelector.SelectedItem,
-                };
+                DroneToList newDrone = new();
+                //{
+                //    DroneId = int.Parse(IdTbx.Text),
+                //    Model = ModelTbx.Text,
+                //    DroneWeight = (WeightCategoriesBL)WeightSelector.SelectedItem,
+                //};
                 firstChargeStation = (int)BaseStationIdSelector.SelectedItem;
+                this.AddOption.DataContext = newDrone;
                 blAccess.AddDrone(newDrone, firstChargeStation);
                 //myDronesPl.Add(newDrone);
                 

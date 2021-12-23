@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="MaterialDesignExtensions" Version="3.3.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

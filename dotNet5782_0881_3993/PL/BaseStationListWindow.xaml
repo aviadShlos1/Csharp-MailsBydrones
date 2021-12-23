@@ -31,11 +31,11 @@
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
 
-        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" Margin="0,29,0,-5" Background="AliceBlue" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
+        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" FontFamily="Comic Sans MS" Margin="0,29,0,-5" Background="AliceBlue" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
             <ListView.View >
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="auto" />
-                    <GridViewColumn DisplayMemberBinding="{Binding BaseStationName}" x:Name="BaseName" Header="Name" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="150" />
+                    <GridViewColumn DisplayMemberBinding="{Binding BaseStationName}" x:Name="BaseName" Header="Name" Width="150"/>
                     <GridViewColumn DisplayMemberBinding="{Binding FreeChargeSlots}" x:Name="FreeChargeSlots" Header="Free Charge Slots" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding BusyChargeSlots}" x:Name="BusyChargeSlots" Header="Busy Charge Slots" Width="auto"/>
                 </GridView>
