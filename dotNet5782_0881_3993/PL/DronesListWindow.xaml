@@ -32,11 +32,12 @@
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
 
-        <ListView x:Name="DronesListView" Grid.Row="1" MouseDoubleClick="DronesListView_DoubleClick" Margin="0,5,0,-5" Background="AliceBlue" FontFamily="Britannic Bold" >
+        <ListView x:Name="DronesListView" Grid.Row="1" MouseDoubleClick="DronesListView_DoubleClick" ItemsSource="{Binding}"
+                  Margin="0,5,0,-5" Background="AliceBlue" FontFamily="Britannic Bold" >
             <ListView.View>
 
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
-                    <GridViewColumn DisplayMemberBinding="{Binding DroneId}" x:Name="Id" Header="Id" Width="auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding DroneId}" x:Name="Id" Header="Id" Width="150" />
                     <GridViewColumn DisplayMemberBinding="{Binding Model}" x:Name="Model" Header="Model" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding DroneLocation}" x:Name="Location" Header="Location" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding BatteryPercent}" x:Name="Battery" Header="Battery %" Width="auto"/>
