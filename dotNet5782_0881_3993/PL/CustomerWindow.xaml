@@ -3,21 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="CustomerWindow" Height="450" Width="800">
     <Window.Resources>
-        <Style x:Key="myButtonStyle"   TargetType="Button">
-            <Setter Property="FontSize"
-              Value="14" />
-            <Setter Property="Background"
-              Value="LightBlue" />
-            <Setter Property="FontFamily"
-              Value="Britannic Bold" />
-            <Setter Property="FontWeight"
-              Value="Bold" />
-            <Setter Property="Foreground"
-              Value="White" />
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Britannic Bold"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FFF0C00C"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
 
@@ -45,11 +50,11 @@
             <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,278,0,0" Text="" VerticalAlignment="Top" Width="120"/>
 
 
-            <Button Content="Close" Style="{StaticResource myButtonStyle}" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
-            <Button Content="Add"  Style="{StaticResource myButtonStyle}" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddButton_Click"/>
-            <Grid.Background>
-                <ImageBrush ImageSource="Images\cus2.png"/>
-            </Grid.Background>
+            <Button  Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click">
+                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
+            </Button>
+            <Button Content="Add"  Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddButton_Click"/>
+
         </Grid>
 
         <Grid x:Name="UpdateOptions" Visibility="Visible">
@@ -58,10 +63,10 @@
                 <ColumnDefinition Width="41*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="CustomerIdTbx" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="101,60,0,0" Text="{Binding Path= Id}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
-            <TextBox x:Name="CustomerNameTbx" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="101,90,0,0" Text="{Binding Path= Name }" VerticalAlignment="Top" Width="120"  IsEnabled="True" />
-            <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Margin="101,131,0,0" Text="{Binding Path= Phone}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" MaxLength="10"/>
-            <TextBox x:Name="CustomerLocationTbx" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="101,161,0,0" Text="" VerticalAlignment="Top" Width="263"  IsReadOnly="True" Height="18" />
+            <TextBox x:Name="CustomerIdTbx" BorderThickness="0" Grid.Column="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,60,0,0" Text="{Binding Path= Id}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+            <TextBox x:Name="CustomerNameTbx" BorderThickness="1" Grid.Column="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,90,0,0" Text="{Binding Path= Name }" VerticalAlignment="Top" Width="120"  IsEnabled="True" />
+            <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Column="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,131,0,0" Text="{Binding Path= Phone}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" MaxLength="10"/>
+            <TextBox x:Name="CustomerLocationTbx" BorderThickness="0" Grid.Column="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,160,0,0" Text="" VerticalAlignment="Top" Width="417"  IsReadOnly="True" Height="19" />
 
 
             <TextBlock Margin="76,60,573,0" Text="Id:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Grid.ColumnSpan="2" />
@@ -70,15 +75,26 @@
             <TextBlock HorizontalAlignment="Left" Margin="76,160,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Grid.ColumnSpan="2"/>
             <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" Margin="76,0,0,0" Text="ParcelsFromCustomerList:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Center" Width="169" Visibility="Visible" Grid.ColumnSpan="2"/>
             <ListView x:Name="ParcelsFromCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45" Grid.Column="1" MouseDoubleClick="ParcelsFromCustomerListTbx_MouseDoubleClick"/>
+            <ListView x:Name="ParcelsFromCustomerListTbx" BorderThickness="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45" Grid.Column="1"/>
             <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" Margin="76,293,0,0" Text="ParcelsToCustomerList:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Visibility="Visible" Grid.ColumnSpan="2"/>
+            <ListView x:Name="ParcelsToCustomerListTbx" BorderThickness="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,0,0,112"  VerticalAlignment="Bottom" Width="527" Height="39"  Grid.Column="1"/>
+
+            <Button x:Name="UpdateCustomerButton" Content="Update Data" Click="UpdateCustomerButton_Click" Visibility="Visible" Width="275"  Margin="101,364,0,0" Grid.Column="1" HorizontalAlignment="Left" />
+            <Button x:Name="DeleteCustomerButton"  Margin="461,364,81,23" Click="DeleteCustomerButton_Click" Visibility="Visible" Grid.Column="1">
+                <fa:ImageAwesome Icon="Trash" Stretch="Fill" Width="74" Height="40" Foreground="DarkGreen"></fa:ImageAwesome>
+            </Button>
+            <Button  HorizontalAlignment="Left" Margin="46,364,0,0" Height="40" Width="88" Click="CloseUpdateButton_Click">
+                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
             <ListView x:Name="ParcelsToCustomerListTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="245,0,0,116"  VerticalAlignment="Bottom" Width="527" Height="39" MouseDoubleClick="ParcelsToCustomerListTbx_MouseDoubleClick"/>
 
-            <Button x:Name="UpdateCustomerButton" Style="{StaticResource myButtonStyle}" Content="Update Customer Data" Click="UpdateCustomerButton_Click" Visibility="Visible" Width="auto"  Margin="281,364,235,23" Grid.Column="1" />
-            <Button x:Name="DeleteCustomerButton" Style="{StaticResource myButtonStyle}" Content="Delete" Margin="461,364,81,23" Click="DeleteCustomerButton_Click" Visibility="Visible" Grid.Column="1"/>
-            <Button Content="Close" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseUpdateButton_Click"/>
+            </Button>
 
         </Grid>
-        
+
+
+        <Grid.Background >
+            <ImageBrush ImageSource="Images\Cb.png" />
+        </Grid.Background>
 
     </Grid>
 </Window>

@@ -41,14 +41,14 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Add customer" HorizontalAlignment="Left" Margin="531,318,0,0" Grid.Row="1" Width="233" Click="AddCustomerButton_Click"/>
+        <Button Content="Add customer" HorizontalAlignment="Left" Margin="537,340,0,0" Width="233" Click="AddCustomerButton_Click"/>
 
-        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="81,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="74" Click="ClosingWindowButton_Click">
+        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="51,318,0,0" Height="83" Width="104" Click="ClosingWindowButton_Click">
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
         </Button>
-        <Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="ResetButton_Click">
+        <!--<Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" ">
             <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>
-        </Button>
+        </Button>-->
 
     </Grid>
 </Window>
