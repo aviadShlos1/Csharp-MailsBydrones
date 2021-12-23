@@ -26,7 +26,7 @@ namespace PL
     public partial class DronesListWindow : Window
     {
         private BlApi.IBL blAccess;
-        private ObservableCollection<DroneToList> myDronesPl;
+        public ObservableCollection<DroneToList> myDronesPl;
         public DronesListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace PL
         private void AddDroneButton_Click(object sender, RoutedEventArgs e)
         {
             new DroneWindow(blAccess,this).ShowDialog();
-           // DronesListView.Items.Refresh();
+            DronesListView.Items.Refresh();
         }
         /// <summary>
         /// Bonus : Auxiliary method that taking into consideration all the selection options 

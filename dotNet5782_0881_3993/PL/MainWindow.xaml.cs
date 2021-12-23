@@ -36,31 +36,10 @@ namespace PL
         {            
             InitializeComponent();
         }
-        /// <summary>
-        /// A button click event which lead the user to the drones window display
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShowDronesButton_Click(object sender, RoutedEventArgs e)
-        {
-            new DronesListWindow(blAccess).Show();
-            this.Close();
-        }
-        private void ShowBaseStationButton_Click(object sender, RoutedEventArgs e)
-        {
-            new BaseStationListWindow(blAccess).Show();
-            this.Close();
-        }
 
-        private void ShowCustomersButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new CustomersWindow(blAccess).Show();
-            this.Close();
-        }
-
-        private void ShowParcelsButton_Click(object sender, RoutedEventArgs e)
-        {
-            new ParcelsListWindow(blAccess).Show();
+            new ListsDisplayWindow().Show();
             this.Close();
         }
     }
