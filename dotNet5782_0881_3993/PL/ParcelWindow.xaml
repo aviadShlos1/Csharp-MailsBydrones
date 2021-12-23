@@ -52,8 +52,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBox x:Name="ParcelIdTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,60,0,0" Text="{Binding Path= ParcelId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsReadOnly="True" Height="19"/>
-            <TextBox x:Name="SenderTbx" BorderThickness="1" Background="SkyBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,91,0,0" Text="" VerticalAlignment="Top" Width="100"  IsEnabled="True" Height="23" />
-            <TextBox x:Name="RecieverTbx" BorderThickness="1"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,129,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsEnabled="True" MaxLength="10" Height="23"/>
+            <TextBox x:Name="SenderTbx" BorderThickness="1" Background="SkyBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,91,0,0" Text="" VerticalAlignment="Top" Width="100"  IsEnabled="True" Height="23" MouseDoubleClick="SenderTbx_MouseDoubleClick"/>
+            <TextBox x:Name="RecieverTbx" BorderThickness="1"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,129,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsEnabled="True" MaxLength="10" Height="23" MouseDoubleClick="RecieverTbx_MouseDoubleClick"/>
             <TextBox x:Name="DroneAssignTbx" BorderThickness="0" Background="SkyBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,249,0,0" Text="" VerticalAlignment="Top" Width="100"  IsReadOnly="True" />
             <TextBox x:Name="WightTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,164,0,0" Text="{Binding Path=ParcelWeight}" VerticalAlignment="Top" Width="100"  IsReadOnly="True" Height="16" />
             <TextBox x:Name="Priority" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,0,0,0" Text="{Binding Path=Priority}" VerticalAlignment="Center" Width="100"  IsReadOnly="True" />
@@ -77,6 +77,7 @@
 
             <Button x:Name="DeleteParcelButton" Style="{StaticResource myButtonStyle}" Content="Delete" Margin="461,364,81,23" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Column="1"/>
             <Button Content="Close" Style="{StaticResource myButtonStyle}" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseButton" />
+            
 
         </Grid>
         <Grid.Background>

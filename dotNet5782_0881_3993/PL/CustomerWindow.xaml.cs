@@ -37,20 +37,22 @@ namespace PL
             try
             {
                 // adding the new customer details
-                CustomerBL newCustomer = new CustomerBL
+                CustomerBL newCustomer = new CustomerBL()
                 {
                     Id = int.Parse(IdTbx.Text),
                     Name = NameTbx.Text,
                     Phone = PhoneTbx.Text,
                     Location = new Location() { Latitude = double.Parse(LatitudeTbx.Text), Longitude = double.Parse(LongitudeTbx.Text) },
-
                 };
+                this.AddOption.DataContext = newCustomer;
                 blAccess.AddCustomer(newCustomer);
 
                 MessageBoxResult result = MessageBox.Show("The operation was done successfully");
                 if (result == MessageBoxResult.OK)
                 {
                     this.Close();
+                    CustomerToList myCustomer = blAccess.GetCustomersBl().Find(x => x.Id == newCustomer.Id);
+                    localCustomersWindow.myCustomerPl.Add(myCustomer);
                     localCustomersWindow.selectionOptions();
                 }
             }

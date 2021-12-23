@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using BO;
 
 namespace PL
@@ -21,11 +22,13 @@ namespace PL
     public partial class CustomersWindow : Window
     {
         private BlApi.IBL blAccess;
+        public ObservableCollection<CustomerToList> myCustomerPl;
         public CustomersWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
             blAccess = blAccessTemp;
-            CustomersListView.ItemsSource = blAccess.GetCustomersBl();
+            myCustomerPl = new ObservableCollection<CustomerToList>(blAccess.GetCustomersBl());
+            CustomersListView.DataContext = myCustomerPl;
         }
         public void selectionOptions()
         {
@@ -38,7 +41,8 @@ namespace PL
         /// <param name="e"></param>
         private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            new CustomerWindow(blAccess, this).Show();
+            new CustomerWindow(blAccess, this).ShowDialog();
+            CustomersListView.Items.Refresh();
         }
         /// <summary>
         /// A button click event, the add drone window will be opened

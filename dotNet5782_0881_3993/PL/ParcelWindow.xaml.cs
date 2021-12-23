@@ -103,5 +103,21 @@ namespace PL
             localParcelsListWindow.selectionOptions();
         }
         #endregion update
+
+        
+        private void SenderTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+            CustomersWindow customersWindow = new(blAccess);            
+            new CustomerWindow(blAccess, MyParcel.Sender.Id, customersWindow).Show();         
+        }
+
+        private void RecieverTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+            CustomersWindow customersWindow = new(blAccess);
+            //AssignCustomerToParcel tempReciever = (AssignCustomerToParcel)RecieverTbx.Text;
+            new CustomerWindow(blAccess, MyParcel.Reciever.Id, customersWindow).Show();
+        }
     }
 }

@@ -32,8 +32,6 @@ namespace PL
             InitializeComponent();
             blAccess = blAccessTemp;
             myDronesPl = new ObservableCollection<DroneToList>(blAccess.GetDronesBl());
-            //blAccess.GetDronesBl().ToList().ForEach(x => myDronesPl.Add(x));
-            //DronesListView.ItemsSource = myDronesPl;
             DronesListView.DataContext = myDronesPl;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
