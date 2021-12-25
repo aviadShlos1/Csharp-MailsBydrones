@@ -65,6 +65,10 @@
             <TextBlock HorizontalAlignment="Left" Margin="494,0,0,280"  VerticalAlignment="Bottom" Width="auto" Height="18" Text="Picking Up:" Grid.Column="1"/>
             <TextBlock Margin="495,0,99,244"  VerticalAlignment="Bottom" Width="auto" Height="20" Text="Supplying:" Grid.Column="1"/>
 
+            <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Click="PickUpParcelButton_Click" HorizontalAlignment="Left" Margin="342,384,0,0" VerticalAlignment="Top" 
+                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="auto" Visibility="Visible" Grid.Column="1"/>
+            <Button x:Name="SupplyParcelButton" Content="supplyParcel" Click="SupplyParcelButton_Click" HorizontalAlignment="Left" Margin="129,384,0,0" VerticalAlignment="Top" 
+                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="auto" Visibility="Visible" Grid.Column="1"/>
 
             <Button x:Name="DeleteParcelButton" Content="Delete" HorizontalAlignment="Left" Margin="524,384,0,0" VerticalAlignment="Top" 
                      Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="62" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Column="1"/>
