@@ -285,5 +285,10 @@ namespace PL
             localDronesListWindow.selectionOptions();
         }
         #endregion
+
+        private void ParcelInShipmentTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
