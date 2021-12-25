@@ -70,37 +70,35 @@ namespace PL
                 DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem && x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
             }
         }
-       
+
         /// <summary>
         /// A selection event, the user will choose between the status categories 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ComboBox_StatusSelection(object sender, SelectionChangedEventArgs e)
+        private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
         }
-      
+
+
         /// <summary>
         /// A selection event, the user will choose between the weight categories 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ComboBox_WeightSelection(object sender, SelectionChangedEventArgs e)
+        private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
         }
-
-        /// <summary>
-        /// A button click event, the add drone window will be opened
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)
-        {          
-            new MainWindow().Show(); 
-            this.Close();
+        private void GroupByStatus_Click(object sender, RoutedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(DronesListView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("DroneStatus");
+            view.GroupDescriptions.Add(groupDescription);
         }
+
+       
         /// <summary>
         /// A reset button click event, the selection will be cleared
         /// </summary>
@@ -121,6 +119,12 @@ namespace PL
         {
             DroneToList temp = (DroneToList)DronesListView.SelectedItem;
             new DroneWindow(blAccess,temp.DroneId,this).Show();
+        }
+
+        private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            new ListsDisplayWindow().Show();
+            this.Close();
         }
     }
 }
