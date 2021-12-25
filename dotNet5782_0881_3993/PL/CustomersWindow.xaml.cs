@@ -47,7 +47,7 @@ namespace PL
         /// <param name="e"></param>
         private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)
         {
-            new MainWindow().Show();
+            new ListsDisplayWindow().Show();
             this.Close();
         }
 

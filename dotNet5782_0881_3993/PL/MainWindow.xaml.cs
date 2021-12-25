@@ -39,14 +39,14 @@ namespace PL
 
             switch (Blogin.Content)
             {
-                case "כניסה כמנהל":
+                case "Enter as Admin":
                     new ListsDisplayWindow().Show();//(AccessIbl).Show();?????????????????????????????????????????????????????????????????
                     this.Close(); // we close the login window
                     break;
-                case "הרשמת לקוח למערכת":
+                case "Register":
 
                     break;
-                //case "כניסת לקוח":
+                //case "Enter as Client":
                 //    new ClientWindow().Show();
                 //    this.Close(); // we close the login window
                 //    break;
@@ -62,41 +62,40 @@ namespace PL
 
 
 
-        private void enter_Loaded(object sender, RoutedEventArgs e)
-        {
-            AddOn.Opacity = 0;
-            DoubleAnimation Animmation = new DoubleAnimation(0, 100, TimeSpan.FromSeconds(10.5));
-            PBloding.BeginAnimation(ProgressBar.ValueProperty, Animmation);
-        }
+        //private void enter_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    AddOn.Opacity = 0;
+        //    DoubleAnimation Animmation = new DoubleAnimation(0, 100, TimeSpan.FromSeconds(10.5));
+        //    PBloding.BeginAnimation(ProgressBar.ValueProperty, Animmation);
+        //}
 
-        private void PBloding_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (PBloding.Value == 100)
-            {
-                Blogin.IsEnabled = true;
-                DoubleAnimation doubleAnimmation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(5));
-                AddOn.BeginAnimation(Grid.OpacityProperty, doubleAnimmation);
-                DoubleAnimation DSF = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(2));
-                Disiaper.BeginAnimation(Grid.OpacityProperty, DSF);
+        //private void PBloding_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        //{
+        //    if (PBloding.Value == 100)
+        //    {
+        //        Blogin.IsEnabled = true;
+        //        DoubleAnimation doubleAnimmation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(5));
+        //        AddOn.BeginAnimation(Grid.OpacityProperty, doubleAnimmation);
+        //        DoubleAnimation DSF = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(2));
+        //        Disiaper.BeginAnimation(Grid.OpacityProperty, DSF);
 
-            }
-        }
+        //    }
+        //}
 
         private void TCadmin_GotFocus(object sender, RoutedEventArgs e)
         {
-            Blogin.Content = "כניסה כמנהל";
+            Blogin.Content = "Enter as Admin";
         }
 
         private void TIRegister_GotFocus(object sender, RoutedEventArgs e)
         {
-            Blogin.Content = "הרשמת לקוח למערכת";
+            Blogin.Content = "Register";
 
         }
 
         private void TabItem_GotFocus(object sender, RoutedEventArgs e)
         {
-            Blogin.Content = "כניסת לקוח";
-
+            Blogin.Content = "Enter as Client";
         }
     }
 }
