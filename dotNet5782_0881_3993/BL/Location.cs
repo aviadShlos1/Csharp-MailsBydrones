@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlApi;
 
 namespace BO
 {
@@ -19,7 +20,9 @@ namespace BO
         public double Latitude { get; set; }
         public override string ToString()
         {
-            return $"Longitude: {Longitude},  Latitude: {Latitude} ";
+            string convertLongitude = BL.ConvertDecimalDegreesToSexagesimal(Longitude, "Longitude");
+            string convertLatitude = BL.ConvertDecimalDegreesToSexagesimal(Latitude, "Latitude");
+            return $"Longitude: {convertLongitude},  Latitude: {convertLatitude} ";
         }
     }
 }

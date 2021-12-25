@@ -84,7 +84,7 @@ namespace PL
         }
         private void ClosingButton_Click(object sender, RoutedEventArgs e)
         {
-            new MainWindow().Show();
+            new ListsDisplayWindow().Show();
             this.Close();
         }
 
