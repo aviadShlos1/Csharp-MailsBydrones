@@ -8,18 +8,22 @@
         Title="BaseStationWindow" Height="450" Width="800">
 
     <Grid Name="MainGrid">
-        <Grid x:Name="BaseStaionAddOption" Visibility="Hidden">
+        <Grid.Background>
+            <ImageBrush ImageSource="Images\Base.jpg" />
+        </Grid.Background>
+
+        <Grid x:Name="BaseStaionAddOption" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>
                 <ColumnDefinition Width="730*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Name="IdTbl" Margin="33,80,663,0" Text="Id:" FontSize="16" Foreground="YellowGreen" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Arial Rounded MT Bold" Height="auto"/>
-            <TextBlock HorizontalAlignment="Left" Margin="28,131,0,0" Text="Name:" FontSize="16" Foreground="YellowGreen" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Arial Rounded MT Bold" Height="auto"/>
-            <TextBlock HorizontalAlignment="Left" Margin="14,184,0,0" Text="Free Charge Slots:" FontSize="16" Foreground="YellowGreen" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="1" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Arial Rounded MT Bold" Height="auto" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,233,0,0" Text="Longitude:" FontSize="16" Foreground="YellowGreen" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontFamily="Arial Rounded MT Bold" Height="auto"/>
-            <TextBlock HorizontalAlignment="Left" Margin="12,289,0,0" Text="Latitude:" FontSize="16" Foreground="YellowGreen" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Arial Rounded MT Bold" Height="auto"/>
+            <TextBlock Name="IdTbl" Margin="33,80,663,0" Text="Id:" FontSize="16" Foreground="Red" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Arial Rounded MT Bold" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="28,131,0,0" Text="Name:" FontSize="16" Foreground="Red" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Arial Rounded MT Bold" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="14,184,0,0" Text="Free Charge Slots:" FontSize="16" Foreground="Red" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="1" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Arial Rounded MT Bold" Height="auto" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,233,0,0" Text="Longitude:" FontSize="16" Foreground="Red" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontFamily="Arial Rounded MT Bold" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="12,289,0,0" Text="Latitude:" FontSize="16" Foreground="Red" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Arial Rounded MT Bold" Height="auto"/>
 
             <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="113,81,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="4"/>
             <TextBox Name="NameTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="113,128,0,0" Text="" VerticalAlignment="Top" Width="120" />
@@ -33,6 +37,8 @@
             <Button Content="Close" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
             <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddBaseStationButton_Click"/>
         </Grid>
+
+
 
         <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
@@ -57,8 +63,7 @@
             <Button Content="Close" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseBaseButton_Click"/>
 
         </Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\Base.jpg" />
-        </Grid.Background>
+
     </Grid>
 </Window>
+

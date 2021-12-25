@@ -28,19 +28,20 @@ namespace PL
     {
         // access point between the bl to the pl
         private BlApi.IBL blAccess = BlApi.BlFactory.GetBl();
-        //ObservableCollection<par> myDronesPl;
-        //ObservableCollection<DroneToList> myDronesPl;
-        //ObservableCollection<DroneToList> myDronesPl;
-
         public MainWindow()
         {            
             InitializeComponent();
+            //media.Source = new Uri(Environment.CurrentDirectory + @"\load.gif");
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new ListsDisplayWindow().Show();
             this.Close();
+        }
+
+        private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

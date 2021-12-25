@@ -25,7 +25,7 @@ namespace PL
     {
         private BlApi.IBL blAccess;
         private BaseStationListWindow localBaseStationListWindow;
-        //private int[] BaseStationNum = new int[] { 0, 1 }; //An array which includes the base stations id
+        
 
         #region add
         /// <summary>
@@ -58,18 +58,20 @@ namespace PL
             {
                 // adding the new drone details
 
-                BaseStationBl newBaseStation = new BaseStationBl
+                BaseStationBl newBaseStation = new BaseStationBl()
                 {
                     Id = int.Parse(IdTbx.Text),
                     BaseStationName = NameTbx.Text,
                     FreeChargeSlots = int.Parse(AddFreeSlotsTbx.Text),
                     Location = new Location() { Longitude = double.Parse(LongitudeTbx.Text), Latitude = double.Parse(LatitudeTbx.Text) },
                 };
+                this.BaseStaionAddOption.DataContext = newBaseStation;
                 blAccess.AddBaseStation(newBaseStation);
-
                 MessageBoxResult result = MessageBox.Show("The operation was done successfully");
                 if (result == MessageBoxResult.OK)
                 {
+                    BaseStationToList baseStationToList = blAccess.GetBaseStationsBl().Find(x => x.Id == newBaseStation.Id);
+                    localBaseStationListWindow.myBaseStatiobnsPl.Add(baseStationToList);
                     this.Close();
                     localBaseStationListWindow.selectionOptions();
                 }
@@ -127,5 +129,6 @@ namespace PL
             
         }
         #endregion update
+
     }
 }
