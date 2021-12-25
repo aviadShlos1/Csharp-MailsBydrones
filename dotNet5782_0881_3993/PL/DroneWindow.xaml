@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:PL"
-        mc:Ignorable="d"
+        mc:Ignorable="d"  
+        AllowsTransparency="True"
+        WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Title="DroneWindow" Height="450" Width="800">
 

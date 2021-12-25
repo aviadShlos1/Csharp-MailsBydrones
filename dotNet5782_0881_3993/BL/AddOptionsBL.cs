@@ -87,8 +87,8 @@ namespace BlApi
             tempCust.Id = newCustomer.Id;
             tempCust.Name = newCustomer.Name;
             tempCust.Phone = newCustomer.Phone;
-            tempCust.CustomerLongitude = newCustomer.Location.Longitude;
-            tempCust.CustomerLatitude = newCustomer.Location.Latitude;
+            tempCust.Longitude = newCustomer.Location.Longitude;
+            tempCust.Latitude = newCustomer.Location.Latitude;
             try
             {
                 DalAccess.AddCustomer(tempCust);

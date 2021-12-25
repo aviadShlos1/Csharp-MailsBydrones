@@ -6,7 +6,11 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="BaseStationWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None"
+    Title="BaseStationWindow" Height="450" Width="800">
+  
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -25,12 +29,12 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid Name= "MainGrid">
+    <Grid Name= "MainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height=" 50*"/>
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
-
+      
         <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" FontFamily="Comic Sans MS" Margin="0,29,0,-5" Background="AliceBlue" ItemsSource="{Binding}" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
             <ListView.View >
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
@@ -61,7 +65,7 @@
         </Grid>
         <Button Content="Add base Station" HorizontalAlignment="Left" Margin="531,318,0,0" Grid.Row="1" Width="233" Click="AddBaseStationButton_Click"/>
         <Button HorizontalAlignment="Left" BorderThickness="0" Margin="81,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="74" Click="ClosingWindowButton_Click">
-            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
+            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
         <Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="ResetButton_Click">
             <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>

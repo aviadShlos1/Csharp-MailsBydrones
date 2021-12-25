@@ -5,9 +5,9 @@
 
 
 using System;
+using DalApi;
 
-//namespace DalApi
-//{
+
     namespace DO
     {
         /// <summary> This struct is intended for storing the CustomerDal details
@@ -16,17 +16,19 @@ using System;
             public int Id { get; set; }
             public string Name { get; set; }
             public string Phone { get; set; }
-            public double CustomerLongitude { get; set; }
-            public double CustomerLatitude { get; set; }
+            public double Longitude { get; set; }
+            public double Latitude { get; set; }
             
             /// </summary> This method converts the values to string values
             /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
-                return $"CustomerDal: Id:{Id}, Name:{Name}, Phone:{Phone}, CustomerLongitude:{CustomerLongitude}, CustomerLatitude:{CustomerLatitude}";
+            string convertLongitude = DalObject.ConvertDecimalDegreesToSexagesimal(Longitude, "Longitude");
+            string convertLatitude = DalObject.ConvertDecimalDegreesToSexagesimal(Latitude, "Latitude");
+            return $"CustomerDal: Id:{Id}, Name:{Name}, Phone:{Phone}, Longitude:{convertLongitude}, Latitude:{convertLatitude}";
             }
         }
     }
-//}
+
 
 

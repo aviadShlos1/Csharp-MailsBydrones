@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
+        
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None"
         Title="DronesList" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
@@ -43,7 +47,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding BatteryPercent}" x:Name="Battery" Header="Battery %" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding DroneWeight}" x:Name="Weight" Header="Weight" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding DroneStatus}" x:Name="DronesStatus" Header="Status" Width="auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Delivery}" x:Name="ParcelTransfer"  Header="parcel in transfer" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Delivery}" x:Name="ParcelTransfer"  Header="parcel in transfer" Width="100"/>
                 </GridView>
 
             </ListView.View>
@@ -65,14 +69,14 @@
         </Grid>
         <Button Content="Add drone" HorizontalAlignment="Left" Margin="615,318,0,0" Grid.Row="1" Height="45" Width="149" Click="AddDroneButton_Click"/>
         <Button HorizontalAlignment="Left" BorderThickness="0" Margin="81,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="74" Click="ClosingWindowButton_Click">
-            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
+            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
         <Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="ResetButton_Click">
             <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>
         </Button>
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\DronesBackground.jpg"/>
-        </Grid.Background>
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="Images\DronesBackground.jpg" />
+        </Grid.Background>-->
 
 
 

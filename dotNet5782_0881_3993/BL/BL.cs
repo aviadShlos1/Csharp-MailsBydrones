@@ -130,17 +130,17 @@ namespace BlApi
                         itemDrone.DroneStatus = DroneStatusesBL.Shipment;
                         if (itemParcel.AssignningTime != null && itemParcel.PickingUpTime == null)//If the parcel is already assigned but isn't picked up
                         {
-                            double senderLon = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
-                            double senderLat = GetCustomerDetails(itemParcel.SenderId).CustomerLatitude;
+                            double senderLon = GetCustomerDetails(itemParcel.SenderId).Longitude;
+                            double senderLat = GetCustomerDetails(itemParcel.SenderId).Latitude;
                             itemDrone.DroneLocation = ClosetStation(senderLon, senderLat, DalAccess.GetBaseStationsList().ToList()).Location;
                         }
                         if (itemParcel.PickingUpTime != null && itemParcel.SupplyingTime == null)//If the parcel is already picked up but isn't supplied
                         {
-                            itemDrone.DroneLocation.Longitude = GetCustomerDetails(itemParcel.SenderId).CustomerLongitude;
-                            itemDrone.DroneLocation.Latitude = GetCustomerDetails(itemParcel.SenderId).CustomerLatitude;
+                            itemDrone.DroneLocation.Longitude = GetCustomerDetails(itemParcel.SenderId).Longitude;
+                            itemDrone.DroneLocation.Latitude = GetCustomerDetails(itemParcel.SenderId).Latitude;
                         }
-                        double targetLon = GetCustomerDetails(itemParcel.TargetId).CustomerLongitude;
-                        double targerLat = GetCustomerDetails(itemParcel.TargetId).CustomerLatitude;
+                        double targetLon = GetCustomerDetails(itemParcel.TargetId).Longitude;
+                        double targerLat = GetCustomerDetails(itemParcel.TargetId).Latitude;
                         double targetDistance = GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, targetLon, targerLat);
                         double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;//The battery consumption that enables the drone to supply the parcel
                         Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude,itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).Location;
@@ -179,8 +179,8 @@ namespace BlApi
                     if (suppliedCustomers.Count != 0) //the list isn't empty 
                     {
                         int index = rand.Next(0, suppliedCustomers.Count);
-                        itemDrone.DroneLocation.Latitude = suppliedCustomers[index].CustomerLatitude;
-                        itemDrone.DroneLocation.Longitude = suppliedCustomers[index].CustomerLongitude;
+                        itemDrone.DroneLocation.Latitude = suppliedCustomers[index].Latitude;
+                        itemDrone.DroneLocation.Longitude = suppliedCustomers[index].Longitude;
                     }
                     else
                     {
