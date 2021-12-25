@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None"
         Title="BaseStationWindow" Height="450" Width="800">
 
     <Grid Name="MainGrid">
@@ -34,8 +37,10 @@
 
 
 
-            <Button Content="Close" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
-            <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" Height="31" Width="62" Click="AddBaseStationButton_Click"/>
+            <Button Content="Close" Grid.Column="1" HorizontalAlignment="Left" Margin="25,370,0,0" VerticalAlignment="Top" 
+                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="32" Width="64" Grid.ColumnSpan="2" Click="CloseButton_Click"/>
+            <Button Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" 
+                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="62" Click="AddBaseStationButton_Click"/>
         </Grid>
 
 

@@ -6,7 +6,11 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None"
         Title="ParcelsListWindow" Height="450" Width="800">
+    
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -73,7 +77,7 @@
             <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>
         </Button>
         <Button HorizontalAlignment="Left" BorderThickness="0" Margin="81,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="74" Click="ClosingButton_Click" >
-            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
+            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
         <Grid.Background>
             <ImageBrush ImageSource="Images\addParcel.jpg" />

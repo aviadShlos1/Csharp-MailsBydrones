@@ -112,11 +112,11 @@ namespace BlApi
             int senderId = HighestPriorityAndWeightParcels()[0].SenderId;
             senderCustomer = GetCustomerDetails(senderId);
             /// Finding the closet parcel among the highest priority and weight parcels list
-            closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
+            closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.Longitude, senderCustomer.Latitude);
             foreach (var item in HighestPriorityAndWeightParcels())
             {
                 senderCustomer = GetCustomerDetails(item.SenderId);
-                double tempDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude);
+                double tempDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.Longitude, senderCustomer.Latitude);
                 if (tempDistance <= closetDistance)
                 {
                     closetDistance = tempDistance;
@@ -127,11 +127,11 @@ namespace BlApi
             double arriveToSenderBattery = closetDistance * freeWeightConsumption;
 
             DO.CustomerDal targetCustomer = GetCustomerDetails(assignedParcel.TargetId);
-            double targetDistance = GetDistance(senderCustomer.CustomerLongitude, senderCustomer.CustomerLatitude, targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude);
+            double targetDistance = GetDistance(senderCustomer.Longitude, senderCustomer.Latitude, targetCustomer.Longitude, targetCustomer.Latitude);
             double srcToTrgetBattery = targetDistance * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
 
-            BO.BaseStationBl closetStationFromTarget = ClosetStation(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude, DalAccess.GetBaseStationsList().ToList());
-            double targetToCharge = GetDistance(targetCustomer.CustomerLongitude, targetCustomer.CustomerLatitude, closetStationFromTarget.Location.Longitude, closetStationFromTarget.Location.Latitude);
+            BO.BaseStationBl closetStationFromTarget = ClosetStation(targetCustomer.Longitude, targetCustomer.Latitude, DalAccess.GetBaseStationsList().ToList());
+            double targetToCharge = GetDistance(targetCustomer.Longitude, targetCustomer.Latitude, closetStationFromTarget.Location.Longitude, closetStationFromTarget.Location.Latitude);
             double trgetToChargeBattery = targetToCharge * freeWeightConsumption;
             double totalDemandBattery = arriveToSenderBattery + srcToTrgetBattery + trgetToChargeBattery;
 
@@ -243,10 +243,10 @@ namespace BlApi
 
             else //updating the battery,location and picking up time
             {
-                double currentToSender = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderItem.CustomerLongitude, senderItem.CustomerLatitude);
+                double currentToSender = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderItem.Longitude, senderItem.Latitude);
                 droneItem.BatteryPercent -= Math.Floor(currentToSender * freeWeightConsumption);
-                droneItem.DroneLocation.Longitude = senderItem.CustomerLongitude;
-                droneItem.DroneLocation.Latitude = senderItem.CustomerLatitude;
+                droneItem.DroneLocation.Longitude = senderItem.Longitude;
+                droneItem.DroneLocation.Latitude = senderItem.Latitude;
                 DalAccess.PickUpParcel(droneItem.DroneId);
             }
         }
@@ -278,10 +278,10 @@ namespace BlApi
            
             else //updating the battery,location, status and suppling time
             {
-                double currentToTarget = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, targetItem.CustomerLongitude, targetItem.CustomerLatitude);
+                double currentToTarget = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, targetItem.Longitude, targetItem.Latitude);
                 droneItem.BatteryPercent -= Math.Floor(currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1]);
-                droneItem.DroneLocation.Longitude = targetItem.CustomerLongitude;
-                droneItem.DroneLocation.Latitude = targetItem.CustomerLatitude;
+                droneItem.DroneLocation.Longitude = targetItem.Longitude;
+                droneItem.DroneLocation.Latitude = targetItem.Latitude;
                 droneItem.Delivery = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission
                 droneItem.DroneStatus = BO.DroneStatusesBL.Available;
                 parcelItem.SupplyingTime = DateTime.Now;

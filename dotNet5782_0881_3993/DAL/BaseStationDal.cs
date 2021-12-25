@@ -28,7 +28,7 @@ using System.Threading.Tasks;
             /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
-                return $" Id:{Id}, Name:{Name}, FreeChargeSlots:{FreeChargeSlots}, CustomerLongitude:{Longitude}, CustomerLatitude:{Latitude}";
+                return $" Id:{Id}, Name:{Name}, FreeChargeSlots:{FreeChargeSlots}, Longitude:{Longitude}, Latitude:{Latitude}";
             }
         }
     }

@@ -78,8 +78,8 @@ namespace DalApi
                     Id = rand.Next(100000000, 1000000000),
                     Name = CustomerName[i],
                     Phone = $"05{ rand.Next(2, 9) }{ rand.Next(1000000, 10000000) }",
-                    CustomerLatitude = rand.NextDouble() * (33.418 - 29.499) + 29.499,
-                    CustomerLongitude = rand.NextDouble() * (35.899 - 34.263) + 34.263,
+                    Latitude = rand.NextDouble() * (33.418 - 29.499) + 29.499,
+                    Longitude = rand.NextDouble() * (35.899 - 34.263) + 34.263,
                 });
             }
             #endregion adding Customer details

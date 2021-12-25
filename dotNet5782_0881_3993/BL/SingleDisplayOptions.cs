@@ -61,8 +61,8 @@ namespace BlApi
                 var tempParcel = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == myDroneId);
                 AssignCustomerToParcel mySender = new() { Id = tempParcel.SenderId, Name = GetCustomerDetails(tempParcel.SenderId).Name };
                 AssignCustomerToParcel myReciever = new() { Id = tempParcel.TargetId, Name = GetCustomerDetails(tempParcel.TargetId).Name };
-                Location myPickUpLocation = new() { Longitude = GetCustomerDetails(tempParcel.SenderId).CustomerLongitude, Latitude = GetCustomerDetails(tempParcel.SenderId).CustomerLatitude };
-                Location myTargetLocation = new() { Longitude = GetCustomerDetails(tempParcel.TargetId).CustomerLongitude, Latitude = GetCustomerDetails(tempParcel.TargetId).CustomerLatitude };
+                Location myPickUpLocation = new() { Longitude = GetCustomerDetails(tempParcel.SenderId).Longitude, Latitude = GetCustomerDetails(tempParcel.SenderId).Latitude };
+                Location myTargetLocation = new() { Longitude = GetCustomerDetails(tempParcel.TargetId).Longitude, Latitude = GetCustomerDetails(tempParcel.TargetId).Latitude };
                 bool isOnTheSupplyWay=default;
                 if (tempParcel.PickingUpTime != null) //if the parcel has already picked up
                     isOnTheSupplyWay = true;
@@ -99,7 +99,7 @@ namespace BlApi
                 throw new BO.NotExistException();
             }
 
-            Location myLocation = new() { Latitude = myCustomer.CustomerLatitude, Longitude = myCustomer.CustomerLongitude };
+            Location myLocation = new() { Latitude = myCustomer.Latitude, Longitude = myCustomer.Longitude };
             CustomerBL myCustomerBl = new() { Id = myCustomer.Id, Name = myCustomer.Name, Phone = myCustomer.Phone, Location = myLocation, ParcelsFromCustomerList = new(), ParcelsToCustomerList = new() };
             List<DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == customerId).ToList();
             List<DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().TakeWhile(x => x.TargetId == customerId).ToList();

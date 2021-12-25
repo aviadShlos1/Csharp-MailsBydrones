@@ -55,5 +55,11 @@ namespace PL
             new ParcelsListWindow(blAccess).Show();
             this.Close();
         }
+
+        private void ClosingBt_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
+        }
     }
 }
