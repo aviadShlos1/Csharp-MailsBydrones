@@ -38,5 +38,10 @@ namespace PL
             new ListsDisplayWindow().Show();
             this.Close();
         }
+
+        private void ClosingBt_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
