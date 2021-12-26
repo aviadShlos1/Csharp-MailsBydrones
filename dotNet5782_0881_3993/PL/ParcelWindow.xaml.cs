@@ -125,7 +125,7 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void PickUpParcelButton_Click(object sender, RoutedEventArgs e)
+        private void PickUpParcelButton_Click(object sender, RoutedEventArgs e) 
         {
             PickTbx.IsEnabled = false;
             if (MyParcel.AssignningTime!=null)
