@@ -101,16 +101,28 @@ namespace PL
         }
         private void DeleteParcelButton_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("You are going to delete the parcel, sure about it?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
 
+                    blAccess.RemoveParcel(MyParcel);
+                    int index = localParcelsListWindow.myParcelsPl.ToList().FindIndex(x=>x.Id==MyParcel.ParcelId);// we go to the index to delete from the observer 
+                    localParcelsListWindow.myParcelsPl.RemoveAt(index);
+                    this.Close();
+                    localParcelsListWindow.selectionOptions();// update the displey of the list view to observ the changes
+                    break;
+                case MessageBoxResult.No: // in case that the user dont want to delete he have the option to abort withot any change 
+                    break;
+                default:
+                    break;
+            }
         }
         private void CloseButton(object sender, RoutedEventArgs e)
         {
             this.Close();
             localParcelsListWindow.selectionOptions();
         }
-
-
-
         private void SenderTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this.Close();

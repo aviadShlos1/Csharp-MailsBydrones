@@ -22,15 +22,22 @@ namespace PL
     public partial class ParcelsListWindow : Window
     {
         private BlApi.IBL blAccess;
-        private ObservableCollection<ParcelToList> myParcelsPl = new();
+        public ObservableCollection<ParcelToList> myParcelsPl = new();
         public ParcelsListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
             blAccess = blAccessTemp;
             blAccess.GetParcelsBl().ToList().ForEach(x => myParcelsPl.Add(x));
             ParcelsListView.ItemsSource = myParcelsPl;
+            myParcelsPl.CollectionChanged += MyParcelsPl_CollectionChanged;
+            ParcelsListView.ItemsSource = myParcelsPl;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(ParcelStatus));
             PrioritySelector.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
+        }
+
+        private void MyParcelsPl_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            ParcelsListView.ItemsSource = myParcelsPl;
         }
 
         /// <summary>

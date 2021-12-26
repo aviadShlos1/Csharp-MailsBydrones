@@ -250,7 +250,7 @@ namespace BlApi
                 DalAccess.PickUpParcel(droneItem.DroneId);
             }
         }
-        
+
         /// <summary>
         /// Updating the parcel supply details
         /// </summary>
@@ -368,6 +368,11 @@ namespace BlApi
                 DalAccess.GetDronesChargeList().ToList().Remove(droneChargeItem);
             }
         }
-        
+        public void RemoveParcel(ParcelBl myParcel)
+        {
+            DO.ParcelDal temp = DalAccess.GetSingleParcel(myParcel.ParcelId);
+            DalAccess.RemoveParcel(temp);
+        }
+
     }
 }
