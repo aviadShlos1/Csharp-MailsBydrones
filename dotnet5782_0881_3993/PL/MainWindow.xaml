@@ -41,7 +41,7 @@
 
         <Button Content="Admin" HorizontalAlignment="Left" FontSize="35" BorderBrush="Aqua" Margin="526,522,0,0" Height="68" Width="147" Click="Button_Click"/>
         <Button Content="User"  FontSize="35" BorderBrush="Aqua" Margin="0,522,0,0" Height="68" Width="160"/>
-        <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Margin="53,560,0,0" Height="51" Width="76"  Click="ClosingBt_Click_1" RenderTransformOrigin="0.361,-0.533" >
+        <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Margin="53,560,0,0" Height="51" Width="76"  Click="ClosingBt_Click" RenderTransformOrigin="0.361,-0.533" >
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
         <Label Content="Welcome To Dronix System" Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="194,52,0,0" VerticalAlignment="Top" Height="136" Width="546" FontSize="38" FontStyle="Italic" />

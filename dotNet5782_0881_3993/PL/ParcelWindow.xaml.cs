@@ -101,7 +101,9 @@ namespace PL
         }
         private void DeleteParcelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            int index = blAccess.GetParcelsBl().FindIndex(x => x.Id == MyParcel.ParcelId);
+            blAccess.GetParcelsBl().RemoveAt(index);
+            this.Close();
         }
         private void CloseButton(object sender, RoutedEventArgs e)
         {

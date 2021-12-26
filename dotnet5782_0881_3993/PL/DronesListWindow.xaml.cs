@@ -120,7 +120,8 @@ namespace PL
             this.Close();
         }
 
-        private void StatusRadioButton(object sender, RoutedEventArgs e)
+       
+        private void StatusRbtn_Click(object sender, RoutedEventArgs e)
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(DronesListView.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("DroneStatus");
