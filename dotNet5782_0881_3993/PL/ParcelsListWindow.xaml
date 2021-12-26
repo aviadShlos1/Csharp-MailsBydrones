@@ -10,7 +10,12 @@
         AllowsTransparency="True"
         WindowStyle="None"
         Title="ParcelsListWindow" Height="450" Width="800">
-
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFF9F9F9" Offset="0.009"/>
+            <GradientStop Color="#FFC7E3F3" Offset="0.303"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -80,14 +85,12 @@
         </Grid>
 
         <Button Content="Add parcel" HorizontalAlignment="Left" Margin="531,318,0,0" Grid.Row="1" Width="233" Click="AddParcelButton_Click" />
-        <Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="ResetButton_Click">
-            <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>
+        <Button HorizontalAlignment="Left" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="116,355,0,0" Grid.Row="1" Height="45" Width="75" Click="ResetButton_Click">
+            <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="10"   ></fa:FontAwesome>
         </Button>
-        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="81,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="74" Click="ClosingButton_Click" >
+        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="10,355,0,0" Grid.Row="1" Height="45" Width="74" Click="ClosingButton_Click" >
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\addParcel.jpg" />
-        </Grid.Background>
+
     </Grid>
 </Window>
