@@ -90,15 +90,7 @@ namespace PL
         private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
-        }
-        private void GroupByStatus_Click(object sender, RoutedEventArgs e)
-        {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(DronesListView.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("DroneStatus");
-            view.GroupDescriptions.Add(groupDescription);
-        }
-
-       
+        }  
         /// <summary>
         /// A reset button click event, the selection will be cleared
         /// </summary>
@@ -109,6 +101,7 @@ namespace PL
             StatusSelector.SelectedItem = null;
             WeightSelector.SelectedItem = null;
             selectionOptions();
+            StatusRbtn.IsEnabled = true;
         }
         /// <summary>
         /// A double click event. The user will click double click on the wanted drone, in that he will be able to do some action with it
@@ -125,6 +118,14 @@ namespace PL
         {
             new ListsDisplayWindow().Show();
             this.Close();
+        }
+
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(DronesListView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("DroneStatus");
+            view.GroupDescriptions.Add(groupDescription);
+            StatusRbtn.IsEnabled = false;
         }
     }
 }

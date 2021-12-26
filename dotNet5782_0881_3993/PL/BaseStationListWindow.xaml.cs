@@ -100,7 +100,14 @@ namespace PL
             SlotsAmountSelector.Text = "";
             FreeChargeSlotsSelector.SelectedItem = null;
             selectionOptions();
+            ChargeCbx.IsEnabled = true;
         }
+      
+        private void FreeChargeSlotsSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectionOptions();
+        }
+       
         private void BaseStationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BaseStationToList temp = (BaseStationToList)BaseStationListView.SelectedItem;
@@ -108,33 +115,20 @@ namespace PL
         }
         private void EnterClicked(object sender, KeyEventArgs e)
         {
-            if (e.Key==Key.Return)
+            if (e.Key == Key.Return)
             {
                 selectionOptions();
                 e.Handled = true;
             }
         }
-        private void FreeChargeSlotsSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectionOptions();
-        }
 
-        private void ChargeSlotsButton_Click(object sender, RoutedEventArgs e)
+        private void ChargeSlotsRadioBut(object sender, RoutedEventArgs e)
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(BaseStationListView.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("FreeChargeSlots");
             view.GroupDescriptions.Add(groupDescription);
-        }
+            ChargeCbx.IsEnabled = false;
 
-        /// <summary>
-        /// A double click event. The user will click double click on the wanted drone, in that he will be able to do some action with it
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void BaseStationList_DoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    BaseStationToList temp = (BaseStationToList)BaseStationListView.SelectedItem;
-        //    new BaseStationWindow(blAccess, temp.Id, this).Show();
-        //}
+        }
     }
 }

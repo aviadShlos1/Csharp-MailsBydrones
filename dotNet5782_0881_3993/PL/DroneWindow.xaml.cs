@@ -88,6 +88,8 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
+      
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -115,7 +117,6 @@ namespace PL
             {
                 MessageBox.Show("This drone is already exists");
                 IdTbx.BorderBrush = Brushes.Red;
-                IdTbl.Background = Brushes.Red;
             }
         }
 
@@ -290,5 +291,7 @@ namespace PL
         {
 
         }
+
+       
     }
 }
