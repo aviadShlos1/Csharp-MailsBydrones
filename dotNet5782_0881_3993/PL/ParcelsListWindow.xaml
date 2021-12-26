@@ -71,9 +71,9 @@
             <Label Content="Select By Status:" FontSize="14" HorizontalAlignment="Center" Margin="0,12,0,19" FontWeight="Normal" Grid.RowSpan="2"/>
             <Label Content="Select By Priority:" FontSize="14" HorizontalAlignment="Left" Margin="46,48,0,8" FontWeight="Normal" Grid.RowSpan="2"/>
             <ComboBox Name="StatusSelector"  SelectionChanged="StatusSelector_SelectionChanged" 
-                      HorizontalAlignment="Left" Width="200" Margin="159,7,0,24" Grid.ColumnSpan="2"/>
+                      HorizontalAlignment="Left" Width="200" Margin="160,16,0,16" Grid.ColumnSpan="2"/>
             <ComboBox Name="PrioritySelector"  SelectionChanged="PrioritySelector_SelectionChanged" 
-                      HorizontalAlignment="Left" Width="200" Margin="159,43,0,24" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                      HorizontalAlignment="Left" Width="200" Margin="160,57,0,10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
             <RadioButton Name="SenderRbtn" Content="Group By Sender" HorizontalAlignment="Left" FontSize="14" Margin="114,10,0,0" Height="28" VerticalAlignment="Top" Click="SenderButton_Click" Grid.Column="2" Grid.ColumnSpan="2"/>
             <RadioButton Name="RecieveRbtn" Content="Group By Reciever" FontSize="14" Height="28" Click="RecieverButton_Click" 
                     Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="114,46,0,19" Grid.RowSpan="2"/>
