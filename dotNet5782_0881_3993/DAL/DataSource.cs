@@ -88,29 +88,45 @@ namespace DalApi
             for (int i = 0; i < 10; i++)
             {
                 /// ‹summary›TimeSpan field which will be used to determine time
-                TimeSpan time = new TimeSpan(0, rand.Next(0, 60), rand.Next(0, 60));
-                Parcels.Add(new ParcelDal()
+                TimeSpan time = new TimeSpan(0, rand.Next(0, 24), rand.Next(0, 60), 0);
+                ParcelDal myParcel = new ParcelDal()
                 {
-                    Id = rand.Next(0, 1000),
+                    Id = Config.RunId++,
                     SenderId = Customers[rand.Next(0,10)].Id,
                     TargetId = Customers[rand.Next(0,10)].Id,
                     Weight = RandomEnumValue<WeightCategoriesDal>(),
                     Priority = RandomEnumValue<Priorities>(),
-                    CreatingTime = null,
+                    CreatingTime = DateTime.Now,
                     AssignningTime = null,
                     PickingUpTime = null,
                     SupplyingTime = null,
                     DroneToParcelId = 0,
-                });
-                //CreatingTime = DateTime.Now,
-                //    AssignningTime = DateTime.Now + time,
-                //    PickingUpTime = DateTime.Now + time + time,
-                //    SupplyingTime = DateTime.Now + time + time + time,
-                Config.RunId++;
+                };
+
+                if (rand.Next(2) == 1)
+                {
+                    myParcel.AssignningTime = myParcel.CreatingTime + time;
+                    myParcel.DroneToParcelId = Drones[rand.Next(Drones.Count)].Id;
+                    if (rand.Next(2) == 1)
+                    {
+                        myParcel.PickingUpTime = myParcel.AssignningTime + time;
+                        if (rand.Next(2) == 1)
+                            myParcel.SupplyingTime = myParcel.PickingUpTime + time;
+                        else
+                            myParcel.SupplyingTime = null;
+                    }
+                    else
+                        myParcel.PickingUpTime = myParcel.SupplyingTime = null;
+                }
+                else
+                {
+                    myParcel.AssignningTime = myParcel.PickingUpTime = myParcel.SupplyingTime = null;
+                    myParcel.DroneToParcelId = 0;
+                }
+                Parcels.Add(myParcel);
             }
             #endregion adding Parcel details
         }
-    };
-     
+    };    
 }
 

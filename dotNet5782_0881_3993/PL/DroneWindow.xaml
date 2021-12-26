@@ -51,26 +51,6 @@
 
         </Grid>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>

@@ -67,7 +67,7 @@
                      HorizontalAlignment="Left" Text="{Binding ParcelWeight}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
             <TextBox x:Name="Priority" BorderThickness="0" Grid.Row="4" Background="SkyBlue" Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding Priority}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
-            <TextBox x:Name="DroneAssignTbx" BorderThickness="0" Grid.Row="5" Background="SkyBlue"  Grid.Column="1"
+            <TextBox x:Name="DroneAssignTbx" BorderThickness="0" Grid.Row="5" Background="SkyBlue"  Grid.Column="1" MouseDoubleClick="DroneAssignTbx_MouseDoubleClick"
                      HorizontalAlignment="Left"  Text="" VerticalAlignment="Center" Width="auto"  IsReadOnly="True" />
             <TextBox x:Name="CreateTbx" BorderThickness="0" Background="SkyBlue" Grid.Column="1" Grid.Row="0"
                      HorizontalAlignment="Left" Margin="400,31,0,0" Text="{Binding CreatingTime}"
@@ -104,10 +104,10 @@
             <TextBlock Margin="248,0,155,25" FontFamily="Comic Sans MS" FontSize="25" VerticalAlignment="Bottom"
                        Width="auto" Height="40" Text="Supplying:" Grid.Column="1" Grid.Row="3"/>
 
-            <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Click="PickUpParcelButton_Click" HorizontalAlignment="Left" Margin="129,27,0,0" VerticalAlignment="Top" 
-                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="auto" Visibility="Visible" Grid.Column="1" Grid.Row="5"/>
-            <Button x:Name="SupplyParcelButton" Content="supplyParcel" Click="SupplyParcelButton_Click" HorizontalAlignment="Left" Margin="442,27,0,0" VerticalAlignment="Top" 
-                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="auto" Visibility="Visible" Grid.Column="1" Grid.Row="5"/>
+            <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Visibility="Hidden" Click="PickUpParcelButton_Click" HorizontalAlignment="Left" Margin="129,27,0,0" VerticalAlignment="Top" 
+                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="auto"  Grid.Column="1" Grid.Row="5"/>
+            <Button x:Name="SupplyParcelButton" Content="supplyParcel" Visibility="Hidden" Click="SupplyParcelButton_Click" HorizontalAlignment="Left" Margin="442,27,0,0" VerticalAlignment="Top" 
+                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="auto"  Grid.Column="1" Grid.Row="5"/>
 
             <Button x:Name="DeleteParcelButton" Content="Delete" HorizontalAlignment="Left" Margin="342,24,0,0" VerticalAlignment="Top" 
                      Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="62" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Column="1" Grid.Row="5"/>
