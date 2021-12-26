@@ -38,9 +38,18 @@
 
         <Grid x:Name="UpdateOptions" Visibility="Visible">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="9*"/>
-                <ColumnDefinition Width="41*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
             <TextBox x:Name="ParcelIdTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" HorizontalAlignment="Left" Margin="79,60,0,0" Text="{Binding Path= ParcelId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" IsReadOnly="True" Height="19"/>
             <TextBox x:Name="SenderTbx" BorderThickness="1" Background="SkyBlue"  Grid.Column="1" HorizontalAlignment="Left" Margin="79,91,0,0" Text="" VerticalAlignment="Top" Width="100"  IsEnabled="True" Height="23" MouseDoubleClick="SenderTbx_MouseDoubleClick"/>
