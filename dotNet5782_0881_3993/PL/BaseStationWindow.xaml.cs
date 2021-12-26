@@ -112,15 +112,6 @@ namespace PL
             this.Close();
             localBaseStationListWindow.selectionOptions();
         }
-        private void DeleteBaseStationButton_Click(object sender, RoutedEventArgs e)
-        {
-            int index = blAccess.GetBaseStationsBl().FindIndex(x => x.Id == MyBase.Id);
-            blAccess.GetBaseStationsBl().RemoveAt(index);
-            MessageBox.Show("Your delete was done successfully");
-            this.Close();
-            localBaseStationListWindow.selectionOptions();
-        }
-        
         private void DronesInChargeLbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DroneInCharge temp = (DroneInCharge)DronesInChargeLbx.SelectedItem;

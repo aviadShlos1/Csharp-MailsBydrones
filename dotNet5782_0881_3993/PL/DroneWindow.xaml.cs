@@ -285,13 +285,14 @@ namespace PL
             this.Close();
             localDronesListWindow.selectionOptions();
         }
-        #endregion
-
         private void ParcelInShipmentTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            if(MyDrone.ParcelInShip.Id>0)
+            {
+                ParcelsListWindow TempParcelsListWindow = new(blAccess);
+                new ParcelWindow(blAccess, MyDrone.ParcelInShip.Id, TempParcelsListWindow).Show();
+            }          
         }
-
-       
+        #endregion
     }
 }

@@ -47,7 +47,7 @@
         <Label Content="Welcome To Dronix System" Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="194,52,0,0" VerticalAlignment="Top" Height="136" Width="546" FontSize="38" FontStyle="Italic" />
         <!--<MediaElement x:Name="media" Visibility="Visible" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded" Stretch="Fill" HorizontalAlignment="Left" Height="616" Margin="10,10,0,0" VerticalAlignment="Top" Width="789">
         </MediaElement>-->
-
+ 
     </Grid>
 
 </Window>

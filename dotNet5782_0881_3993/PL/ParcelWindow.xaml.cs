@@ -102,9 +102,9 @@ namespace PL
             this.Close();
             localParcelsListWindow.selectionOptions();
         }
-        #endregion update
-
         
+        
+       
         private void SenderTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this.Close();
@@ -119,5 +119,45 @@ namespace PL
             //AssignCustomerToParcel tempReciever = (AssignCustomerToParcel)RecieverTbx.Text;
             new CustomerWindow(blAccess, MyParcel.Reciever.Id, customersWindow).Show();
         }
+
+        /// <summary>
+        /// Button click event, which will enable the user to send the dron to pick up a parcel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PickUpParcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                blAccess.PickUpParcel(MyParcel.DroneAssignToParcel.DroneId);
+                MessageBox.Show("The parcel picked up by the drone successfully");
+                new ParcelWindow(blAccess, MyParcel.ParcelId, localParcelsListWindow).Show();
+                Close();
+            }
+            catch (CannotPickUpException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        /// <summary>
+        /// Button click event, which will enable the user to send the dron to supply a parcel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SupplyParcelButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                blAccess.SupplyParcel(MyParcel.DroneAssignToParcel.DroneId);
+                MessageBox.Show("The parcel supplied by the drone successfully");
+                new ParcelWindow(blAccess, MyParcel.ParcelId, localParcelsListWindow).Show();
+                Close();
+            }
+            catch (CannotSupplyException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        #endregion update
     }
 }

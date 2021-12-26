@@ -103,15 +103,6 @@ namespace PL
             localCustomersWindow.selectionOptions();
             this.Close();
         }
-
-        private void DeleteCustomerButton_Click(object sender, RoutedEventArgs e)
-        {
-            int myIndex = blAccess.GetCustomersBl().FindIndex(x => x.Id == MyCustomer.Id);
-            blAccess.GetCustomersBl().RemoveAt(myIndex);
-            MessageBox.Show("Your delete was done successfully");
-            this.Close();           
-            localCustomersWindow.selectionOptions();
-        }
         private void ParcelsFromCustomerListTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ParcelsListWindow parcelsListWindow = new(blAccess);

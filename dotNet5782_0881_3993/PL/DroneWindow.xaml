@@ -12,7 +12,7 @@
         Title="DroneWindow" Height="450" Width="800">
 
     <Grid Name="MainGrid">
-        <Grid x:Name="AddOption" Visibility="Visible" >
+        <Grid x:Name="AddOption" Visibility="Hidden" >
 
             <TextBlock Name="IdTbl" Margin="28,80,732,0" Text="Id:" FontSize="16" Foreground="OrangeRed" 
                        TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" FontWeight="DemiBold" 
@@ -85,7 +85,7 @@
             <TextBox x:Name="DroneLoc" BorderThickness="0" HorizontalAlignment="Left" Margin="76,290,0,0" Text="" VerticalAlignment="Top" Width="384"  IsReadOnly="True" Grid.Column="1" Height="19" />
             <Grid Grid.ColumnSpan="2">
                 <TextBlock x:Name="ParcelInShipmentTbl" HorizontalAlignment="Left" Margin="76,338,0,0" Text="Parcel in shipment:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Visibility="Visible"/>
-                <TextBox x:Name="ParcelInShipmentTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="221,0,0,42" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="382" IsReadOnly="True" Height="54"/>
+                <TextBox x:Name="ParcelInShipmentTbx" BorderThickness="1" HorizontalAlignment="Left" Margin="221,0,0,42" Text="" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="382" IsReadOnly="True" Height="54" MouseDoubleClick="ParcelInShipmentTbx_MouseDoubleClick"/>
 
             </Grid>
 
