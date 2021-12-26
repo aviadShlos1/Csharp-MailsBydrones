@@ -80,7 +80,7 @@
                      VerticalAlignment="Top" Width="auto"  IsReadOnly="True" Grid.Row="2"/>
             <TextBox x:Name="SupplyTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1"
                      HorizontalAlignment="Left" Margin="401,23,0,0" Text="{Binding SupplyingTime}"
-                     VerticalAlignment="Top" Width="auto"  IsReadOnly="True" Height="14" Grid.Row="3" />
+                     VerticalAlignment="Top" Width="auto"  IsReadOnly="True" Grid.Row="3" />
 
 
             <TextBlock Text="Id:" FontFamily="Comic Sans MS" FontSize="25" Grid.Column="0" TextWrapping="Wrap" Margin="52,0,103,0"
