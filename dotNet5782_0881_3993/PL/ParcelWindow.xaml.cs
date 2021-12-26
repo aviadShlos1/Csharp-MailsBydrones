@@ -88,9 +88,15 @@ namespace PL
             UpdateOptions.DataContext = MyParcel;
             SenderTbx.Text = MyParcel.Sender.ToString();
             RecieverTbx.Text = MyParcel.Reciever.ToString();
-            if (MyParcel.AssignningTime != null && MyParcel.SupplyingTime == null) 
+            if (MyParcel.AssignningTime != null && MyParcel.PickingUpTime == null)
             {
-                AssignTbx.Text = MyParcel.DroneAssignToParcel.ToString();
+                //AssignTbx.Text = MyParcel.DroneAssignToParcel.ToString();
+                PickUpParcelButton.Visibility = Visibility.Visible;
+            }
+            if (MyParcel.PickingUpTime != null & MyParcel.SupplyingTime == null)
+            {
+                //AssignTbx.Text = MyParcel.DroneAssignToParcel.ToString();
+                SupplyParcelButton.Visibility = Visibility.Visible;
             }
         }
         private void DeleteParcelButton_Click(object sender, RoutedEventArgs e)
@@ -102,14 +108,14 @@ namespace PL
             this.Close();
             localParcelsListWindow.selectionOptions();
         }
-        
-        
-       
+
+
+
         private void SenderTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this.Close();
-            CustomersWindow customersWindow = new(blAccess);            
-            new CustomerWindow(blAccess, MyParcel.Sender.Id, customersWindow).Show();         
+            CustomersWindow customersWindow = new(blAccess);
+            new CustomerWindow(blAccess, MyParcel.Sender.Id, customersWindow).Show();
         }
 
         private void RecieverTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -125,25 +131,21 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void PickUpParcelButton_Click(object sender, RoutedEventArgs e) 
+        private void PickUpParcelButton_Click(object sender, RoutedEventArgs e)
         {
-            PickTbx.IsEnabled = false;
-            if (MyParcel.AssignningTime!=null)
+            try
             {
-                PickTbx.IsEnabled = true;
-                try
-                {
-                    blAccess.PickUpParcel(MyParcel.DroneAssignToParcel.DroneId);
-                    MessageBox.Show("The parcel picked up by the drone successfully");
-                    new ParcelWindow(blAccess, MyParcel.ParcelId, localParcelsListWindow).Show();
-                    Close();
-                }
-                catch (CannotPickUpException ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                } 
+                blAccess.PickUpParcel(MyParcel.DroneAssignToParcel.DroneId);
+                MessageBox.Show("The parcel picked up by the drone successfully");
+                new ParcelWindow(blAccess, MyParcel.ParcelId, localParcelsListWindow).Show();
+                Close();
+            }
+            catch (CannotPickUpException ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
+
         /// <summary>
         /// Button click event, which will enable the user to send the dron to supply a parcel
         /// </summary>
@@ -151,23 +153,28 @@ namespace PL
         /// <param name="e"></param>
         private void SupplyParcelButton_Click(object sender, RoutedEventArgs e)
         {
-            SupplyTbx.IsEnabled = false;
-            if (MyParcel.PickingUpTime!=null)
+            try
             {
-                try
-                {
-                    SupplyTbx.IsEnabled = true;
-                    blAccess.SupplyParcel(MyParcel.DroneAssignToParcel.DroneId);
-                    MessageBox.Show("The parcel supplied by the drone successfully");
-                    new ParcelWindow(blAccess, MyParcel.ParcelId, localParcelsListWindow).Show();
-                    Close();
-                }
-                catch (CannotSupplyException ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                } 
+
+                blAccess.SupplyParcel(MyParcel.DroneAssignToParcel.DroneId);
+                MessageBox.Show("The parcel supplied by the drone successfully");
+                new ParcelWindow(blAccess, MyParcel.ParcelId, localParcelsListWindow).Show();
+                Close();
+            }
+            catch (CannotSupplyException ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
         #endregion update
+
+        private void DroneAssignTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DronesListWindow temp = new(blAccess);
+            new DroneWindow(blAccess, MyParcel.DroneAssignToParcel.DroneId, temp).Show();
+        }
     }
 }
+
+    
+
