@@ -94,7 +94,7 @@ namespace PL
                 PickUpParcelButton.Visibility = Visibility.Visible;
             }
             if (MyParcel.PickingUpTime != null & MyParcel.SupplyingTime == null)
-            {
+            { 
                 //AssignTbx.Text = MyParcel.DroneAssignToParcel.ToString();
                 SupplyParcelButton.Visibility = Visibility.Visible;
             }
