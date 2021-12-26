@@ -10,7 +10,7 @@
         AllowsTransparency="True"
         WindowStyle="None"
     Title="BaseStationWindow" Height="450" Width="800">
-  
+
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -34,16 +34,26 @@
             <RowDefinition Height=" 50*"/>
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
-      
-        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" FontFamily="Comic Sans MS" Margin="0,29,0,-5" Background="AliceBlue" ItemsSource="{Binding}" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
+
+        <ListView x:Name="BaseStationListView" Grid.Row="1" FontSize="10pt" FontFamily="Comic Sans MS" Margin="0,43,0,-14" Background="AliceBlue" ItemsSource="{Binding}" MouseDoubleClick="BaseStationListView_MouseDoubleClick">
             <ListView.View >
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
+                    
                     <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="120" />
                     <GridViewColumn DisplayMemberBinding="{Binding BaseStationName}" x:Name="BaseName" Header="Name" Width="120"/>
                     <GridViewColumn DisplayMemberBinding="{Binding FreeChargeSlots}" x:Name="FreeChargeSlots" Header="Free Charge Slots" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding BusyChargeSlots}" x:Name="BusyChargeSlots" Header="Busy Charge Slots" Width="auto"/>
                 </GridView>
             </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
         </ListView>
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,362" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
@@ -57,11 +67,13 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Label Content="        Free / Full :" Grid.Column="0" FontSize="16" Margin="-6,5,194,5" Height="38" FontFamily="Rockwell Extra Bold" Grid.ColumnSpan="2"/>
-            <Label Content=" Charge slots amount :" Grid.Column="1" FontSize="15" HorizontalAlignment="Left" Margin="165,5,0,5" Height="38" Width="212" FontFamily="Rockwell Extra Bold" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="FreeChargeSlotsSelector" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2" Margin="160,0,0,0" SelectionChanged="FreeChargeSlotsSelector_SelectionChanged" />
-            <TextBox x:Name="SlotsAmountSelector" PreviewKeyDown="EnterClicked" Grid.Column="2" HorizontalAlignment="Left" Width="208" Grid.ColumnSpan="2" Margin="182,0,0,0"/>
-            <Button Content="Group By Charge Slots" Foreground="YellowGreen" FontSize="16" Margin="-6,0,0,0" Height="67" Click="ChargeSlotsButton_Click" Width="206" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center"/>
+            <Label Content="Select By Free / Full:" FontFamily="Comic Sans MS" FontSize="14" HorizontalAlignment="Center" Margin="0,12,0,19" FontWeight="Normal" Grid.RowSpan="2"/>
+            <Label Content="Select By Charge slots:" FontFamily="Comic Sans MS" FontSize="14" HorizontalAlignment="Left" Margin="26,57,0,-1" FontWeight="Normal" Grid.RowSpan="2"/>
+            <RadioButton x:Name="ChargeCbx" Content="Group By Charge Slots" FontFamily="Comic Sans MS" HorizontalAlignment="Left" FontSize="14" Margin="114,10,0,0" Height="28" 
+                          VerticalAlignment="Top" Click="ChargeSlotsRadioBut" Grid.Column="2" Grid.ColumnSpan="2"/>
+            <ComboBox x:Name="FreeChargeSlotsSelector" HorizontalAlignment="Left" Width="190" Grid.ColumnSpan="2" Margin="191,12,0,21" SelectionChanged="FreeChargeSlotsSelector_SelectionChanged" />
+            <TextBox x:Name="SlotsAmountSelector" PreviewKeyDown="EnterClicked" HorizontalAlignment="Left" Width="190" Margin="191,44,0,10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
         </Grid>
         <Button Content="Add base Station" HorizontalAlignment="Left" Margin="531,318,0,0" Grid.Row="1" Width="233" Click="AddBaseStationButton_Click"/>
         <Button HorizontalAlignment="Left" BorderThickness="0" Margin="81,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="74" Click="ClosingWindowButton_Click">
@@ -70,8 +82,11 @@
         <Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="ResetButton_Click">
             <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>
         </Button>
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\Base.jpg" />
-        </Grid.Background>
+        <!--<Grid.Background>
+            
+            -->
+        <!--<ImageBrush ImageSource="Images\Base.jpg" />-->
+        <!--
+        </Grid.Background>-->
     </Grid>
 </Window>
