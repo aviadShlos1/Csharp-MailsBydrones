@@ -84,7 +84,7 @@
                     Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="114,46,0,19" Grid.RowSpan="2"/>
         </Grid>
 
-        <Button Content="Add parcel" HorizontalAlignment="Left" Margin="531,318,0,0" Grid.Row="1" Width="233" Click="AddParcelButton_Click" />
+        <Button Content="Add parcel" HorizontalAlignment="Left" Margin="567,355,0,0" Grid.Row="1" Width="233" Click="AddParcelButton_Click" />
         <Button HorizontalAlignment="Left" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="116,355,0,0" Grid.Row="1" Height="45" Width="75" Click="ResetButton_Click">
             <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="10"   ></fa:FontAwesome>
         </Button>

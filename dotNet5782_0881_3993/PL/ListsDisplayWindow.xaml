@@ -36,8 +36,8 @@
         <Button Content="Base Stations" Margin="49,401,0,0" BorderBrush="Aqua" Click="BaseButton_Click" HorizontalAlignment="Left" Height="56"/>
         <Button Content="Customers" Margin="613,262,0,0" BorderBrush="Aqua" Click="CustomersButton_Click" HorizontalAlignment="Left" />
         <Button Content="Parcels"  Margin="613,401,0,0" BorderBrush="Aqua"  Click="ParcelsButton_Click_1" HorizontalAlignment="Left" Width="146" Height="56" />
-        <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Margin="53,560,0,0" Height="51" Width="76"  Click="ClosingBt_Click" RenderTransformOrigin="0.361,-0.533" >
-            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
+        <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Margin="0,589,0,0" Height="51" Width="76"  Click="ClosingBt_Click" RenderTransformOrigin="0.361,-0.533" >
+            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="40" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
         <Label Content="       Lists Display " Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" Height="91" Width="369" FontSize="38" FontStyle="Italic" />
 
