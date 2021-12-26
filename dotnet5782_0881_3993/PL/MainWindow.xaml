@@ -41,70 +41,13 @@
 
         <Button Content="Admin" HorizontalAlignment="Left" FontSize="35" BorderBrush="Aqua" Margin="526,522,0,0" Height="68" Width="147" Click="Button_Click"/>
         <Button Content="User"  FontSize="35" BorderBrush="Aqua" Margin="0,522,0,0" Height="68" Width="160"/>
-        <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Margin="53,560,0,0" Height="51" Width="76"  Click="Close_Click" RenderTransformOrigin="0.361,-0.533" >
+        <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Margin="53,560,0,0" Height="51" Width="76"  Click="ClosingBt_Click" RenderTransformOrigin="0.361,-0.533" >
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
         <Label Content="Welcome To Dronix System" Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="194,52,0,0" VerticalAlignment="Top" Height="136" Width="546" FontSize="38" FontStyle="Italic" />
         <!--<MediaElement x:Name="media" Visibility="Visible" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded" Stretch="Fill" HorizontalAlignment="Left" Height="616" Margin="10,10,0,0" VerticalAlignment="Top" Width="789">
         </MediaElement>-->
 
-    </Grid>
-
-                    <TabItem x:Name="TIRegister" Header="Register" Margin="-40,-1,0,0" FontSize="14" FontWeight="Bold" FontFamily="Consolas" Foreground="#FFB00B0B" Background="{x:Null}" BorderBrush="{x:Null}" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="88" GotFocus="TIRegister_GotFocus">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Label Content="מספר מזהה&#xD;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,10,0,0" FontSize="12" Grid.Column="1" Foreground="White"/>
-                            <TextBox HorizontalAlignment="Left" Margin="32,11,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                            <TextBox HorizontalAlignment="Left" Margin="32,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1"/>
-                            <Label Content="שם" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1 " FontSize="12" Margin="56,5,0,0" Width="32" Foreground="White" />
-                            <Label Content="קו אורך" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3" FontSize="12" Margin="29,3,0,0" Foreground="#FFF9F7F7" />
-                            <Label Content="מספר טלפון" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" FontSize="12" Margin="6,0,0,0" Foreground="#FFF6F6F6" />
-                            <TextBox HorizontalAlignment="Left" Margin="32,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="2"/>
-                            <Label Content="קו רוחב" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4" FontSize="12" Margin="28,3,0,0" Foreground="#FFF7F6F6" />
-                            <TextBox HorizontalAlignment="Left" Margin="31,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="3"/>
-                            <TextBox HorizontalAlignment="Left" Margin="31,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="4"/>
-                        </Grid>
-                    </TabItem>
-                </TabControl>
-            </Grid>
-            <Grid x:Name="Disiaper" Visibility="Visible">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Left" Margin="92,143,0,0" Text="{Binding Value, ElementName=PBloding, StringFormat=\{0:#0.0\}%}"  TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFEEDADA" FontSize="10" FontWeight="Bold" Width="36" Grid.Column="1" Grid.Row="1"/>
-                <Label Content="בס&quot;ד&#xD;&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="291,10,0,0" VerticalAlignment="Top" Foreground="#FFF5F4F4" FontWeight="Bold" FontFamily="Consolas"/>
-                <Label Content="Loding.." HorizontalAlignment="Left" Margin="314,116,0,0" VerticalAlignment="Top" Foreground="#FFF5F4F4" FontWeight="Bold" FontFamily="Consolas" Height="25" Grid.ColumnSpan="2" Grid.Row="1"/>
-                <Label Content="בס&quot;ד&#xD;&#xA;" Grid.Column="1" HorizontalAlignment="Left" Margin="291,10,0,0" VerticalAlignment="Top" Foreground="#FFF5F4F4" FontWeight="Bold" FontFamily="Consolas"/>
-                <ProgressBar x:Name="PBloding" HorizontalAlignment="Left" Height="10" Margin="270,146,0,0" VerticalAlignment="Top" Width="150" ValueChanged="PBloding_ValueChanged" Grid.ColumnSpan="2" Grid.Row="1">
-                    <ProgressBar.Foreground>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFECEBE4"/>
-                            <GradientStop Color="#FFEECE09" Offset="0.526"/>
-                        </LinearGradientBrush>
-                    </ProgressBar.Foreground>
-                    <ProgressBar.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFF3F3F1" Offset="0.009"/>
-                            <GradientStop Color="#FFEA2218" Offset="0.48"/>
-                        </LinearGradientBrush>
-                    </ProgressBar.Background>
-                </ProgressBar>
-            </Grid>
-        </Grid>
+    
     </Grid>
 </Window>

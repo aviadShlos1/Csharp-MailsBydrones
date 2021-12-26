@@ -81,6 +81,8 @@ namespace PL
             StatusSelector.SelectedItem = null;
             PrioritySelector.SelectedItem = null;
             selectionOptions();
+            SenderRbtn.IsEnabled = true ;
+            RecieveRbtn.IsEnabled = true; 
         }
         private void ClosingButton_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +95,7 @@ namespace PL
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ParcelsListView.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("SenderName");
             view.GroupDescriptions.Add(groupDescription);
+            SenderRbtn.IsEnabled = false;
         }
 
         private void RecieverButton_Click(object sender, RoutedEventArgs e)
@@ -100,6 +103,7 @@ namespace PL
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ParcelsListView.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("RecieverName");
             view.GroupDescriptions.Add(groupDescription);
+            RecieveRbtn.IsEnabled = false;
         }
     }
 }
