@@ -168,7 +168,7 @@ namespace PL
         }
         #endregion update
 
-        private void DroneAssignTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DroneAssignTbx_MouseEnter(object sender, MouseEventArgs e)
         {
             DronesListWindow temp = new(blAccess);
             new DroneWindow(blAccess, MyParcel.DroneAssignToParcel.DroneId, temp).Show();

@@ -67,8 +67,8 @@
                      HorizontalAlignment="Left" Text="{Binding ParcelWeight}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
             <TextBox x:Name="Priority" BorderThickness="0" Grid.Row="4" Background="SkyBlue" Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding Priority}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
-            <TextBox x:Name="DroneAssignTbx" BorderThickness="0" Grid.Row="5" Background="SkyBlue"  Grid.Column="1" MouseDoubleClick="DroneAssignTbx_MouseDoubleClick"
-                     HorizontalAlignment="Left"  Text="" VerticalAlignment="Center" Width="auto"  IsReadOnly="True" />
+            <TextBlock x:Name="DroneAssignTbx"  Grid.Row="5" Background="SkyBlue"  Grid.Column="1" MouseLeftButtonDown="DroneAssignTbx_MouseEnter"
+                     HorizontalAlignment="Left"  Text="{Binding DroneAssignToParcel}" VerticalAlignment="Center" Width="auto"  />
             <TextBox x:Name="CreateTbx" BorderThickness="0" Background="SkyBlue" Grid.Column="1" Grid.Row="0"
                      HorizontalAlignment="Left" Margin="400,31,0,0" Text="{Binding CreatingTime}"
                      VerticalAlignment="Top" Width="auto"  IsReadOnly="True"/>
@@ -80,7 +80,7 @@
                      VerticalAlignment="Top" Width="auto"  IsReadOnly="True" Grid.Row="2"/>
             <TextBox x:Name="SupplyTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1"
                      HorizontalAlignment="Left" Margin="401,23,0,0" Text="{Binding SupplyingTime}"
-                     VerticalAlignment="Top" Width="auto"  IsReadOnly="True" Height="14" Grid.Row="3" />
+                     VerticalAlignment="Top" Width="auto"  IsReadOnly="True"  Grid.Row="3" />
 
 
             <TextBlock Text="Id:" FontFamily="Comic Sans MS" FontSize="25" Grid.Column="0" TextWrapping="Wrap" Margin="52,0,103,0"
@@ -104,17 +104,19 @@
             <TextBlock Margin="248,0,155,25" FontFamily="Comic Sans MS" FontSize="25" VerticalAlignment="Bottom"
                        Width="auto" Height="40" Text="Supplying:" Grid.Column="1" Grid.Row="3"/>
 
-            <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Visibility="Hidden" Click="PickUpParcelButton_Click" HorizontalAlignment="Left" Margin="129,27,0,0" VerticalAlignment="Top" 
-                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="auto"  Grid.Column="1" Grid.Row="5"/>
-            <Button x:Name="SupplyParcelButton" Content="supplyParcel" Visibility="Hidden" Click="SupplyParcelButton_Click" HorizontalAlignment="Left" Margin="442,27,0,0" VerticalAlignment="Top" 
-                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="auto"  Grid.Column="1" Grid.Row="5"/>
+            <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Visibility="Hidden" Click="PickUpParcelButton_Click" HorizontalAlignment="Left" Margin="347,2,0,0" VerticalAlignment="Top" 
+                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="auto"  Grid.Column="1" Grid.Row="4"/>
+            <Button x:Name="SupplyParcelButton" Content="supplyParcel" Visibility="Hidden" Click="SupplyParcelButton_Click" HorizontalAlignment="Left" Margin="436,73,0,0" VerticalAlignment="Top" 
+                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="35" Width="62"  Grid.Column="1" Grid.Row="3" Grid.RowSpan="2"/>
 
-            <Button x:Name="DeleteParcelButton" Content="Delete" HorizontalAlignment="Left" Margin="342,24,0,0" VerticalAlignment="Top" 
-                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="62" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Column="1" Grid.Row="5"/>
-            <Button HorizontalAlignment="Center" VerticalAlignment="Center" 
-                    Height="27" Width="53" Click="CloseButton" Grid.Column="1" Grid.Row="5">
-                <materialDesign:PackIcon Kind="ArrowBackCircle" Margin="192,29,0,0" Grid.Row="5" Height="28" Width="48" Grid.Column="1"/>
-            </Button>
+            <Button x:Name="DeleteParcelButton" HorizontalAlignment="Left" Margin="436,41,0,0" VerticalAlignment="Top" Background="Transparent" BorderThickness="0"
+                     FontFamily="Comic Sans MS" Height="45" Width="64" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"/>
+            <fa:ImageAwesome Icon="Trash" Stretch="Fill" Foreground="Black" RenderTransformOrigin="-0.17,0.502" Grid.Column="1" Margin="436,44,30,64" Grid.Row="4" Grid.RowSpan="2"/>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" 
+                    Height="40" Width="68" Click="CloseButton" Grid.Column="1" Grid.Row="4" Margin="349,48,0,0" Grid.RowSpan="2"/>
+            <fa:ImageAwesome Icon="ArrowCircleLeft" Stretch="fill" Foreground="Black" RenderTransformOrigin="-0.17,0.502" Grid.Column="1" Margin="347,46,116,62" Grid.Row="4" Grid.RowSpan="2"/>
+
+
         </Grid>
     </Grid>
 </Window>
