@@ -114,6 +114,11 @@ namespace PL
 
         private void ClosingUpdateButton_Click(object sender, RoutedEventArgs e)
         {
+           
+        }
+
+        private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
             localCustomersWindow.selectionOptions();
         }

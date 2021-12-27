@@ -32,7 +32,7 @@
 
 
     <Grid>
-        <Grid x:Name="AddOption" Visibility="Visible">
+        <Grid x:Name="AddOption" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>
@@ -61,7 +61,7 @@
 
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Hidden">
+        <Grid x:Name="UpdateOptions" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="41*"/>
@@ -83,10 +83,11 @@
             <ListView x:Name="ParcelsToCustomerListTbx" BorderThickness="1" Background="LightGray" HorizontalAlignment="Left" Margin="101,0,0,112"  VerticalAlignment="Bottom" Width="527" Height="39"  Grid.Column="1" FontFamily="Comic Sans MS" FontWeight="Bold" MouseDoubleClick="ParcelsToCustomerListTbx_MouseDoubleClick"/>
 
             <Button x:Name="UpdateCustomerButton" Content="Update Data" Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Click="UpdateCustomerButton_Click" Visibility="Visible" Width="215"  Margin="130,351,0,27" Grid.Column="1" HorizontalAlignment="Left" />
-            <Button  HorizontalAlignment="Left" Margin="46,364,0,0" Height="40" Width="88" Click="CloseUpdateButton_Click">
-                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
-
+            <Button HorizontalAlignment="Left" BorderThickness="0" Margin="0,366,0,0" Height="84" Width="104" Click="CloseUpdateButton_Click" Grid.ColumnSpan="3">
+                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
             </Button>
+
+          
 
         </Grid>
 
