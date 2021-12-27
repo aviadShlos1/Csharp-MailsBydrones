@@ -40,7 +40,7 @@
             <RowDefinition Height=" 400*"/>
         </Grid.RowDefinitions>
 
-        <ListView x:Name="ParcelsListView"  MouseDoubleClick="ParcelsListView_MouseDoubleClick"  Foreground="DarkOrange"  Grid.Row="1" Margin="0,29,0,-5" Background="AliceBlue" >
+        <ListView x:Name="ParcelsListView"  MouseDoubleClick="ParcelsListView_MouseDoubleClick" FontFamily="Comic Sans MS"  Foreground="DarkOrange"  Grid.Row="1" Margin="0,29,0,-5" Background="AliceBlue" >
             <ListView.View>
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
                     <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="auto" />

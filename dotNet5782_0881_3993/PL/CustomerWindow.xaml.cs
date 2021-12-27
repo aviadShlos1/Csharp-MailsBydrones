@@ -84,8 +84,8 @@ namespace PL
             MyCustomer = blAccess.GetSingleCustomer(CustomerId);
             UpdateOptions.DataContext = MyCustomer;
             CustomerLocationTbx.Text = MyCustomer.Location.ToString();
-            ParcelsFromCustomerListTbx.ItemsSource = MyCustomer.ParcelsFromCustomerList;
-            ParcelsToCustomerListTbx.ItemsSource = MyCustomer.ParcelsToCustomerList;
+            SentParcels.ItemsSource = MyCustomer.ParcelsFromCustomerList;
+            RecievedParcels.ItemsSource = MyCustomer.ParcelsToCustomerList;
         }
         /// <summary>
         /// Button click event, which will enable the user to close the update window
@@ -99,17 +99,17 @@ namespace PL
             localCustomersWindow.selectionOptions();
             this.Close();
         }
-        private void ParcelsFromCustomerListTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void SentParcelsTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ParcelsListWindow parcelsListWindow = new(blAccess);
-            ParcelByCustomer temp = (ParcelByCustomer)ParcelsFromCustomerListTbx.SelectedItem;
+            ParcelByCustomer temp = (ParcelByCustomer)SentParcels.SelectedItem;
             new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
         }
 
-        private void ParcelsToCustomerListTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void RecievedParcelsTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ParcelsListWindow parcelsListWindow = new(blAccess);
-            ParcelByCustomer temp = (ParcelByCustomer)ParcelsToCustomerListTbx.SelectedItem;
+            ParcelByCustomer temp = (ParcelByCustomer)RecievedParcels.SelectedItem;
             new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
         }
         private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
