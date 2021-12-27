@@ -53,8 +53,9 @@
             <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,278,0,0" Text="" VerticalAlignment="Top" Width="120"/>
 
 
-            <Button HorizontalAlignment="Left" BorderThickness="0" Margin="0,366,0,0" Height="84" Width="104" Click="Button_Click" Grid.ColumnSpan="3">
-                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
+            <Button HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="10,13,0,13" Width="72" Height="54" Click="CloseUpdateButton_Click" Grid.Row="6">
+                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="41" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502">
+                </fa:ImageAwesome>
             </Button>
             <Button Content="Add"   Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" 
                      Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="31" Width="62" Click="AddButton_Click"/>
@@ -110,11 +111,12 @@
 
 
 
-            <Button x:Name="UpdateCustomerButton" Content="Update Data" Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Click="UpdateCustomerButton_Click" Visibility="Visible" Width="215"  Margin="131,10,0,14" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="6" />
-            <Button  HorizontalAlignment="Left" Margin="52,18,0,0" Height="40" Width="88" Click="CloseUpdateButton_Click" Grid.Row="6">
-                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="70" Height="40" Foreground="Red"></fa:ImageAwesome>
-
+            <Button x:Name="UpdateCustomerButton" Content="Update Data" Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Click="UpdateCustomerButton_Click" Visibility="Visible" Width="214"  Margin="150,12,0,12" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="6" />
+            <Button HorizontalAlignment="Left" BorderThickness="0" Margin="1,0,0,0" Height="84" Width="104" Click="CloseUpdateButton_Click" Grid.Row="6">
+                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
             </Button>
+
+
 
         </Grid>
 
