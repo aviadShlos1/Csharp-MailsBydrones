@@ -53,7 +53,7 @@
             <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,278,0,0" Text="" VerticalAlignment="Top" Width="120"/>
 
 
-            <Button HorizontalAlignment="Left" BorderThickness="0" Margin="0,366,0,0" Height="84" Width="104" Click="ClosingUpdateButton_Click" Grid.ColumnSpan="3">
+            <Button HorizontalAlignment="Left" BorderThickness="0" Margin="0,366,0,0" Height="84" Width="104" Click="Button_Click" Grid.ColumnSpan="3">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
             </Button>
             <Button Content="Add"   Grid.Column="2" HorizontalAlignment="Left" Margin="601,371,0,0" VerticalAlignment="Top" 
@@ -63,7 +63,7 @@
 
         <Grid x:Name="UpdateOptions" Visibility="Visible">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -101,9 +101,9 @@
                        Grid.Row="2" Text="Phone:" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Location:" Grid.Column="0" Margin="52,0,103,0"
                        Grid.Row="3" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto"/>
-            <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="ParcelsFromCustomerList:" FontSize="25"
+            <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="SentParcels:" FontSize="25"
                        Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible" Grid.RowSpan="3"/>
-            <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="ParcelsToCustomerList:" FontSize="25"
+            <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="recievedParcels:" FontSize="25"
                        Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible" Grid.RowSpan="3"/>
 
 

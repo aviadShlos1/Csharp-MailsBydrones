@@ -111,8 +111,9 @@ namespace PL
             ParcelByCustomer temp = (ParcelByCustomer)ParcelsToCustomerListTbx.SelectedItem;
             new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
         }
+       
 
-        private void ClosingUpdateButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             localCustomersWindow.selectionOptions();
