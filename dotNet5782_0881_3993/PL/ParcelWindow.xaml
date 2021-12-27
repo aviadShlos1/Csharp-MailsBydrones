@@ -55,6 +55,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
 
             <TextBox x:Name="ParcelIdTbx" BorderThickness="0" Grid.Row="0" Background="SkyBlue" Grid.Column="1"
@@ -76,10 +77,10 @@
                      HorizontalAlignment="Left" Margin="400,25,0,0" Text="{Binding AssignningTime}" 
                      VerticalAlignment="Top" Width="auto"  IsReadOnly="True" RenderTransformOrigin="0.44,-0.116" Grid.Row="1" />
             <TextBox x:Name="PickTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1" 
-                     HorizontalAlignment="Left" Margin="399,14,0,0" Text="{Binding PickingUpTime}" 
+                     HorizontalAlignment="Left" Margin="399,22,0,0" Text="{Binding PickingUpTime}" 
                      VerticalAlignment="Top" Width="auto"  IsReadOnly="True" Grid.Row="2"/>
             <TextBox x:Name="SupplyTbx" BorderThickness="0"  Background="SkyBlue" Grid.Column="1"
-                     HorizontalAlignment="Left" Margin="401,23,0,0" Text="{Binding SupplyingTime}"
+                     HorizontalAlignment="Left" Margin="399,21,0,0" Text="{Binding SupplyingTime}"
                      VerticalAlignment="Top" Width="auto"  IsReadOnly="True"  Grid.Row="3" />
 
 
@@ -95,13 +96,13 @@
                        Grid.Row="4" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Visibility="Visible" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Drone Assigned:" Grid.Column="0" Margin="52,0,103,0"
                        Grid.Row="5" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Visibility="Visible" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" FontSize="25" Margin="248,0,0,21" Text="Creating:" VerticalAlignment="Bottom"
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" FontSize="25" Margin="253,0,0,12" Text="Creating:" VerticalAlignment="Bottom"
                        Width="auto" Grid.Column="1" Grid.Row="0"/>
             <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" FontSize="25"   VerticalAlignment="Center" Width="auto"
-                       Height="33" Text="Assignning:"  Grid.Column="1" Grid.Row="1" Margin="248,0,0,21"/>
-            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" FontSize="25" Margin="251,0,0,28"  VerticalAlignment="Bottom" Width="auto"
+                       Height="39" Text="Assignning:"  Grid.Column="1" Grid.Row="1" Margin="253,0,0,0"/>
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" FontSize="25" Margin="253,0,0,6"  VerticalAlignment="Bottom" Width="auto"
                        Height="45" Text="Picking Up:" Grid.Column="1" Grid.Row="2"/>
-            <TextBlock Margin="248,0,155,25" FontFamily="Comic Sans MS" FontSize="25" VerticalAlignment="Bottom"
+            <TextBlock Margin="253,0,150,9" FontFamily="Comic Sans MS" FontSize="25" VerticalAlignment="Bottom"
                        Width="auto" Height="40" Text="Supplying:" Grid.Column="1" Grid.Row="3"/>
 
             <Button x:Name="PickUpParcelButton" Content="PickUpParcel" Visibility="Hidden" Click="PickUpParcelButton_Click" HorizontalAlignment="Left" Margin="347,2,0,0" VerticalAlignment="Top" 
@@ -109,12 +110,14 @@
             <Button x:Name="SupplyParcelButton" Content="supplyParcel" Visibility="Hidden" Click="SupplyParcelButton_Click" HorizontalAlignment="Left" Margin="436,73,0,0" VerticalAlignment="Top" 
                      Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="35" Width="62"  Grid.Column="1" Grid.Row="3" Grid.RowSpan="2"/>
 
-            <Button x:Name="DeleteParcelButton" HorizontalAlignment="Left" Margin="436,41,0,0" VerticalAlignment="Top" Background="Transparent" BorderThickness="0"
-                     FontFamily="Comic Sans MS" Height="45" Width="64" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"/>
-            <fa:ImageAwesome Icon="Trash" Stretch="Fill" Foreground="Black" RenderTransformOrigin="-0.17,0.502" Grid.Column="1" Margin="436,44,30,64" Grid.Row="4" Grid.RowSpan="2"/>
+            <Button x:Name="DeleteParcelButton" HorizontalAlignment="Left" Margin="147,13,0,0" VerticalAlignment="Top" Background="Transparent" BorderThickness="0"
+                     FontFamily="Comic Sans MS" Height="46" Width="81" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Row="6"/>
+            <fa:ImageAwesome Icon="Trash" Stretch="Fill" Foreground="Black" RenderTransformOrigin="-0.17,0.502" Margin="160,16,39,21" Grid.Row="6"/>
             <Button HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" 
-                    Height="40" Width="68" Click="CloseButton" Grid.Column="1" Grid.Row="4" Margin="349,48,0,0" Grid.RowSpan="2"/>
-            <fa:ImageAwesome Icon="ArrowCircleLeft" Stretch="fill" Foreground="Black" RenderTransformOrigin="-0.17,0.502" Grid.Column="1" Margin="347,46,116,62" Grid.Row="4" Grid.RowSpan="2"/>
+                    Height="75" Width="49" Click="CloseButton" Margin="50,0,0,0" Grid.Row="6"/>
+            <fa:ImageAwesome Icon="ArrowCircleLeft" Stretch="UniformToFill" Foreground="Black" RenderTransformOrigin="-0.17,0.502" Margin="48,13,170,17" Grid.Row="6"/>
+
+
 
 
         </Grid>

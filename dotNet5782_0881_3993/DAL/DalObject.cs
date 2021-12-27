@@ -189,6 +189,11 @@ namespace DalApi
             DataSource.DronesInCharge.RemoveAt(DataSource.DronesInCharge.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
             return totalCharge;
         }
+
+        public void RemoveParcel(ParcelDal myParcel)
+        {
+            GetParcelsList().ToList().Remove(myParcel);
+        }
         #endregion Update methods
 
         #region Single display 

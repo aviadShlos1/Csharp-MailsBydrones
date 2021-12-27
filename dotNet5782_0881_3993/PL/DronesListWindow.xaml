@@ -11,6 +11,12 @@
         AllowsTransparency="True"
         WindowStyle="None"
         Title="DronesList" Height="450" Width="800">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFF9F9F9" Offset="0.009"/>
+            <GradientStop Color="#FFC7E3F3" Offset="0.303"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -84,12 +90,12 @@
                           VerticalAlignment="Top" Click="StatusRbtn_Click" Grid.Column="2" Grid.ColumnSpan="2"/>
 
         </Grid>
-        <Button Content="Add drone" HorizontalAlignment="Left" Margin="615,318,0,0" Grid.Row="1" Height="45" Width="149" Click="AddDroneButton_Click"/>
-        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="81,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="74" Click="ClosingWindowButton_Click">
+        <Button Content="Add drone" HorizontalAlignment="Left" Margin="641,345,0,0" Grid.Row="1" Height="45" Width="149" Click="AddDroneButton_Click"/>
+        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="10,345,0,0" Grid.Row="1" Height="45" Width="74" Click="ClosingWindowButton_Click">
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
-        <Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="ResetButton_Click">
-            <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>
+        <Button BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="121,345,0,0" Grid.Row="1" Height="45" Width="52" Click="ResetButton_Click" HorizontalAlignment="Left">
+            <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="10"   ></fa:FontAwesome>
         </Button>
         <!--<Grid.Background>
             <ImageBrush ImageSource="Images\DronesBackground.jpg" />

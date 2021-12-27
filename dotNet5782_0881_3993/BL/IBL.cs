@@ -32,6 +32,7 @@ namespace BlApi
         public void AssignParcelToDrone(int myDroneId);
         public void PickUpParcel(int droneId);
         public void SupplyParcel(int droneId);
+        public void RemoveParcel(ParcelBl myParcel);
         #endregion UpdateOptions    
 
         #region DisplayOptions

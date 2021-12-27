@@ -80,6 +80,7 @@ namespace DalApi
         /// </summary>
         /// <param name="droneId"></param>
         public TimeSpan DroneRelease(int droneId);
+        public void RemoveParcel(ParcelDal myParcel);
         #endregion Update methods
 
         #region Single display 
