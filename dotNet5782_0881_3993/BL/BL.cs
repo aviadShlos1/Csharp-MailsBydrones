@@ -69,8 +69,8 @@ namespace BlApi
             var num1 = myLongitude * (Math.PI / 180.0);
             var num2 = stationLongitude * (Math.PI / 180.0);
             var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin((num2-num1) / 2.0), 2.0); //calculate according to the formula in this site: https://www.movable-type.co.uk/scripts/latlong.html
-            double distanceInMeters = (double)(6371000.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));                             
-            return distanceInMeters/100000 ; //return ditance in format that matches the battery units
+            double distanceInMeters = (double)(6371000.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));
+            return UpToTwoDecimalPoints(distanceInMeters / 100000); //return ditance in format that matches the battery units
         }
         /// <summary>
         /// This func checks who is the closet station to my location that i gives
@@ -96,6 +96,12 @@ namespace BlApi
                 }  
             }
             return closetBaseStation;
+        }
+
+        private static double UpToTwoDecimalPoints(double num)
+        {
+            var total = Convert.ToDouble(string.Format("{0:0.00}", num));
+            return total;
         }
 
         #region Convert decima to sexagesimal function (Bonus)
@@ -181,7 +187,7 @@ namespace BlApi
                         double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;//The battery consumption that enables the drone to supply the parcel
                         Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude,itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).Location;
                         double minCharge2 = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, closetStation.Longitude, closetStation.Latitude);//The battery consumption that enables to the drone to arrive the station for charge
-                        itemDrone.BatteryPercent = Math.Round(rand.NextDouble() * (minCharge1 + minCharge2) + (100 - (minCharge1 + minCharge2)));
+                        itemDrone.BatteryPercent = UpToTwoDecimalPoints(rand.NextDouble() * (minCharge1 + minCharge2) + (100 - (minCharge1 + minCharge2)));
                     }
                 }
                 //If the drone isn't in a shipment
@@ -195,7 +201,7 @@ namespace BlApi
                     int index = rand.Next(BaseStationsDalList.Count());
                     itemDrone.DroneLocation.Latitude = BaseStationsDalList[index].Latitude;
                     itemDrone.DroneLocation.Longitude = BaseStationsDalList[index].Longitude;
-                    itemDrone.BatteryPercent = Math.Round(rand.NextDouble() * 20);//rand between 0-20 percent
+                    itemDrone.BatteryPercent = UpToTwoDecimalPoints(rand.NextDouble() * 20);//rand between 0-20 percent
                     DalAccess.DroneToCharge(itemDrone.DroneId, BaseStationsDalList[index].Id);
                 }
                 //If the drone is free
@@ -228,7 +234,7 @@ namespace BlApi
                     Location closetStation = new Location();
                     closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude,BaseStationsDalList).Location;
                     double minCharge = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, closetStation.Longitude, closetStation.Latitude);//the minimum charge to enable it going to charge
-                    itemDrone.BatteryPercent = Math.Round(rand.NextDouble()*(100-minCharge)+minCharge) ;
+                    itemDrone.BatteryPercent = UpToTwoDecimalPoints(rand.NextDouble()*(100-minCharge)+minCharge) ;
                 }
             }
             
