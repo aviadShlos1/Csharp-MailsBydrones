@@ -59,17 +59,17 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="BaseIdTbx" BorderThickness="0" Grid.Row="0" Background="LightGray" Grid.Column="1"
+            <TextBox x:Name="BaseIdTbx" BorderThickness="0" Grid.Row="0" Background="LightBlue" Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding Id}" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsReadOnly="True"/>
-            <TextBox x:Name="BaseNameTbx" BorderThickness="0" Grid.Row="1" Background="LightGray"  Grid.Column="1" 
+            <TextBox x:Name="BaseNameTbx" BorderThickness="0" Grid.Row="1" Background="LightBlue"  Grid.Column="1" 
                      HorizontalAlignment="Left" Text="{Binding BaseStationName}" VerticalAlignment="Center" Width="auto"  IsEnabled="True"/>
-            <TextBox x:Name="BaseLocation" BorderThickness="1" Grid.Row="2" Background="LightGray" Grid.Column="1" 
+            <TextBox x:Name="BaseLocation" BorderThickness="1" Grid.Row="2" Background="LightBlue" Grid.Column="1" 
                      HorizontalAlignment="Left"  Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsReadOnly="True" MaxLength="2"/>
-            <TextBox x:Name="UpdateFreeChargeTbx" BorderThickness="0" Grid.Row="3" Background="LightGray" Grid.Column="1"
+            <TextBox x:Name="UpdateFreeChargeTbx" BorderThickness="0" Grid.Row="3" Background="LightBlue" Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding Path=FreeChargeSlots}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
-            <ListView x:Name="DronesInChargeLbx" BorderThickness="1" Background="LightGray" 
-                      HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45"
-                      Grid.Column="1" FontFamily="Comic Sans MS" FontWeight="Bold" MouseDoubleClick="DronesInChargeLbx_MouseDoubleClick"/>
+            <ListView x:Name="DronesInChargeLbx" BorderThickness="1" Background="LightBlue" 
+                      HorizontalAlignment="Left" Margin="10,0,0,9"  VerticalAlignment="Bottom" Width="527" Height="45"
+                      Grid.Column="1" Grid.Row="4" FontFamily="Comic Sans MS" FontWeight="Bold" MouseDoubleClick="DronesInChargeLbx_MouseDoubleClick"/>
 
             <TextBlock Text="Id:" FontFamily="Comic Sans MS" FontSize="25" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="52,0,103,0"
                        VerticalAlignment="Center" Visibility="Visible" />

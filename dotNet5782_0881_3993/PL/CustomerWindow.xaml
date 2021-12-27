@@ -104,8 +104,8 @@
                        Grid.Row="3" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto"/>
             <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="SentParcels:" FontSize="25"
                        Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible" Grid.RowSpan="3"/>
-            <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="recievedParcels:" FontSize="25"
-                       Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible" Grid.RowSpan="3"/>
+            <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="25,4,0,0" Text="RecievedParcels:" FontSize="25"
+                       Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible"/>
 
 
 
