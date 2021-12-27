@@ -177,8 +177,7 @@ namespace PL
         {
             blAccess.UpdateDroneName(MyDrone.DroneId, DroneModelTbx.Text);
             MessageBox.Show("Your update was done successfully");
-            localDronesListWindow.selectionOptions();
-            //new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show(); 
+            new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show(); 
             Close();
         }
         /// <summary>

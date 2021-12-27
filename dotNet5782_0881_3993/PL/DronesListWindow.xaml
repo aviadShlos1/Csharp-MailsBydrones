@@ -65,12 +65,7 @@
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </ListView.GroupStyle>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+           </ListView>
 
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,361" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
