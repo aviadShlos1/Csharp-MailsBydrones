@@ -48,24 +48,42 @@
 
         <Grid x:Name="UpdateOptions" Visibility="Visible">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="433*"/>
-                <ColumnDefinition Width="367*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="BaseIdTbx" BorderThickness="0" Grid.Row="0" Background="LightGray" Grid.Column="1"
+                     HorizontalAlignment="Left" Text="{Binding Id}" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsReadOnly="True"/>
+            <TextBox x:Name="BaseNameTbx" BorderThickness="0" Grid.Row="1" Background="LightGray"  Grid.Column="1" 
+                     HorizontalAlignment="Left" Text="{Binding BaseStationName}" VerticalAlignment="Center" Width="auto"  IsEnabled="True"/>
+            <TextBox x:Name="BaseLocation" BorderThickness="1" Grid.Row="2" Background="LightGray" Grid.Column="1" 
+                     HorizontalAlignment="Left"  Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsReadOnly="True" MaxLength="2"/>
+            <TextBox x:Name="UpdateFreeChargeTbx" BorderThickness="0" Grid.Row="3" Background="LightGray" Grid.Column="1"
+                     HorizontalAlignment="Left" Text="{Binding Path=FreeChargeSlots}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
+            <ListView x:Name="DronesInChargeLbx" BorderThickness="1" Background="LightGray" 
+                      HorizontalAlignment="Left" Margin="101,0,0,188"  VerticalAlignment="Bottom" Width="527" Height="45"
+                      Grid.Column="1" FontFamily="Comic Sans MS" FontWeight="Bold" MouseDoubleClick="DronesInChargeLbx_MouseDoubleClick"/>
 
-            <TextBox x:Name="BaseIdTbx" BorderThickness="0" HorizontalAlignment="Left" Margin="250,83,0,0" Text="{Binding Path=Id}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True" Height="16"/>
-            <TextBox x:Name="BaseNameTbx" BorderThickness="0" HorizontalAlignment="Left" Margin="250,120,0,0" Text="{Binding Path=BaseStationName}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" Height="16" />
-            <TextBox x:Name="BaseLocation" BorderThickness="0"  HorizontalAlignment="Left" Margin="250,160,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="242" IsReadOnly="True" MaxLength="3" Height="16" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="UpdateFreeChargeTbx" BorderThickness="0"  HorizontalAlignment="Left" Margin="250,200,0,0" Text="{Binding Path=FreeChargeSlots}" VerticalAlignment="Top" Width="120"  IsReadOnly="True" Height="16" />
-            <ListView x:Name="DronesInChargeLbx" Margin="250,240,0,148" MouseDoubleClick="DronesInChargeLbx_MouseDoubleClick"/>
+            <TextBlock Text="Id:" FontFamily="Comic Sans MS" FontSize="25" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="52,0,103,0"
+                       VerticalAlignment="Center" Visibility="Visible" />
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Name:" Grid.Column="0" Grid.Row="1" 
+                       FontSize="25" TextWrapping="Wrap"  Visibility="Visible" VerticalAlignment="Center" Width="auto" Margin="52,0,0,0"/>
+            <TextBlock x:Name="ModelTbl" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Grid.Column="0" Margin="52,0,103,0"
+                       Grid.Row="2" Text="Location:" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Free Charge Slots:" Grid.Column="0" Margin="10,0,0,0"
+                       Grid.Row="3" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="221"/>
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="18,0,0,0" Text="Drones in Charge:" FontSize="25"
+                       Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Visibility="Visible"/>
 
-            <TextBlock Margin="76,80,9,0" Text="Id:" FontSize="14" Foreground="GreenYellow" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Visible" Height="19" />
-            <TextBlock HorizontalAlignment="Left" Margin="76,120,0,0" Foreground="GreenYellow" Text="Name:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="19"/>
-            <TextBlock Name="ModelTbl" HorizontalAlignment="Left" Foreground="GreenYellow" Margin="76,160,0,0" Text="Location:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Height="19"/>
-            <TextBlock HorizontalAlignment="Left" Margin="76,200,0,0" Foreground="GreenYellow" Text="Free Charge Slots:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Height="19"/>
-            <TextBlock HorizontalAlignment="Left" Margin="76,240,0,0" Foreground="GreenYellow" Text="Drones in Charge:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Height="19"/>
-
-            <Button x:Name="UpdateNameButton" HorizontalAlignment="Left" Content="Update Data" VerticalAlignment="Top" Width="118" Click="UpdateNameButton_Click" Visibility="Visible" Margin="194,23,0,0" Grid.Column="1" Height="38" />
-            <Button HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Margin="0,366,0,0" Height="84" Width="104" Click="CloseUpdateButton_Click" Grid.ColumnSpan="3">
+            <Button x:Name="UpdateNameButton" HorizontalAlignment="Left" Content="Update Data" VerticalAlignment="Center" Width="118" Click="UpdateNameButton_Click" Visibility="Visible" Margin="364,0,0,0" Grid.Column="1" Height="38" Grid.Row="5" />
+            <Button HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Margin="21,0,0,-4" Height="84" Width="104" Click="CloseUpdateButton_Click" Grid.Row="5">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
             </Button>
 
