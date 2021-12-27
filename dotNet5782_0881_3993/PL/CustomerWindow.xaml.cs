@@ -91,11 +91,6 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            localCustomersWindow.selectionOptions();
-        }
         private void UpdateCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             blAccess.UpdateCustomerData(MyCustomer.Id, CustomerNameTbx.Text, CustomerPhoneTbx.Text);
@@ -115,6 +110,12 @@ namespace PL
             ParcelsListWindow parcelsListWindow = new(blAccess);
             ParcelByCustomer temp = (ParcelByCustomer)ParcelsToCustomerListTbx.SelectedItem;
             new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
+        }
+
+        private void ClosingUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            localCustomersWindow.selectionOptions();
         }
         #endregion Update
     }

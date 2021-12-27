@@ -50,10 +50,10 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Add customer" HorizontalAlignment="Left" Margin="567,400,0,0" Width="233" Click="AddCustomerButton_Click"/>
+        <Button Content="Add customer" HorizontalAlignment="Left" Margin="567,390,0,0" Width="233" Click="AddCustomerButton_Click" Height="46"/>
 
-        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="0,378,0,0" Height="84" Width="104" Click="ClosingWindowButton_Click">
-            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
+        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="10,371,0,0" Height="84" Width="104" Click="ClosingWindowButton_Click">
+            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
 
     </Grid>

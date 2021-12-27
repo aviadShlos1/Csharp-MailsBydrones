@@ -112,10 +112,11 @@
 
             <Button x:Name="DeleteParcelButton" HorizontalAlignment="Left" Margin="147,13,0,0" VerticalAlignment="Top" Background="Transparent" BorderThickness="0"
                      FontFamily="Comic Sans MS" Height="46" Width="81" Click="DeleteParcelButton_Click" Visibility="Hidden" Grid.Row="6"/>
-            <fa:ImageAwesome Icon="Trash" Stretch="Fill" Foreground="Black" RenderTransformOrigin="-0.17,0.502" Margin="160,16,39,21" Grid.Row="6"/>
-            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" 
-                    Height="75" Width="49" Click="CloseButton" Margin="50,0,0,0" Grid.Row="6"/>
-            <fa:ImageAwesome Icon="ArrowCircleLeft" Stretch="UniformToFill" Foreground="Black" RenderTransformOrigin="-0.17,0.502" Margin="48,13,170,17" Grid.Row="6"/>
+            <fa:ImageAwesome x:Name="TrashIcon" Icon="Trash" Stretch="Fill" Foreground="Black" Visibility="Hidden" RenderTransformOrigin="-0.17,0.502" Margin="160,16,39,21" Grid.Row="6"/>
+            <Button HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="10,13,0,13" Width="72" Height="54" Click="CloseUpdateButton_Click" Grid.Row="6">
+                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="41" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502">
+                </fa:ImageAwesome>
+            </Button>
 
 
 
