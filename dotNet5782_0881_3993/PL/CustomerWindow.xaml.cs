@@ -63,11 +63,12 @@ namespace PL
                 IdTbl.Background = Brushes.Red;
             }
         }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void CloseAddButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            localCustomersWindow.selectionOptions();
         }
+
         #endregion
 
         #region Update 
@@ -111,12 +112,6 @@ namespace PL
             ParcelByCustomer temp = (ParcelByCustomer)ParcelsToCustomerListTbx.SelectedItem;
             new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
         }
-
-        private void ClosingUpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
