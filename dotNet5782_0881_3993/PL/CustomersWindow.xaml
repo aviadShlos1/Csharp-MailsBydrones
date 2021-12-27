@@ -44,8 +44,8 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Phone}" x:Name="Phone" Header="Phone Number" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding RecieverGotParcels}" x:Name="RecieverGotParcels" Header="Got Parcels" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding InWayToReciever}" x:Name="InWayToReciever" Header="Parcels In The Way" Width="auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding SentAndSuppliedParcels}" x:Name="SentAndSuppliedParcels" Header="Sent And Supplied" Width="auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding SentAndNotSuppliedParcels}" x:Name="SentAndNotSuppliedParcels" Header="Sent And Weren't Supplied" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding SentAndSupplied}" x:Name="SentAndSuppliedParcels" Header="Sent And Supplied" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding SentAndNotSupplied}" x:Name="SentAndNotSuppliedParcels" Header="Sent And Weren't Supplied" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>

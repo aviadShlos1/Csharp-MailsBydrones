@@ -34,7 +34,7 @@ namespace BlApi
             Location myLocation = new() { Latitude = dalBaseStation.Latitude, Longitude = dalBaseStation.Longitude };
             BaseStationBl myStationBl = new() { Id = dalBaseStation.Id, BaseStationName = dalBaseStation.Name, Location = myLocation, FreeChargeSlots = dalBaseStation.FreeChargeSlots, DronesInChargeList = new() };
 
-            var dronesInChargePerStation = DalAccess.GetDronesChargeList().TakeWhile(x => x.StationId == baseStationId).ToList();
+            var dronesInChargePerStation = DalAccess.GetDronesChargeList().Where(x => x.StationId == baseStationId).ToList();
             foreach (var item in dronesInChargePerStation)
             {
                 var tempDrone = DronesListBL.Find(x => x.DroneId == item.DroneId);
@@ -101,8 +101,8 @@ namespace BlApi
 
             Location myLocation = new() { Latitude = myCustomer.Latitude, Longitude = myCustomer.Longitude };
             CustomerBL myCustomerBl = new() { Id = myCustomer.Id, Name = myCustomer.Name, Phone = myCustomer.Phone, Location = myLocation, ParcelsFromCustomerList = new(), ParcelsToCustomerList = new() };
-            List<DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().TakeWhile(x => x.SenderId == customerId).ToList();
-            List<DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().TakeWhile(x => x.TargetId == customerId).ToList();
+            List<DO.ParcelDal> mySentParcels = DalAccess.GetParcelsList().Where(x => x.SenderId == customerId).ToList();
+            List<DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().Where(x => x.TargetId == customerId).ToList();
             // getting the all parcels which were sent by the customer 
             foreach (var senderItem in mySentParcels)
             {
