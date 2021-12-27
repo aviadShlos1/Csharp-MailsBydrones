@@ -82,7 +82,7 @@
             <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="18,0,0,0" Text="Drones in Charge:" FontSize="25"
                        Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Visibility="Visible"/>
 
-            <Button x:Name="UpdateNameButton" HorizontalAlignment="Left" Content="Update Data" VerticalAlignment="Center" Width="118" Click="UpdateNameButton_Click" Visibility="Visible" Margin="364,0,0,0" Grid.Column="1" Height="38" Grid.Row="5" />
+            <Button x:Name="UpdateNameButton" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignFloatingActionLightButton}" Content="Update Data" VerticalAlignment="Center" Width="118" Click="UpdateNameButton_Click" Visibility="Visible" Margin="364,0,0,0" Grid.Column="1" Height="38" Grid.Row="5" />
             <Button HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Margin="21,0,0,-4" Height="84" Width="104" Click="CloseUpdateButton_Click" Grid.Row="5">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
             </Button>

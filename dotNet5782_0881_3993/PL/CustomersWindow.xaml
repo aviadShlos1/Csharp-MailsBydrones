@@ -39,13 +39,13 @@
             <ListView.View>
 
                 <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" x:Name="Id"  Header="Id" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" x:Name="CustName" Header="Name" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Phone}" x:Name="Phone" Header="Phone Number" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding RecieverGotParcels}" x:Name="RecieverGotParcels" Header="Got Parcels" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding InWayToReciever}" x:Name="InWayToReciever" Header="Parcels In The Way" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding SentAndSuppliedParcels}" x:Name="SentAndSuppliedParcels" Header="Sent And Supplied" Width="auto"/>
                     <GridViewColumn DisplayMemberBinding="{Binding SentAndNotSuppliedParcels}" x:Name="SentAndNotSuppliedParcels" Header="Sent And Weren't Supplied" Width="auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding RecieverGotParcels}" x:Name="RecieverGotParcels" Header="Reciever Got Parcels" Width="auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding InWayToReciever}" x:Name="InWayToReciever" Header="In Way To Reciever" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>
