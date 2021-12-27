@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -64,7 +65,9 @@
             <TextBlock HorizontalAlignment="Left" Margin="76,240,0,0" Foreground="GreenYellow" Text="Drones in Charge:" FontSize="14" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Height="19"/>
 
             <Button x:Name="UpdateNameButton" HorizontalAlignment="Left" Content="Update Data" VerticalAlignment="Top" Width="118" Click="UpdateNameButton_Click" Visibility="Visible" Margin="194,23,0,0" Grid.Column="1" Height="38" />
-            <Button Content="Close" HorizontalAlignment="Left" Margin="25,384,0,0" VerticalAlignment="Top" Height="27" Width="53" Click="CloseBaseButton_Click"/>
+            <Button HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" Margin="0,366,0,0" Height="84" Width="104" Click="CloseUpdateButton_Click" Grid.ColumnSpan="3">
+                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
+            </Button>
 
         </Grid>
 

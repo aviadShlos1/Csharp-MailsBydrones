@@ -90,6 +90,7 @@ namespace PL
             RecieverTbx.Text = MyParcel.Reciever.ToString();
             if (MyParcel.AssignningTime==null)
             {
+                TrashIcon.Visibility = Visibility.Visible;
                 DeleteParcelButton.Visibility = Visibility.Visible;
             }
             if (MyParcel.AssignningTime != null && MyParcel.PickingUpTime == null)
@@ -122,11 +123,7 @@ namespace PL
                     break;
             }
         }
-        private void CloseButton(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            localParcelsListWindow.selectionOptions();
-        }
+      
         private void SenderTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this.Close();
@@ -188,6 +185,12 @@ namespace PL
         {
             DronesListWindow temp = new(blAccess);
             new DroneWindow(blAccess, MyParcel.DroneAssignToParcel.DroneId, temp).Show();
+        }
+
+        private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            localParcelsListWindow.selectionOptions();
         }
     }
 }

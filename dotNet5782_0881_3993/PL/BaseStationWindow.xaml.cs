@@ -107,11 +107,6 @@ namespace PL
             localBaseStationListWindow.selectionOptions();
             this.Close();
         }
-        private void CloseBaseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            localBaseStationListWindow.selectionOptions();
-        }
         private void DronesInChargeLbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DroneInCharge temp = (DroneInCharge)DronesInChargeLbx.SelectedItem;
@@ -119,7 +114,12 @@ namespace PL
             new DroneWindow(blAccess, temp.Id, dronesListWindow).Show();
             
         }
-        #endregion update
 
+        private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            localBaseStationListWindow.selectionOptions();
+        }
+        #endregion update
     }
 }
