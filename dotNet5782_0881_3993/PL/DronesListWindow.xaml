@@ -53,7 +53,7 @@
                     <GridViewColumn  x:Name="Battery" Header="Battery %" DisplayMemberBinding="{Binding BatteryPercent}" Width="auto"/>
                     <GridViewColumn  x:Name="Weight" Header="Weight"  DisplayMemberBinding="{Binding DroneWeight}" Width="auto"/>
                     <GridViewColumn  x:Name="DronesStatus" Header="Status" DisplayMemberBinding="{Binding DroneStatus}" Width="auto"/>
-                    <GridViewColumn  x:Name="ParcelTransfer"  Header="Parcel"  DisplayMemberBinding="{Binding Delivery}"  Width="100"/>
+                    <GridViewColumn  x:Name="ParcelTransfer"  Header="Parcel"  DisplayMemberBinding="{Binding ParcelAssignId}"  Width="100"/>
                 </GridView>
             </ListView.View>
             <ListView.GroupStyle>

@@ -111,7 +111,7 @@
                      Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="35" Width="62"  Grid.Column="1" Grid.Row="3" Grid.RowSpan="2"/>
 
             <Button x:Name="DeleteParcelButton" HorizontalAlignment="Left" Margin="147,13,0,0" VerticalAlignment="Top" Background="Transparent" BorderThickness="0"
-                     FontFamily="Comic Sans MS" Height="46" Width="81" Click="DeleteParcelButton_Click" Visibility="Visible" Grid.Row="6"/>
+                     FontFamily="Comic Sans MS" Height="46" Width="81" Click="DeleteParcelButton_Click" Visibility="Hidden" Grid.Row="6"/>
             <fa:ImageAwesome Icon="Trash" Stretch="Fill" Foreground="Black" RenderTransformOrigin="-0.17,0.502" Margin="160,16,39,21" Grid.Row="6"/>
             <Button HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" 
                     Height="75" Width="49" Click="CloseButton" Margin="50,0,0,0" Grid.Row="6"/>

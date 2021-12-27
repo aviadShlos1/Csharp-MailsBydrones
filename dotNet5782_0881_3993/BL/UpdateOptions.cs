@@ -24,10 +24,9 @@ namespace BlApi
         {
             DO.DroneDal myDrone = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
             if (newModel!="")
-            {
                 myDrone.Model = newModel;
-            }
             DalAccess.UpdateDrone(myDrone);
+            DronesListBL.Find(x => x.DroneId == droneId).Model = newModel;
         }
        
         /// <summary>

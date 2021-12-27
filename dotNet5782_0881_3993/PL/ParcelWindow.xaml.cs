@@ -88,12 +88,16 @@ namespace PL
             UpdateOptions.DataContext = MyParcel;
             SenderTbx.Text = MyParcel.Sender.ToString();
             RecieverTbx.Text = MyParcel.Reciever.ToString();
+            if (MyParcel.AssignningTime==null)
+            {
+                DeleteParcelButton.Visibility = Visibility.Visible;
+            }
             if (MyParcel.AssignningTime != null && MyParcel.PickingUpTime == null)
             {
                 //AssignTbx.Text = MyParcel.DroneAssignToParcel.ToString();
                 PickUpParcelButton.Visibility = Visibility.Visible;
             }
-            if (MyParcel.PickingUpTime != null & MyParcel.SupplyingTime == null)
+            if (MyParcel.PickingUpTime != null && MyParcel.SupplyingTime == null)
             { 
                 //AssignTbx.Text = MyParcel.DroneAssignToParcel.ToString();
                 SupplyParcelButton.Visibility = Visibility.Visible;

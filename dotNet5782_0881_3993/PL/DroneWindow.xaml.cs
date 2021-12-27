@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 using BO;
 namespace PL
 {
@@ -174,10 +175,10 @@ namespace PL
          /// <param name="e"></param>
         private void NameUpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            var textBox = new TextBox();
-            blAccess.UpdateDroneName(MyDrone.DroneId, textBox.Text);
+            blAccess.UpdateDroneName(MyDrone.DroneId, DroneModelTbx.Text);
             MessageBox.Show("Your update was done successfully");
-            new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show(); 
+            localDronesListWindow.selectionOptions();
+            //new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show(); 
             Close();
         }
         /// <summary>

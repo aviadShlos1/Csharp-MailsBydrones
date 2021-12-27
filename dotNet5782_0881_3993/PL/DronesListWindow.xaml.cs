@@ -2,8 +2,11 @@
 //       Evyatar Levi Ben Ston 318753993 
 //Targil3
 //brief: In this program we built the presentation layer
+using BO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +15,9 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media; 
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Collections.ObjectModel;
-using BO;
 
 namespace PL
 {
@@ -32,11 +33,15 @@ namespace PL
             InitializeComponent();
             blAccess = blAccessTemp;
             myDronesPl = new ObservableCollection<DroneToList>(blAccess.GetDronesBl());
-            //blAccess.GetDronesBl().ToList().ForEach(x => myDronesPl.Add(x));
-            //DronesListView.ItemsSource = myDronesPl;
-            DronesListView.DataContext = myDronesPl;
+            myDronesPl.CollectionChanged += myDronesPl_CollectionChanged;
+            DronesListView.ItemsSource = myDronesPl;
+            //DronesListView.DataContext = myDronesPl;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
+        }
+        private void myDronesPl_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            selectionOptions();
         }
         /// <summary>
         /// A button click event, the add drone window will be opened
@@ -55,19 +60,19 @@ namespace PL
         {
             if (WeightSelector.SelectedItem == null && StatusSelector.SelectedItem == null) //the user select none
             {
-                DronesListView.ItemsSource = blAccess.GetDronesBl();
+                DronesListView.ItemsSource = myDronesPl.ToList();
             }
             else if (WeightSelector.SelectedItem == null) // the user selected by status
             {
-                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
+                DronesListView.ItemsSource = myDronesPl.Where(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem);
             }
             else if (StatusSelector.SelectedItem == null)// the user selected by weight
             {
-                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
+                DronesListView.ItemsSource = myDronesPl.Where(x => x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
             }
             else // the user selected both by status and weight
             {
-                DronesListView.ItemsSource = blAccess.GetDronesBl(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem && x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
+                DronesListView.ItemsSource = myDronesPl.Where(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem && x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
             }
         }
 
