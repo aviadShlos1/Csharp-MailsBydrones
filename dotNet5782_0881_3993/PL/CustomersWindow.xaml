@@ -55,9 +55,6 @@
         <Button HorizontalAlignment="Left" BorderThickness="0" Margin="0,378,0,0" Height="84" Width="104" Click="ClosingWindowButton_Click">
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
-        <!--<Button HorizontalAlignment="Center" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="0,318,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" ">
-            <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="5"   ></fa:FontAwesome>
-        </Button>-->
 
     </Grid>
 </Window>

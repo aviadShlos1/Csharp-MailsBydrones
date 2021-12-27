@@ -24,7 +24,7 @@ namespace BO
         public Location DroneLocation { get; set; }
         public override string ToString()
         {
-            return $"DroneId: {DroneId}, Model: {Model}, DroneWeight: {DroneWeight}, BatteryPercent: {BatteryPercent}, DroneStatusesBL: {DroneStatus}, ParcelInShipment: {ParcelInShip}, Location: {DroneLocation}";
+            return $"DroneId: {DroneId}, Model: {Model}, DroneWeight: {DroneWeight}, BatteryPercent: {BatteryPercent}%, DroneStatusesBL: {DroneStatus}, ParcelInShipment: {ParcelInShip}, Location: {DroneLocation}";
         }
     }
 }

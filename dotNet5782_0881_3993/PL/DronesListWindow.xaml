@@ -94,8 +94,8 @@
         <Button HorizontalAlignment="Left" BorderThickness="0" Margin="10,345,0,0" Grid.Row="1" Height="45" Width="74" Click="ClosingWindowButton_Click">
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
-        <Button BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="121,345,0,0" Grid.Row="1" Height="45" Width="52" Click="ResetButton_Click" HorizontalAlignment="Left">
-            <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="10"   ></fa:FontAwesome>
+        <Button BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="121,345,0,0" Grid.Row="1" Height="45" Width="66" Click="ResetButton_Click" HorizontalAlignment="Left">
+            <fa:FontAwesome Icon="Refresh"    />
         </Button>
         <!--<Grid.Background>
             <ImageBrush ImageSource="Images\DronesBackground.jpg" />
