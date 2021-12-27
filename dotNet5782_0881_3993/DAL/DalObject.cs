@@ -192,7 +192,7 @@ namespace DalApi
 
         public void RemoveParcel(ParcelDal myParcel)
         {
-            GetParcelsList().ToList().Remove(myParcel);
+            DalApi.DataSource.Parcels.Remove(myParcel);
         }
         #endregion Update methods
 

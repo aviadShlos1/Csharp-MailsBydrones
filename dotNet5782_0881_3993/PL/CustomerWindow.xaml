@@ -32,7 +32,7 @@
 
 
     <Grid>
-        <Grid x:Name="AddOption" Visibility="Hidden">
+        <Grid x:Name="AddOption" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>
@@ -44,7 +44,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="28,131,0,0" Text="Name:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
             <TextBlock HorizontalAlignment="Left" Margin="28,184,0,0" Text="Phone:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
             <TextBlock HorizontalAlignment="Left" Margin="28,234,0,0" Text="Longitude:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
-            <TextBlock HorizontalAlignment="Left" Margin="28,280,0,0" Text="Longitude:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="28,280,0,0" Text="Latitude:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontWeight="DemiBold" TextTrimming="WordEllipsis" FontStyle="Normal" FontStretch="UltraCondensed" Cursor="AppStarting" FontFamily="Bernard MT Condensed" Height="auto"/>
 
             <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,81,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="9"/>
             <TextBox Name="NameTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,123,0,0" Text="" VerticalAlignment="Top" Width="120"/>
