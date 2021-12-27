@@ -68,7 +68,7 @@ namespace BlApi
             var d2 = stationLatitude * (Math.PI / 180.0);
             var num1 = myLongitude * (Math.PI / 180.0);
             var num2 = stationLongitude * (Math.PI / 180.0);
-            var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin((num2-num1) / 2.0), 2.0); //calculate according to the formula in this site: https://www.movable-type.co.uk/scripts/latlong.html
+            var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin((num2 - num1) / 2.0), 2.0); //calculate according to the formula in this site: https://www.movable-type.co.uk/scripts/latlong.html
             double distanceInMeters = (double)(6371000.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))));
             return UpToTwoDecimalPoints(distanceInMeters / 100000); //return ditance in format that matches the battery units
         }
@@ -93,7 +93,7 @@ namespace BlApi
                     closetDistance = tempDistance;
                     Location myLoc = new() { Longitude = item.Longitude, Latitude = item.Latitude };
                     closetBaseStation = new() { Id = item.Id, BaseStationName = item.Name, Location = myLoc, FreeChargeSlots = item.FreeChargeSlots };
-                }  
+                }
             }
             return closetBaseStation;
         }
@@ -120,14 +120,15 @@ namespace BlApi
                 if (decimalValueToConvert >= 0)
                     direction = "N";
                 else direction = "S";
-
-                if (LongOrLat == "Latitude")
-                {
-                    if (decimalValueToConvert >= 0)
-                        direction = "E";
-                    else direction = "W";
-                }
             }
+
+            if (LongOrLat == "Latitude")
+            {
+                if (decimalValueToConvert >= 0)
+                    direction = "E";
+                else direction = "W";
+            }
+
 
             int sec = (int)Math.Round(decimalValueToConvert * 3600);
             int deg = sec / 3600;
@@ -150,12 +151,12 @@ namespace BlApi
             mediumWeightConsumption = energyConsumption[2];
             heavyWeightConsumption = energyConsumption[3];
             chargeRate = energyConsumption[4];
-            
+
             // initializing the entities lists from the dal layer
-            List <DroneDal> DronesDalList = DalAccess.GetDronesList().ToList();
-            List <ParcelDal> ParcelsDalList = DalAccess.GetParcelsList().ToList();
-            List <BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList().ToList();
-            List <CustomerDal> CustomersDalList = DalAccess.GetCustomersList().ToList();
+            List<DroneDal> DronesDalList = DalAccess.GetDronesList().ToList();
+            List<ParcelDal> ParcelsDalList = DalAccess.GetParcelsList().ToList();
+            List<BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList().ToList();
+            List<CustomerDal> CustomersDalList = DalAccess.GetCustomersList().ToList();
 
             DronesListBL = new List<DroneToList>();
             foreach (var item in DronesDalList)
@@ -184,8 +185,8 @@ namespace BlApi
                         double targetLon = GetCustomerDetails(itemParcel.TargetId).Longitude;
                         double targerLat = GetCustomerDetails(itemParcel.TargetId).Latitude;
                         double targetDistance = GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, targetLon, targerLat);
-                        double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight+1] * targetDistance;//The battery consumption that enables the drone to supply the parcel
-                        Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude,itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).Location;
+                        double minCharge1 = energyConsumption[(int)itemDrone.DroneWeight + 1] * targetDistance;//The battery consumption that enables the drone to supply the parcel
+                        Location closetStation = ClosetStation(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, DalAccess.GetBaseStationsList().ToList()).Location;
                         double minCharge2 = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, closetStation.Longitude, closetStation.Latitude);//The battery consumption that enables to the drone to arrive the station for charge
                         itemDrone.BatteryPercent = UpToTwoDecimalPoints(rand.NextDouble() * (minCharge1 + minCharge2) + (100 - (minCharge1 + minCharge2)));
                     }
@@ -208,13 +209,13 @@ namespace BlApi
                 if (itemDrone.DroneStatus == DroneStatusesBL.Available)
                 {
                     //Finding the customers that have supplied parcels
-                    List<DO.ParcelDal> suppliedParcels = ParcelsDalList.FindAll(x=>x.SupplyingTime != null);
+                    List<DO.ParcelDal> suppliedParcels = ParcelsDalList.FindAll(x => x.SupplyingTime != null);
                     List<DO.CustomerDal> suppliedCustomers = new();
                     foreach (var item in DalAccess.GetCustomersList())
                     {
                         foreach (var item2 in suppliedParcels)
                         {
-                            if (item.Id==item2.TargetId)
+                            if (item.Id == item2.TargetId)
                                 suppliedCustomers.Add(item);
                         }
                     }
@@ -232,12 +233,12 @@ namespace BlApi
                         itemDrone.DroneLocation.Longitude = temp.Longitude;
                     }
                     Location closetStation = new Location();
-                    closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude,BaseStationsDalList).Location;
+                    closetStation = ClosetStation(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, BaseStationsDalList).Location;
                     double minCharge = freeWeightConsumption * GetDistance(itemDrone.DroneLocation.Latitude, itemDrone.DroneLocation.Longitude, closetStation.Longitude, closetStation.Latitude);//the minimum charge to enable it going to charge
-                    itemDrone.BatteryPercent = UpToTwoDecimalPoints(rand.NextDouble()*(100-minCharge)+minCharge) ;
+                    itemDrone.BatteryPercent = UpToTwoDecimalPoints(rand.NextDouble() * (100 - minCharge) + minCharge);
                 }
             }
-            
+
         }
     }
 }
