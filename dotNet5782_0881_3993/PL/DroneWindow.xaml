@@ -12,7 +12,7 @@
         Title="DroneWindow" Height="450" Width="800">
 
     <Grid Name="MainGrid">
-        <Grid x:Name="AddOption" Visibility="Hidden" >
+        <Grid x:Name="AddOption" Visibility="Hidden">
 
             <TextBlock Name="IdTbl" Margin="28,80,732,0" Text="Id:" FontSize="16" Foreground="OrangeRed" 
                        TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" FontWeight="DemiBold" 
@@ -51,7 +51,7 @@
 
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -100,7 +100,6 @@
 
 
             <WrapPanel x:Name="UpdateMethods" Margin="41,10,74,0" Grid.Column="1" Grid.Row="7">
-
                 <Button x:Name="UpdateNameButton" Content="UpdateName" Width="auto" Click="NameUpdateButton_Click" Visibility="Visible"/>
                 <Button x:Name="DroneToChargeButton" Content="DroneToCharge" Width="auto" Click="DroneToChargeButton_Click" Visibility="Collapsed"/>
                 <Button x:Name="ReleaseFromChargeButton" Content="ReleaseFromCharge" Width="auto" Click="ReleaseFromChargeButton_Click" Visibility="Collapsed"/>
