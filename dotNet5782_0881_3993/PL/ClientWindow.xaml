@@ -38,9 +38,9 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="37*"/>
                             <RowDefinition Height="122*"/>
-                        </Grid.RowDefinitions> 
+                        </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Text="Outgoing Parcels" Margin="152,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" ></TextBlock>
-                        <ListView x:Name="listOfCustomerSend" ItemsSource="{Binding Items1}" Margin="10,-3,10,10" FontSize="12" Grid.RowSpan="2">
+                        <ListView x:Name="listOfCustomerSend" ItemsSource="{Binding}" Margin="10,-3,10,10" FontSize="12" Grid.RowSpan="2">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -52,8 +52,8 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Priority}" Header="Priority" Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding Weight}" Header="Weight"  Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding Status}" Header="Status" Width="auto"/>
-                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.Id}" Header="RecieverId" Width="auto"/>
-                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.Name}" Header="RecieverName" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.CustId,Mode=OneWay}" Header="RecieverId" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.CustName,Mode=OneWay}" Header="RecieverName" Width="auto"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -67,7 +67,7 @@
                             <RowDefinition Height="122*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Text="Incoming Parcels" Margin="152,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" />
-                        <ListView x:Name="listOfCustomerReceive" ItemsSource="{Binding Items1}" Margin="10,-3,0,10" FontSize="12" Grid.RowSpan="2">
+                        <ListView x:Name="listOfCustomerReceive" ItemsSource="{Binding}" Margin="10,-3,0,10" FontSize="12" Grid.RowSpan="2">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -79,8 +79,8 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Priority}" Header="Priority"  Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding Weight}" Header="Weight" Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding Status}" Header="Status" Width="auto"/>
-                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.Id}" Header="SenderId" Width="auto"/>
-                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.Name}" Header="SenderName" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.CustId,Mode=OneWay}" Header="SenderId" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.CustName,Mode=OneWay}" Header="SenderName" Width="auto"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -105,6 +105,7 @@
                             <RowDefinition Height="11*"/>
                             <RowDefinition Height="35*"/>
                         </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" FontSize="30" HorizontalAlignment="Center" Foreground="Black" Text="Add Parcel" Grid.RowSpan="2" Width="147"/>
                     </Grid>
                 </materialDesign:Card>
                 <materialDesign:Card   Grid.Column="1" Background="{DynamicResource PrimaryHueLightBrush}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="8" 
@@ -127,10 +128,10 @@
                 </materialDesign:Card>
 
             </Grid>
-            <TextBlock HorizontalAlignment="Left" Margin="500,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
-                       Height="64" Width="166" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="SkyBlue" Grid.RowSpan="2" ><Run FlowDirection="RightToLeft" Text="!Welcome"/>
+            <TextBlock HorizontalAlignment="Left" Margin="450,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                       Height="64" Width="166" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="SkyBlue" Grid.RowSpan="2" ><Run FlowDirection="RightToLeft" Text="Welcome"/>
             </TextBlock>
-            <TextBlock  x:Name="TBuserName" HorizontalAlignment="Left" Margin="334,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="28" Width="142" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="SkyBlue" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="{Binding Name}"/></TextBlock>
+            <TextBlock  x:Name="TBuserName" HorizontalAlignment="Left" Margin="552,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="auto" Width="142" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="SkyBlue" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="{Binding Name}"/></TextBlock>
 
         </Grid>
     </Grid>

@@ -24,7 +24,7 @@ namespace BO
         public int InWayToReciever { get; set; } // a number of parcels which will be recieved (in the way)
         public override string ToString()
         {
-            return $"Id: {Id}, Name: {Name}, Phone: {Phone},SendAndSuppliedParcels: {SentAndSupplied},SendAndNotSuppliedParcels: {SentAndNotSupplied},RecieverGotParcels: {RecieverGotParcels},InTheWayParcels: {InWayToReciever}";
+            return $"CustId: {Id}, CustName: {Name}, Phone: {Phone},SendAndSuppliedParcels: {SentAndSupplied},SendAndNotSuppliedParcels: {SentAndNotSupplied},RecieverGotParcels: {RecieverGotParcels},InTheWayParcels: {InWayToReciever}";
         }
     }
 }
