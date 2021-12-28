@@ -111,7 +111,7 @@ namespace BlApi
                     Id = senderItem.Id,
                     Priority = (PrioritiesBL)senderItem.Priority,
                     Weight = (WeightCategoriesBL)senderItem.Weight,
-                    SourceOrTargetMan = new AssignCustomerToParcel { CustId = senderItem.Id, CustName = GetCustomerDetails(senderItem.SenderId).Name }
+                    SourceOrTargetMan = new AssignCustomerToParcel { CustId = senderItem.TargetId, CustName = GetCustomerDetails(senderItem.TargetId).Name }
                 };
                 if (senderItem.AssignningTime != null)
                     myParcelByCustomer.Status = ParcelStatus.Assigned;
@@ -131,7 +131,7 @@ namespace BlApi
                     Id = TargetItem.Id,
                     Priority = (PrioritiesBL)TargetItem.Priority,
                     Weight = (WeightCategoriesBL)TargetItem.Weight,
-                    SourceOrTargetMan = new AssignCustomerToParcel { CustId = TargetItem.Id, CustName = GetCustomerDetails(TargetItem.TargetId).Name }
+                    SourceOrTargetMan = new AssignCustomerToParcel { CustId = TargetItem.SenderId, CustName = GetCustomerDetails(TargetItem.SenderId).Name }
                 };
                 if (TargetItem.AssignningTime != null)
                     targetParcelByCustomer.Status = ParcelStatus.Assigned;

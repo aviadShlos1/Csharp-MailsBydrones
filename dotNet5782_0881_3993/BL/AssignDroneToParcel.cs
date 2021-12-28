@@ -21,7 +21,7 @@ namespace BO
 
         public override string ToString()
         {
-            return $"CustId: {Id}, Battery: {BatteryPercent}, Location: {Current}";
+            return $"Id: {Id}, Battery: {BatteryPercent}, Location: {Current}";
         }
 
     }

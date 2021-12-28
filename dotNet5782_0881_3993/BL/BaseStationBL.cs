@@ -23,7 +23,7 @@ namespace BO
         public override string ToString()
         {
             
-            return $"CustId: {Id}, BaseStationName: {BaseStationName}, Location: {Location},FreeChargeSloted: {FreeChargeSlots} " +
+            return $"Id: {Id}, BaseStationName: {BaseStationName}, Location: {Location},FreeChargeSloted: {FreeChargeSlots} " +
                "DroneInCharge: " + String.Join(",",DronesInChargeList); 
                
         }

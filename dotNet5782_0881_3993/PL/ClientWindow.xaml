@@ -54,6 +54,7 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Status}" Header="Status" Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.CustId,Mode=OneWay}" Header="RecieverId" Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.CustName,Mode=OneWay}" Header="RecieverName" Width="auto"/>
+                                    
                                 </GridView>
                             </ListView.View>
                         </ListView>

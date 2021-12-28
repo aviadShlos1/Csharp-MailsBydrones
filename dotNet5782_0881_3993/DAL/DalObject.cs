@@ -279,20 +279,19 @@ namespace DalApi
         public static string ConvertDecimalDegreesToSexagesimal(double decimalValueToConvert, string LongOrLat)
         {
             string direction = null;
-            if (LongOrLat== "Longitude")
+            if (LongOrLat == "Longitude")
             {
                 if (decimalValueToConvert >= 0)
-                        direction = "N";
-                    else direction = "S";
-
-                if (LongOrLat == "Latitude")
-                {
-                    if (decimalValueToConvert >= 0)
-                        direction = "E";
-                    else direction = "W";
-                }
+                    direction = "N";
+                else direction = "S";
             }
 
+            if (LongOrLat == "Latitude")
+            {
+                if (decimalValueToConvert >= 0)
+                    direction = "E";
+                else direction = "W";
+            }
             int sec = (int)Math.Round(decimalValueToConvert * 3600);
             int deg = sec / 3600;
             sec = Math.Abs(sec % 3600);
