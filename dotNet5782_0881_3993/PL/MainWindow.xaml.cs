@@ -48,7 +48,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        private BlApi.IBL blAccess;
         #region main window
         /// <summary> the constractor start the intlize consractor of the data </summary>
         public MainWindow()
@@ -63,26 +63,26 @@ namespace PL
         private void Blogin_Click(object sender, RoutedEventArgs e)
         {
 
-            switch (Blogin.Content)
-            {
-                case "Enter as Admin":
-                    new ListsDisplayWindow().Show();
-                    this.Close(); // we close the login window
-                    break;
-                case "Register":
+            //switch (Blogin.Content)
+            //{
+            //    case "Enter as Admin":
+            //        new ListsDisplayWindow().Show();
+            //        this.Close(); // we close the login window
+            //        break;
+            //    case "Register":
 
-                    break;
-                case "Enter as Client":
-                    //new CustomersWindow().Show();
-                    //this.Close(); // we close the login window
-                    //break;
-                default:
+            //        break;
+            //    case "Enter as Client":
+            //        //new CustomersWindow().Show();
+            //        //this.Close(); // we close the login window
+            //        //break;
+            //    default:
 
-                    break;
-            }
-            //enter.Unloaded -= enter_Unloaded;
-            //enter.Source = null;
-            //enter.Close();
+            //        break;
+            //}
+            ////enter.Unloaded -= enter_Unloaded;
+            ////enter.Source = null;
+            ////enter.Close();
         }
         #endregion
 
@@ -108,24 +108,16 @@ namespace PL
         //    }
         //}
 
-        private void TCadmin_GotFocus(object sender, RoutedEventArgs e)
-        {
-            Blogin.Content = "Enter as Admin";
-        }
-
-        private void TIRegister_GotFocus(object sender, RoutedEventArgs e)
-        {
-            Blogin.Content = "Register";
-
-        }
-
-        private void TabItem_GotFocus(object sender, RoutedEventArgs e)
-        {
-            Blogin.Content = "Enter as Client";
-        }
+       
         private void ClosingBt_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void BtRegister_Click(object sender, RoutedEventArgs e)
+        {
+            CustomersWindow customersListTemp = new(blAccess);
+            new CustomerWindow(blAccess, customersListTemp).Show();
         }
     }
 }
