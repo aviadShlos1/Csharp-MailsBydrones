@@ -16,25 +16,7 @@
 
 
 
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="FontFamily" Value="Britannic Bold"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="auto"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Foreground" Value="Black"></Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#FFF0C00C"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-    </Window.Resources>
+   
 
     <Grid >
 
@@ -72,17 +54,13 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         FontFamily="Comic Sans MS"
-        Title="Login Window" Height="400" Width="690" >
-    <!--control the style for the buotons-->
+        Title="Login Window" Height="640" Width="800" >
     <Window.Resources>
         <Style TargetType="Button" x:Key="RoundedButtonStyle">
             <Setter Property="FontSize" Value="22"/>
-            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontFamily" Value="Comic Sans MS" />
             <Setter Property="Background" Value="{x:Null}" />
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <!--<Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />-->
-
             <Setter Property="TextElement.Foreground" Value="#FFDFF8E6"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Style.Triggers>
@@ -98,11 +76,15 @@
             </Style.Resources>
         </Style>
     </Window.Resources>
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Images\Drone.jpg"/>
         </Grid.Background>
+        <Label Content="Welcome To Dronix System" Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="90,20,0,0" VerticalAlignment="Top" 
+           Height="170" Width="650" FontSize="38" FontStyle="Italic" />
         <Grid>
+
             <Grid x:Name="AddOn">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -113,8 +95,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button  x:Name="Blogin"  Style="{StaticResource RoundedButtonStyle}" BorderThickness="0" 
-                         Margin="194,74,0,75" Foreground="#FFB00B0B" Width="305" Click="Blogin_Click" Visibility="Visible" 
-                         IsEnabled="False" RenderTransformOrigin="0.519,0.334" Grid.ColumnSpan="2" Grid.Row="1">
+                         Margin="110,156,0,35" Foreground="#FFB00B0B" Width="215" Click="Blogin_Click" Visibility="Visible" 
+                         IsEnabled="False" RenderTransformOrigin="0.519,0.334" Grid.Row="1" Grid.Column="1">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Grid>
@@ -124,7 +106,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <TabControl Grid.ColumnSpan="2" Margin="186,50,186,121" Grid.RowSpan="2" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" BorderBrush="{x:Null}">
+                <TabControl Margin="75,111,29,-1" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" BorderBrush="{x:Null}" Grid.RowSpan="2" Grid.Column="1">
                     <TabControl.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -134,7 +116,32 @@
                         </TransformGroup>
                     </TabControl.RenderTransform>
                     <TabItem x:Name="TCadmin" Header="Admin" Margin="1,-1,-5,1" Foreground="#FFB00B0B" FontWeight="Bold" 
-                             FontSize="14" FontFamily="Comic Sans MS" Background="{x:Null}" BorderBrush="{x:Null}" GotFocus="TCadmin_GotFocus">
+                             FontSize="14" FontFamily="Comic Sans MS" Background="{x:Null}" 
+                             BorderBrush="{x:Null}" GotFocus="TCadmin_GotFocus">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="38*"/>
+                                <ColumnDefinition Width="69*"/>
+                                <ColumnDefinition Width="18*"/>
+                                <ColumnDefinition Width="20*"/>
+                                <ColumnDefinition Width="43*"/>
+                                <ColumnDefinition Width="102*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="User Name" FontFamily="Comic Sans MS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="7,14,0,0" 
+                                   FontSize="12" Foreground="DarkBlue" Grid.Column="4" Grid.ColumnSpan="2"/>
+                            <TextBox HorizontalAlignment="Left" Margin="4,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" Grid.Column="4" Grid.ColumnSpan="2"/>
+                            <TextBox HorizontalAlignment="Left" Margin="18,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Grid.ColumnSpan="3" Grid.Column="3"/>
+                            <Label Content="Password" FontFamily="Comic Sans MS" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                   FontSize="12" Margin="13,124,0,0" Foreground="DarkBlue" Width="89" Grid.Column="4" Grid.ColumnSpan="2" />
+                        </Grid>
+                    </TabItem>
+
+
+                    <TabItem Header="Client" Margin="106,0,-112,2" FontSize="14" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="#FFB00B0B" Background="{x:Null}" BorderBrush="{x:Null}" GotFocus="TabItem_GotFocus">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -144,32 +151,15 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Label Content="User Name" FontFamily="Comic Sans MS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="153,20,0,0" 
-                                   FontSize="12" Grid.ColumnSpan="2" Foreground="Red"/>
-                            <TextBox HorizontalAlignment="Left" Margin="108,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                            <TextBox HorizontalAlignment="Left" Margin="106,28,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Row="1"/>
+                            <Label Content="User Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,16,0,0" 
+                                   FontSize="12" FontFamily="Comic Sans MS" Foreground="DarkBlue" Grid.Column="1"/>
                             <Label Content="Password" FontFamily="Comic Sans MS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1 " 
-                                   FontSize="12" Margin="154,20,0,0" Foreground="Red" Grid.ColumnSpan="2" Width="89" />
+                                   FontSize="12" Margin="2,2,0,0" Foreground="DarkBlue" Width="66" Grid.Column="1" />
+                            <TextBox HorizontalAlignment="Left" Margin="2,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" Grid.Column="1"/>
+                            <TextBox HorizontalAlignment="Left" Margin="4,28,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" Grid.Row="1" Grid.Column="1"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Client" Margin="106,0,-112,2" FontSize="14" FontWeight="Bold" FontFamily="Consolas" Foreground="#FFB00B0B" Background="{x:Null}" BorderBrush="{x:Null}" GotFocus="TabItem_GotFocus">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Label Content="User Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="153,20,0,0" 
-                                   FontSize="12" Grid.ColumnSpan="2" FontFamily="Comic Sans MS" Foreground="Red"/>
-                            <TextBox HorizontalAlignment="Left" Margin="108,44,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-                            <TextBox HorizontalAlignment="Left" Margin="106,28,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Row="1"/>
-                            <Label Content="Password" FontFamily="Comic Sans MS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1 " 
-                                   FontSize="12" Margin="154,4,0,0" Foreground="Red" Width="66" Grid.ColumnSpan="2" />
-                        </Grid>
-                    </TabItem>
+
 
                     <TabItem x:Name="TIRegister" Header="Register" Margin="-40,-1,0,0" FontSize="14" FontWeight="Bold" 
                              FontFamily="Comic Sans MS" Foreground="#FFB00B0B" Background="{x:Null}" BorderBrush="{x:Null}" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="88" GotFocus="TIRegister_GotFocus">
@@ -185,16 +175,16 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Label Content="Id&#xD;&#xA;" FontFamily="Comic Sans MS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,10,0,0" FontSize="12" Grid.Column="1" Foreground="White"/>
-                            <TextBox HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="32,11,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                            <TextBox HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="32,0,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1"/>
-                            <Label Content="Name" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" FontSize="12" Margin="4,0,0,0" Width="84" Foreground="White" />
-                            <Label Content="Longitude" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3" FontSize="12" Margin="5,3,0,0" Foreground="#FFF9F7F7" Width="83" />
-                            <Label Content="Latidue" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4" FontSize="12" Margin="4,3,0,0" Foreground="#FFF7F6F6" Width="62" />
-                            <Label Content="Phone Number" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" FontSize="12" Margin="6,0,0,0" Foreground="#FFF6F6F6" />
-                            <TextBox HorizontalAlignment="Left" Margin="32,0,0,0" FontFamily="Comic Sans MS" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="2"/>
-                            <TextBox HorizontalAlignment="Left" Margin="31,0,0,0" FontFamily="Comic Sans MS" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="3"/>
-                            <TextBox HorizontalAlignment="Left" Margin="31,0,0,0" FontFamily="Comic Sans MS" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="96" Grid.Row="4" Grid.ColumnSpan="2"/>
+                            <Label Content="Id&#xD;&#xA;" FontFamily="Comic Sans MS" Foreground="DarkBlue" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,10,0,0" FontSize="12" Grid.Column="0" />
+                            <TextBox HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="2,11,0,0"  Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
+                            <Label Content="Name" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" FontSize="12" Margin="4,0,0,0" Width="40" Foreground="DarkBlue" />
+                            <TextBox HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="0,11,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" Grid.Row="1" Grid.Column="1"/>
+                            <Label Content="Longitude" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Top" Grid.Column="0" Grid.Row="3" FontSize="12" Margin="4,3,0,0" Foreground="DarkBlue" Width="69" />
+                            <Label Content="Latidue" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Top" Grid.Column="0" Grid.Row="4" FontSize="12" Margin="4,3,0,0" Foreground="DarkBlue" Width="51" />
+                            <Label Content="Phone Number" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" FontSize="12" Margin="4,0,0,0" Foreground="DarkBlue" />
+                            <TextBox HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="100" Grid.Row="2" Grid.Column="1"/>
+                            <TextBox HorizontalAlignment="Left" Margin="117,0,0,0" FontFamily="Comic Sans MS" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="101" Grid.Row="3" Grid.ColumnSpan="2"/>
+                            <TextBox HorizontalAlignment="Left" Margin="2,0,0,0" FontFamily="Comic Sans MS" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="99" Grid.Row="4" Grid.Column="1"/>
                         </Grid>
                     </TabItem>
                 </TabControl>
@@ -229,9 +219,11 @@
                 </ProgressBar>-->
             </Grid>
         </Grid>
-        <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="10,328,0,24" Width="88"  Click="ClosingBt_Click" RenderTransformOrigin="0.501,0.51" >
+
+        <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="24,568,0,10" Width="94"  Click="ClosingBt_Click" RenderTransformOrigin="0.501,0.51" >
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="56" Height="25" Foreground="Black" RenderTransformOrigin="-0.17,0.502"/>
         </Button>
+
     </Grid>
 </Window>
 
