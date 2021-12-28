@@ -22,7 +22,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        private BlApi.IBL blAccess;
         #region main window
         /// <summary> the constractor start the intlize consractor of the data </summary>
         public MainWindow()

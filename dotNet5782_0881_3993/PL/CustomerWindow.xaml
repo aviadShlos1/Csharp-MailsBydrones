@@ -32,7 +32,7 @@
 
 
     <Grid>
-        <Grid x:Name="AddOption" Visibility="Hidden">
+        <Grid x:Name="AddOption" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>
@@ -62,7 +62,7 @@
 
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="*"/>
