@@ -1,56 +1,129 @@
-﻿<Window x:Class="PL.MainWindow"
+﻿<Window x:Name="LogInWin" x:Class="PL.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:fa="http://schemas.fontawesome.io/icons/"
-        xmlns:controls="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
         xmlns:local="clr-namespace:PL"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        AllowsTransparency="True"
-        WindowStyle="None"
         ResizeMode="CanMinimize"
-    Title="MainWindow" Height="640" Width="800">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Login Window" Height="500" Width="860" >
+    <Grid>
+        <MediaElement x:Name="enter" Source="New Project.avi" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="484" Width="860" Volume="0" Stretch="Fill" UnloadedBehavior="Manual" Loaded="enter_Loaded"/>
+        <Grid>
+            <Grid x:Name="AddOn" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="443*"/>
+                    <RowDefinition Height="41*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TabControl VerticalContentAlignment="Top" Style="{StaticResource MaterialDesignNavigatilRailTabControl}" materialDesign:ColorZoneAssist.Mode="PrimaryMid" Background="{x:Null}">
+                    <TabItem x:Name="TICadmin" GotFocus="TICadmin_GotFocus">
+                        <TabItem.Header>
+                            <StackPanel  Height="auto"  Width="auto">
+                                <materialDesign:PackIcon Kind="BrainFreeze"  Width="24" Height="24" HorizontalAlignment="Center" />
+                                <TextBlock Text="Admin"  HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <Grid >
+
+                            <Grid.Background>
+                                <ImageBrush ImageSource="Images\Drone.jpg"/>
+                            </Grid.Background>
+
+                            <TextBox x:Name="TBadmin" materialDesign:HintAssist.Hint="Enter Admin Id:" Foreground="Purple" HorizontalContentAlignment="Center"  HorizontalAlignment="Center" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Top" Width="274" MaxLength="10" Height="121" 
+                                     FontSize="28"  FontFamily="Comic Sans MS" KeyUp="TBadmin_KeyUp" Margin="0,312,0,0" />
+                            <TextBlock Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="146,32,0,0" VerticalAlignment="Top" Height="66" Width="581" FontSize="38">
+                                <Run FlowDirection="LeftToRight" Text="Welcome To Dronix System"> </Run>
+                            </TextBlock>
+
+                        </Grid>
+
+                    </TabItem>
+
+                    <TabItem x:Name="TIUser" GotFocus="TIUser_GotFocus" >
+                        <TabItem.Header>
+                            <StackPanel   Height="auto"   Width="auto">
+                                <materialDesign:PackIcon Kind="User" Width="24" Height="24"  HorizontalAlignment="Center" />
+                                <TextBlock Text="User" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Welcome To Dronix System" Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="138,32,0,0" VerticalAlignment="Top" Height="84" Width="521" FontSize="38" FontStyle="Italic" Grid.ColumnSpan="2"></Label>
+                            <TextBlock TextWrapping="Wrap" Height="58" FontSize="28"  Foreground="Purple" Width="246" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Top" Margin="261,116,0,0" Grid.ColumnSpan="2" Grid.Row="1" ><Run FlowDirection="LeftToRight" Text="Enter Client Id:"/></TextBlock>
+                            <PasswordBox x:Name="TBuserID" Style="{StaticResource MaterialDesignFilledPasswordBox}"  Password="000000000"  HorizontalContentAlignment="Center" MaxLength="10" Foreground="#FFFBFBFB" FontSize="32" FontFamily="Consolas" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Margin="238,128,258,10" Grid.ColumnSpan="2" KeyUp="TBuserID_KeyUp" Grid.Row="1"/>
+                            <Grid Margin="0,0,0,10">
+                                <Button x:Name="BNewUser" Visibility="Visible" Style="{StaticResource MaterialDesignRaisedButton}"  
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="New customer? Register Now! " Margin="513,379,-378,-213"
+                     Background="#FFFF0909" BorderBrush="#FFF14A2F"  FontSize="14" FontWeight="Bold" FontFamily="Comic Sans MS" Click="BNewUser_Click"   />
 
 
 
+                            </Grid>
+                            <Grid.Background>
+                                <ImageBrush ImageSource="Images\Drone.jpg"/>
+                            </Grid.Background>
 
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="FontFamily" Value="Britannic Bold"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="auto"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Foreground" Value="Black"></Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#FFF0C00C"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+                        </Grid>
 
-    </Window.Resources>
+                    </TabItem>
+                </TabControl>
 
-    <Grid >
+                <Button x:Name="Blogin"  Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonProgressAssist.Value="-1" 
+             materialDesign:ButtonProgressAssist.IsIndeterminate="True" Margin="0,5,0,4"
+              Click="Blogin_Click" FontFamily="Comic Sans MS" IsEnabled="False" FontSize="14" Grid.Row="1"  />
 
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\Drone.jpg"/>
-        </Grid.Background>
+            </Grid>
+            <Grid x:Name="Disiaper" Visibility="Visible" d:IsHidden="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock HorizontalAlignment="Left" Margin="126,162,0,0" Text="{Binding Value, ElementName=PBloding, StringFormat=\{0:#0.0\}%}"  TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FFEEDADA" FontSize="10" FontWeight="Bold" Width="34" Grid.Column="1" Grid.Row="1" Height="17"/>
 
-        <Button Content="Admin" HorizontalAlignment="Left" FontSize="35" BorderBrush="Aqua" Margin="526,522,0,0" Height="68" Width="147" Click="Button_Click"/>
-        <Button Content="User"  FontSize="35" BorderBrush="Aqua" Margin="0,522,0,0" Height="68" Width="160"/>
-        <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Margin="0,589,0,0" Height="51" Width="76"  Click="ClosingBt_Click" RenderTransformOrigin="0.361,-0.533" >
-            <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="66" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
-        </Button>
-        <Label Content="Welcome To Dronix System" Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="194,52,0,0" VerticalAlignment="Top" Height="136" Width="546" FontSize="38" FontStyle="Italic" />
-        <!--<MediaElement x:Name="media" Visibility="Visible" UnloadedBehavior="Manual" MediaEnded="MediaElement_MediaEnded" Stretch="Fill" HorizontalAlignment="Left" Height="616" Margin="10,10,0,0" VerticalAlignment="Top" Width="789">
-        </MediaElement>-->
+                <Label Content="Loding.." HorizontalAlignment="Left" Margin="400,135,0,0" VerticalAlignment="Top" Foreground="#FFF5F4F4" FontWeight="Bold" FontFamily="Comic Sans MS" Height="25" Grid.ColumnSpan="2" Grid.Row="1"/>
+                <ProgressBar x:Name="PBloding" HorizontalAlignment="Left" Height="14" Margin="325,165,0,0" VerticalAlignment="Top" Width="210" 
+                             ValueChanged="PBloding_ValueChanged" Grid.ColumnSpan="2" Grid.Row="1" BorderBrush="{x:Null}">
+                    <ProgressBar.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFECEBE4"/>
+                            <GradientStop Color="#FF673AB7" Offset="0.526"/>
+                        </LinearGradientBrush>
+                    </ProgressBar.Foreground>
+                    <ProgressBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFF3F3F1" Offset="0.009"/>
+                            <GradientStop Color="Black" Offset="0.48"/>
+                        </LinearGradientBrush>
+                    </ProgressBar.Background>
+                </ProgressBar>
+            </Grid>
+        </Grid>
 
 
     </Grid>
+
 </Window>
