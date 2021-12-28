@@ -38,8 +38,7 @@ namespace PL
             blAccess = bl;
 
             Customer = blAccess.GetSingleCustomer(ClientId);
-            DataContext = Customer;
-
+            //DataContext = Customer;
             listOfCustomerSend.ItemsSource = blAccess.GetSingleCustomer(Customer.Id).ParcelsFromCustomerList;
             listOfCustomerReceive.ItemsSource = blAccess.GetSingleCustomer(Customer.Id).ParcelsToCustomerList;
         }

@@ -39,7 +39,7 @@
                             <RowDefinition Height="37*"/>
                             <RowDefinition Height="122*"/>
                         </Grid.RowDefinitions> 
-                        <TextBlock Grid.Row="0" Text="משלוחים יוצאים" Margin="152,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" ></TextBlock>
+                        <TextBlock Grid.Row="0" Text="Outgoing Parcels" Margin="152,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" ></TextBlock>
                         <ListView x:Name="listOfCustomerSend" ItemsSource="{Binding Items1}" Margin="10,-3,10,10" FontSize="12" Grid.RowSpan="2">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
@@ -51,8 +51,9 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding Priority}" Header="Priority" Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding Weight}" Header="Weight"  Width="auto"/>
-                                    <GridViewColumn DisplayMemberBinding="{Binding ParcelStatus}" Header="Status" Width="auto"/>
-                                    <GridViewColumn DisplayMemberBinding="{Binding RecieverName}" Header="RecieverName" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Status}" Header="Status" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.Id}" Header="RecieverId" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.Name}" Header="RecieverName" Width="auto"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -65,7 +66,7 @@
                             <RowDefinition Height="37*"/>
                             <RowDefinition Height="122*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="משלוחים נכנסים" Margin="152,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" />
+                        <TextBlock Grid.Row="0" Text="Incoming Parcels" Margin="152,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" />
                         <ListView x:Name="listOfCustomerReceive" ItemsSource="{Binding Items1}" Margin="10,-3,0,10" FontSize="12" Grid.RowSpan="2">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
@@ -77,8 +78,9 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding Priority}" Header="Priority"  Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding Weight}" Header="Weight" Width="auto"/>
-                                    <GridViewColumn DisplayMemberBinding="{Binding ParcelStatus}" Header="Status" Width="auto"/>
-                                    <GridViewColumn DisplayMemberBinding="{Binding SenderName}" Header="SenderName" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Status}" Header="Status" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.Id}" Header="SenderId" Width="auto"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.Name}" Header="SenderName" Width="auto"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>

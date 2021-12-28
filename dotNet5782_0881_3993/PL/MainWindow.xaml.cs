@@ -50,7 +50,7 @@ namespace PL
                     try
                     {
                         AccessIbl.GetSingleCustomer(int.Parse(TBuserID.Password)); //לשים לב שזה מקפיץ חריגה אם הלקוח נכנס ללא שם משתמש
-                        //new ClientWindow(AccessIbl, int.Parse(TBuserID.Password)).Show();
+                        new ClientWindow(AccessIbl, int.Parse(TBuserID.Password)).Show();
                     }
                     catch (BO.NotExistException ex)
                     {
