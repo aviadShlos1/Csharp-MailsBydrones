@@ -1,8 +1,4 @@
-﻿//Names: Aviad Shlosberg       314960881      
-//       Evyatar Levi Ben Ston 318753993 
-//Targil3
-//brief: In this program we built the presentation layer
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,28 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Media;
 using System.Windows.Media.Animation;
-using BO;
-//namespace PL
-//{
-//    /// <summary>
-//    /// Interaction logic for MainWindow.xaml
-//    /// </summary>
-//    public partial class MainWindow : Window
-//    {
-//        // access point between the bl to the pl
-//        private BlApi.IBL blAccess = BlApi.BlFactory.GetBl();
-//        public MainWindow()
-//        {
-//            InitializeComponent();
-//            //media.Source = new Uri(Environment.CurrentDirectory + @"\load.gif");
-//        }
-//        private void ClosingBt_Click(object sender, RoutedEventArgs e)
-//        {
-//            this.Close();
-//        }
-//    }
-//}
-
 
 namespace PL
 {
@@ -59,74 +33,122 @@ namespace PL
         // we crate an obejt that give us accses to the ibl intrface  
         public BlApi.IBL AccessIbl = BlApi.BlFactory.GetBl();
 
-        /// <summary> open the drone list window  </summary>
+        /// <summary>
+        /// Login to a manager or client interface.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Blogin_Click(object sender, RoutedEventArgs e)
         {
 
-            //switch (Blogin.Content)
-            //{
-            //    case "Enter as Admin":
-            //        new ListsDisplayWindow().Show();
-            //        this.Close(); // we close the login window
-            //        break;
-            //    case "Register":
-
-            //        break;
-            //    case "Enter as Client":
-            //        //new CustomersWindow().Show();
-            //        //this.Close(); // we close the login window
-            //        //break;
-            //    default:
-
-            //        break;
-            //}
-            ////enter.Unloaded -= enter_Unloaded;
-            ////enter.Source = null;
-            ////enter.Close();
+            switch (Blogin.Content)
+            {
+                case "Admin":
+                    new ListsDisplayWindow().Show();
+                    break;
+                case "User":
+                    try
+                    {
+                        AccessIbl.GetSingleCustomer(int.Parse(TBuserID.Password)); //לשים לב שזה מקפיץ חריגה אם הלקוח נכנס ללא שם משתמש
+                        //new ClientWindow(AccessIbl, int.Parse(TBuserID.Password)).Show();
+                    }
+                    catch (BO.NotExistException ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
         #endregion
 
-
-
-        //private void enter_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    AddOn.Opacity = 0;
-        //    DoubleAnimation Animmation = new DoubleAnimation(0, 100, TimeSpan.FromSeconds(10.5));
-        //    PBloding.BeginAnimation(ProgressBar.ValueProperty, Animmation);
-        //}
-
-        //private void PBloding_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        //{
-        //    if (PBloding.Value == 100)
-        //    {
-        //        Blogin.IsEnabled = true;
-        //        DoubleAnimation doubleAnimmation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(5));
-        //        AddOn.BeginAnimation(Grid.OpacityProperty, doubleAnimmation);
-        //        DoubleAnimation DSF = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(2));
-        //        Disiaper.BeginAnimation(Grid.OpacityProperty, DSF);
-
-        //    }
-        //}
-
-       
-        private void ClosingBt_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void enter_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            AddOn.Opacity = 0;
+            DoubleAnimation Animmation = new DoubleAnimation(0, 100, TimeSpan.FromSeconds(5));
+            PBloding.BeginAnimation(ProgressBar.ValueProperty, Animmation);
         }
 
-        private void BtRegister_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PBloding_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            CustomerBL newCustomer = new CustomerBL()
+            if (PBloding.Value == 100)
             {
-                Id = int.Parse(IdTbx.Text),
-                Name = NameTbx.Text,
-                Phone = PhoneTbx.Text,
-                Location = new Location() { Latitude = double.Parse(LatitudeTbx.Text), Longitude = double.Parse(LongitudeTbx.Text) },
-            };
-            this.TIRegister.DataContext = newCustomer;
-            blAccess.AddCustomer(newCustomer);
-            MessageBoxResult result = MessageBox.Show("Your register was done successfully");
+                Blogin.IsEnabled = true;
+                DoubleAnimation doubleAnimmation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(5));
+                AddOn.BeginAnimation(Grid.OpacityProperty, doubleAnimmation);
+                DoubleAnimation DSF = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(1));
+                Disiaper.BeginAnimation(Grid.OpacityProperty, DSF);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            new CustomerWindow(AccessIbl, new CustomersWindow(AccessIbl)).Show();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TICadmin_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Blogin.Visibility = Visibility.Visible;
+            Blogin.Content = "Admin";
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TIUser_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Blogin.Visibility = Visibility.Visible;
+            Blogin.Content = "User";
+            
+        }
+
+
+
+        private void TBadmin_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (TBadmin.Text.Length != 0)
+            {
+                Blogin.IsEnabled = true;
+            }
+            else
+            {
+                Blogin.IsEnabled = false;
+            }
+        }
+
+        private void TBuserID_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (TBuserID.Password.Length != 0)
+            {
+                Blogin.IsEnabled = true;
+            }
+            else
+            {
+                Blogin.IsEnabled = false;
+            }
         }
     }
 }
-
