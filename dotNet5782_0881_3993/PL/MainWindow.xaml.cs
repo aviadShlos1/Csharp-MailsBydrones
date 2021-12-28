@@ -116,8 +116,16 @@ namespace PL
 
         private void BtRegister_Click(object sender, RoutedEventArgs e)
         {
-            CustomersWindow customersListTemp = new(blAccess);
-            new CustomerWindow(blAccess, customersListTemp).Show();
+            CustomerBL newCustomer = new CustomerBL()
+            {
+                Id = int.Parse(IdTbx.Text),
+                Name = NameTbx.Text,
+                Phone = PhoneTbx.Text,
+                Location = new Location() { Latitude = double.Parse(LatitudeTbx.Text), Longitude = double.Parse(LongitudeTbx.Text) },
+            };
+            this.TIRegister.DataContext = newCustomer;
+            blAccess.AddCustomer(newCustomer);
+            MessageBoxResult result = MessageBox.Show("Your register was done successfully");
         }
     }
 }

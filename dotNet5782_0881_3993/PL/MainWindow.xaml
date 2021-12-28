@@ -106,7 +106,7 @@
                     </TabControl.RenderTransform>
                     <TabItem x:Name="TCadmin" Header="Admin" Margin="1,-1,-5,1" Foreground="#FFB00B0B" FontWeight="Bold" 
                              FontSize="14" FontFamily="Comic Sans MS" Background="{x:Null}" 
-                             BorderBrush="{x:Null}" GotFocus="TCadmin_GotFocus">
+                             BorderBrush="{x:Null}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="38*"/>
@@ -130,7 +130,7 @@
                     </TabItem>
 
 
-                    <TabItem Header="Client" Margin="106,0,-112,2" FontSize="14" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="#FFB00B0B" Background="{x:Null}" BorderBrush="{x:Null}" GotFocus="TabItem_GotFocus">
+                    <TabItem Header="Client" Margin="106,0,-112,2" FontSize="14" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="#FFB00B0B" Background="{x:Null}" BorderBrush="{x:Null}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -151,7 +151,7 @@
 
 
                     <TabItem x:Name="TIRegister" Header="Register" Margin="-40,-1,0,0" FontSize="14" FontWeight="Bold" 
-                             FontFamily="Comic Sans MS" Foreground="#FFB00B0B" Background="{x:Null}" BorderBrush="{x:Null}" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="88" GotFocus="TIRegister_GotFocus">
+                             FontFamily="Comic Sans MS" Foreground="#FFB00B0B" Background="{x:Null}" BorderBrush="{x:Null}" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="88">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -175,7 +175,7 @@
                             <TextBox Name="PhoneTbx" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="100" Grid.Row="2" Grid.Column="1"/>
                             <TextBox Name="LongitudeTbx" HorizontalAlignment="Left" Margin="2,0,0,0" FontFamily="Comic Sans MS" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="101" Grid.Row="3" Grid.Column="1"/>
                             <TextBox Name="LatitudeTbx" HorizontalAlignment="Left" Margin="2,0,0,0" FontFamily="Comic Sans MS" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="99" Grid.Row="4" Grid.Column="1"/>
-                            <Button  Name="BtRegister" Foreground="White" Background="DarkBlue" Style="{StaticResource RoundedButtonStyle}" Content="Register" Grid.ColumnSpan="2" Margin="95,22,0,21" Height="auto" Grid.Row="5" Click="BtRegister_Click" Width="99"/>
+                            <Button  Name="BtRegister" Foreground="White" Background="DarkBlue" Style="{StaticResource RoundedButtonStyle}" Content="Register" Grid.ColumnSpan="2" Margin="95,19,0,21" Height="auto" Grid.Row="5" Click="BtRegister_Click" Width="113"/>
                         </Grid>
                     </TabItem>
                 </TabControl>
