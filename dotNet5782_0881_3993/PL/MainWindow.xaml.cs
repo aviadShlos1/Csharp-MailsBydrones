@@ -72,7 +72,7 @@ namespace PL
         {
             AddOn.Opacity = 0;
             DoubleAnimation Animmation = new DoubleAnimation(0, 100, TimeSpan.FromSeconds(5));
-            PBloding.BeginAnimation(ProgressBar.ValueProperty, Animmation);
+            PBloading.BeginAnimation(ProgressBar.ValueProperty, Animmation);
         }
 
         /// <summary>
@@ -80,9 +80,9 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void PBloding_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void PBloading_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (PBloding.Value == 100)
+            if (PBloading.Value == 100)
             {
                 Blogin.IsEnabled = true;
                 DoubleAnimation doubleAnimmation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(5));
@@ -99,7 +99,7 @@ namespace PL
         /// <param name="e"></param>
         private void BNewUser_Click(object sender, RoutedEventArgs e)
         {
-            new CustomerWindow(AccessIbl, new CustomersWindow(AccessIbl)).Show();
+            new CustomerWindow(AccessIbl, new CustomersListWindow(AccessIbl)).Show();
         }
 
         /// <summary>

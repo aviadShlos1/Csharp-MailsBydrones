@@ -22,9 +22,9 @@ namespace PL
     public partial class CustomerWindow : Window
     {
         private BlApi.IBL blAccess;
-        private CustomersWindow localCustomersWindow;
+        private CustomersListWindow localCustomersWindow;
         #region Add
-        public CustomerWindow(BlApi.IBL blAccessTemp, CustomersWindow customersListTemp)
+        public CustomerWindow(BlApi.IBL blAccessTemp, CustomersListWindow customersListTemp)
         {
             InitializeComponent();
             AddOption.Visibility = Visibility.Visible; // the add option will be shown
@@ -75,7 +75,7 @@ namespace PL
         public CustomerBL MyCustomer;
 
         // Ctor for update options
-        public CustomerWindow(BlApi.IBL blAccessTemp, int CustomerId, CustomersWindow customersListTemp)
+        public CustomerWindow(BlApi.IBL blAccessTemp, int CustomerId, CustomersListWindow customersListTemp)
         {
             InitializeComponent();
             UpdateOptions.Visibility = Visibility.Visible; //The update options window will be shown

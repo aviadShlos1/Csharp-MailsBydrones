@@ -46,7 +46,7 @@ namespace PL
 
         private void CustomersButton_Click(object sender, RoutedEventArgs e)
         {
-            new CustomersWindow(blAccess).Show();
+            new CustomersListWindow(blAccess).Show();
             this.Close();
         }
 
