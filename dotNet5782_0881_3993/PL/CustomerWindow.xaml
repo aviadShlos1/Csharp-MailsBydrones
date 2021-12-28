@@ -78,32 +78,32 @@
             </Grid.RowDefinitions>
 
 
-            <TextBox x:Name="CustomerIdTbx" BorderThickness="0" Grid.Row="0" Background="LightGray" Grid.Column="1"
-                     HorizontalAlignment="Left" Text="{Binding Id}" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsReadOnly="True"/>
-            <TextBox x:Name="CustomerNameTbx" BorderThickness="0" Grid.Row="1" Background="LightGray"  Grid.Column="1" 
-                     HorizontalAlignment="Left" Text="{Binding Name}" VerticalAlignment="Center" Width="auto"  IsEnabled="True"/>
-            <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Row="2" Background="LightGray" Grid.Column="1" 
-                     HorizontalAlignment="Left"  Text="{Binding Phone}" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsEnabled="True" MaxLength="2"/>
-            <TextBox x:Name="CustomerLocationTbx" BorderThickness="0" Grid.Row="3" Background="LightGray" Grid.Column="1"
-                     HorizontalAlignment="Left" Text="" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
+            <TextBox x:Name="CustomerIdTbx" BorderThickness="0" Grid.Row="0" Foreground="DarkMagenta" Background="LightGray" Grid.Column="1"
+                     HorizontalAlignment="Left" Text="{Binding Id}" TextWrapping="Wrap" FontFamily="Comic Sans MS"  VerticalAlignment="Center" Width="auto" IsReadOnly="True"/>
+            <TextBox x:Name="CustomerNameTbx" BorderThickness="0" Grid.Row="1" Foreground="DarkMagenta" Background="LightGray"  Grid.Column="1" 
+                     HorizontalAlignment="Left" Text="{Binding Name}" VerticalAlignment="Center" FontFamily="Comic Sans MS" Width="auto"  IsEnabled="True"/>
+            <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Row="2" Foreground="DarkMagenta" Background="LightGray" Grid.Column="1" 
+                     HorizontalAlignment="Left"  Text="{Binding Phone}" TextWrapping="Wrap" FontFamily="Comic Sans MS" VerticalAlignment="Center" Width="auto" IsEnabled="True" MaxLength="2"/>
+            <TextBox x:Name="CustomerLocationTbx" BorderThickness="0" Grid.Row="3" Foreground="DarkMagenta" Background="LightGray" Grid.Column="1"
+                     HorizontalAlignment="Left" Text="" VerticalAlignment="Center" FontFamily="Comic Sans MS" Width="auto"  IsReadOnly="True"/>
             <ListView x:Name="SentParcels" BorderThickness="1" Foreground="DarkMagenta" Background="LightGray" 
                       HorizontalAlignment="Left" VerticalAlignment="Top"  Width="535" Height="105"
-                      Grid.Column="1" Grid.Row="4" FontFamily="Comic Sans MS" FontWeight="Bold" MouseDoubleClick="SentParcelsTbx_MouseDoubleClick" Margin="1,8,0,0" Grid.RowSpan="2"/>
+                      Grid.Column="1" Grid.Row="4" FontFamily="Comic Sans MS"  MouseDoubleClick="SentParcelsTbx_MouseDoubleClick" Margin="1,8,0,0" Grid.RowSpan="2"/>
             <ListView x:Name="RecievedParcels" BorderThickness="1" Foreground="DarkMagenta" Background="LightGray" 
-                      HorizontalAlignment="Left" Margin="263,0,0,11"  VerticalAlignment="Bottom" Width="527" Height="100" Grid.Row="5" FontFamily="Comic Sans MS" FontWeight="Bold" MouseDoubleClick="RecievedParcelsTbx_MouseDoubleClick" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+                      HorizontalAlignment="Left" Margin="263,0,0,11"  VerticalAlignment="Bottom" Width="527" Height="100" Grid.Row="5" FontFamily="Comic Sans MS" MouseDoubleClick="RecievedParcelsTbx_MouseDoubleClick" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
 
-            <TextBlock Text="Id:" FontFamily="Comic Sans MS" FontSize="25" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="52,0,103,0"
+            <TextBlock Text="Id:" FontFamily="Comic Sans MS" FontSize="25" Foreground="DarkMagenta" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="52,0,103,0"
                        VerticalAlignment="Center" Visibility="Visible" />
-            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Name:" Grid.Column="0" Grid.Row="1" 
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Foreground="DarkMagenta" Text="Name:" Grid.Column="0" Grid.Row="1" 
                        FontSize="25" TextWrapping="Wrap"  Visibility="Visible" VerticalAlignment="Center" Width="auto" Margin="52,0,0,0"/>
-            <TextBlock x:Name="PhoneTbl" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Grid.Column="0" Margin="52,0,103,0"
+            <TextBlock x:Name="PhoneTbl" HorizontalAlignment="Left" Foreground="DarkMagenta" FontFamily="Comic Sans MS" Grid.Column="0" Margin="52,0,103,0"
                        Grid.Row="2" Text="Phone:" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Location:" Grid.Column="0" Margin="52,0,103,0"
-                       Grid.Row="3" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto"/>
-            <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="SentParcels:" FontSize="25"
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Foreground="DarkMagenta" Text="Location:" Grid.Column="0" Margin="52,0,103,0"
+                       Grid.Row="3" FontSize="25" TextWrapping="Wrap"  VerticalAlignment="Center" Width="auto"/>
+            <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" Foreground="DarkMagenta" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="SentParcels:" FontSize="25"
                        Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible" Grid.RowSpan="3"/>
-            <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="25,4,0,0" Text="RecievedParcels:" FontSize="25"
+            <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" Foreground="DarkMagenta" FontFamily="Comic Sans MS" Margin="25,4,0,0" Text="RecievedParcels:" FontSize="25"
                        Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible"/>
 
 
