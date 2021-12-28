@@ -38,7 +38,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="37*"/>
                             <RowDefinition Height="122*"/>
-                        </Grid.RowDefinitions>
+                        </Grid.RowDefinitions> 
                         <TextBlock Grid.Row="0" Text="משלוחים יוצאים" Margin="152,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" ></TextBlock>
                         <ListView x:Name="listOfCustomerSend" ItemsSource="{Binding Items1}" Margin="10,-3,10,10" FontSize="12" Grid.RowSpan="2">
                             <ListView.ItemContainerStyle>
