@@ -46,8 +46,8 @@ namespace PL
             try
             {
                 // adding the new parcel details
-                AssignCustomerToParcel myAssignSenderToParcel = new() { Id = (int)SenderIdTbx.SelectedItem };
-                AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = (int)TargetIdTbx.SelectedItem };
+                AssignCustomerToParcel myAssignSenderToParcel = new() { CustId = (int)SenderIdTbx.SelectedItem };
+                AssignCustomerToParcel myAssignRecieverToParcel = new() { CustId = (int)TargetIdTbx.SelectedItem };
                 ParcelBl newParcel = new ParcelBl
                 {
                     Sender = myAssignSenderToParcel,
@@ -128,7 +128,7 @@ namespace PL
         {
             this.Close();
             CustomersListWindow customersWindow = new(blAccess);
-            new CustomerWindow(blAccess, MyParcel.Sender.Id, customersWindow).Show();
+            new CustomerWindow(blAccess, MyParcel.Sender.CustId, customersWindow).Show();
         }
 
         private void RecieverTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -136,7 +136,7 @@ namespace PL
             this.Close();
             CustomersListWindow customersWindow = new(blAccess);
             //AssignCustomerToParcel tempReciever = (AssignCustomerToParcel)RecieverTbx.Text;
-            new CustomerWindow(blAccess, MyParcel.Reciever.Id, customersWindow).Show();
+            new CustomerWindow(blAccess, MyParcel.Reciever.CustId, customersWindow).Show();
         }
 
         /// <summary>

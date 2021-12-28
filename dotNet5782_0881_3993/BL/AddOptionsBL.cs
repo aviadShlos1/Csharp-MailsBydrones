@@ -106,16 +106,16 @@ namespace BlApi
         {
             try//Checks if its have a customer assigned to the parcel 
             {
-                DalAccess.GetSingleCustomer(newParcel.Sender.Id);
-                DalAccess.GetSingleCustomer(newParcel.Reciever.Id);
+                DalAccess.GetSingleCustomer(newParcel.Sender.CustId);
+                DalAccess.GetSingleCustomer(newParcel.Reciever.CustId);
             }
             catch (BO.NotExistException)
             {
                 throw new BO.NotExistException("Not exist customer id");
             }
             ParcelDal tempParcel = new();
-            tempParcel.SenderId = newParcel.Sender.Id;
-            tempParcel.TargetId = newParcel.Reciever.Id;
+            tempParcel.SenderId = newParcel.Sender.CustId;
+            tempParcel.TargetId = newParcel.Reciever.CustId;
             tempParcel.Weight = (WeightCategoriesDal)newParcel.ParcelWeight;
             tempParcel.Priority = (Priorities)newParcel.Priority;
             tempParcel.CreatingTime = DateTime.Now;

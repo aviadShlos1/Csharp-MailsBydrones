@@ -11,12 +11,12 @@ namespace BO
     /// </summary>
     public class AssignCustomerToParcel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int CustId { get; set; }
+        public string CustName { get; set; }
 
         public override string ToString()
         {
-            return $"Id: {Id}, Name: {Name}";
+            return $"CustId: {CustId}, CustName: {CustName}";
         }
     }
 }

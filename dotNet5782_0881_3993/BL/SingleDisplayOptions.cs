@@ -59,8 +59,8 @@ namespace BlApi
             if (tempDroneBl.DroneStatus == DroneStatusesBL.Shipment)
             {
                 var tempParcel = DalAccess.GetParcelsList().ToList().Find(x => x.DroneToParcelId == myDroneId);
-                AssignCustomerToParcel mySender = new() { Id = tempParcel.SenderId, Name = GetCustomerDetails(tempParcel.SenderId).Name };
-                AssignCustomerToParcel myReciever = new() { Id = tempParcel.TargetId, Name = GetCustomerDetails(tempParcel.TargetId).Name };
+                AssignCustomerToParcel mySender = new() { CustId = tempParcel.SenderId, CustName = GetCustomerDetails(tempParcel.SenderId).Name };
+                AssignCustomerToParcel myReciever = new() { CustId = tempParcel.TargetId, CustName = GetCustomerDetails(tempParcel.TargetId).Name };
                 Location myPickUpLocation = new() { Longitude = GetCustomerDetails(tempParcel.SenderId).Longitude, Latitude = GetCustomerDetails(tempParcel.SenderId).Latitude };
                 Location myTargetLocation = new() { Longitude = GetCustomerDetails(tempParcel.TargetId).Longitude, Latitude = GetCustomerDetails(tempParcel.TargetId).Latitude };
                 bool isOnTheSupplyWay=default;
@@ -111,7 +111,7 @@ namespace BlApi
                     Id = senderItem.Id,
                     Priority = (PrioritiesBL)senderItem.Priority,
                     Weight = (WeightCategoriesBL)senderItem.Weight,
-                    SourceOrTargetMan = new AssignCustomerToParcel { Id = senderItem.Id, Name = GetCustomerDetails(senderItem.SenderId).Name }
+                    SourceOrTargetMan = new AssignCustomerToParcel { CustId = senderItem.Id, CustName = GetCustomerDetails(senderItem.SenderId).Name }
                 };
                 if (senderItem.AssignningTime != null)
                     myParcelByCustomer.Status = ParcelStatus.Assigned;
@@ -131,7 +131,7 @@ namespace BlApi
                     Id = TargetItem.Id,
                     Priority = (PrioritiesBL)TargetItem.Priority,
                     Weight = (WeightCategoriesBL)TargetItem.Weight,
-                    SourceOrTargetMan = new AssignCustomerToParcel { Id = TargetItem.Id, Name = GetCustomerDetails(TargetItem.TargetId).Name }
+                    SourceOrTargetMan = new AssignCustomerToParcel { CustId = TargetItem.Id, CustName = GetCustomerDetails(TargetItem.TargetId).Name }
                 };
                 if (TargetItem.AssignningTime != null)
                     targetParcelByCustomer.Status = ParcelStatus.Assigned;
@@ -164,8 +164,8 @@ namespace BlApi
                 throw new BO.NotExistException();
             }
 
-            AssignCustomerToParcel senderItem = new AssignCustomerToParcel { Id = dalParcel.SenderId, Name = GetCustomerDetails(dalParcel.SenderId).Name };
-            AssignCustomerToParcel recieverItem = new AssignCustomerToParcel { Id = dalParcel.TargetId, Name = GetCustomerDetails(dalParcel.TargetId).Name };
+            AssignCustomerToParcel senderItem = new AssignCustomerToParcel { CustId = dalParcel.SenderId, CustName = GetCustomerDetails(dalParcel.SenderId).Name };
+            AssignCustomerToParcel recieverItem = new AssignCustomerToParcel { CustId = dalParcel.TargetId, CustName = GetCustomerDetails(dalParcel.TargetId).Name };
             ParcelBl myParcelBl = new() { ParcelId = dalParcel.Id, ParcelWeight = (WeightCategoriesBL)dalParcel.Weight, Priority = (PrioritiesBL)dalParcel.Priority, CreatingTime = dalParcel.CreatingTime, AssignningTime = dalParcel.AssignningTime, PickingUpTime = dalParcel.PickingUpTime, SupplyingTime = dalParcel.SupplyingTime, Sender = senderItem, Reciever = recieverItem };
             if (myParcelBl.AssignningTime != null)
             {

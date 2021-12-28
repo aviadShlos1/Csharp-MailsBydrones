@@ -186,8 +186,8 @@ Please enter the sender id number(0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out newPriorities)) ;
                     Console.WriteLine();
                     
-                    AssignCustomerToParcel myAssignSenderToParcel = new() { Id = newSenderId };
-                    AssignCustomerToParcel myAssignRecieverToParcel = new() { Id = newTargetId };
+                    AssignCustomerToParcel myAssignSenderToParcel = new() { CustId = newSenderId };
+                    AssignCustomerToParcel myAssignRecieverToParcel = new() { CustId = newTargetId };
                     ParcelBl newParcel = new ParcelBl
                     {   
                         Sender= myAssignSenderToParcel,
