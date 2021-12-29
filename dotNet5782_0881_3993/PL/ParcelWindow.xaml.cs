@@ -36,7 +36,7 @@ namespace PL
             TargetIdTbx.ItemsSource = customersId;
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void CloseAddButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -192,6 +192,8 @@ namespace PL
             this.Close();
             localParcelsListWindow.selectionOptions();
         }
+
+       
     }
 }
 

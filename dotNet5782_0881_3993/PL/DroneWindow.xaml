@@ -12,7 +12,7 @@
         Title="DroneWindow" Height="450" Width="800">
 
     <Grid Name="MainGrid">
-        <Grid x:Name="AddOption" Visibility="Hidden">
+        <Grid x:Name="AddOption" Visibility="Visible">
 
             <TextBlock Name="IdTbl" Margin="28,80,732,0" Text="Id:" FontSize="16" Foreground="OrangeRed" 
                        TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" FontWeight="DemiBold" 
@@ -41,10 +41,12 @@
             <ComboBox Name="BaseStationIdSelector" HorizontalAlignment="Left" Margin="147,272,0,0" Text="" 
                       VerticalAlignment="Top" Width="120" SelectionChanged="BaseStationIdComboBox_SelectionChanged"/>
 
-            <Button Content="Close"  ToolTip="Close Base Station" HorizontalAlignment="Left" Margin="65,365,0,0" VerticalAlignment="Top" 
-                    Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS"  Height="32" Width="80" Click="CloseButton_Click"/>
-            <Button Content="Add"   ToolTip="Add Base Station" Margin="642,365,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"
-                 Style="{StaticResource MaterialDesignFloatingActionLightButton}"  HorizontalAlignment="Left" Height="32" Width="80" Click="AddButton_Click"/>
+            <Button HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="19,381,0,21" Width="77" Height="48" Click="CloseAddButton_Click" RenderTransformOrigin="0.572,0.996">
+                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="49" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502">
+                </fa:ImageAwesome>
+            </Button>
+            <Button Content="Add"  FontWeight="Bold" ToolTip="Add Base Station" Margin="644,384,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"
+                 Style="{StaticResource MaterialDesignFloatingActionLightButton}"  HorizontalAlignment="Left" Height="45" Width="80" Click="AddButton_Click"/>
 
             <!--Content="{materialDesign:PackIcon Kind=Add, Size=50}"-->
 

@@ -42,7 +42,9 @@ namespace BlApi
                 List<DO.ParcelDal> myRecievedParcels = DalAccess.GetParcelsList().Where(x => x.TargetId == item.Id).ToList();
                 int recieverGotParcels = myRecievedParcels.Where(x => x.SupplyingTime != null).Count();
                 int parcelsInWayToReciever = myRecievedParcels.Where(x => x.SupplyingTime == null).Count();
-                myCustomersBl.Add(new CustomerToList { Id = item.Id, Name = item.Name, Phone = item.Phone, SentAndSupplied = sentAndSuppliedParcels, SentAndNotSupplied = sentAndNotSuppliedParcels, RecieverGotParcels = recieverGotParcels, InWayToReciever = parcelsInWayToReciever });
+                myCustomersBl.Add(new CustomerToList { Id = item.Id, Name = item.Name, Phone = item.Phone, 
+                    SentAndSupplied = sentAndSuppliedParcels, SentAndNotSupplied = sentAndNotSuppliedParcels, 
+                    RecieverGotParcels = recieverGotParcels, InWayToReciever = parcelsInWayToReciever });
             }
             return myCustomersBl;
         }
