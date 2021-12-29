@@ -17,13 +17,13 @@ using BO;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for CustomersWindow.xaml
+    /// Interaction logic for CustomersListWindow.xaml
     /// </summary>
-    public partial class CustomersWindow : Window
+    public partial class CustomersListWindow : Window
     {
         private BlApi.IBL blAccess;
         public ObservableCollection<CustomerToList> myCustomerPl;
-        public CustomersWindow(BlApi.IBL blAccessTemp)
+        public CustomersListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
             blAccess = blAccessTemp;

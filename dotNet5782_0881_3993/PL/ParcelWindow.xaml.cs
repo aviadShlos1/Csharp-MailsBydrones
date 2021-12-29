@@ -127,14 +127,14 @@ namespace PL
         private void SenderTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this.Close();
-            CustomersWindow customersWindow = new(blAccess);
+            CustomersListWindow customersWindow = new(blAccess);
             new CustomerWindow(blAccess, MyParcel.Sender.CustId, customersWindow).Show();
         }
 
         private void RecieverTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this.Close();
-            CustomersWindow customersWindow = new(blAccess);
+            CustomersListWindow customersWindow = new(blAccess);
             //AssignCustomerToParcel tempReciever = (AssignCustomerToParcel)RecieverTbx.Text;
             new CustomerWindow(blAccess, MyParcel.Reciever.CustId, customersWindow).Show();
         }

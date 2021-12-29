@@ -24,7 +24,7 @@ namespace BO
         public int ParcelAssignId { get; set; } // This field includes the parcel id which is related to this drone 
         public override string ToString()
         {
-            return $"CustId: {DroneId}, Model: {Model}, Weight: {DroneWeight}, Battery: {BatteryPercent + "%"}, Status: {DroneStatus}, Location: {DroneLocation}, ParcelAssignId: {ParcelAssignId}";
+            return $"Id: {DroneId}, Model: {Model}, Weight: {DroneWeight}, Battery: {BatteryPercent + "%"}, Status: {DroneStatus}, Location: {DroneLocation}, ParcelAssignId: {ParcelAssignId}";
         }
     }
 }
