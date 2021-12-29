@@ -79,7 +79,7 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void CloseAddButton_Click(object sender, RoutedEventArgs e)
         {
             localDronesListWindow.selectionOptions(); // Call the selection function to present the selected list according to the user selection
             this.Close();
@@ -90,7 +90,7 @@ namespace PL
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-      
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -294,5 +294,7 @@ namespace PL
             }          
         }
         #endregion
+
+        
     }
 }
