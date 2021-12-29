@@ -27,7 +27,7 @@ namespace PL
     {
         private BlApi.IBL blAccess;
         public ObservableCollection<ParcelToList> myParcelsPl = new();
-
+         
 
         /// <summary>
         /// ctor for initialize the observable list
