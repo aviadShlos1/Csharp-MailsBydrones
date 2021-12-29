@@ -82,6 +82,13 @@ namespace PL
                 this.Close();
                 listOfCustomerSend.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList;
             }
+
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }
