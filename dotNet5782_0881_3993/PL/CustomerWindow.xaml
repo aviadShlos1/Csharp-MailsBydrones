@@ -51,19 +51,19 @@
             <TextBlock HorizontalAlignment="Left" Margin="28,280,0,0" Text="Latitude:" FontSize="16"  TextWrapping="Wrap" 
                        VerticalAlignment="Top" Width="auto" Grid.Column="2" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Comic Sans MS" Height="auto"/>
 
-            <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,81,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="9"/>
-            <TextBox Name="NameTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,123,0,0" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="PhoneTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="LongitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,231,0,0" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="147,278,0,0" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,81,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="9"/>
+            <TextBox Name="NameTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,123,0,0" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="PhoneTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="LongitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,231,0,0" Text="" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,278,0,0" Text="" VerticalAlignment="Top" Width="120"/>
 
 
-            <Button HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="10,371,0,0" Width="72" Height="48" Click="CloseAddButton_Click" RenderTransformOrigin="0.572,0.996" Grid.ColumnSpan="2" Grid.Column="1">
+            <Button HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="10,380,0,0" Width="72" Height="48" Click="CloseAddButton_Click" RenderTransformOrigin="0.572,0.996" Grid.ColumnSpan="2" Grid.Column="1">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="46" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502">
                 </fa:ImageAwesome>
             </Button>
-            <Button Content="Add"  FontWeight="Bold" Grid.Column="2" HorizontalAlignment="Left" Margin="597,380,0,0" VerticalAlignment="Top" 
-                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="39" Width="65" Click="AddButton_Click"/>
+            <Button Content="Add"  FontWeight="Bold" Grid.Column="2" HorizontalAlignment="Left" Margin="611,388,0,0" VerticalAlignment="Top" 
+                     Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Height="40" Width="65" Click="AddButton_Click"/>
 
         </Grid>
 

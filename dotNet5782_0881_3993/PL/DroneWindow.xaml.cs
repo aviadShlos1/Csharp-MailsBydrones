@@ -120,12 +120,17 @@ namespace PL
             }
         }
 
-        #endregion
+        #endregion Add
 
         #region Update 
         public DroneBl MyDrone;
 
-        // Ctor for update options
+        /// <summary>
+        /// Ctor for update options
+        /// </summary>
+        /// <param name="blAccessTemp"></param>
+        /// <param name="droneId">Get drone id to get the drone</param>
+        /// <param name="dronesListTemp">Given in order to Enable update the drones list</param>
         public DroneWindow(BlApi.IBL blAccessTemp, int droneId, DronesListWindow dronesListTemp)
         {
             InitializeComponent();
@@ -284,6 +289,11 @@ namespace PL
             this.Close();
             localDronesListWindow.selectionOptions();
         }
+        /// <summary>
+        /// Double Click event that open the window of the assignning parcel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ParcelInShipmentTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if(MyDrone.ParcelInShip!=null)
@@ -292,8 +302,6 @@ namespace PL
                 new ParcelWindow(blAccess, MyDrone.ParcelInShip.Id, TempParcelsListWindow).Show();
             }          
         }
-        #endregion
-
-        
+        #endregion       
     }
 }

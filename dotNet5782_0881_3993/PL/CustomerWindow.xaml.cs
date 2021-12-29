@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Level 3
+//brief: Improve the presentation and add user interface
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +28,11 @@ namespace PL
         private BlApi.IBL blAccess;
         private CustomersListWindow localCustomersWindow;
         #region Add
+        /// <summary>
+        /// Ctor for Add
+        /// </summary>
+        /// <param name="blAccessTemp"></param>
+        /// <param name="customersListTemp">Given in order to Enable update the customers list</param>
         public CustomerWindow(BlApi.IBL blAccessTemp, CustomersListWindow customersListTemp)
         {
             InitializeComponent();
@@ -66,18 +75,26 @@ namespace PL
                 IdTbl.Background = Brushes.Red;
             }
         }
+        /// <summary>
+        ///  A click buttun event. When the user will click this button, the add options window will be closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseAddButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             localCustomersWindow.selectionOptions();
         }
-
-        #endregion
+        #endregion Add
 
         #region Update 
         public CustomerBL MyCustomer;
-
-        // Ctor for update options
+        /// <summary>
+        /// Ctor for update options
+        /// </summary>
+        /// <param name="blAccessTemp"></param>
+        /// <param name="CustomerId">Get customer id to get the customer</param>
+        /// <param name="customersListTemp">Given in order to Enable update the customers list</param>
         public CustomerWindow(BlApi.IBL blAccessTemp, int CustomerId, CustomersListWindow customersListTemp)
         {
             InitializeComponent();
@@ -102,19 +119,33 @@ namespace PL
             localCustomersWindow.selectionOptions();
             this.Close();
         }
+        /// <summary>
+        /// Double click event, which will opens the window of the parcel that he clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SentParcelsTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ParcelsListWindow parcelsListWindow = new(blAccess);
             ParcelByCustomer temp = (ParcelByCustomer)SentParcels.SelectedItem;
             new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
         }
-
+        /// <summary>
+        /// Double click event, which will opens the window of the parcel that he clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RecievedParcelsTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ParcelsListWindow parcelsListWindow = new(blAccess);
             ParcelByCustomer temp = (ParcelByCustomer)RecievedParcels.SelectedItem;
             new ParcelWindow(blAccess, temp.Id, parcelsListWindow).Show();
         }
+        /// <summary>
+        /// Button click event, which will enable the user to close the update window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

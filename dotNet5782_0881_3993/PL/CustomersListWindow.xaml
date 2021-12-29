@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         WindowStyle="None"
-        Title="CustomersWindow" Height="450" Width="800">
+        Title="CustomersWindow" Height="550" Width="950">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFF9F9F9" Offset="0.009"/>
@@ -50,9 +50,9 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Add customer" HorizontalAlignment="Left" Margin="567,390,0,0" Width="233" Click="AddCustomerButton_Click" Height="46"/>
+        <Button Content="Add customer" HorizontalAlignment="Left" Margin="663,465,0,0" Width="233" Click="AddCustomerButton_Click" Height="46"/>
 
-        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="10,371,0,0" Height="84" Width="104" Click="ClosingWindowButton_Click">
+        <Button HorizontalAlignment="Left" BorderThickness="0" Margin="10,456,0,0" Height="84" Width="104" Click="ClosingWindowButton_Click">
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
 

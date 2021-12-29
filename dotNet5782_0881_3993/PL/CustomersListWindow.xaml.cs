@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Level 3
+//brief: Improve the presentation and add user interface
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +39,9 @@ namespace PL
             myCustomerPl = new ObservableCollection<CustomerToList>(blAccess.GetCustomersBl());
             CustomersListView.DataContext = myCustomerPl;
         }
+        /// <summary>
+        /// Auxiliary method that taking into consideration all the selection options 
+        /// </summary>
         public void selectionOptions()
         {
             CustomersListView.ItemsSource = blAccess.GetCustomersBl();
@@ -59,13 +66,15 @@ namespace PL
             new ListsDisplayWindow().Show();
             this.Close();
         }
-
+        /// <summary>
+        /// A double click event. The user will click double click on the wanted customer, in that he will be able to do some action with it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CustomersListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             CustomerToList temp = (CustomerToList)CustomersListView.SelectedItem;
             new CustomerWindow(blAccess, temp.Id, this).Show();
-        }
-
-        
+        }   
     }
 }
