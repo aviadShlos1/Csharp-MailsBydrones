@@ -22,7 +22,6 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        private BlApi.IBL blAccess;
         #region main window
         /// <summary> the constractor start the intlize consractor of the data </summary>
         public MainWindow()
@@ -60,6 +59,7 @@ namespace PL
                 default:
                     break;
             }
+            this.Close();
         }
         #endregion
 
@@ -99,6 +99,7 @@ namespace PL
         /// <param name="e"></param>
         private void BNewUser_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
             new CustomerWindow(AccessIbl, new CustomersListWindow(AccessIbl)).Show();
         }
 
@@ -124,8 +125,6 @@ namespace PL
             Blogin.Content = "User";
             
         }
-
-
 
         private void TBadmin_KeyUp(object sender, KeyEventArgs e)
         {
