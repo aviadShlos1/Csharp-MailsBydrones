@@ -171,6 +171,7 @@ namespace BlApi
                     if (itemParcel.DroneToParcelId == itemDrone.DroneId && itemParcel.SupplyingTime == null)
                     {
                         itemDrone.DroneStatus = DroneStatusesBL.Shipment;
+                        itemDrone.ParcelAssignId = itemParcel.Id;
                         if (itemParcel.AssignningTime != null && itemParcel.PickingUpTime == null)//If the parcel is already assigned but isn't picked up
                         {
                             double senderLon = GetCustomerDetails(itemParcel.SenderId).Longitude;

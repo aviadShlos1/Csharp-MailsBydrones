@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Level 3
+//brief: Improve the presentation and add user interfaceusing System
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +36,11 @@ namespace PL
         public CustomerBL MyCustomer;
 
         public int indexSelected;
+        /// <summary>
+        /// Ctor for Client window 
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <param name="ClientId">Get client id to get the customer in this id</param>
         public ClientWindow(BlApi.IBL bl, int ClientId)
         {
             InitializeComponent();
@@ -39,21 +48,25 @@ namespace PL
 
             MyCustomer = blAccess.GetSingleCustomer(ClientId);
             DataContext = MyCustomer;
+            //Display the parcels list, the first for parcels that he sent and the second for parcels that he recieved 
             listOfCustomerSend.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList;
-
             listOfCustomerReceive.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsToCustomerList;
-
+            //Needs for add parcel option 
             WeightTbx.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             PriorityTbx.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
             IEnumerable<int> customersId = blAccess.GetCustomersBl().Select(x => x.Id);
             TargetIdTbx.ItemsSource = customersId;
         }
-
+        /// <summary>
+        /// Click event, when he click "Add" the details of the parcel will be add to the list and will display in the sends list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             // adding the new parcel for sending
             AssignCustomerToParcel myAssignSenderToParcel = new() { CustId = MyCustomer.Id, CustName = MyCustomer.Name };
-            AssignCustomerToParcel myAssignRecieverToParcel = new() { CustId = (int)TargetIdTbx.SelectedItem };
+            AssignCustomerToParcel myAssignRecieverToParcel = new() { CustId = (int)TargetIdTbx.SelectedItem};
             ParcelBl newParcel = new ParcelBl
             {
                 Sender = myAssignSenderToParcel,
