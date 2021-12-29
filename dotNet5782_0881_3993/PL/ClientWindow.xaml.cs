@@ -20,7 +20,7 @@ namespace PL
     /// </summary>
     public partial class ClientWindow : Window
     {
-        
+
         public BlApi.IBL blAccess;
 
         //object of ListView window.
@@ -29,7 +29,7 @@ namespace PL
         /// <summary> a bool to help us disable the x bootum  </summary>
         public bool ClosingWindow { get; private set; } = true;
 
-        public CustomerBL Customer;
+        public CustomerBL MyCustomer;
 
         public int indexSelected;
         public ClientWindow(BlApi.IBL bl, int ClientId)
@@ -37,11 +37,38 @@ namespace PL
             InitializeComponent();
             blAccess = bl;
 
-            Customer = blAccess.GetSingleCustomer(ClientId);
-            DataContext = Customer;
-            listOfCustomerSend.ItemsSource = blAccess.GetSingleCustomer(Customer.Id).ParcelsFromCustomerList;
+            MyCustomer = blAccess.GetSingleCustomer(ClientId);
+            DataContext = MyCustomer;
+            listOfCustomerSend.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList;
 
-            listOfCustomerReceive.ItemsSource = blAccess.GetSingleCustomer(Customer.Id).ParcelsToCustomerList;
+            listOfCustomerReceive.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsToCustomerList;
+
+            WeightTbx.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
+            PriorityTbx.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
+            IEnumerable<int> customersId = blAccess.GetCustomersBl().Select(x => x.Id);
+            TargetIdTbx.ItemsSource = customersId;
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            // adding the new parcel for sending
+            AssignCustomerToParcel myAssignSenderToParcel = new() { CustId = MyCustomer.Id, CustName = MyCustomer.Name };
+            AssignCustomerToParcel myAssignRecieverToParcel = new() { CustId = (int)TargetIdTbx.SelectedItem };
+            ParcelBl newParcel = new ParcelBl
+            {
+                Sender = myAssignSenderToParcel,
+                Reciever = myAssignRecieverToParcel,
+                ParcelWeight = (WeightCategoriesBL)WeightTbx.SelectedItem,
+                Priority = (PrioritiesBL)PriorityTbx.SelectedItem
+            };
+            blAccess.AddParcel(newParcel);
+
+            MessageBoxResult result = MessageBox.Show("The operation was done successfully");
+            if (result == MessageBoxResult.OK)
+            {
+                this.Close();
+                listOfCustomerSend.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList;
+            }
         }
     }
 }
