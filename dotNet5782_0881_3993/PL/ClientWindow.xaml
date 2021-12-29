@@ -54,7 +54,7 @@
                                     <GridViewColumn DisplayMemberBinding="{Binding Status}" Header="Status" Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.CustId,Mode=OneWay}" Header="RecieverId" Width="auto"/>
                                     <GridViewColumn DisplayMemberBinding="{Binding SourceOrTargetMan.CustName,Mode=OneWay}" Header="RecieverName" Width="auto"/>
-                                    
+
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -106,7 +106,17 @@
                             <RowDefinition Height="11*"/>
                             <RowDefinition Height="35*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" FontSize="30" HorizontalAlignment="Center" Foreground="Black" Text="Add Parcel" Grid.RowSpan="2" Width="147"/>
+                        <TextBlock Grid.Row="0" FontSize="30" HorizontalAlignment="Center" Foreground="DarkBlue" Text="Add Parcel" Grid.RowSpan="2" Width="147"/>
+
+                        <TextBlock HorizontalAlignment="Left" Margin="25,16,0,0" Text="Target Id:" FontSize="16" Foreground="DarkBlue" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" FontWeight="DemiBold" FontFamily="Comic Sans MS" Height="auto" Grid.Row="1"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="25,58,0,0" Text="Weight:" FontSize="16" Foreground="DarkBlue" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" FontWeight="DemiBold" FontFamily="Comic Sans MS" Height="auto" Grid.Row="1"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="25,96,0,0" Text="Priority:" FontSize="16" Foreground="DarkBlue" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" FontWeight="DemiBold" FontFamily="Comic Sans MS" Height="auto" Grid.Row="1"/>
+
+                        <ComboBox x:Name="TargetIdTbx" HorizontalAlignment="Left" Margin="120,22,0,0" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1" />
+                        <ComboBox x:Name="WeightTbx" HorizontalAlignment="Left" Margin="120,58,0,0" Text=""  VerticalAlignment="Top" Width="120" Grid.Row="1"  />
+                        <ComboBox x:Name="PriorityTbx" HorizontalAlignment="Left" Margin="120,94,0,0" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1" />
+                        <Button Content="Add" HorizontalAlignment="Left" Margin="260,129,0,0" VerticalAlignment="Top" FontWeight="Bold" 
+                                Style="{StaticResource MaterialDesignFloatingActionDarkButton}" FontFamily="Comic Sans MS" Height="31" Width="54" Click="AddButton_Click" Grid.Row="1"/>
                     </Grid>
                 </materialDesign:Card>
                 <materialDesign:Card   Grid.Column="1" Background="{DynamicResource PrimaryHueLightBrush}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="8" 

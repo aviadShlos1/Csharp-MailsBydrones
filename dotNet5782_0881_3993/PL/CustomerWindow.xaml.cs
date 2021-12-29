@@ -36,7 +36,7 @@ namespace PL
         {
             try
             {
-                // adding the new Customer details
+                // adding the new MyCustomer details
                 CustomerBL newCustomer = new CustomerBL()
                 {
                     Id = int.Parse(IdTbx.Text),
@@ -58,7 +58,7 @@ namespace PL
             }
             catch (AlreadyExistException)
             {
-                MessageBox.Show("This Customer is already exists");
+                MessageBox.Show("This MyCustomer is already exists");
                 IdTbx.BorderBrush = Brushes.Red;
                 IdTbl.Background = Brushes.Red;
             }
