@@ -28,6 +28,11 @@ namespace PL
     {
         private BlApi.IBL blAccess;
         public ObservableCollection<DroneToList> myDronesPl;
+
+        /// <summary>
+        /// ctor for initialize the observable list
+        /// </summary>
+        /// <param name="blAccessTemp"> bl access </param>
         public DronesListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
@@ -39,6 +44,12 @@ namespace PL
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
         }
+
+        /// <summary>
+        /// function that update the observable for every change which is done to the observable list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void myDronesPl_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             selectionOptions();
@@ -75,7 +86,6 @@ namespace PL
                 DronesListView.ItemsSource = myDronesPl.Where(x => x.DroneStatus == (DroneStatusesBL)StatusSelector.SelectedItem && x.DroneWeight == (WeightCategoriesBL)WeightSelector.SelectedItem);
             }
         }
-
         /// <summary>
         /// A selection event, the user will choose between the status categories 
         /// </summary>
@@ -85,8 +95,6 @@ namespace PL
         {
             selectionOptions();
         }
-
-
         /// <summary>
         /// A selection event, the user will choose between the weight categories 
         /// </summary>
@@ -118,14 +126,21 @@ namespace PL
             DroneToList temp = (DroneToList)DronesListView.SelectedItem;
             new DroneWindow(blAccess,temp.DroneId,this).Show();
         }
-
+        /// <summary>
+        /// A closing window. The lists display again
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClosingWindowButton_Click(object sender, RoutedEventArgs e)
         {
             new ListsDisplayWindow().Show();
             this.Close();
         }
-
-       
+        /// <summary>
+        /// Grouping by the status and display the headers of them
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StatusRbtn_Click(object sender, RoutedEventArgs e)
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(DronesListView.ItemsSource);
