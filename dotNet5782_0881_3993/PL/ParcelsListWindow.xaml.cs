@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Level 3
+//Brief: Improve the presentation and add user interface
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +27,12 @@ namespace PL
     {
         private BlApi.IBL blAccess;
         public ObservableCollection<ParcelToList> myParcelsPl = new();
+
+
+        /// <summary>
+        /// ctor for initialize the observable list
+        /// </summary>
+        /// <param name="blAccessTemp"> bl access </param>
         public ParcelsListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
@@ -35,6 +45,11 @@ namespace PL
             PrioritySelector.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
         }
 
+        /// <summary>
+        /// function that update the observable for every change which is done to the observable list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MyParcelsPl_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             ParcelsListView.ItemsSource = myParcelsPl;
@@ -63,26 +78,48 @@ namespace PL
             }
         }
 
-     
+        /// <summary>
+        /// A selection event, the user will choose between the status categories 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
         }
-
+        /// <summary>
+        /// A selection event, the user will choose between the priority categories 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrioritySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectionOptions();
         }
+        /// <summary>
+        /// A button click event, add parcel window will be opened
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddParcelButton_Click(object sender, RoutedEventArgs e)
         {
             new ParcelWindow(blAccess, this).Show();
         }
+        /// <summary>
+        /// double click event which gets the user to the update actions
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ParcelsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ParcelToList temp = (ParcelToList)ParcelsListView.SelectedItem;
             new ParcelWindow(blAccess, temp.Id, this).Show();
         }
-
+        /// <summary>
+        /// A reset button click event, the selection will be cleared
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             StatusSelector.SelectedItem = null;
@@ -91,12 +128,21 @@ namespace PL
             SenderRbtn.IsEnabled = true ;
             RecieveRbtn.IsEnabled = true; 
         }
+        /// <summary>
+        /// A button click event, this window will be closed and the lists display will be shown
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClosingButton_Click(object sender, RoutedEventArgs e)
         {
             new ListsDisplayWindow().Show();
             this.Close();
         }
-
+        /// <summary>
+        /// radio button event which groups the list by the sender name
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SenderButton_Click(object sender, RoutedEventArgs e)
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ParcelsListView.ItemsSource);
@@ -104,7 +150,11 @@ namespace PL
             view.GroupDescriptions.Add(groupDescription);
             SenderRbtn.IsEnabled = false;
         }
-
+        /// <summary>
+        /// radio button event which groups the list by the reciever name
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RecieverButton_Click(object sender, RoutedEventArgs e)
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ParcelsListView.ItemsSource);

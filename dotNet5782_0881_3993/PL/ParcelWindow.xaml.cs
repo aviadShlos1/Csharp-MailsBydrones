@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Level 3
+//Brief: Improve the presentation and add user interface
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +27,11 @@ namespace PL
         private ParcelsListWindow localParcelsListWindow;
 
         #region add
+        /// <summary>
+        /// Ctor for add option
+        /// </summary>
+        /// <param name="blAccessTemp">The access parameter to the bl </param>
+        /// <param name="dronesListTemp">Presents the parcel window </param>
         public ParcelWindow(BlApi.IBL blAccessTemp, ParcelsListWindow parcelsListTemp)
         {
             InitializeComponent();
@@ -35,12 +44,19 @@ namespace PL
             SenderIdTbx.ItemsSource = customersId;
             TargetIdTbx.ItemsSource = customersId;
         }
-
+        // <summary>
+        /// A click buttun event. When the user will click this button, the add options window will be closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseAddButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
+        /// An add click buttun event. When the user will click this button, the parcel will be added
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -104,6 +120,11 @@ namespace PL
                 SupplyParcelButton.Visibility = Visibility.Visible;
             }
         }
+        /// <summary>
+        /// click button for delete the selected item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteParcelButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("You are going to delete the parcel, sure about it?", "Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -123,14 +144,22 @@ namespace PL
                     break;
             }
         }
-      
+      /// <summary>
+      /// click button that presents the customer who sent this parcel 
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
         private void SenderTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this.Close();
             CustomersListWindow customersWindow = new(blAccess);
             new CustomerWindow(blAccess, MyParcel.Sender.CustId, customersWindow).Show();
         }
-
+        /// <summary>
+        /// click button that presents the customer who recieved this parcel 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RecieverTbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             this.Close();
@@ -180,7 +209,11 @@ namespace PL
             }
         }
         #endregion update
-
+        /// <summary>
+        /// click button that presents the drone which is assigned to this parcel 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DroneAssignTbx_MouseEnter(object sender, MouseEventArgs e)
         {
             DronesListWindow temp = new(blAccess);

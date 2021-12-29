@@ -23,6 +23,11 @@ namespace PL
     {
         private BlApi.IBL blAccess;
         public ObservableCollection<CustomerToList> myCustomerPl;
+
+        /// <summary>
+        /// ctor for initialize the observable list
+        /// </summary>
+        /// <param name="blAccessTemp"> bl access </param>
         public CustomersListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
@@ -45,7 +50,7 @@ namespace PL
             CustomersListView.Items.Refresh();
         }
         /// <summary>
-        /// A button click event, the add drone window will be opened
+        /// A button click event, this window will be closed and the lists display will be shown
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

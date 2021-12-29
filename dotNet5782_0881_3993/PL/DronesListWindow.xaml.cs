@@ -28,6 +28,11 @@ namespace PL
     {
         private BlApi.IBL blAccess;
         public ObservableCollection<DroneToList> myDronesPl;
+
+        /// <summary>
+        /// ctor for initialize the observable list
+        /// </summary>
+        /// <param name="blAccessTemp"> bl access </param>
         public DronesListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
@@ -39,6 +44,12 @@ namespace PL
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatusesBL));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
         }
+
+        /// <summary>
+        /// function that update the observable for every change which is done to the observable list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void myDronesPl_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             selectionOptions();

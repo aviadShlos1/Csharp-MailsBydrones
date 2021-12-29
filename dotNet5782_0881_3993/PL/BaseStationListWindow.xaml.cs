@@ -1,7 +1,7 @@
 ﻿//Names: Aviad Shlosberg       314960881      
 //       Evyatar Levi Ben Ston 318753993 
-//Targil3
-//brief: In this program we built the presentation layer
+//Level 3
+//Brief: Improve the presentation and add user interface
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +21,18 @@ using BO;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for DronesListWindow.xaml
+    /// Interaction logic for BaseStationListWindow.xaml
     /// </summary>
     public partial class BaseStationListWindow : Window
     {
         private string[] chargeStatus = { "Free", "Full" };
         private BlApi.IBL blAccess;
         public ObservableCollection<BaseStationToList> myBaseStatiobnsPl;
+
+        /// <summary>
+        /// ctor for initialize the observable list
+        /// </summary>
+        /// <param name="blAccessTemp"> bl access </param>
         public BaseStationListWindow(BlApi.IBL blAccessTemp)
         {
             InitializeComponent();
@@ -72,7 +77,7 @@ namespace PL
         }
 
         /// <summary>
-        /// A button click event, the add drone window will be opened
+        /// A button click event, add base station window will be opened
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -81,7 +86,7 @@ namespace PL
             new BaseStationWindow(blAccess, this).Show();
         }
         /// <summary>
-        /// A button click event, the add drone window will be opened
+        /// A button click event, this window will be closed and the lists display will be shown
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -107,12 +112,21 @@ namespace PL
         {
             selectionOptions();
         }
-       
+       /// <summary>
+       /// double click event which gets the user to the update actions
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void BaseStationListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             BaseStationToList temp = (BaseStationToList)BaseStationListView.SelectedItem;
             new BaseStationWindow(blAccess, temp.Id, this).Show();
         }
+        /// <summary>
+        /// event for enter key . When the user will push the enter key the list will be selected by the free charge slots number input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnterClicked(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -121,14 +135,17 @@ namespace PL
                 e.Handled = true;
             }
         }
-
+        /// <summary>
+        /// radio button event which groups the list by free charge slots amount
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChargeSlotsRadioBut(object sender, RoutedEventArgs e)
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(BaseStationListView.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("FreeChargeSlots");
             view.GroupDescriptions.Add(groupDescription);
             ChargeCbx.IsEnabled = false;
-
         }
     }
 }

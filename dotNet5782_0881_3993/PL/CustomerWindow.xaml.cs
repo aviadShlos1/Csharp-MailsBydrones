@@ -31,7 +31,10 @@ namespace PL
             blAccess = blAccessTemp;
             localCustomersWindow = customersListTemp;
         }
-
+        /// An add click buttun event. When the user will click this button, the customer will be added
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             try

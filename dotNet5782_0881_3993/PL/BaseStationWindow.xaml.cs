@@ -1,7 +1,7 @@
 ﻿//Names: Aviad Shlosberg       314960881      
 //       Evyatar Levi Ben Ston 318753993 
-//Targil3
-//brief: In this program we built the presentation layer
+//Level 3
+//Brief: Improve the presentation and add user interface
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,13 +50,15 @@ namespace PL
             localBaseStationListWindow.selectionOptions(); // Call the selection function to present the selected list according to the user selection
             this.Close();
         }
-
+        /// An add click buttun event. When the user will click this button, the base station will be added
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddBaseStationButton_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
-                // adding the new drone details
+                // adding the new base station details
 
                 BaseStationBl newBaseStation = new BaseStationBl()
                 {
@@ -100,6 +102,11 @@ namespace PL
             BaseLocation.Text = MyBase.Location.ToString();
             DronesInChargeLbx.ItemsSource = MyBase.DronesInChargeList;
         }
+        /// <summary>
+        /// button which will allow updating the base station name
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateNameButton_Click(object sender, RoutedEventArgs e)
         {
             blAccess.UpdateBaseStationData(MyBase.Id, NameTbx.Text, int.Parse(UpdateFreeChargeTbx.Text));
@@ -107,12 +114,16 @@ namespace PL
             localBaseStationListWindow.selectionOptions();
             this.Close();
         }
+        /// <summary>
+        /// double click event which opens the select drone window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DronesInChargeLbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DroneInCharge temp = (DroneInCharge)DronesInChargeLbx.SelectedItem;
             DronesListWindow dronesListWindow = new DronesListWindow(blAccess);
-            new DroneWindow(blAccess, temp.Id, dronesListWindow).Show();
-            
+            new DroneWindow(blAccess, temp.Id, dronesListWindow).Show();      
         }
 
         private void CloseUpdateButton_Click(object sender, RoutedEventArgs e)

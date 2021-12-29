@@ -103,6 +103,8 @@ namespace DalApi
                     DroneToParcelId = 0,
                 };
 
+
+                // lists 107-127: rand parcels details and rand assign drone , in that the system simulates real time system 
                 if (rand.Next(2) == 1)
                 {
                     myParcel.AssignningTime = myParcel.CreatingTime + time;

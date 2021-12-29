@@ -1,7 +1,7 @@
 ﻿//Names: Aviad Shlosberg       314960881      
 //       Evyatar Levi Ben Ston 318753993 
-//Targil3
-//brief: In this program we built the presentation layer
+//Level 3
+//Brief: Improve the presentation and add user interface
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -85,12 +85,11 @@ namespace PL
             this.Close();
         }
         /// <summary>
-        /// An add click buttun event. When the user will click this button, the add options window will be opened
+        
+        /// An add click buttun event. When the user will click this button, the drone will be added
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
-
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             try
