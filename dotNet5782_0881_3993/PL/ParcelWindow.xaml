@@ -16,7 +16,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="Images\addParcel.jpg" />
         </Grid.Background>
-        <Grid x:Name="AddOption" Visibility="Visible">
+        <Grid x:Name="AddOption" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>

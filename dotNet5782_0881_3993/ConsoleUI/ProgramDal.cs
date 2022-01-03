@@ -369,7 +369,7 @@ Your choice:");
         static void Main(string[] args)
         {
             //DalApi.IDal idal = DalApi.IDal.Instance;
-            DalApi.IDal idal = DalApi.DalFactory.GetDal("idal");
+            DalApi.IDal idal = DalApi.DalFactory.GetDal();
 
             Options options;
             int choice = 0;

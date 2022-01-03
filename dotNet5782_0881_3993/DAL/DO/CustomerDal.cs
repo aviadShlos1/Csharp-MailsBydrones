@@ -23,8 +23,8 @@ using DalApi;
             /// <returns> The full details by string representation  </returns>
             public override string ToString()
             {
-            string convertLongitude = DalObject.ConvertDecimalDegreesToSexagesimal(Longitude, "Longitude");
-            string convertLatitude = DalObject.ConvertDecimalDegreesToSexagesimal(Latitude, "Latitude");
+            string convertLongitude = DO.CoordinatesConvert.ConvertDecimalDegreesToSexagesimal(Longitude, "Longitude");
+            string convertLatitude = DO.CoordinatesConvert.ConvertDecimalDegreesToSexagesimal(Longitude, "Longitude");
             return $"CustomerDal: Id:{Id}, Name:{Name}, Phone:{Phone}, Longitude:{convertLongitude}, Latitude:{convertLatitude}";
             }
         }

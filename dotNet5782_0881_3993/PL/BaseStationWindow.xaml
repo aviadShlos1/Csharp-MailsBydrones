@@ -16,7 +16,7 @@
             <ImageBrush ImageSource="Images\Base.jpg" />
         </Grid.Background>
 
-        <Grid x:Name="BaseStaionAddOption" Visibility="Visible">
+        <Grid x:Name="BaseStaionAddOption" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="51*"/>

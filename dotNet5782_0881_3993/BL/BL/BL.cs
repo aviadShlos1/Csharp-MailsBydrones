@@ -27,7 +27,7 @@ namespace BlApi
         public static BL Instance { get => instance; }
         #endregion
 
-        static DalApi.IDal DalAccess = DalApi.DalFactory.GetDal("DalObject");//This is the access point from the data layer
+        static DalApi.IDal DalAccess = DalApi.DalFactory.GetDal();//This is the access point from the data layer
         internal static List<DroneToList> DronesListBL { get; set; }//This list contains drones of type of "Drone to list" 
         static Random rand = new();
 

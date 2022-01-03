@@ -6,6 +6,10 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\bin\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="Images\addDrone.jpg" />
     <None Remove="Images\addParcel.jpg" />

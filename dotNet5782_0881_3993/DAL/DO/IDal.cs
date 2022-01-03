@@ -16,16 +16,7 @@ namespace DalApi
 {
     public interface IDal
     {
-        public double[] EnergyConsumption()
-        {
-            double[] ConsumptionArr = new double[5];
-            ConsumptionArr[0] = DataSource.Config.FreeWeightConsumption;
-            ConsumptionArr[1] = DataSource.Config.LightWeightConsumption;
-            ConsumptionArr[2] = DataSource.Config.MediumWeightConsumption;
-            ConsumptionArr[3] = DataSource.Config.HeavyWeightConsumption;
-            ConsumptionArr[4] = DataSource.Config.ChargeRate;
-            return ConsumptionArr;
-        }
+       
         #region Add methods
 
         /// Adding a new object for the base stations list
@@ -136,5 +127,7 @@ namespace DalApi
         /// <returns> The ienumerable list </returns>
         public IEnumerable<DroneChargeDal> GetDronesChargeList();
         #endregion ListDisplay
+
+        public double[] EnergyConsumption();
     }
 }
