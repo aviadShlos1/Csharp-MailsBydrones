@@ -12,7 +12,7 @@ namespace Dal
     {
         static string dir = @"xml\";
         static XMLTools()
-        {
+        { 
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir); 
         }
