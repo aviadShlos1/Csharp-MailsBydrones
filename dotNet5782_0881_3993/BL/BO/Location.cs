@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
+using DO;
+
 
 namespace BO
 {
@@ -20,8 +22,8 @@ namespace BO
         public double Latitude { get; set; }
         public override string ToString()
         {
-            string convertLongitude = BL.ConvertDecimalDegreesToSexagesimal(Longitude, "Longitude");
-            string convertLatitude = BL.ConvertDecimalDegreesToSexagesimal(Latitude, "Latitude");
+            string convertLongitude = DO.CoordinatesConvert.ConvertDecimalDegreesToSexagesimal(Longitude, "Longitude");
+            string convertLatitude = DO.CoordinatesConvert.ConvertDecimalDegreesToSexagesimal(Latitude, "Latitude");
             return $"Longitude: {convertLongitude},  Latitude: {convertLatitude} ";
         }
     }
