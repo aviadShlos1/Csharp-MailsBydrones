@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 using BO;
 using DO;
 
-
-namespace BlApi
+namespace BL
 {
     /// <summary>
     /// This class is divided to modules that contains the methods implement of the CRUD options

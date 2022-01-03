@@ -8,7 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BO;
-namespace BlApi
+
+namespace BL
 {
     /// <summary>
     /// This class implements the update methods of the business layer

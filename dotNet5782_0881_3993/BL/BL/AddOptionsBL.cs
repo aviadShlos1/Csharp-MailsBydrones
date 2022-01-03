@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using BO;
 using DO;
 
-namespace BlApi
+namespace BL
 {
     /// <summary>
     /// This class implements the add methods of the buisness layer

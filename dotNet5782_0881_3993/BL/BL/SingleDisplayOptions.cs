@@ -9,7 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DO;
 using BO;
-namespace BlApi
+
+namespace BL
 {
     //This class implements the single display methods of the business layer
     partial class BL
