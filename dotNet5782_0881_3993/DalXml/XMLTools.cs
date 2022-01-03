@@ -16,7 +16,7 @@ namespace Dal
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir); 
         }
-        #region SaveLoadWithXElement
+        #region SaveLoadWithXmlSerializer
         public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)
         {
             try
