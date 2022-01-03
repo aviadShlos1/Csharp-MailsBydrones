@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using DO;
 using BO;
 
-namespace BlApi
+namespace BL
 {
     partial class BL
     {
