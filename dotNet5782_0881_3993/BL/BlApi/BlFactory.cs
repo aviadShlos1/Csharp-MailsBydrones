@@ -19,7 +19,7 @@ namespace BlApi
     {
         public static BlApi.IBL GetBl()
         {
-            BlApi.BL bl = BlApi.BL.Instance;
+            BL.BL bl = BL.BL.Instance;
             return bl;
         }
             
