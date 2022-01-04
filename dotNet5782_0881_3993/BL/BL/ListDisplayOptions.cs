@@ -21,6 +21,7 @@ namespace BL
             foreach (var item in dalBaseStations)
             {
                 int busyChargeSlots = DalAccess.GetDronesChargeList().ToList().FindAll(x => x.StationId == item.Id).Count();
+             
                 myBaseStationsBl.Add(new BaseStationToList { Id = item.Id, BaseStationName = item.Name,
                     FreeChargeSlots = item.FreeChargeSlots, BusyChargeSlots = busyChargeSlots });
             }

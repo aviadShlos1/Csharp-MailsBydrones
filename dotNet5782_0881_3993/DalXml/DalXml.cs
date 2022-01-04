@@ -349,7 +349,49 @@ namespace Dal
         #endregion
 
         #region DroneInCharge
+        public void SendDroneToCharge(int droneId, int stationId)
+        {
+            List<DroneChargeDal> DronesInCharge = XMLTools.LoadListFromXMLSerializer<DroneChargeDal>(DroneChargePath);
+            int chargeIndex = DronesInCharge.FindIndex(i => i.DroneId == droneId);
+            if (droneId == -1)
+                throw new NotExistException(droneId);
+            List<BaseStationDal> BaseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
+            int stationIndex = BaseStations.FindIndex(i => i.Id == stationId);
+            BaseStationDal station1 = BaseStations[stationIndex];
+            station1.FreeChargeSlots--; // Reducing the free chargeSlots
+            BaseStations[stationIndex] = station1;
+            DronesInCharge.Add(new DroneChargeDal() { DroneId = droneId, StationId = stationId, StartChargeTime = DateTime.Now });//initiate a new drone charge
+            XMLTools.SaveListToXMLSerializer(DronesInCharge, DroneChargePath);
+        }
+        /// <summary>
+        /// Realesing a drone from the charge base station
+        /// </summary>
+        /// <param name="droneId"></param>
+        public TimeSpan DroneToRelease(int droneId)
+        {
+            List<DroneChargeDal> DronesInCharge = XMLTools.LoadListFromXMLSerializer<DroneChargeDal>(DroneChargePath);
+            int chargeIndex = DronesInCharge.FindIndex(i => i.DroneId == droneId);
+            if (chargeIndex == -1)
+                throw new NotExistException(droneId);
+            DroneChargeDal myDroneRelease = DronesInCharge[chargeIndex];
+            int baseStationId = myDroneRelease.StationId;
+            List<BaseStationDal> BaseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
+            int stationIndex = BaseStations.FindIndex(i => i.Id == baseStationId);
+            BaseStationDal station2 = BaseStations[stationIndex];
+            station2.FreeChargeSlots++;//Increasing the number of the free charge slots
+            BaseStations[stationIndex] = station2;
+            DateTime releaseTime = DateTime.Now;
+            TimeSpan totalCharge = releaseTime - myDroneRelease.StartChargeTime;
+            DronesInCharge.RemoveAt(DronesInCharge.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
+            XMLTools.SaveListToXMLSerializer(DronesInCharge, DroneChargePath);
+            return totalCharge;
+        }
 
+        public IEnumerable<DroneChargeDal> GetDronesChargeList()
+        {
+            List<DroneChargeDal> DronesInCharge = XMLTools.LoadListFromXMLSerializer<DroneChargeDal>(DroneChargePath);
+            return DronesInCharge;
+        }
         #endregion
     }
 }

@@ -517,7 +517,7 @@ Your choice:");
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    printTheList(bl.GetDronesBl().ToList());
+                    printTheList(bl.GetDronesBl().ToList().FindAll(x=>x.DroneStatus==DroneStatusesBL.Maintaince));
                     break;
 
                 // Customers list display
@@ -532,12 +532,12 @@ Your choice:");
 
                 // Get parcels without drone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
-                    printTheList(bl.GetParcelsBl().ToList());
+                    printTheList(bl.GetParcelsBl().ToList().FindAll(x =>x.ParcelStatus==ParcelStatus.Created));
                     break;
 
                 // Get stations with free charge slots list display
                 case ListDisplayOption.StationsWithFreeChargeSlots:
-                    printTheList(bl.GetBaseStationsBl().ToList());
+                    printTheList(bl.GetBaseStationsBl().ToList().FindAll(x => x.FreeChargeSlots > 0));
                     break;
 
                 default:
