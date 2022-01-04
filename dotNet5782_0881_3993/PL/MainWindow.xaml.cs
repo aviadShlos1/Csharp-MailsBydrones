@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Media;
+using BlApi;
 using System.Windows.Media.Animation;
 
 namespace PL
@@ -28,13 +29,15 @@ namespace PL
     {
         #region main window
         /// <summary> the constructor starts the data initializing </summary>
+        // An access objet that gives us accses to bl interface  
+        internal readonly IBL AccessIbl = BlFactory.GetBl();
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        // An access objet that gives us accses to bl interface  
-        public BlApi.IBL AccessIbl = BlApi.BlFactory.GetBl();
+        
+        //public BlApi.IBL AccessIbl = BlApi.BlFactory.GetBl();
 
         /// <summary>
         /// Login event that lead to the manager or client interface.

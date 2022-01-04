@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlApi;
+using DalApi;
 using BO;
 using DO;
 
@@ -22,8 +24,9 @@ namespace BL
         /// Singleton definition to ensure the uniqueness of an object 
         /// </summary>
         #region Singelton
-        static readonly BlApi.IBL instance = new BL();
-        public static BlApi.IBL Instance { get => instance; }
+        static readonly IBL instance = new BL();
+        public static IBL Instance { get => instance; }
+        internal IDal dal = DalFactory.GetDal();//This is the access point from the data layer
         #endregion
 
         static DalApi.IDal DalAccess = DalApi.DalFactory.GetDal();//This is the access point from the data layer

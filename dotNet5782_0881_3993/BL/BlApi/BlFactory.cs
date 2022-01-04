@@ -16,7 +16,12 @@ namespace BlApi
     /// This class creates bl class object and return the object 
     /// </summary>
     public static class BlFactory
-    { 
-       public static BlApi.IBL GetBl() => BL.BL.Instance;      
+    {
+        //public static BlApi.IBL GetBl()
+        //{
+        //    BL.BL bl = BL.BL.Instance;
+        //    return bl;
+        //}
+        public static IBL GetBl() => BL.BL.Instance;
     }
 }
