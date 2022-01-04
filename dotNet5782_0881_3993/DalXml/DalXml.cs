@@ -172,52 +172,6 @@ namespace Dal
             XMLTools.SaveListToXMLSerializer<DroneDal>(drones, DronePath);
         }
         
-        /// <summary>
-        /// Sending a drone to charge in the base station, with given the drone and station id
-        /// </summary>
-        /// <param name="droneId"></param>
-        /// <param name="stationId"></param>
-        public void DroneToCharge(int droneId, int stationId)
-        {
-            List<DroneDal> drones = XMLTools.LoadListFromXMLSerializer<DroneDal>(DronePath);
-            int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId == droneId);
-            if (droneId == -1)
-            {
-                throw new NotExistException(droneId);
-            }
-            int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == stationId);
-            BaseStationDal station1 = DataSource.BaseStations[stationIndex];
-            station1.FreeChargeSlots--; // Reducing the free chargeSlots
-            DataSource.BaseStations[stationIndex] = station1;
-
-            DataSource.DronesInCharge.Add(new DroneChargeDal() { DroneId = droneId, StationId = stationId, StartChargeTime = DateTime.Now });//initiate a new drone charge
-            XMLTools.SaveListToXMLSerializer<DroneDal>(drones, DronePath);
-        }
-        /// <summary>
-        /// Realesing a drone from the charge base station
-        /// </summary>
-        /// <param name="droneId"></param>
-        public TimeSpan DroneRelease(int droneId)
-        {
-            List<DroneDal> drones = XMLTools.LoadListFromXMLSerializer<DroneDal>(DronePath);
-            int chargeIndex = DataSource.DronesInCharge.FindIndex(i => i.DroneId == droneId);
-            if (chargeIndex == -1)
-            {
-                throw new NotExistException(droneId);
-            }
-            DroneChargeDal myDroneRelease = DataSource.DronesInCharge[chargeIndex];
-            int baseStationId = myDroneRelease.StationId;
-
-            int stationIndex = DataSource.BaseStations.FindIndex(i => i.Id == baseStationId);
-            BaseStationDal station2 = DataSource.BaseStations[stationIndex];
-            station2.FreeChargeSlots++;//Increasing the number of the free charge slots
-            DataSource.BaseStations[stationIndex] = station2;
-            DateTime releaseTime = DateTime.Now;
-            TimeSpan totalCharge = releaseTime - myDroneRelease.StartChargeTime;
-            DataSource.DronesInCharge.RemoveAt(DataSource.DronesInCharge.FindIndex(x => x.DroneId == droneId));//Remove the drone from the list of the drone charges
-            return totalCharge;
-            XMLTools.SaveListToXMLSerializer<DroneDal>(drones, DronePath);
-        }
         public DroneDal GetSingleDrone(int droneId)
         {
             List<DroneDal> drones = XMLTools.LoadListFromXMLSerializer<DroneDal>(DronePath);
