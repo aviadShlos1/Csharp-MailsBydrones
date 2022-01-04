@@ -237,13 +237,13 @@ Your choice:");
                         Console.WriteLine(item);
                     }
                     int.TryParse(Console.ReadLine(), out StationId);
-                    dal.DroneToCharge(DroneId, StationId);
+                    dal.SendDroneToCharge(DroneId, StationId);
                     break;
 
                 case UpdatesOption.DroneRelease:
                     Console.WriteLine("please enter a drone ID(4 digits):");
                     int.TryParse(Console.ReadLine(), out DroneId);
-                    dal.DroneRelease(DroneId);
+                    dal.DroneToRelease(DroneId);
                     break;
 
                 default:
@@ -350,7 +350,7 @@ Your choice:");
 
                 // GetParcelsWithoutDrone list display
                 case ListDisplayOption.ParcelsWithoutDrone:
-                    printTheList(dal.GetParcelsList().ToList());
+                    printTheList(dal.GetParcelsList().ToList().FindAll(x=>x.AssignningTime==null));
                     break;
 
                 // FreeChargeSlots list display

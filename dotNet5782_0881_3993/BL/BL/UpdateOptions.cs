@@ -323,7 +323,7 @@ namespace BL
                     droneItem.DroneLocation.Longitude = closetBaseStation.Location.Longitude;
                     droneItem.DroneLocation.Latitude = closetBaseStation.Location.Latitude;
                     droneItem.DroneStatus = BO.DroneStatusesBL.Maintaince;
-                    DalAccess.DroneToCharge(droneItem.DroneId, closetBaseStation.Id);
+                    DalAccess.SendDroneToCharge(droneItem.DroneId, closetBaseStation.Id);
                 }
                 else
                 {
@@ -355,7 +355,7 @@ namespace BL
             }
             else
             {
-                TimeSpan chargeTime = DalAccess.DroneRelease(droneId);
+                TimeSpan chargeTime = DalAccess.DroneToRelease(droneId);
                 double timeInMinutes = chargeTime.TotalMinutes;//converting the format to number of minutes, for instance, 1:30 to 90 minutes
                 timeInMinutes /= 60; //getting the time in hours 
                 droneItem.BatteryPercent += Math.Ceiling(timeInMinutes * chargeRate); // the battery calculation

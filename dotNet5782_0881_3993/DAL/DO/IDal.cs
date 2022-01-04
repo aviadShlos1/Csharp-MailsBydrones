@@ -65,12 +65,12 @@ namespace DalApi
         /// </summary>
         /// <param name="droneId"></param>
         /// <param name="stationId"></param>
-        public void DroneToCharge(int droneId, int stationId);
+        public void SendDroneToCharge(int droneId, int stationId);
 
         /// Realesing a drone from the charge base station
         /// </summary>
         /// <param name="droneId"></param>
-        public TimeSpan DroneRelease(int droneId);
+        public TimeSpan DroneToRelease(int droneId);
         public void RemoveParcel(ParcelDal myParcel);
         #endregion Update methods
 
