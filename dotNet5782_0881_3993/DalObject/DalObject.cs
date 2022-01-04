@@ -10,17 +10,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DO;
+using DalApi;
 
 namespace Dal
 {
-    sealed class DalObject:DalApi.IDal//internal
+    sealed class DalObject: IDal//internal
     {
         /// <summary>
         /// Singleton definition to ensure the uniqueness of an object 
         /// </summary>
         #region Singelton
-        static readonly DalObject instance = new DalObject();
-        public static DalObject Instance { get => instance; }
+        static readonly IDal instance = new DalObject();
+        public static IDal Instance { get => instance; }
         static DalObject() 
         { 
             DataSource.Initialize();  //call the first initialize in the dal ctor

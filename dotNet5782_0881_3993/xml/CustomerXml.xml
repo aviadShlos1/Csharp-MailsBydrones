@@ -1,73 +1,73 @@
 <?xml version="1.0"?>
 <ArrayOfCustomerDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CustomerDal>
-    <Id>301009189</Id>
+    <Id>908095171</Id>
     <Name>Aviad</Name>
-    <Phone>0569544460</Phone>
-    <Longitude>35.59523264978464</Longitude>
-    <Latitude>32.73771657978078</Latitude>
+    <Phone>0586122746</Phone>
+    <Longitude>34.91178309362604</Longitude>
+    <Latitude>31.570399883914924</Latitude>
   </CustomerDal>
   <CustomerDal>
-    <Id>857831479</Id>
+    <Id>738226012</Id>
     <Name>Avi</Name>
-    <Phone>0579190940</Phone>
-    <Longitude>35.04730990627422</Longitude>
-    <Latitude>32.16372732067421</Latitude>
+    <Phone>0529264600</Phone>
+    <Longitude>34.89516928464927</Longitude>
+    <Latitude>32.58115962271865</Latitude>
   </CustomerDal>
   <CustomerDal>
-    <Id>618757891</Id>
+    <Id>109308204</Id>
     <Name>Evyatar</Name>
-    <Phone>0538552180</Phone>
-    <Longitude>35.51277554288589</Longitude>
-    <Latitude>33.25655984963177</Latitude>
+    <Phone>0564295840</Phone>
+    <Longitude>35.3751756887623</Longitude>
+    <Latitude>30.351079654851965</Latitude>
   </CustomerDal>
   <CustomerDal>
-    <Id>365403127</Id>
+    <Id>350911165</Id>
     <Name>Dan</Name>
-    <Phone>0558646350</Phone>
-    <Longitude>34.66141587111094</Longitude>
-    <Latitude>32.53453511903087</Latitude>
+    <Phone>0563905498</Phone>
+    <Longitude>35.662950143009404</Longitude>
+    <Latitude>32.49255903731871</Latitude>
   </CustomerDal>
   <CustomerDal>
-    <Id>478840296</Id>
+    <Id>742062086</Id>
     <Name>Gad</Name>
-    <Phone>0584994531</Phone>
-    <Longitude>35.61976235703415</Longitude>
-    <Latitude>33.20893892325365</Latitude>
+    <Phone>0559651621</Phone>
+    <Longitude>34.71226927859209</Longitude>
+    <Latitude>32.799321949609705</Latitude>
   </CustomerDal>
   <CustomerDal>
-    <Id>252849427</Id>
+    <Id>371978701</Id>
     <Name>Gal</Name>
-    <Phone>0574337939</Phone>
-    <Longitude>35.792010160657114</Longitude>
-    <Latitude>31.436101853882942</Latitude>
+    <Phone>0588610447</Phone>
+    <Longitude>34.95333890860823</Longitude>
+    <Latitude>30.928534776206842</Latitude>
   </CustomerDal>
   <CustomerDal>
-    <Id>770303489</Id>
+    <Id>497105286</Id>
     <Name>John</Name>
-    <Phone>0565759186</Phone>
-    <Longitude>35.26852308434319</Longitude>
-    <Latitude>30.407410433895144</Latitude>
+    <Phone>0568391894</Phone>
+    <Longitude>35.60928126969481</Longitude>
+    <Latitude>31.584249494489864</Latitude>
   </CustomerDal>
   <CustomerDal>
-    <Id>105524151</Id>
+    <Id>723322301</Id>
     <Name>Mike</Name>
-    <Phone>0576834888</Phone>
-    <Longitude>34.263695867900125</Longitude>
-    <Latitude>30.800079330761022</Latitude>
+    <Phone>0555772065</Phone>
+    <Longitude>34.481290987086616</Longitude>
+    <Latitude>32.19231016580216</Latitude>
   </CustomerDal>
   <CustomerDal>
-    <Id>280145913</Id>
+    <Id>445733084</Id>
     <Name>Eli</Name>
-    <Phone>0567680759</Phone>
-    <Longitude>35.22319060068959</Longitude>
-    <Latitude>32.64390408799839</Latitude>
+    <Phone>0553663383</Phone>
+    <Longitude>34.88273208634915</Longitude>
+    <Latitude>32.01542156660297</Latitude>
   </CustomerDal>
   <CustomerDal>
-    <Id>659997153</Id>
+    <Id>537382634</Id>
     <Name>Michael</Name>
-    <Phone>0546834356</Phone>
-    <Longitude>34.95422496990823</Longitude>
-    <Latitude>31.938741881617226</Latitude>
+    <Phone>0541379799</Phone>
+    <Longitude>35.458190322042995</Longitude>
+    <Latitude>31.069767534564605</Latitude>
   </CustomerDal>
 </ArrayOfCustomerDal>
