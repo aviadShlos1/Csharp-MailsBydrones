@@ -7,9 +7,9 @@ using System.IO;
 using DO;
 using DalApi;
 
-namespace Dal
+namespace DalXml
 {
-    sealed class DalXml /*:*//* DalApi.IDal*/
+    sealed class DalXml:DalApi.IDal
     {
         #region Singleton
         static readonly DalXml instance = new DalXml();
@@ -29,6 +29,19 @@ namespace Dal
         string BaseStationPath = @"BaseStationXml.xml";
         string ParcelPath = @"ParcelXml.xml";
         string DroneChargePath = @"DroneChargeXml.xml";
+
+        public double[] EnergyConsumption()
+        {
+            List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");
+            double[] temp = 
+                { 
+                double.Parse(config[0]), 
+                double.Parse(config[1]), 
+                double.Parse(config[2]),
+                double.Parse(config[3]),
+                double.Parse(config[4])};
+            return temp;
+        }
 
         #region Customer
         XElement CustomerRoot;
@@ -63,10 +76,10 @@ namespace Dal
             CustomerRoot = new XElement("Customers", xList);
             CustomerRoot.Save(CustomerPath);
         }
-        public List<CustomerDal> GetCustomerList()
+        public IEnumerable<CustomerDal> GetCustomersList()
         {
             LoadData();
-            List<CustomerDal> Customers;
+            IEnumerable<CustomerDal> Customers;
             try
             {
                 Customers = (from item in CustomerRoot.Elements()
@@ -85,7 +98,7 @@ namespace Dal
             }
             return Customers;
         }
-        public CustomerDal GetStudent(int id)
+        public CustomerDal GetSingleCustomer(int id)
         {
             LoadData();
             CustomerDal Customer;
@@ -217,14 +230,14 @@ namespace Dal
             {
                 throw new NotExistException(stationId);
             }
-            return BaseStations.Find(i => i.Id == stationId);
             XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
+            return BaseStations.Find(i => i.Id == stationId);
         }
         public IEnumerable<BaseStationDal> GetBaseStationsList(Predicate<BaseStationDal> myPredicate = null)
         {
             List<BaseStationDal> BaseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
-            return BaseStations.Where(x => myPredicate == null ? true : myPredicate(x));
             XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
+            return BaseStations.Where(x => myPredicate == null ? true : myPredicate(x));
         }
         #endregion
 
@@ -232,10 +245,14 @@ namespace Dal
         public int AddParcel(ParcelDal newParcel)
         {
             List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
-            newParcel.Id = ++(config.RunId);
+            List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");
+            int runParcelId = int.Parse(config[5]);
+            newParcel.Id = runParcelId++;
+            XMLTools.SaveListToXMLSerializer<string>(config, @"ConfigDetails.xml");
+        
             Parcels.Add(newParcel);
-            return newParcel.Id;
             XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+            return newParcel.Id;
         }
         /// <summary>
         /// Assining a drone to a parcel by the parcel and drone id 

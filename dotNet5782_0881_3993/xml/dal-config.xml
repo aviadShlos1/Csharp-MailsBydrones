@@ -4,5 +4,4 @@
 	<dal-packages>
 		<xml namespace="Dal" class="DalXml">DalXml</xml>
 	</dal-packages>
-  <Parcel>Id</Parcel>
 </config>

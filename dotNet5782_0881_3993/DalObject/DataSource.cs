@@ -24,11 +24,11 @@ namespace Dal
             string ParcelPath = @"ParcelXml.xml";
             string DroneChargePath = @"DroneChargeXml.xml";
 
-            XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
-            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
-            XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
-            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
-            XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
+            DalXml.XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
+            DalXml.XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
+            DalXml.XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
+            DalXml.XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+            DalXml.XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
         }
         /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();
@@ -36,7 +36,7 @@ namespace Dal
         #region The entities lists
 
         /// <This five rows below describe the initialize of the entities lists >
-        internal static List<DroneDal> Drones = new(10) ;
+        internal static List<DroneDal> Drones = new(10);
         internal static List<BaseStationDal> BaseStations = new(5);
         internal static List<CustomerDal> Customers = new(100);
         internal static List<ParcelDal> Parcels = new(1000);
@@ -53,9 +53,9 @@ namespace Dal
             public static double HeavyWeightConsumption = 0.11;
             public static double ChargeRate = 50; // 50 percent for hour
 
-            
+
         }
-       
+
         //private static int DroneId = default;
 
         /// ‹summary›This method allows us to rand objects from the enum class
@@ -65,7 +65,7 @@ namespace Dal
             var v = Enum.GetValues(typeof(T));
             return (T)v.GetValue(rand.Next(v.Length));
         }
-     
+
         //‹summary›This method initializes the entities details.
         public static void Initialize()
         {
@@ -76,7 +76,7 @@ namespace Dal
                 {
                     Id = rand.Next(1000, 10000),
                     Model = i.ToString(),
-                    DroneWeight = RandomEnumValue<WeightCategoriesDal>() 
+                    DroneWeight = RandomEnumValue<WeightCategoriesDal>()
                 });
             }
             #endregion adding Drone details
@@ -110,8 +110,8 @@ namespace Dal
                 ParcelDal myParcel = new ParcelDal()
                 {
                     Id = Config.RunId++,
-                    SenderId = Customers[rand.Next(0,10)].Id,
-                    TargetId = Customers[rand.Next(0,10)].Id,
+                    SenderId = Customers[rand.Next(0, 10)].Id,
+                    TargetId = Customers[rand.Next(0, 10)].Id,
                     Weight = RandomEnumValue<WeightCategoriesDal>(),
                     Priority = RandomEnumValue<Priorities>(),
                     CreatingTime = DateTime.Now,
@@ -147,6 +147,6 @@ namespace Dal
             }
             #endregion adding Parcel details
         }
-    };    
+    };
 }
 
