@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Linq;
 
 namespace DalApi
 {
-    static class DalConfig
+    class DalConfig
     {
         internal static string DalName;
         internal static Dictionary<string, string> DalPackages;
@@ -17,7 +15,7 @@ namespace DalApi
             DalName = dalConfig.Element("dal").Value;
             DalPackages = (from pkg in dalConfig.Element("dal-packages").Elements()
                            select pkg
-            ).ToDictionary(p => "" + p.Name, p => p.Value);
+                          ).ToDictionary(p => "" + p.Name, p => p.Value);
         }
     }
     public class DalConfigException : Exception

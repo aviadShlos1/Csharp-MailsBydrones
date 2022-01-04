@@ -9,7 +9,7 @@ using DalApi;
 
 namespace DalXml
 {
-    sealed class DalXml:DalApi.IDal
+    sealed class DalXml : DalApi.IDal
     {
         #region Singleton
         static readonly DalXml instance = new DalXml();
@@ -33,10 +33,10 @@ namespace DalXml
         public double[] EnergyConsumption()
         {
             List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");
-            double[] temp = 
-                { 
-                double.Parse(config[0]), 
-                double.Parse(config[1]), 
+            double[] temp =
+                {
+                double.Parse(config[0]),
+                double.Parse(config[1]),
                 double.Parse(config[2]),
                 double.Parse(config[3]),
                 double.Parse(config[4])};
@@ -64,15 +64,15 @@ namespace DalXml
         public void SaveCustomerListLinq(List<CustomerDal> Customers)
         {
             var xList = from item in Customers
-                    select new XElement("Customer",
-                                                new XElement("id", item.Id),
-                                               new XElement("name", item.Name),
-                                               new XElement("phone", item.Phone),
-                                               new XElement("location",
-                                                 new XElement("longitude", item.Longitude),
-                                                 new XElement("latitude", item.Latitude)
-                                                 )
-                                               );
+                        select new XElement("Customer",
+                                                    new XElement("id", item.Id),
+                                                   new XElement("name", item.Name),
+                                                   new XElement("phone", item.Phone),
+                                                   new XElement("location",
+                                                     new XElement("longitude", item.Longitude),
+                                                     new XElement("latitude", item.Latitude)
+                                                     )
+                                                   );
             CustomerRoot = new XElement("Customers", xList);
             CustomerRoot.Save(CustomerPath);
         }
@@ -83,14 +83,14 @@ namespace DalXml
             try
             {
                 Customers = (from item in CustomerRoot.Elements()
-                            select new CustomerDal()
-                            {
-                                Id = Convert.ToInt32(item.Element("id").Value),
-                                Name = item.Element("name").Value,
-                                Phone=item.Element("phone").Value,
-                                Longitude = Convert.ToDouble(item.Element("location").Element("longitude").Value),
-                                Latitude = Convert.ToDouble(item.Element("location").Element("latitude").Value)
-                            }).ToList();
+                             select new CustomerDal()
+                             {
+                                 Id = Convert.ToInt32(item.Element("id").Value),
+                                 Name = item.Element("name").Value,
+                                 Phone = item.Element("phone").Value,
+                                 Longitude = Convert.ToDouble(item.Element("location").Element("longitude").Value),
+                                 Latitude = Convert.ToDouble(item.Element("location").Element("latitude").Value)
+                             }).ToList();
             }
             catch
             {
@@ -105,14 +105,14 @@ namespace DalXml
             try
             {
                 Customer = (from item in CustomerRoot.Elements()
-                           where Convert.ToInt32(item.Element("id").Value) == id
-                           select new CustomerDal()
-                           {
-                               Id = Convert.ToInt32(item.Element("id").Value),
-                               Phone = item.Element("phone").Value,
-                               Longitude = Convert.ToDouble(item.Element("location").Element("longitude").Value),
-                               Latitude = Convert.ToDouble(item.Element("location").Element("latitude").Value)
-                           }).FirstOrDefault();
+                            where Convert.ToInt32(item.Element("id").Value) == id
+                            select new CustomerDal()
+                            {
+                                Id = Convert.ToInt32(item.Element("id").Value),
+                                Phone = item.Element("phone").Value,
+                                Longitude = Convert.ToDouble(item.Element("location").Element("longitude").Value),
+                                Latitude = Convert.ToDouble(item.Element("location").Element("latitude").Value)
+                            }).FirstOrDefault();
             }
             catch
             {
@@ -129,7 +129,7 @@ namespace DalXml
             XElement latitude = new XElement("latitude", customer.Latitude);
             XElement location = new XElement("location", longitude, latitude);
 
-            XElement cust = new XElement("Customer", id ,name, phone, location);
+            XElement cust = new XElement("Customer", id, name, phone, location);
             CustomerRoot.Add(cust);
             CustomerRoot.Save(CustomerPath);
         }
@@ -139,8 +139,8 @@ namespace DalXml
             try
             {
                 CustomerElement = (from item in CustomerRoot.Elements()
-                                  where Convert.ToInt32(item.Element("id").Value) == id
-                                  select item).FirstOrDefault();
+                                   where Convert.ToInt32(item.Element("id").Value) == id
+                                   select item).FirstOrDefault();
                 CustomerElement.Remove();
                 CustomerRoot.Save(CustomerPath);
                 return true;
@@ -249,7 +249,7 @@ namespace DalXml
             int runParcelId = int.Parse(config[5]);
             newParcel.Id = runParcelId++;
             XMLTools.SaveListToXMLSerializer<string>(config, @"ConfigDetails.xml");
-        
+
             Parcels.Add(newParcel);
             XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
             return newParcel.Id;

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ArrayOfBaseStationDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BaseStationDal>
+    <Id>0</Id>
+    <Name>Herzliya</Name>
+    <Longitude>34.842</Longitude>
+    <Latitude>32.164</Latitude>
+    <FreeChargeSlots>8</FreeChargeSlots>
+  </BaseStationDal>
+  <BaseStationDal>
+    <Id>1</Id>
+    <Name>Tel Aviv</Name>
+    <Longitude>34.779</Longitude>
+    <Latitude>32.056</Latitude>
+    <FreeChargeSlots>8</FreeChargeSlots>
+  </BaseStationDal>
+</ArrayOfBaseStationDal>

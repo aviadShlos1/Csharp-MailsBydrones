@@ -17,11 +17,11 @@ namespace BlApi
     /// </summary>
     public static class BlFactory
     {
-        public static BlApi.IBL GetBl()
-        {
-            BL.BL bl = BL.BL.Instance;
-            return bl;
-        }
-            
+        //public static BlApi.IBL GetBl()
+        //{
+        //    BL.BL bl = BL.BL.Instance;
+        //    return bl;
+        //}
+        public static IBL GetBl() => BL.BL.Instance;
     }
 }
