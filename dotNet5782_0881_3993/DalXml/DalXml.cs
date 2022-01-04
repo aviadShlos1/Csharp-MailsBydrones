@@ -238,48 +238,50 @@ namespace Dal
         #region BaseStation
         public void AddStation(BaseStationDal newStation)
         {
-            List<BaseStationDal> baseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
-            int check = baseStations.FindIndex(x => x.Id == newStation.Id);
+            List<BaseStationDal> BaseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
+            int check = BaseStations.FindIndex(x => x.Id == newStation.Id);
             if (check != -1)
             {
                 throw new AlreadyExistException(newStation.Id);
             }
-            baseStations.Add(newStation);
-            XMLTools.SaveListToXMLSerializer<BaseStationDal>(baseStations, BaseStationPath);
+            BaseStations.Add(newStation);
+            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
         }
         public void UpdateBaseStation(BaseStationDal myBaseStation)
         {
-            List<BaseStationDal> baseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
-            BaseStationDal tempBaseStation = baseStations.FirstOrDefault(x => x.Id == myBaseStation.Id);
-            int index = baseStations.IndexOf(tempBaseStation);
-            baseStations[index] = myBaseStation;
-            XMLTools.SaveListToXMLSerializer<BaseStationDal>(baseStations, BaseStationPath);
+            List<BaseStationDal> BaseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
+            BaseStationDal tempBaseStation = BaseStations.FirstOrDefault(x => x.Id == myBaseStation.Id);
+            int index = BaseStations.IndexOf(tempBaseStation);
+            BaseStations[index] = myBaseStation;
+            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
         }
         public BaseStationDal GetSingleBaseStation(int stationId)
         {
-            List<BaseStationDal> baseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
-            int stationIndex = baseStations.FindIndex(i => i.Id == stationId);
+            List<BaseStationDal> BaseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
+            int stationIndex = BaseStations.FindIndex(i => i.Id == stationId);
             if (stationIndex == -1)
             {
                 throw new NotExistException(stationId);
             }
-            return baseStations.Find(i => i.Id == stationId);
-            XMLTools.SaveListToXMLSerializer<BaseStationDal>(baseStations, BaseStationPath);
+            return BaseStations.Find(i => i.Id == stationId);
+            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
         }
         public IEnumerable<BaseStationDal> GetBaseStationsList(Predicate<BaseStationDal> myPredicate = null)
         {
-            List<BaseStationDal> baseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
-            return baseStations.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList();
-            XMLTools.SaveListToXMLSerializer<BaseStationDal>(baseStations, BaseStationPath);
+            List<BaseStationDal> BaseStations = XMLTools.LoadListFromXMLSerializer<BaseStationDal>(BaseStationPath);
+            return BaseStations.Where(x => myPredicate == null ? true : myPredicate(x));
+            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
         }
         #endregion
 
         #region Parcel
         public int AddParcel(ParcelDal newParcel)
         {
-            newParcel.Id = ++(DataSource.Config.RunId);
-            DataSource.Parcels.Add(newParcel);
+            List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
+            newParcel.Id = ++(config.RunId);
+            Parcels.Add(newParcel);
             return newParcel.Id;
+            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
         }
         /// <summary>
         /// Assining a drone to a parcel by the parcel and drone id 
@@ -288,15 +290,17 @@ namespace Dal
         /// <param name="droneId"></param>
         public void AssignParcelToDrone(int parcelId, int droneId)
         {
-            int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
+            int parcelIndex = Parcels.FindIndex(i => i.Id == parcelId);
             if (parcelIndex == -1)
             {
                 throw new NotExistException(parcelId);
             }
-            ParcelDal parcel1 = DataSource.Parcels[parcelIndex];
+            ParcelDal parcel1 = Parcels[parcelIndex];
             parcel1.DroneToParcelId = droneId;
             parcel1.AssignningTime = DateTime.Now;
-            DataSource.Parcels[parcelIndex] = parcel1;
+            Parcels[parcelIndex] = parcel1;
+            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
         }
         /// <summary>
         /// Picking up a parcel by the assined drone before, with given the parcel id
@@ -304,15 +308,16 @@ namespace Dal
         /// <param name="parcelId"></param>
         public void PickUpParcel(int droneId)
         {
-
-            int parcelIndex = DataSource.Parcels.FindIndex(i => i.DroneToParcelId == droneId);
+            List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
+            int parcelIndex = Parcels.FindIndex(i => i.DroneToParcelId == droneId);
             if (parcelIndex == -1)
             {
                 throw new NotExistException(droneId);
             }
-            ParcelDal parcel2 = DataSource.Parcels[parcelIndex];
+            ParcelDal parcel2 = Parcels[parcelIndex];
             parcel2.PickingUpTime = DateTime.Now;
-            DataSource.Parcels[parcelIndex] = parcel2;
+            Parcels[parcelIndex] = parcel2;
+            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
         }
         /// <summary>
         /// Delivering the parcel to the customer
@@ -320,31 +325,37 @@ namespace Dal
         /// <param name="parcelId"></param>
         public void SupplyParcel(int droneId)
         {
-            int parcelIndex = DataSource.Parcels.FindIndex(i => i.DroneToParcelId == droneId);
+            List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
+            int parcelIndex = Parcels.FindIndex(i => i.DroneToParcelId == droneId);
             if (parcelIndex == -1)
             {
                 throw new NotExistException(droneId);
             }
-            ParcelDal parcel3 = DataSource.Parcels[parcelIndex];
+            ParcelDal parcel3 = Parcels[parcelIndex];
             parcel3.SupplyingTime = DateTime.Now;
-            DataSource.Parcels[parcelIndex] = parcel3;
+            Parcels[parcelIndex] = parcel3;
+            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
         }
         public void RemoveParcel(ParcelDal myParcel)
         {
-            DataSource.Parcels.Remove(myParcel);
+            List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
+            Parcels.Remove(myParcel);
+            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
         }
         public ParcelDal GetSingleParcel(int parcelId)
         {
-            int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
+            List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
+            int parcelIndex = Parcels.FindIndex(i => i.Id == parcelId);
             if (parcelIndex == -1)
             {
                 throw new NotExistException(parcelId);
             }
-            return DataSource.Parcels.Find(i => i.Id == parcelId);
+            return Parcels.Find(i => i.Id == parcelId);
         }
         public IEnumerable<ParcelDal> GetParcelsList(Predicate<ParcelDal> myPredicate = null)
         {
-            return DataSource.Parcels.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList();
+            List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
+            return Parcels.Where(x => myPredicate == null ? true : myPredicate(x));
         }
         #endregion
 

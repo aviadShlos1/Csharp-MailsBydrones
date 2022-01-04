@@ -69,8 +69,6 @@ namespace BL
                 myParcelsBl.Add(tempParcelTolist);
             }
             return myParcelsBl.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList()/*(x => x.ParcelStatus == ParcelStatus.Created)*/;
-        }
-
-       
+        }      
     }
 }
