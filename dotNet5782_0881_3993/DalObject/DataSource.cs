@@ -51,9 +51,7 @@ namespace Dal
             public static double LightWeightConsumption = 0.08;
             public static double MediumWeightConsumption = 0.09;
             public static double HeavyWeightConsumption = 0.11;
-            public static double ChargeRate = 50; // 50 percent for hour
-
-            
+            public static double ChargeRate = 50; // 50 percent for hour 
         }
        
         //private static int DroneId = default;

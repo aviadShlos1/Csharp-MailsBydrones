@@ -9,7 +9,7 @@ using DalApi;
 
 namespace Dal
 {
-    sealed class DalXml /*:*//* DalApi.IDal*/
+    sealed class DalXml :DalApi.IDal
     {
         #region Singleton
         static readonly DalXml instance = new DalXml();
@@ -63,10 +63,10 @@ namespace Dal
             CustomerRoot = new XElement("Customers", xList);
             CustomerRoot.Save(CustomerPath);
         }
-        public List<CustomerDal> GetCustomerList()
+        public IEnumerable<CustomerDal> GetCustomersList()
         {
             LoadData();
-            List<CustomerDal> Customers;
+            IEnumerable<CustomerDal> Customers;
             try
             {
                 Customers = (from item in CustomerRoot.Elements()
@@ -85,7 +85,7 @@ namespace Dal
             }
             return Customers;
         }
-        public CustomerDal GetStudent(int id)
+        public CustomerDal GetSingleCustomer(int id)
         {
             LoadData();
             CustomerDal Customer;
