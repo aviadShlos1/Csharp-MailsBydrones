@@ -7,7 +7,7 @@ using System.IO;
 using DO;
 using DalApi;
 
-namespace Dal
+namespace DalXml
 {
     sealed class DalXml :DalApi.IDal
     {
