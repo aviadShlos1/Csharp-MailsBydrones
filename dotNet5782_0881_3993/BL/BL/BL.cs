@@ -22,8 +22,8 @@ namespace BL
         /// Singleton definition to ensure the uniqueness of an object 
         /// </summary>
         #region Singelton
-        static readonly BL instance = new BL();
-        public static BL Instance { get => instance; }
+        static readonly BlApi.IBL instance = new BL();
+        public static BlApi.IBL Instance { get => instance; }
         #endregion
 
         static DalApi.IDal DalAccess = DalApi.DalFactory.GetDal();//This is the access point from the data layer
