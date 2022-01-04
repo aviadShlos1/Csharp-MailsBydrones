@@ -23,18 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{43257403-AF0C-4721-9D00-52226F3DBE03}"
 	ProjectSection(SolutionItems) = preProject
-		xml\BaseStationXml.xml = xml\BaseStationXml.xml
 		xml\dal-config.xml = xml\dal-config.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{3F62E9CE-FD42-4814-92A7-3CD335AD9AB4}"
-	ProjectSection(SolutionItems) = preProject
-		xml\BaseStationXml.xml = xml\BaseStationXml.xml
-		xml\CustomerXml.xml = xml\CustomerXml.xml
-		xml\DroneChargeXml.xml = xml\DroneChargeXml.xml
-		xml\DroneXml.xml = xml\DroneXml.xml
-		xml\ParcelXml.xml = xml\ParcelXml.xml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +74,7 @@ Global
 		{18ABA2AB-1A36-444F-852F-BEA0B2917022} = {E8276134-4CD0-4DDF-A3FD-E339A0A82E76}
 		{2412B2C5-1AFE-4FC2-BB70-7181B78CB88B} = {E8276134-4CD0-4DDF-A3FD-E339A0A82E76}
 		{1AE4B9F6-21BF-4548-AD38-61C23CB9A386} = {E8276134-4CD0-4DDF-A3FD-E339A0A82E76}
+		{43257403-AF0C-4721-9D00-52226F3DBE03} = {3F62E9CE-FD42-4814-92A7-3CD335AD9AB4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A26134E-7A88-496A-B521-E3C4DEE04860}
