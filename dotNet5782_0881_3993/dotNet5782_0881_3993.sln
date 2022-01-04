@@ -27,6 +27,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{43257403-AF0
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{3F62E9CE-FD42-4814-92A7-3CD335AD9AB4}"
+	ProjectSection(SolutionItems) = preProject
+		BaseStation.xml = BaseStation.xml
+		CustomerXml.xml = CustomerXml.xml
+		DroneCharge.xml = DroneCharge.xml
+		DroneXml.xml = DroneXml.xml
+		ParcelXml.xml = ParcelXml.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,7 +81,6 @@ Global
 		{18ABA2AB-1A36-444F-852F-BEA0B2917022} = {E8276134-4CD0-4DDF-A3FD-E339A0A82E76}
 		{2412B2C5-1AFE-4FC2-BB70-7181B78CB88B} = {E8276134-4CD0-4DDF-A3FD-E339A0A82E76}
 		{1AE4B9F6-21BF-4548-AD38-61C23CB9A386} = {E8276134-4CD0-4DDF-A3FD-E339A0A82E76}
-		{43257403-AF0C-4721-9D00-52226F3DBE03} = {3F62E9CE-FD42-4814-92A7-3CD335AD9AB4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A26134E-7A88-496A-B521-E3C4DEE04860}
