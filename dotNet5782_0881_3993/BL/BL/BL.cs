@@ -102,7 +102,6 @@ namespace BL
             var total = Convert.ToDouble(string.Format("{0:0.00}", num));
             return total;
         }
-
         #endregion
 
         //ctor

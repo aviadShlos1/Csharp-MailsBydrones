@@ -11,7 +11,7 @@ using System.Reflection;
 
 namespace DalApi
 {
-    public class DalFactory
+    public static class DalFactory
     {
         public static IDal GetDal()
         {
@@ -23,11 +23,12 @@ namespace DalApi
             catch (Exception) { throw new DalConfigException("Failed to load the dal-config.xml file"); }
             
             Type type = Type.GetType($"Dal.{dalPkg}, {dalPkg}");
-            if (type == null) throw new DalConfigException($"Class {dalPkg} was not found in the {dalPkg}.dll");
+            if (type == null) 
+                throw new DalConfigException($"Class {dalPkg} was not found in the {dalPkg}.dll");
             
-            IDal dal = (IDal)type.GetProperty("Instance",
-                        BindingFlags.Public | BindingFlags.Static).GetValue(null);
-            if (dal == null) throw new DalConfigException($"Class {dalPkg} is not a singleton or wrong property name for Instance");
+            IDal dal = (IDal)type.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static).GetValue(null);
+            if (dal == null) 
+                throw new DalConfigException($"Class {dalPkg} is not a singleton or wrong property name for Instance");
             
             return dal;
         }
