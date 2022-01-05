@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Level 3
+//Brief: In this program we added xml data files
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +18,7 @@ namespace DalXml
         #region Singleton
         static readonly IDal instance = new DalXml();
         public static IDal Instance { get => instance; }
-        public DalXml()
-        {
-            
-        }
+        public DalXml(){  }
         #endregion Singleton
         //#region Singelton
 
@@ -35,6 +36,7 @@ namespace DalXml
 
         //#endregion Singelton
 
+        //Initiate the pathes for the all entities and for EnergyConsumption 
         string CustomerPath = @"CustomerXml.xml";
         string DronePath = @"DroneXml.xml";
         string BaseStationPath = @"BaseStationXml.xml";
@@ -42,6 +44,14 @@ namespace DalXml
         string DroneChargePath = @"DroneChargeXml.xml";
         string Consumption = @"ConfigDetails.xml";
 
+        /// <summary>
+        /// Implementation for the all functions of dalObject with xml using the xmlSerialize
+        /// except Customer entity that is implemented in LinqToXml.
+        /// It is the same to dalObject implementation except for the point that we load xml file and do the actions we have done before.
+        /// Finally we save the new data to the file
+        /// </summary>
+
+        //loading the "ConfigDetails" file to update the EnergyConsumption fields
         public double[] EnergyConsumption()
         {
             List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");
@@ -291,6 +301,7 @@ namespace DalXml
         public int AddParcel(ParcelDal newParcel)
         {
             List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
+            //loading the "ConfigDetails" file to update the runId
             List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");
             int runParcelId = int.Parse(config[5]);
             newParcel.Id = runParcelId++;
