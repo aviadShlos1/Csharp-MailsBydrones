@@ -1,10 +1,15 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Level 3
+//Brief: In this program we added xml data files
+using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Linq;
 
 namespace DalApi
 {
+    //class to define the data source which is determined in the dal-config. Then dal-factory uses those details
     class DalConfig
     {
         internal static string DalName;
