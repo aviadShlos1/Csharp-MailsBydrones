@@ -2,12 +2,12 @@
 <ArrayOfDroneDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DroneDal>
     <Id>7425</Id>
-    <Model>0</Model>
+    <Model>10</Model>
     <DroneWeight>Medium</DroneWeight>
   </DroneDal>
   <DroneDal>
     <Id>2176</Id>
-    <Model>1</Model>
+    <Model>11</Model>
     <DroneWeight>Heavy</DroneWeight>
   </DroneDal>
   <DroneDal>
@@ -24,5 +24,10 @@
     <Id>1612</Id>
     <Model>4</Model>
     <DroneWeight>Heavy</DroneWeight>
+  </DroneDal>
+  <DroneDal>
+    <Id>5135</Id>
+    <Model>5</Model>
+    <DroneWeight>Light</DroneWeight>
   </DroneDal>
 </ArrayOfDroneDal>

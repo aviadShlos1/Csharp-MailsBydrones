@@ -16,10 +16,7 @@ namespace DalXml
         public static IDal Instance { get => instance; }
         public DalXml()
         {
-            if (!File.Exists(CustomerPath))
-                CreateFiles();
-            else
-                LoadData();
+            
         }
         #endregion Singleton
         //#region Singelton
@@ -59,122 +56,156 @@ namespace DalXml
         }
 
         #region Customer
-        public XElement CustomerRoot;
-        private void CreateFiles()
+        //public XElement CustomerRoot;
+        //private void CreateFiles()
+        //{
+        //    CustomerRoot = new XElement("Customers");
+        //    CustomerRoot.Save(CustomerPath);
+        //}
+        //private void LoadData()
+        //{
+        //    try
+        //    {
+        //        CustomerRoot = XElement.Load(CustomerPath);
+        //    }
+        //    catch
+        //    {
+        //        throw new Exception("File upload problem");
+        //    }
+        //}
+        //public void SaveCustomerListLinq(List<CustomerDal> Customers)
+        //{
+        //    var xList = from item in Customers
+        //                select new XElement("Customer",
+        //                                            new XElement("id", item.Id),
+        //                                           new XElement("name", item.Name),
+        //                                           new XElement("phone", item.Phone),
+        //                                           new XElement("location",
+        //                                             new XElement("longitude", item.Longitude),
+        //                                             new XElement("latitude", item.Latitude)
+        //                                             )
+        //                                           );
+        //    CustomerRoot = new XElement("Customers", xList);
+        //    CustomerRoot.Save(CustomerPath);
+        //}
+        //public IEnumerable<CustomerDal> GetCustomersList()
+        //{
+        //    LoadData();
+        //    IEnumerable<CustomerDal> Customers;
+        //    try
+        //    {
+        //        Customers = (from item in CustomerRoot.Elements()
+        //                     select new CustomerDal()
+        //                     {
+        //                         Id = Convert.ToInt32(item.Element("id").Value),
+        //                         Name = item.Element("name").Value,
+        //                         Phone = item.Element("phone").Value,
+        //                         Longitude = Convert.ToDouble(item.Element("location").Element("longitude").Value),
+        //                         Latitude = Convert.ToDouble(item.Element("location").Element("latitude").Value)
+        //                     }).ToList();
+        //    }
+        //    catch
+        //    {
+        //        Customers = null;
+        //    }
+        //    return Customers;
+        //}
+        //public CustomerDal GetSingleCustomer(int id)
+        //{
+        //    LoadData();
+        //    CustomerDal Customer;
+        //    try
+        //    {
+        //        Customer = (from item in CustomerRoot.Elements()
+        //                    where Convert.ToInt32(item.Element("id").Value) == id
+        //                    select new CustomerDal()
+        //                    {
+        //                        Id = Convert.ToInt32(item.Element("id").Value),
+        //                        Phone = item.Element("phone").Value,
+        //                        Longitude = Convert.ToDouble(item.Element("location").Element("longitude").Value),
+        //                        Latitude = Convert.ToDouble(item.Element("location").Element("latitude").Value)
+        //                    }).FirstOrDefault();
+        //    }
+        //    catch
+        //    {
+        //        Customer = default;
+        //    }
+        //    return Customer;
+        //}
+        //public void AddCustomer(CustomerDal customer)
+        //{
+        //    XElement id = new XElement("id", customer.Id);
+        //    XElement name = new XElement("name", customer.Name);
+        //    XElement phone = new XElement("phone", customer.Phone);
+        //    XElement longitude = new XElement("longitude", customer.Longitude);
+        //    XElement latitude = new XElement("latitude", customer.Latitude);
+        //    XElement location = new XElement("location", longitude, latitude);
+
+        //    XElement cust = new XElement("Customer", id, name, phone, location);
+        //    CustomerRoot.Add(cust);
+        //    CustomerRoot.Save(CustomerPath);
+        //}
+        //public bool RemoveCustomer(int id)
+        //{
+        //    XElement CustomerElement;
+        //    try
+        //    {
+        //        CustomerElement = (from item in CustomerRoot.Elements()
+        //                           where Convert.ToInt32(item.Element("id").Value) == id
+        //                           select item).FirstOrDefault();
+        //        CustomerElement.Remove();
+        //        CustomerRoot.Save(CustomerPath);
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
+        //public void UpdateCustomer(CustomerDal customer)
+        //{
+        //    XElement CustomerElement = (from item in CustomerRoot.Elements()
+        //                               where Convert.ToInt32(item.Element("id").Value) == customer.Id
+        //                               select item).FirstOrDefault();
+
+        //    CustomerElement.Element("name").Value = customer.Name;
+        //    CustomerElement.Element("phone").Value = customer.Phone;
+
+        //    CustomerRoot.Save(CustomerPath);
+        //}
+        public void AddCustomer(CustomerDal newCustomer)
         {
-            CustomerRoot = new XElement("Customers");
-            CustomerRoot.Save(CustomerPath);
-        }
-        private void LoadData()
-        {
-            try
+            List<CustomerDal> Customers = XMLTools.LoadListFromXMLSerializer<CustomerDal>(CustomerPath);
+            int existIndex = Customers.FindIndex(x => x.Id == newCustomer.Id);
+            if (existIndex != -1)
             {
-                CustomerRoot = XElement.Load(CustomerPath);
+                throw new AlreadyExistException(newCustomer.Id);
             }
-            catch
-            {
-                throw new Exception("File upload problem");
-            }
+            Customers.Add(newCustomer);
+            XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
         }
-        public void SaveCustomerListLinq(List<CustomerDal> Customers)
+        public void UpdateCustomer(CustomerDal myCustomer)
         {
-            var xList = from item in Customers
-                        select new XElement("Customer",
-                                                    new XElement("id", item.Id),
-                                                   new XElement("name", item.Name),
-                                                   new XElement("phone", item.Phone),
-                                                   new XElement("location",
-                                                     new XElement("longitude", item.Longitude),
-                                                     new XElement("latitude", item.Latitude)
-                                                     )
-                                                   );
-            CustomerRoot = new XElement("Customers", xList);
-            CustomerRoot.Save(CustomerPath);
+            List<CustomerDal> Customers = XMLTools.LoadListFromXMLSerializer<CustomerDal>(CustomerPath);
+            CustomerDal tempCustomer = Customers.FirstOrDefault(x => x.Id == myCustomer.Id);
+            int index = Customers.IndexOf(tempCustomer);
+            Customers[index] = myCustomer;
+            XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
+        }
+        public CustomerDal GetSingleCustomer(int customerId)
+        {
+            List<CustomerDal> Customers = XMLTools.LoadListFromXMLSerializer<CustomerDal>(CustomerPath);
+            int customerIndex = Customers.FindIndex(i => i.Id == customerId);
+            if (customerIndex == -1)
+            {
+                throw new NotExistException(customerId);
+            }
+            return Customers.Find(i => i.Id == customerId);
         }
         public IEnumerable<CustomerDal> GetCustomersList()
         {
-            LoadData();
-            IEnumerable<CustomerDal> Customers;
-            try
-            {
-                Customers = (from item in CustomerRoot.Elements()
-                             select new CustomerDal()
-                             {
-                                 Id = Convert.ToInt32(item.Element("id").Value),
-                                 Name = item.Element("name").Value,
-                                 Phone = item.Element("phone").Value,
-                                 Longitude = Convert.ToDouble(item.Element("location").Element("longitude").Value),
-                                 Latitude = Convert.ToDouble(item.Element("location").Element("latitude").Value)
-                             }).ToList();
-            }
-            catch
-            {
-                Customers = null;
-            }
+            List<CustomerDal> Customers = XMLTools.LoadListFromXMLSerializer<CustomerDal>(CustomerPath);
             return Customers;
-        }
-        public CustomerDal GetSingleCustomer(int id)
-        {
-            LoadData();
-            CustomerDal Customer;
-            try
-            {
-                Customer = (from item in CustomerRoot.Elements()
-                            where Convert.ToInt32(item.Element("id").Value) == id
-                            select new CustomerDal()
-                            {
-                                Id = Convert.ToInt32(item.Element("id").Value),
-                                Phone = item.Element("phone").Value,
-                                Longitude = Convert.ToDouble(item.Element("location").Element("longitude").Value),
-                                Latitude = Convert.ToDouble(item.Element("location").Element("latitude").Value)
-                            }).FirstOrDefault();
-            }
-            catch
-            {
-                Customer = default;
-            }
-            return Customer;
-        }
-        public void AddCustomer(CustomerDal customer)
-        {
-            XElement id = new XElement("id", customer.Id);
-            XElement name = new XElement("name", customer.Name);
-            XElement phone = new XElement("phone", customer.Phone);
-            XElement longitude = new XElement("longitude", customer.Longitude);
-            XElement latitude = new XElement("latitude", customer.Latitude);
-            XElement location = new XElement("location", longitude, latitude);
-
-            XElement cust = new XElement("Customer", id, name, phone, location);
-            CustomerRoot.Add(cust);
-            CustomerRoot.Save(CustomerPath);
-        }
-        public bool RemoveCustomer(int id)
-        {
-            XElement CustomerElement;
-            try
-            {
-                CustomerElement = (from item in CustomerRoot.Elements()
-                                   where Convert.ToInt32(item.Element("id").Value) == id
-                                   select item).FirstOrDefault();
-                CustomerElement.Remove();
-                CustomerRoot.Save(CustomerPath);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public void UpdateCustomer(CustomerDal customer)
-        {
-            XElement CustomerElement = (from item in CustomerRoot.Elements()
-                                       where Convert.ToInt32(item.Element("id").Value) == customer.Id
-                                       select item).FirstOrDefault();
-
-            CustomerElement.Element("name").Value = customer.Name;
-            CustomerElement.Element("phone").Value = customer.Phone;
-
-            CustomerRoot.Save(CustomerPath);
         }
 
         #endregion
