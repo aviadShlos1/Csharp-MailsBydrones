@@ -1,73 +1,73 @@
 <?xml version="1.0"?>
-<ArrayOfCustomerDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <CustomerDal>
-    <Id>908095171</Id>
+<Customers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Customer>
+    <Id>479323640</Id>
     <Name>Aviad</Name>
-    <Phone>0586122746</Phone>
-    <Longitude>34.91178309362604</Longitude>
-    <Latitude>31.570399883914924</Latitude>
-  </CustomerDal>
-  <CustomerDal>
-    <Id>738226012</Id>
+    <Phone>0576480895</Phone>
+    <Longitude>34.32444373855248</Longitude>
+    <Latitude>30.372152213533013</Latitude>
+  </Customer>
+  <Customer>
+    <Id>305164992</Id>
     <Name>Avi</Name>
-    <Phone>0529264600</Phone>
-    <Longitude>34.89516928464927</Longitude>
-    <Latitude>32.58115962271865</Latitude>
-  </CustomerDal>
-  <CustomerDal>
-    <Id>109308204</Id>
+    <Phone>0559248464</Phone>
+    <Longitude>35.58595037219066</Longitude>
+    <Latitude>31.295131029062965</Latitude>
+  </Customer>
+  <Customer>
+    <Id>209912609</Id>
     <Name>Evyatar</Name>
-    <Phone>0564295840</Phone>
-    <Longitude>35.3751756887623</Longitude>
-    <Latitude>30.351079654851965</Latitude>
-  </CustomerDal>
-  <CustomerDal>
-    <Id>350911165</Id>
+    <Phone>0556983523</Phone>
+    <Longitude>35.67692364271261</Longitude>
+    <Latitude>32.62337026041996</Latitude>
+  </Customer>
+  <Customer>
+    <Id>395950627</Id>
     <Name>Dan</Name>
-    <Phone>0563905498</Phone>
-    <Longitude>35.662950143009404</Longitude>
-    <Latitude>32.49255903731871</Latitude>
-  </CustomerDal>
-  <CustomerDal>
-    <Id>742062086</Id>
+    <Phone>0526446671</Phone>
+    <Longitude>35.58748402931005</Longitude>
+    <Latitude>32.40421966643549</Latitude>
+  </Customer>
+  <Customer>
+    <Id>508241091</Id>
     <Name>Gad</Name>
-    <Phone>0559651621</Phone>
-    <Longitude>34.71226927859209</Longitude>
-    <Latitude>32.799321949609705</Latitude>
-  </CustomerDal>
-  <CustomerDal>
-    <Id>371978701</Id>
+    <Phone>0542300305</Phone>
+    <Longitude>34.854396777195575</Longitude>
+    <Latitude>33.26363143832685</Latitude>
+  </Customer>
+  <Customer>
+    <Id>994559136</Id>
     <Name>Gal</Name>
-    <Phone>0588610447</Phone>
-    <Longitude>34.95333890860823</Longitude>
-    <Latitude>30.928534776206842</Latitude>
-  </CustomerDal>
-  <CustomerDal>
-    <Id>497105286</Id>
+    <Phone>0559559734</Phone>
+    <Longitude>35.773758817102184</Longitude>
+    <Latitude>31.38638178197545</Latitude>
+  </Customer>
+  <Customer>
+    <Id>371589815</Id>
     <Name>John</Name>
-    <Phone>0568391894</Phone>
-    <Longitude>35.60928126969481</Longitude>
-    <Latitude>31.584249494489864</Latitude>
-  </CustomerDal>
-  <CustomerDal>
-    <Id>723322301</Id>
+    <Phone>0589193728</Phone>
+    <Longitude>34.298334098837955</Longitude>
+    <Latitude>30.6347003701705</Latitude>
+  </Customer>
+  <Customer>
+    <Id>731254496</Id>
     <Name>Mike</Name>
-    <Phone>0555772065</Phone>
-    <Longitude>34.481290987086616</Longitude>
-    <Latitude>32.19231016580216</Latitude>
-  </CustomerDal>
-  <CustomerDal>
-    <Id>445733084</Id>
+    <Phone>0565501338</Phone>
+    <Longitude>34.265112873331695</Longitude>
+    <Latitude>32.91449791527004</Latitude>
+  </Customer>
+  <Customer>
+    <Id>270340041</Id>
     <Name>Eli</Name>
-    <Phone>0553663383</Phone>
-    <Longitude>34.88273208634915</Longitude>
-    <Latitude>32.01542156660297</Latitude>
-  </CustomerDal>
-  <CustomerDal>
-    <Id>537382634</Id>
+    <Phone>0534427724</Phone>
+    <Longitude>35.487866450632396</Longitude>
+    <Latitude>32.07930517478162</Latitude>
+  </Customer>
+  <Customer>
+    <Id>245899258</Id>
     <Name>Michael</Name>
-    <Phone>0541379799</Phone>
-    <Longitude>35.458190322042995</Longitude>
-    <Latitude>31.069767534564605</Latitude>
-  </CustomerDal>
-</ArrayOfCustomerDal>
+    <Phone>0534001842</Phone>
+    <Longitude>34.74504922335318</Longitude>
+    <Latitude>32.81474607216927</Latitude>
+  </Customer>
+</Customers>

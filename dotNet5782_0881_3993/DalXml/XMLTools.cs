@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using DO;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace DalXml
@@ -57,6 +58,43 @@ namespace DalXml
             }
         }
 
+        #endregion
+
+        #region SaveLoadWithXElement
+
+        public static void SaveListToXMLElement(XElement rootElem, string filePath)
+        {
+            try
+            {
+                rootElem.Save(dir + filePath);
+            }
+            catch (Exception ex)
+            {
+                throw new DalApi.DalConfigException($"fail to create xml file:{filePath}", ex);
+            }
+        }
+        public static XElement LoadListFromXMLElement(string filePath)
+        {
+            try
+            {
+
+                if (File.Exists(dir + filePath))
+                {
+                    return XElement.Load(dir + filePath);
+                }
+                else
+                { 
+                    XElement rootElem = new XElement(dir + filePath);
+                    return new XElement(dir + filePath);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new DalApi.DalConfigException($"fail to load xml file:{filePath}", ex);
+            }
+        }
         #endregion
     }
 }
