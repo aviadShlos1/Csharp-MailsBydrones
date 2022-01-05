@@ -1,7 +1,7 @@
 ﻿//Names: Aviad Shlosberg       314960881      
 //       Evyatar Levi Ben Ston 318753993 
-//PR01 
-//brief: In this program we define singleton classes, add factories and change the namespace names.
+//Level 3
+//Brief: In this program we added xml data files
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +23,9 @@ namespace BL
         /// Singleton definition to ensure the uniqueness of an object 
         /// </summary>
         #region Singelton
-        static readonly IBL instance = new BL();
-        public static IBL Instance { get => instance; }
-
-        //static BL() { }// static ctor to ensure instance init is done just before first usage
-        //internal static BL Instance { get; } = new BL();// The public Instance property to use
+        static readonly IBL instance = new BL(); 
+        public static IBL Instance { get => instance; }// The public Instance property to use
+        static BL() { }// static ctor to ensure instance init is done just before first usage
         #endregion
 
         public IDal DalAccess;
