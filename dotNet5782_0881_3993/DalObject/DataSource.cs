@@ -1,7 +1,7 @@
 ﻿//Names: Aviad Shlosberg       314960881      
 //       Evyatar Levi Ben Ston 318753993 
-//Targil1
-//brief: In this program we built the data access layer
+//Level 3
+//Brief: In this program we added xml data files
 
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,7 @@ namespace Dal
     {
         static DataSource()
         {
+            #region firstInitialize
             //Initialize();
             //string CustomerPath = @"CustomerXml.xml";
             //string DronePath = @"DroneXml.xml";
@@ -33,6 +34,7 @@ namespace Dal
             //XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
             //XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
             //XMLTools.SaveListToXMLSerializer<string>(ConsumptionArr, ConsumptionPath);
+            #endregion firstInitialize
         }
         /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();
@@ -56,12 +58,7 @@ namespace Dal
             public static double MediumWeightConsumption = 0.09;
             public static double HeavyWeightConsumption = 0.11;
             public static double ChargeRate = 50; // 50 percent for hour  
-
         }
-
-        
-       
-        //private static int DroneId = default;
 
         /// ‹summary›This method allows us to rand objects from the enum class
         /// ‹return› A random value that exist in the enum class.‹/returns›
