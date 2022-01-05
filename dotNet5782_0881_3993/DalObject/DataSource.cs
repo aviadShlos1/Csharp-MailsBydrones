@@ -15,21 +15,6 @@ namespace Dal
 {
     static class DataSource
     {
-        static DataSource()
-        {
-            Initialize();
-            string CustomerPath = @"CustomerXml.xml";
-            string DronePath = @"DroneXml.xml";
-            string BaseStationPath = @"BaseStationXml.xml";
-            string ParcelPath = @"ParcelXml.xml";
-            string DroneChargePath = @"DroneChargeXml.xml";
-
-            XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
-            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
-            XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
-            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
-            XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
-        }
         /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();
 
@@ -51,9 +36,8 @@ namespace Dal
             public static double LightWeightConsumption = 0.08;
             public static double MediumWeightConsumption = 0.09;
             public static double HeavyWeightConsumption = 0.11;
-            public static double ChargeRate = 50; // 50 percent for hour
+            public static double ChargeRate = 50; // 50 percent for hour  
 
-            
         }
        
         //private static int DroneId = default;

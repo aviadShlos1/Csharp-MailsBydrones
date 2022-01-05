@@ -1,28 +1,28 @@
 <?xml version="1.0"?>
 <ArrayOfDroneDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DroneDal>
-    <Id>2802</Id>
+    <Id>7838</Id>
     <Model>0</Model>
-    <DroneWeight>Heavy</DroneWeight>
+    <DroneWeight>Medium</DroneWeight>
   </DroneDal>
   <DroneDal>
-    <Id>3336</Id>
+    <Id>5166</Id>
     <Model>1</Model>
     <DroneWeight>Light</DroneWeight>
   </DroneDal>
   <DroneDal>
-    <Id>1084</Id>
+    <Id>1397</Id>
     <Model>2</Model>
-    <DroneWeight>Heavy</DroneWeight>
+    <DroneWeight>Light</DroneWeight>
   </DroneDal>
   <DroneDal>
-    <Id>4731</Id>
+    <Id>2919</Id>
     <Model>3</Model>
     <DroneWeight>Light</DroneWeight>
   </DroneDal>
   <DroneDal>
-    <Id>2793</Id>
+    <Id>1197</Id>
     <Model>4</Model>
-    <DroneWeight>Light</DroneWeight>
+    <DroneWeight>Medium</DroneWeight>
   </DroneDal>
 </ArrayOfDroneDal>

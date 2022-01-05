@@ -26,6 +26,7 @@ namespace BL
         #region Singelton
         static readonly IBL instance = new BL();
         public static IBL Instance { get => instance; }
+
         internal IDal dal = DalFactory.GetDal();//This is the access point from the data layer
         #endregion
 

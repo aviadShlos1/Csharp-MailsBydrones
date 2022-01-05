@@ -62,6 +62,7 @@ namespace BL
                 }
             }
             DalAccess.UpdateBaseStation(myBaseStation);
+            
         }
         
         /// <summary>

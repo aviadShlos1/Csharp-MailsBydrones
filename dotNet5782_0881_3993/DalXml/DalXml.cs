@@ -9,19 +9,22 @@ using DalApi;
 
 namespace DalXml
 {
-    sealed class DalXml : DalApi.IDal
+    sealed class DalXml : IDal
     {
         #region Singleton
-        static readonly DalXml instance = new DalXml();
-        static DalXml() { }
-        public DalXml()
-        {
-            if (!File.Exists(CustomerPath))
-                CreateFiles();
-            else
-                LoadData();
-        }
-        public DalXml Instance { get=>instance;  }
+        static readonly IDal instance = new DalXml();
+        public static IDal Instance { get => instance; }
+        DalXml() { }
+        //static readonly DalXml instance = new DalXml();
+        //static DalXml() { }
+        //public DalXml()
+        //{
+        //    if (!File.Exists(CustomerPath))
+        //        CreateFiles();
+        //    else
+        //        LoadData();
+        //}
+        //public DalXml Instance { get=>instance;  }
         #endregion Singleton
 
         string CustomerPath = @"CustomerXml.xml";
