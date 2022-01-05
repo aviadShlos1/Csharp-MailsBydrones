@@ -90,11 +90,5 @@
         <Button HorizontalAlignment="Left" BorderThickness="0.5" Background="Beige" Foreground="Green" Margin="135,413,0,0" Grid.Row="1" Height="44" Width="66" Click="ResetButton_Click">
             <fa:FontAwesome Icon="Refresh" Spin="True" SpinDuration="0"></fa:FontAwesome>
         </Button>
-        <!--<Grid.Background>
-            
-            -->
-        <!--<ImageBrush ImageSource="Images\Base.jpg" />-->
-        <!--
-        </Grid.Background>-->
     </Grid>
 </Window>

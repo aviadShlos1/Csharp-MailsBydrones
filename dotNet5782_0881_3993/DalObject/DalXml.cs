@@ -59,7 +59,7 @@ namespace DalXml
         }
 
         #region Customer
-        public XElement CustomerRoot;
+        XElement CustomerRoot;
         private void CreateFiles()
         {
             CustomerRoot = new XElement("Customers");
@@ -167,12 +167,12 @@ namespace DalXml
         }
         public void UpdateCustomer(CustomerDal customer)
         {
-            XElement CustomerElement = (from item in CustomerRoot.Elements()
+            XElement StudentElement = (from item in CustomerRoot.Elements()
                                        where Convert.ToInt32(item.Element("id").Value) == customer.Id
                                        select item).FirstOrDefault();
 
-            CustomerElement.Element("name").Value = customer.Name;
-            CustomerElement.Element("phone").Value = customer.Phone;
+            StudentElement.Element("name").Value = customer.Name;
+            StudentElement.Element("phone").Value = customer.Phone;
 
             CustomerRoot.Save(CustomerPath);
         }

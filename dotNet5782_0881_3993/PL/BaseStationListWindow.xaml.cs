@@ -14,8 +14,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Collections.ObjectModel;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 using BO;
 
 namespace PL
@@ -25,9 +25,9 @@ namespace PL
     /// </summary>
     public partial class BaseStationListWindow : Window
     {
-        private string[] chargeStatus = { "Free", "Full" };
         private BlApi.IBL blAccess;
         public ObservableCollection<BaseStationToList> myBaseStatiobnsPl;
+        private string[] chargeStatus = { "Free", "Full" };
 
         /// <summary>
         /// ctor for initialize the observable list

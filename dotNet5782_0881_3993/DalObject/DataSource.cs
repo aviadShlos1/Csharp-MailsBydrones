@@ -9,12 +9,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DO;
+using DalXml;
 
 
 namespace Dal
 {
     static class DataSource
     {
+        static DataSource()
+        {
+            //Initialize();
+            //string CustomerPath = @"CustomerXml.xml";
+            //string DronePath = @"DroneXml.xml";
+            //string BaseStationPath = @"BaseStationXml.xml";
+            //string ParcelPath = @"ParcelXml.xml";
+            //string DroneChargePath = @"DroneChargeXml.xml";
+            //string ConsumptionPath = @"ConfigDetails.xml";
+            //List<double> ConsumptionArr = new() { Config.FreeWeightConsumption, Config.LightWeightConsumption, Config.MediumWeightConsumption, Config.HeavyWeightConsumption, Config.ChargeRate, Config.RunId };
+
+            //XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
+            //XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
+            //XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
+            //XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+            //XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
+            //XMLTools.SaveListToXMLSerializer<string>(ConsumptionArr, ConsumptionPath);
+        }
         /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();
 
@@ -39,6 +58,8 @@ namespace Dal
             public static double ChargeRate = 50; // 50 percent for hour  
 
         }
+
+        
        
         //private static int DroneId = default;
 
@@ -53,6 +74,7 @@ namespace Dal
         //‹summary›This method initializes the entities details.
         public static void Initialize()
         {
+
             #region adding Drone details
             for (int i = 0; i < 5; i++)
             {

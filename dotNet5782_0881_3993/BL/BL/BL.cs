@@ -17,9 +17,8 @@ namespace BL
     /// <summary>
     /// This class is divided to modules that contains the methods implement of the CRUD options
     /// </summary>
-    partial class BL : BlApi.IBL
+    partial class BL :IBL
     {
-
         /// <summary>
         /// Singleton definition to ensure the uniqueness of an object 
         /// </summary>
@@ -27,18 +26,20 @@ namespace BL
         static readonly IBL instance = new BL();
         public static IBL Instance { get => instance; }
 
-        internal IDal dal = DalFactory.GetDal();//This is the access point from the data layer
+        //static BL() { }// static ctor to ensure instance init is done just before first usage
+        //internal static BL Instance { get; } = new BL();// The public Instance property to use
         #endregion
 
-        static DalApi.IDal DalAccess = DalApi.DalFactory.GetDal();//This is the access point from the data layer
-        internal static List<DroneToList> DronesListBL { get; set; }//This list contains drones of type of "Drone to list" 
-        static Random rand = new();
+        public IDal DalAccess;
+        public List<DroneToList> DronesListBL;//This list contains drones of type of "Drone to list" 
 
-        static double freeWeightConsumption;
-        static double lightWeightConsumption;
-        static double mediumWeightConsumption;
-        static double heavyWeightConsumption;
-        static double chargeRate;
+        public double freeWeightConsumption;
+        public double lightWeightConsumption;
+        public double mediumWeightConsumption;
+        public double heavyWeightConsumption;
+        public double chargeRate;
+
+        public Random rand = new();
 
         #region Help methods
         /// <summary>
@@ -46,7 +47,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns>entity of customerDal</returns>
-        private static DO.CustomerDal GetCustomerDetails(int id)
+        private DO.CustomerDal GetCustomerDetails(int id)
         {
             DO.CustomerDal myCust = new();
 
@@ -109,8 +110,10 @@ namespace BL
         #endregion
 
         //ctor
-        static BL()
+        private BL()
         {
+            DalAccess = DalFactory.GetDal();//This is the access point from the data layer
+
             double[] energyConsumption = DalAccess.EnergyConsumption();//Get from the dal layer the array that contains the energy consumption
             freeWeightConsumption = energyConsumption[0];
             lightWeightConsumption = energyConsumption[1];
@@ -118,7 +121,7 @@ namespace BL
             heavyWeightConsumption = energyConsumption[3];
             chargeRate = energyConsumption[4];
 
-            // initializing the entities lists from the dal layer
+        // initializing the entities lists from the dal layer
             List<DroneDal> DronesDalList = DalAccess.GetDronesList().ToList();
             List<ParcelDal> ParcelsDalList = DalAccess.GetParcelsList().ToList();
             List<BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList().ToList();
