@@ -38,7 +38,7 @@
   <CustomerDal>
     <Id>762013838</Id>
     <Name>Gal</Name>
-    <Phone>0564322049</Phone>
+    <Phone>056432</Phone>
     <Longitude>34.87815542244127</Longitude>
     <Latitude>32.786696008883276</Latitude>
   </CustomerDal>
@@ -69,5 +69,12 @@
     <Phone>0586723116</Phone>
     <Longitude>34.60881581711481</Longitude>
     <Latitude>32.600106755102566</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>322517467</Id>
+    <Name>Noa</Name>
+    <Phone>0548687381</Phone>
+    <Longitude>32.1</Longitude>
+    <Latitude>32.2</Latitude>
   </CustomerDal>
 </ArrayOfCustomerDal>

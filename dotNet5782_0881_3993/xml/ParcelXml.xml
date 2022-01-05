@@ -120,4 +120,16 @@
     <SupplyingTime xsi:nil="true" />
     <DroneToParcelId>4538</DroneToParcelId>
   </ParcelDal>
+  <ParcelDal>
+    <Id>0</Id>
+    <SenderId>895537694</SenderId>
+    <TargetId>869218832</TargetId>
+    <Weight>Light</Weight>
+    <Priority>Normal</Priority>
+    <CreatingTime>2022-01-05T17:28:45.7495305+02:00</CreatingTime>
+    <AssignningTime xsi:nil="true" />
+    <PickingUpTime xsi:nil="true" />
+    <SupplyingTime xsi:nil="true" />
+    <DroneToParcelId>0</DroneToParcelId>
+  </ParcelDal>
 </ArrayOfParcelDal>
