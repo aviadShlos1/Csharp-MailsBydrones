@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Level 3
+//Brief: In this program we added xml data files
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -255,6 +259,7 @@ namespace DalXml
         public int AddParcel(ParcelDal newParcel)
         {
             List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
+            //loading the "ConfigDetails" file to update the runId
             List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");
             int runParcelId = int.Parse(config[5]);
             newParcel.Id = runParcelId++;
