@@ -53,7 +53,7 @@
 
             <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,81,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="9"/>
             <TextBox Name="NameTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,123,0,0" Text="" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="PhoneTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="PhoneTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,176,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="10"/>
             <TextBox Name="LongitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,231,0,0" Text="" VerticalAlignment="Top" Width="120"/>
             <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Foreground="DarkBlue" Margin="147,278,0,0" Text="" VerticalAlignment="Top" Width="120"/>
 
