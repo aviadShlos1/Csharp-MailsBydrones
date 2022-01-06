@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Names: Aviad Shlosberg       314960881      
+//       Evyatar Levi Ben Ston 318753993 
+//Level 3
+//Brief: In this program we added xml data files
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +19,19 @@ namespace DalXml
         static string dir = @"xml\";
         static XMLTools()
         { 
+            //checks if the file directory exists
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir); 
         }
 
+        // Region for save and load function with are implement by serializer
         #region SaveLoadWithXmlSerializer
+        /// <summary>
+        /// function for save data in a xml file using serializer implementation
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list">the list to save</param>
+        /// <param name="filePath">the file path</param>
         public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)
         {
             try
@@ -34,6 +46,12 @@ namespace DalXml
                 throw new DalApi.DalConfigException($"fail to create xml file:{filePath}", ex);
             }
         }
+        /// <summary>
+        /// function for load data from a xml file using serializer implementation
+        /// </summary>
+        /// <typeparam name="T">the type of the list</typeparam>
+        /// <param name="filePath">the file path</param>
+        /// <returns></returns>
         public static List<T> LoadListFromXMLSerializer<T>(string filePath)
         {
             try
@@ -60,8 +78,14 @@ namespace DalXml
 
         #endregion
 
+        // Region for save and load function with are implement by XElement
         #region SaveLoadWithXElement
 
+        /// <summary>
+        /// function for save data to a xml file using XElement implementation
+        /// </summary>
+        /// <param name="rootElem"></param>
+        /// <param name="filePath"></param>
         public static void SaveListToXMLElement(XElement rootElem, string filePath)
         {
             try
@@ -73,6 +97,11 @@ namespace DalXml
                 throw new DalApi.DalConfigException($"fail to create xml file:{filePath}", ex);
             }
         }
+        /// <summary>
+        /// function for load data from a xml file using XElement implementation
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public static XElement LoadListFromXMLElement(string filePath)
         {
             try
@@ -85,7 +114,8 @@ namespace DalXml
                 else
                 { 
                     XElement rootElem = new XElement(dir + filePath);
-                    return new XElement(dir + filePath);
+                    rootElem.Save(dir + filePath);
+                    return rootElem;
                 }
 
             }
