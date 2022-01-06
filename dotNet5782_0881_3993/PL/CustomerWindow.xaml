@@ -45,7 +45,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="28,131,0,0" Text="Name:" FontSize="16"  TextWrapping="Wrap" 
                        VerticalAlignment="Top" Width="auto" Grid.Column="2" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Comic Sans MS" Height="auto"/>
             <TextBlock HorizontalAlignment="Left" Margin="28,184,0,0" Text="Phone:" FontSize="16"  TextWrapping="Wrap" 
-                       VerticalAlignment="Top" Width="auto" Grid.Column="2" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Comic Sans MS" Height="auto"/>
+                       VerticalAlignment="Top" Width="auto" Grid.Column="2" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Comic Sans MS" Height="auto"/> 
             <TextBlock HorizontalAlignment="Left" Margin="28,234,0,0" Text="Longitude:" FontSize="16"  TextWrapping="Wrap" 
                        VerticalAlignment="Top" Width="auto" Grid.Column="2" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Comic Sans MS" Height="auto"/>
             <TextBlock HorizontalAlignment="Left" Margin="28,280,0,0" Text="Latitude:" FontSize="16"  TextWrapping="Wrap" 
