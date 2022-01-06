@@ -11,7 +11,7 @@ using System.IO;
 using DO;
 using DalApi;
 
-namespace DalXml
+namespace Dal
 {
     sealed class DalXml : IDal
     {
@@ -264,7 +264,6 @@ namespace DalXml
             int runParcelId = int.Parse(config[5]);
             newParcel.Id = runParcelId++;
             XMLTools.SaveListToXMLSerializer<string>(config, @"ConfigDetails.xml");
-
             Parcels.Add(newParcel);
             XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
             return newParcel.Id;

@@ -14,11 +14,4 @@
     <Latitude>32.056</Latitude>
     <FreeChargeSlots>8</FreeChargeSlots>
   </BaseStationDal>
-  <BaseStationDal>
-    <Id>5686</Id>
-    <Name>fgth</Name>
-    <Longitude>32.3</Longitude>
-    <Latitude>32.5</Latitude>
-    <FreeChargeSlots>6</FreeChargeSlots>
-  </BaseStationDal>
 </ArrayOfBaseStationDal>

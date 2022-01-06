@@ -12,7 +12,7 @@ using DO;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace DalXml
+namespace Dal
 {
     class XMLTools
     {
