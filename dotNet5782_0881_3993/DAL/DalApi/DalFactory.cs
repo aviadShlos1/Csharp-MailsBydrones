@@ -49,7 +49,7 @@ namespace DalApi
             //        should hold "internal" access permission (which is actually the default access permission)
             //    second element:
             //    the package name = assembly name (as above)
-            Type type = Type.GetType($"DalXml.{dalPkg}, {dalPkg}");
+            Type type = Type.GetType($"Dal.{dalPkg}, {dalPkg}");
             if (type == null) // If the type is not found - the implementation is not correct - it looks like the class name is wrong...
                 throw new DalConfigException($"Class {dalPkg} was not found in the {dalPkg}.dll");
 

@@ -23,13 +23,14 @@ namespace BL
         /// Singleton definition to ensure the uniqueness of an object 
         /// </summary>
         #region Singelton
-        static BL() { }// static ctor to ensure instance init is done just before first usage
-        internal static BL Instance { get; } = new BL();// The public Instance property to use
-        //static readonly IBL instance = new BL(); 
-        //public static IBL Instance { get => instance; }// The public Instance property to use
-        #endregion
+        //static BL() { }// static ctor to ensure instance init is done just before first usage
+        //internal static BL Instance { get; } = new BL();// The public Instance property to use
+       
+        static readonly IBL instance = new BL();
+        public static IBL Instance { get => instance; }
 
-        public IDal DalAccess;
+        internal IDal DalAccess = DalFactory.GetDal();
+        #endregion
         public List<DroneToList> DronesListBL;//This list contains drones of type of "Drone to list" 
 
         public double freeWeightConsumption;
@@ -111,7 +112,7 @@ namespace BL
         //ctor
         private BL()
         {
-            DalAccess = DalFactory.GetDal();//This is the access point from the data layer
+            //DalAccess = DalFactory.GetDal();//This is the access point from the data layer
 
             double[] energyConsumption = DalAccess.EnergyConsumption();//Get from the dal layer the array that contains the energy consumption
             freeWeightConsumption = energyConsumption[0];
