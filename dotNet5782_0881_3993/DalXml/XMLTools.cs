@@ -23,6 +23,7 @@ namespace DalXml
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir); 
         }
+
         // Region for save and load function with are implement by serializer
         #region SaveLoadWithXmlSerializer
         /// <summary>
@@ -113,7 +114,8 @@ namespace DalXml
                 else
                 { 
                     XElement rootElem = new XElement(dir + filePath);
-                    return new XElement(dir + filePath);
+                    rootElem.Save(dir + filePath);
+                    return rootElem;
                 }
 
             }

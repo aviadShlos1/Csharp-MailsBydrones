@@ -19,21 +19,22 @@ namespace Dal
         static DataSource()
         {
             #region firstInitialize
-            //Initialize();
-            //string CustomerPath = @"CustomerXml.xml";
-            //string DronePath = @"DroneXml.xml";
-            //string BaseStationPath = @"BaseStationXml.xml";
-            //string ParcelPath = @"ParcelXml.xml";
-            //string DroneChargePath = @"DroneChargeXml.xml";
+            Initialize();
+            string CustomerPath = @"CustomerXml.xml";
+            string DronePath = @"DroneXml.xml";
+            string BaseStationPath = @"BaseStationXml.xml";
+            string ParcelPath = @"ParcelXml.xml";
+            string DroneChargePath = @"DroneChargeXml.xml";
             //string ConsumptionPath = @"ConfigDetails.xml";
             //List<double> ConsumptionArr = new() { Config.FreeWeightConsumption, Config.LightWeightConsumption, Config.MediumWeightConsumption, Config.HeavyWeightConsumption, Config.ChargeRate, Config.RunId };
 
-            //XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
-            //XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
-            //XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
-            //XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
-            //XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
-            //XMLTools.SaveListToXMLSerializer<string>(ConsumptionArr, ConsumptionPath);
+            XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
+            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
+            XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
+            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+            XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
+            //XMLTools.SaveListToXMLSerializer<string>((ConsumptionArr), ConsumptionPath);
+
             #endregion firstInitialize
         }
         /// ‹summary›Random field which will be used to rand details

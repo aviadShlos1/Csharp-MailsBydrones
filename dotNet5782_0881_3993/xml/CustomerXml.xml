@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCustomerDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CustomerDal>
     <Id>895537694</Id>
@@ -77,4 +77,11 @@
     <Longitude>32.1</Longitude>
     <Latitude>32.2</Latitude>
   </CustomerDal>
+  <Customer>
+    <Id>111111111</Id>
+    <Name>AAAAAAAAAAAAAA</Name>
+    <Phone>054949494949</Phone>
+    <Longitude>10.1</Longitude>
+    <Latitude>10.2</Latitude>
+  </Customer>
 </ArrayOfCustomerDal>
