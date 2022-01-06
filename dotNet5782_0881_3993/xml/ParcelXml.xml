@@ -1,18 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfParcelDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ParcelDal>
-    <Id>0</Id>
-    <SenderId>635188996</SenderId>
-    <TargetId>607948248</TargetId>
-    <Weight>Medium</Weight>
-    <Priority>Urgent</Priority>
-    <CreatingTime>2022-01-06T13:16:01.8560262+02:00</CreatingTime>
-    <AssignningTime xsi:nil="true" />
-    <PickingUpTime xsi:nil="true" />
-    <SupplyingTime xsi:nil="true" />
-    <DroneToParcelId>0</DroneToParcelId>
-  </ParcelDal>
-  <ParcelDal>
     <Id>1</Id>
     <SenderId>320333675</SenderId>
     <TargetId>635188996</TargetId>

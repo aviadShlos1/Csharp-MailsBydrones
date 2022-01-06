@@ -2,7 +2,7 @@
 <ArrayOfDroneDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DroneDal>
     <Id>4682</Id>
-    <Model>0</Model>
+    <Model>00</Model>
     <DroneWeight>Heavy</DroneWeight>
   </DroneDal>
   <DroneDal>
