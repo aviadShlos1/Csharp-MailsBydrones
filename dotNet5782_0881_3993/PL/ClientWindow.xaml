@@ -140,14 +140,19 @@
                 </materialDesign:Card>
 
             </Grid>
-            <TextBlock HorizontalAlignment="Left" Margin="450,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
-                       Height="64" Width="166" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="SkyBlue" Grid.RowSpan="2" ><Run FlowDirection="RightToLeft" Text="Welcome"/>
+            <TextBlock HorizontalAlignment="Left" Margin="370,1,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                       Height="64" Width="246" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" 
+                       Foreground="SkyBlue" Grid.RowSpan="2" ><Run FlowDirection="RightToLeft" Text="Welcome "/>
             </TextBlock>
-            <TextBlock  x:Name="TBuserName" HorizontalAlignment="Left" Margin="552,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="auto" Width="142" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="SkyBlue" TextAlignment="Right"><Run FlowDirection="RightToLeft" Language="he-il" Text="{Binding Name}"/></TextBlock>
+            <TextBlock  x:Name="TBuserName" HorizontalAlignment="Left" Margin="493,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" 
+                        Height="auto" Width="162" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="SkyBlue" TextAlignment="Right"><Run FlowDirection="RightToLeft" Text="{Binding Name}"/></TextBlock>
             <Button HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="0,218,0,10" Width="88" Height="48" Click="CloseButton_Click" RenderTransformOrigin="0.572,0.996" Grid.Row="2">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="49" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502">
                 </fa:ImageAwesome>
             </Button>
+            <Button Name="EditButton" Content="{materialDesign:PackIcon  Kind=Edit, Size=30}" Background="{DynamicResource PrimaryHueLightBrush}" 
+                    ToolTip="icon"  HorizontalAlignment="Left" Margin="981,17,0,0" Click="EditButton_Click" 
+                    VerticalAlignment="Top" Grid.RowSpan="2" Height="48" Width="63"/>
         </Grid>
     </Grid>
 </Window>

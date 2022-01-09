@@ -38,7 +38,7 @@
   </ParcelDal>
   <ParcelDal>
     <Id>4</Id>
-    <SenderId>607948248</SenderId>
+    <SenderId>528423761</SenderId>
     <TargetId>549864217</TargetId>
     <Weight>Heavy</Weight>
     <Priority>Urgent</Priority>
@@ -51,7 +51,7 @@
   <ParcelDal>
     <Id>5</Id>
     <SenderId>528423761</SenderId>
-    <TargetId>607948248</TargetId>
+    <TargetId>490505658</TargetId>
     <Weight>Light</Weight>
     <Priority>Normal</Priority>
     <CreatingTime>2022-01-06T13:16:01.8599025+02:00</CreatingTime>
