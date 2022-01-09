@@ -49,8 +49,8 @@ namespace PL
             MyCustomer = blAccess.GetSingleCustomer(ClientId);
             DataContext = MyCustomer;
             //Display the parcels list, the first for parcels that he sent and the second for parcels that he recieved 
-            listOfCustomerSend.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList;
-            listOfCustomerReceive.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsToCustomerList;
+            OutgoingList.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList;
+            IncomingList.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsToCustomerList;
             //Needs for add parcel option 
             WeightTbx.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             PriorityTbx.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
@@ -66,7 +66,7 @@ namespace PL
         {
             // adding the new parcel for sending
             AssignCustomerToParcel myAssignSenderToParcel = new() { CustId = MyCustomer.Id, CustName = MyCustomer.Name };
-            AssignCustomerToParcel myAssignRecieverToParcel = new() { CustId = (int)TargetIdTbx.SelectedItem};
+            AssignCustomerToParcel myAssignRecieverToParcel = new() { CustId = (int)TargetIdTbx.SelectedItem, CustName=blAccess.GetSingleCustomer((int)TargetIdTbx.SelectedItem).Name};
             ParcelBl newParcel = new ParcelBl
             {
                 Sender = myAssignSenderToParcel,
@@ -79,8 +79,8 @@ namespace PL
             MessageBoxResult result = MessageBox.Show("The operation was done successfully");
             if (result == MessageBoxResult.OK)
             {
-                this.Close();
-                listOfCustomerSend.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList;
+                OutgoingList.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList;
+                OutgoingList.Items.Refresh();
             }
 
         }

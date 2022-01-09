@@ -80,10 +80,9 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="Welcome To Dronix System" Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="138,32,0,0" VerticalAlignment="Top" Height="84" Width="521" FontSize="38" FontStyle="Italic" Grid.ColumnSpan="2"></Label>
-                            <TextBlock TextWrapping="Wrap" Height="58" FontSize="28"  Foreground="Purple" Width="246" HorizontalAlignment="Left" 
-                                       FontFamily="Comic Sans MS" VerticalAlignment="Center" Margin="261,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" ><Run FlowDirection="LeftToRight" Text="Enter Client Id:"/></TextBlock>
-                            <TextBox x:Name="TBuserID" HorizontalContentAlignment="Center" MaxLength="10" Foreground="#FFFBFBFB" FontSize="32" FontFamily="Consolas" FontWeight="Bold" Background="{x:Null}"
-                                     BorderBrush="{x:Null}" Margin="238,144,258,10" Grid.ColumnSpan="2" KeyUp="TBuserID_KeyUp" Grid.Row="1"/>
+                            <TextBlock TextWrapping="Wrap" Height="37" FontSize="28"  Foreground="Purple" Width="246" HorizontalAlignment="Left" 
+                                       FontFamily="Comic Sans MS" VerticalAlignment="Top" Margin="261,110,0,0" Grid.ColumnSpan="2" Grid.Row="1" ><Run FlowDirection="LeftToRight" Text="Enter Client Id:"/></TextBlock>
+                            <TextBox x:Name="TBuserID" HorizontalContentAlignment="Center" MaxLength="10" Foreground="Purple" FontSize="32" FontFamily="Comic Sans MS" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Margin="238,149,258,10" Grid.ColumnSpan="2" KeyUp="TBuserID_KeyUp" Grid.Row="1"/>
                             <Grid Margin="0,0,0,10">
                                 <Button x:Name="BNewUser" Visibility="Visible" Style="{StaticResource MaterialDesignRaisedButton}"  
                     materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="New customer? Register Now! " Margin="513,379,-378,-213"
