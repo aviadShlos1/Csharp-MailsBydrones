@@ -58,6 +58,10 @@ namespace PL
             IEnumerable<int> customersId = blAccess.GetCustomersBl().Select(x => x.Id);
             TargetIdTbx.ItemsSource = customersId;
 
+            //Connecting the the combobox to parcels who sent by the client, and show the parcel ID.
+            PickUpList_comboBox = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.Assigned &&
+                      blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList.ToList().Exists(item => item.Id == x.Id));
+            CBPickUpList.DisplayMemberPath = "Id";
 
             //Connecting the the combobox to parcels that the client should receive, and show the parcel ID.
             CBDeliverdList.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.PickedUp &&
@@ -124,7 +128,7 @@ namespace PL
             {
                 //IsEnabled = false;
                 blAccess.PickUpParcel(DroneId); //Activation of the PickedUp function in the BL layer.
-                MessageBoxResult result = MessageBox.Show("The ", "info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBoxResult result = MessageBox.Show("The operation was successful", "info", MessageBoxButton.OK, MessageBoxImage.Information);
                 switch (result)
                 {
                     case MessageBoxResult.OK:
@@ -201,7 +205,7 @@ namespace PL
             try
             {
                 //IsEnabled = false;
-                blAccess.DeliveryPackageToTheCustomer(DroneId);//Activation of the Delivery function in the BL layer.
+                blAccess.SupplyParcel(DroneId);//Activation of the Delivery function in the BL layer.
                 MessageBoxResult result = MessageBox.Show("The operation was successful", "info", MessageBoxButton.OK, MessageBoxImage.Information);
                 switch (result)
                 {
@@ -210,16 +214,16 @@ namespace PL
                         CBSendToDeliverd.IsChecked = false;//update the CheckBox to uncheck.
 
                         //Update the combobox of parcels that the client should receive and have not yet been Delivered.
-                        CBDeliverdList.ItemsSource = blAccess.GetParcelsBL(x => x.Status == DeliveryStatus.PickedUp &&
-                                 blAccess.GetCustomer(customer.Id).ParcelToTheCustomer.ToList().Exists(item => item.Id == x.Id));
-                        CBDeliverdList.DisplayMemberPath = "Id";
+                        SupplyList_comboBox.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.PickedUp &&
+                                 blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsToCustomerList.ToList().Exists(item => item.Id == x.Id));
+                        SupplyList_comboBox.DisplayMemberPath = "Id";
 
                         //Update the Biding of client details.
-                        customer = blAccess.GetCustomer(customer.Id);
-                        DataContext = customer;
+                        MyCustomer = blAccess.GetSingleCustomer(MyCustomer.Id);
+                        DataContext = MyCustomer;
 
                         //Update the list of parcels to the customer.
-                        listOfCustomerReceive.ItemsSource = blAccess.GetCustomer(customer.Id).ParcelToTheCustomer;
+                        IncomingList.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsToCustomerList;
                         break;
 
                     default:
