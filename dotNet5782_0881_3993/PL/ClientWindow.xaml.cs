@@ -51,6 +51,13 @@ namespace PL
             //Display the parcels list, the first for parcels that he sent and the second for parcels that he recieved 
             OutgoingList.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList;
             IncomingList.ItemsSource = blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsToCustomerList;
+            foreach (var item in IncomingList.ItemsSource)
+            {
+                if ()
+                {
+
+                }
+            }
             //Needs for add parcel option 
             WeightTbx.ItemsSource = Enum.GetValues(typeof(WeightCategoriesBL));
             PriorityTbx.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
