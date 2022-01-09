@@ -18,7 +18,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Media;
 using BlApi;
+using MaterialDesignThemes.Wpf;
 using System.Windows.Media.Animation;
+using PL;
 
 namespace PL
 {
@@ -34,10 +36,10 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+            //SoundPlayer player = new SoundPlayer(@"C:\Users\aviad\source\repos\dotNet5782_0881_3993\dotNet5782_0881_3993\PL\icons");
+            //player.Load();
+            //player.Play();
         }
-
-        
-        //public BlApi.IBL AccessIbl = BlApi.BlFactory.GetBl();
 
         /// <summary>
         /// Login event that lead to the manager or client interface.
@@ -47,15 +49,26 @@ namespace PL
         private void Blogin_Click(object sender, RoutedEventArgs e)
         {
 
-            switch (Blogin.Content)
+            switch (LoginButton.Content)
             {
                 case "Admin":
-                    new ListsDisplayWindow().Show();
+                    if (UserNameTextBox.Text == "Admin" && PasswordBox.Password == "00000")
+                    {
+                        new ListsDisplayWindow().Show();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("ERROR: Invalid username or password");
+                        new MainWindow().Show();
+
+                    }
+
                     break;
                 case "User":
                     try
                     {
-                        AccessIbl.GetSingleCustomer(int.Parse(TBuserID.Password)); //לשים לב שזה מקפיץ חריגה אם הלקוח נכנס ללא שם משתמש
+                        AccessIbl.GetSingleCustomer(int.Parse(TBuserID.Password)); 
                         new ClientWindow(AccessIbl, int.Parse(TBuserID.Password)).Show();
                     }
                     catch (BO.NotExistException ex)
@@ -91,7 +104,7 @@ namespace PL
         {
             if (PBloading.Value == 100)
             {
-                Blogin.IsEnabled = true;
+                LoginButton.IsEnabled = true;
                 DoubleAnimation doubleAnimmation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(2));
                 AddOn.BeginAnimation(Grid.OpacityProperty, doubleAnimmation);
                 DoubleAnimation DSF = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(1));
@@ -115,8 +128,8 @@ namespace PL
         /// <param name="e"></param>
         private void TICadmin_GotFocus(object sender, RoutedEventArgs e)
         {
-            Blogin.Visibility = Visibility.Visible;
-            Blogin.Content = "Admin";
+            LoginButton.Visibility = Visibility.Visible;
+            LoginButton.Content = "Admin";
         }
 
         /// <summary>
@@ -126,8 +139,8 @@ namespace PL
         /// <param name="e"></param>
         private void TIUser_GotFocus(object sender, RoutedEventArgs e)
         {
-            Blogin.Visibility = Visibility.Visible;
-            Blogin.Content = "User";
+            LoginButton.Visibility = Visibility.Visible;
+            LoginButton.Content = "User";
             
         }
 
@@ -136,17 +149,17 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TBadmin_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (TBadmin.Text.Length != 0)
-            {
-                Blogin.IsEnabled = true;
-            }
-            else
-            {
-                Blogin.IsEnabled = false;
-            }
-        }
+        //private void TBadmin_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    if (TBadmin.Text.Length != 0)
+        //    {
+        //        Blogin.IsEnabled = true;
+        //    }
+        //    else
+        //    {
+        //        Blogin.IsEnabled = false;
+        //    }
+        //}
         /// <summary>
         /// event for getting input in the password box
         /// </summary>
@@ -156,12 +169,14 @@ namespace PL
         {
             if (TBuserID.Password.Length != 0)
             {
-                Blogin.IsEnabled = true;
+                LoginButton.IsEnabled = true;
             }
             else
             {
-                Blogin.IsEnabled = false;
+                LoginButton.IsEnabled = false;
             }
         }
+
+       
     }
 }

@@ -139,43 +139,6 @@ namespace Dal
             return Customers;
         }
        
-
-        #region implemen by serializer
-        //public void AddCustomer(CustomerDal newCustomer)
-        //{
-        //    List<CustomerDal> Customers = XMLTools.LoadListFromXMLSerializer<CustomerDal>(CustomerPath);
-        //    int existIndex = Customers.FindIndex(x => x.Id == newCustomer.Id);
-        //    if (existIndex != -1)
-        //    {
-        //        throw new AlreadyExistException(newCustomer.Id);
-        //    }
-        //    Customers.Add(newCustomer);
-        //    XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
-        //}
-        //public void UpdateCustomer(CustomerDal myCustomer)
-        //{
-        //    List<CustomerDal> Customers = XMLTools.LoadListFromXMLSerializer<CustomerDal>(CustomerPath);
-        //    CustomerDal tempCustomer = Customers.FirstOrDefault(x => x.Id == myCustomer.Id);
-        //    int index = Customers.IndexOf(tempCustomer);
-        //    Customers[index] = myCustomer;
-        //    XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
-        //}
-        //public CustomerDal GetSingleCustomer(int customerId)
-        //{
-        //    List<CustomerDal> Customers = XMLTools.LoadListFromXMLSerializer<CustomerDal>(CustomerPath);
-        //    int customerIndex = Customers.FindIndex(i => i.Id == customerId);
-        //    if (customerIndex == -1)
-        //    {
-        //        throw new NotExistException(customerId);
-        //    }
-        //    return Customers.Find(i => i.Id == customerId);
-        //}
-        //public IEnumerable<CustomerDal> GetCustomersList()
-        //{
-        //    List<CustomerDal> Customers = XMLTools.LoadListFromXMLSerializer<CustomerDal>(CustomerPath);
-        //    return Customers;
-        //}
-        #endregion implemen by serializer
         #endregion
 
         #region Drone
@@ -234,7 +197,7 @@ namespace Dal
             BaseStationDal tempBaseStation = BaseStations.FirstOrDefault(x => x.Id == myBaseStation.Id);
             int index = BaseStations.IndexOf(tempBaseStation);
             BaseStations[index] = myBaseStation;
-            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
+            XMLTools.SaveListToXMLSerializer(BaseStations, BaseStationPath);
         }
         public BaseStationDal GetSingleBaseStation(int stationId)
         {
