@@ -93,7 +93,7 @@ namespace PL
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            new ClientWindow(blAccess, MyCustomer.Id).Show();
+            new CustomerWindow(blAccess, MyCustomer.Id ,new CustomersListWindow(blAccess)).Show();
         }
     }
 }

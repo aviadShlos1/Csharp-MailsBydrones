@@ -28,9 +28,6 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-
-
-
     <Grid>
         <Grid x:Name="AddOption" Visibility="Hidden">
             <Grid.ColumnDefinitions>
@@ -45,7 +42,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="28,131,0,0" Text="Name:" FontSize="16"  TextWrapping="Wrap" 
                        VerticalAlignment="Top" Width="auto" Grid.Column="2" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Comic Sans MS" Height="auto"/>
             <TextBlock HorizontalAlignment="Left" Margin="28,184,0,0" Text="Phone:" FontSize="16"  TextWrapping="Wrap" 
-                       VerticalAlignment="Top" Width="auto" Grid.Column="2" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Comic Sans MS" Height="auto"/> 
+                       VerticalAlignment="Top" Width="auto" Grid.Column="2" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Comic Sans MS" Height="auto"/>
             <TextBlock HorizontalAlignment="Left" Margin="28,234,0,0" Text="Longitude:" FontSize="16"  TextWrapping="Wrap" 
                        VerticalAlignment="Top" Width="auto" Grid.Column="2" Foreground="DarkBlue" FontWeight="Bold" FontFamily="Comic Sans MS" Height="auto"/>
             <TextBlock HorizontalAlignment="Left" Margin="28,280,0,0" Text="Latitude:" FontSize="16"  TextWrapping="Wrap" 
@@ -67,7 +64,7 @@
 
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Hidden">
+        <Grid x:Name="UpdateOptions" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="*"/>
@@ -83,32 +80,32 @@
             </Grid.RowDefinitions>
 
 
-            <TextBox x:Name="CustomerIdTbx" BorderThickness="0" Grid.Row="0" Foreground="DarkMagenta" Background="LightGray" Grid.Column="1"
+            <TextBox x:Name="CustomerIdTbx" BorderThickness="0" Grid.Row="0" Foreground="DarkBlue" Background="LightGray" Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding Id}" TextWrapping="Wrap" FontFamily="Comic Sans MS"  VerticalAlignment="Center" Width="auto" IsReadOnly="True"/>
-            <TextBox x:Name="CustomerNameTbx" BorderThickness="0" Grid.Row="1" Foreground="DarkMagenta" Background="LightGray"  Grid.Column="1" 
+            <TextBox x:Name="CustomerNameTbx" BorderThickness="0" Grid.Row="1" Foreground="DarkBlue" Background="LightGray"  Grid.Column="1" 
                      HorizontalAlignment="Left" Text="{Binding Name}" VerticalAlignment="Center" FontFamily="Comic Sans MS" Width="auto"  IsEnabled="True"/>
-            <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Row="2" Foreground="DarkMagenta" Background="LightGray" Grid.Column="1" 
+            <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Row="2" Foreground="DarkBlue" Background="LightGray" Grid.Column="1" 
                      HorizontalAlignment="Left"  Text="{Binding Phone}" TextWrapping="Wrap" FontFamily="Comic Sans MS" VerticalAlignment="Center" Width="auto" IsEnabled="True" MaxLength="2"/>
-            <TextBox x:Name="CustomerLocationTbx" BorderThickness="0" Grid.Row="3" Foreground="DarkMagenta" Background="LightGray" Grid.Column="1"
+            <TextBox x:Name="CustomerLocationTbx" BorderThickness="0" Grid.Row="3" Foreground="DarkBlue" Background="LightGray" Grid.Column="1"
                      HorizontalAlignment="Left" Text="" VerticalAlignment="Center" FontFamily="Comic Sans MS" Width="auto"  IsReadOnly="True"/>
-            <ListView x:Name="SentParcels" BorderThickness="1" Foreground="DarkMagenta" Background="LightGray" 
+            <ListView x:Name="SentParcels" BorderThickness="1" Foreground="DarkBlue" Background="LightGray" 
                       HorizontalAlignment="Left" VerticalAlignment="Top"  Width="535" Height="105"
                       Grid.Column="1" Grid.Row="4" FontFamily="Comic Sans MS"  MouseDoubleClick="SentParcelsTbx_MouseDoubleClick" Margin="1,8,0,0" Grid.RowSpan="2"/>
-            <ListView x:Name="RecievedParcels" BorderThickness="1" Foreground="DarkMagenta" Background="LightGray" 
-                      HorizontalAlignment="Left" Margin="263,0,0,11"  VerticalAlignment="Bottom" Width="527" Height="100" Grid.Row="5" FontFamily="Comic Sans MS" MouseDoubleClick="RecievedParcelsTbx_MouseDoubleClick" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <ListView x:Name="RecievedParcels" BorderThickness="1" Foreground="DarkBlue" Background="LightGray" 
+                      HorizontalAlignment="Left" Margin="263,0,0,26"  VerticalAlignment="Bottom" Width="527" Height="117" Grid.Row="4" FontFamily="Comic Sans MS" MouseDoubleClick="RecievedParcelsTbx_MouseDoubleClick" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
 
 
-            <TextBlock Text="Id:" FontFamily="Comic Sans MS" FontSize="25" Foreground="DarkMagenta" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="52,0,103,0"
+            <TextBlock Text="Id:" FontFamily="Comic Sans MS" FontSize="25" Foreground="DarkBlue" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="52,0,103,0"
                        VerticalAlignment="Center" Visibility="Visible" />
-            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Foreground="DarkMagenta" Text="Name:" Grid.Column="0" Grid.Row="1" 
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Foreground="DarkBlue" Text="Name:" Grid.Column="0" Grid.Row="1" 
                        FontSize="25" TextWrapping="Wrap"  Visibility="Visible" VerticalAlignment="Center" Width="auto" Margin="52,0,0,0"/>
-            <TextBlock x:Name="PhoneTbl" HorizontalAlignment="Left" Foreground="DarkMagenta" FontFamily="Comic Sans MS" Grid.Column="0" Margin="52,0,103,0"
+            <TextBlock x:Name="PhoneTbl" HorizontalAlignment="Left" Foreground="DarkBlue" FontFamily="Comic Sans MS" Grid.Column="0" Margin="52,0,103,0"
                        Grid.Row="2" Text="Phone:" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Foreground="DarkMagenta" Text="Location:" Grid.Column="0" Margin="52,0,103,0"
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Foreground="DarkBlue" Text="Location:" Grid.Column="0" Margin="52,0,103,0"
                        Grid.Row="3" FontSize="25" TextWrapping="Wrap"  VerticalAlignment="Center" Width="auto"/>
-            <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" Foreground="DarkMagenta" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="SentParcels:" FontSize="25"
+            <TextBlock x:Name="ParcelsFromCustomerList" HorizontalAlignment="Left" Foreground="DarkBlue" FontFamily="Comic Sans MS" Margin="25,61,0,0" Text="SentParcels:" FontSize="25"
                        Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible" Grid.RowSpan="3"/>
-            <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" Foreground="DarkMagenta" FontFamily="Comic Sans MS" Margin="25,4,0,0" Text="RecievedParcels:" FontSize="25"
+            <TextBlock x:Name="ParcelsToCustomerList" HorizontalAlignment="Left" Foreground="DarkBlue" FontFamily="Comic Sans MS" Margin="25,4,0,0" Text="RecievedParcels:" FontSize="25"
                        Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Visibility="Visible"/>
 
 
@@ -116,7 +113,7 @@
 
 
             <Button x:Name="UpdateCustomerButton" Content="Update Data" Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" Click="UpdateCustomerButton_Click" Visibility="Visible" Width="136"  Margin="98,10,0,14" HorizontalAlignment="Left" Grid.Row="6" />
-            <Button HorizontalAlignment="Left" BorderThickness="0" Margin="1,0,0,0" Height="84" Width="104" Click="CloseUpdateButton_Click" Grid.Row="6">
+            <Button HorizontalAlignment="Left" BorderThickness="0" Margin="1,58,0,0" Height="74" Width="97" Click="CloseUpdateButton_Click" Grid.Row="5" Grid.RowSpan="2">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="52" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
             </Button>
 
