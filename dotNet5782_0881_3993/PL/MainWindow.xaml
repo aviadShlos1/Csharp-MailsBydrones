@@ -49,7 +49,7 @@
                         />
                             <PasswordBox  Name="PasswordBox" Width="200" FontSize="20" Foreground="Purple"  FontFamily="Comic Sans MS"
                         materialDesign:HintAssist.Hint="       Password:"  
-                        materialDesign:HintAssist.IsFloating="True" MaxLength="5" Margin="19,334,569,30"
+                        materialDesign:HintAssist.IsFloating="True" Margin="19,334,569,30"
                         />
                             <materialDesign:PackIcon
                         VerticalAlignment="Bottom" Kind="Password" Height="30" Width="70" Opacity="0.8"
