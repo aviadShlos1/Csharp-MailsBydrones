@@ -101,17 +101,17 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CBSendToPickUp_Checked(object sender, RoutedEventArgs e)
+        private void ConfirmPick_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (CBPickUpList.SelectedItem != null)//check if a package has been selected in combobox.
+            if (PickUpCbx.SelectedItem != null)//check if a package has been selected in combobox.
             {
                 //int id = ((ParcelToList)CBPickUpList.SelectedItem).Id;
-                PickedUp(blAccess.GetSingleParcel(((ParcelToList)CBPickUpList.SelectedItem).Id).MyDrone.Id);
+                PickedUp(blAccess.GetSingleParcel(((ParcelToList)PickUpCbx.SelectedItem).Id).DroneAssignToParcel.DroneId);
             }
             else
             {
-                MessageBox.Show("ERROR, unchecked parcel to pick up", MessageBoxButton.OK, MessageBoxImage.Error);
-                CBSendToPickUp.IsChecked = false; //update the CheckBox to uncheck.
+                MessageBox.Show("Error:, you select nothing!");
+                ConfirmPick_CheckBox.IsChecked = false; //update the CheckBox to uncheck.
             }
         }
 
@@ -125,17 +125,16 @@ namespace PL
             {
                 //IsEnabled = false;
                 blAccess.PickUpParcel(DroneId); //Activation of the PickedUp function in the BL layer.
-                MessageBoxResult result = MessageBox.Show("The operation was successful", "info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBoxResult result = MessageBox.Show("The operation done successful");
                 switch (result)
                 {
                     case MessageBoxResult.OK:
-                        //IsEnabled = true;
-                        CBSendToPickUp.IsChecked = false; //update the CheckBox to uncheck.
+                        ConfirmPick_CheckBox.IsChecked = false; //update the CheckBox to uncheck.
 
                         //Update the combobox of parcels who sent by the client and have not yet been pickup.
-                        CBPickUpList.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.Assigned &&
+                        PickUpCbx.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.Assigned &&
                                 blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList.ToList().Exists(item => item.Id == x.Id));
-                        CBPickUpList.DisplayMemberPath = "Id";
+                        PickUpCbx.DisplayMemberPath = "Id";
 
                         //Update the Biding of client details.
                         MyCustomer = blAccess.GetSingleCustomer(MyCustomer.Id);
@@ -151,13 +150,13 @@ namespace PL
             }
             catch (NotExistException ex)
             {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                CBSendToPickUp.IsChecked = false; //update the CheckBox to uncheck.
+                MessageBox.Show(ex.ToString());
+                ConfirmPick_CheckBox.IsChecked = false; //update the CheckBox to uncheck.
             }
             catch (CannotPickUpException ex)
             {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                CBSendToPickUp.IsChecked = false; //update the CheckBox to uncheck.
+                MessageBox.Show(ex.ToString());
+                ConfirmPick_CheckBox.IsChecked = false; //update the CheckBox to uncheck.
             }
         }
 
@@ -166,9 +165,9 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BRrestComboBox_Click(object sender, RoutedEventArgs e)
+        private void PickReset_Click(object sender, RoutedEventArgs e)
         {
-            CBPickUpList.SelectedItem = null;
+            PickUpCbx.SelectedItem = null;
         }
         #endregion PickUp combobox
 

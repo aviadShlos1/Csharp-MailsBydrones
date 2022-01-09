@@ -141,9 +141,9 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <CheckBox x:Name="ConfirmPick_CheckBox" Foreground="DarkBlue" IsChecked="False" Margin="24,0,100,8" 
-                                      Content="Confirm To PickUp" FontFamily="Comic Sans MS" Checked="CBSendToPickUp_Checked" Grid.ColumnSpan="2" />
+                                      Content="Confirm To PickUp" FontFamily="Comic Sans MS" Checked="ConfirmPick_CheckBox_Checked" Grid.ColumnSpan="2" />
                             <Button x:Name="PickReset"  Content="Reset" Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Grid.Column="1" Margin="44,12,0,12" Click="BRrestComboBox_Click" Width="76"  />
+                                    HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Grid.Column="1" Margin="44,12,0,12" Click="PickReset_Click" Width="76"  />
                         </Grid>
                         <ComboBox Name="PickUpCbx" Foreground="Red" Style="{StaticResource MaterialDesignOutlinedComboBox}" 
                                   materialDesign:HintAssist.Hint="Parcel To PickUp" FontFamily="Comic Sans MS" Width="246" FontWeight="Bold" Height="65"   />
