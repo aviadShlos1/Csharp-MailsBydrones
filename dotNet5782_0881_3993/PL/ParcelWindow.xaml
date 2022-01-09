@@ -94,7 +94,7 @@
                        VerticalAlignment="Center" Visibility="Visible" />
             <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Sender:" Grid.Column="0" Grid.Row="1" 
                        FontSize="25" TextWrapping="Wrap"  Visibility="Visible" VerticalAlignment="Top" Width="auto" Margin="51,25,0,0"/>
-            <TextBlock x:Name="PhoneTbl" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Grid.Column="0" Margin="52,0,103,0"
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Grid.Column="0" Margin="52,0,103,0"
                        Grid.Row="2" Text="Reciever:" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Weight:" Grid.Column="0" Margin="52,0,103,0"
                        Grid.Row="3" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto"/>

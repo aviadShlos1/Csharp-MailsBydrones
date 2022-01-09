@@ -20,19 +20,6 @@ namespace Dal
         public static IDal Instance { get => instance; }
 
         #endregion Singleton
-        //#region Singelton
-
-        //static DalXml()// static ctor to ensure instance init is done just before first usage
-        //{
-        //    //DataSource.Initialize();
-        //}
-        //private DalXml() //private  
-        //{ }
-
-        //internal static DalXml Instance { get; } = new DalXml();// The public Instance property to use
-
-        //#endregion Singelton
-
 
         public static string DronePath = @"DroneXml.xml";
         public static string BaseStationPath = @"BaseStationXml.xml";
@@ -222,8 +209,8 @@ namespace Dal
             List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
             //loading the "ConfigDetails" file to update the runId
             List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");
-            int runParcelId = int.Parse(config[5]);
-            newParcel.Id = runParcelId++;
+            newParcel.Id = int.Parse(config[5]) + 1;
+            config[5] = Convert.ToString(newParcel.Id);
             XMLTools.SaveListToXMLSerializer(config, @"ConfigDetails.xml");
             Parcels.Add(newParcel);
             XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);

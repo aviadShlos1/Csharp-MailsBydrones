@@ -40,8 +40,8 @@
                             <RowDefinition Height="37*"/>
                             <RowDefinition Height="122*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="Outgoing Parcels" Margin="152,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" ></TextBlock>
-                        <ListView x:Name="listOfCustomerSend" ItemsSource="{Binding}" Margin="10,-3,10,10" FontSize="12" Grid.RowSpan="2">
+                        <TextBlock Grid.Row="0" Text="Outgoing Parcels" Margin="130,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" ></TextBlock>
+                        <ListView x:Name="OutgoingList" ItemsSource="{Binding}" Margin="10,-3,10,10" FontSize="12" Grid.RowSpan="2">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -69,7 +69,7 @@
                             <RowDefinition Height="122*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Text="Incoming Parcels" Margin="152,-11,124,22" FontWeight="Bold" FontSize="14" TextAlignment="Center" />
-                        <ListView x:Name="listOfCustomerReceive" ItemsSource="{Binding}" Margin="10,-3,0,10" FontSize="12" Grid.RowSpan="2">
+                        <ListView x:Name="IncomingList" ItemsSource="{Binding}" Margin="10,-3,0,10" FontSize="12" Grid.RowSpan="2">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
