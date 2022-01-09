@@ -240,4 +240,14 @@
     <StationId>1</StationId>
     <StartChargeTime>2022-01-09T12:03:52.8930704+02:00</StartChargeTime>
   </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>4682</DroneId>
+    <StationId>1</StationId>
+    <StartChargeTime>2022-01-09T12:12:59.683736+02:00</StartChargeTime>
+  </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>2122</DroneId>
+    <StationId>1</StationId>
+    <StartChargeTime>2022-01-09T12:12:59.707471+02:00</StartChargeTime>
+  </DroneChargeDal>
 </ArrayOfDroneChargeDal>
