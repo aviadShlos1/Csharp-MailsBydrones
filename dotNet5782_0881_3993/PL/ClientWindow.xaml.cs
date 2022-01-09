@@ -131,7 +131,7 @@ namespace PL
                     case MessageBoxResult.OK:
                         ConfirmPick_CheckBox.IsChecked = false; //update the CheckBox to uncheck.
 
-                        //Update the combobox of parcels who sent by the client and have not yet been pickup.
+                        //Update the combobox of parcels who sent by the client and have not yet been pickup. 
                         PickUpCbx.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.Assigned &&
                                 blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList.ToList().Exists(item => item.Id == x.Id));
                         PickUpCbx.DisplayMemberPath = "Id";
