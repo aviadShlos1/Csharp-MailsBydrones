@@ -115,7 +115,6 @@ namespace Dal
             }
             
         }
-
         public IEnumerable<CustomerDal> GetCustomersList()
         {
             XElement CustomerRoot = XMLTools.LoadListFromXMLElement(CustomerPath);
@@ -151,7 +150,7 @@ namespace Dal
                 throw new AlreadyExistException(newDrone.Id);
             }
             Drones.Add(newDrone);
-            XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
+            XMLTools.SaveListToXMLSerializer(Drones, DronePath);
         }
         public void UpdateDrone(DroneDal myDrone)
         {
@@ -159,9 +158,8 @@ namespace Dal
             DroneDal tempDrone = drones.FirstOrDefault(x => x.Id == myDrone.Id);
             int index = drones.IndexOf(tempDrone);
             drones[index] = myDrone;
-            XMLTools.SaveListToXMLSerializer<DroneDal>(drones, DronePath);
-        }
-        
+            XMLTools.SaveListToXMLSerializer(drones, DronePath);
+        }       
         public DroneDal GetSingleDrone(int droneId)
         {
             List<DroneDal> drones = XMLTools.LoadListFromXMLSerializer<DroneDal>(DronePath);
@@ -189,7 +187,7 @@ namespace Dal
                 throw new AlreadyExistException(newStation.Id);
             }
             BaseStations.Add(newStation);
-            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
+            XMLTools.SaveListToXMLSerializer(BaseStations, BaseStationPath);
         }
         public void UpdateBaseStation(BaseStationDal myBaseStation)
         {
@@ -226,9 +224,9 @@ namespace Dal
             List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");
             int runParcelId = int.Parse(config[5]);
             newParcel.Id = runParcelId++;
-            XMLTools.SaveListToXMLSerializer<string>(config, @"ConfigDetails.xml");
+            XMLTools.SaveListToXMLSerializer(config, @"ConfigDetails.xml");
             Parcels.Add(newParcel);
-            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+            XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
             return newParcel.Id;
         }
         /// <summary>
@@ -248,7 +246,7 @@ namespace Dal
             parcel1.DroneToParcelId = droneId;
             parcel1.AssignningTime = DateTime.Now;
             Parcels[parcelIndex] = parcel1;
-            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+            XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
         }
         /// <summary>
         /// Picking up a parcel by the assined drone before, with given the parcel id
@@ -265,7 +263,7 @@ namespace Dal
             ParcelDal parcel2 = Parcels[parcelIndex];
             parcel2.PickingUpTime = DateTime.Now;
             Parcels[parcelIndex] = parcel2;
-            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+            XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
         }
         /// <summary>
         /// Delivering the parcel to the customer
@@ -282,13 +280,13 @@ namespace Dal
             ParcelDal parcel3 = Parcels[parcelIndex];
             parcel3.SupplyingTime = DateTime.Now;
             Parcels[parcelIndex] = parcel3;
-            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+            XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
         }
         public void RemoveParcel(ParcelDal myParcel)
         {
             List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
             Parcels.Remove(myParcel);
-            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+            XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
         }
         public ParcelDal GetSingleParcel(int parcelId)
         {
