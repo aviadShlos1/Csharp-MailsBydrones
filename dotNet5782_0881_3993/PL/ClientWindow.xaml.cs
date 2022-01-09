@@ -90,5 +90,10 @@ namespace PL
             new MainWindow().Show();
             this.Close();
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            new ClientWindow(blAccess, MyCustomer.Id).Show();
+        }
     }
 }
