@@ -70,4 +70,11 @@
     <Longitude>35.699991269816174</Longitude>
     <Latitude>31.31564523320582</Latitude>
   </CustomerDal>
+  <CustomerDal>
+    <Id>314960881</Id>
+    <Name>Aviad</Name>
+    <Phone>0549107106</Phone>
+    <Longitude>10.2</Longitude>
+    <Latitude>10.3</Latitude>
+  </CustomerDal>
 </ArrayOfCustomerDal>

@@ -68,8 +68,8 @@ namespace PL
                 case "User":
                     try
                     {
-                        AccessIbl.GetSingleCustomer(int.Parse(TBuserID.Password)); 
-                        new ClientWindow(AccessIbl, int.Parse(TBuserID.Password)).Show();
+                        AccessIbl.GetSingleCustomer(int.Parse(TBuserID.Text)); 
+                        new ClientWindow(AccessIbl, int.Parse(TBuserID.Text)).Show();
                     }
                     catch (BO.NotExistException ex)
                     {
@@ -167,7 +167,7 @@ namespace PL
         /// <param name="e"></param>
         private void TBuserID_KeyUp(object sender, KeyEventArgs e)
         {
-            if (TBuserID.Password.Length != 0)
+            if (TBuserID.Text.Length != 0)
             {
                 LoginButton.IsEnabled = true;
             }
