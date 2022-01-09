@@ -155,9 +155,9 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <CheckBox x:Name="ConfirmSupply_CheckBox" Foreground="DarkBlue" IsChecked="False" Margin="45,0,123,8" Content="Confirm The Supply"
-                                      Checked="CBSendToDeliverd_Checked" FontFamily="Comic Sans MS" Grid.ColumnSpan="2"/>
+                                      Checked="ConfirmSupply_CheckBox_Checked" FontFamily="Comic Sans MS" Grid.ColumnSpan="2"/>
                             <Button x:Name="SupplyReset"  Content="Reset" Style="{StaticResource MaterialDesignFlatButton}" 
-                                    HorizontalAlignment="Center" FontFamily="Comic Sans MS"  Grid.Column="1" Height="32" VerticalAlignment="Top" Click="BRrestComboBox2_Click"  />
+                                    HorizontalAlignment="Center" FontFamily="Comic Sans MS"  Grid.Column="1" Height="32" VerticalAlignment="Top" Click="SupplyReset_Click"  />
                         </Grid>
                         <ComboBox Name="SupplyCbx" FontFamily="Comic Sans MS" Style="{StaticResource MaterialDesignOutlinedComboBox}"  
                                   materialDesign:HintAssist.Hint="Parcel To Supply" Foreground="Red" Width="248" Height="65"   />

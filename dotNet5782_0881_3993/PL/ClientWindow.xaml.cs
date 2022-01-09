@@ -179,41 +179,39 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CBSendToDeliverd_Checked(object sender, RoutedEventArgs e)
+        private void ConfirmSupply_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (CBDeliverdList.SelectedItem != null)//check if a package has been selected in combobox.
+            if (SupplyCbx.SelectedItem!=null)
             {
-                //int id = ((ParcelToList)CBDeliverdList.SelectedItem).Id;
-                DeliveryPackage(blAccess.GetParcel(((ParcelToList)CBDeliverdList.SelectedItem).Id).MyDrone.Id);
+                int droneId = blAccess.GetSingleParcel( ((ParcelToList) SupplyCbx.SelectedItem).Id ).DroneAssignToParcel.DroneId;
+                SupplyParcel(droneId);
             }
             else
             {
-                MessageBox.Show(" לא נבחרה חבילה לאספקה", "!שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                CBSendToDeliverd.IsChecked = false;//update the CheckBox to uncheck.
+                MessageBox.Show("Error: you select nothing!");
+                ConfirmSupply_CheckBox.IsChecked = false; 
             }
         }
-
         /// <summary>
         /// deliverd the parcel and updates the views accordingly.
         /// </summary>
         /// <param name="DroneId"></param>
-        private void DeliveryPackage(int DroneId)
+        private void SupplyParcel(int DroneId)
         {
             try
             {
-                //IsEnabled = false;
                 blAccess.SupplyParcel(DroneId);//Activation of the Delivery function in the BL layer.
-                MessageBoxResult result = MessageBox.Show("The operation was successful", "info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBoxResult result = MessageBox.Show("The operation done successfully");
                 switch (result)
                 {
                     case MessageBoxResult.OK:
-                        //IsEnabled = true;
-                        CBSendToDeliverd.IsChecked = false;//update the CheckBox to uncheck.
+
+                        ConfirmSupply_CheckBox.IsChecked = false;//update the CheckBox to uncheck.
 
                         //Update the combobox of parcels that the client should receive and have not yet been Delivered.
-                        SupplyList_comboBox.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.PickedUp &&
+                        SupplyCbx.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.PickedUp &&
                                  blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsToCustomerList.ToList().Exists(item => item.Id == x.Id));
-                        SupplyList_comboBox.DisplayMemberPath = "Id";
+                        SupplyCbx.DisplayMemberPath = "Id";
 
                         //Update the Biding of client details.
                         MyCustomer = blAccess.GetSingleCustomer(MyCustomer.Id);
@@ -227,11 +225,10 @@ namespace PL
                         break;
                 }
             }
-            catch (DeliveryCannotBeMade ex)
+            catch (CannotSupplyException ex)
             {
-                MessageBox.Show(ex.ToString(), "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                //IsEnabled = true;
-                CBSendToDeliverd.IsChecked = false;
+                MessageBox.Show(ex.ToString() );
+                ConfirmSupply_CheckBox.IsChecked = false;
             }
         }
 
@@ -240,9 +237,10 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BRrestComboBox2_Click(object sender, RoutedEventArgs e)
+     
+        private void SupplyReset_Click(object sender, RoutedEventArgs e)
         {
-            CBDeliverdList.SelectedItem = null;
+            SupplyCbx.SelectedItem = null;
         }
         #endregion Deliverd combobox
 
@@ -256,5 +254,6 @@ namespace PL
         {
             new CustomerWindow(blAccess, MyCustomer.Id ,new CustomersListWindow(blAccess)).Show();
         }
+
     }
 }
