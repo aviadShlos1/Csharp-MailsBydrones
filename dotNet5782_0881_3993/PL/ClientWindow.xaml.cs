@@ -61,9 +61,9 @@ namespace PL
             PickUpCbx.DisplayMemberPath = "Id";
 
             //Connecting the the combobox to parcels that the client should receive, and show the parcel ID.
-            CBDeliverdList.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.PickedUp &&
+            SupplyCbx.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.PickedUp &&
                       blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsToCustomerList.ToList().Exists(item => item.Id == x.Id));
-            CBDeliverdList.DisplayMemberPath = "Id";
+            SupplyCbx.DisplayMemberPath = "Id";
         }
         /// <summary>
         /// Click event, when he click "Add" the details of the parcel will be add to the list and will display in the sends list
