@@ -30,9 +30,6 @@ namespace PL
         //object of ListView window.
         public ListView ListWindow;
 
-        /// <summary> a bool to help us disable the x bootum  </summary>
-        public bool ClosingWindow { get; private set; } = true;
-
         public CustomerBL MyCustomer;
 
         public int indexSelected;
@@ -57,11 +54,11 @@ namespace PL
             PriorityTbx.ItemsSource = Enum.GetValues(typeof(PrioritiesBL));
             IEnumerable<int> customersId = blAccess.GetCustomersBl().Select(x => x.Id);
             TargetIdTbx.ItemsSource = customersId;
-
+            
             //Connecting the the combobox to parcels who sent by the client, and show the parcel ID.
-            PickUpList_comboBox = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.Assigned &&
+            PickUpCbx.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.Assigned &&
                       blAccess.GetSingleCustomer(MyCustomer.Id).ParcelsFromCustomerList.ToList().Exists(item => item.Id == x.Id));
-            CBPickUpList.DisplayMemberPath = "Id";
+            PickUpCbx.DisplayMemberPath = "Id";
 
             //Connecting the the combobox to parcels that the client should receive, and show the parcel ID.
             CBDeliverdList.ItemsSource = blAccess.GetParcelsBl(x => x.ParcelStatus == ParcelStatus.PickedUp &&
