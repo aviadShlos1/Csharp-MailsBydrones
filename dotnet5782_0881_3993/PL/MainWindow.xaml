@@ -41,17 +41,28 @@
                                 <ImageBrush ImageSource="Images\Drone.jpg"/>
                             </Grid.Background>
 
-                            <TextBox x:Name="TBadmin" materialDesign:HintAssist.Hint="Enter Admin Id:" Foreground="Purple" HorizontalContentAlignment="Center"  HorizontalAlignment="Center" 
-                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" VerticalAlignment="Top" Width="274" MaxLength="10" Height="121" 
-                                     FontSize="28"  FontFamily="Comic Sans MS" KeyUp="TBadmin_KeyUp" Margin="0,312,0,0" />
+
+                            <TextBox Name="UserNameTextBox" FontSize="20" materialDesign:HintAssist.Hint="        UserName:"   FontFamily="Comic Sans MS"
+                        materialDesign:HintAssist.IsFloating="True" Foreground="Purple"  Margin="10,222,560,131" />
+                            <materialDesign:PackIcon      VerticalAlignment="Bottom"      Kind="User"        Height="35"      Width="70"
+                        Opacity="0.8"    Foreground="#0069C0" Margin="0,0,0,169"
+                        />
+                            <PasswordBox  Name="PasswordBox" Width="200" FontSize="20" Foreground="Purple"  FontFamily="Comic Sans MS"
+                        materialDesign:HintAssist.Hint="       Password:"  
+                        materialDesign:HintAssist.IsFloating="True" Margin="19,334,569,30"
+                        />
+                            <materialDesign:PackIcon
+                        VerticalAlignment="Bottom" Kind="Password" Height="30" Width="70" Opacity="0.8"
+                        Foreground="#0069C0" Margin="0,0,0,54"/>
+
                             <TextBlock Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="146,32,0,0" VerticalAlignment="Top" Height="66" Width="581" FontSize="38">
                                 <Run FlowDirection="LeftToRight" Text="Welcome To Dronix System"> </Run>
                             </TextBlock>
 
+
                         </Grid>
 
                     </TabItem>
-
                     <TabItem x:Name="TIUser" GotFocus="TIUser_GotFocus" >
                         <TabItem.Header>
                             <StackPanel   Height="auto"   Width="auto">
@@ -69,8 +80,9 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="Welcome To Dronix System" Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Margin="138,32,0,0" VerticalAlignment="Top" Height="84" Width="521" FontSize="38" FontStyle="Italic" Grid.ColumnSpan="2"></Label>
-                            <TextBlock TextWrapping="Wrap" Height="58" FontSize="28"  Foreground="Purple" Width="246" HorizontalAlignment="Left" FontFamily="Comic Sans MS" VerticalAlignment="Top" Margin="261,116,0,0" Grid.ColumnSpan="2" Grid.Row="1" ><Run FlowDirection="LeftToRight" Text="Enter Client Id:"/></TextBlock>
-                            <PasswordBox x:Name="TBuserID" Style="{StaticResource MaterialDesignFilledPasswordBox}"  Password="000000000"  HorizontalContentAlignment="Center" MaxLength="10" Foreground="#FFFBFBFB" FontSize="32" FontFamily="Consolas" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Margin="238,128,258,10" Grid.ColumnSpan="2" KeyUp="TBuserID_KeyUp" Grid.Row="1"/>
+                            <TextBlock TextWrapping="Wrap" Height="37" FontSize="28"  Foreground="Purple" Width="246" HorizontalAlignment="Left" 
+                                       FontFamily="Comic Sans MS" VerticalAlignment="Top" Margin="261,110,0,0" Grid.ColumnSpan="2" Grid.Row="1" ><Run FlowDirection="LeftToRight" Text="Enter Client Id:"/></TextBlock>
+                            <TextBox x:Name="TBuserID" HorizontalContentAlignment="Center" MaxLength="10" Foreground="Purple" FontSize="32" FontFamily="Comic Sans MS" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Margin="238,149,258,10" Grid.ColumnSpan="2" KeyUp="TBuserID_KeyUp" Grid.Row="1"/>
                             <Grid Margin="0,0,0,10">
                                 <Button x:Name="BNewUser" Visibility="Visible" Style="{StaticResource MaterialDesignRaisedButton}"  
                     materialDesign:ButtonProgressAssist.IsIndeterminate="True" Content="New customer? Register Now! " Margin="513,379,-378,-213"
@@ -88,7 +100,7 @@
                     </TabItem>
                 </TabControl>
 
-                <Button x:Name="Blogin"  Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonProgressAssist.Value="-1" 
+                <Button x:Name="LoginButton"  Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonProgressAssist.Value="-1" 
              materialDesign:ButtonProgressAssist.IsIndeterminate="True" Margin="0,5,0,4"
               Click="Blogin_Click" FontFamily="Comic Sans MS" IsEnabled="False" FontSize="14" Grid.Row="1"  />
 
