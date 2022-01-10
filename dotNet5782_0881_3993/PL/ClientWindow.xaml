@@ -8,14 +8,6 @@
         xmlns:local="clr-namespace:PL" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-      
-        TextElement.FontSize="13"
-        TextElement.FontWeight="Bold"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-      
-        FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Title="ClientWindow" Height="750" Width="1200">
@@ -102,7 +94,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <materialDesign:Card Grid.Column="1"  Background="{DynamicResource PrimaryHueLightBrush}" Margin="362,-379,0,276" Grid.ColumnSpan="2" />
                 <Grid Margin="6,-379,26,276" Grid.Column="2">
                     <StackPanel Margin="24,54,22,188">
@@ -116,8 +108,8 @@
                             <Button x:Name="PickReset"  Content="Reset" Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Grid.Column="1" Margin="44,12,0,12" Click="PickReset_Click" Width="76"/>
                         </Grid>
-                        <ComboBox Name="PickUpCbx" Foreground="Red" Style="{StaticResource MaterialDesignOutlinedComboBox}" 
-                                  materialDesign:HintAssist.Hint="Parcel To PickUp" FontFamily="Comic Sans MS" Width="246" FontWeight="Bold" Height="65"/>
+                        <Label Content="Parcel To PickUp"/>
+                        <ComboBox x:Name="PickUpCbx" Foreground="Red" FontFamily="Comic Sans MS" Width="265" FontWeight="Bold" Height="51"/>
                     </StackPanel>
                     <StackPanel Margin="0,197,0,0">
                         <Grid>
@@ -130,11 +122,11 @@
                             <Button x:Name="SupplyReset"  Content="Reset" Style="{StaticResource MaterialDesignFlatButton}" 
                                     HorizontalAlignment="Center" FontFamily="Comic Sans MS"  Grid.Column="1" Height="32" VerticalAlignment="Top" Click="SupplyReset_Click"  />
                         </Grid>
-                        <ComboBox Name="SupplyCbx" FontFamily="Comic Sans MS" Style="{StaticResource MaterialDesignOutlinedComboBox}"  
-                                  materialDesign:HintAssist.Hint="Parcel To Supply" Foreground="Red" Width="248" Height="65"   />
+                        <Label Content="Parcel To Supply" Width="282"/>
+                        <ComboBox Name="SupplyCbx" FontFamily="Comic Sans MS" Foreground="Red" Width="248" Height="65"/>
                     </StackPanel>
                 </Grid>
-                <materialDesign:Card   Grid.Column="0" Background="{DynamicResource PrimaryHueLightBrush}"  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="8"  
+                <materialDesign:Card   Grid.Column="1" Background="{DynamicResource PrimaryHueLightBrush}"  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="8"  
                     UniformCornerRadius="6" Margin="10,24,10,10">
                     <Grid>
                         <Grid.RowDefinitions>
