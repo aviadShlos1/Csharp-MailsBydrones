@@ -114,10 +114,10 @@ namespace BL
                     Weight = (WeightCategoriesBL)senderItem.Weight,
                     SourceOrTargetMan = new AssignCustomerToParcel { CustId = senderItem.TargetId, CustName = GetCustomerDetails(senderItem.TargetId).Name }
                 };
-                if (senderItem.AssignningTime != null)
-                    myParcelByCustomer.Status = ParcelStatus.Assigned;
                 if (senderItem.CreatingTime != null)
                     myParcelByCustomer.Status = ParcelStatus.Created;
+                if (senderItem.AssignningTime != null)
+                    myParcelByCustomer.Status = ParcelStatus.Assigned;
                 if (senderItem.PickingUpTime != null)
                     myParcelByCustomer.Status = ParcelStatus.PickedUp;
                 if (senderItem.SupplyingTime != null)
@@ -134,10 +134,10 @@ namespace BL
                     Weight = (WeightCategoriesBL)TargetItem.Weight,
                     SourceOrTargetMan = new AssignCustomerToParcel { CustId = TargetItem.SenderId, CustName = GetCustomerDetails(TargetItem.SenderId).Name }
                 };
-                if (TargetItem.AssignningTime != null)
-                    targetParcelByCustomer.Status = ParcelStatus.Assigned;
                 if (TargetItem.CreatingTime != null)
                     targetParcelByCustomer.Status = ParcelStatus.Created;
+                if (TargetItem.AssignningTime != null)
+                    targetParcelByCustomer.Status = ParcelStatus.Assigned;
                 if (TargetItem.PickingUpTime != null)
                     targetParcelByCustomer.Status = ParcelStatus.PickedUp;
                 if (TargetItem.SupplyingTime != null)

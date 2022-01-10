@@ -56,7 +56,7 @@
     <Priority>Normal</Priority>
     <CreatingTime>2022-01-06T13:16:01.8599025+02:00</CreatingTime>
     <AssignningTime>2022-01-07T05:51:01.8599025+02:00</AssignningTime>
-    <PickingUpTime>2022-01-07T22:26:01.8599025+02:00</PickingUpTime>
+    <PickingUpTime>2022-01-10T22:03:39.6259456+02:00</PickingUpTime>
     <SupplyingTime>2022-01-08T15:01:01.8599025+02:00</SupplyingTime>
     <DroneToParcelId>4682</DroneToParcelId>
   </ParcelDal>
@@ -92,7 +92,7 @@
     <Priority>Fast</Priority>
     <CreatingTime>2022-01-06T13:16:01.8599093+02:00</CreatingTime>
     <AssignningTime>2022-01-07T08:21:01.8599093+02:00</AssignningTime>
-    <PickingUpTime xsi:nil="true" />
+    <PickingUpTime>2022-01-10T22:05:00.7641111+02:00</PickingUpTime>
     <SupplyingTime xsi:nil="true" />
     <DroneToParcelId>8318</DroneToParcelId>
   </ParcelDal>

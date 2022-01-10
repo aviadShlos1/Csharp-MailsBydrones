@@ -60,8 +60,8 @@ namespace BL
 
                 if (item.CreatingTime != null)
                     tempParcelTolist.ParcelStatus = ParcelStatus.Created;
-                //if (item.AssignningTime != null)
-                //    tempParcelTolist.ParcelStatus = ParcelStatus.Assigned;
+                if (item.AssignningTime != null)
+                    tempParcelTolist.ParcelStatus = ParcelStatus.Assigned;
                 if (item.PickingUpTime != null)
                     tempParcelTolist.ParcelStatus = ParcelStatus.PickedUp;
                 if (item.SupplyingTime != null)
@@ -69,7 +69,7 @@ namespace BL
 
                 myParcelsBl.Add(tempParcelTolist);
             }
-            return myParcelsBl.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList()/*(x => x.ParcelStatus == ParcelStatus.Created)*/;
+            return myParcelsBl.Where(x => myPredicate == null ? true : myPredicate(x)).ToList()/*(x => x.ParcelStatus == ParcelStatus.Created)*/;
         }      
     }
 }

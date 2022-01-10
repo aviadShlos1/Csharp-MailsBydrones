@@ -123,7 +123,6 @@ namespace PL
         {
             try
             {
-                //IsEnabled = false;
                 blAccess.PickUpParcel(DroneId); //Activation of the PickedUp function in the BL layer.
                 MessageBoxResult result = MessageBox.Show("The operation done successful");
                 switch (result)
