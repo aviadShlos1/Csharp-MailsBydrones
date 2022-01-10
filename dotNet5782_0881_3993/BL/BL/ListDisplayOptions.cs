@@ -57,11 +57,10 @@ namespace BL
             foreach (var item in dalParcels)
             {
                 ParcelToList tempParcelTolist = new ParcelToList { Id = item.Id, Weight = (WeightCategoriesBL)item.Weight, Priority = (PrioritiesBL)item.Priority, SenderName = GetCustomerDetails(item.SenderId).Name, RecieverName = GetCustomerDetails(item.TargetId).Name };
-
+                if (item.CreatingTime != null)
+                    tempParcelTolist.ParcelStatus = ParcelStatus.Created;   
                 if (item.AssignningTime != null)
                     tempParcelTolist.ParcelStatus = ParcelStatus.Assigned;
-                if (item.CreatingTime != null)
-                    tempParcelTolist.ParcelStatus = ParcelStatus.Created;
                 if (item.PickingUpTime != null)
                     tempParcelTolist.ParcelStatus = ParcelStatus.PickedUp;
                 if (item.SupplyingTime != null)
