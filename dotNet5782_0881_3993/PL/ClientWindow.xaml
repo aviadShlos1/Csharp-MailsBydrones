@@ -12,6 +12,38 @@
         ResizeMode="NoResize"
         Title="ClientWindow" Height="750" Width="1200">
     <Grid>
+        <Grid Margin="732,80,94,278" Background="Aqua">
+           
+            <StackPanel Grid.Row="0" Margin="24,54,22,188">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="ConfirmPick_CheckBox" Foreground="DarkBlue" IsChecked="False" Margin="24,0,100,8" 
+                                      Content="Confirm To PickUp" FontFamily="Comic Sans MS" Checked="ConfirmPick_CheckBox_Checked" Grid.ColumnSpan="2" />
+                    <Button x:Name="PickReset"  Content="Reset" Style="{StaticResource MaterialDesignFlatButton}" 
+                                    HorizontalAlignment="Left" FontFamily="Comic Sans MS"  Grid.Column="1" Margin="44,12,0,12" Click="PickReset_Click" Width="76"  />
+                    <ComboBox Name="PickUpCbx" Foreground="Red"  Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                                  materialDesign:HintAssist.Hint="Parcel To PickUp" FontFamily="Comic Sans MS" Width="246" FontWeight="Bold" Height="65" Grid.ColumnSpan="2" Margin="38,79,44,-79"   />
+                </Grid>
+                
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="0,197,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="ConfirmSupply_CheckBox" Foreground="DarkBlue" IsChecked="False" Margin="45,0,123,8" Content="Confirm The Supply"
+                                      Checked="ConfirmSupply_CheckBox_Checked" FontFamily="Comic Sans MS" Grid.ColumnSpan="2"/>
+                    <Button x:Name="SupplyReset"  Content="Reset" Style="{StaticResource MaterialDesignFlatButton}" 
+                                    HorizontalAlignment="Center" FontFamily="Comic Sans MS"  Grid.Column="1" Height="32" VerticalAlignment="Top" Click="SupplyReset_Click"  />
+                </Grid>
+                <ComboBox Name="SupplyCbx" FontFamily="Comic Sans MS" Style="{StaticResource MaterialDesignOutlinedComboBox}"  
+                                  materialDesign:HintAssist.Hint="Parcel To Supply" Foreground="Red" Width="248" Height="65"   />
+            </StackPanel>
+        </Grid>
         <Grid>
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="23*"/>
@@ -84,6 +116,7 @@
                 </materialDesign:Card>
             </Grid>
 
+            
             <Grid Grid.Column="0"  Grid.Row="2" Background="Gray" Opacity="0.3" Margin="0,2,0,0">
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="*"/>
