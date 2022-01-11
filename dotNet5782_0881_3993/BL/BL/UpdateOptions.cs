@@ -4,6 +4,7 @@
 //brief: In this program we built the logic business layer
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace BL
         /// </summary>
         /// <param name="droneId">The id of the exist drone</param>
         /// <param name="newModel">The new model name</param>
+
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void UpdateDroneName(int droneId, string newModel)
         {
             DO.DroneDal myDrone = DalAccess.GetDronesList().ToList().Find(x => x.Id == droneId);
@@ -84,11 +87,12 @@ namespace BL
             }
             DalAccess.UpdateCustomer(myCustomer);
         }
-        
+
         /// <summary>
         /// Assigning a parcel to a drone 
         /// </summary>
         /// <param name="myDroneId">an exist drone</param>
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void AssignParcelToDrone(int myDroneId)
         {
             DO.ParcelDal assignedParcel = new();
@@ -221,6 +225,7 @@ namespace BL
         /// Updating the parcel pick up details
         /// </summary>
         /// <param name="droneId"> an exist drone</param>
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void PickUpParcel(int droneId)
         {
             DO.ParcelDal parcelItem = new();
@@ -256,6 +261,7 @@ namespace BL
         /// Updating the parcel supply details
         /// </summary>
         /// <param name="droneId"> an exist drone</param>
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void SupplyParcel(int droneId)
         {
             DroneToList droneItem = new();
@@ -295,6 +301,7 @@ namespace BL
         /// Sending drone for charging in order to fill its battery
         /// </summary>
         /// <param name="droneId"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void DroneToCharge(int droneId)
         {
             DroneToList droneItem = new();
@@ -333,12 +340,13 @@ namespace BL
             }
 
         }
-        
+
         /// <summary>
         /// Releasing a drone from charging
         /// </summary>
         /// <param name="droneId"></param>
         /// <param name="chargeTime"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void ReleaseDroneCharge(int droneId)
         {
             DroneToList droneItem = new();
@@ -369,11 +377,19 @@ namespace BL
                 DalAccess.GetDronesChargeList().ToList().Remove(droneChargeItem);
             }
         }
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void RemoveParcel(ParcelBl myParcel)
         {
             DO.ParcelDal temp = DalAccess.GetSingleParcel(myParcel.ParcelId);
             DalAccess.RemoveParcel(temp);
         }
+
+        //function for simulator
+        public void sim(int droneId, Action reportProgressInSimultor, Func<bool> isTimeRun)
+        {
+            new Simulator(this, droneId, reportProgressInSimultor, isTimeRun);
+        }
+
 
     }
 }
