@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using DO;
 using BO;
 
@@ -20,6 +21,7 @@ namespace BL
         /// </summary>
         /// <param name="baseStationId"> The wanted object to display</param>
         /// <returns> Base station bl object</returns>
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public BaseStationBl GetSingleBaseStation(int baseStationId)
         {
             DO.BaseStationDal dalBaseStation = new();
@@ -49,6 +51,7 @@ namespace BL
         /// </summary>
         /// <param name="myDroneId"> The wanted object to display</param>
         /// <returns> drone bl object</returns>
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public DroneBl GetSingleDrone(int myDroneId)
         {
             var tempDroneBl = DronesListBL.Find(x => x.DroneId == myDroneId); //type of "DroneToList"
@@ -88,6 +91,7 @@ namespace BL
         /// </summary>
         /// <param name="customerId"> The wanted object to display</param>
         /// <returns> customer bl object</returns>
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public CustomerBL GetSingleCustomer(int customerId)
         {
             DO.CustomerDal myCustomer = new();
@@ -153,6 +157,7 @@ namespace BL
         /// </summary>
         /// <param name="parcelId"> The wanted object to display</param>
         /// <returns> parcel bl object</returns>
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public ParcelBl GetSingleParcel(int parcelId)
         {
             DO.ParcelDal dalParcel = new();

@@ -4,6 +4,7 @@
 //brief: In this program we built the logic business layer
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace BL
 {
     partial class BL
     {
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public List<BaseStationToList> GetBaseStationsBl (Predicate<BaseStationToList> myPredicate = null)
         {
             List<BaseStationToList> myBaseStationsBl = new();
@@ -27,10 +29,14 @@ namespace BL
             }
             return myBaseStationsBl.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList();
         }
+       
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public List<DroneToList> GetDronesBl(Predicate<DroneToList> myPredicate = null)
         {
             return DronesListBL.FindAll(x => myPredicate == null ? true : myPredicate(x)).ToList();
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public List<CustomerToList> GetCustomersBl()
         {
             List<CustomerToList> myCustomersBl = new();
@@ -49,6 +55,8 @@ namespace BL
             }
             return myCustomersBl;
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public List<ParcelToList> GetParcelsBl(Predicate<ParcelToList> myPredicate = null)
         {
             List<ParcelToList> myParcelsBl = new();

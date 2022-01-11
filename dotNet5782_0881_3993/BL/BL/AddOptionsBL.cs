@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using BO;
 using DO;
 
@@ -43,6 +44,8 @@ namespace BL
         /// Adding a new Bl drone
         /// </summary>
         /// <param name="newDroneBl">The entity for adding</param>
+
+        [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void AddDrone(DroneToList newDroneBl , int firstChargeStation)
         {
             
