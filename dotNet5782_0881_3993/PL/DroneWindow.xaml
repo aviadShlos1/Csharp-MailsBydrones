@@ -130,7 +130,7 @@
             <Button x:Name="AutomaticBut" Content="Automatic" Visibility="Visible" FontSize="18"  Background="Orange" 
                     Grid.Column="1" Margin="322,14,16,9" Grid.Row="1" Click="AutomaticBut_Click"></Button>
             <Button x:Name="ManualBut" Content="Manual" Visibility="Visible" FontSize="18"  Background="Orange" 
-                    Grid.Column="1" Margin="322,3,16,18" Grid.Row="2" Click="AutomaticBut_Click"></Button>
+                    Grid.Column="1" Margin="322,3,16,18" Grid.Row="2" Click="ManualBut_Click"></Button>
             <Button HorizontalAlignment="Left" Margin="30,0,0,0" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" Height="60" Width="97" Click="CloseUpdateButton_Click" Grid.Row="7">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="48" Height="41"  Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
             </Button>

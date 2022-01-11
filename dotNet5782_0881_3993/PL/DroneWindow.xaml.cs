@@ -433,6 +433,15 @@ namespace PL
             //throw new NotImplementedException();
         }
 
+        public void ReportProgressInSimultor()
+        {
+            DroneSimulator.ReportProgress(0);
+        }
+
+        public bool IsTimeRun()
+        {
+            return DroneSimulator.CancellationPending;
+        }
         private void AutomaticBut_Click(object sender, RoutedEventArgs e)
         {
             Simulator(); //call to function which creates the process.
@@ -452,7 +461,22 @@ namespace PL
 
             ModelTbx.IsEnabled = false; //to prevent model changing
         }
+       
         #endregion Simulator
+
+        private void ManualBut_Click(object sender, RoutedEventArgs e)
+        {
+            DroneSimulator.CancelAsync();
+            //while(MyDrone.Statuses!=DroneStatuses.free)
+            //{ }
+            //isTimeRun = false;
+            AutomaticBut.Visibility = Visibility.Visible;
+            ManualBut.Visibility = Visibility.Hidden;
+
+            DroneToChargeButton.Visibility = Visibility.Visible;
+            AssignParcelToDroneButton.Visibility = Visibility.Visible;            
+            ModelTbx.IsEnabled = true;
+        }
     }
 
 }
