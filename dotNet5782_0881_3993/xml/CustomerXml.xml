@@ -1,4 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Customers>
-	
-</Customers>
+<ArrayOfCustomerDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CustomerDal>
+    <Id>791672382</Id>
+    <Name>Aviad</Name>
+    <Phone>0586943879</Phone>
+    <Longitude>35.225454598148566</Longitude>
+    <Latitude>33.223899185973636</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>414617499</Id>
+    <Name>Avi</Name>
+    <Phone>0564846676</Phone>
+    <Longitude>34.93686700190504</Longitude>
+    <Latitude>29.68054810030411</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>490505658</Id>
+    <Name>Evyatar</Name>
+    <Phone>0532743055</Phone>
+    <Longitude>34.74500773148704</Longitude>
+    <Latitude>29.588035844990067</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>528423761</Id>
+    <Name>Dan</Name>
+    <Phone>0562839255</Phone>
+    <Longitude>35.57011497527506</Longitude>
+    <Latitude>32.9250614006161</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>755265468</Id>
+    <Name>Gad</Name>
+    <Phone>0586319648</Phone>
+    <Longitude>35.54433957576255</Longitude>
+    <Latitude>32.930199696759786</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>635188996</Id>
+    <Name>Gal</Name>
+    <Phone>0573359470</Phone>
+    <Longitude>35.0784546560121</Longitude>
+    <Latitude>30.428141798826932</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>549864217</Id>
+    <Name>John</Name>
+    <Phone>0536732842</Phone>
+    <Longitude>34.37929616765319</Longitude>
+    <Latitude>31.841630086811087</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>100339666</Id>
+    <Name>Mike</Name>
+    <Phone>0545380361</Phone>
+    <Longitude>35.50178706542346</Longitude>
+    <Latitude>32.91021124484167</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>320333675</Id>
+    <Name>Michael</Name>
+    <Phone>0561917988</Phone>
+    <Longitude>35.699991269816174</Longitude>
+    <Latitude>31.31564523320582</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>314960881</Id>
+    <Name>Aviad</Name>
+    <Phone>0549107106</Phone>
+    <Longitude>10.2</Longitude>
+    <Latitude>10.3</Latitude>
+  </CustomerDal>
+</ArrayOfCustomerDal>
