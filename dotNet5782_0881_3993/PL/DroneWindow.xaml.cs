@@ -14,9 +14,10 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Threading;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.ComponentModel;
 using BO;
 namespace PL
 {
@@ -302,6 +303,38 @@ namespace PL
                 new ParcelWindow(blAccess, MyDrone.ParcelInShip.Id, TempParcelsListWindow).Show();
             }          
         }
-        #endregion       
+        #endregion
+
+        #region Simulator
+        internal BackgroundWorker DroneSimulator;
+        private void Simultor()
+        {
+            DroneSimulator = new BackgroundWorker() { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
+            DroneSimulator.DoWork += DroneSimulator_DoWork; ; //Operation function.
+            DroneSimulator.ProgressChanged += DroneSimulator_ProgressChanged; // change reporter
+            DroneSimulator.RunWorkerCompleted += DroneSimulator_RunWorkerCompleted; //  thread complete
+        }
+
+        private void DroneSimulator_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DroneSimulator_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DroneSimulator_DoWork(object sender, DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AutomaticBut_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion Simulator
     }
+
 }
