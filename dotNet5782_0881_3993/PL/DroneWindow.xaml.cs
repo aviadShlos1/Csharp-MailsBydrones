@@ -307,7 +307,7 @@ namespace PL
 
         #region Simulator
         internal BackgroundWorker DroneSimulator;
-        private void Simultor()
+        private void Simulator()
         {
             DroneSimulator = new BackgroundWorker() { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
             DroneSimulator.DoWork += DroneSimulator_DoWork; ; //Operation function.
@@ -317,22 +317,140 @@ namespace PL
 
         private void DroneSimulator_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
+        private int ParcelInShipId;
+        private int SenderCustomerId;
+        private int ReceiverCustomerId;
         private void DroneSimulator_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            //to update conect the binding to set the value of my drone to the proprtis.
+            MyDrone = blAccess.GetSingleDrone(MyDrone.DroneId);
+            DataContext = MyDrone;
+
+            localDronesListWindow.selectionOptions(); //update the List of drones.
+
+            CustomersListWindow myCustomers = new(blAccess);
+            ParcelsListWindow myParcels = new(blAccess);
+            BaseStationListWindow myBase = new(blAccess);
+            
+            // to find the index when the fanc need to find in the observer collaction and update.
+            int ParcelIndex;
+            int SenderCustomerIndex;
+            int RecieverCustomerIndex;
+
+            //switch betwen drone status and according to that update the display.
+            switch (MyDrone.DroneStatus)
+            {
+                case DroneStatusesBL.Available:
+                    if (MyDrone.ParcelInShip.Id<0) //the drone is free cuse he just done (we know that becuse the grid is opend) it is affter deliverd.
+                    {
+
+                        //update the parcels list
+                        ParcelIndex = myParcels.myParcelsPl.IndexOf(myParcels.myParcelsPl.First(x => x.Id == ParcelInShipId));
+                        myParcels.myParcelsPl[ParcelIndex] = blAccess.GetParcelsBl().First(x => x.Id == ParcelInShipId);
+
+                        //update spasice customer in the Customer list (sender)
+                        SenderCustomerIndex = myCustomers.myCustomerPl.IndexOf(myCustomers.myCustomerPl.First(x => x.Id == SenderCustomerId));
+                        myCustomers.myCustomerPl[SenderCustomerIndex] = blAccess.GetCustomersBl().First(x => x.Id == SenderCustomerId);
+
+                        //update the reciver
+                        RecieverCustomerIndex = myCustomers.myCustomerPl.IndexOf(myCustomers.myCustomerPl.First(x => x.Id == ReceiverCustomerId));
+                        myCustomers.myCustomerPl[RecieverCustomerIndex] = blAccess.GetCustomersBl().First(x => x.Id == ReceiverCustomerId);
+
+
+                    }
+                    else //the drone is in a free state that has come out of charge and not like before (not affter deliver).
+                    {
+                        myBase.myBaseStatiobnsPl.Clear();
+                        myBase.myBaseStatiobnsPl = new ObservableCollection<BaseStationToList>(blAccess.GetBaseStationsBl());
+                    }
+
+                    break;
+
+                case DroneStatusesBL.Maintaince:
+                    myBase.myBaseStatiobnsPl.Clear();
+                    myBase.myBaseStatiobnsPl = new ObservableCollection<BaseStationToList>(blAccess.GetBaseStationsBl());
+                    break;
+
+                case DroneStatusesBL.Shipment:
+                    ParcelInShipId = MyDrone.ParcelInShip.Id;
+                    SenderCustomerId = MyDrone.ParcelInShip.Sender.CustId;
+                    ReceiverCustomerId = MyDrone.ParcelInShip.Reciever.CustId;
+
+                    if (blAccess.GetSingleParcel(MyDrone.ParcelInShip.Id).PickingUpTime == null)
+                    {
+                        ParcelInShipId = MyDrone.ParcelInShip.Id;
+                        SenderCustomerId = MyDrone.ParcelInShip.Sender.CustId;
+                        ReceiverCustomerId = MyDrone.ParcelInShip.Reciever.CustId;
+
+                        //update list of parcels
+                        ParcelIndex = myParcels.myParcelsPl.IndexOf(myParcels.myParcelsPl.First(x => x.Id == MyDrone.ParcelInShip.Id));
+                        myParcels.myParcelsPl[ParcelIndex] = blAccess.GetParcelsBl().First(x => x.Id == MyDrone.ParcelInShip.Id);
+
+                     
+                    }
+                    else if (blAccess.GetSingleParcel(MyDrone.ParcelInShip.Id).SupplyingTime == null)
+                    {
+                        //update the parcels list
+                        ParcelIndex = myParcels.myParcelsPl.IndexOf(myParcels.myParcelsPl.First(x => x.Id == MyDrone.ParcelInShip.Id));
+                        myParcels.myParcelsPl[ParcelIndex] = blAccess.GetParcelsBl().First(x => x.Id == MyDrone.ParcelInShip.Id);
+                        //update spasice customer in the Customer list (sender)
+                        SenderCustomerIndex = myCustomers.myCustomerPl.IndexOf(myCustomers.myCustomerPl.First(x => x.Id == MyDrone.ParcelInShip.Sender.CustId));
+                        myCustomers.myCustomerPl[SenderCustomerIndex] = blAccess.GetCustomersBl().First(x => x.Id == MyDrone.ParcelInShip.Sender.CustId);
+                        //update the reciver
+                        RecieverCustomerIndex = myCustomers.myCustomerPl.IndexOf(myCustomers.myCustomerPl.First(x => x.Id == MyDrone.ParcelInShip.Reciever.CustId));
+                        myCustomers.myCustomerPl[RecieverCustomerIndex] = blAccess.GetCustomersBl().First(x => x.Id == MyDrone.ParcelInShip.Reciever.CustId);
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
+            //battery colors.
+            if (MyDrone.BatteryPercent < 50)
+            {
+                if (MyDrone.BatteryPercent > 20)
+                {
+                    DroneBattery.Foreground = Brushes.YellowGreen;
+                }
+                else
+                {
+                    DroneBattery.Foreground = Brushes.Red;
+                }
+            }
+            else //MyDrone.BatteryPercent > 50
+            {
+                DroneBattery.Foreground = Brushes.LimeGreen;
+
+            }
         }
 
         private void DroneSimulator_DoWork(object sender, DoWorkEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void AutomaticBut_Click(object sender, RoutedEventArgs e)
         {
+            Simulator(); //call to function which creates the process.
 
+            DroneSimulator.RunWorkerAsync(); //Start running the process.
+
+            //Hiding the other buttons in the background.
+            DroneToChargeButton.Visibility = Visibility.Hidden;
+            ReleaseFromChargeButton.Visibility = Visibility.Hidden;
+            AssignParcelToDroneButton.Visibility = Visibility.Hidden;
+            PickUpParcelButton.Visibility = Visibility.Hidden;
+            SupplyParcelButton.Visibility = Visibility.Hidden;
+
+            //Hiding the automatic process button and opening a manually process button.
+            AutomaticBut.Visibility = Visibility.Hidden;
+            ManualBut.Visibility = Visibility.Visible;
+
+            ModelTbx.IsEnabled = false; //to prevent model changing
         }
         #endregion Simulator
     }

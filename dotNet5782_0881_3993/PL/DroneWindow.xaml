@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"  
         AllowsTransparency="True"
@@ -77,8 +78,25 @@
                      HorizontalAlignment="Left"  Text="{Binding Model}" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsEnabled="True" MaxLength="2"/>
             <TextBox x:Name="DroneStatusSelector" BorderThickness="0" Grid.Row="3" Background="SkyBlue" Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding DroneStatus}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
-            <TextBox x:Name="DroneBattery" BorderThickness="0" Grid.Row="4" Background="SkyBlue" Grid.Column="1"
-                     HorizontalAlignment="Left" Text="{Binding BatteryPercent}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
+
+            <materialDesign:Card  Grid.Column="1"   Background="{DynamicResource PrimaryHueLightBrush}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"   
+                                      UniformCornerRadius="6" Margin="65,30,362,14" Grid.RowSpan="3" Grid.Row="1" >
+                <Grid Height="115" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="BatteryCharging10" Margin="0,10,0,0" Height="88" Width="78" HorizontalAlignment="Center" />
+                    <ProgressBar x:Name="DroneBattery" Value="{Binding Path=BatteryPercent}" Maximum="100" HorizontalAlignment="Left" Height="40" Margin="16,0,0,0" VerticalAlignment="Center" Width="48" BorderBrush="{x:Null}" FontWeight="Normal" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" Foreground="#FF30F027">
+                        <ProgressBar.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-89.805"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ProgressBar.RenderTransform>
+                    </ProgressBar>
+                </Grid>
+            </materialDesign:Card>
+            <!--<TextBox x:Name="DroneBattery" BorderThickness="0" Grid.Row="4" Background="SkyBlue" Grid.Column="1"
+                     HorizontalAlignment="Left" Text="{Binding BatteryPercent}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>-->
             <TextBox x:Name="DroneLoc"  Grid.Row="5" Background="SkyBlue"  Grid.Column="1"
                      HorizontalAlignment="Left"  Text="" VerticalAlignment="Center" Width="auto"  />
             <TextBox x:Name="ParcelInShipmentTbx" Grid.Row="6" Grid.Column="1" Background="SkyBlue" BorderThickness="1" HorizontalAlignment="Left" Text="" TextWrapping="Wrap"

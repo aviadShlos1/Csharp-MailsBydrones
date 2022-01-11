@@ -450,4 +450,9 @@
     <StationId>1</StationId>
     <StartChargeTime>2022-01-10T22:15:08.7233704+02:00</StartChargeTime>
   </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>6408</DroneId>
+    <StationId>1000</StationId>
+    <StartChargeTime>2022-01-11T23:22:26.6052895+02:00</StartChargeTime>
+  </DroneChargeDal>
 </ArrayOfDroneChargeDal>
