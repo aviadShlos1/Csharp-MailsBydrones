@@ -106,7 +106,7 @@
 
 
 
-            <materialDesign:Card Background="{DynamicResource PrimaryHueLightBrush}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="8" 
+            <materialDesign:Card Background="{DynamicResource PrimaryHueLightBrush}" Opacity="0.9" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Padding="8" 
                     UniformCornerRadius="6" Margin="10,10,0,10" Grid.RowSpan="3" Grid.Row="5" Grid.ColumnSpan="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -118,7 +118,7 @@
                         <RowDefinition Height="167*"/>
                     </Grid.RowDefinitions>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="184" TextAlignment="Center" FontWeight="Bold" TextDecorations="Underline" FontSize="14" Margin="131,-2,0,0" Grid.Column="1"><Run FlowDirection="RightToLeft" Language="he-il" Text="Parcel In Shipment"/></TextBlock>
-                    <TextBlock x:Name="TBnotAssigned" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="87" Grid.Row="1" Width="348" FontSize="32" FontWeight="Bold" FontFamily="Consolas" Margin="191,0,0,0" Grid.Column="1"><Run FlowDirection="RightToLeft" Language="he-il" Text="No Assigning Parcel"/></TextBlock>
+                    <TextBlock x:Name="TBnotAssigned" HorizontalAlignment="Left" Visibility="Hidden" TextWrapping="Wrap" VerticalAlignment="Center" Height="87" Grid.Row="1" Width="348" FontSize="32" FontWeight="Bold" FontFamily="Consolas" Margin="191,0,0,0" Grid.Column="1"><Run FlowDirection="RightToLeft" Language="he-il" Text="No Assigning Parcel"/></TextBlock>
 
                     <!--this grid is inside grid that wiil turn on if ther is a linked parcel-->
                     <Grid x:Name="GRIDparcelInDelivery" Visibility="Visible" Grid.ColumnSpan="2" Margin="0,18,0,0" Grid.RowSpan="2">
