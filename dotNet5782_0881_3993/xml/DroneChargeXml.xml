@@ -470,4 +470,44 @@
     <StationId>0</StationId>
     <StartChargeTime>2022-01-12T00:03:56.3597254+02:00</StartChargeTime>
   </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>6408</DroneId>
+    <StationId>1000</StationId>
+    <StartChargeTime>2022-01-12T08:48:58.941039+02:00</StartChargeTime>
+  </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>4189</DroneId>
+    <StationId>1000</StationId>
+    <StartChargeTime>2022-01-12T10:48:37.7040599+02:00</StartChargeTime>
+  </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>6408</DroneId>
+    <StationId>1</StationId>
+    <StartChargeTime>2022-01-12T10:48:37.7103991+02:00</StartChargeTime>
+  </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>4189</DroneId>
+    <StationId>1</StationId>
+    <StartChargeTime>2022-01-12T10:49:54.5550752+02:00</StartChargeTime>
+  </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>6408</DroneId>
+    <StationId>1</StationId>
+    <StartChargeTime>2022-01-12T10:49:54.5596826+02:00</StartChargeTime>
+  </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>4189</DroneId>
+    <StationId>0</StationId>
+    <StartChargeTime>2022-01-12T10:52:13.0020603+02:00</StartChargeTime>
+  </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>4189</DroneId>
+    <StationId>0</StationId>
+    <StartChargeTime>2022-01-12T11:35:16.6102143+02:00</StartChargeTime>
+  </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>6408</DroneId>
+    <StationId>1000</StationId>
+    <StartChargeTime>2022-01-12T11:35:16.6199377+02:00</StartChargeTime>
+  </DroneChargeDal>
 </ArrayOfDroneChargeDal>

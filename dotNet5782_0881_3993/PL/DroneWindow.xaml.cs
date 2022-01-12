@@ -156,9 +156,8 @@ namespace PL
                     break;
 
                 case DroneStatusesBL.Shipment:
-                    ParcelInShipmentTbl.Visibility = Visibility.Visible;
-                    ParcelInShipmentTbx.Visibility = Visibility.Visible;
-                    ParcelInShipmentTbx.Text = MyDrone.ParcelInShip.ToString();
+                    GRIDparcelInDelivery.Visibility = Visibility.Visible;
+                    TBnotAssigned.Visibility = Visibility.Hidden;
                     if (MyDrone.ParcelInShip.ShippingOnTheSupplyWay==true)
                     {
                         SupplyParcelButton.Visibility = Visibility.Visible;
@@ -235,6 +234,8 @@ namespace PL
                 blAccess.AssignParcelToDrone(MyDrone.DroneId);
                 MessageBox.Show("The drone assigned to parcel successfully");
                 new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
+                GRIDparcelInDelivery.Visibility = Visibility.Visible;
+                TBnotAssigned.Visibility = Visibility.Hidden;
                 Close();
             }
             catch (CannotAssignDroneToParcelException ex)
@@ -344,7 +345,7 @@ namespace PL
             switch (MyDrone.DroneStatus)
             {
                 case DroneStatusesBL.Available:
-                    if (MyDrone.ParcelInShip.Id<0) //the drone is free cuse he just done (we know that becuse the grid is opend) it is affter deliverd.
+                    if (GRIDparcelInDelivery.Visibility == Visibility.Visible) //the drone is free cuse he just done (we know that becuse the grid is opend) it is affter deliverd.
                     {
 
                         //update the parcels list
@@ -359,6 +360,8 @@ namespace PL
                         RecieverCustomerIndex = myCustomers.myCustomerPl.IndexOf(myCustomers.myCustomerPl.First(x => x.Id == ReceiverCustomerId));
                         myCustomers.myCustomerPl[RecieverCustomerIndex] = blAccess.GetCustomersBl().First(x => x.Id == ReceiverCustomerId);
 
+                        GRIDparcelInDelivery.Visibility = Visibility.Hidden;
+                        TBnotAssigned.Visibility = Visibility.Visible;
 
                     }
                     else //the drone is in a free state that has come out of charge and not like before (not affter deliver).
@@ -389,7 +392,9 @@ namespace PL
                         ParcelIndex = myParcels.myParcelsPl.IndexOf(myParcels.myParcelsPl.First(x => x.Id == MyDrone.ParcelInShip.Id));
                         myParcels.myParcelsPl[ParcelIndex] = blAccess.GetParcelsBl().First(x => x.Id == MyDrone.ParcelInShip.Id);
 
-                     
+                        GRIDparcelInDelivery.Visibility = Visibility.Hidden;
+                        TBnotAssigned.Visibility = Visibility.Visible;
+
                     }
                     else if (blAccess.GetSingleParcel(MyDrone.ParcelInShip.Id).SupplyingTime == null)
                     {
@@ -430,7 +435,7 @@ namespace PL
 
         private void DroneSimulator_DoWork(object sender, DoWorkEventArgs e)
         {
-            //throw new NotImplementedException();
+            blAccess.sim(MyDrone.DroneId, ReportProgressInSimultor, IsTimeRun);
         }
 
         public void ReportProgressInSimultor()
