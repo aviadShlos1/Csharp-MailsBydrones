@@ -462,7 +462,7 @@ namespace PL
             ModelTbx.IsEnabled = false; //to prevent model changing
         }
        
-        #endregion Simulator
+        #endregion Simulator 
 
         private void ManualBut_Click(object sender, RoutedEventArgs e)
         {
