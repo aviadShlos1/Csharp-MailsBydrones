@@ -54,7 +54,7 @@
 
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible">
+        <Grid x:Name="UpdateOptions" Visibility="Visible" Margin="-9,4,9,-4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -79,11 +79,13 @@
             <TextBox x:Name="DroneStatusSelector" BorderThickness="0" Grid.Row="3" Background="SkyBlue" Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding DroneStatus}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
 
-            <materialDesign:Card  Grid.Column="1"   Background="{DynamicResource PrimaryHueLightBrush}" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"   
-                                      UniformCornerRadius="6" Margin="65,30,362,14" Grid.RowSpan="3" Grid.Row="1" >
-                <Grid Height="115" VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="BatteryCharging10" Margin="0,10,0,0" Height="88" Width="78" HorizontalAlignment="Center" />
-                    <ProgressBar x:Name="DroneBattery" Value="{Binding Path=BatteryPercent}" Maximum="100" HorizontalAlignment="Left" Height="40" Margin="16,0,0,0" VerticalAlignment="Center" Width="48" BorderBrush="{x:Null}" FontWeight="Normal" RenderTransformOrigin="0.5,0.5" Background="{x:Null}" Foreground="#FF30F027">
+            <materialDesign:Card  Grid.Column="1"   Background="Transparent" Foreground="Black"   
+                                      UniformCornerRadius="6" Margin="377,34,55,0" Grid.RowSpan="3" Grid.Row="1" >
+                <Grid Height="125" VerticalAlignment="Center" Margin="0,0,-42,0">
+                    <materialDesign:PackIcon Kind="BatteryCharging10" Height="105" Width="123" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <ProgressBar x:Name="DroneBattery" Value="{Binding Path=BatteryPercent}" Maximum="100" HorizontalAlignment="Left" 
+                                 Height="35" Margin="23,0,0,0" VerticalAlignment="Center" Width="63" BorderBrush="{x:Null}" 
+                                 RenderTransformOrigin="0.5,0.5" Background="{x:Null}" Foreground="#FF30F027">
                         <ProgressBar.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -93,12 +95,12 @@
                             </TransformGroup>
                         </ProgressBar.RenderTransform>
                     </ProgressBar>
+                    <TextBlock x:Name="TBBatrryStatuses" HorizontalAlignment="Left" Text="{Binding BatteryPercent, StringFormat=\{0:#0\}%}" TextWrapping="Wrap" 
+                               VerticalAlignment="Center" Width="36"   TextAlignment="Left" FontWeight="Bold" Background="{x:Null}" Foreground="Purple" Height="20" RenderTransformOrigin="-0.005,0.491" Margin="38,0,0,0"/>
                 </Grid>
             </materialDesign:Card>
-            <!--<TextBox x:Name="DroneBattery" BorderThickness="0" Grid.Row="4" Background="SkyBlue" Grid.Column="1"
-                     HorizontalAlignment="Left" Text="{Binding BatteryPercent}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>-->
-            <TextBox x:Name="DroneLoc"  Grid.Row="5" Background="SkyBlue"  Grid.Column="1"
-                     HorizontalAlignment="Left"  Text="" VerticalAlignment="Center" Width="auto"  />
+            <TextBox x:Name="DroneLoc"  Grid.Row="5" Background="SkyBlue"
+                     HorizontalAlignment="Left"  Text="" VerticalAlignment="Center" Width="auto" Margin="43,0,0,0" Height="47"  />
             <TextBox x:Name="ParcelInShipmentTbx" Grid.Row="6" Grid.Column="1" Background="SkyBlue" BorderThickness="1" HorizontalAlignment="Left" Text="" TextWrapping="Wrap"
                      VerticalAlignment="Center"  Width="auto" IsReadOnly="True" MouseDoubleClick="ParcelInShipmentTbx_MouseDoubleClick"/>
 
@@ -111,10 +113,9 @@
                        Grid.Row="2" Text="Model:" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Grid.ColumnSpan="2"/>
             <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Status:" Grid.Column="0" Margin="52,0,103,0"
                        Grid.Row="3" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto"/>
-            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Battery:" Grid.Column="0" Margin="52,0,103,0"
-                       Grid.Row="4" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Visibility="Visible" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Location:" Grid.Column="0" Margin="52,0,103,0"
-                       Grid.Row="5" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Visibility="Visible" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Foreground="Green" Text=" Battery Percent" Grid.Column="1" Margin="376,0,0,0" FontSize="18" TextWrapping="Wrap" VerticalAlignment="Center" Width="157" Visibility="Visible" Grid.Row="1"/>
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Location:" Grid.Column="0" Margin="43,0,0,0"
+                       Grid.Row="4" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" Visibility="Visible"/>
             <TextBlock x:Name="ParcelInShipmentTbl" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="52,0,0,0" Text="Parcel Assigned" FontSize="25"
                        Grid.Row="6" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Center" Width="254" Visibility="Visible" Grid.ColumnSpan="2"/>
 
@@ -128,9 +129,18 @@
                 <Button x:Name="SupplyParcelButton" Content="SupplyParcel" Width="auto" Click="SupplyParcelButton_Click" Visibility="Collapsed" />
             </WrapPanel>
             <Button x:Name="AutomaticBut" Content="Automatic" Visibility="Visible" FontSize="18"  Background="Orange" 
-                    Grid.Column="1" Margin="322,14,16,9" Grid.Row="1" Click="AutomaticBut_Click"></Button>
-            <Button x:Name="ManualBut" Content="Manual" Visibility="Visible" FontSize="18"  Background="Orange" 
-                    Grid.Column="1" Margin="322,3,16,18" Grid.Row="2" Click="ManualBut_Click"></Button>
+                    Grid.Column="1" Margin="377,3,16,18" Grid.Row="5"
+                       Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True" Click="AutomaticBut_Click"/>
+
+            <Button x:Name="ManualBut" Content="Manual" FontSize="18"  Background="Orange" Visibility="Hidden"
+                    Grid.Column="1" Margin="377,48,16,26" Grid.Row="5"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Click="ManualBut_Click" Grid.RowSpan="2"></Button>
             <Button HorizontalAlignment="Left" Margin="30,0,0,0" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" Height="60" Width="97" Click="CloseUpdateButton_Click" Grid.Row="7">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="48" Height="41"  Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
             </Button>
