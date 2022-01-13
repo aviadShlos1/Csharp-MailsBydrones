@@ -234,6 +234,7 @@ namespace PL
                 blAccess.AssignParcelToDrone(MyDrone.DroneId);
                 MessageBox.Show("The drone assigned to parcel successfully");
                 new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
+                
                 GRIDparcelInDelivery.Visibility = Visibility.Visible;
                 TBnotAssigned.Visibility = Visibility.Hidden;
                 Close();
