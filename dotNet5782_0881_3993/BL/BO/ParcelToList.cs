@@ -23,7 +23,7 @@ namespace BO
         public ParcelStatus ParcelStatus{ get; set; }
         public override string ToString()
         {
-            return $"ParcelAssignId: {Id}, SenderName: {SenderName}, RecieverName: {RecieverName},Weight: {Weight},Priority: {Priority},ParcelStatus: {ParcelStatus}";
+            return $"ParcelAssignedId: {Id}, SenderName: {SenderName}, RecieverName: {RecieverName},Weight: {Weight},Priority: {Priority},ParcelStatus: {ParcelStatus}";
         }
     }
 }
