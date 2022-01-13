@@ -37,7 +37,7 @@
   </CustomerDal>
   <CustomerDal>
     <Id>635188996</Id>
-    <Name>Gal</Name>
+    <Name>Galia</Name>
     <Phone>0573359470</Phone>
     <Longitude>35.0784546560121</Longitude>
     <Latitude>30.428141798826932</Latitude>
@@ -69,5 +69,12 @@
     <Phone>0549107106</Phone>
     <Longitude>10.2</Longitude>
     <Latitude>10.3</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>208500553</Id>
+    <Name>Efrat</Name>
+    <Phone>0587133002</Phone>
+    <Longitude>30.15</Longitude>
+    <Latitude>30.11</Latitude>
   </CustomerDal>
 </ArrayOfCustomerDal>

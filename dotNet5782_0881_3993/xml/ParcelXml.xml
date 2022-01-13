@@ -115,9 +115,9 @@
     <Weight>Light</Weight>
     <Priority>Normal</Priority>
     <CreatingTime>2022-01-09T12:59:23.5476448+02:00</CreatingTime>
-    <AssignningTime xsi:nil="true" />
-    <PickingUpTime xsi:nil="true" />
-    <SupplyingTime xsi:nil="true" />
-    <DroneToParcelId>0</DroneToParcelId>
+    <AssignningTime>2022-01-13T22:13:17.9505095+02:00</AssignningTime>
+    <PickingUpTime>2022-01-13T22:13:37.6296691+02:00</PickingUpTime>
+    <SupplyingTime>2022-01-13T22:13:42.3533145+02:00</SupplyingTime>
+    <DroneToParcelId>4189</DroneToParcelId>
   </ParcelDal>
 </ArrayOfParcelDal>
