@@ -130,31 +130,31 @@
                         <Grid Grid.Column="0">
                             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="158" TextAlignment="Center" FontWeight="Bold" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Reciever Details"/></TextBlock>
 
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,51,0,0" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Id"/></TextBlock>
-                            <TextBlock HorizontalAlignment="Left" Margin="128,46,0,0" Text="{Binding Path=ParcelInShip.Reciever.CustId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}" FontSize="14" FontWeight="Bold" Height="19"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,36,0,0" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Id"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" Margin="129,37,0,0" Text="{Binding Path=ParcelInShip.Reciever.CustId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}" FontSize="14" FontWeight="Bold" Height="19"/>
 
 
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,80,0,0" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Name"/></TextBlock>
-                            <TextBlock HorizontalAlignment="Left" Margin="129,78,0,0" Text="{Binding Path=ParcelInShip.Reciever.CustName}" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Height="16" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,65,0,0" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Name"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" Margin="129,70,0,0" Text="{Binding Path=ParcelInShip.Reciever.CustName}" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Height="16" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}"/>
 
 
-                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="0,108,0,0" Foreground="#FF673AB7" Text="Location"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="21,138,0,0" Text="{Binding Path=ParcelInShip.TargetLocation}" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}" Height="18"/>
+                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="78" TextAlignment="Center" FontWeight="Bold" Margin="0,98,0,0" Foreground="#FF673AB7" Text="Location"/>
+                            <TextBlock HorizontalAlignment="Center" Margin="0,118,0,0" Text="{Binding Path=ParcelInShip.TargetLocation}" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}" Height="46"/>
 
                         </Grid>
                         <Grid Grid.Column="1" >
                             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="158" TextAlignment="Center" FontWeight="Bold" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Sender Details"/></TextBlock>
 
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,47,0,0" Foreground="#FF673AB7" Text="Id"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="33,45,0,0" Text="{Binding Path=ParcelInShip.Sender.CustId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" Height="19"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="76" TextAlignment="Center" FontWeight="Bold" Margin="11,38,0,0" Foreground="#FF673AB7" Text="Id"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="112,33,0,0" Text="{Binding Path=ParcelInShip.Sender.CustId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" Height="19"/>
 
 
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,74,0,0" Foreground="#FF673AB7" Text="Name"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="103,75,0,0" Text="{Binding Path=ParcelInShip.Sender.CustName}" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="16" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" FontSize="14" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,60,0,0" Foreground="#FF673AB7" Text="Name"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="112,61,0,0" Text="{Binding Path=ParcelInShip.Sender.CustName}" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="16" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" FontSize="14" FontWeight="Bold"/>
 
 
-                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="0,108,0,0" Foreground="#FF673AB7" Text="Location"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="21,138,0,0" Text="{Binding Path=ParcelInShip.PickUpLocation}" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" FontSize="14" FontWeight="Bold" Height="19" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="78" TextAlignment="Center" FontWeight="Bold" Margin="0,101,0,0" Foreground="#FF673AB7" Text="Location"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="24,126,0,0" Text="{Binding Path=ParcelInShip.PickUpLocation}" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" FontSize="14" FontWeight="Bold" Height="39" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center"/>
                             <GridSplitter HorizontalAlignment="Left" Height="130" Margin="1,20,0,0" VerticalAlignment="Top" Width="5"/>
                             <GridSplitter HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="5" Margin="235,20,0,0"/>
 
@@ -172,7 +172,7 @@
 
 
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="137" TextAlignment="Center" FontWeight="Bold" Margin="-8,104,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}"><Run FlowDirection="RightToLeft" Text="Shipping Distance"/></TextBlock>
-                            <TextBlock HorizontalAlignment="Left" Margin="125,102,0,0" Text="{Binding Path=ParcelInShip.ShippingDistance, StringFormat=\{0:#0.00\}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Height="24" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="125,102,0,0" Text="{Binding Path=ParcelInShip.ShippingDistance, StringFormat=\{0:#0.00\}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" Height="24" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}"/>
 
 
                             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="91" TextAlignment="Center" FontWeight="Bold" Margin="16,133,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}"><Run FlowDirection="RightToLeft" Language="he-il" Text="?IsPickedUp"/></TextBlock>

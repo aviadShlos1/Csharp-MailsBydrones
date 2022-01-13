@@ -23,14 +23,14 @@ namespace Dal
             string CustomerPath = @"CustomerXml.xml";
             string DronePath = @"DroneXml.xml";
             string BaseStationPath = @"BaseStationXml.xml";
-            string ParcelPath = @"ParcelXml.xml";
             string DroneChargePath = @"DroneChargeXml.xml";
+            string ParcelPath = @"ParcelXml.xml";
 
             XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
             XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
             XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
-            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
             XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
+            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
 
             #endregion firstInitialize
         }
@@ -111,8 +111,8 @@ namespace Dal
                 ParcelDal myParcel = new ParcelDal()
                 {
                     Id = Config.RunId++,
-                    SenderId = Customers[rand.Next(0,10)].Id,
-                    TargetId = Customers[rand.Next(0,10)].Id,
+                    SenderId = Customers[i].Id,
+                    TargetId = Customers[9 - i].Id,
                     Weight = RandomEnumValue<WeightCategoriesDal>(),
                     Priority = RandomEnumValue<Priorities>(),
                     CreatingTime = DateTime.Now,

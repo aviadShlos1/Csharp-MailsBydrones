@@ -4,7 +4,7 @@
 	<dal>xml</dal>
 	<dal-packages>
 		<xml namespace="DalXml" class="DalXml">DalXml</xml>
-		<data >DalObject</data>
+		<data>DalObject</data>
 	</dal-packages>
 </dal-config>
 
