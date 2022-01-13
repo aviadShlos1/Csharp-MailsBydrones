@@ -70,14 +70,17 @@
                 <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="DroneIdTbx" BorderThickness="0" Grid.Row="0"  Background="Transparent" FontWeight="Bold"  Grid.Column="1"
+            <TextBox x:Name="DroneIdTbx" BorderThickness="0" Grid.Row="0" FontFamily="Comic Sans MS" FontSize="18"  Background="Transparent" FontWeight="Bold"  Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding DroneId}" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsReadOnly="True"/>
-            <TextBox x:Name="DroneWeightSelector" BorderThickness="0" Grid.Row="1"  Background="Transparent" FontWeight="Bold"   Grid.Column="1" 
+            <TextBox x:Name="DroneWeightSelector" BorderThickness="0" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="18"  Background="Transparent" FontWeight="Bold"   Grid.Column="1" 
                      HorizontalAlignment="Left" Text="{Binding DroneWeight}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
-            <TextBox x:Name="DroneModelTbx" BorderThickness="0" Grid.Row="2" Background="Transparent" FontWeight="Bold" Grid.Column="1" 
+            <TextBox x:Name="DroneModelTbx" BorderThickness="0" Grid.Row="2" FontFamily="Comic Sans MS" FontSize="18" Background="Transparent" FontWeight="Bold" Grid.Column="1" 
                      HorizontalAlignment="Left"  Text="{Binding Model}" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsEnabled="True" MaxLength="2"/>
-            <TextBox x:Name="DroneStatusSelector" BorderThickness="0" Grid.Row="3"  Background="Transparent" FontWeight="Bold"  Grid.Column="1"
+            <TextBox x:Name="DroneStatusSelector" BorderThickness="0" Grid.Row="3" FontFamily="Comic Sans MS" FontSize="18"  Background="Transparent" FontWeight="Bold"  Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding DroneStatus}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
+            <TextBox x:Name="DroneLoc"  Grid.Row="4"  Background="Transparent" FontFamily="Comic Sans MS" FontSize="18" FontWeight="Bold" BorderThickness="0"
+                     HorizontalAlignment="Left"  Text="" VerticalAlignment="Top" Width="auto" Margin="20,17,0,0" Height="47" Grid.Column="1"  />
+
 
             <materialDesign:Card  Grid.Column="1"   Background="Transparent" Foreground="Black"   
                                       UniformCornerRadius="6" Margin="377,34,55,0" Grid.RowSpan="3" Grid.Row="1" >
@@ -99,8 +102,7 @@
                                VerticalAlignment="Center" Width="36"   TextAlignment="Left" FontWeight="Bold" Background="{x:Null}" Foreground="Purple" Height="20" RenderTransformOrigin="-0.005,0.491" Margin="38,0,0,0"/>
                 </Grid>
             </materialDesign:Card>
-            <TextBox x:Name="DroneLoc"  Grid.Row="3"  Background="Transparent" FontWeight="Bold" BorderThickness="0"
-                     HorizontalAlignment="Left"  Text="" VerticalAlignment="Top" Width="auto" Margin="10,52,0,0" Height="47" Grid.Column="1" Grid.RowSpan="2"  />
+
             <!--<TextBox x:Name="ParcelInShipmentTbx" Grid.Row="5" Grid.Column="1" Background="SkyBlue" BorderThickness="1" HorizontalAlignment="Left" Text="" TextWrapping="Wrap"
                      VerticalAlignment="Top"  Width="auto" IsReadOnly="True" MouseDoubleClick="ParcelInShipmentTbx_MouseDoubleClick" Margin="1,19,0,0"/>-->
 
@@ -117,8 +119,8 @@
                         <RowDefinition Height="20*"/>
                         <RowDefinition Height="167*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="184" TextAlignment="Center" FontWeight="Bold" TextDecorations="Underline" FontSize="14" Margin="131,-2,0,0" Grid.Column="1"><Run FlowDirection="RightToLeft" Language="he-il" Text="Parcel In Shipment"/></TextBlock>
-                    <TextBlock x:Name="TBnotAssigned" HorizontalAlignment="Left" Visibility="Hidden" TextWrapping="Wrap" VerticalAlignment="Center" Height="87" Grid.Row="1" Width="348" FontSize="32" FontWeight="Bold" FontFamily="Consolas" Margin="191,0,0,0" Grid.Column="1"><Run FlowDirection="RightToLeft" Language="he-il" Text="No Assigning Parcel"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Foreground="DarkBlue" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="184" TextAlignment="Center" FontWeight="Bold" TextDecorations="Underline" FontSize="14" Margin="131,-2,0,0" Grid.Column="1"><Run Text="Parcel In Shipment"/></TextBlock>
+                    <TextBlock x:Name="TBnotAssigned" HorizontalAlignment="Left" Visibility="Hidden" TextWrapping="Wrap" VerticalAlignment="Center" Height="87" Grid.Row="1" Width="348" FontSize="32" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="DarkBlue" Margin="191,0,0,0" Grid.Column="1"><Run FlowDirection="RightToLeft" Language="he-il" Text="No Assigning Parcel"/></TextBlock>
 
                     <!--this grid is inside grid that wiil turn on if ther is a linked parcel-->
                     <Grid x:Name="GRIDparcelInDelivery" Visibility="Visible" Grid.ColumnSpan="2" Margin="0,18,0,0" Grid.RowSpan="2">
@@ -128,54 +130,53 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="158" TextAlignment="Center" FontWeight="Bold" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Reciever Details"/></TextBlock>
-
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,51,0,0" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Id"/></TextBlock>
-                            <TextBlock HorizontalAlignment="Left" Margin="128,46,0,0" Text="{Binding Path=ParcelInShip.Reciever.CustId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}" FontSize="14" FontWeight="Bold" Height="19"/>
-
-
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,80,0,0" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Name"/></TextBlock>
-                            <TextBlock HorizontalAlignment="Left" Margin="129,78,0,0" Text="{Binding Path=ParcelInShip.Reciever.CustName}" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Height="16" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}"/>
+                            <TextBlock HorizontalAlignment="Center" FontFamily="Comic Sans MS" TextDecorations="Underline" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="158" TextAlignment="Center" FontWeight="Bold" Foreground="#FF673AB7"><Run Text="Reciever Details"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,51,0,0" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Id"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="128,46,0,0" Text="{Binding Path=ParcelInShip.Reciever.CustId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}" FontSize="14" FontWeight="Bold" Height="19"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontFamily="Comic Sans MS" FontWeight="Bold" Margin="10,80,0,0" Foreground="#FF673AB7"><Run  Text="Name"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" Margin="129,78,0,0" FontFamily="Comic Sans MS" Text="{Binding Path=ParcelInShip.Reciever.CustName}" TextWrapping="Wrap" VerticalAlignment="Top" Width="86" Height="16" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}"/>
 
 
-                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="0,108,0,0" Foreground="#FF673AB7" Text="Location"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="21,138,0,0" Text="{Binding Path=ParcelInShip.TargetLocation}" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}" Height="18"/>
+                            <TextBlock HorizontalAlignment="Center" FontFamily="Comic Sans MS" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="0,108,0,0" Foreground="#FF673AB7" Text="Location"/>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="21,138,0,0" Text="{Binding Path=ParcelInShip.TargetLocation}" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}" Height="18"/>
 
                         </Grid>
                         <Grid Grid.Column="1" >
-                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="158" TextAlignment="Center" FontWeight="Bold" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Sender Details"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Center" FontFamily="Comic Sans MS" TextDecorations="Underline" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="158" TextAlignment="Center" FontWeight="Bold" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Language="he-il" Text="Sender Details"/></TextBlock>
 
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,47,0,0" Foreground="#FF673AB7" Text="Id"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="33,45,0,0" Text="{Binding Path=ParcelInShip.Sender.CustId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" Height="19"/>
-
-
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,74,0,0" Foreground="#FF673AB7" Text="Name"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="103,75,0,0" Text="{Binding Path=ParcelInShip.Sender.CustName}" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="16" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" FontSize="14" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,47,0,0" Foreground="#FF673AB7" Text="Id"/>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="33,45,0,0" Text="{Binding Path=ParcelInShip.Sender.CustId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" Height="19"/>
 
 
-                            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="0,108,0,0" Foreground="#FF673AB7" Text="Location"/>
-                            <TextBlock HorizontalAlignment="Left" Margin="21,138,0,0" Text="{Binding Path=ParcelInShip.PickUpLocation}" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" FontSize="14" FontWeight="Bold" Height="19" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center"/>
-                            <GridSplitter HorizontalAlignment="Left" Height="130" Margin="1,20,0,0" VerticalAlignment="Top" Width="5"/>
-                            <GridSplitter HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="5" Margin="235,20,0,0"/>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="10,74,0,0" Foreground="#FF673AB7" Text="Name"/>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="103,75,0,0" Text="{Binding Path=ParcelInShip.Sender.CustName}" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="16" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" FontSize="14" FontWeight="Bold"/>
+
+
+                            <TextBlock HorizontalAlignment="Center" FontFamily="Comic Sans MS" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="77" TextAlignment="Center" FontWeight="Bold" Margin="0,108,0,0" Foreground="#FF673AB7" Text="Location"/>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="21,138,0,0" Text="{Binding Path=ParcelInShip.PickUpLocation}" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" FontSize="14" FontWeight="Bold" Height="19" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center"/>
+                            <GridSplitter HorizontalAlignment="Left" FontFamily="Comic Sans MS" Height="130" Margin="1,20,0,0" VerticalAlignment="Top" Width="5"/>
+                            <GridSplitter HorizontalAlignment="Left" FontFamily="Comic Sans MS" Height="130" VerticalAlignment="Top" Width="5" Margin="235,20,0,0"/>
 
                         </Grid>
                         <Grid Grid.Column="2">
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="74" TextAlignment="Center" FontWeight="Bold" Margin="0,11,0,0" Foreground="#FF673AB7"><Run FlowDirection="RightToLeft" Text="Id"/></TextBlock>
-                            <TextBlock HorizontalAlignment="Left" Margin="129,10,0,0" Text="{Binding Path=ParcelInShip.Id}" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" Height="18"/>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" TextWrapping="Wrap" 
+                                       VerticalAlignment="Top" Height="20" Width="74" TextAlignment="Center" FontWeight="Bold" Margin="0,11,0,0" Foreground="DarkBlue" ><Run FlowDirection="RightToLeft" Text="Id"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" Margin="129,10,0,0" FontFamily="Comic Sans MS" Text="{Binding Path=ParcelInShip.Id}" TextWrapping="Wrap" 
+                                       VerticalAlignment="Top" Width="44" FontSize="14" FontWeight="Bold" Foreground="DarkBlue" TextAlignment="Center" Height="18"/>
 
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="50" TextAlignment="Center" FontWeight="Bold" Margin="26,44,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}"><Run FlowDirection="RightToLeft" Text="Priority"/></TextBlock>
-                            <TextBlock HorizontalAlignment="Left" Margin="129,44,0,0" Text="{Binding Path=ParcelInShip.Priority}" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource MaterialDesignBackground}" TextAlignment="Center" Height="20"/>
-
-
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="67" TextAlignment="Center" FontWeight="Bold" Margin="17,76,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}"><Run FlowDirection="RightToLeft" Text="Weight"/></TextBlock>
-                            <TextBlock HorizontalAlignment="Left" Margin="125,74,0,0" Text="{Binding Path=ParcelInShip.Weight}" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" Foreground="{DynamicResource MaterialDesignBackground}" FontSize="14" FontWeight="Bold" TextAlignment="Center" Height="19"/>
+                            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" TextWrapping="Wrap"  VerticalAlignment="Top" Height="20" Width="50" TextAlignment="Center" FontWeight="Bold" Margin="26,44,0,0" Foreground="DarkBlue"><Run FlowDirection="RightToLeft" Text="Priority"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left"  Margin="129,44,0,0" Text="{Binding Path=ParcelInShip.Priority}" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" FontSize="14" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="DarkBlue" TextAlignment="Center" Height="20"/>
 
 
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="137" TextAlignment="Center" FontWeight="Bold" Margin="-8,104,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}"><Run FlowDirection="RightToLeft" Text="Shipping Distance"/></TextBlock>
-                            <TextBlock HorizontalAlignment="Left" Margin="125,102,0,0" Text="{Binding Path=ParcelInShip.ShippingDistance, StringFormat=\{0:#0.00\}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Height="24" FontSize="14" FontWeight="Bold" TextAlignment="Center" Foreground="{DynamicResource MaterialDesignBackground}"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="67" TextAlignment="Center" FontWeight="Bold" Margin="17,76,0,0" FontFamily="Comic Sans MS" Foreground="DarkBlue"><Run FlowDirection="RightToLeft" Text="Weight"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" Margin="125,74,0,0" Text="{Binding Path=ParcelInShip.Weight}" TextWrapping="Wrap" VerticalAlignment="Top" Width="66" FontFamily="Comic Sans MS" Foreground="DarkBlue" FontSize="14" FontWeight="Bold" TextAlignment="Center" Height="19"/>
 
 
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="91" TextAlignment="Center" FontWeight="Bold" Margin="16,133,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}"><Run FlowDirection="RightToLeft" Language="he-il" Text="?IsPickedUp"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="137" TextAlignment="Center" FontWeight="Bold" Margin="-8,104,0,0" FontFamily="Comic Sans MS" Foreground="DarkBlue"><Run FlowDirection="RightToLeft" Text="Shipping Distance"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" Margin="125,102,0,0" Text="{Binding Path=ParcelInShip.ShippingDistance, StringFormat=\{0:#0.00\}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Height="24" FontSize="14" FontWeight="Bold" TextAlignment="Center" FontFamily="Comic Sans MS" Foreground="DarkBlue"/>
+
+
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="91" TextAlignment="Center" FontWeight="Bold" Margin="16,133,0,0" FontFamily="Comic Sans MS" Foreground="DarkBlue"><Run FlowDirection="RightToLeft" Language="he-il" Text="?IsPickedUp"/></TextBlock>
                             <CheckBox IsChecked="{Binding Path=ParcelInShip.ShippingOnTheSupplyWay}" Margin="129,126,90,15" />
 
                         </Grid>
@@ -220,7 +221,7 @@
     materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                     Click="ManualBut_Click" Grid.RowSpan="2"></Button>
             <Button HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" Height="60" Width="97" Click="CloseUpdateButton_Click" Grid.Row="7">
-                <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="48" Height="41"  Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
+                <fa:ImageAwesome Icon="WindowClose" Opacity="0.8" Stretch="Fill" Width="48" Height="41"  Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
             </Button>
             <TextBox x:Name="UpdateNewName"  Grid.Column="1" HorizontalAlignment="Center" Background="White" Margin="0,6,0,0" Grid.Row="7" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Height="34" Visibility="Hidden"/>
 
