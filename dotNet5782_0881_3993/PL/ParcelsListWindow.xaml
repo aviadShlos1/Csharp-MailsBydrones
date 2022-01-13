@@ -60,6 +60,13 @@
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </ListView.GroupStyle>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center">
+
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
 
         <Grid Name="UpGrid" Height="auto" Width="auto" Margin="0,0,0,460" Grid.RowSpan="2">
