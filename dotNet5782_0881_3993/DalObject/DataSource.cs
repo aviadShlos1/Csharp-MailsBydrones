@@ -40,7 +40,7 @@ namespace Dal
         #region The entities lists
 
         /// <This five rows below describe the initialize of the entities lists >
-        internal static List<DroneDal> Drones = new(10) ;
+        internal static List<DroneDal> Drones = new(10);
         internal static List<BaseStationDal> BaseStations = new(5);
         internal static List<CustomerDal> Customers = new(100);
         internal static List<ParcelDal> Parcels = new(1000);
@@ -65,7 +65,7 @@ namespace Dal
             var v = Enum.GetValues(typeof(T));
             return (T)v.GetValue(rand.Next(v.Length));
         }
-     
+
         //‹summary›This method initializes the entities details.
         public static void Initialize()
         {
@@ -77,14 +77,14 @@ namespace Dal
                 {
                     Id = rand.Next(1000, 10000),
                     Model = i.ToString(),
-                    DroneWeight = RandomEnumValue<WeightCategoriesDal>() 
+                    DroneWeight = RandomEnumValue<WeightCategoriesDal>()
                 });
             }
             #endregion adding Drone details
 
             #region adding Station details
-            BaseStations.Add(new BaseStationDal() { Id = 0, Name = "Herzliya", Latitude = 32.164, Longitude = 34.842, FreeChargeSlots = 8/*rand.Next(0, 10)*/ });
-            BaseStations.Add(new BaseStationDal() { Id = 1, Name = "Tel Aviv", Latitude = 32.056, Longitude = 34.779, FreeChargeSlots = 8/*rand.Next(0, 10)*/ });
+            BaseStations.Add(new BaseStationDal() { Id = 0, Name = "Herzliya", Latitude = 32.164, Longitude = 34.842, FreeChargeSlots = rand.Next(0, 10) });
+            BaseStations.Add(new BaseStationDal() { Id = 1, Name = "Tel Aviv", Latitude = 32.056, Longitude = 34.779, FreeChargeSlots = rand.Next(0, 10) });
             #endregion adding Station details
 
             #region adding Customer details
@@ -107,12 +107,12 @@ namespace Dal
             for (int i = 0; i < 10; i++)
             {
                 /// ‹summary›TimeSpan field which will be used to determine time
-                TimeSpan time = new TimeSpan(0, rand.Next(0, 24), rand.Next(0, 60), 0);
+
                 ParcelDal myParcel = new ParcelDal()
                 {
                     Id = Config.RunId++,
-                    SenderId = Customers[rand.Next(0,10)].Id,
-                    TargetId = Customers[rand.Next(0,10)].Id,
+                    SenderId = Customers[i].Id,
+                    TargetId = Customers[9 - i].Id,
                     Weight = RandomEnumValue<WeightCategoriesDal>(),
                     Priority = RandomEnumValue<Priorities>(),
                     CreatingTime = DateTime.Now,
@@ -121,9 +121,9 @@ namespace Dal
                     SupplyingTime = null,
                     DroneToParcelId = 0,
                 };
-
-
                 // lists 107-127: rand parcels details and rand assign drone , in that the system simulates real time system 
+
+                TimeSpan time = new TimeSpan(0, rand.Next(0, 24), rand.Next(0, 60), 0);
                 if (rand.Next(2) == 1)
                 {
                     myParcel.AssignningTime = myParcel.CreatingTime + time;
@@ -144,10 +144,12 @@ namespace Dal
                     myParcel.AssignningTime = myParcel.PickingUpTime = myParcel.SupplyingTime = null;
                     myParcel.DroneToParcelId = 0;
                 }
+
                 Parcels.Add(myParcel);
+
             }
             #endregion adding Parcel details
         }
-    };    
+    };
 }
 
