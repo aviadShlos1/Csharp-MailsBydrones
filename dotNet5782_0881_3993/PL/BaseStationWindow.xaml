@@ -23,17 +23,22 @@
                 <ColumnDefinition Width="730*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Name="IdTbl" Margin="33,80,663,0" Text="Id:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2"  FontFamily="Comic Sans MS" Height="auto"/>
-            <TextBlock HorizontalAlignment="Left" Margin="28,131,0,0" Text="Name:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2"  FontFamily="Comic Sans MS" Height="auto"/>
-            <TextBlock HorizontalAlignment="Left" Margin="14,184,0,0" Text="Free Charge Slots:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="1" FontFamily="Comic Sans MS" Height="auto" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,233,0,0" Text="Longitude:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontFamily="Comic Sans MS" Height="auto"/>
-            <TextBlock HorizontalAlignment="Left" Margin="12,289,0,0" Text="Latitude:" FontSize="16" Foreground="OrangeRed" TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2"  FontFamily="Comic Sans MS" Height="auto"/>
+            <TextBlock Name="IdTbl" Margin="33,80,663,0" Text="Id:" FontSize="16" Foreground="OrangeRed" 
+                       TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2"  FontFamily="Comic Sans MS" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="28,131,0,0" Text="Name:" FontSize="16" Foreground="OrangeRed" 
+                       TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2"  FontFamily="Comic Sans MS" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="14,184,0,0" Text="Free Charge Slots:" FontSize="16" Foreground="OrangeRed" 
+                       TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="1" FontFamily="Comic Sans MS" Height="auto" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,233,0,0" Text="Longitude:" FontSize="16" Foreground="OrangeRed" 
+                       TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2" FontFamily="Comic Sans MS" Height="auto"/>
+            <TextBlock HorizontalAlignment="Left" Margin="12,289,0,0" Text="Latitude:" FontSize="16" Foreground="OrangeRed" 
+                       TextWrapping="Wrap" VerticalAlignment="Top" Width="auto" Grid.Column="2"  FontFamily="Comic Sans MS" Height="auto"/>
 
-            <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="113,81,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="4"/>
-            <TextBox Name="NameTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="113,128,0,0" Text="" VerticalAlignment="Top" Width="120" />
-            <TextBox Name="AddFreeSlotsTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="113,184,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox Name="LongitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="113,233,0,0" Text="" VerticalAlignment="Top" Width="120" />
-            <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" Margin="113,289,0,0" Text="" VerticalAlignment="Top" Width="120" />
+            <TextBox Name="IdTbx" Grid.Column="2" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="113,81,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLength="4"/>
+            <TextBox Name="NameTbx" Grid.Column="2" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="113,128,0,0" Text="" VerticalAlignment="Top" Width="120" />
+            <TextBox Name="AddFreeSlotsTbx" Grid.Column="2" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="113,184,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Name="LongitudeTbx" Grid.Column="2" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="113,233,0,0" Text="" VerticalAlignment="Top" Width="120" />
+            <TextBox Name="LatitudeTbx" Grid.Column="2" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="113,289,0,0" Text="" VerticalAlignment="Top" Width="120" />
 
 
 
@@ -48,7 +53,7 @@
 
 
 
-        <Grid x:Name="UpdateOptions" Visibility="Hidden">
+        <Grid x:Name="UpdateOptions" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="*"/>
@@ -69,7 +74,7 @@
                      HorizontalAlignment="Left"  Text="" TextWrapping="Wrap" VerticalAlignment="Center" Width="auto" IsReadOnly="True" MaxLength="2"/>
             <TextBox x:Name="UpdateFreeChargeTbx" BorderThickness="0" Grid.Row="3" Background="LightBlue" Grid.Column="1"
                      HorizontalAlignment="Left" Text="{Binding Path=FreeChargeSlots}" VerticalAlignment="Center" Width="auto"  IsReadOnly="True"/>
-            <ListView x:Name="DronesInChargeLbx" BorderThickness="1" Background="LightBlue" 
+            <ListView x:Name="DronesInChargeLbx" BorderThickness="1" Background="LightBlue" Foreground="Orange"
                       HorizontalAlignment="Left" Margin="10,0,0,9"  VerticalAlignment="Bottom" Width="527" Height="45"
                       Grid.Column="1" Grid.Row="4" FontFamily="Comic Sans MS" FontWeight="Bold" MouseDoubleClick="DronesInChargeLbx_MouseDoubleClick"/>
 

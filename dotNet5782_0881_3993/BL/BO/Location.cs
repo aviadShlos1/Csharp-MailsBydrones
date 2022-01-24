@@ -24,7 +24,8 @@ namespace BO
         {
             string convertLongitude = DO.CoordinatesConvert.ConvertDecimalDegreesToSexagesimal(Longitude, "Longitude");
             string convertLatitude = DO.CoordinatesConvert.ConvertDecimalDegreesToSexagesimal(Latitude, "Latitude");
-            return $"Longitude: {convertLongitude},  Latitude: {convertLatitude} ";
+            return $"Longitude: {convertLongitude}\n" +
+                   $"Latitude: {convertLatitude}";
         }
     }
 }

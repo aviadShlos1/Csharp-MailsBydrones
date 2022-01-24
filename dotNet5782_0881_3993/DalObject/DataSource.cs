@@ -16,24 +16,24 @@ namespace Dal
 {
     static class DataSource
     {
-        static DataSource()
-        {
-            #region firstInitialize
-            Initialize();
-            string CustomerPath = @"CustomerXml.xml";
-            string DronePath = @"DroneXml.xml";
-            string BaseStationPath = @"BaseStationXml.xml";
-            string DroneChargePath = @"DroneChargeXml.xml";
-            string ParcelPath = @"ParcelXml.xml";
+        //static DataSource()
+        //{
+        //    #region firstInitialize
+        //    Initialize();
+        //    string CustomerPath = @"CustomerXml.xml";
+        //    string DronePath = @"DroneXml.xml";
+        //    string BaseStationPath = @"BaseStationXml.xml";
+        //    string ParcelPath = @"ParcelXml.xml";
+        //    string DroneChargePath = @"DroneChargeXml.xml";
 
-            XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
-            XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
-            XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
-            XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
-            XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+        //    XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
+        //    XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
+        //    XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
+        //    XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
+        //    XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
 
-            #endregion firstInitialize
-        }
+        //    #endregion firstInitialize
+        //}
         /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();
 

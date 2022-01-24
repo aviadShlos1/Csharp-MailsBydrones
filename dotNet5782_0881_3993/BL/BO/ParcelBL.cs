@@ -27,7 +27,7 @@ namespace BO
         public DateTime? SupplyingTime { get; set; }
         public override string ToString()
         {
-            return $"ParcelAssignId: {ParcelId}, AssignSenderToParcel: {Sender}, AssignRecieverToParcel: {Reciever}, ParcelWeight: {ParcelWeight}, Priority: {Priority}, DroneInShipment: {DroneAssignToParcel}, " +
+            return $"ParcelAssignedId: {ParcelId}, AssignSenderToParcel: {Sender}, AssignRecieverToParcel: {Reciever}, ParcelWeight: {ParcelWeight}, Priority: {Priority}, DroneInShipment: {DroneAssignToParcel}, " +
                 $"CreatingTime: {CreatingTime}, AssignningTime: {AssignningTime}, PickingUpTime: {PickingUpTime}, SupplyingTime: {SupplyingTime}";
         }
     }

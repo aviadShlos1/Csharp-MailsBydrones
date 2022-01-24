@@ -147,7 +147,7 @@ namespace BL
             else
             {
                 droneItem.DroneStatus = BO.DroneStatusesBL.Shipment;
-                droneItem.ParcelAssignId = assignedParcel.Id;
+                droneItem.ParcelAssignedId = assignedParcel.Id;
                 assignedParcel.DroneToParcelId = myDroneId;
                 assignedParcel.AssignningTime = DateTime.Now;
 
@@ -166,7 +166,7 @@ namespace BL
             List<DO.ParcelDal> parcelsWithFastPriority = new();
             List<DO.ParcelDal> parcelsWithNormalPriority = new();
 
-            foreach (var item in DalAccess.GetParcelsList(x=>x.DroneToParcelId==0))
+            foreach (var item in DalAccess.GetParcelsList(x=>x.AssignningTime==null))
             {
                 switch ((PrioritiesBL)item.Priority)
                 {
@@ -239,9 +239,9 @@ namespace BL
             {
                 throw new BO.NotExistException();
             }
-            if (droneItem.ParcelAssignId == 0) // if the drone doesn't take any parcel
+            if (droneItem.ParcelAssignedId == 0) // if the drone doesn't take any parcel
                 throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
-            parcelItem = DalAccess.GetSingleParcel(droneItem.ParcelAssignId);
+            parcelItem = DalAccess.GetSingleParcel(droneItem.ParcelAssignedId);
             senderItem = GetCustomerDetails(parcelItem.SenderId);
 
             if (parcelItem.PickingUpTime != null) //checking if the parcel has already picked up
@@ -273,10 +273,10 @@ namespace BL
             {
                 throw new BO.NotExistException();
             }
-            if (droneItem.ParcelAssignId == 0) //if the drone doesn't take any parcel
+            if (droneItem.ParcelAssignedId == 0) //if the drone doesn't take any parcel
                 throw new BO.CannotSupplyException("The drone has not transfered parcels yet");
             
-            var parcelItem = DalAccess.GetSingleParcel(droneItem.ParcelAssignId);
+            var parcelItem = DalAccess.GetSingleParcel(droneItem.ParcelAssignedId);
             var targetItem = GetCustomerDetails(parcelItem.TargetId);
             if (parcelItem.PickingUpTime == null)
                 throw new BO.CannotSupplyException("The parcel has not picked up yet");
@@ -289,9 +289,8 @@ namespace BL
                 droneItem.BatteryPercent -= Math.Floor(currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1]);
                 droneItem.DroneLocation.Longitude = targetItem.Longitude;
                 droneItem.DroneLocation.Latitude = targetItem.Latitude;
-                droneItem.ParcelAssignId = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission
+                droneItem.ParcelAssignedId = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission
                 droneItem.DroneStatus = BO.DroneStatusesBL.Available;
-                parcelItem.SupplyingTime = DateTime.Now;
                 DalAccess.SupplyParcel(droneItem.DroneId);
             }
 

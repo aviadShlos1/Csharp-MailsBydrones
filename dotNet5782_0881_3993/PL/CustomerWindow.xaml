@@ -64,7 +64,7 @@
 
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="*"/>
@@ -86,7 +86,7 @@
                      HorizontalAlignment="Left" Text="{Binding Name}" VerticalAlignment="Center" FontFamily="Comic Sans MS" Width="auto"  IsEnabled="True"/>
             
             <TextBox x:Name="CustomerPhoneTbx" BorderThickness="1" Grid.Row="2" Foreground="DarkBlue" Background="LightGray" Grid.Column="1" 
-                     HorizontalAlignment="Left"  Text="{Binding Phone}" TextWrapping="Wrap" FontFamily="Comic Sans MS" VerticalAlignment="Center" Width="auto" IsEnabled="True" MaxLength="2"/>
+                     HorizontalAlignment="Left"  Text="{Binding Phone}" TextWrapping="Wrap" FontFamily="Comic Sans MS" VerticalAlignment="Center" Width="auto" IsEnabled="True" MaxLength="10"/>
             <TextBox x:Name="CustomerLocationTbx" BorderThickness="0" Grid.Row="3" Foreground="DarkBlue" Background="LightGray" Grid.Column="1"
                      HorizontalAlignment="Left" Text="" VerticalAlignment="Center" FontFamily="Comic Sans MS" Width="auto"  IsReadOnly="True"/>
             <ListView x:Name="SentParcels" BorderThickness="1" Foreground="DarkBlue" Background="LightGray" 
