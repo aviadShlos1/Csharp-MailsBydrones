@@ -83,8 +83,8 @@ namespace Dal
             #endregion adding Drone details
 
             #region adding Station details
-            BaseStations.Add(new BaseStationDal() { Id = 0, Name = "Herzliya", Latitude = 32.164, Longitude = 34.842, FreeChargeSlots = 8/*rand.Next(0, 10)*/ });
-            BaseStations.Add(new BaseStationDal() { Id = 1, Name = "Tel Aviv", Latitude = 32.056, Longitude = 34.779, FreeChargeSlots = 8/*rand.Next(0, 10)*/ });
+            BaseStations.Add(new BaseStationDal() { Id = 0, Name = "Herzliya", Latitude = 32.164, Longitude = 34.842, FreeChargeSlots = rand.Next(0, 10) });
+            BaseStations.Add(new BaseStationDal() { Id = 1, Name = "Tel Aviv", Latitude = 32.056, Longitude = 34.779, FreeChargeSlots = rand.Next(0, 10) });
             #endregion adding Station details
 
             #region adding Customer details
