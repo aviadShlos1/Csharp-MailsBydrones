@@ -26,11 +26,11 @@ namespace Dal
         //    string ParcelPath = @"ParcelXml.xml";
         //    string DroneChargePath = @"DroneChargeXml.xml";
 
-        //    XMLTools.SaveListToXMLSerializer<DroneDal>(Drones, DronePath);
-        //    XMLTools.SaveListToXMLSerializer<BaseStationDal>(BaseStations, BaseStationPath);
-        //    XMLTools.SaveListToXMLSerializer<CustomerDal>(Customers, CustomerPath);
-        //    XMLTools.SaveListToXMLSerializer<ParcelDal>(Parcels, ParcelPath);
-        //    XMLTools.SaveListToXMLSerializer<DroneChargeDal>(DronesInCharge, DroneChargePath);
+        //    XMLTools.SaveListToXMLSerializer(Drones, DronePath);
+        //    XMLTools.SaveListToXMLSerializer(BaseStations, BaseStationPath);
+        //    XMLTools.SaveListToXMLSerializer(Customers, CustomerPath);
+        //    XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
+        //    XMLTools.SaveListToXMLSerializer(DronesInCharge, DroneChargePath);
 
         //    #endregion firstInitialize
         //}

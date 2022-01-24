@@ -3,8 +3,8 @@
 <dal-config>
 	<dal>xml</dal>
 	<dal-packages>
-		<xml namespace="DalXml" class="DalXml">DalXml</xml>
-		<data >DalObject</data>
+		<xml namespace="Dal" class="DalXml">DalXml</xml>
+		<data namespace="Dal" class="DalObject" >DalObject</data>
 	</dal-packages>
 </dal-config>
 
