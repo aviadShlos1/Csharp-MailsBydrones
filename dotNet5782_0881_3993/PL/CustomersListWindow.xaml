@@ -49,6 +49,13 @@
                     <GridViewColumn DisplayMemberBinding="{Binding SentAndNotSupplied}" x:Name="SentAndNotSuppliedParcels" Header="Sent And Weren't Supplied" Width="auto"/>
                 </GridView>
             </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center">
+
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
 
         <Button Content="Add customer" HorizontalAlignment="Left" Margin="663,465,0,0" Width="233" Click="AddCustomerButton_Click" Height="46"/>

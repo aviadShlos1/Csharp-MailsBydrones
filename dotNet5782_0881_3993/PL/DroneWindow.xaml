@@ -54,7 +54,7 @@
 
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible" Margin="-9,4,9,-4">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden" Margin="-9,4,9,-4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="43*"/>
                 <ColumnDefinition Width="117*"/>
@@ -99,7 +99,7 @@
                 <Grid Height="125" VerticalAlignment="Center" Margin="0,0,-42,0">
                     <materialDesign:PackIcon Kind="BatteryCharging10" Height="105" Width="123" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <ProgressBar x:Name="DroneBattery" Value="{Binding Path=BatteryPercent}" Maximum="100" HorizontalAlignment="Left" 
-                                 Height="47" Margin="50,0,0,0" VerticalAlignment="Center" Width="63" BorderBrush="{x:Null}" 
+                                 Height="29" Margin="47,0,0,0" VerticalAlignment="Center" Width="63" BorderBrush="{x:Null}" 
                                  RenderTransformOrigin="0.5,0.5" Background="{x:Null}" Foreground="#FF30F027">
                         <ProgressBar.RenderTransform>
                             <TransformGroup>
@@ -201,7 +201,7 @@
 
 
 
-            <WrapPanel x:Name="UpdateMethods" Margin="293,2,0,0" Grid.Column="1">
+            <WrapPanel x:Name="UpdateMethods" Margin="185,2,0,0" Grid.Column="1">
                 <Button x:Name="DroneToChargeButton" Content="DroneToCharge" FontFamily="Comic Sans MS" Width="auto" Click="DroneToChargeButton_Click" Visibility="Collapsed"/>
                 <Button x:Name="ReleaseFromChargeButton" Content="ReleaseFromCharge" FontFamily="Comic Sans MS" Width="auto" Click="ReleaseFromChargeButton_Click" Visibility="Collapsed"/>
                 <Button x:Name="AssignParcelToDroneButton" Content="AssignParcel" FontFamily="Comic Sans MS" Width="auto" Click="AssignParcelToDroneButton_Click" Visibility="Collapsed"/>

@@ -15,18 +15,30 @@ namespace Dal
 {
     sealed class DalXml : IDal
     {
-        #region Singleton
-        static readonly IDal instance = new DalXml();
-        public static IDal Instance { get => instance; }
-
-        #endregion Singleton
-
         public static string DronePath = @"DroneXml.xml";
         public static string BaseStationPath = @"BaseStationXml.xml";
         public static string ParcelPath = @"ParcelXml.xml";
         public static string DroneChargePath = @"DroneChargeXml.xml";
         public static string CustomerPath = @"CustomerXml.xml";
-        //public static string Consumption = @"ConfigDetails.xml";
+       
+        #region Singleton
+        static readonly IDal instance = new DalXml();
+        public static IDal Instance { get => instance; }
+
+        private DalXml()
+        {
+            List<DroneChargeDal> droneCharge = XMLTools.LoadListFromXMLSerializer<DroneChargeDal>(DroneChargePath);
+            foreach (var item in droneCharge)
+            {
+                DroneToRelease(item.DroneId);
+            }
+            droneCharge.Clear();
+            XMLTools.SaveListToXMLSerializer(droneCharge, DroneChargePath);
+        }
+        #endregion Singleton
+
+
+       
         public double[] EnergyConsumption()
         {
             List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");

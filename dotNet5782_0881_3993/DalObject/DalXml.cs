@@ -26,7 +26,6 @@ namespace Dal
         public static string ParcelPath = @"ParcelXml.xml";
         public static string DroneChargePath = @"DroneChargeXml.xml";
         public static string CustomerPath = @"CustomerXml.xml";
-        //public static string Consumption = @"ConfigDetails.xml";
         public double[] EnergyConsumption()
         {
             List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");

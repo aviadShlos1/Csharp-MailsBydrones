@@ -234,8 +234,10 @@ namespace PL
                 blAccess.AssignParcelToDrone(MyDrone.DroneId);
                 MessageBox.Show("The drone assigned to parcel successfully");
                 new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
+                
                 GRIDparcelInDelivery.Visibility = Visibility.Visible;
                 TBnotAssigned.Visibility = Visibility.Hidden;
+                PickUpParcelButton.Visibility = Visibility.Visible;
                 Close();
             }
             catch (CannotAssignDroneToParcelException ex)
@@ -255,6 +257,8 @@ namespace PL
                 blAccess.PickUpParcel(MyDrone.DroneId);
                 MessageBox.Show("The drone picked up the parcel successfully");
                 new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
+                PickUpParcelButton.Visibility = Visibility.Hidden;
+                SupplyParcelButton.Visibility = Visibility.Visible;
                 Close();
             }
             catch (CannotPickUpException ex)
