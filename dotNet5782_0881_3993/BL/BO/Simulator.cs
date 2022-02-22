@@ -39,40 +39,17 @@ namespace BL
                         }
                         catch
                         {
-                        
-                            //if (myDrone.BatteryPercent < 100)
-                            //{
-                            //    battery = myDrone.BatteryPercent;
 
-                            //    IEnumerable<BaseStation> baseStationBL = (from item in dalAccess.GetBaseStationList()
-                            //                                              select new BaseStation()
-                            //                                              {
-                            //                                                  Id = item.Id,
-                            //                                                  Name = item.StationName,
-                            //                                                  FreeChargeSlots = item.FreeChargeSlots,
-                            //                                                  BaseStationLocation = new Location() { longitude = item.Longitude, latitude = item.Latitude },
-                            //                                                  DroneInChargsList = new List<DroneInCharg>()
-                            //                                              });
-
-                            //    distance = blAccess.minDistanceBetweenBaseStationsAndLocation(baseStationBL, myDrone.DroneLocation).Item2;
-
-                            //    while (distance > 0)
-                            //    {
-                            //        myDrone.BatteryPercent -= blAccess.Free;
-                            //        reportProgressInSimulator();
-                            //        distance -= 1;
-                            //        Thread.Sleep(1000);
-                            //    }
-
-                            //    myDrone.BatteryPercent = battery;//הפונקציה שליחה לטעינה בודקת בודקת את המרחק ההתחלתי ולפי זה מחשבת את הסוללה ולכן צריך להחזיר למצב ההתחלתי
-                                blAccess.DroneToCharge(droneId);
-                                reportProgressInSimulator();
-                            
+                            if (myDrone.BatteryPercent<100)
+                            {
+                                blAccess.DroneToCharge(droneId); 
+                            }
+                            reportProgressInSimulator();
                         }
                         break;
-                   
+
                     case DroneStatusesBL.Maintaince:
-                        DO.DroneChargeDal chargeDal = dalAccess.GetDronesChargeList().First(x=>x.DroneId==droneId);
+                        DO.DroneChargeDal chargeDal = dalAccess.GetDronesChargeList().First(x => x.DroneId == droneId);
                         TimeSpan interval = DateTime.Now - chargeDal.StartChargeTime;
                         double chargeInHours = interval.Hours + (((double)interval.Minutes) / 60) + (((double)interval.Seconds) / 3600);
                         double batteryCharge = chargeInHours * 50 + myDrone.BatteryPercent; //DroneLoadingRate == 50
@@ -89,16 +66,16 @@ namespace BL
                             Thread.Sleep(1000);
                         }
 
-                        blAccess.ReleaseDroneCharge(droneId); 
+                        blAccess.ReleaseDroneCharge(droneId);
                         break;
-                   
+
                     case DroneStatusesBL.Shipment:
                         DroneBl DroneInProgress = blAccess.GetSingleDrone(droneId); // we create droneBl entity because of the field parcelInShip
 
                         if (blAccess.GetSingleParcel(DroneInProgress.ParcelInShip.Id).PickingUpTime == null)
                         {
                             battery = myDrone.BatteryPercent;
-                            
+
                             Location myLocation = new Location { Longitude = myDrone.DroneLocation.Longitude, Latitude = myDrone.DroneLocation.Latitude };
                             distance = DroneInProgress.ParcelInShip.ShippingDistance;
                             while (distance > 0)

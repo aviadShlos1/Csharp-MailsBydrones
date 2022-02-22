@@ -7,16 +7,18 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize"
+        ResizeMode="NoResize"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Login Window" Height="500" Width="860" >
+        Title="Login Window" Height="500" Width="860"
+        xmlns:gif ="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+        >
     <Grid>
-        <MediaElement x:Name="enter" Source="New Project.avi" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="484" Width="860" Volume="0" Stretch="Fill" UnloadedBehavior="Manual" Loaded="enter_Loaded"/>
+        <Image x:Name="GifEnter" gif:AnimationBehavior.SourceUri="Images\giphy.gif" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="484" Width="860" Stretch="Fill" Loaded="enter_Loaded_1"/>
         <Grid>
             <Grid x:Name="AddOn" >
                 <Grid.RowDefinitions>
@@ -27,7 +29,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TabControl VerticalContentAlignment="Top" Style="{StaticResource MaterialDesignNavigatilRailTabControl}" materialDesign:ColorZoneAssist.Mode="PrimaryMid" Background="{x:Null}">
+                <TabControl VerticalContentAlignment="Top" Style="{StaticResource MaterialDesignNavigatilRailTabControl}" materialDesign:ColorZoneAssist.Mode="PrimaryMid" Background="{x:Null}" Margin="0,0,0,34" Grid.RowSpan="2">
                     <TabItem x:Name="TICadmin" GotFocus="TICadmin_GotFocus">
                         <TabItem.Header>
                             <StackPanel  Height="auto"  Width="auto">
@@ -35,7 +37,7 @@
                                 <TextBlock Text="Admin"  HorizontalAlignment="Center" />
                             </StackPanel>
                         </TabItem.Header>
-                        <Grid >
+                        <Grid Margin="0,0,0,2" >
 
                             <Grid.Background>
                                 <ImageBrush ImageSource="Images\Drone.jpg"/>
@@ -102,7 +104,7 @@
                 </TabControl>
 
                 <Button x:Name="LoginButton"  Style="{StaticResource MaterialDesignRaisedButton}" materialDesign:ButtonProgressAssist.Value="-1" 
-             materialDesign:ButtonProgressAssist.IsIndeterminate="True" Margin="0,5,0,4"
+             materialDesign:ButtonProgressAssist.IsIndeterminate="True" Margin="0,4,0,0"
               Click="Blogin_Click" FontFamily="Comic Sans MS" IsEnabled="False" FontSize="14" Grid.Row="1"  />
 
             </Grid>

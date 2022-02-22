@@ -21,6 +21,7 @@
     <None Remove="Images\Drone.jpg" />
     <None Remove="Images\droneIn.png" />
     <None Remove="Images\DronesBackground.jpg" />
+    <None Remove="Images\giphy.gif" />
     <None Remove="Images\load.gif" />
   </ItemGroup>
 
@@ -28,6 +29,7 @@
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="MaterialDesignExtensions" Version="3.3.0" />
     <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+    <PackageReference Include="XamlAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,6 +65,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\DronesBackground.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\giphy.gif">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\load.gif">
