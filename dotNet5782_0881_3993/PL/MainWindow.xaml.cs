@@ -31,7 +31,7 @@ namespace PL
     {
         #region main window
         /// <summary> the constructor starts the data initializing </summary>
-        // An access objet that gives us accses to bl interface  
+        // An access objet that gives us accses to bl interface  /
         internal readonly IBL AccessIbl = BlFactory.GetBl();
         public MainWindow()
         {
