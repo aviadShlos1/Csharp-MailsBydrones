@@ -311,7 +311,6 @@ Your choice:");
                     {
                         Console.WriteLine(ex);
                     }
-
                     break;
 
                 case UpdatesOption.PickUpParcel:
