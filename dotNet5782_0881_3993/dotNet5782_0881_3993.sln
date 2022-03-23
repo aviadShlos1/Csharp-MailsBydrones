@@ -28,13 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{43257403-AF0
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{3F62E9CE-FD42-4814-92A7-3CD335AD9AB4}"
-	ProjectSection(SolutionItems) = preProject
-		xml\BaseStationXml.xml = xml\BaseStationXml.xml
-		xml\CustomerXml.xml = xml\CustomerXml.xml
-		xml\DroneChargeXml.xml = xml\DroneChargeXml.xml
-		xml\DroneXml.xml = xml\DroneXml.xml
-		xml\ParcelXml.xml = xml\ParcelXml.xml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

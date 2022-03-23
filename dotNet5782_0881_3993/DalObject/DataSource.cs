@@ -16,34 +16,34 @@ namespace Dal
 {
     static class DataSource
     {
-        //static DataSource()
-        //{
-        //    #region firstInitialize
-        //    Initialize();
-        //    string CustomerPath = @"CustomerXml.xml";
-        //    string DronePath = @"DroneXml.xml";
-        //    string BaseStationPath = @"BaseStationXml.xml";
-        //    string ParcelPath = @"ParcelXml.xml";
-        //    string DroneChargePath = @"DroneChargeXml.xml";
+        static DataSource()
+        {
+            #region firstInitialize
+            Initialize();
+            string CustomerPath = @"CustomerXml.xml";
+            string DronePath = @"DroneXml.xml";
+            string BaseStationPath = @"BaseStationXml.xml";
+            string ParcelPath = @"ParcelXml.xml";
+            string DroneChargePath = @"DroneChargeXml.xml";
 
-        //    XMLTools.SaveListToXMLSerializer(Drones, DronePath);
-        //    XMLTools.SaveListToXMLSerializer(BaseStations, BaseStationPath);
-        //    XMLTools.SaveListToXMLSerializer(Customers, CustomerPath);
-        //    XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
-        //    XMLTools.SaveListToXMLSerializer(DronesInCharge, DroneChargePath);
+            XMLTools.SaveListToXMLSerializer(Drones, DronePath);
+            XMLTools.SaveListToXMLSerializer(BaseStations, BaseStationPath);
+            XMLTools.SaveListToXMLSerializer(Customers, CustomerPath);
+            XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
+            XMLTools.SaveListToXMLSerializer(DronesInCharge, DroneChargePath);
 
-        //    #endregion firstInitialize
-        //}
+            #endregion firstInitialize
+        }
         /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();
 
         #region The entities lists
 
         /// <This five rows below describe the initialize of the entities lists >
-        internal static List<DroneDal> Drones = new(10);
-        internal static List<BaseStationDal> BaseStations = new(5);
-        internal static List<CustomerDal> Customers = new(100);
-        internal static List<ParcelDal> Parcels = new(1000);
+        internal static List<DroneDal> Drones = new();
+        internal static List<BaseStationDal> BaseStations = new();
+        internal static List<CustomerDal> Customers = new();
+        internal static List<ParcelDal> Parcels = new();
         internal static List<DroneChargeDal> DronesInCharge = new();
         #endregion The entities lists
 
@@ -109,7 +109,7 @@ namespace Dal
             for (int i = 0; i < 10; i++)
             {
                 /// ‹summary›TimeSpan field which will be used to determine time
-
+                List<DateTime?> dates = new List<DateTime?>() { DateTime.Now, null };
                 ParcelDal myParcel = new ParcelDal()
                 {
                     Id = Config.RunId++,
@@ -118,37 +118,25 @@ namespace Dal
                     Weight = RandomEnumValue<WeightCategoriesDal>(),
                     Priority = RandomEnumValue<Priorities>(),
                     CreatingTime = DateTime.Now,
-                    AssignningTime = null,
-                    PickingUpTime = null,
-                    SupplyingTime = null,
-                    DroneToParcelId = 0,
-                };
-                // lists 107-127: rand parcels details and rand assign drone , in that the system simulates real time system 
-
-                TimeSpan time = new TimeSpan(0, rand.Next(0, 24), rand.Next(0, 60), 0);
-                if (rand.Next(2) == 1)
+                    AssignningTime = dates[rand.Next(0, 2)],
+                    PickingUpTime = dates[rand.Next(0, 2)],
+                    SupplyingTime = dates[rand.Next(0, 2)],
+                    DroneToParcelId = 0
+            };
+                if (myParcel.SupplyingTime != null)
                 {
-                    myParcel.AssignningTime = myParcel.CreatingTime + time;
+                    myParcel.AssignningTime = DateTime.Now;
+                    myParcel.PickingUpTime = DateTime.Now;
+                }
+                else if (myParcel.PickingUpTime != null)
+                {
+                    myParcel.AssignningTime = DateTime.Now;
+                }
+                
+                if (myParcel.AssignningTime != null)
                     myParcel.DroneToParcelId = Drones[rand.Next(Drones.Count)].Id;
-                    if (rand.Next(2) == 1)
-                    {
-                        myParcel.PickingUpTime = myParcel.AssignningTime + time;
-                        if (rand.Next(2) == 1)
-                            myParcel.SupplyingTime = myParcel.PickingUpTime + time;
-                        else
-                            myParcel.SupplyingTime = null;
-                    }
-                    else
-                        myParcel.PickingUpTime = myParcel.SupplyingTime = null;
-                }
-                else
-                {
-                    myParcel.AssignningTime = myParcel.PickingUpTime = myParcel.SupplyingTime = null;
-                    myParcel.DroneToParcelId = 0;
-                }
 
-                Parcels.Add(myParcel);
-
+                Parcels.Add(myParcel);             
             }
             #endregion adding Parcel details
         }

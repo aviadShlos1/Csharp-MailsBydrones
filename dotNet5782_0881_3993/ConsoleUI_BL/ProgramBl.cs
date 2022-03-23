@@ -314,6 +314,7 @@ Your choice:");
 
                     break;
 
+
                 case UpdatesOption.PickUpParcel:
                     Console.WriteLine("Please enter a drone id (0-1000):");
                     while (!int.TryParse(Console.ReadLine(), out droneId)) ;
@@ -389,10 +390,6 @@ Your choice:");
                     }
 
                     break;
-
-
-                
-
                 default:
                     Console.WriteLine("you entered a wrong number please choose again");
                     break;
@@ -517,7 +514,7 @@ Your choice:");
 
                 // Drones list display
                 case ListDisplayOption.DronesList:
-                    printTheList(bl.GetDronesBl().ToList().FindAll(x=>x.DroneStatus==DroneStatusesBL.Maintaince));
+                    printTheList(bl.GetDronesBl().ToList() );
                     break;
 
                 // Customers list display

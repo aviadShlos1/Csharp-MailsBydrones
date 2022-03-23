@@ -2,122 +2,122 @@
 <ArrayOfParcelDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ParcelDal>
     <Id>0</Id>
-    <SenderId>289839329</SenderId>
-    <TargetId>272567820</TargetId>
-    <Weight>Light</Weight>
-    <Priority>Urgent</Priority>
-    <CreatingTime>2022-01-24T12:03:43.8167006+02:00</CreatingTime>
-    <AssignningTime>2022-02-13T22:29:09.4384595+02:00</AssignningTime>
+    <SenderId>669860559</SenderId>
+    <TargetId>223754697</TargetId>
+    <Weight>Heavy</Weight>
+    <Priority>Fast</Priority>
+    <CreatingTime>2022-03-23T22:16:35.4406156+02:00</CreatingTime>
+    <AssignningTime>2022-03-23T22:16:35.4329549+02:00</AssignningTime>
     <PickingUpTime xsi:nil="true" />
     <SupplyingTime xsi:nil="true" />
-    <DroneToParcelId>5280</DroneToParcelId>
+    <DroneToParcelId>4156</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>1</Id>
-    <SenderId>116265336</SenderId>
-    <TargetId>500032454</TargetId>
+    <SenderId>340141013</SenderId>
+    <TargetId>816617313</TargetId>
     <Weight>Medium</Weight>
     <Priority>Fast</Priority>
-    <CreatingTime>2022-01-24T12:03:43.820532+02:00</CreatingTime>
-    <AssignningTime>2022-02-13T22:13:33.8699479+02:00</AssignningTime>
-    <PickingUpTime>2022-02-13T22:15:06.9348859+02:00</PickingUpTime>
-    <SupplyingTime>2022-02-13T22:16:39.9979207+02:00</SupplyingTime>
-    <DroneToParcelId>3518</DroneToParcelId>
+    <CreatingTime>2022-03-23T22:16:35.441948+02:00</CreatingTime>
+    <AssignningTime>2022-03-23T22:16:35.4419492+02:00</AssignningTime>
+    <PickingUpTime>2022-03-23T22:16:35.4419495+02:00</PickingUpTime>
+    <SupplyingTime>2022-03-23T22:16:35.4419201+02:00</SupplyingTime>
+    <DroneToParcelId>6959</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>2</Id>
-    <SenderId>168181484</SenderId>
-    <TargetId>794669514</TargetId>
-    <Weight>Medium</Weight>
-    <Priority>Normal</Priority>
-    <CreatingTime>2022-01-24T12:03:43.82097+02:00</CreatingTime>
-    <AssignningTime>2022-02-13T21:59:59.1365053+02:00</AssignningTime>
-    <PickingUpTime>2022-02-13T22:00:04.1590514+02:00</PickingUpTime>
-    <SupplyingTime>2022-02-13T22:00:16.0184194+02:00</SupplyingTime>
-    <DroneToParcelId>8102</DroneToParcelId>
+    <SenderId>406375156</SenderId>
+    <TargetId>675278903</TargetId>
+    <Weight>Light</Weight>
+    <Priority>Urgent</Priority>
+    <CreatingTime>2022-03-23T22:16:35.4419522+02:00</CreatingTime>
+    <AssignningTime>2022-03-23T22:16:35.4419526+02:00</AssignningTime>
+    <PickingUpTime>2022-03-23T22:16:35.4419529+02:00</PickingUpTime>
+    <SupplyingTime>2022-03-23T22:16:35.4419502+02:00</SupplyingTime>
+    <DroneToParcelId>4156</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>3</Id>
-    <SenderId>764977343</SenderId>
-    <TargetId>868066826</TargetId>
-    <Weight>Light</Weight>
+    <SenderId>627463994</SenderId>
+    <TargetId>623831801</TargetId>
+    <Weight>Heavy</Weight>
     <Priority>Urgent</Priority>
-    <CreatingTime>2022-01-24T12:03:43.8209786+02:00</CreatingTime>
-    <AssignningTime>2022-02-13T21:34:57.7900191+02:00</AssignningTime>
-    <PickingUpTime>2022-02-13T21:54:15.5041845+02:00</PickingUpTime>
-    <SupplyingTime>2022-02-13T21:54:18.6955211+02:00</SupplyingTime>
-    <DroneToParcelId>5280</DroneToParcelId>
+    <CreatingTime>2022-03-23T22:16:35.4419551+02:00</CreatingTime>
+    <AssignningTime xsi:nil="true" />
+    <PickingUpTime xsi:nil="true" />
+    <SupplyingTime xsi:nil="true" />
+    <DroneToParcelId>0</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>4</Id>
-    <SenderId>680353141</SenderId>
-    <TargetId>306117707</TargetId>
+    <SenderId>267257087</SenderId>
+    <TargetId>343308081</TargetId>
     <Weight>Medium</Weight>
-    <Priority>Normal</Priority>
-    <CreatingTime>2022-01-24T12:03:43.8209807+02:00</CreatingTime>
-    <AssignningTime>2022-02-13T21:59:18.1667571+02:00</AssignningTime>
-    <PickingUpTime>2022-02-13T21:59:42.2981597+02:00</PickingUpTime>
-    <SupplyingTime>2022-02-13T21:59:47.6199147+02:00</SupplyingTime>
-    <DroneToParcelId>8102</DroneToParcelId>
+    <Priority>Urgent</Priority>
+    <CreatingTime>2022-03-23T22:16:35.4419574+02:00</CreatingTime>
+    <AssignningTime>2022-03-23T22:16:35.4419556+02:00</AssignningTime>
+    <PickingUpTime xsi:nil="true" />
+    <SupplyingTime xsi:nil="true" />
+    <DroneToParcelId>6234</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>5</Id>
-    <SenderId>306117707</SenderId>
-    <TargetId>680353141</TargetId>
+    <SenderId>343308081</SenderId>
+    <TargetId>267257087</TargetId>
     <Weight>Medium</Weight>
-    <Priority>Urgent</Priority>
-    <CreatingTime>2022-01-24T12:03:43.8209829+02:00</CreatingTime>
-    <AssignningTime>2022-02-13T21:33:41.3975274+02:00</AssignningTime>
-    <PickingUpTime>2022-02-13T21:34:44.7745811+02:00</PickingUpTime>
-    <SupplyingTime>2022-02-13T21:34:52.5285396+02:00</SupplyingTime>
-    <DroneToParcelId>5280</DroneToParcelId>
+    <Priority>Fast</Priority>
+    <CreatingTime>2022-03-23T22:16:35.4419991+02:00</CreatingTime>
+    <AssignningTime>2022-03-23T22:16:35.4419968+02:00</AssignningTime>
+    <PickingUpTime xsi:nil="true" />
+    <SupplyingTime xsi:nil="true" />
+    <DroneToParcelId>6959</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>6</Id>
-    <SenderId>868066826</SenderId>
-    <TargetId>764977343</TargetId>
-    <Weight>Medium</Weight>
+    <SenderId>623831801</SenderId>
+    <TargetId>627463994</TargetId>
+    <Weight>Light</Weight>
     <Priority>Fast</Priority>
-    <CreatingTime>2022-01-24T12:03:43.8209849+02:00</CreatingTime>
-    <AssignningTime>2022-01-24T14:08:43.8209849+02:00</AssignningTime>
-    <PickingUpTime>2022-02-13T21:32:50.4829051+02:00</PickingUpTime>
-    <SupplyingTime>2022-02-13T21:33:15.5868267+02:00</SupplyingTime>
-    <DroneToParcelId>5280</DroneToParcelId>
+    <CreatingTime>2022-03-23T22:16:35.4420016+02:00</CreatingTime>
+    <AssignningTime>2022-03-23T22:16:35.442002+02:00</AssignningTime>
+    <PickingUpTime>2022-03-23T22:16:35.4420023+02:00</PickingUpTime>
+    <SupplyingTime>2022-03-23T22:16:35.4419996+02:00</SupplyingTime>
+    <DroneToParcelId>6959</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>7</Id>
-    <SenderId>794669514</SenderId>
-    <TargetId>168181484</TargetId>
-    <Weight>Heavy</Weight>
+    <SenderId>675278903</SenderId>
+    <TargetId>406375156</TargetId>
+    <Weight>Medium</Weight>
     <Priority>Fast</Priority>
-    <CreatingTime>2022-01-24T12:03:43.8209872+02:00</CreatingTime>
-    <AssignningTime>2022-02-13T21:44:47.8101018+02:00</AssignningTime>
-    <PickingUpTime>2022-02-13T21:53:19.6664742+02:00</PickingUpTime>
-    <SupplyingTime>2022-02-13T21:53:32.4815566+02:00</SupplyingTime>
-    <DroneToParcelId>8102</DroneToParcelId>
+    <CreatingTime>2022-03-23T22:16:35.4420045+02:00</CreatingTime>
+    <AssignningTime>2022-03-23T22:16:35.4420027+02:00</AssignningTime>
+    <PickingUpTime xsi:nil="true" />
+    <SupplyingTime xsi:nil="true" />
+    <DroneToParcelId>6234</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>8</Id>
-    <SenderId>500032454</SenderId>
-    <TargetId>116265336</TargetId>
-    <Weight>Medium</Weight>
-    <Priority>Fast</Priority>
-    <CreatingTime>2022-01-24T12:03:43.8209893+02:00</CreatingTime>
-    <AssignningTime>2022-02-13T21:46:15.5383967+02:00</AssignningTime>
-    <PickingUpTime>2022-02-13T22:05:07.6536264+02:00</PickingUpTime>
-    <SupplyingTime>2022-02-13T22:05:19.4383105+02:00</SupplyingTime>
-    <DroneToParcelId>3518</DroneToParcelId>
+    <SenderId>816617313</SenderId>
+    <TargetId>340141013</TargetId>
+    <Weight>Light</Weight>
+    <Priority>Normal</Priority>
+    <CreatingTime>2022-03-23T22:16:35.4420068+02:00</CreatingTime>
+    <AssignningTime>2022-03-23T22:16:35.4420072+02:00</AssignningTime>
+    <PickingUpTime>2022-03-23T22:16:35.442005+02:00</PickingUpTime>
+    <SupplyingTime xsi:nil="true" />
+    <DroneToParcelId>6234</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>9</Id>
-    <SenderId>272567820</SenderId>
-    <TargetId>289839329</TargetId>
-    <Weight>Medium</Weight>
+    <SenderId>223754697</SenderId>
+    <TargetId>669860559</TargetId>
+    <Weight>Light</Weight>
     <Priority>Fast</Priority>
-    <CreatingTime>2022-01-24T12:03:43.8209914+02:00</CreatingTime>
-    <AssignningTime>2022-02-13T21:54:39.3374969+02:00</AssignningTime>
-    <PickingUpTime>2022-02-13T21:54:42.0134838+02:00</PickingUpTime>
-    <SupplyingTime>2022-02-13T21:54:47.3141468+02:00</SupplyingTime>
-    <DroneToParcelId>2617</DroneToParcelId>
+    <CreatingTime>2022-03-23T22:16:35.4420096+02:00</CreatingTime>
+    <AssignningTime xsi:nil="true" />
+    <PickingUpTime xsi:nil="true" />
+    <SupplyingTime xsi:nil="true" />
+    <DroneToParcelId>0</DroneToParcelId>
   </ParcelDal>
 </ArrayOfParcelDal>
