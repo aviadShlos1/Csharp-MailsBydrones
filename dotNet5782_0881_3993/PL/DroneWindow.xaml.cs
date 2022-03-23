@@ -319,7 +319,10 @@ namespace PL
             DroneSimulator.ProgressChanged += DroneSimulator_ProgressChanged; // change reporter
             DroneSimulator.RunWorkerCompleted += DroneSimulator_RunWorkerCompleted; //  thread complete
         }
-
+        private void DroneSimulator_DoWork(object sender, DoWorkEventArgs e)
+        {
+            blAccess.sim(MyDrone.DroneId, ReportProgressInSimultor, IsTimeRun);
+        }
         private void DroneSimulator_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //throw new NotImplementedException();
@@ -345,6 +348,23 @@ namespace PL
             int SenderCustomerIndex;
             int RecieverCustomerIndex;
 
+            //battery colors.
+            if (MyDrone.BatteryPercent < 50)
+            {
+                if (MyDrone.BatteryPercent > 20)
+                {
+                    DroneBattery.Foreground = Brushes.YellowGreen;
+                }
+                else
+                {
+                    DroneBattery.Foreground = Brushes.Red;
+                }
+            }
+            else //MyDrone.BatteryPercent > 50
+            {
+                DroneBattery.Foreground = Brushes.LimeGreen;
+
+            }
             //switch betwen drone status and according to that update the display.
             switch (MyDrone.DroneStatus)
             {
@@ -364,7 +384,7 @@ namespace PL
                         RecieverCustomerIndex = myCustomers.myCustomerPl.IndexOf(myCustomers.myCustomerPl.First(x => x.Id == ReceiverCustomerId));
                         myCustomers.myCustomerPl[RecieverCustomerIndex] = blAccess.GetCustomersBl().First(x => x.Id == ReceiverCustomerId);
 
-                        GRIDparcelInDelivery.Visibility = Visibility.Hidden;
+                        GRIDparcelInDelivery.Visibility = Visibility.Hidden; //////
                         TBnotAssigned.Visibility = Visibility.Visible;
 
                     }
@@ -396,7 +416,7 @@ namespace PL
                         ParcelIndex = myParcels.myParcelsPl.IndexOf(myParcels.myParcelsPl.First(x => x.Id == MyDrone.ParcelInShip.Id));
                         myParcels.myParcelsPl[ParcelIndex] = blAccess.GetParcelsBl().First(x => x.Id == MyDrone.ParcelInShip.Id);
 
-                        GRIDparcelInDelivery.Visibility = Visibility.Hidden;
+                        GRIDparcelInDelivery.Visibility = Visibility.Hidden;////
                         TBnotAssigned.Visibility = Visibility.Visible;
 
                     }
@@ -418,29 +438,10 @@ namespace PL
                     break;
             }
 
-            //battery colors.
-            if (MyDrone.BatteryPercent < 50)
-            {
-                if (MyDrone.BatteryPercent > 20)
-                {
-                    DroneBattery.Foreground = Brushes.YellowGreen;
-                }
-                else
-                {
-                    DroneBattery.Foreground = Brushes.Red;
-                }
-            }
-            else //MyDrone.BatteryPercent > 50
-            {
-                DroneBattery.Foreground = Brushes.LimeGreen;
-
-            }
+            
         }
 
-        private void DroneSimulator_DoWork(object sender, DoWorkEventArgs e)
-        {
-            blAccess.sim(MyDrone.DroneId, ReportProgressInSimultor, IsTimeRun);
-        }
+      
 
         public void ReportProgressInSimultor()
         {
@@ -454,7 +455,6 @@ namespace PL
         private void AutomaticBut_Click(object sender, RoutedEventArgs e)
         {
             Simulator(); //call to function which creates the process.
-
             DroneSimulator.RunWorkerAsync(); //Start running the process.
 
             //Hiding the other buttons in the background.

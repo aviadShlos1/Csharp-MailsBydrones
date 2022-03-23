@@ -31,14 +31,11 @@ namespace PL
     {
         #region main window
         /// <summary> the constructor starts the data initializing </summary>
-        // An access objet that gives us accses to bl interface  
+        // An access objet that gives us accses to bl interface  /
         internal readonly IBL AccessIbl = BlFactory.GetBl();
         public MainWindow()
         {
             InitializeComponent();
-            //SoundPlayer player = new SoundPlayer(@"C:\Users\aviad\source\repos\dotNet5782_0881_3993\dotNet5782_0881_3993\PL\icons");
-            //player.Load();
-            //player.Play();
         }
 
         /// <summary>
@@ -88,10 +85,10 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void enter_Loaded(object sender, RoutedEventArgs e)
+        private void enter_Loaded_1(object sender, RoutedEventArgs e)
         {
             AddOn.Opacity = 0;
-            DoubleAnimation Animmation = new DoubleAnimation(0, 100, TimeSpan.FromSeconds(2));
+            DoubleAnimation Animmation = new DoubleAnimation(0, 100, TimeSpan.FromSeconds(6));
             PBloading.BeginAnimation(ProgressBar.ValueProperty, Animmation);
         }
 
@@ -105,7 +102,7 @@ namespace PL
             if (PBloading.Value == 100)
             {
                 LoginButton.IsEnabled = true;
-                DoubleAnimation doubleAnimmation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(2));
+                DoubleAnimation doubleAnimmation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(5));
                 AddOn.BeginAnimation(Grid.OpacityProperty, doubleAnimmation);
                 DoubleAnimation DSF = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(1));
                 Disappear.BeginAnimation(Grid.OpacityProperty, DSF);

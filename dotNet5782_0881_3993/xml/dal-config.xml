@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <dal-config>
-	<dal>xml</dal>
+	<dal>data</dal>
 	<dal-packages>
 		<xml namespace="Dal" class="DalXml">DalXml</xml>
 		<data namespace="Dal" class="DalObject" >DalObject</data>
