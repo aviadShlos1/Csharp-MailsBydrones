@@ -14,9 +14,12 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Login Window" Height="500" Width="860" >
+        Title="Login Window" Height="500" Width="860" 
+        
+        >
+
     <Grid>
-        <MediaElement x:Name="enter" Source="New Project.avi" HorizontalAlignment="Center"  VerticalAlignment="Center" Height="484" Width="860" Volume="0" Stretch="Fill" UnloadedBehavior="Manual" Loaded="enter_Loaded"/>
+
         <Grid>
             <Grid x:Name="AddOn" >
                 <Grid.RowDefinitions>
@@ -135,8 +138,7 @@
                 </ProgressBar>
             </Grid>
         </Grid>
-
-
+        
     </Grid>
 
 </Window>
