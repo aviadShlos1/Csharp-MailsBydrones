@@ -217,8 +217,8 @@ Your choice:");
 
                 case UpdatesOption.PickUpParcel:
                     Console.WriteLine("please enter a parcel ID(0-1000):");
-                    int.TryParse(Console.ReadLine(), out DroneId);
-                    dal.PickUpParcel(DroneId);
+                    int.TryParse(Console.ReadLine(), out ParcelId);
+                    dal.PickUpParcel(ParcelId);
                     break;
 
                 case UpdatesOption.DelieverParcel:

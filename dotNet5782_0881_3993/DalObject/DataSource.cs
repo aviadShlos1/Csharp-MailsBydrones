@@ -16,24 +16,24 @@ namespace Dal
 {
     static class DataSource
     {
-        static DataSource()
-        {
-            #region firstInitialize
-            Initialize();
-            string CustomerPath = @"CustomerXml.xml";
-            string DronePath = @"DroneXml.xml";
-            string BaseStationPath = @"BaseStationXml.xml";
-            string ParcelPath = @"ParcelXml.xml";
-            string DroneChargePath = @"DroneChargeXml.xml";
+        //static DataSource()
+        //{
+        //    #region firstInitialize
+        //    Initialize();
+        //    string CustomerPath = @"CustomerXml.xml";
+        //    string DronePath = @"DroneXml.xml";
+        //    string BaseStationPath = @"BaseStationXml.xml";
+        //    string ParcelPath = @"ParcelXml.xml";
+        //    string DroneChargePath = @"DroneChargeXml.xml";
 
-            XMLTools.SaveListToXMLSerializer(Drones, DronePath);
-            XMLTools.SaveListToXMLSerializer(BaseStations, BaseStationPath);
-            XMLTools.SaveListToXMLSerializer(Customers, CustomerPath);
-            XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
-            XMLTools.SaveListToXMLSerializer(DronesInCharge, DroneChargePath);
+        //    XMLTools.SaveListToXMLSerializer(Drones, DronePath);
+        //    XMLTools.SaveListToXMLSerializer(BaseStations, BaseStationPath);
+        //    XMLTools.SaveListToXMLSerializer(Customers, CustomerPath);
+        //    XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
+        //    XMLTools.SaveListToXMLSerializer(DronesInCharge, DroneChargePath);
 
-            #endregion firstInitialize
-        }
+        //    #endregion firstInitialize
+        //}
         /// ‹summary›Random field which will be used to rand details
         public static Random rand = new();
 

@@ -120,13 +120,13 @@ namespace Dal
         /// Picking up a parcel by the assined drone before, with given the parcel id
         /// </summary>
         /// <param name="parcelId"></param>
-        public void PickUpParcel(int droneId)
+        public void PickUpParcel(int parcelId)
         {
             
-            int parcelIndex = DataSource.Parcels.FindIndex(i => i.DroneToParcelId == droneId);
+            int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
             if (parcelIndex == -1)
             {
-                throw new NotExistException(droneId);
+                throw new NotExistException(parcelId);
             }
             ParcelDal parcel2 = DataSource.Parcels[parcelIndex];
             parcel2.PickingUpTime = DateTime.Now;
@@ -136,12 +136,12 @@ namespace Dal
         /// Delivering the parcel to the customer
         /// </summary>
         /// <param name="parcelId"></param>
-        public void SupplyParcel(int droneId)
+        public void SupplyParcel(int parcelId)
         {
-            int parcelIndex = DataSource.Parcels.FindIndex(i => i.DroneToParcelId == droneId);
+            int parcelIndex = DataSource.Parcels.FindIndex(i => i.Id == parcelId);
             if (parcelIndex == -1)
             {
-                throw new NotExistException(droneId);
+                throw new NotExistException(parcelId);
             }
             ParcelDal parcel3 = DataSource.Parcels[parcelIndex];
             parcel3.SupplyingTime = DateTime.Now;

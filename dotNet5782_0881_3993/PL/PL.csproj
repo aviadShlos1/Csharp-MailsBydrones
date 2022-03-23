@@ -18,7 +18,6 @@
     <None Remove="Images\close.jpg" />
     <None Remove="Images\cus2.png" />
     <None Remove="Images\CustomersBackground.png" />
-    <None Remove="Images\drone-delivery-drone.gif" />
     <None Remove="Images\Drone.jpg" />
     <None Remove="Images\droneIn.png" />
     <None Remove="Images\DronesBackground.jpg" />
@@ -57,9 +56,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\CustomersBackground.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\drone-delivery-drone.gif">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Drone.jpg">
