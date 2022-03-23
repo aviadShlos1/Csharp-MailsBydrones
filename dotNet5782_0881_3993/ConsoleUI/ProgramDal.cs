@@ -22,7 +22,7 @@ namespace ConsoleUI
     /// <summary> enum for AddOption</summary>
     enum AddOptions { AddStation = 1, AddDrone, AddCustomer, AddParcel }
    
-    /// <summary> enum for UpdatesOption</summary>
+    /// <summary> enum for UpdatesOption</summary >
     enum UpdatesOption { ConnectDroneToParcel = 1, PickUpParcel, DelieverParcel, DroneToCharge, DroneRelease }
 
     /// <summary> enum for SingleOptionDisplay </summary>
