@@ -5,13 +5,13 @@
     <Name>Herzliya</Name>
     <Longitude>34.842</Longitude>
     <Latitude>32.164</Latitude>
-    <FreeChargeSlots>4</FreeChargeSlots>
+    <FreeChargeSlots>6</FreeChargeSlots>
   </BaseStationDal>
   <BaseStationDal>
     <Id>1</Id>
     <Name>Tel Aviv</Name>
     <Longitude>34.779</Longitude>
     <Latitude>32.056</Latitude>
-    <FreeChargeSlots>9</FreeChargeSlots>
+    <FreeChargeSlots>3</FreeChargeSlots>
   </BaseStationDal>
 </ArrayOfBaseStationDal>

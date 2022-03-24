@@ -15,17 +15,30 @@ namespace Dal
 {
     sealed class DalXml : IDal
     {
-        #region Singleton
-        static readonly IDal instance = new DalXml();
-        public static IDal Instance { get => instance; }
-
-        #endregion Singleton
-
         public static string DronePath = @"DroneXml.xml";
         public static string BaseStationPath = @"BaseStationXml.xml";
         public static string ParcelPath = @"ParcelXml.xml";
         public static string DroneChargePath = @"DroneChargeXml.xml";
         public static string CustomerPath = @"CustomerXml.xml";
+       
+        #region Singleton
+        static readonly IDal instance = new DalXml();
+        public static IDal Instance { get => instance; }
+
+        private DalXml()
+        {
+            List<DroneChargeDal> droneCharge = XMLTools.LoadListFromXMLSerializer<DroneChargeDal>(DroneChargePath);
+            foreach (var item in droneCharge)
+            {
+                DroneToRelease(item.DroneId);
+            }
+            droneCharge.Clear();
+            XMLTools.SaveListToXMLSerializer(droneCharge, DroneChargePath);
+        }
+        #endregion Singleton
+
+
+       
         public double[] EnergyConsumption()
         {
             List<string> config = XMLTools.LoadListFromXMLSerializer<string>(@"ConfigDetails.xml");
@@ -238,13 +251,13 @@ namespace Dal
         /// Picking up a parcel by the assined drone before, with given the parcel id
         /// </summary>
         /// <param name="parcelId"></param>
-        public void PickUpParcel(int droneId)
+        public void PickUpParcel(int parcelId)
         {
             List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
-            int parcelIndex = Parcels.FindIndex(i => i.DroneToParcelId == droneId);
+            int parcelIndex = Parcels.FindIndex(i => i.Id == parcelId);
             if (parcelIndex == -1)
             {
-                throw new NotExistException(droneId);
+                throw new NotExistException(parcelId);
             }
             ParcelDal parcel2 = Parcels[parcelIndex];
             parcel2.PickingUpTime = DateTime.Now;
@@ -255,13 +268,13 @@ namespace Dal
         /// Delivering the parcel to the customer
         /// </summary>
         /// <param name="parcelId"></param>
-        public void SupplyParcel(int droneId)
+        public void SupplyParcel(int parcelId)
         {
             List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
-            int parcelIndex = Parcels.FindIndex(i => i.DroneToParcelId == droneId);
+            int parcelIndex = Parcels.FindIndex(i => i.Id == parcelId);
             if (parcelIndex == -1)
             {
-                throw new NotExistException(droneId);
+                throw new NotExistException(parcelId);
             }
             ParcelDal parcel3 = Parcels[parcelIndex];
             parcel3.SupplyingTime = DateTime.Now;
