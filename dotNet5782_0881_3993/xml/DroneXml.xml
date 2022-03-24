@@ -25,4 +25,14 @@
     <Model>4</Model>
     <DroneWeight>Medium</DroneWeight>
   </DroneDal>
+  <DroneDal>
+    <Id>1000</Id>
+    <Model>6</Model>
+    <DroneWeight>Heavy</DroneWeight>
+  </DroneDal>
+  <DroneDal>
+    <Id>1010</Id>
+    <Model>7</Model>
+    <DroneWeight>Heavy</DroneWeight>
+  </DroneDal>
 </ArrayOfDroneDal>

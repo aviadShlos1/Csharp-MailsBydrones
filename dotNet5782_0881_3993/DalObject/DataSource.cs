@@ -50,12 +50,12 @@ namespace Dal
         /// <summary> Updating the parcel amount </summary>
         internal static class Config
         {
-            public static int RunId = 0;//This parameter will be updated both in Initialize and Add methods
+            public static int ParcelRunId = 1000;//This parameter will be updated both in Initialize and Add methods
             public static double FreeWeightConsumption = 0.06; // The power consumption for free weight drone. 
             public static double LightWeightConsumption = 0.08;
             public static double MediumWeightConsumption = 0.09;
             public static double HeavyWeightConsumption = 0.11;
-            public static double ChargeRate = 50; // 50 percent for hour  
+            public static double ChargeRate = 10000;  
         }
 
         /// ‹summary›This method allows us to rand objects from the enum class
@@ -112,7 +112,7 @@ namespace Dal
                 List<DateTime?> dates = new List<DateTime?>() { DateTime.Now, null };
                 ParcelDal myParcel = new ParcelDal()
                 {
-                    Id = Config.RunId++,
+                    Id = Config.ParcelRunId++,
                     SenderId = Customers[i].Id,
                     TargetId = Customers[9 - i].Id,
                     Weight = RandomEnumValue<WeightCategoriesDal>(),
