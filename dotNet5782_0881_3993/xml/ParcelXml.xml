@@ -43,10 +43,10 @@
     <Weight>Medium</Weight>
     <Priority>Urgent</Priority>
     <CreatingTime>2022-03-24T20:18:00.225759+02:00</CreatingTime>
-    <AssignningTime xsi:nil="true" />
+    <AssignningTime>2022-03-24T20:42:56.9302611+02:00</AssignningTime>
     <PickingUpTime xsi:nil="true" />
     <SupplyingTime xsi:nil="true" />
-    <DroneToParcelId>9573</DroneToParcelId>
+    <DroneToParcelId>3972</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>4</Id>
@@ -103,10 +103,10 @@
     <Weight>Medium</Weight>
     <Priority>Urgent</Priority>
     <CreatingTime>2022-03-24T20:18:00.2257992+02:00</CreatingTime>
-    <AssignningTime xsi:nil="true" />
+    <AssignningTime>2022-03-24T20:40:46.2183016+02:00</AssignningTime>
     <PickingUpTime xsi:nil="true" />
     <SupplyingTime xsi:nil="true" />
-    <DroneToParcelId>0</DroneToParcelId>
+    <DroneToParcelId>8668</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>9</Id>
