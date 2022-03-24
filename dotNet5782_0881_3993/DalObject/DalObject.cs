@@ -72,7 +72,7 @@ namespace Dal
         }
         public int AddParcel(ParcelDal newParcel)
         {  
-            newParcel.Id = ++(DataSource.Config.RunId); 
+            newParcel.Id = ++(DataSource.Config.ParcelRunId); 
             DataSource.Parcels.Add(newParcel);
             return newParcel.Id;
         }

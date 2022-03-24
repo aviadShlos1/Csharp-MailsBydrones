@@ -253,7 +253,7 @@ namespace BL
                 droneItem.BatteryPercent -= Math.Floor(currentToSender * freeWeightConsumption);
                 droneItem.DroneLocation.Longitude = senderItem.Longitude;
                 droneItem.DroneLocation.Latitude = senderItem.Latitude;
-                DalAccess.PickUpParcel(droneItem.ParcelAssignedId);
+                DalAccess.PickUpParcel(parcelItem.Id);
             }
         }
 
@@ -291,7 +291,7 @@ namespace BL
                 droneItem.DroneLocation.Latitude = targetItem.Latitude;
                 droneItem.ParcelAssignedId = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission
                 droneItem.DroneStatus = BO.DroneStatusesBL.Available;
-                DalAccess.SupplyParcel(droneItem.ParcelAssignedId);
+                DalAccess.SupplyParcel(parcelItem.Id);
             }
 
         }
