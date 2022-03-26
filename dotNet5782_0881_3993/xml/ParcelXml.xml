@@ -7,8 +7,8 @@
     <Weight>Heavy</Weight>
     <Priority>Fast</Priority>
     <CreatingTime>2022-03-24T20:18:00.2250743+02:00</CreatingTime>
-    <AssignningTime xsi:nil="true" />
-    <PickingUpTime xsi:nil="true" />
+	<AssignningTime>2022-03-24T21:02:46.4460302+02:00</AssignningTime>
+	<PickingUpTime>2022-03-24T21:03:05.6785244+02:00</PickingUpTime>
     <SupplyingTime>2022-03-24T21:03:48.8487392+02:00</SupplyingTime>
     <DroneToParcelId>0</DroneToParcelId>
   </ParcelDal>
