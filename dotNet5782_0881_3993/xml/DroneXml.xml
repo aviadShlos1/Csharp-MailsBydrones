@@ -26,8 +26,8 @@
     <DroneWeight>Heavy</DroneWeight>
   </DroneDal>
   <DroneDal>
-    <Id>1212</Id>
-    <Model>8</Model>
+    <Id>3000</Id>
+    <Model>6</Model>
     <DroneWeight>Light</DroneWeight>
   </DroneDal>
 </ArrayOfDroneDal>
