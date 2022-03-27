@@ -286,7 +286,22 @@ namespace BL
             else //updating the battery,location, status and suppling time
             {
                 double currentToTarget = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, targetItem.Longitude, targetItem.Latitude);
-                droneItem.BatteryPercent -= Math.Floor(currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1]);
+                switch ((WeightCategoriesBL)parcelItem.Weight)
+                {
+                    case WeightCategoriesBL.Light:
+                        droneItem.BatteryPercent -= GetDistance(targetItem.Longitude, targetItem.Latitude, droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude) * lightWeightConsumption;
+                        break;
+                    case WeightCategoriesBL.Medium:
+                        droneItem.BatteryPercent -= GetDistance(targetItem.Longitude, targetItem.Latitude, droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude) * mediumWeightConsumption;
+                        break;
+                    case WeightCategoriesBL.Heavy:
+                        droneItem.BatteryPercent -= GetDistance(targetItem.Longitude, targetItem.Latitude, droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude) * heavyWeightConsumption;
+                        break;
+                    default:
+                        break;
+                }
+
+                //droneItem.BatteryPercent -= Math.Floor(currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1]);
                 droneItem.DroneLocation.Longitude = targetItem.Longitude;
                 droneItem.DroneLocation.Latitude = targetItem.Latitude;
                 droneItem.ParcelAssignedId = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission

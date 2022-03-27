@@ -101,6 +101,7 @@ namespace PL
                 {
                     DroneId = int.Parse(IdTbx.Text),
                     Model = ModelTbx.Text,
+                    DroneWeight=(WeightCategoriesBL)WeightSelector.SelectedIndex
                 };
                 firstChargeStation = (int)BaseStationIdSelector.SelectedItem;
                 this.AddOption.DataContext = newDrone;
