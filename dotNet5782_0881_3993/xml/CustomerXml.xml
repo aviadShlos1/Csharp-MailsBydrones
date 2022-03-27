@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCustomerDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CustomerDal>
     <Id>877600717</Id>
@@ -69,5 +69,19 @@
     <Phone>0574436143</Phone>
     <Longitude>31.81865882873535</Longitude>
     <Latitude>34.95890808105469</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>314960881</Id>
+    <Name>Aviad</Name>
+    <Phone>0549107107</Phone>
+    <Longitude>32.4</Longitude>
+    <Latitude>34.6</Latitude>
+  </CustomerDal>
+  <CustomerDal>
+    <Id>208500553</Id>
+    <Name>Efrat</Name>
+    <Phone>0587133002</Phone>
+    <Longitude>32.5</Longitude>
+    <Latitude>34.55</Latitude>
   </CustomerDal>
 </ArrayOfCustomerDal>
