@@ -35,4 +35,9 @@
     <Model>6</Model>
     <DroneWeight>Medium</DroneWeight>
   </DroneDal>
+  <DroneDal>
+    <Id>2199</Id>
+    <Model>8</Model>
+    <DroneWeight>Medium</DroneWeight>
+  </DroneDal>
 </ArrayOfDroneDal>

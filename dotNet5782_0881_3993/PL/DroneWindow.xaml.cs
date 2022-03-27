@@ -48,24 +48,24 @@ namespace PL
             baseId = blAccess.GetBaseStationsBl().Select(item => item.Id);
             BaseStationIdSelector.ItemsSource = baseId;
         }
-        /// <summary>
-        /// A selection event, the user will choose between the weight categories 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            WeightSelector.SelectedItem = Enum.GetValues(typeof(WeightCategoriesBL));
-        }
-        /// <summary>
-        /// A selection event, the user will choose between the status categories 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            StatusSelector.SelectedItem = Enum.GetValues(typeof(DroneStatusesBL));
-        }
+        ///// <summary>
+        ///// A selection event, the user will choose between the weight categories 
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    WeightSelector.SelectedItem = Enum.GetValues(typeof(WeightCategoriesBL));
+        //}
+        ///// <summary>
+        ///// A selection event, the user will choose between the status categories 
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    StatusSelector.SelectedItem = Enum.GetValues(typeof(DroneStatusesBL));
+        //}
         /// <summary>
         /// A selection event, the user will choose between the base stations  
         /// </summary>
