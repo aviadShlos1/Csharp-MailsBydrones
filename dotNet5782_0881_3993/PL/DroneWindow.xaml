@@ -35,11 +35,11 @@
             <TextBox Name="IdTbx"  Text="{Binding Path=DroneId}" HorizontalAlignment="Left" Margin="147,80,0,0" TextWrapping="Wrap" 
                      VerticalAlignment="Top" Width="120" MaxLength="4"/>
             <ComboBox Name="WeightSelector" HorizontalAlignment="Left" Margin="147,128,0,0" Text="" 
-                      VerticalAlignment="Top" Width="120"  SelectedItem="{Binding DroneWeight}" SelectionChanged="WeightComboBox_SelectionChanged"/>
+                      VerticalAlignment="Top" Width="120"  SelectedItem="{Binding DroneWeight}"/>
             <TextBox Name="ModelTbx" HorizontalAlignment="Left" Margin="147,184,0,0"  Text="{Binding Model}" TextWrapping="Wrap" 
                      VerticalAlignment="Top" Width="120"/>
             <ComboBox Name="StatusSelector" HorizontalAlignment="Left" Margin="147,231,0,0" Text="" 
-                      VerticalAlignment="Top" Width="120" SelectionChanged="StatusComboBox_SelectionChanged"/>
+                      VerticalAlignment="Top" Width="120" />
             <ComboBox Name="BaseStationIdSelector" HorizontalAlignment="Left" Margin="147,272,0,0" Text="" 
                       VerticalAlignment="Top" Width="120" SelectionChanged="BaseStationIdComboBox_SelectionChanged"/>
 
