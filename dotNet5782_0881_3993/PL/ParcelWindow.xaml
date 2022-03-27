@@ -14,7 +14,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Images\addParcel.jpg" />
+            <ImageBrush ImageSource="Images\addParcel.jpg" Opacity="0.6"/>
         </Grid.Background>
         <Grid x:Name="AddOption" Visibility="Hidden">
             <Grid.ColumnDefinitions>
@@ -49,7 +49,7 @@
                      Style="{StaticResource MaterialDesignFloatingActionLightButton}" FontFamily="Comic Sans MS" FontWeight="Bold" Height="48" Width="62" Click="AddButton_Click" Grid.Row="1"/>
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>

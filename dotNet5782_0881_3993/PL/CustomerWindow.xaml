@@ -124,7 +124,7 @@
 
 
         <Grid.Background >
-            <ImageBrush ImageSource="Images\Cb.png" Opacity="0.5" />
+            <ImageBrush ImageSource="Images\Cb.png" Opacity="0.4" />
         </Grid.Background>
 
     </Grid>

@@ -13,7 +13,7 @@
 
     <Grid Name="MainGrid">
         <Grid.Background>
-            <ImageBrush ImageSource="Images\Base.jpg" />
+            <ImageBrush ImageSource="Images\Base.jpg" Opacity="0.5" />
         </Grid.Background>
 
         <Grid x:Name="BaseStaionAddOption" Visibility="Hidden">
@@ -53,7 +53,7 @@
 
 
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="*"/>

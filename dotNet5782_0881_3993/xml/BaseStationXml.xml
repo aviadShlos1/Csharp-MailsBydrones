@@ -14,4 +14,11 @@
     <Latitude>32.056</Latitude>
     <FreeChargeSlots>3</FreeChargeSlots>
   </BaseStationDal>
+  <BaseStationDal>
+    <Id>2</Id>
+    <Name>Jerusalem</Name>
+    <Longitude>32.5</Longitude>
+    <Latitude>34.3</Latitude>
+    <FreeChargeSlots>5</FreeChargeSlots>
+  </BaseStationDal>
 </ArrayOfBaseStationDal>
