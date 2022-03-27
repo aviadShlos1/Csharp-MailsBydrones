@@ -50,7 +50,7 @@
                     <GridViewColumn  x:Name="Id" Header="Id" DisplayMemberBinding="{Binding DroneId}" Width="auto" />
                     <GridViewColumn  x:Name="Model" Header="Model" DisplayMemberBinding="{Binding Model}" Width="auto"/>
                     <GridViewColumn  x:Name="Location" Header="Location" DisplayMemberBinding="{Binding DroneLocation}" Width="auto"/>
-                    <GridViewColumn  x:Name="Battery" Header="Battery %" DisplayMemberBinding="{Binding BatteryPercent, StringFormat={}{0:0.00}%}" Width="auto"/>
+                    <GridViewColumn  x:Name="Battery" Header="Battery %" DisplayMemberBinding="{Binding BatteryPercent, StringFormat={}{0:0}%}" Width="auto"/>
                     <GridViewColumn  x:Name="Weight" Header="Weight"  DisplayMemberBinding="{Binding DroneWeight}" Width="auto"/>
                     <GridViewColumn  x:Name="DronesStatus" Header="Status" DisplayMemberBinding="{Binding DroneStatus}" Width="auto"/>
                     <GridViewColumn  x:Name="ParcelTransfer"  Header="ParcelId"  DisplayMemberBinding="{Binding ParcelAssignedId}"  Width="100"/>

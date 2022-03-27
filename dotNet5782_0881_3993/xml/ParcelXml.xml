@@ -7,10 +7,10 @@
     <Weight>Light</Weight>
     <Priority>Urgent</Priority>
     <CreatingTime>2022-03-27T00:04:58.8638944+03:00</CreatingTime>
-    <AssignningTime xsi:nil="true" />
-    <PickingUpTime xsi:nil="true" />
-    <SupplyingTime xsi:nil="true" />
-    <DroneToParcelId>0</DroneToParcelId>
+    <AssignningTime>2022-03-27T15:02:46.1418949+03:00</AssignningTime>
+    <PickingUpTime>2022-03-27T15:02:57.8353772+03:00</PickingUpTime>
+    <SupplyingTime>2022-03-27T15:03:03.863525+03:00</SupplyingTime>
+    <DroneToParcelId>1700</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>1001</Id>
@@ -67,10 +67,10 @@
     <Weight>Medium</Weight>
     <Priority>Fast</Priority>
     <CreatingTime>2022-03-27T00:04:58.8646621+03:00</CreatingTime>
-    <AssignningTime xsi:nil="true" />
+    <AssignningTime>2022-03-27T15:03:54.468504+03:00</AssignningTime>
     <PickingUpTime xsi:nil="true" />
     <SupplyingTime xsi:nil="true" />
-    <DroneToParcelId>0</DroneToParcelId>
+    <DroneToParcelId>1700</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>1006</Id>
@@ -91,10 +91,10 @@
     <Weight>Light</Weight>
     <Priority>Fast</Priority>
     <CreatingTime>2022-03-27T00:04:58.8646668+03:00</CreatingTime>
-    <AssignningTime xsi:nil="true" />
-    <PickingUpTime xsi:nil="true" />
-    <SupplyingTime xsi:nil="true" />
-    <DroneToParcelId>0</DroneToParcelId>
+    <AssignningTime>2022-03-27T15:24:30.5973+03:00</AssignningTime>
+    <PickingUpTime>2022-03-27T15:26:15.7325939+03:00</PickingUpTime>
+    <SupplyingTime>2022-03-27T15:26:22.4109586+03:00</SupplyingTime>
+    <DroneToParcelId>4664</DroneToParcelId>
   </ParcelDal>
   <ParcelDal>
     <Id>1008</Id>
@@ -116,8 +116,8 @@
     <Priority>Urgent</Priority>
     <CreatingTime>2022-03-27T00:04:58.8646718+03:00</CreatingTime>
     <AssignningTime>2022-03-27T12:33:10.5536835+03:00</AssignningTime>
-    <PickingUpTime xsi:nil="true" />
-    <SupplyingTime xsi:nil="true" />
+    <PickingUpTime>2022-03-27T15:30:32.6919519+03:00</PickingUpTime>
+    <SupplyingTime>2022-03-27T15:32:14.8693063+03:00</SupplyingTime>
     <DroneToParcelId>4055</DroneToParcelId>
   </ParcelDal>
 </ArrayOfParcelDal>
