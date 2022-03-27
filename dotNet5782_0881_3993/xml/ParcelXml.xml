@@ -115,9 +115,9 @@
     <Weight>Medium</Weight>
     <Priority>Urgent</Priority>
     <CreatingTime>2022-03-27T00:04:58.8646718+03:00</CreatingTime>
-    <AssignningTime xsi:nil="true" />
+    <AssignningTime>2022-03-27T12:33:10.5536835+03:00</AssignningTime>
     <PickingUpTime xsi:nil="true" />
     <SupplyingTime xsi:nil="true" />
-    <DroneToParcelId>0</DroneToParcelId>
+    <DroneToParcelId>4055</DroneToParcelId>
   </ParcelDal>
 </ArrayOfParcelDal>

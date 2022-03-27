@@ -55,10 +55,10 @@
 
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Hidden" Margin="-9,4,9,-4">
+        <Grid x:Name="UpdateOptions" Visibility="Visible" Margin="-9,4,9,-4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="43*"/>
-                <ColumnDefinition Width="117*"/>
+                <ColumnDefinition Width="153*"/>
+                <ColumnDefinition Width="647*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -71,24 +71,24 @@
                 <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="DroneIdTbx" BorderThickness="0" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="18"  Background="Transparent" FontWeight="Bold"  Grid.Column="1"
-                     HorizontalAlignment="Left" Text="{Binding DroneId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" IsReadOnly="True" Margin="10,27,0,0" Height="33"/>
-            <TextBox x:Name="DroneWeightSelector" BorderThickness="0" Grid.Row="3" FontFamily="Comic Sans MS" FontSize="18"  Background="Transparent" FontWeight="Bold"   Grid.Column="1" 
-                     HorizontalAlignment="Left" Text="{Binding DroneWeight}" VerticalAlignment="Top" Width="183"  IsReadOnly="True" Margin="2,26,0,0" Height="34"/>
+            <TextBox x:Name="DroneIdTbx" BorderThickness="0" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="18"  Background="Transparent" FontWeight="Bold"
+                     HorizontalAlignment="Left" Text="{Binding DroneId}" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" IsReadOnly="True" Margin="142,26,0,0" Height="33" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="DroneWeightSelector" BorderThickness="0" Grid.Row="3" FontFamily="Comic Sans MS" FontSize="18"  Background="Transparent" FontWeight="Bold" 
+                     HorizontalAlignment="Left" Text="{Binding DroneWeight}" VerticalAlignment="Center" Width="183"  IsReadOnly="True" Margin="142,0,0,0" Height="34" Grid.ColumnSpan="2"/>
             <TextBox x:Name="DroneModelTbx" BorderThickness="0" FontFamily="Comic Sans MS" FontSize="18" Background="Transparent" FontWeight="Bold" Grid.Column="1" 
-                     HorizontalAlignment="Left"  Text="{Binding Model}" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" IsEnabled="True" MaxLength="2" Height="33" Margin="102,17,0,0"/>
-            <TextBox x:Name="DroneStatusSelector" BorderThickness="0" FontFamily="Comic Sans MS" FontSize="16"  Background="Transparent" FontWeight="Bold"  Grid.Column="1"
-                     HorizontalAlignment="Left" Text="{Binding DroneStatus}" VerticalAlignment="Top" Width="136"  IsReadOnly="True" Margin="10,28,0,0" Height="30" Grid.Row="2"/>
+                     HorizontalAlignment="Left"  Text="{Binding Model}" TextWrapping="Wrap" VerticalAlignment="Center" Width="91" IsEnabled="True" MaxLength="2" Height="33" Margin="2,0,0,0"/>
+            <TextBox x:Name="DroneStatusSelector" BorderThickness="0" FontFamily="Comic Sans MS" FontSize="16"  Background="Transparent" FontWeight="Bold"
+                     HorizontalAlignment="Left" Text="{Binding DroneStatus}" VerticalAlignment="Top" Width="136"  IsReadOnly="True" Margin="142,19,0,0" Height="30" Grid.Row="2" Grid.ColumnSpan="2"/>
             <TextBox x:Name="DroneLoc"  Background="Transparent" FontFamily="Comic Sans MS" FontSize="16" FontWeight="Bold" BorderThickness="0"
-                     HorizontalAlignment="Left"  Text="" VerticalAlignment="Top" Width="228" Margin="341,71,0,0" Height="77" Grid.Column="1" Grid.RowSpan="2"  />
+                     HorizontalAlignment="Left"  Text="" VerticalAlignment="Top" Width="228" Margin="168,72,0,0" Height="77" Grid.Column="1" Grid.RowSpan="3" Grid.Row="1"  />
 
-            <TextBlock Text="Drone Id:" FontFamily="Comic Sans MS" FontSize="25" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Margin="52,25,17,0"
+            <TextBlock Text="Id:" FontFamily="Comic Sans MS" FontSize="25" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Margin="34,26,37,0"
                        VerticalAlignment="Top" Visibility="Visible" Height="35" />
             <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Max Weight:" Grid.Column="0" Grid.Row="3" 
-                       FontSize="25" TextWrapping="Wrap"  Visibility="Visible" VerticalAlignment="Top" Width="151" Margin="47,26,0,0" Height="35"/>
-            <TextBlock x:Name="ModelTbl" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Grid.Column="1" Margin="24,17,0,0" Text="Model:" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" Height="34"/>
-            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Status:" Margin="72,26,0,0" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="28" Grid.Row="2"/>
-            <TextBlock HorizontalAlignment="Center" FontFamily="Comic Sans MS" Text="Location:" Grid.Column="1" Margin="0,27,0,0" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="88" Visibility="Visible" Height="28" Grid.Row="1"/>
+                       FontSize="22" TextWrapping="Wrap"  Visibility="Visible" VerticalAlignment="Top" Width="102" Margin="32,0,0,0" Height="77" Grid.RowSpan="2"/>
+            <TextBlock x:Name="ModelTbl" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Model:" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Center" Width="78" Height="34" Margin="32,0,0,0"/>
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Status:" Margin="34,19,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="28" Grid.Row="2"/>
+            <TextBlock HorizontalAlignment="Left" FontFamily="Comic Sans MS" Text="Location:" Margin="194,32,0,0" FontSize="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" Visibility="Visible" Height="28" Grid.Row="1" Grid.Column="1"/>
             <!--<TextBlock x:Name="ParcelInShipmentTbl" HorizontalAlignment="Left" FontFamily="Comic Sans MS" Margin="30,10,0,0" Text="Parcel Assigned" FontSize="25"
                        Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254" Visibility="Visible" Grid.ColumnSpan="2"/>-->
 
@@ -100,7 +100,7 @@
                 <Grid Height="125" VerticalAlignment="Center" Margin="0,0,-42,0">
                     <materialDesign:PackIcon Kind="BatteryCharging10" Height="105" Width="123" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <ProgressBar x:Name="DroneBattery" Value="{Binding Path=BatteryPercent}" Maximum="100" HorizontalAlignment="Left" 
-                                 Height="31" Margin="48,0,0,0" VerticalAlignment="Center" Width="63" BorderBrush="{x:Null}" 
+                                 Height="35" Margin="83,48,0,0" VerticalAlignment="Top" Width="57" BorderBrush="{x:Null}" 
                                  RenderTransformOrigin="0.5,0.5" Background="{x:Null}" Foreground="#FF30F027">
                         <ProgressBar.RenderTransform>
                             <TransformGroup>
@@ -112,7 +112,7 @@
                         </ProgressBar.RenderTransform>
                     </ProgressBar>
                     <TextBlock x:Name="TBBatrryStatuses" HorizontalAlignment="Left" Text="{Binding BatteryPercent, StringFormat=\{0:#0\}%}" TextWrapping="Wrap" 
-                               VerticalAlignment="Center" Width="36"   TextAlignment="Left" FontWeight="Bold" Background="{x:Null}" Foreground="Purple" Height="20" RenderTransformOrigin="-0.005,0.491" Margin="62,0,0,0"/>
+                               VerticalAlignment="Top" Width="36"   TextAlignment="Left" FontWeight="Bold" Background="{x:Null}" Foreground="Purple" Height="20" RenderTransformOrigin="-0.005,0.491" Margin="92,50,0,0"/>
                 </Grid>
             </materialDesign:Card>
 
@@ -202,7 +202,7 @@
 
 
 
-            <WrapPanel x:Name="UpdateMethods" Margin="102,0,327,2" Grid.Column="1">
+            <WrapPanel x:Name="UpdateMethods" Margin="385,12,10,4" Grid.Column="1" Grid.RowSpan="2">
                 <Button x:Name="DroneToChargeButton" Content="DroneToCharge" FontFamily="Comic Sans MS" Width="auto" Click="DroneToChargeButton_Click" Visibility="Collapsed"/>
                 <Button x:Name="ReleaseFromChargeButton" Content="ReleaseFromCharge" FontFamily="Comic Sans MS" Width="auto" Click="ReleaseFromChargeButton_Click" Visibility="Collapsed"/>
                 <Button x:Name="AssignParcelToDroneButton" Content="AssignParcel" FontFamily="Comic Sans MS" Width="auto" Click="AssignParcelToDroneButton_Click" Visibility="Collapsed"/>
@@ -210,8 +210,8 @@
                 <Button x:Name="SupplyParcelButton" Content="SupplyParcel" FontFamily="Comic Sans MS" Width="auto" Click="SupplyParcelButton_Click" Visibility="Collapsed" />
 
             </WrapPanel>
-            <Button x:Name="UpdateNameButton" Content="Update" FontFamily="Comic Sans MS"  Style="{StaticResource MaterialDesignRaisedButton}" Background="LawnGreen"
-    ToolTip="Resource name: MaterialDesignRaisedButton" Width="auto" Click="NameUpdateButton_Click" Visibility="Visible" Margin="47,27,68,15"/>
+            <Button x:Name="UpdateNameButton" Content="Update Model" FontFamily="Comic Sans MS"  Style="{StaticResource MaterialDesignRaisedButton}" Background="LawnGreen"
+    ToolTip="Resource name: MaterialDesignRaisedButton" Width="auto" Click="NameUpdateButton_Click" Visibility="Visible" Margin="135,21,350,21" Grid.Column="1"/>
             <Button x:Name="AutomaticBut" Content="Automatic" Visibility="Visible" FontSize="18"  Background="Orange" 
                     Grid.Column="1" Margin="377,5,16,37" Grid.Row="4"
                        Style="{StaticResource MaterialDesignRaisedButton}"
@@ -220,7 +220,7 @@
     materialDesign:ButtonProgressAssist.IsIndeterminate="True" Click="AutomaticBut_Click"/>
 
             <Button x:Name="ManualBut" Content="Manual" FontSize="18"  Background="Orange" Visibility="Hidden"
-                    Grid.Column="1" Margin="377,70,16,47" Grid.Row="5"
+                    Grid.Column="1" Margin="377,74,16,42" Grid.Row="3"
                     materialDesign:ButtonProgressAssist.Value="-1"
     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
     materialDesign:ButtonProgressAssist.IsIndeterminate="True"
@@ -232,7 +232,8 @@
 
         </Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Images\addDrone.jpg"/>
+
+            <ImageBrush ImageSource="Images\addDrone.jpg" Opacity="0.5"/>
         </Grid.Background>
     </Grid>
 </Window>

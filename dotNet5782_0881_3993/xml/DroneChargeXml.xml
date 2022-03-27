@@ -1,18 +1,13 @@
 <?xml version="1.0"?>
 <ArrayOfDroneChargeDal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DroneChargeDal>
-    <DroneId>1700</DroneId>
-    <StationId>1</StationId>
-    <StartChargeTime>2022-03-27T11:43:54.94101+03:00</StartChargeTime>
-  </DroneChargeDal>
-  <DroneChargeDal>
-    <DroneId>4664</DroneId>
-    <StationId>1</StationId>
-    <StartChargeTime>2022-03-27T11:43:54.9509394+03:00</StartChargeTime>
-  </DroneChargeDal>
-  <DroneChargeDal>
-    <DroneId>4055</DroneId>
+    <DroneId>8961</DroneId>
     <StationId>0</StationId>
-    <StartChargeTime>2022-03-27T11:43:54.9619957+03:00</StartChargeTime>
+    <StartChargeTime>2022-03-27T14:52:53.3948043+03:00</StartChargeTime>
+  </DroneChargeDal>
+  <DroneChargeDal>
+    <DroneId>1212</DroneId>
+    <StationId>0</StationId>
+    <StartChargeTime>2022-03-27T14:52:53.4007463+03:00</StartChargeTime>
   </DroneChargeDal>
 </ArrayOfDroneChargeDal>
