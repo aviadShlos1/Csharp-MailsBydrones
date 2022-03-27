@@ -56,16 +56,13 @@ namespace BL
             int existIndex = DalAccess.GetBaseStationsList().ToList().FindIndex(x => x.Id == firstChargeStation);
             if (existIndex == -1)
                 throw new BO.NotExistException();
-            foreach (var item in DalAccess.GetBaseStationsList())
+            Location location = new Location()
             {
-                if (item.Id == firstChargeStation)
-                {
-                    DalAccess.SendDroneToCharge(newDroneBl.DroneId, firstChargeStation);
-                    Location location = new() { Longitude = item.Longitude, Latitude = item.Latitude };
-                    newDroneBl.DroneLocation = location;                  
-                }
-            }
-            newDroneBl.BatteryPercent = Math.Round( (rand.NextDouble() * 20) + 20);//rand between 20-40 percent
+                Longitude = DalAccess.GetSingleBaseStation(firstChargeStation).Longitude,
+                Latitude = DalAccess.GetSingleBaseStation(firstChargeStation).Latitude
+            };
+            newDroneBl.DroneLocation = location;
+            newDroneBl.BatteryPercent = rand.Next(20, 41) ;//rand between 20-40 percent
             newDroneBl.DroneStatus = DroneStatusesBL.Maintaince;
             try
             {

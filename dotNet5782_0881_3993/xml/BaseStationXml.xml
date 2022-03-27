@@ -5,7 +5,7 @@
     <Name>Herzliya</Name>
     <Longitude>34.842</Longitude>
     <Latitude>32.164</Latitude>
-    <FreeChargeSlots>6</FreeChargeSlots>
+    <FreeChargeSlots>7</FreeChargeSlots>
   </BaseStationDal>
   <BaseStationDal>
     <Id>1</Id>

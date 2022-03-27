@@ -55,7 +55,7 @@
 
         </Grid>
 
-        <Grid x:Name="UpdateOptions" Visibility="Visible" Margin="-9,4,9,-4">
+        <Grid x:Name="UpdateOptions" Visibility="Hidden" Margin="-9,4,9,-4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="43*"/>
                 <ColumnDefinition Width="117*"/>

@@ -68,13 +68,16 @@ namespace BL
         /// <returns>The distance in double number</returns>
         private static double GetDistance(double myLongitude, double myLatitude, double stationLongitude, double stationLatitude)
         {
+            //For the calculation we calculate the earth into a circle (ellipse) Divide its 360 degrees by half
+            //180 for each longitude / latitude and then make a pie on each half to calculate the radius for
+            //the formula below
             var num1 = myLongitude * (Math.PI / 180.0);
             var d1 = myLatitude * (Math.PI / 180.0);
             var num2 = stationLongitude * (Math.PI / 180.0) - num1;
             var d2 = stationLatitude * (Math.PI / 180.0);
+
             var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0); //calculate according to the formula in this site: https://www.movable-type.co.uk/scripts/latlong.html
             return ((double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))))) / 1000;
-            //return UpToTwoDecimalPoints(distanceInMeters / 10000); //return ditance in format that matches the battery units
         }
        
         /// <summary>

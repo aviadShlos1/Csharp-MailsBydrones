@@ -166,7 +166,7 @@ namespace BL
             List<DO.ParcelDal> parcelsWithFastPriority = new();
             List<DO.ParcelDal> parcelsWithNormalPriority = new();
 
-            foreach (var item in DalAccess.GetParcelsList(x=>x.AssignningTime==null))
+            foreach (var item in DalAccess.GetParcelsList(x => x.AssignningTime == null))
             {
                 switch ((PrioritiesBL)item.Priority)
                 {
@@ -388,7 +388,128 @@ namespace BL
         {
             new Simulator(this, droneId, reportProgressInSimultor, isTimeRun);
         }
-
-
     }
 }
+
+
+
+//        [MethodImpl(MethodImplOptions.Synchronized)]
+//        public void AssignParcelToDrone(int droneId)
+//        {
+//            lock (DalAccess)
+//            {
+//                DroneToList myDrone = DronesListBL.Find(x => x.DroneId == droneId);
+//                if (myDrone == default)
+//                    throw new NotExistException();
+
+//                if (myDrone.DroneStatus != DroneStatusesBL.Available)
+//                    throw new CannotAssignDroneToParcelException(myDrone.DroneId);
+
+//                IEnumerable<DO.ParcelDal> tempParcels = from item in DalAccess.GetParcelsList(x => x.DroneToParcelId == 0 &&
+//                                                          myDrone.DroneWeight >= (WeightCategoriesBL)x.Weight && possibleDistance(x, myDrone))
+//                                                     orderby item.Priority descending, item.Weight descending,
+//                                                             GetDistance(GetSingleCustomer(item.SenderId).Location, myDrone.DroneLocation)
+//                                                     select item;
+
+//                if (!tempParcels.Any())
+//                    throw new NotExistException();
+
+//                DO.ParcelDal theRightParcel = tempParcels.First();
+
+//                myDrone.DroneStatus = DroneStatusesBL.Maintaince;
+//                myDrone.ParcelAssignedId = theRightParcel.Id;
+
+//                DalAccess.AssignParcelToDrone(theRightParcel.Id, droneId);
+//            }
+//        }
+
+//        /// <summary>
+//        /// The function calculates whether the drone can reach the parcel.
+//        /// </summary>
+//        /// <param name="parcel">list of the most urgent parcels</param>
+//        /// <param name="myDrone">drone object</param>
+//        /// <returns></returns>
+//        private bool possibleDistance(DO.ParcelDal parcel, DroneToList myDrone)
+//        {
+//            double electricityUse = GetDistance(myDrone.DroneLocation, GetSingleCustomer(parcel.SenderId).Location) * freeWeightConsumption;
+//            double distanceSenderToDestination = GetDistance(GetSingleCustomer(parcel.SenderId).Location, GetSingleCustomer(parcel.TargetId).Location);
+//            switch ((WeightCategoriesBL)parcel.Weight)
+//            {
+//                case WeightCategoriesBL.Light:
+//                    electricityUse += distanceSenderToDestination * lightWeightConsumption;
+//                    break;
+//                case WeightCategoriesBL.Medium:
+//                    electricityUse += distanceSenderToDestination * mediumWeightConsumption;
+//                    break;
+//                case WeightCategoriesBL.Heavy:
+//                    electricityUse += distanceSenderToDestination * heavyWeightConsumption;
+//                    break;
+//                default:
+//                    break;
+//            }
+
+//            if (myDrone.BatteryPercent - electricityUse < 0)//if its lowest than zero no need to continue
+//                return false;
+
+//            IEnumerable<DO.BaseStationDal> holdDalBaseStation = DalAccess.GetBaseStationsList();
+//            IEnumerable<BaseStationBl> baseStationBL = from item in holdDalBaseStation
+//                                                     select new BaseStationBl()
+//                                                     {
+//                                                         Id = item.Id,
+//                                                         BaseStationName = item.Name,
+//                                                         FreeChargeSlots = item.FreeChargeSlots,
+//                                                         Location = new Location()
+//                                                         {
+//                                                             Longitude = item.Longitude,
+//                                                             Latitude = item.Latitude
+//                                                         }
+//                                                     };
+//            electricityUse += minDistanceBetweenBaseStationsAndLocation(baseStationBL, GetSingleCustomer(parcel.TargetId).Location).Item2 * freeWeightConsumption;
+
+//            if (myDrone.BatteryPercent - electricityUse < 0)
+//                return false;
+//            return true;
+//        }
+
+//        #region Function of finding the location of the base station closest to the location
+//        /// <summary>
+//        /// The function calculates the distance between a particular location and base stations.
+//        /// </summary>
+//        /// <param name="baseStationBL">baseStationBL List</param>
+//        /// <param name="location">location</param>
+//        /// <returns>The location of the base station closest to the location and the min distance</returns>
+//        public (Location, double) minDistanceBetweenBaseStationsAndLocation(IEnumerable<BaseStationBl> baseStationBL, Location location)
+//        {
+//            IEnumerable<Location> locations = from item in baseStationBL
+//                                              orderby GetDistance(location, item.Location)
+//                                              select item.Location;
+//            Location locationOfNearestStation = locations.First();
+//            return (locationOfNearestStation, GetDistance(location, locationOfNearestStation));
+//        }
+//        #endregion Function of finding the location of the base station closest to the location
+
+
+//        #region Function of calculating distance between points
+//        /// <summary>
+//        /// A function that calculates the distance between points.
+//        /// </summary>
+//        /// <param name="location1">location 1</param>
+//        /// <param name="location2">location 2</param>
+//        /// <returns>the distence between the points</returns>
+//        private double GetDistance(Location location1, Location location2)
+//        {
+//            //For the calculation we calculate the earth into a circle (ellipse) Divide its 360 degrees by half
+//            //180 for each longitude / latitude and then make a pie on each half to calculate the radius for
+//            //the formula below
+//            var num1 = location1.Longitude * (Math.PI / 180.0);
+//            var d1 = location1.Latitude * (Math.PI / 180.0);
+//            var num2 = location2.Longitude * (Math.PI / 180.0) - num1;
+//            var d2 = location2.Latitude * (Math.PI / 180.0);
+
+//            var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0); //https://iw.waldorf-am-see.org/588999-calculating-distance-between-two-latitude-QPAAIP
+//                                                                                                                                   //We calculate the distance according to a formula that
+//                                                                                                                                   // also takes into account the curvature of the earth
+//            return ((double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))))) / 1000;
+//        }
+//#endregion Function of calculating distance between points
+
