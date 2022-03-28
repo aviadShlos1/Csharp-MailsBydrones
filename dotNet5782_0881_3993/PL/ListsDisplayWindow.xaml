@@ -7,7 +7,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
         Background="Transparent"
+         
         AllowsTransparency="True"
         WindowStyle="None"
         Title="ListsDisplayWindow" Height="640" Width="800">

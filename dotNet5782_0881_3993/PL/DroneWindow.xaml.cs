@@ -320,13 +320,71 @@ namespace PL
             DroneSimulator.ProgressChanged += DroneSimulator_ProgressChanged; // change reporter
             DroneSimulator.RunWorkerCompleted += DroneSimulator_RunWorkerCompleted; //  thread complete
         }
+        public void ReportProgressInSimultor()
+        {
+            DroneSimulator.ReportProgress(0);
+        }
         private void DroneSimulator_DoWork(object sender, DoWorkEventArgs e)
         {
             blAccess.sim(MyDrone.DroneId, ReportProgressInSimultor, IsTimeRun);
         }
         private void DroneSimulator_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //throw new NotImplementedException();
+            //if (ManualBut.Visibility == Visibility.Visible) //If the process closes because of the manual button.
+            //{
+            //    Cursor = Cursors.Arrow;
+
+            //    ManualBut.Visibility = Visibility.Hidden;
+            //    ManualBut.IsEnabled = true;
+
+            //    AutomaticBut.Visibility = Visibility.Visible;
+
+            //    ModelTbx.IsEnabled = true;
+            //}
+            //else //If the process closes because the user clicks a close button on the window.
+            //{
+            //    localDronesListWindow.IsEnabled = true;//allowd to use drone window list again
+            //    //ClosingWindow = false;
+            //    Close();
+            //    return;
+            //}
+
+            //The switch checks the drone's status value and opens buttons/
+            //switch ((DroneStatusesBL)MyDrone.DroneStatus)
+            //{
+            //    case DroneStatusesBL.Available:
+            //        DroneToChargeButton.Visibility = Visibility.Visible;
+            //        AssignParcelToDroneButton.Visibility = Visibility.Visible;
+            //        DroneToChargeButton.IsEnabled = true;
+            //        break;
+
+            //    case DroneStatusesBL.Maintaince:
+            //        ReleaseFromChargeButton.Visibility = Visibility.Visible;
+            //        AssignParcelToDroneButton.Visibility = Visibility.Visible;
+            //        AssignParcelToDroneButton.IsEnabled = false;
+            //        break;
+
+            //    case DroneStatusesBL.Shipment:
+            //        GRIDparcelInDelivery.Visibility = Visibility.Visible;
+            //        TBnotAssigned.Visibility = Visibility.Hidden;
+
+            //        //check the status to open the right button
+            //        if (MyDrone.ParcelInShip.ShippingOnTheSupplyWay)//if the parcel is Already collected from the sender.
+            //        {
+            //            SupplyParcelButton.Visibility = Visibility.Visible;
+            //            DroneToChargeButton.Visibility = Visibility.Visible;
+            //            DroneToChargeButton.IsEnabled = false;
+            //        }
+            //        else //In case the parcel has not yet been collected from the sender.
+            //        {
+            //            PickUpParcelButton.Visibility = Visibility.Visible;
+            //            DroneToChargeButton.Visibility = Visibility.Visible;
+            //            DroneToChargeButton.IsEnabled = false;
+            //        }
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
 
         private int ParcelInShipId;
@@ -385,7 +443,7 @@ namespace PL
                         RecieverCustomerIndex = myCustomers.myCustomerPl.IndexOf(myCustomers.myCustomerPl.First(x => x.Id == ReceiverCustomerId));
                         myCustomers.myCustomerPl[RecieverCustomerIndex] = blAccess.GetCustomersBl().First(x => x.Id == ReceiverCustomerId);
 
-                        GRIDparcelInDelivery.Visibility = Visibility.Hidden; //////
+                        GRIDparcelInDelivery.Visibility = Visibility.Hidden; 
                         TBnotAssigned.Visibility = Visibility.Visible;
 
                     }
@@ -417,7 +475,7 @@ namespace PL
                         ParcelIndex = myParcels.myParcelsPl.IndexOf(myParcels.myParcelsPl.First(x => x.Id == MyDrone.ParcelInShip.Id));
                         myParcels.myParcelsPl[ParcelIndex] = blAccess.GetParcelsBl().First(x => x.Id == MyDrone.ParcelInShip.Id);
 
-                        GRIDparcelInDelivery.Visibility = Visibility.Hidden;////
+                        GRIDparcelInDelivery.Visibility = Visibility.Hidden;
                         TBnotAssigned.Visibility = Visibility.Visible;
 
                     }
@@ -444,10 +502,7 @@ namespace PL
 
       
 
-        public void ReportProgressInSimultor()
-        {
-            DroneSimulator.ReportProgress(0);
-        }
+        
 
         public bool IsTimeRun()
         {
@@ -472,8 +527,6 @@ namespace PL
             ModelTbx.IsEnabled = false; //to prevent model changing
         }
        
-        #endregion Simulator 
-
         private void ManualBut_Click(object sender, RoutedEventArgs e)
         {
             DroneSimulator.CancelAsync();
@@ -488,5 +541,5 @@ namespace PL
             ModelTbx.IsEnabled = true;
         }
     }
-
+    #endregion Simulator
 }

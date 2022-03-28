@@ -14,12 +14,11 @@ namespace BL
 
         BL blAccess;
 
-        private const double kmh = 3600;//כל קילומטר זה שנייה כי בשעה יש 3600 שניות
+        private const double kmh = 3600;
 
         public Simulator(BL bl, int droneId, Action reportProgressInSimulator, Func<bool> isTimeRun)
         {
             IDal dalAccess = DalFactory.GetDal();
-            blAccess = bl;
             var dal = blAccess;
 
             double distance;

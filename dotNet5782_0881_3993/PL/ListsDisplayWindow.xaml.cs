@@ -79,5 +79,10 @@ namespace PL
             new MainWindow().Show();
             this.Close();
         }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }
