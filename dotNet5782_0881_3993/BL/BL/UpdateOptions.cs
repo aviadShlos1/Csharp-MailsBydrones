@@ -93,9 +93,14 @@ namespace BL
         /// </summary>
         /// <param name="myDroneId">an exist drone</param>
         [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
+
+ 
         public void AssignParcelToDrone(int myDroneId)
         {
-            lock (DalAccess)
+            // The lock statement acquires the mutual-exclusion lock for a given object
+            //  While a lock is held, the thread that holds the lock can again acquire and release the lock.
+            //  Any other thread is blocked from acquiring the lock and waits until the lock is released.
+            lock (DalAccess)  
             {
                 DO.ParcelDal assignedParcel = new();
                 DO.CustomerDal senderCustomer = new();
@@ -116,6 +121,7 @@ namespace BL
                     throw new BO.DroneIsNotAvailable(myDroneId);
                 }
 
+                BO.DroneToList temp = DronesListBL.Find(x => x.DroneId ==myDroneId);
                 int senderId = HighestPriorityParcels().First().SenderId;
                 senderCustomer = GetCustomerDetails(senderId);
                 /// Finding the closet parcel among the highest priority and weight parcels list
@@ -130,8 +136,8 @@ namespace BL
                         {
                             closetDistance = tempDistance;
                             assignedParcel = item;
-                        }
-                    }           
+                        } 
+                    }
                 }
                 //checking the battery consumption
                 double arriveToSenderBattery = closetDistance * freeWeightConsumption;
@@ -171,7 +177,7 @@ namespace BL
             List<DO.ParcelDal> parcelsWithFastPriority = new();
             List<DO.ParcelDal> parcelsWithNormalPriority = new();
 
-            foreach (var item in DalAccess.GetParcelsList(x => x.AssignningTime == null))
+            foreach (var item in DalAccess.GetParcelsList(x => x.DroneToParcelId == 0 ))
             {
                 switch ((PrioritiesBL)item.Priority)
                 {
@@ -193,7 +199,6 @@ namespace BL
                 parcelsWithFastPriority.Any() ? parcelsWithFastPriority
                 : parcelsWithNormalPriority);
         }
-        
         #endregion
 
         /// <summary>
@@ -378,14 +383,14 @@ namespace BL
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
-        public void RemoveParcel(ParcelBl myParcel)
+        public void RemoveParcel(int parcelId)
         {
-            DO.ParcelDal temp = DalAccess.GetSingleParcel(myParcel.ParcelId);
-            DalAccess.RemoveParcel(temp);
+            DO.ParcelDal temp = DalAccess.GetSingleParcel(parcelId);
+            DalAccess.RemoveParcel(parcelId);
         }
 
-        //function for simulator
-        public void sim(int droneId, Action reportProgressInSimultor, Func<bool> isTimeRun)
+        //function for simulator operation
+        public void SimOperation(int droneId, Action reportProgressInSimultor, Func<bool> isTimeRun)
         {
             new Simulator(this, droneId, reportProgressInSimultor, isTimeRun);
         }
