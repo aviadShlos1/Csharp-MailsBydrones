@@ -235,10 +235,6 @@ namespace PL
                 blAccess.AssignParcelToDrone(MyDrone.DroneId);
                 MessageBox.Show("The drone assigned to parcel successfully");
                 new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
-                
-                GRIDparcelInDelivery.Visibility = Visibility.Visible;
-                TBnotAssigned.Visibility = Visibility.Hidden;
-                PickUpParcelButton.Visibility = Visibility.Visible;
                 Close();
             }
             catch (CannotAssignDroneToParcelException ex)
@@ -258,8 +254,6 @@ namespace PL
                 blAccess.PickUpParcel(MyDrone.DroneId);
                 MessageBox.Show("The drone picked up the parcel successfully");
                 new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
-                PickUpParcelButton.Visibility = Visibility.Hidden;
-                SupplyParcelButton.Visibility = Visibility.Visible;
                 Close();
             }
             catch (CannotPickUpException ex)
@@ -279,7 +273,7 @@ namespace PL
                 blAccess.SupplyParcel(MyDrone.DroneId);
                 MessageBox.Show("The drone supplied the parcel successfully");
                 new DroneWindow(blAccess, MyDrone.DroneId, localDronesListWindow).Show();
-                Close();
+                this.Close();
             }
             catch (CannotSupplyException ex)
             {
@@ -317,21 +311,24 @@ namespace PL
         {
             DroneSimulator = new BackgroundWorker() { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
             DroneSimulator.DoWork += DroneSimulator_DoWork; ; //Operation function.
-            DroneSimulator.ProgressChanged += DroneSimulator_ProgressChanged; // change reporter
-            DroneSimulator.RunWorkerCompleted += DroneSimulator_RunWorkerCompleted; //  thread complete
-        }
-        private void DroneSimulator_DoWork(object sender, DoWorkEventArgs e)
-        {
-            blAccess.sim(MyDrone.DroneId, ReportProgressInSimultor, IsTimeRun);
-        }
-        private void DroneSimulator_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            //throw new NotImplementedException();
+            DroneSimulator.ProgressChanged += DroneSimulator_ProgressChanged; // Change reporter
+            DroneSimulator.RunWorkerCompleted += DroneSimulator_RunWorkerCompleted; //  Thread complete
         }
 
-        private int ParcelInShipId;
-        private int SenderCustomerId;
-        private int ReceiverCustomerId;
+
+        /// <summary>
+        /// The function reports every change which is done by the process.
+        /// </summary>
+        public void ReportProgressInSimultor()
+        {
+            DroneSimulator.ReportProgress(0);
+        }
+
+        private void DroneSimulator_DoWork(object sender, DoWorkEventArgs e)
+        {
+            blAccess.SimOperation(MyDrone.DroneId, ReportProgressInSimultor, IsTimeRun);
+        }
+
         private void DroneSimulator_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             //to update conect the binding to set the value of my drone to the proprtis.
@@ -340,32 +337,16 @@ namespace PL
 
             localDronesListWindow.selectionOptions(); //update the List of drones.
 
-            CustomersListWindow myCustomers = new(blAccess);
-            ParcelsListWindow myParcels = new(blAccess);
-            BaseStationListWindow myBase = new(blAccess);
-            
             // to find the index when the fanc need to find in the observer collaction and update.
             int ParcelIndex;
             int SenderCustomerIndex;
             int RecieverCustomerIndex;
 
-            //battery colors.
-            if (MyDrone.BatteryPercent < 50)
-            {
-                if (MyDrone.BatteryPercent > 20)
-                {
-                    DroneBattery.Foreground = Brushes.YellowGreen;
-                }
-                else
-                {
-                    DroneBattery.Foreground = Brushes.Red;
-                }
-            }
-            else //MyDrone.BatteryPercent > 50
-            {
-                DroneBattery.Foreground = Brushes.LimeGreen;
+            CustomersListWindow myCustomers = new(blAccess);
+            ParcelsListWindow myParcels = new(blAccess);
+            BaseStationListWindow myBase = new(blAccess);
 
-            }
+               
             //switch betwen drone status and according to that update the display.
             switch (MyDrone.DroneStatus)
             {
@@ -377,7 +358,7 @@ namespace PL
                         ParcelIndex = myParcels.myParcelsPl.IndexOf(myParcels.myParcelsPl.First(x => x.Id == ParcelInShipId));
                         myParcels.myParcelsPl[ParcelIndex] = blAccess.GetParcelsBl().First(x => x.Id == ParcelInShipId);
 
-                        //update spasice customer in the Customer list (sender)
+                        //update the sender
                         SenderCustomerIndex = myCustomers.myCustomerPl.IndexOf(myCustomers.myCustomerPl.First(x => x.Id == SenderCustomerId));
                         myCustomers.myCustomerPl[SenderCustomerIndex] = blAccess.GetCustomersBl().First(x => x.Id == SenderCustomerId);
 
@@ -439,16 +420,39 @@ namespace PL
                     break;
             }
 
-            
+            //battery colors.
+            if (MyDrone.BatteryPercent < 50)
+            {
+                if (MyDrone.BatteryPercent > 20)
+                {
+                    DroneBattery.Foreground = Brushes.YellowGreen;
+                }
+                else
+                {
+                    DroneBattery.Foreground = Brushes.Red;
+                }
+            }
+            else //MyDrone.BatteryPercent > 50
+            {
+                DroneBattery.Foreground = Brushes.LimeGreen;
+
+            }
         }
+        private void DroneSimulator_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private int ParcelInShipId;
+        private int SenderCustomerId;
+        private int ReceiverCustomerId;
+      
 
       
 
-        public void ReportProgressInSimultor()
-        {
-            DroneSimulator.ReportProgress(0);
-        }
+     
 
+        // bool function for simulator cancellation
         public bool IsTimeRun()
         {
             return DroneSimulator.CancellationPending;

@@ -281,10 +281,15 @@ namespace Dal
             Parcels[parcelIndex] = parcel3;
             XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
         }
-        public void RemoveParcel(ParcelDal myParcel)
+        public void RemoveParcel(int parcelId)
         {
             List<ParcelDal> Parcels = XMLTools.LoadListFromXMLSerializer<ParcelDal>(ParcelPath);
-            Parcels.Remove(myParcel);
+            int index = Parcels.FindIndex(x => x.Id == parcelId);
+            if (index == -1)
+            {
+                throw new NotExistException(parcelId);
+            }
+            Parcels.RemoveAt(index);
             XMLTools.SaveListToXMLSerializer(Parcels, ParcelPath);
         }
         public ParcelDal GetSingleParcel(int parcelId)
