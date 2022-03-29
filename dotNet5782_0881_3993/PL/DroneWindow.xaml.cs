@@ -366,7 +366,7 @@ namespace PL
                         RecieverCustomerIndex = myCustomers.myCustomerPl.IndexOf(myCustomers.myCustomerPl.First(x => x.Id == ReceiverCustomerId));
                         myCustomers.myCustomerPl[RecieverCustomerIndex] = blAccess.GetCustomersBl().First(x => x.Id == ReceiverCustomerId);
 
-                        GRIDparcelInDelivery.Visibility = Visibility.Hidden; //////
+                        GRIDparcelInDelivery.Visibility = Visibility.Hidden; 
                         TBnotAssigned.Visibility = Visibility.Visible;
 
                     }
@@ -398,7 +398,7 @@ namespace PL
                         ParcelIndex = myParcels.myParcelsPl.IndexOf(myParcels.myParcelsPl.First(x => x.Id == MyDrone.ParcelInShip.Id));
                         myParcels.myParcelsPl[ParcelIndex] = blAccess.GetParcelsBl().First(x => x.Id == MyDrone.ParcelInShip.Id);
 
-                        GRIDparcelInDelivery.Visibility = Visibility.Hidden;////
+                        GRIDparcelInDelivery.Visibility = Visibility.Hidden;
                         TBnotAssigned.Visibility = Visibility.Visible;
 
                     }
@@ -453,8 +453,6 @@ namespace PL
             ModelTbx.IsEnabled = false; //to prevent model changing
         }
        
-        #endregion Simulator 
-
         private void ManualBut_Click(object sender, RoutedEventArgs e)
         {
             DroneSimulator.CancelAsync();
@@ -481,5 +479,5 @@ namespace PL
             }
         }
     }
-
+    #endregion Simulator
 }
