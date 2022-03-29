@@ -51,11 +51,11 @@ namespace Dal
         internal static class Config
         {
             public static int ParcelRunId = 1000;//This parameter will be updated both in Initialize and Add methods
-            public static double FreeWeightConsumption = 0.2; // The power consumption for free weight drone. 
-            public static double LightWeightConsumption = 0.4;
-            public static double MediumWeightConsumption = 0.5;
-            public static double HeavyWeightConsumption = 0.6;
-            public static double ChargeRate = 9000;  
+            public static double FreeWeightConsumption = 0.1; // The power consumption for free weight drone. 
+            public static double LightWeightConsumption = 0.15;
+            public static double MediumWeightConsumption = 0.18;
+            public static double HeavyWeightConsumption = 0.22;
+            public static double ChargeRate = 5000;  
         }
 
         /// ‹summary›This method allows us to rand objects from the enum class

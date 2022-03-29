@@ -132,7 +132,7 @@ namespace PL
             {
                 case MessageBoxResult.Yes:
 
-                    blAccess.RemoveParcel(MyParcel.ParcelId);
+                    blAccess.RemoveParcel(MyParcel);
                     int index = localParcelsListWindow.myParcelsPl.ToList().FindIndex(x=>x.Id==MyParcel.ParcelId);// we go to the index to delete from the observer 
                     localParcelsListWindow.myParcelsPl.RemoveAt(index);
                     this.Close();

@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         Background="Transparent"
-         
+        MouseDown="Drag"
         AllowsTransparency="True"
         WindowStyle="None"
         Title="ListsDisplayWindow" Height="640" Width="800">
@@ -33,6 +33,7 @@
 
     </Window.Resources>
     <Grid>
+
         <Button Content="Drones" Margin="69,262,0,0 " BorderBrush="Aqua" Click="DroneButton_Click" HorizontalAlignment="Left"/>
         <Button Content="Base Stations" Margin="49,401,0,0" BorderBrush="Aqua" Click="BaseButton_Click" HorizontalAlignment="Left" Height="56"/>
         <Button Content="Customers" Margin="613,262,0,0" BorderBrush="Aqua" Click="CustomersButton_Click" HorizontalAlignment="Left" />
