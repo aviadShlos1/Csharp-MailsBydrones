@@ -191,14 +191,9 @@ namespace Dal
             return totalCharge;
         }
 
-        public void RemoveParcel(int parcelId)
+        public void RemoveParcel(ParcelDal myParcel)
         {
-            int index = DataSource.Parcels.FindIndex(x => x.Id == parcelId);
-            if (index == -1)
-            {
-                throw new NotExistException(parcelId);
-            }
-            DataSource.Parcels.RemoveAt(index);
+            DataSource.Parcels.Remove(myParcel);
         }
         #endregion Update methods
 

@@ -32,9 +32,9 @@ namespace BlApi
         public void AssignParcelToDrone(int myDroneId);
         public void PickUpParcel(int droneId);
         public void SupplyParcel(int droneId);
-        public void RemoveParcel(int parcelId);
+        public void RemoveParcel(ParcelBl myParcel);
 
-        public void SimOperation(int droneId, Action reportProgressInSimultor, Func<bool> isTimeRun);
+        public void sim(int droneId, Action reportProgressInSimultor, Func<bool> isTimeRun);
         #endregion UpdateOptions    
 
         #region DisplayOptions
