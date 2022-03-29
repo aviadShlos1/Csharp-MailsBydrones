@@ -115,12 +115,18 @@ namespace BL
                 {
                     throw new BO.DroneIsNotAvailable(myDroneId);
                 }
-
-                int senderId = HighestPriorityAndWeightParcels()[0].SenderId;
+               
+                //////////////////
+                BO.DroneToList temp = DronesListBL.Find(x => x.DroneId == droneItem.DroneId);
+                var parcelsData = HighestPriorityParcels().Where(x=>x.Weight <= (DO.WeightCategoriesDal)temp.DroneWeight).ToList();
+                parcelsData = parcelsData.OrderByDescending(x => (int)x.Priority).ToList();
+                ////////////////////////////////
+                int senderId = parcelsData.First().SenderId;    
                 senderCustomer = GetCustomerDetails(senderId);
+
                 /// Finding the closet parcel among the highest priority and weight parcels list
                 closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.Longitude, senderCustomer.Latitude);
-                foreach (var item in HighestPriorityAndWeightParcels())
+                foreach (var item in parcelsData)
                 {
                     senderCustomer = GetCustomerDetails(item.SenderId);
                     double tempDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.Longitude, senderCustomer.Latitude);
@@ -169,7 +175,7 @@ namespace BL
             List<DO.ParcelDal> parcelsWithFastPriority = new();
             List<DO.ParcelDal> parcelsWithNormalPriority = new();
 
-            foreach (var item in DalAccess.GetParcelsList(x => x.AssignningTime == null))
+            foreach (var item in DalAccess.GetParcelsList(x => x.DroneToParcelId== 0))
             {
                 switch ((PrioritiesBL)item.Priority)
                 {
@@ -190,38 +196,7 @@ namespace BL
             return (parcelsWithUrgentPriority.Any() ? parcelsWithUrgentPriority :
                 parcelsWithFastPriority.Any() ? parcelsWithFastPriority
                 : parcelsWithNormalPriority);
-        }
-        /// <summary>
-        /// Auxiliary method: Searching the highest priority and weight parcels based on the highest priority parcels list
-        /// </summary>
-        /// <returns>The highest priority and weight parcels list</returns>
-        private List<DO.ParcelDal> HighestPriorityAndWeightParcels()
-        {
-            List<DO.ParcelDal> heavyParcels = new();
-            List<DO.ParcelDal> mediumParcels = new();
-            List<DO.ParcelDal> lightParcels = new();
-
-            foreach (var item in HighestPriorityParcels())
-            {
-                switch ((WeightCategoriesBL)item.Weight)
-                {
-                    case WeightCategoriesBL.Light:
-                        lightParcels.Add(item);
-                        break;
-                    case WeightCategoriesBL.Medium:
-                        mediumParcels.Add(item);
-                        break;
-                    case WeightCategoriesBL.Heavy:
-                        heavyParcels.Add(item);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            // checking the highest exist weight and return it 
-            return (heavyParcels.Any() ? heavyParcels : mediumParcels.Any() ?
-                mediumParcels : lightParcels);
-        }
+        }  
         #endregion
 
         /// <summary>
