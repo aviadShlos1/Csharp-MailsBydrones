@@ -95,65 +95,68 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void AssignParcelToDrone(int myDroneId)
         {
-            DO.ParcelDal assignedParcel = new();
-            DO.CustomerDal senderCustomer = new();
-            double closetDistance = default;
+            lock (DalAccess)
+            {
+                DO.ParcelDal assignedParcel = new();
+                DO.CustomerDal senderCustomer = new();
+                double closetDistance = default;
 
-            // finding the high priority parcel, taking in conclusion the priority,weight and distance
-            DroneToList droneItem = new();
-            try
-            {
-                droneItem = DronesListBL.Find(x => x.DroneId == myDroneId);
-            }
-            catch (DO.NotExistException)
-            {
-                throw new BO.NotExistException();
-            }
-            if (droneItem.DroneStatus != BO.DroneStatusesBL.Available)
-            {
-                throw new BO.DroneIsNotAvailable(myDroneId);
-            }
-
-            int senderId = HighestPriorityAndWeightParcels()[0].SenderId;
-            senderCustomer = GetCustomerDetails(senderId);
-            /// Finding the closet parcel among the highest priority and weight parcels list
-            closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.Longitude, senderCustomer.Latitude);
-            foreach (var item in HighestPriorityAndWeightParcels())
-            {
-                senderCustomer = GetCustomerDetails(item.SenderId);
-                double tempDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.Longitude, senderCustomer.Latitude);
-                if (tempDistance <= closetDistance)
+                // finding the high priority parcel, taking in conclusion the priority,weight and distance
+                DroneToList droneItem = new();
+                try
                 {
-                    closetDistance = tempDistance;
-                    assignedParcel = item;
+                    droneItem = DronesListBL.Find(x => x.DroneId == myDroneId);
                 }
+                catch (DO.NotExistException)
+                {
+                    throw new BO.NotExistException();
+                }
+                if (droneItem.DroneStatus != BO.DroneStatusesBL.Available)
+                {
+                    throw new BO.DroneIsNotAvailable(myDroneId);
+                }
+
+                int senderId = HighestPriorityAndWeightParcels()[0].SenderId;
+                senderCustomer = GetCustomerDetails(senderId);
+                /// Finding the closet parcel among the highest priority and weight parcels list
+                closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.Longitude, senderCustomer.Latitude);
+                foreach (var item in HighestPriorityAndWeightParcels())
+                {
+                    senderCustomer = GetCustomerDetails(item.SenderId);
+                    double tempDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderCustomer.Longitude, senderCustomer.Latitude);
+                    if (tempDistance <= closetDistance)
+                    {
+                        closetDistance = tempDistance;
+                        assignedParcel = item;
+                    }
+                }
+                //checking the battery consumption
+                double arriveToSenderBattery = closetDistance * freeWeightConsumption;
+
+                DO.CustomerDal targetCustomer = GetCustomerDetails(assignedParcel.TargetId);
+                double targetDistance = GetDistance(senderCustomer.Longitude, senderCustomer.Latitude, targetCustomer.Longitude, targetCustomer.Latitude);
+                double srcToTrgetBattery = targetDistance * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
+
+                BO.BaseStationBl closetStationFromTarget = ClosetStation(targetCustomer.Longitude, targetCustomer.Latitude, DalAccess.GetBaseStationsList().ToList());
+                double targetToCharge = GetDistance(targetCustomer.Longitude, targetCustomer.Latitude, closetStationFromTarget.Location.Longitude, closetStationFromTarget.Location.Latitude);
+                double trgetToChargeBattery = targetToCharge * freeWeightConsumption;
+                double totalDemandBattery = arriveToSenderBattery + srcToTrgetBattery + trgetToChargeBattery;
+
+                if (droneItem.BatteryPercent < totalDemandBattery) //if the drone will not be able to do the shipment
+                {
+                    throw new BO.CannotAssignDroneToParcelException(myDroneId);
+                }
+                else
+                {
+                    droneItem.DroneStatus = BO.DroneStatusesBL.Shipment;
+                    droneItem.ParcelAssignedId = assignedParcel.Id;
+                    assignedParcel.DroneToParcelId = myDroneId;
+                    assignedParcel.AssignningTime = DateTime.Now;
+
+                    DalAccess.AssignParcelToDrone(assignedParcel.Id, myDroneId);
+                }
+
             }
-            //checking the battery consumption
-            double arriveToSenderBattery = closetDistance * freeWeightConsumption;
-
-            DO.CustomerDal targetCustomer = GetCustomerDetails(assignedParcel.TargetId);
-            double targetDistance = GetDistance(senderCustomer.Longitude, senderCustomer.Latitude, targetCustomer.Longitude, targetCustomer.Latitude);
-            double srcToTrgetBattery = targetDistance * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1];
-
-            BO.BaseStationBl closetStationFromTarget = ClosetStation(targetCustomer.Longitude, targetCustomer.Latitude, DalAccess.GetBaseStationsList().ToList());
-            double targetToCharge = GetDistance(targetCustomer.Longitude, targetCustomer.Latitude, closetStationFromTarget.Location.Longitude, closetStationFromTarget.Location.Latitude);
-            double trgetToChargeBattery = targetToCharge * freeWeightConsumption;
-            double totalDemandBattery = arriveToSenderBattery + srcToTrgetBattery + trgetToChargeBattery;
-
-            if (droneItem.BatteryPercent < totalDemandBattery) //if the drone will not be able to do the shipment
-            {
-                throw new BO.CannotAssignDroneToParcelException(myDroneId);
-            }
-            else
-            {
-                droneItem.DroneStatus = BO.DroneStatusesBL.Shipment;
-                droneItem.ParcelAssignedId = assignedParcel.Id;
-                assignedParcel.DroneToParcelId = myDroneId;
-                assignedParcel.AssignningTime = DateTime.Now;
-
-                DalAccess.AssignParcelToDrone(assignedParcel.Id, myDroneId);
-            }
-
         }
         #region Help methods for AssignParcelToDrone method
         /// <summary>
@@ -228,32 +231,36 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void PickUpParcel(int droneId)
         {
-            DO.ParcelDal parcelItem = new();
-            DO.CustomerDal senderItem = new();
-            DroneToList droneItem = new();
-            try
+            lock (DalAccess)
             {
-                droneItem = DronesListBL.Find(x => x.DroneId == droneId);
-            }
-            catch (DO.NotExistException)
-            {
-                throw new BO.NotExistException();
-            }
-            if (droneItem.ParcelAssignedId == 0) // if the drone doesn't take any parcel
-                throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
-            parcelItem = DalAccess.GetSingleParcel(droneItem.ParcelAssignedId);
-            senderItem = GetCustomerDetails(parcelItem.SenderId);
+                DO.ParcelDal parcelItem = new();
+                DO.CustomerDal senderItem = new();
+                DroneToList droneItem = new();
+                try
+                {
+                    droneItem = DronesListBL.Find(x => x.DroneId == droneId);
+                }
+                catch (DO.NotExistException)
+                {
+                    throw new BO.NotExistException();
+                }
+                if (droneItem.ParcelAssignedId == 0) // if the drone doesn't take any parcel
+                    throw new BO.CannotPickUpException("The drone has not transfered parcels yet");
+                parcelItem = DalAccess.GetSingleParcel(droneItem.ParcelAssignedId);
+                senderItem = GetCustomerDetails(parcelItem.SenderId);
 
-            if (parcelItem.PickingUpTime != null) //checking if the parcel has already picked up
-                throw new BO.CannotPickUpException("The parcel has already picked up");
+                if (parcelItem.PickingUpTime != null) //checking if the parcel has already picked up
+                    throw new BO.CannotPickUpException("The parcel has already picked up");
 
-            else //updating the battery,location and picking up time
-            {
-                double currentToSender = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderItem.Longitude, senderItem.Latitude);
-                droneItem.BatteryPercent -= Math.Floor(currentToSender * freeWeightConsumption);
-                droneItem.DroneLocation.Longitude = senderItem.Longitude;
-                droneItem.DroneLocation.Latitude = senderItem.Latitude;
-                DalAccess.PickUpParcel(parcelItem.Id);
+                else //updating the battery,location and picking up time
+                {
+                    double currentToSender = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, senderItem.Longitude, senderItem.Latitude);
+                    droneItem.BatteryPercent -= Math.Floor(currentToSender * freeWeightConsumption);
+                    droneItem.DroneLocation.Longitude = senderItem.Longitude;
+                    droneItem.DroneLocation.Latitude = senderItem.Latitude;
+                    DalAccess.PickUpParcel(parcelItem.Id);
+
+                } 
             }
         }
 
@@ -264,51 +271,54 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void SupplyParcel(int droneId)
         {
-            DroneToList droneItem = new();
-            try
+            lock (DalAccess)
             {
-                droneItem = DronesListBL.Find(x => x.DroneId == droneId);
-            }
-            catch (DO.NotExistException)
-            {
-                throw new BO.NotExistException();
-            }
-            if (droneItem.ParcelAssignedId == 0) //if the drone doesn't take any parcel
-                throw new BO.CannotSupplyException("The drone has not transfered parcels yet");
-            
-            var parcelItem = DalAccess.GetSingleParcel(droneItem.ParcelAssignedId);
-            var targetItem = GetCustomerDetails(parcelItem.TargetId);
-            if (parcelItem.PickingUpTime == null)
-                throw new BO.CannotSupplyException("The parcel has not picked up yet");
-            if (parcelItem.SupplyingTime != null)
-                throw new BO.CannotSupplyException("The parcel has already supplied");
-           
-            else //updating the battery,location, status and suppling time
-            {
-                double currentToTarget = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, targetItem.Longitude, targetItem.Latitude);
-                switch ((WeightCategoriesBL)parcelItem.Weight)
+                DroneToList droneItem = new();
+                try
                 {
-                    case WeightCategoriesBL.Light:
-                        droneItem.BatteryPercent -= GetDistance(targetItem.Longitude, targetItem.Latitude, droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude) * lightWeightConsumption;
-                        break;
-                    case WeightCategoriesBL.Medium:
-                        droneItem.BatteryPercent -= GetDistance(targetItem.Longitude, targetItem.Latitude, droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude) * mediumWeightConsumption;
-                        break;
-                    case WeightCategoriesBL.Heavy:
-                        droneItem.BatteryPercent -= GetDistance(targetItem.Longitude, targetItem.Latitude, droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude) * heavyWeightConsumption;
-                        break;
-                    default:
-                        break;
+                    droneItem = DronesListBL.Find(x => x.DroneId == droneId);
+                }
+                catch (DO.NotExistException)
+                {
+                    throw new BO.NotExistException();
+                }
+                if (droneItem.ParcelAssignedId == 0) //if the drone doesn't take any parcel
+                    throw new BO.CannotSupplyException("The drone has not transfered parcels yet");
+
+                var parcelItem = DalAccess.GetSingleParcel(droneItem.ParcelAssignedId);
+                var targetItem = GetCustomerDetails(parcelItem.TargetId);
+                if (parcelItem.PickingUpTime == null)
+                    throw new BO.CannotSupplyException("The parcel has not picked up yet");
+                if (parcelItem.SupplyingTime != null)
+                    throw new BO.CannotSupplyException("The parcel has already supplied");
+
+                else //updating the battery,location, status and suppling time
+                {
+                    double currentToTarget = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, targetItem.Longitude, targetItem.Latitude);
+                    switch ((WeightCategoriesBL)parcelItem.Weight)
+                    {
+                        case WeightCategoriesBL.Light:
+                            droneItem.BatteryPercent -= GetDistance(targetItem.Longitude, targetItem.Latitude, droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude) * lightWeightConsumption;
+                            break;
+                        case WeightCategoriesBL.Medium:
+                            droneItem.BatteryPercent -= GetDistance(targetItem.Longitude, targetItem.Latitude, droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude) * mediumWeightConsumption;
+                            break;
+                        case WeightCategoriesBL.Heavy:
+                            droneItem.BatteryPercent -= GetDistance(targetItem.Longitude, targetItem.Latitude, droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude) * heavyWeightConsumption;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    //droneItem.BatteryPercent -= Math.Floor(currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1]);
+                    droneItem.DroneLocation.Longitude = targetItem.Longitude;
+                    droneItem.DroneLocation.Latitude = targetItem.Latitude;
+                    droneItem.ParcelAssignedId = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission
+                    droneItem.DroneStatus = BO.DroneStatusesBL.Available;
+                    DalAccess.SupplyParcel(parcelItem.Id);
                 }
 
-                //droneItem.BatteryPercent -= Math.Floor(currentToTarget * DalAccess.EnergyConsumption()[(int)droneItem.DroneWeight + 1]);
-                droneItem.DroneLocation.Longitude = targetItem.Longitude;
-                droneItem.DroneLocation.Latitude = targetItem.Latitude;
-                droneItem.ParcelAssignedId = 0; // initialize the id of the transfer parcel, in that we will know that the drone will be available for a new mission
-                droneItem.DroneStatus = BO.DroneStatusesBL.Available;
-                DalAccess.SupplyParcel(parcelItem.Id);
             }
-
         }
 
         /// <summary>
@@ -318,41 +328,44 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void DroneToCharge(int droneId)
         {
-            DroneToList droneItem = new();
-            try
+            lock (DalAccess)
             {
-                droneItem = DronesListBL.Find(x => x.DroneId == droneId);
-            }
-            catch (DO.NotExistException)
-            {
-                throw new BO.NotExistException();
-            }
-            
-            List<DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetBaseStationsList(x=>x.FreeChargeSlots>0).ToList(); 
-            if ((droneItem.DroneStatus != BO.DroneStatusesBL.Available)) //if the drone is not available (maintaince or shipment)
-                throw new DroneIsNotAvailable(droneId);
-            if (freeChargeSlotsStations.Count == 0 )
-                throw new BO.CannotGoToChargeException(droneId);
-            else
-            {
-                BO.BaseStationBl closetBaseStation = new();
-                closetBaseStation = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, freeChargeSlotsStations);
-                double closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, closetBaseStation.Location.Longitude, closetBaseStation.Location.Latitude);
-             
-                if (droneItem.BatteryPercent >= closetDistance * freeWeightConsumption)
+                DroneToList droneItem = new();
+                try
                 {
-                    droneItem.BatteryPercent -= closetDistance * freeWeightConsumption;
-                    droneItem.DroneLocation.Longitude = closetBaseStation.Location.Longitude;
-                    droneItem.DroneLocation.Latitude = closetBaseStation.Location.Latitude;
-                    droneItem.DroneStatus = BO.DroneStatusesBL.Maintaince;
-                    DalAccess.SendDroneToCharge(droneItem.DroneId, closetBaseStation.Id);
+                    droneItem = DronesListBL.Find(x => x.DroneId == droneId);
                 }
+                catch (DO.NotExistException)
+                {
+                    throw new BO.NotExistException();
+                }
+
+                List<DO.BaseStationDal> freeChargeSlotsStations = DalAccess.GetBaseStationsList(x => x.FreeChargeSlots > 0).ToList();
+                if ((droneItem.DroneStatus != BO.DroneStatusesBL.Available)) //if the drone is not available (maintaince or shipment)
+                    throw new DroneIsNotAvailable(droneId);
+                if (freeChargeSlotsStations.Count == 0)
+                    throw new BO.CannotGoToChargeException(droneId);
                 else
                 {
-                    throw new BO.CannotGoToChargeException(droneId);
-                }
-            }
+                    BO.BaseStationBl closetBaseStation = new();
+                    closetBaseStation = ClosetStation(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, freeChargeSlotsStations);
+                    double closetDistance = GetDistance(droneItem.DroneLocation.Longitude, droneItem.DroneLocation.Latitude, closetBaseStation.Location.Longitude, closetBaseStation.Location.Latitude);
 
+                    if (droneItem.BatteryPercent >= closetDistance * freeWeightConsumption)
+                    {
+                        droneItem.BatteryPercent -= closetDistance * freeWeightConsumption;
+                        droneItem.DroneLocation.Longitude = closetBaseStation.Location.Longitude;
+                        droneItem.DroneLocation.Latitude = closetBaseStation.Location.Latitude;
+                        droneItem.DroneStatus = BO.DroneStatusesBL.Maintaince;
+                        DalAccess.SendDroneToCharge(droneItem.DroneId, closetBaseStation.Id);
+                    }
+                    else
+                    {
+                        throw new BO.CannotGoToChargeException(droneId);
+                    }
+                }
+
+            }
         }
 
         /// <summary>
@@ -363,32 +376,36 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
         public void ReleaseDroneCharge(int droneId)
         {
-            DroneToList droneItem = new();
-            try
+            lock (DalAccess)
             {
-                droneItem = DronesListBL.Find(x => x.DroneId == droneId);
-            }
-            catch (DO.NotExistException)
-            {
-                throw new BO.NotExistException();
-            }
-            if (droneItem.DroneStatus != BO.DroneStatusesBL.Maintaince)
-            {
-                throw new BO.CannotReleaseFromChargeException(droneId);
-            }
-            else
-            {
-                TimeSpan chargeTime = DalAccess.DroneToRelease(droneId);
-                double timeInMinutes = chargeTime.TotalMinutes;//converting the format to number of minutes, for instance, 1:30 to 90 minutes
-                timeInMinutes /= 60; //getting the time in hours 
-                droneItem.BatteryPercent += Math.Ceiling(timeInMinutes * chargeRate); // the battery calculation
-                if (droneItem.BatteryPercent > 100) //battery can't has more than a 100 percent
-                    droneItem.BatteryPercent = 100;
-                
-                droneItem.DroneStatus = BO.DroneStatusesBL.Available;
-                var droneChargeItem = DalAccess.GetDronesChargeList().ToList().Find(x => x.DroneId == droneId);
-                var stationItem = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == droneChargeItem.StationId);
-                DalAccess.GetDronesChargeList().ToList().Remove(droneChargeItem);
+                DroneToList droneItem = new();
+                try
+                {
+                    droneItem = DronesListBL.Find(x => x.DroneId == droneId);
+                }
+                catch (DO.NotExistException)
+                {
+                    throw new BO.NotExistException();
+                }
+                if (droneItem.DroneStatus != BO.DroneStatusesBL.Maintaince)
+                {
+                    throw new BO.CannotReleaseFromChargeException(droneId);
+                }
+                else
+                {
+                    TimeSpan chargeTime = DalAccess.DroneToRelease(droneId);
+                    double timeInMinutes = chargeTime.TotalMinutes;//converting the format to number of minutes, for instance, 1:30 to 90 minutes
+                    timeInMinutes /= 60; //getting the time in hours 
+                    droneItem.BatteryPercent += Math.Ceiling(timeInMinutes * chargeRate); // the battery calculation
+                    if (droneItem.BatteryPercent > 100) //battery can't has more than a 100 percent
+                        droneItem.BatteryPercent = 100;
+
+                    droneItem.DroneStatus = BO.DroneStatusesBL.Available;
+                    var droneChargeItem = DalAccess.GetDronesChargeList().ToList().Find(x => x.DroneId == droneId);
+                    var stationItem = DalAccess.GetBaseStationsList().ToList().Find(x => x.Id == droneChargeItem.StationId);
+                    DalAccess.GetDronesChargeList().ToList().Remove(droneChargeItem);
+
+                } 
             }
         }
         [MethodImpl(MethodImplOptions.Synchronized)] // an attribute that prevent two function to call simultaneously 
