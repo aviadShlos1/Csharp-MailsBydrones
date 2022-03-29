@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"  
         AllowsTransparency="True"
-        
+        MouseDown="Drag"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Title="DroneWindow" Height="600" Width="800">
