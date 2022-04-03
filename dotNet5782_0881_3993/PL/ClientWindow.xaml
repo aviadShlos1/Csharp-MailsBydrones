@@ -153,8 +153,8 @@
                        Height="64" Width="246" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" 
                        Foreground="SkyBlue" Grid.RowSpan="2" ><Run FlowDirection="RightToLeft" Text="Welcome "/>
             </TextBlock>
-            <TextBlock  x:Name="TBuserName" HorizontalAlignment="Left" Margin="493,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" 
-                        Height="auto" Width="162" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="SkyBlue" TextAlignment="Right"><Run FlowDirection="RightToLeft" Text="{Binding Name}"/></TextBlock>
+            <TextBlock  x:Name="TBuserName" HorizontalAlignment="Left" Margin="440,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" 
+                        Height="auto" Width="247" FontSize="30" FontWeight="Bold" FontFamily="Comic Sans MS" Foreground="SkyBlue" TextAlignment="Right"><Run FlowDirection="RightToLeft" Text="{Binding Name}"/></TextBlock>
             <Button HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" Margin="0,218,0,10" Width="88" Height="48" Click="CloseButton_Click" RenderTransformOrigin="0.572,0.996" Grid.Row="2">
                 <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="49" Height="41" Foreground="Black" RenderTransformOrigin="-0.17,0.502">
                 </fa:ImageAwesome>

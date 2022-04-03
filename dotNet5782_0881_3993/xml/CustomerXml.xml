@@ -91,4 +91,11 @@
     <Longitude>32.4</Longitude>
     <Latitude>36.4</Latitude>
   </CustomerDal>
+  <CustomerDal>
+    <Id>314960880</Id>
+    <Name>David</Name>
+    <Phone>0549107108</Phone>
+    <Longitude>32.52</Longitude>
+    <Latitude>34.55</Latitude>
+  </CustomerDal>
 </ArrayOfCustomerDal>

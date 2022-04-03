@@ -84,7 +84,7 @@
             </Grid.RowDefinitions>
 
             <Label Content="Select By Free / Full:" FontFamily="Comic Sans MS" FontSize="14" HorizontalAlignment="Left" Margin="26,12,0,81" FontWeight="Normal" RenderTransformOrigin="0.451,0.509"/>
-            <Label Content="Select By Charge slots:" FontFamily="Comic Sans MS" FontSize="14" HorizontalAlignment="Left" Margin="26,57,0,31" FontWeight="Normal"/>
+            <Label Content="Select By Free Slots:" FontFamily="Comic Sans MS" FontSize="14" HorizontalAlignment="Left" Margin="26,57,0,31" FontWeight="Normal"/>
             <RadioButton x:Name="ChargeCbx" Content="Group By Charge Slots" FontFamily="Comic Sans MS" HorizontalAlignment="Left" FontSize="14" Margin="114,10,0,0" Height="28" 
                           VerticalAlignment="Top" Click="ChargeSlotsRadioBut" Grid.Column="2" Grid.ColumnSpan="2"/>
             <ComboBox x:Name="FreeChargeSlotsSelector" HorizontalAlignment="Left" Width="190" Grid.ColumnSpan="2" Margin="191,12,0,81" SelectionChanged="FreeChargeSlotsSelector_SelectionChanged" />

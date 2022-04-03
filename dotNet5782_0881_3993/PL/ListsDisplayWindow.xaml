@@ -41,7 +41,7 @@
         <Button x:Name="ClosingBt" HorizontalAlignment="Left" BorderThickness="0" Margin="31,562,0,0" Height="68" Width="75"  Click="ClosingBt_Click" RenderTransformOrigin="0.361,-0.533" >
             <fa:ImageAwesome Icon="WindowClose" Stretch="Fill" Width="65" Height="40" Foreground="Black" RenderTransformOrigin="-0.17,0.502"></fa:ImageAwesome>
         </Button>
-        <Label Content="       Lists Display " Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" Height="91" Width="369" FontSize="38" FontStyle="Italic" />
+        <Label Content="       System Display " Foreground="SaddleBrown" FontFamily="Comic Sans MS" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" Height="91" Width="369" FontSize="38" FontStyle="Italic" />
 
         <Grid.Background>
             <ImageBrush ImageSource="Images\Drone.jpg"/>
