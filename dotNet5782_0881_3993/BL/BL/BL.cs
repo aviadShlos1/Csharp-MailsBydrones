@@ -17,15 +17,13 @@ namespace BL
     /// <summary>
     /// This class is divided to modules that contains the methods implement of the CRUD options
     /// </summary>
-    partial class BL :IBL
+    partial class BL : IBL
     {
         /// <summary>
         /// Singleton definition to ensure the uniqueness of an object 
         /// </summary>
         #region Singelton
-        //static BL() { }// static ctor to ensure instance init is done just before first usage
-        //internal static BL Instance { get; } = new BL();// The public Instance property to use
-       
+
         static readonly IBL instance = new BL();
         public static IBL Instance { get => instance; }
 
@@ -79,7 +77,7 @@ namespace BL
             var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0); //calculate according to the formula in this site: https://www.movable-type.co.uk/scripts/latlong.html
             return ((double)(6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3))))) / 3000;
         }
-       
+
         /// <summary>
         /// This func checks who is the closet station to my location that i gives
         /// </summary>
@@ -116,8 +114,6 @@ namespace BL
         //ctor
         private BL()
         {
-            //DalAccess = DalFactory.GetDal();//This is the access point from the data layer
-
             double[] energyConsumption = DalAccess.EnergyConsumption();//Get from the dal layer the array that contains the energy consumption
             freeWeightConsumption = energyConsumption[0];
             lightWeightConsumption = energyConsumption[1];
@@ -125,37 +121,44 @@ namespace BL
             heavyWeightConsumption = energyConsumption[3];
             chargeRate = energyConsumption[4];
 
-        // initializing the entities lists from the dal layer
+            // initializing the entities lists from the dal layer
             List<DroneDal> DronesDalList = DalAccess.GetDronesList().ToList();
             List<ParcelDal> ParcelsDalList = DalAccess.GetParcelsList().ToList();
             List<BaseStationDal> BaseStationsDalList = DalAccess.GetBaseStationsList().ToList();
             List<CustomerDal> CustomersDalList = DalAccess.GetCustomersList().ToList();
 
             DronesListBL = new List<DroneToList>();
+            // first, the function copies the dal drone details  
             foreach (var item in DronesDalList)
             {
                 DronesListBL.Add(new DroneToList { DroneId = item.Id, Model = item.Model, DroneWeight = (WeightCategoriesBL)item.DroneWeight, DroneLocation = new() });
             }
+            // secondly, through the ctor we will add the new details: battery percent, status and location.
             foreach (var itemDrone in DronesListBL)
             {
                 foreach (var itemParcel in ParcelsDalList)
                 {
-                    //If the parcel not supplied but the drone is already assign
+                    //If the parcel was not supplied but the drone has already assigned
                     if (itemParcel.DroneToParcelId == itemDrone.DroneId && itemParcel.SupplyingTime == null)
                     {
                         itemDrone.DroneStatus = DroneStatusesBL.Shipment;
                         itemDrone.ParcelAssignedId = itemParcel.Id;
-                        if (itemParcel.AssignningTime != null && itemParcel.PickingUpTime == null)//If the parcel is already assigned but isn't picked up
+
+                        //If the parcel is already assigned but isn't picked up
+                        if (itemParcel.AssignningTime != null && itemParcel.PickingUpTime == null)
                         {
                             double senderLon = GetCustomerDetails(itemParcel.SenderId).Longitude;
                             double senderLat = GetCustomerDetails(itemParcel.SenderId).Latitude;
                             itemDrone.DroneLocation = ClosetStation(senderLon, senderLat, DalAccess.GetBaseStationsList().ToList()).Location;
                         }
-                        if (itemParcel.PickingUpTime != null && itemParcel.SupplyingTime == null)//If the parcel is already picked up but isn't supplied
+
+                        //If the parcel is already picked up but isn't supplied
+                        if (itemParcel.PickingUpTime != null && itemParcel.SupplyingTime == null)
                         {
                             itemDrone.DroneLocation.Longitude = GetCustomerDetails(itemParcel.SenderId).Longitude;
                             itemDrone.DroneLocation.Latitude = GetCustomerDetails(itemParcel.SenderId).Latitude;
                         }
+                        //target - the reciever location
                         double targetLon = GetCustomerDetails(itemParcel.TargetId).Longitude;
                         double targerLat = GetCustomerDetails(itemParcel.TargetId).Latitude;
                         double targetDistance = GetDistance(itemDrone.DroneLocation.Longitude, itemDrone.DroneLocation.Latitude, targetLon, targerLat);
@@ -179,6 +182,7 @@ namespace BL
                     itemDrone.BatteryPercent = UpToTwoDecimalPoints(rand.NextDouble() * 20);//rand between 0-20 percent
                     DalAccess.SendDroneToCharge(itemDrone.DroneId, BaseStationsDalList[index].Id);
                 }
+
                 //If the drone is free
                 if (itemDrone.DroneStatus == DroneStatusesBL.Available)
                 {
